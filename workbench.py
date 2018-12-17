@@ -8,5 +8,5 @@ import json
 
 # Workspace
 dsb = DifSchemaBuilder()
-dsb.build_schema()
+dsb.build_schema_new()
 dsb.save()
