@@ -10,6 +10,7 @@ from lxml import etree
 
 # Shared global values
 SCHEMA_URL = 'https://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/raw/10.x/UmmCommon_1.3.xsd?at=refs%2Fheads%2Fmaster'
+BASE_SCHEMA = '{http://www.w3.org/2001/XMLSchema}'
 VARIABLE_LIST = ['GranuleSpatialRepresentationEnum', 'CoordinateSystemEnum',
                  'OrganizationTypeEnum', 'PersonnelRoleEnum', 'DatasetLanguageEnum',
                  'SpatialCoverageTypeEnum', 'PhoneTypeEnum', 'DatasetProgressEnum',
@@ -34,7 +35,7 @@ class DifSchemaBuilder:
             for value in self.parse_url(SCHEMA_URL).findall('*'):
                 if value.get('name') == variable:
                     restrictions = value.findall(
-                        '{http://www.w3.org/2001/XMLSchema}restriction')[0]
+                        '{}restriction'.format(BASE_SCHEMA))[0]
                     type_output.append(restrictions.get('base'))
                     for restriction in restrictions.findall('*'):
                         schema_output.append(restriction.get('value'))
@@ -51,7 +52,7 @@ class DifSchemaBuilder:
             self.dif_dictionary[element_name] = {}
 
             # restrictions
-            for restriction in element.findall('{http://www.w3.org/2001/XMLSchema}restriction'):
+            for restriction in element.findall('{}restriction'.format(BASE_SCHEMA)):
                 self.dif_dictionary[element_name]['Restriction Type'] = restriction.get('base')
                 enumerations = []
                 for enumeration in restriction:
@@ -59,8 +60,8 @@ class DifSchemaBuilder:
                 self.dif_dictionary[element_name]['Restriction List'] = enumerations
 
             # documentation
-            for annotation in element.findall('{http://www.w3.org/2001/XMLSchema}annotation'):
-                for documentation in annotation.findall('{http://www.w3.org/2001/XMLSchema}documentation'):
+            for annotation in element.findall('{}annotation'.format(BASE_SCHEMA)):
+                for documentation in annotation.findall('{}documentation'.format(BASE_SCHEMA)):
                     self.dif_dictionary[element_name]['Documentation'] = documentation.text.strip()
 
     def save(self):
