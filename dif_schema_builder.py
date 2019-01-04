@@ -4,8 +4,6 @@ This class allows a user to input a schema URL, and then export it to the consol
 The URL can be specified at init or after creation using the xsd_import method.
 '''
 
-#double check the difference between using self.variable and other possibilities
-
 # Import necessary libraries
 import requests
 import json
@@ -16,6 +14,27 @@ import re
 #shared global values
 SCHEMA_URL = 'https://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/raw/10.x/UmmCommon_1.3.xsd?at=refs%2Fheads%2Fmaster'
 BASE_SCHEMA = '{http://www.w3.org/2001/XMLSchema}'
+BENCHMARK_DICT = {"GranuleSpatialRepresentationEnum": {"restriction": {"type": "string", "values": ["CARTESIAN", "GEODETIC", "ORBIT", "NO_SPATIAL"]}}, "CoordinateSystemEnum": {"restriction": {"type": "string", "values": ["CARTESIAN", "GEODETIC"]}}, "OrganizationPersonnelRoleEnum": {"restriction": {"type": "string", "values": ["DATA CENTER CONTACT"]}}, "DistributionSizeUnitTypeEnum": {"restriction": {"type": "string", "values": ["KB", "MB", "GB", "TB", "PB"]}}, "DistributionFormatTypeEnum": {"restriction": {"type": "string", "values": ["Native", "Supported"]}}, "OrganizationTypeEnum": {"restriction": {"type": "string", "values": ["DISTRIBUTOR", "ARCHIVER", "ORIGINATOR", "PROCESSOR"]}}, "PersonnelRoleEnum": {"restriction": {"type": "string", "values": ["INVESTIGATOR", "INVESTIGATOR, TECHNICAL CONTACT", "METADATA AUTHOR", "METADATA AUTHOR, TECHNICAL CONTACT", "TECHNICAL CONTACT"]}}, "PlatformTypeEnum": {"restriction": {"type": "string", "values": ["Not provided", "Not applicable", "Aircraft", "Balloons/Rockets", "Earth Observation Satellites", "In Situ Land-based Platforms", "In Situ Ocean-based Platforms", "Interplanetary Spacecraft", "Maps/Charts/Photographs", "Models/Analyses", "Navigation Platforms", "Solar/Space Observation Satellites", "Space Stations/Manned Spacecraft"]}}, "DatasetLanguageEnum": {"restriction": {"type": "string", "values": ["English", "Afrikaans", "Arabic", "Bosnian", "Bulgarian", "Chinese", "Croatian", "Czech", "Danish", "Dutch", "Estonian", "Finnish", "French", "German", "Hebrew", "Hungarian", "Indonesian", "Italian", "Japanese", "Korean", "Latvian", "Lithuanian", "Norwegian", "Polish", "Portuguese", "Romanian", "Russian", "Slovak", "Spanish", "Ukrainian", "Vietnamese"]}}, "CollectionDataTypeEnum": {"restriction": {"type": "string", "values": ["SCIENCE_QUALITY", "NEAR_REAL_TIME", "ON_DEMAND", "OTHER"]}}, "ProductFlagEnum": {"restriction": {"type": "string", "values": ["Not provided", "DATA_PRODUCT_FILE", "INSTRUMENT_ANCILLARY_FILE", "SYSTEM/SPACECRAFT_FILE", "EXTERNAL_DATA"]}}, "DurationUnitEnum": {"restriction": {"type": "string", "values": ["DAY", "MONTH", "YEAR"]}}, "SpatialCoverageTypeEnum": {"restriction": {"type": "string", "values": ["Horizontal", "HorizontalVertical", "Orbit", "Vertical", "Horizon&Vert"]}}, "PhoneTypeEnum": {"restriction": {"type": "string", "values": ["Direct Line", "Primary", "Telephone", "Fax", "Mobile", "Modem", "TDD/TTY Phone", "U.S. toll free", "Other"]}}, "MetadataAssociationTypeEnum": {"restriction": {"type": "string", "values": ["Parent", "Child", "Related", "Dependent", "Input", "Science Associated"]}}, "PrivateEnum": {"restriction": {"type": "string", "values": ["True", "False"]}}, "MetadataVersionEnum": {"restriction": {"type": "string", "values": ["VERSION 9.8.1", "VERSION 9.8.2", "VERSION 9.8.2.2", "VERSION 9.8.3", "VERSION 9.8.4", "VERSION 9.9.3", "VERSION 10.2"]}}, "ProductLevelIdEnum": {"restriction": {"type": "string", "values": ["Not provided", "0", "1", "1A", "1B", "1T", "2", "2G", "2P", "3", "4", "NA"]}}, "DatasetProgressEnum": {"restriction": {"type": "string", "values": ["PLANNED", "IN WORK", "COMPLETE", "NOT APPLICABLE", "NOT PROVIDED"]}}, "DisplayableTextEnum": {"restriction": {"type": "string", "values": ["text/plain", "text/markdown"]}}, "DisplayableTextTypeBaseType": {"restriction": {"type": "string"}}, "PersistentIdentifierType": {"sequences": [{"elements": [{"type": "PersistentIdentifierEnum", "name": "Type"}, {"type": "string", "name": "Identifier"}, {"name": "Authority", "minOccurs": "0", "restriction": {"type": "string", "maxLength": "80", "minLength": "1"}}]}, {"elements": [{"type": "MissingReasonEnum", "name": "MissingReason"}, {"type": "string", "name": "Explanation", "minOccurs": "0"}]}]}, "PersistentIdentifierEnum": {"restriction": {"type": "string", "values": ["DOI", "ARK"]}}, "MissingReasonEnum": {"restriction": {"type": "string", "values": ["Not applicable"]}}, "DateOrEnumType": {}, "TimeOrEnumType": {}, "DateOrTimeOrEnumType": {}, "DateEnum": {"restriction": {"type": "string", "values": ["Not provided", "unknown", "present", "unbounded", "future"]}}, "UuidType": {"restriction": {"type": "string"}}}
+
+#could consolidate items on fewer lines, but this format is prefered for readability and later updates
+MATCHER= dict()
+MATCHER['restriction']='base'  
+MATCHER['enumeration']='value'
+MATCHER['choice']='choice'
+MATCHER['sequence']='sequence'
+MATCHER['element']=['type','name','minOccurs','maxOccurs']
+MATCHER['union']='memberTypes'
+MATCHER['simpleType']='name'
+MATCHER['complexType']='name'
+MATCHER['minLength']='value'
+MATCHER['maxLength']='value'
+MATCHER['pattern']='value'
+MATCHER['documentation']='documentation' #returns None
+MATCHER['annotation']='annotation' #returns None
+MATCHER['appinfo']='details' #returns None
+MATCHER['*']='*' #returns None
+MATCHER['/*']='*' #returns None
+MATCHER['/comment()']='comment'
 
 class DifSchemaBuilder:
 
@@ -33,25 +52,7 @@ class DifSchemaBuilder:
         self._choice_count = None
         self._schema_dict_parent = dict()
 
-        #could consolidate items on fewer lines, but this format is prefered for readability and later updates
-        self._matcher= dict()
-        self._matcher['restriction']='base'  
-        self._matcher['enumeration']='value'
-        self._matcher['choice']='choice'
-        self._matcher['sequence']='sequence'
-        self._matcher['element']=['type','name','minOccurs','maxOccurs']
-        self._matcher['union']='memberTypes'
-        self._matcher['simpleType']='name'
-        self._matcher['complexType']='name'
-        self._matcher['minLength']='value'
-        self._matcher['maxLength']='value'
-        self._matcher['pattern']='value'
-        self._matcher['documentation']='documentation' #returns None
-        self._matcher['annotation']='annotation' #returns None
-        self._matcher['appinfo']='details' #returns None
-        self._matcher['*']='*' #returns None
-        self._matcher['/*']='*' #returns None
-        self._matcher['/comment()']='comment'
+        self.test_result = True
 
         self.xsd_import(schema_url_input)
         self.build_dict() #building the dictionary upon init allows the user to save directly
@@ -72,8 +73,8 @@ class DifSchemaBuilder:
             replace_string = path_parent
         
         path_dif = path_current.replace(replace_string, '').replace('/xs:','')
-        elem_key = str(re.sub(r'\[\d+\]','',path_dif))
-        
+        elem_key = re.sub(r'\[\d+\]','',path_dif)
+
         return elem_key
 
 
@@ -86,27 +87,29 @@ class DifSchemaBuilder:
         '''
 
         elem_key = self._get_elem_key(current,parent)
-        elem_value_query = self._matcher[elem_key]
+        elem_value_query = MATCHER[elem_key]
         
         if type(elem_value_query) is list:
-            valuedict = dict()
+            elem_values_dict = dict()
 
             for i in elem_value_query:
                 result = current.get(i)
 
-                try: 
-                    result = result.replace('xs:','')
-                except:
-                    None
-
                 if not(result==None):
-                    valuedict[i]=result
+                    result = result.replace('xs:','')
+                    elem_values_dict[i]=result                   
             
-            elem_value = str(valuedict)
+            elem_value = elem_values_dict
             return elem_value
 
         else:
-            elem_value = str(current.get(elem_value_query)).replace('xs:','')
+            elem_value = current.get(elem_value_query)
+            
+            if elem_value == None:
+                elem_value = 'None'
+            else:
+                elem_value = current.get(elem_value_query).replace('xs:','')
+
             return elem_value
 
 
@@ -118,7 +121,7 @@ class DifSchemaBuilder:
         '''
         
         elem_key = self._get_elem_key(current,parent)
-        elem_value = self._get_elem_value(current,parent)
+        elem_value = str(self._get_elem_value(current,parent)) #necessary to convert occasional dict to str
 
         return print('   '*spcr + elem_key + ': ' + elem_value)
 
@@ -134,21 +137,15 @@ class DifSchemaBuilder:
         elem_key = self._get_elem_key(current,parent)
         elem_value = self._get_elem_value(current,parent)
 
-        try:
-            elem_value_parent = self._get_elem_value(parent,grandparent)
-        except:
+        if parent == '':
             elem_value_parent = 'None'
+        else:
+            elem_value_parent = self._get_elem_value(parent,grandparent)
 
         #main dictionary assignment section        
         if elem_key == 'simpleType': 
             if elem_value != 'None': #only occurs in that nested simple types
                 self.schema_dict[elem_value]={}
-            
-        elif elem_key == 'annotation':
-            None
-            
-        elif elem_key == 'documentation':
-            None
             
         elif elem_key == 'restriction':
             if elem_value_parent=='None': #this only happens in the nested simple type
@@ -164,13 +161,11 @@ class DifSchemaBuilder:
             self._schema_dict_parent['restriction'][elem_key]=elem_value
         
         elif elem_key == 'enumeration':
-            
-            try:
-                self.schema_dict[self._tracker]['restriction']['values'].append(elem_value)
-            except:
-                self.schema_dict[self._tracker]['restriction']['values']=[elem_value]
+            values = self.schema_dict[self._tracker]['restriction'].get('values', [])
+            values.append(elem_value)
+            self.schema_dict[self._tracker]['restriction']['values'] = values            
                 
-        elif elem_key == 'complexType': #this is not going to work for nested complexTypes, however none current exist
+        elif elem_key == 'complexType': #this is not going to work for nested complexTypes, however none currently exist in the schema
             self.schema_dict[elem_value]={}
         
         elif elem_key == 'choice':
@@ -192,12 +187,11 @@ class DifSchemaBuilder:
             
         elif elem_key == 'element':
             try:
-                try:
-                    self.schema_dict[self._tracker]['sequences'][self._choice_count]['elements'].append(eval(elem_value))
-                except:
-                    self.schema_dict[self._tracker]['sequences'][self._choice_count]['elements']=[eval(elem_value)]
+                elements = self.schema_dict[self._tracker]['sequences'][self._choice_count].get('elements',[])
+                elements.append(elem_value)                
+                self.schema_dict[self._tracker]['sequences'][self._choice_count]['elements']=elements
             except:
-                print(f'element error, tracker={self._tracker}, choice_count={self._choice_count}') 
+                print(f'element error, tracker={self._tracker}, choice_count={self._choice_count}')
                 
             #stores current location in dictionary for use when adding child simple type
             self._schema_dict_parent = self.schema_dict[self._tracker]['sequences'][self._choice_count]['elements'] #returns list
@@ -216,7 +210,11 @@ class DifSchemaBuilder:
         
         response = requests.get(schema_url_input)
         schema_file = BytesIO(response.content)
-        self.schema_tree = etree.parse(schema_file)
+        try:
+            self.schema_tree = etree.parse(schema_file)
+        except:
+            print('Schema import failed. Check that URL input leads to a valid XSD file. Schema file not updated.')
+            self.test_result = False
 
 
     def build_dict(self):
@@ -226,6 +224,9 @@ class DifSchemaBuilder:
         Network: External function, called by user and self.save_json().
         '''
         
+        if self.test_result == False:
+            return print('Dictionary build aborted')
+
         for i in self.schema_tree.findall('*'):
             self._dict_entry(i,'','') 
 
@@ -254,6 +255,9 @@ class DifSchemaBuilder:
         '''
         Purpose: Prints a visual form of the xsd to the console for easy inspection.
         '''
+        
+        if self.test_result == False:
+            return print('Console print aborted')
 
         #add a bit to fail if tree isn't built yet
         for i in self.schema_tree.findall('*'):
@@ -283,11 +287,29 @@ class DifSchemaBuilder:
 
     def save_json(self):
         '''
-        Purpose: Rebuilds the dictionary (incase user has imported new url), and saves a json file.
+        Purpose: Rebuilds the dictionary (in case user has imported new url), and saves a json file.
         '''
+
+        if self.test_result == False:
+            return print('Save JSON aborted')
 
         self.schema_dict = self.build_dict()
 
         with open('tree_dict.json', 'w') as outfile:
             json.dump(self.schema_dict, outfile)
 
+
+    def self_test(self):
+        '''
+        Purpose: Compares self.build_dict() output against the benchmark dict stored in memory. Allows for easy testing of new code changes.
+        '''
+
+        print()
+
+        #query the known schema to compare against the known python dict
+        self.xsd_import('https://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/raw/10.x/UmmCommon_1.3.xsd?at=refs%2Fheads%2Fmaster')
+
+        if self.build_dict() == BENCHMARK_DICT and self.test_result:
+            print('Self test passed')
+        else:
+            print('Self test failed')
