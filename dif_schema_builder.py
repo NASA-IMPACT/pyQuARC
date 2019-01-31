@@ -28,7 +28,7 @@ class DifSchemaBuilder:
 
         self.schema_dict = dict()
         self.schema_tree = None
-        self.test_result = True
+
         self.xsd_import(schema_url_input)
         self.build_dict()  # building the dictionary upon init allows the user to save directly
 
@@ -41,21 +41,22 @@ class DifSchemaBuilder:
 
         response = requests.get(schema_url_input)
         schema_file = BytesIO(response.content)
+
         try:
             self.schema_tree = etree.parse(schema_file)
         except:
-            print('Schema import failed. Check that URL input leads to a valid XSD file. Schema file not updated.')
-            self.test_result = False
+            self.schema_tree = None
+            print('Schema import failed. Check that URL input leads to a valid XML file. Object schema tree is now blank.')
 
     def save_json(self):
         '''
         Purpose: Rebuilds the dictionary (in case user has imported new url), and saves a json file.
         '''
 
-        if self.test_result == False:
-            return print('Save JSON aborted')
-
         self.schema_dict = self.build_dict()
+
+        if self.schema_tree == None:
+            print('Object schema tree is blank. Empty JSON saved.')
 
         with open('tree_dict.json', 'w') as outfile:
             json.dump(self.schema_dict, outfile)
@@ -65,12 +66,10 @@ class DifSchemaBuilder:
         Purpose: Compares self.build_dict() output against the benchmark dict stored in memory. Allows for easy testing of new code changes.
         '''
 
-        print()
-
         # query the known schema to compare against the known python dict
         self.xsd_import('https://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/raw/10.x/UmmCommon_1.3.xsd?at=refs%2Fheads%2Fmaster')
 
-        if self.build_dict() == BENCHMARK_DICT and self.test_result:
+        if self.build_dict() == BENCHMARK_DICT:
             print('Self test passed')
         else:
             print('Self test failed')
@@ -79,6 +78,11 @@ class DifSchemaBuilder:
         '''
         Function: Creates a custom python dictionary from the XSD file selected upon init or giving in self.xsd_import().
         '''
+
+        if self.schema_tree == None:
+            print('Object schema tree is blank. Object schema dict is now empty.')
+            self.schema_dict = {}
+            return self.schema_dict
 
         for simpleType in self.schema_tree.findall(BASE_SCHEMA + 'simpleType'):
             simpleType_name = simpleType.get('name')
