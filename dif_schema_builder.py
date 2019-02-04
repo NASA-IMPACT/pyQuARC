@@ -84,6 +84,13 @@ class DifSchemaBuilder:
             self.schema_dict = {}
             return self.schema_dict
 
+        self.getSimpleTypes()
+        self.getComplexTypes()
+
+        return self.schema_dict
+
+    def getSimpleTypes(self):
+
         for simpleType in self.schema_tree.findall(BASE_SCHEMA + 'simpleType'):
             simpleType_name = simpleType.get('name')
             self.schema_dict[simpleType_name] = {}
@@ -107,6 +114,7 @@ class DifSchemaBuilder:
             for union in simpleType.findall(BASE_SCHEMA + 'union'):
                 self.schema_dict[simpleType_name]['union'] = {'memberTypes': union.get('memberTypes')}
 
+    def getComplexTypes(self):
         for complexType in self.schema_tree.findall(BASE_SCHEMA + 'complexType'):
             complexType_name = complexType.get('name')
             self.schema_dict[complexType_name] = {}
@@ -133,5 +141,3 @@ class DifSchemaBuilder:
 
                                 for minLength in restriction.findall(BASE_SCHEMA + 'minLength'):
                                     self.schema_dict[complexType_name]['sequences'][count_seq]['elements'][count_elem]['restriction']['minLength'] = minLength.get('value')
-
-        return self.schema_dict
