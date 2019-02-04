@@ -94,50 +94,52 @@ class DifSchemaBuilder:
         for simpleType in self.schema_tree.findall(BASE_SCHEMA + 'simpleType'):
             simpleType_name = simpleType.get('name')
             self.schema_dict[simpleType_name] = {}
+            simpleParent = self.schema_dict[simpleType_name]
 
             for restriction in simpleType.findall(BASE_SCHEMA + 'restriction'):
                 restriction_type = restriction.get('base').replace('xs:', '')
-                self.schema_dict[simpleType_name]['restriction'] = {'type': restriction_type}
+                simpleParent['restriction'] = {'type': restriction_type}
 
                 enum_test = restriction.find(BASE_SCHEMA + 'enumeration')
                 if enum_test != None:
                     enumeration_list = []
                     for enumeration in restriction.findall(BASE_SCHEMA + 'enumeration'):
                         enumeration_list.append(enumeration.get('value'))
-                    self.schema_dict[simpleType_name]['restriction']['values'] = enumeration_list
+                    simpleParent['restriction']['values'] = enumeration_list
 
                 patern = restriction.find(BASE_SCHEMA + 'pattern')
                 if patern != None:
                     pattern_value = patern.get('value')
-                    self.schema_dict[simpleType_name]['restriction']['patern'] = pattern_value
+                    simpleParent['restriction']['patern'] = pattern_value
 
             for union in simpleType.findall(BASE_SCHEMA + 'union'):
-                self.schema_dict[simpleType_name]['union'] = {'memberTypes': union.get('memberTypes')}
+                simpleParent['union'] = {'memberTypes': union.get('memberTypes')}
 
     def getComplexTypes(self):
         for complexType in self.schema_tree.findall(BASE_SCHEMA + 'complexType'):
             complexType_name = complexType.get('name')
             self.schema_dict[complexType_name] = {}
+            complexParent = self.schema_dict[complexType_name]
 
             for choice in complexType.findall(BASE_SCHEMA + 'choice'):
-                self.schema_dict[complexType_name] = {'sequences': []}
+                complexParent['sequences'] = []
 
                 for count_seq, sequence in enumerate(choice.findall(BASE_SCHEMA + 'sequence')):
-                    self.schema_dict[complexType_name]['sequences'].append({'elements': []})
+                    complexParent['sequences'].append({'elements': []})
 
                     for count_elem, element in enumerate(sequence):
-                        self.schema_dict[complexType_name]['sequences'][count_seq]['elements'].append({})
+                        complexParent['sequences'][count_seq]['elements'].append({})
 
                         for item in ['type', 'name', 'minOccurs', 'maxOccurs']:
                             if element.get(item) != None:
-                                self.schema_dict[complexType_name]['sequences'][count_seq]['elements'][count_elem][item] = element.get(item).replace('xs:', '')
+                                complexParent['sequences'][count_seq]['elements'][count_elem][item] = element.get(item).replace('xs:', '')
 
                         for simpleType in element.findall(BASE_SCHEMA + 'simpleType'):
                             for restriction in simpleType.findall(BASE_SCHEMA+'restriction'):
-                                self.schema_dict[complexType_name]['sequences'][count_seq]['elements'][count_elem]['restriction'] = {'type': restriction.get('base').replace('xs:', '')}
+                                complexParent['sequences'][count_seq]['elements'][count_elem]['restriction'] = {'type': restriction.get('base').replace('xs:', '')}
 
                                 for maxLength in restriction.findall(BASE_SCHEMA + 'maxLength'):
-                                    self.schema_dict[complexType_name]['sequences'][count_seq]['elements'][count_elem]['restriction']['maxLength'] = maxLength.get('value')
+                                    complexParent['sequences'][count_seq]['elements'][count_elem]['restriction']['maxLength'] = maxLength.get('value')
 
                                 for minLength in restriction.findall(BASE_SCHEMA + 'minLength'):
-                                    self.schema_dict[complexType_name]['sequences'][count_seq]['elements'][count_elem]['restriction']['minLength'] = minLength.get('value')
+                                    complexParent['sequences'][count_seq]['elements'][count_elem]['restriction']['minLength'] = minLength.get('value')
