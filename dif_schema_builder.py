@@ -96,11 +96,6 @@ class DifSchemaBuilder:
             elemParent = self.schema_dict[elemType_name]
 
             getFunc(elemParent, elemType)
-            # if elemTypeStr == 'simpleType':
-            #     self._getSimpleTypes(elemParent, elemType)
-
-            # if elemTypeStr == 'complexType':
-            #     self._getComplexTypes(elemParent, elemType)
 
     def _getSimpleTypes(self, simpleParent, simpleType):
 
