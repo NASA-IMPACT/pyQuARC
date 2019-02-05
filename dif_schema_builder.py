@@ -84,61 +84,57 @@ class DifSchemaBuilder:
             self.schema_dict = {}
             return self.schema_dict
 
-        self.getSimpleTypes(self.schema_dict, self.schema_tree)
+        # self.getSimpleTypes(self.schema_dict, self.schema_tree)
+        self.simpleWrapper(self.schema_dict, self.schema_tree)
         self.getComplexTypes()
 
         return self.schema_dict
 
-    def getSimpleTypes(self, schema_dict, schema_tree):
+    def simpleWrapper(self, schema_dict, schema_tree):
 
         for simpleType in schema_tree.findall(BASE_SCHEMA + 'simpleType'):
+
             simpleType_name = simpleType.get('name')
             schema_dict[simpleType_name] = {}
+
             simpleParent = schema_dict[simpleType_name]
 
-            # restrictions
-            for restriction in simpleType.findall(BASE_SCHEMA + 'restriction'):
-                restriction_type = restriction.get('base').replace('xs:', '')
-                simpleParent['restriction'] = {'type': restriction_type}
+            self.getSimpleTypes(simpleParent, simpleType)
 
-                # enumerations
-                enum_test = restriction.find(BASE_SCHEMA + 'enumeration')
-                if enum_test != None:
-                    enumeration_list = []
-                    for enumeration in restriction.findall(BASE_SCHEMA + 'enumeration'):
-                        enumeration_list.append(enumeration.get('value'))
-                    simpleParent['restriction']['values'] = enumeration_list
+    def getSimpleTypes(self, simpleParent, simpleType):
 
-                # onlycomplexhasthisnowbelow
-                # maxLength
-                for maxLength in restriction.findall(BASE_SCHEMA + 'maxLength'):
-                    simpleParent['restriction']['maxLength'] = maxLength.get('value')
+        # restrictions
+        for restriction in simpleType.findall(BASE_SCHEMA + 'restriction'):
+            restriction_type = restriction.get('base').replace('xs:', '')
+            simpleParent['restriction'] = {'type': restriction_type}
 
-                # minLength
-                for minLength in restriction.findall(BASE_SCHEMA + 'minLength'):
-                    simpleParent['restriction']['minLength'] = minLength.get('value')
-                # onlycomplexhasthisnowabove
+            # enumerations
+            enum_test = restriction.find(BASE_SCHEMA + 'enumeration')
+            if enum_test != None:
+                enumeration_list = []
+                for enumeration in restriction.findall(BASE_SCHEMA + 'enumeration'):
+                    enumeration_list.append(enumeration.get('value'))
+                simpleParent['restriction']['values'] = enumeration_list
 
-                # paterns
-                patern = restriction.find(BASE_SCHEMA + 'pattern')
-                if patern != None:
-                    pattern_value = patern.get('value')
-                    simpleParent['restriction']['patern'] = pattern_value
+            # onlycomplexhasthisnowbelow
+            # maxLength
+            for maxLength in restriction.findall(BASE_SCHEMA + 'maxLength'):
+                simpleParent['restriction']['maxLength'] = maxLength.get('value')
 
-            # unions
-            for union in simpleType.findall(BASE_SCHEMA + 'union'):
-                simpleParent['union'] = {'memberTypes': union.get('memberTypes')}
+            # minLength
+            for minLength in restriction.findall(BASE_SCHEMA + 'minLength'):
+                simpleParent['restriction']['minLength'] = minLength.get('value')
+            # onlycomplexhasthisnowabove
 
-    def getComplexSimple(self, simpleParent, element):
-        for simpleType in element.findall(BASE_SCHEMA + 'simpleType'):
-            for restriction in simpleType.findall(BASE_SCHEMA + 'restriction'):
-                simpleParent['restriction'] = {'type': restriction.get('base').replace('xs:', '')}
+            # paterns
+            patern = restriction.find(BASE_SCHEMA + 'pattern')
+            if patern != None:
+                pattern_value = patern.get('value')
+                simpleParent['restriction']['patern'] = pattern_value
 
-                for maxLength in restriction.findall(BASE_SCHEMA + 'maxLength'):
-                    simpleParent['restriction']['maxLength'] = maxLength.get('value')
-
-                for minLength in restriction.findall(BASE_SCHEMA + 'minLength'):
-                    simpleParent['restriction']['minLength'] = minLength.get('value')
+        # unions
+        for union in simpleType.findall(BASE_SCHEMA + 'union'):
+            simpleParent['union'] = {'memberTypes': union.get('memberTypes')}
 
     def getComplexTypes(self):
 
@@ -166,4 +162,5 @@ class DifSchemaBuilder:
 
                         # simpleTypes
                         newSimpleParent = complexParent['sequences'][count_seq]['elements'][count_elem]
-                        self.getComplexSimple(newSimpleParent, element)
+                        for simpleType in element.findall(BASE_SCHEMA + 'simpleType'):
+                            self.getSimpleTypes(newSimpleParent, simpleType)
