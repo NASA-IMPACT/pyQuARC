@@ -84,23 +84,22 @@ class DifSchemaBuilder:
             self.schema_dict = {}
             return self.schema_dict
 
-        self._simpleFinder(self.schema_dict, self.schema_tree)
-        self._complexFinder(self.schema_dict, self.schema_tree)
+        self._typeFinder('simpleType')
+        self._typeFinder('complexType')
 
         return self.schema_dict
 
-    def _simpleFinder(self, schema_dict, schema_tree):
-        for simpleType in schema_tree.findall(BASE_SCHEMA + 'simpleType'):
-            simpleParent = schema_dict[simpleType.get('name')] = {}
-            self._getSimpleTypes(simpleParent, simpleType)
+    def _typeFinder(self, elemTypeStr):
+        for elemType in self.schema_tree.findall(BASE_SCHEMA + elemTypeStr):
+            elemType_name = elemType.get('name')
+            self.schema_dict[elemType_name] = {}
+            elemParent = self.schema_dict[elemType_name]
 
-    def _complexFinder(self, schema_dict, schema_tree):
-        for complexType in self.schema_tree.findall(BASE_SCHEMA + 'complexType'):
-            complexType_name = complexType.get('name')
-            self.schema_dict[complexType_name] = {}
-            complexParent = self.schema_dict[complexType_name]
+            if elemTypeStr == 'simpleType':
+                self._getSimpleTypes(elemParent, elemType)
 
-            self._getComplexTypes(complexParent, complexType)
+            if elemTypeStr == 'complexType':
+                self._getComplexTypes(elemParent, elemType)
 
     def _getSimpleTypes(self, simpleParent, simpleType):
 
