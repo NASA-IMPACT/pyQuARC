@@ -84,24 +84,25 @@ class DifSchemaBuilder:
             self.schema_dict = {}
             return self.schema_dict
 
-        # self.getSimpleTypes(self.schema_dict, self.schema_tree)
-        self.simpleWrapper(self.schema_dict, self.schema_tree)
-        self.getComplexTypes()
+        self._simpleFinder(self.schema_dict, self.schema_tree)
+        self._complexFinder(self.schema_dict, self.schema_tree)
 
         return self.schema_dict
 
-    def simpleWrapper(self, schema_dict, schema_tree):
-
+    def _simpleFinder(self, schema_dict, schema_tree):
         for simpleType in schema_tree.findall(BASE_SCHEMA + 'simpleType'):
+            simpleParent = schema_dict[simpleType.get('name')] = {}
+            self._getSimpleTypes(simpleParent, simpleType)
 
-            simpleType_name = simpleType.get('name')
-            schema_dict[simpleType_name] = {}
+    def _complexFinder(self, schema_dict, schema_tree):
+        for complexType in self.schema_tree.findall(BASE_SCHEMA + 'complexType'):
+            complexType_name = complexType.get('name')
+            self.schema_dict[complexType_name] = {}
+            complexParent = self.schema_dict[complexType_name]
 
-            simpleParent = schema_dict[simpleType_name]
+            self._getComplexTypes(complexParent, complexType)
 
-            self.getSimpleTypes(simpleParent, simpleType)
-
-    def getSimpleTypes(self, simpleParent, simpleType):
+    def _getSimpleTypes(self, simpleParent, simpleType):
 
         # restrictions
         for restriction in simpleType.findall(BASE_SCHEMA + 'restriction'):
@@ -116,7 +117,6 @@ class DifSchemaBuilder:
                     enumeration_list.append(enumeration.get('value'))
                 simpleParent['restriction']['values'] = enumeration_list
 
-            # onlycomplexhasthisnowbelow
             # maxLength
             for maxLength in restriction.findall(BASE_SCHEMA + 'maxLength'):
                 simpleParent['restriction']['maxLength'] = maxLength.get('value')
@@ -124,7 +124,6 @@ class DifSchemaBuilder:
             # minLength
             for minLength in restriction.findall(BASE_SCHEMA + 'minLength'):
                 simpleParent['restriction']['minLength'] = minLength.get('value')
-            # onlycomplexhasthisnowabove
 
             # paterns
             patern = restriction.find(BASE_SCHEMA + 'pattern')
@@ -136,31 +135,26 @@ class DifSchemaBuilder:
         for union in simpleType.findall(BASE_SCHEMA + 'union'):
             simpleParent['union'] = {'memberTypes': union.get('memberTypes')}
 
-    def getComplexTypes(self):
+    def _getComplexTypes(self, complexParent, complexType):
 
-        for complexType in self.schema_tree.findall(BASE_SCHEMA + 'complexType'):
-            complexType_name = complexType.get('name')
-            self.schema_dict[complexType_name] = {}
-            complexParent = self.schema_dict[complexType_name]
+        # choices
+        for choice in complexType.findall(BASE_SCHEMA + 'choice'):
+            complexParent['sequences'] = []
 
-            # choices
-            for choice in complexType.findall(BASE_SCHEMA + 'choice'):
-                complexParent['sequences'] = []
+            # sequences?
+            for count_seq, sequence in enumerate(choice.findall(BASE_SCHEMA + 'sequence')):
+                complexParent['sequences'].append({'elements': []})
 
                 # sequences?
-                for count_seq, sequence in enumerate(choice.findall(BASE_SCHEMA + 'sequence')):
-                    complexParent['sequences'].append({'elements': []})
+                for count_elem, element in enumerate(sequence):
+                    complexParent['sequences'][count_seq]['elements'].append({})
 
-                    # sequences?
-                    for count_elem, element in enumerate(sequence):
-                        complexParent['sequences'][count_seq]['elements'].append({})
+                    # items
+                    for item in ['type', 'name', 'minOccurs', 'maxOccurs']:
+                        if element.get(item) != None:
+                            complexParent['sequences'][count_seq]['elements'][count_elem][item] = element.get(item).replace('xs:', '')
 
-                        # items
-                        for item in ['type', 'name', 'minOccurs', 'maxOccurs']:
-                            if element.get(item) != None:
-                                complexParent['sequences'][count_seq]['elements'][count_elem][item] = element.get(item).replace('xs:', '')
-
-                        # simpleTypes
-                        newSimpleParent = complexParent['sequences'][count_seq]['elements'][count_elem]
-                        for simpleType in element.findall(BASE_SCHEMA + 'simpleType'):
-                            self.getSimpleTypes(newSimpleParent, simpleType)
+                    # simpleTypes
+                    newSimpleParent = complexParent['sequences'][count_seq]['elements'][count_elem]
+                    for simpleType in element.findall(BASE_SCHEMA + 'simpleType'):
+                        self._getSimpleTypes(newSimpleParent, simpleType)
