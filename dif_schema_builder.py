@@ -66,14 +66,12 @@ class DifSchemaBuilder:
         Function: Creates a custom python dictionary from the XSD file selected upon init or giving in self.xsd_import().
         '''
 
+        self.schema_dict = {}
         if self.schema_tree == None:
             print('Object schema tree is blank. Object schema dict is now empty.')
-            self.schema_dict = {}
-            return self.schema_dict
-
-        self._type_finder('simpleType', self._get_simple_types)
-        self._type_finder('complexType', self._getComplexTypes)
-
+        else:
+            self._type_finder('simpleType', self._get_simple_types)
+            self._type_finder('complexType', self._getComplexTypes)
         return self.schema_dict
 
     def _type_finder(self, elem_type_str, get_func):
