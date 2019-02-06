@@ -48,9 +48,15 @@ def test_bad_schema():
     There is some error handling built into the class that will respond to a failed schema import.
     This function should check whether that error handling is working correctly.
     '''
-    return 'no schema test yet'
 
-    if False:
-        return 'Passed: schema test'
-    else:
-        return 'Failed: schema test'
+    print('\nTesting error messages')
+    test = DifSchemaBuilder('http://www.google.com')
+    test.save_json()
+
+    return ''
+    # return ''
+
+    # if False:
+    #     return 'Passed: schema test'
+    # else:
+    #     return 'Failed: schema test'
