@@ -48,7 +48,7 @@ class DifSchemaBuilder:
             self.schema_tree = None
             print('Schema import failed. Check that URL input leads to a valid XML file. Object schema tree is now blank.')
 
-    def save_json(self):
+    def save_json(self, json_path='tree_dict.json'):
         '''
         Purpose: Rebuilds the dictionary (in case user has imported new url), and saves a json file.
         '''
@@ -58,21 +58,8 @@ class DifSchemaBuilder:
         if self.schema_tree == None:
             print('Object schema tree is blank. Empty JSON saved.')
 
-        with open('tree_dict.json', 'w') as outfile:
+        with open(json_path, 'w') as outfile:
             json.dump(self.schema_dict, outfile)
-
-    def self_test(self):
-        '''
-        Purpose: Compares self.build_dict() output against the benchmark dict stored in memory. Allows for easy testing of new code changes.
-        '''
-
-        # query the known schema to compare against the known python dict
-        self.xsd_import('https://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/raw/10.x/UmmCommon_1.3.xsd?at=refs%2Fheads%2Fmaster')
-
-        if self.build_dict() == BENCHMARK_DICT:
-            print('Self test passed')
-        else:
-            print('Self test failed')
 
     def build_dict(self):
         '''
