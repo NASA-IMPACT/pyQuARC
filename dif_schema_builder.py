@@ -85,24 +85,15 @@ class DifSchemaBuilder:
             restriction_type = restriction.get('base').replace('xs:', '')
             simple_parent['restriction'] = {'type': restriction_type}
 
-            # enumerations
-            enum_test = restriction.find(BASE_SCHEMA + 'enumeration')
-            if enum_test is not None:
-                enumeration_list = []
-                for enumeration in restriction.findall(BASE_SCHEMA + 'enumeration'):
-                    enumeration_list.append(enumeration.get('value'))
-                simple_parent['restriction']['values'] = enumeration_list
+            for enumeration in restriction.findall(BASE_SCHEMA + 'enumeration'):
+                values = simple_parent['restriction'].get('values',[])
+                values.append(enumeration.get('value'))
+                simple_parent['restriction']['values'] = values
 
-            # min & maxLength
-            for len_lim_str in ['minLength', 'maxLength']:  # len_lim_str is length limit string
-                for len_lim_obj in restriction.findall(BASE_SCHEMA + len_lim_str):
-                    simple_parent['restriction'][len_lim_str] = len_lim_obj.get('value')
-
-            # patterns
-            pattern = restriction.find(BASE_SCHEMA + 'pattern')
-            if pattern is not None:
-                pattern_value = pattern.get('value')
-                simple_parent['restriction']['pattern'] = pattern_value
+            # minLength, maxLength, pattern
+            for attribute_str in ['minLength', 'maxLength', 'pattern']:  # len_lim_str is length limit string
+                for attribute_obj in restriction.findall(BASE_SCHEMA + attribute_str):
+                    simple_parent['restriction'][attribute_str] = attribute_obj.get('value')
 
         # unions
         for union in simple_type.findall(BASE_SCHEMA + 'union'):
@@ -122,10 +113,10 @@ class DifSchemaBuilder:
                 for count_elem, element in enumerate(sequence):
                     complex_parent['sequences'][count_seq]['elements'].append({})
 
-                    # items
-                    for item in ['type', 'name', 'minOccurs', 'maxOccurs']:
-                        if element.get(item) is not None:
-                            complex_parent['sequences'][count_seq]['elements'][count_elem][item] = element.get(item).replace('xs:', '')
+                    # attributes
+                    for attribute in ['type', 'name', 'minOccurs', 'maxOccurs']:
+                        if element.get(attribute) is not None:
+                            complex_parent['sequences'][count_seq]['elements'][count_elem][attribute] = element.get(attribute).replace('xs:', '')
 
                     # simpleTypes
                     simple_parent = complex_parent['sequences'][count_seq]['elements'][count_elem]
