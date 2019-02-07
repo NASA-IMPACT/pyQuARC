@@ -84,14 +84,15 @@ class DifSchemaBuilder:
         for restriction in simple_type.findall(BASE_SCHEMA + 'restriction'):
             restriction_type = restriction.get('base').replace('xs:', '')
             simple_parent['restriction'] = {'type': restriction_type}
-
+            
+            # enumerations
             for enumeration in restriction.findall(BASE_SCHEMA + 'enumeration'):
                 values = simple_parent['restriction'].get('values',[])
                 values.append(enumeration.get('value'))
                 simple_parent['restriction']['values'] = values
 
             # minLength, maxLength, pattern
-            for attribute_str in ['minLength', 'maxLength', 'pattern']:  # len_lim_str is length limit string
+            for attribute_str in ['minLength', 'maxLength', 'pattern']:
                 for attribute_obj in restriction.findall(BASE_SCHEMA + attribute_str):
                     simple_parent['restriction'][attribute_str] = attribute_obj.get('value')
 
