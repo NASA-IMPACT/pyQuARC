@@ -14,6 +14,7 @@ from lxml import etree
 SCHEMA_URL = 'https://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/raw/10.x/UmmCommon_1.3.xsd?at=refs%2Fheads%2Fmaster'
 BASE_SCHEMA = '{http://www.w3.org/2001/XMLSchema}'
 
+
 class DifSchemaBuilder:
 
     def __init__(self, schema_url_input=SCHEMA_URL):
@@ -78,16 +79,38 @@ class DifSchemaBuilder:
 
             get_func(elem_parent, elem_type)
 
+    def _get_simple_types_alt(self, simple_parent, simple_type):
+
+        for element_str in ['union', 'restriction']:
+            for element_obj in simple_type.findall(BASE_SCHEMA + element_str):
+                if element_str == 'union':
+                    simple_parent['union'] = {'memberTypes': element_obj.get('memberTypes')}
+                else:
+                    element_obj_type = element_obj.get('base').replace('xs:', '')
+                    simple_parent['restriction'] = {'type': element_obj_type}
+                    for attribute_str in ['minLength', 'maxLength', 'pattern', 'enumeration']:
+                        for attribute_obj in element_obj.findall(BASE_SCHEMA + attribute_str):
+                            if attribute_str == 'enumeration':
+                                values = simple_parent['restriction'].get('values', [])
+                                values.append(attribute_obj.get('value'))
+                                simple_parent['restriction']['values'] = values
+                            else:
+                                simple_parent['restriction'][attribute_str] = attribute_obj.get('value')
+
     def _get_simple_types(self, simple_parent, simple_type):
+
+        # unions
+        for union in simple_type.findall(BASE_SCHEMA + 'union'):
+            simple_parent['union'] = {'memberTypes': union.get('memberTypes')}
 
         # restrictions
         for restriction in simple_type.findall(BASE_SCHEMA + 'restriction'):
             restriction_type = restriction.get('base').replace('xs:', '')
             simple_parent['restriction'] = {'type': restriction_type}
-            
+
             # enumerations
             for enumeration in restriction.findall(BASE_SCHEMA + 'enumeration'):
-                values = simple_parent['restriction'].get('values',[])
+                values = simple_parent['restriction'].get('values', [])
                 values.append(enumeration.get('value'))
                 simple_parent['restriction']['values'] = values
 
@@ -95,10 +118,6 @@ class DifSchemaBuilder:
             for attribute_str in ['minLength', 'maxLength', 'pattern']:
                 for attribute_obj in restriction.findall(BASE_SCHEMA + attribute_str):
                     simple_parent['restriction'][attribute_str] = attribute_obj.get('value')
-
-        # unions
-        for union in simple_type.findall(BASE_SCHEMA + 'union'):
-            simple_parent['union'] = {'memberTypes': union.get('memberTypes')}
 
     def _get_complex_types(self, complex_parent, complex_type):
 
@@ -115,9 +134,9 @@ class DifSchemaBuilder:
                     complex_parent['sequences'][count_seq]['elements'].append({})
 
                     # attributes
-                    for attribute in ['type', 'name', 'minOccurs', 'maxOccurs']:
-                        if element.get(attribute) is not None:
-                            complex_parent['sequences'][count_seq]['elements'][count_elem][attribute] = element.get(attribute).replace('xs:', '')
+                    for attribute_str in ['type', 'name', 'minOccurs', 'maxOccurs']:
+                        if element.get(attribute_str) is not None:
+                            complex_parent['sequences'][count_seq]['elements'][count_elem][attribute_str] = element.get(attribute_str).replace('xs:', '')
 
                     # simpleTypes
                     simple_parent = complex_parent['sequences'][count_seq]['elements'][count_elem]
