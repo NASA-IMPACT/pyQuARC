@@ -9,14 +9,10 @@ import requests
 import json
 from io import BytesIO
 from lxml import etree
-import re
 
 # shared global values
 SCHEMA_URL = 'https://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/raw/10.x/UmmCommon_1.3.xsd?at=refs%2Fheads%2Fmaster'
 BASE_SCHEMA = '{http://www.w3.org/2001/XMLSchema}'
-BENCHMARK_DICT = {"GranuleSpatialRepresentationEnum": {"restriction": {"type": "string", "values": ["CARTESIAN", "GEODETIC", "ORBIT", "NO_SPATIAL"]}}, "CoordinateSystemEnum": {"restriction": {"type": "string", "values": ["CARTESIAN", "GEODETIC"]}}, "OrganizationPersonnelRoleEnum": {"restriction": {"type": "string", "values": ["DATA CENTER CONTACT"]}}, "DistributionSizeUnitTypeEnum": {"restriction": {"type": "string", "values": ["KB", "MB", "GB", "TB", "PB"]}}, "DistributionFormatTypeEnum": {"restriction": {"type": "string", "values": ["Native", "Supported"]}}, "OrganizationTypeEnum": {"restriction": {"type": "string", "values": ["DISTRIBUTOR", "ARCHIVER", "ORIGINATOR", "PROCESSOR"]}}, "PersonnelRoleEnum": {"restriction": {"type": "string", "values": ["INVESTIGATOR", "INVESTIGATOR, TECHNICAL CONTACT", "METADATA AUTHOR", "METADATA AUTHOR, TECHNICAL CONTACT", "TECHNICAL CONTACT"]}}, "PlatformTypeEnum": {"restriction": {"type": "string", "values": ["Not provided", "Not applicable", "Aircraft", "Balloons/Rockets", "Earth Observation Satellites", "In Situ Land-based Platforms", "In Situ Ocean-based Platforms", "Interplanetary Spacecraft", "Maps/Charts/Photographs", "Models/Analyses", "Navigation Platforms", "Solar/Space Observation Satellites", "Space Stations/Manned Spacecraft"]}}, "DatasetLanguageEnum": {"restriction": {"type": "string", "values": ["English", "Afrikaans", "Arabic", "Bosnian", "Bulgarian", "Chinese", "Croatian", "Czech", "Danish", "Dutch", "Estonian", "Finnish", "French", "German", "Hebrew", "Hungarian", "Indonesian", "Italian", "Japanese", "Korean", "Latvian", "Lithuanian", "Norwegian", "Polish", "Portuguese", "Romanian", "Russian", "Slovak", "Spanish", "Ukrainian", "Vietnamese"]}}, "CollectionDataTypeEnum": {"restriction": {"type": "string", "values": ["SCIENCE_QUALITY", "NEAR_REAL_TIME", "ON_DEMAND", "OTHER"]}}, "ProductFlagEnum": {"restriction": {"type": "string", "values": ["Not provided", "DATA_PRODUCT_FILE", "INSTRUMENT_ANCILLARY_FILE", "SYSTEM/SPACECRAFT_FILE", "EXTERNAL_DATA"]}}, "DurationUnitEnum": {"restriction": {"type": "string", "values": ["DAY", "MONTH", "YEAR"]}}, "SpatialCoverageTypeEnum": {"restriction": {"type": "string", "values": [
-    "Horizontal", "HorizontalVertical", "Orbit", "Vertical", "Horizon&Vert"]}}, "PhoneTypeEnum": {"restriction": {"type": "string", "values": ["Direct Line", "Primary", "Telephone", "Fax", "Mobile", "Modem", "TDD/TTY Phone", "U.S. toll free", "Other"]}}, "MetadataAssociationTypeEnum": {"restriction": {"type": "string", "values": ["Parent", "Child", "Related", "Dependent", "Input", "Science Associated"]}}, "PrivateEnum": {"restriction": {"type": "string", "values": ["True", "False"]}}, "MetadataVersionEnum": {"restriction": {"type": "string", "values": ["VERSION 9.8.1", "VERSION 9.8.2", "VERSION 9.8.2.2", "VERSION 9.8.3", "VERSION 9.8.4", "VERSION 9.9.3", "VERSION 10.2"]}}, "ProductLevelIdEnum": {"restriction": {"type": "string", "values": ["Not provided", "0", "1", "1A", "1B", "1T", "2", "2G", "2P", "3", "4", "NA"]}}, "DatasetProgressEnum": {"restriction": {"type": "string", "values": ["PLANNED", "IN WORK", "COMPLETE", "NOT APPLICABLE", "NOT PROVIDED"]}}, "DisplayableTextEnum": {"restriction": {"type": "string", "values": ["text/plain", "text/markdown"]}}, "DisplayableTextTypeBaseType": {"restriction": {"type": "string"}}, "PersistentIdentifierEnum": {"restriction": {"type": "string", "values": ["DOI", "ARK"]}}, "MissingReasonEnum": {"restriction": {"type": "string", "values": ["Not applicable"]}}, "DateOrEnumType": {"union": {"memberTypes": "xs:date DateEnum"}}, "TimeOrEnumType": {"union": {"memberTypes": "xs:dateTime DateEnum"}}, "DateOrTimeOrEnumType": {"union": {"memberTypes": "xs:date xs:dateTime DateEnum"}}, "DateEnum": {"restriction": {"type": "string", "values": ["Not provided", "unknown", "present", "unbounded", "future"]}}, "UuidType": {"restriction": {"type": "string", "patern": "[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89abAB][0-9a-f]{3}-[0-9a-f]{12}"}}, "PersistentIdentifierType": {"sequences": [{"elements": [{"type": "PersistentIdentifierEnum", "name": "Type"}, {"type": "string", "name": "Identifier"}, {"name": "Authority", "minOccurs": "0", "restriction": {"type": "string", "maxLength": "80", "minLength": "1"}}]}, {"elements": [{"type": "MissingReasonEnum", "name": "MissingReason"}, {"type": "string", "name": "Explanation", "minOccurs": "0"}]}]}}
-
 
 class DifSchemaBuilder:
 
@@ -50,12 +46,12 @@ class DifSchemaBuilder:
 
     def save_json(self, json_path='tree_dict.json'):
         '''
-        Purpose: Rebuilds the dictionary (in case user has imported new url), and saves a json file.
+        Rebuilds the dictionary (in case user has imported new url), and saves a json file.
         '''
 
         self.schema_dict = self.build_dict()
 
-        if self.schema_tree == None:
+        if self.schema_tree is None:
             print('Object schema tree is blank. Empty JSON saved.')
 
         with open(json_path, 'w') as outfile:
@@ -63,24 +59,24 @@ class DifSchemaBuilder:
 
     def build_dict(self):
         '''
-        Function: Creates a custom python dictionary from the XSD file selected upon init or giving in self.xsd_import().
+        Creates a custom python dictionary from the XSD file selected upon init or given in self.xsd_import().
         '''
 
         self.schema_dict = {}
-        if self.schema_tree == None:
+        if self.schema_tree is None:
             print('Object schema tree is blank. Object schema dict is now empty.')
         else:
             self._type_finder('simpleType', self._get_simple_types)
-            self._type_finder('complexType', self._getComplexTypes)
+            self._type_finder('complexType', self._get_complex_types)
         return self.schema_dict
 
     def _type_finder(self, elem_type_str, get_func):
-        for elemType in self.schema_tree.findall(BASE_SCHEMA + elem_type_str):
-            elemType_name = elemType.get('name')
-            self.schema_dict[elemType_name] = {}
-            elemParent = self.schema_dict[elemType_name]
+        for elem_type in self.schema_tree.findall(BASE_SCHEMA + elem_type_str):
+            elem_type_name = elem_type.get('name')
+            self.schema_dict[elem_type_name] = {}
+            elem_parent = self.schema_dict[elem_type_name]
 
-            get_func(elemParent, elemType)
+            get_func(elem_parent, elem_type)
 
     def _get_simple_types(self, simple_parent, simple_type):
 
@@ -91,31 +87,28 @@ class DifSchemaBuilder:
 
             # enumerations
             enum_test = restriction.find(BASE_SCHEMA + 'enumeration')
-            if enum_test != None:
+            if enum_test is not None:
                 enumeration_list = []
                 for enumeration in restriction.findall(BASE_SCHEMA + 'enumeration'):
                     enumeration_list.append(enumeration.get('value'))
                 simple_parent['restriction']['values'] = enumeration_list
 
-            # maxLength
-            for maxLength in restriction.findall(BASE_SCHEMA + 'maxLength'):
-                simple_parent['restriction']['maxLength'] = maxLength.get('value')
+            # min & maxLength
+            for len_lim_str in ['minLength', 'maxLength']:  # len_lim_str is length limit string
+                for len_lim_obj in restriction.findall(BASE_SCHEMA + len_lim_str):
+                    simple_parent['restriction'][len_lim_str] = len_lim_obj.get('value')
 
-            # minLength
-            for minLength in restriction.findall(BASE_SCHEMA + 'minLength'):
-                simple_parent['restriction']['minLength'] = minLength.get('value')
-
-            # paterns
-            patern = restriction.find(BASE_SCHEMA + 'pattern')
-            if patern != None:
-                pattern_value = patern.get('value')
-                simple_parent['restriction']['patern'] = pattern_value
+            # patterns
+            pattern = restriction.find(BASE_SCHEMA + 'pattern')
+            if pattern is not None:
+                pattern_value = pattern.get('value')
+                simple_parent['restriction']['pattern'] = pattern_value
 
         # unions
         for union in simple_type.findall(BASE_SCHEMA + 'union'):
             simple_parent['union'] = {'memberTypes': union.get('memberTypes')}
 
-    def _getComplexTypes(self, complex_parent, complex_type):
+    def _get_complex_types(self, complex_parent, complex_type):
 
         # choices
         for choice in complex_type.findall(BASE_SCHEMA + 'choice'):
@@ -131,10 +124,10 @@ class DifSchemaBuilder:
 
                     # items
                     for item in ['type', 'name', 'minOccurs', 'maxOccurs']:
-                        if element.get(item) != None:
+                        if element.get(item) is not None:
                             complex_parent['sequences'][count_seq]['elements'][count_elem][item] = element.get(item).replace('xs:', '')
 
                     # simpleTypes
-                    newsimple_parent = complex_parent['sequences'][count_seq]['elements'][count_elem]
-                    for simpleType in element.findall(BASE_SCHEMA + 'simpleType'):
-                        self._get_simple_types(newsimple_parent, simpleType)
+                    simple_parent = complex_parent['sequences'][count_seq]['elements'][count_elem]
+                    for simple_type in element.findall(BASE_SCHEMA + 'simpleType'):
+                        self._get_simple_types(simple_parent, simple_type)
