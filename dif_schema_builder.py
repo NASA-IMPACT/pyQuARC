@@ -36,7 +36,7 @@ class DifSchemaBuilder:
         Network: External function, is called during init, but can also be modified by user after class creation.
         '''
 
-        response = requests.get(schema_url_input)
+        response = requests.get(schema_url_input, headers={'Connection':'close'})
         schema_file = BytesIO(response.content)
 
         try:
@@ -44,6 +44,7 @@ class DifSchemaBuilder:
         except:
             self.schema_tree = None
             print('Schema import failed. Check that URL input leads to a valid XML file. Object schema tree is now blank.')
+
 
     def save_json(self, json_path='tree_dict.json'):
         '''
@@ -78,24 +79,6 @@ class DifSchemaBuilder:
             elem_parent = self.schema_dict[elem_type_name]
 
             get_func(elem_parent, elem_type)
-
-    def _get_simple_types_alt(self, simple_parent, simple_type):
-
-        for element_str in ['union', 'restriction']:
-            for element_obj in simple_type.findall(BASE_SCHEMA + element_str):
-                if element_str == 'union':
-                    simple_parent['union'] = {'memberTypes': element_obj.get('memberTypes')}
-                else:
-                    element_obj_type = element_obj.get('base').replace('xs:', '')
-                    simple_parent['restriction'] = {'type': element_obj_type}
-                    for attribute_str in ['minLength', 'maxLength', 'pattern', 'enumeration']:
-                        for attribute_obj in element_obj.findall(BASE_SCHEMA + attribute_str):
-                            if attribute_str == 'enumeration':
-                                values = simple_parent['restriction'].get('values', [])
-                                values.append(attribute_obj.get('value'))
-                                simple_parent['restriction']['values'] = values
-                            else:
-                                simple_parent['restriction'][attribute_str] = attribute_obj.get('value')
 
     def _get_simple_types(self, simple_parent, simple_type):
 
