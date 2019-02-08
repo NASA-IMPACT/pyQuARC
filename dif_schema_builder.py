@@ -125,3 +125,6 @@ class DifSchemaBuilder:
                     simple_parent = complex_parent['sequences'][count_seq]['elements'][count_elem]
                     for simple_type in element.findall(BASE_SCHEMA + 'simpleType'):
                         self._get_simple_types(simple_parent, simple_type)
+
+if __name__ == '__main__':
+    pass
