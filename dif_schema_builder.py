@@ -36,7 +36,7 @@ class DifSchemaBuilder:
         Network: External function, is called during init, but can also be modified by user after class creation.
         '''
 
-        response = requests.get(schema_url_input, headers={'Connection':'close'})
+        response = requests.get(schema_url_input, headers={'Connection': 'close'})
         schema_file = BytesIO(response.content)
 
         try:
@@ -44,7 +44,6 @@ class DifSchemaBuilder:
         except:
             self.schema_tree = None
             print('Schema import failed. Check that URL input leads to a valid XML file. Object schema tree is now blank.')
-
 
     def save_json(self, json_path='tree_dict.json'):
         '''
@@ -73,12 +72,12 @@ class DifSchemaBuilder:
         return self.schema_dict
 
     def _type_finder(self, elem_type_str, get_func):
-        for elem_type in self.schema_tree.findall(BASE_SCHEMA + elem_type_str):
-            elem_type_name = elem_type.get('name')
-            self.schema_dict[elem_type_name] = {}
-            elem_parent = self.schema_dict[elem_type_name]
+        for elem_obj in self.schema_tree.findall(BASE_SCHEMA + elem_type_str):
+            elem_name = elem_obj.get('name')
+            self.schema_dict[elem_name] = {}
+            elem_parent = self.schema_dict[elem_name]  # TODO: is there a more sensible name than elem_parent?
 
-            get_func(elem_parent, elem_type)
+            get_func(elem_parent, elem_obj)
 
     def _get_simple_types(self, simple_parent, simple_type):
 
@@ -126,5 +125,4 @@ class DifSchemaBuilder:
                     for simple_type in element.findall(BASE_SCHEMA + 'simpleType'):
                         self._get_simple_types(simple_parent, simple_type)
 
-if __name__ == '__main__':
-    pass
+
