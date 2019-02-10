@@ -67,16 +67,16 @@ class DifSchemaBuilder:
         if self.schema_tree is None:
             print('Object schema tree is blank. Object schema dict is now empty.')
         else:
-            self._type_finder('simpleType', self._get_simple_types)
-            self._type_finder('complexType', self._get_complex_types)
+            self._element_loop('simpleType', self._get_simple_data)
+            self._element_loop('complexType', self._get_complex_data)
         return self.schema_dict
 
-    def _type_finder(self, elem_type_str, get_func):
+    def _element_loop(self, elem_type_str, get_data_func):
         for elem_obj in self.schema_tree.findall(BASE_SCHEMA + elem_type_str):
             elem_name = elem_obj.get('name')
-            self.schema_dict[elem_name] = get_func(elem_obj)
+            self.schema_dict[elem_name] = get_data_func(elem_obj)
 
-    def _get_simple_types(self, simple_type):
+    def _get_simple_data(self, simple_type):
 
         simple_dict = {}
 
@@ -102,7 +102,7 @@ class DifSchemaBuilder:
 
         return simple_dict
 
-    def _get_complex_types(self, complex_type):
+    def _get_complex_data(self, complex_type):
 
         complex_dict = {}
 
@@ -125,7 +125,7 @@ class DifSchemaBuilder:
 
                     # simpleTypes
                     for simple_type in element.findall(BASE_SCHEMA + 'simpleType'):
-                        simple_dict = self._get_simple_types(simple_type)
+                        simple_dict = self._get_simple_data(simple_type)
                         complex_dict['sequences'][count_seq]['elements'][count_elem].update(simple_dict)
 
         return complex_dict
