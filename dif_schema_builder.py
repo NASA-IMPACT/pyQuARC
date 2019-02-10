@@ -74,55 +74,59 @@ class DifSchemaBuilder:
     def _type_finder(self, elem_type_str, get_func):
         for elem_obj in self.schema_tree.findall(BASE_SCHEMA + elem_type_str):
             elem_name = elem_obj.get('name')
-            self.schema_dict[elem_name] = {}
-            elem_parent = self.schema_dict[elem_name]  # TODO: is there a more sensible name than elem_parent?
+            self.schema_dict[elem_name] = get_func(elem_obj)
 
-            get_func(elem_parent, elem_obj)
+    def _get_simple_types(self, simple_type):
 
-    def _get_simple_types(self, simple_parent, simple_type):
+        simple_dict = {}
 
         # unions
         for union in simple_type.findall(BASE_SCHEMA + 'union'):
-            simple_parent['union'] = {'memberTypes': union.get('memberTypes')}
+            simple_dict['union'] = {'memberTypes': union.get('memberTypes')}
 
         # restrictions
         for restriction in simple_type.findall(BASE_SCHEMA + 'restriction'):
             restriction_type = restriction.get('base').replace('xs:', '')
-            simple_parent['restriction'] = {'type': restriction_type}
+            simple_dict['restriction'] = {'type': restriction_type}
 
             # enumerations
             for enumeration in restriction.findall(BASE_SCHEMA + 'enumeration'):
-                values = simple_parent['restriction'].get('values', [])
+                values = simple_dict['restriction'].get('values', [])
                 values.append(enumeration.get('value'))
-                simple_parent['restriction']['values'] = values
+                simple_dict['restriction']['values'] = values
 
             # minLength, maxLength, pattern
             for attribute_str in ['minLength', 'maxLength', 'pattern']:
                 for attribute_obj in restriction.findall(BASE_SCHEMA + attribute_str):
-                    simple_parent['restriction'][attribute_str] = attribute_obj.get('value')
+                    simple_dict['restriction'][attribute_str] = attribute_obj.get('value')
 
-    def _get_complex_types(self, complex_parent, complex_type):
+        return simple_dict
+
+    def _get_complex_types(self, complex_type):
+
+        complex_dict = {}
 
         # choices
         for choice in complex_type.findall(BASE_SCHEMA + 'choice'):
-            complex_parent['sequences'] = []
+            complex_dict['sequences'] = []
 
             # sequences?
             for count_seq, sequence in enumerate(choice.findall(BASE_SCHEMA + 'sequence')):
-                complex_parent['sequences'].append({'elements': []})
+                complex_dict['sequences'].append({'elements': []})
 
                 # sequences?
                 for count_elem, element in enumerate(sequence):
-                    complex_parent['sequences'][count_seq]['elements'].append({})
+                    complex_dict['sequences'][count_seq]['elements'].append({})
 
                     # attributes
                     for attribute_str in ['type', 'name', 'minOccurs', 'maxOccurs']:
                         if element.get(attribute_str) is not None:
-                            complex_parent['sequences'][count_seq]['elements'][count_elem][attribute_str] = element.get(attribute_str).replace('xs:', '')
+                            complex_dict['sequences'][count_seq]['elements'][count_elem][attribute_str] = element.get(attribute_str).replace('xs:', '')
 
                     # simpleTypes
-                    simple_parent = complex_parent['sequences'][count_seq]['elements'][count_elem]
                     for simple_type in element.findall(BASE_SCHEMA + 'simpleType'):
-                        self._get_simple_types(simple_parent, simple_type)
+                        simple_dict = self._get_simple_types(simple_type)
+                        complex_dict['sequences'][count_seq]['elements'][count_elem].update(simple_dict)
 
+        return complex_dict
 
