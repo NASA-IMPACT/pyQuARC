@@ -15,7 +15,7 @@ SCHEMA_URL = 'https://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/raw
 BASE_SCHEMA = '{http://www.w3.org/2001/XMLSchema}'
 
 
-class DifSchemaBuilder:
+class DifSchema:
 
     def __init__(self, schema_url_input=SCHEMA_URL):
         '''
@@ -49,7 +49,7 @@ class DifSchemaBuilder:
             self.schema_tree = None
             print('Schema import failed. Check that URL input leads to a valid XML file. Object schema tree is now blank.')
 
-    def save_json(self, json_path='tree_dict.json'):
+    def save_json(self, json_path='DIF-10.json'):
         '''
         Rebuilds the dictionary (in case user has imported new url), and saves a json file.
         '''
