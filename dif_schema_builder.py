@@ -50,10 +50,11 @@ class DifSchemaBuilder:
         Rebuilds the dictionary (in case user has imported new url), and saves a json file.
         '''
 
-        self.schema_dict = self.build_dict()
-
         if self.schema_tree is None:
             print('Object schema tree is blank. Empty JSON saved.')
+            self.schema_dict = {}
+        else:
+            self.build_dict()
 
         with open(json_path, 'w') as outfile:
             json.dump(self.schema_dict, outfile)
@@ -64,17 +65,24 @@ class DifSchemaBuilder:
         '''
 
         self.schema_dict = {}
+
         if self.schema_tree is None:
             print('Object schema tree is blank. Object schema dict is now empty.')
         else:
-            self._element_loop('simpleType', self._get_simple_data)
-            self._element_loop('complexType', self._get_complex_data)
+            self.schema_dict.update(self._element_loop('simpleType', self._get_simple_data))
+            self.schema_dict.update(self._element_loop('complexType', self._get_complex_data))
+
         return self.schema_dict
 
     def _element_loop(self, elem_type_str, get_data_func):
+
+        loop_dict = {}
+
         for elem_obj in self.schema_tree.findall(BASE_SCHEMA + elem_type_str):
             elem_name = elem_obj.get('name')
-            self.schema_dict[elem_name] = get_data_func(elem_obj)
+            loop_dict[elem_name] = get_data_func(elem_obj)
+
+        return loop_dict
 
     def _get_simple_data(self, simple_type):
 

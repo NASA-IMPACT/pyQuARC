@@ -13,7 +13,6 @@ BENCHMARK_JSON_PATH = 'testfiles/tree_dict_benchmark.json'
 TEST_JSON_PATH = 'testfiles/tree_dict_test.json'
 BENCHMARK_CONSOLE_OUTPUT = '''Schema import failed. Check that URL input leads to a valid XML file. Object schema tree is now blank.
 Object schema tree is blank. Object schema dict is now empty.
-Object schema tree is blank. Object schema dict is now empty.
 Object schema tree is blank. Empty JSON saved.
 '''
 
