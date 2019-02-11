@@ -25,14 +25,17 @@ class DifSchemaBuilder:
 
         self.schema_dict = dict()
         self.schema_tree = None
+        self.schema_url = schema_url_input
 
-        self.xsd_import(schema_url_input)
+        self.xsd_import(self.schema_url)
         self.build_dict()  # building the dictionary upon init allows the user to save directly
 
     def xsd_import(self, schema_url_input):
         '''
         Purpose: Grabs xsd from the internet and creates an eTree object. Will flag invalid XLM.
         Arguments: Accepts a valid schema_url.
+        Errors: If the lxml.etree library fails to build an etree object from the inputed url, the schema file will be
+        stored as blank and all other functions will react by storing blank values as well.
         Network: External function, is called during init, but can also be modified by user after class creation.
         '''
 
@@ -42,6 +45,7 @@ class DifSchemaBuilder:
         try:
             self.schema_tree = etree.parse(schema_file)
         except:
+            # all sub-functions will react to an empty schema tree by storing blank versions of their output
             self.schema_tree = None
             print('Schema import failed. Check that URL input leads to a valid XML file. Object schema tree is now blank.')
 
