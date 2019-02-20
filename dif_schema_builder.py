@@ -11,7 +11,7 @@ from io import BytesIO
 from lxml import etree
 
 # shared global values
-SCHEMA_URL = 'https://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/raw/10.x/UmmCommon_1.3.xsd?at=refs%2Fheads%2Fmaster'
+SCHEMA_URL = 'https://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/raw/10.x/UmmCommon_1.3.xsd'
 BASE_SCHEMA = '{http://www.w3.org/2001/XMLSchema}'
 
 
@@ -34,31 +34,20 @@ class DifSchema:
         '''
         Purpose: Grabs xsd from the internet and creates an eTree object. Will flag invalid XLM.
         Arguments: Accepts a valid schema_url.
-        Errors: If the lxml.etree library fails to build an etree object from the inputed url, the schema file will be
-        stored as blank and all other functions will react by storing blank values as well.
         Network: External function, is called during init, but can also be modified by user after class creation.
         '''
 
         response = requests.get(schema_url_input, headers={'Connection': 'close'})
         schema_file = BytesIO(response.content)
 
-        try:
-            self.schema_tree = etree.parse(schema_file)
-        except:
-            # all sub-functions will react to an empty schema tree by storing blank versions of their output
-            self.schema_tree = None
-            print('Schema import failed. Check that URL input leads to a valid XML file. Object schema tree is now blank.')
+        self.schema_tree = etree.parse(schema_file)  # could fail for a lot of reasons
 
     def save_json(self, json_path='DIF-10.json'):
         '''
         Rebuilds the dictionary (in case user has imported new url), and saves a json file.
         '''
 
-        if self.schema_tree is None:
-            print('Object schema tree is blank. Empty JSON saved.')
-            self.schema_dict = {}
-        else:
-            self.build_dict()
+        self.build_dict()
 
         with open(json_path, 'w') as outfile:
             json.dump(self.schema_dict, outfile)
@@ -70,11 +59,8 @@ class DifSchema:
 
         self.schema_dict = {}
 
-        if self.schema_tree is None:
-            print('Object schema tree is blank. Object schema dict is now empty.')
-        else:
-            self.schema_dict.update(self._element_loop('simpleType', self._get_simple_data))
-            self.schema_dict.update(self._element_loop('complexType', self._get_complex_data))
+        self.schema_dict.update(self._element_loop('simpleType', self._get_simple_data))
+        self.schema_dict.update(self._element_loop('complexType', self._get_complex_data))
 
         return self.schema_dict
 
