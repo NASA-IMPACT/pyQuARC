@@ -52,6 +52,38 @@ class SchemaTools:
         with open(json_path, 'w') as outfile:
             json.dump(self.schema_dict, outfile)
 
+    def _attribute_dict(self, element):
+        return dict(zip(element.attrib, map(lambda x: x.replace('xs:', ''), element.attrib.values())))
+
+    def print_xsd_structure(self):
+        for count, element in enumerate(self.schema_tree.findall('*')):
+            print(f'{count}: {self._extract_tag(element)}: {element.get("name")}')
+            # self._print_tag(0, element)
+            self._explore_tree(element, 1)
+            print()
+
+    def _extract_tag(self, element):
+        return element.tag.replace('{http://www.w3.org/2001/XMLSchema}', '')
+
+    def _print_tag(self, depth, element):
+        element_tag = self._extract_tag(element)
+        spacer = '    '
+        if element_tag not in ['annotation', 'documentation', 'p', 'appinfo']:
+            pnt_str = f'    {spacer * depth}{element_tag}'
+            if element.items():
+                # pnt_str += ' - ' + str(element.items())
+                pnt_str += ' - ' + str(element.attrib)
+            print(pnt_str)
+
+    def _explore_tree(self, element, depth=-1):
+        '''Recusively explore the eTree'''
+
+        if depth < 10:
+            for sub_element in element:
+                if type(sub_element) != etree._Comment:
+                    self._print_tag(depth, sub_element)
+                    self._explore_tree(sub_element, depth+1)
+
 
 class DifSchema(SchemaTools):
     def __init__(self,schema_url_input=SCHEMA_URL_DIF):
@@ -125,11 +157,7 @@ class DifSchema(SchemaTools):
                 # sequences?
                 for count_elem, element in enumerate(sequence):
                     complex_dict['sequences'][count_seq]['elements'].append({})
-
-                    # attributes
-                    for attribute_str in ['type', 'name', 'minOccurs', 'maxOccurs']:
-                        if element.get(attribute_str) is not None:
-                            complex_dict['sequences'][count_seq]['elements'][count_elem][attribute_str] = element.get(attribute_str).replace('xs:', '')
+                    complex_dict['sequences'][count_seq]['elements'][count_elem].update(self._attribute_dict(element))
 
                     # simpleTypes
                     for simple_type in element.findall(BASE_SCHEMA + 'simpleType'):
@@ -149,33 +177,33 @@ class EchoSchema(SchemaTools):
     def build_dict(self):
         pass
 
-    def print_xsd_structure(self):
-        for count, element in enumerate(self.schema_tree.findall('*')):
-            # print(f'{count}: {self._extract_tag(element)}: {element.get("name")}')
-            self._print_tag(0, element)
-            self._explore_tree(element, 1)
-            print()
-
-    def _extract_tag(self, element):
-        return element.tag.replace('{http://www.w3.org/2001/XMLSchema}', '')
-
-    def _print_tag(self, depth, element):
-        element_tag = self._extract_tag(element)
-        spacer = '    '
-        if element_tag not in ['annotation', 'documentation', 'p', 'appinfo']:
-            pnt_str = f'{spacer * depth}{element_tag}'
-            if element.items():
-                pnt_str += ' - ' + str(element.items())
-            print(pnt_str)
-
-    def _explore_tree(self, element, depth=-1):
-        '''Recusively explore the eTree'''
-
-        if depth < 10:
-            for sub_element in element:
-                if type(sub_element) != etree._Comment:
-                    self._print_tag(depth, sub_element)
-                    self._explore_tree(sub_element, depth+1)
+    # def print_xsd_structure(self):
+    #     for count, element in enumerate(self.schema_tree.findall('*')):
+    #         # print(f'{count}: {self._extract_tag(element)}: {element.get("name")}')
+    #         self._print_tag(0, element)
+    #         self._explore_tree(element, 1)
+    #         print()
+    #
+    # def _extract_tag(self, element):
+    #     return element.tag.replace('{http://www.w3.org/2001/XMLSchema}', '')
+    #
+    # def _print_tag(self, depth, element):
+    #     element_tag = self._extract_tag(element)
+    #     spacer = '    '
+    #     if element_tag not in ['annotation', 'documentation', 'p', 'appinfo']:
+    #         pnt_str = f'{spacer * depth}{element_tag}'
+    #         if element.items():
+    #             pnt_str += ' - ' + str(element.items())
+    #         print(pnt_str)
+    #
+    # def _explore_tree(self, element, depth=-1):
+    #     '''Recusively explore the eTree'''
+    #
+    #     if depth < 10:
+    #         for sub_element in element:
+    #             if type(sub_element) != etree._Comment:
+    #                 self._print_tag(depth, sub_element)
+    #                 self._explore_tree(sub_element, depth+1)
 
 
 
