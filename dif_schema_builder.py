@@ -11,13 +11,14 @@ from io import BytesIO
 from lxml import etree
 
 # shared global values
-SCHEMA_URL = 'https://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/raw/10.x/UmmCommon_1.3.xsd'
+SCHEMA_URL_DIF = 'https://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/raw/10.x/UmmCommon_1.3.xsd'
+SCHEMA_URL_ECHO = 'https://git.earthdata.nasa.gov/projects/EMFD/repos/echo-schemas/raw/schemas/10.0/Collection.xsd'
 BASE_SCHEMA = '{http://www.w3.org/2001/XMLSchema}'
 
 
-class DifSchema:
+class SchemaTools:
 
-    def __init__(self, schema_url_input=SCHEMA_URL):
+    def __init__(self, schema_url_input):
         '''
         Purpose: Initializes all class-wide variables, including importing the default schema and building a default tree.
         Arguments: Accepts a schema_url from the user. This should be a valid XSD file.
@@ -28,7 +29,6 @@ class DifSchema:
         self.schema_url = schema_url_input
 
         self.xsd_import(self.schema_url)
-        self.build_dict()  # building the dictionary upon init allows the user to save directly
 
     def xsd_import(self, schema_url_input):
         '''
@@ -42,7 +42,7 @@ class DifSchema:
 
         self.schema_tree = etree.parse(schema_file)  # could fail for a lot of reasons
 
-    def save_json(self, json_path='DIF-10.json'):
+    def save_json(self, json_path='schema.json'):
         '''
         Rebuilds the dictionary (in case user has imported new url), and saves a json file.
         '''
@@ -51,6 +51,16 @@ class DifSchema:
 
         with open(json_path, 'w') as outfile:
             json.dump(self.schema_dict, outfile)
+
+
+class DifSchema(SchemaTools):
+    def __init__(self,schema_url_input=SCHEMA_URL_DIF):
+        '''
+        init
+        '''
+
+        SchemaTools.__init__(self,schema_url_input)
+        self.build_dict()
 
     def build_dict(self):
         '''
@@ -127,4 +137,44 @@ class DifSchema:
                         complex_dict['sequences'][count_seq]['elements'][count_elem].update(simple_dict)
 
         return complex_dict
+
+
+class EchoSchema(SchemaTools):
+    def __init__(self,schema_url_input=SCHEMA_URL_ECHO):
+        '''init'''
+        SchemaTools.__init__(self,schema_url_input)
+
+        self.build_dict()
+
+    def build_dict(self):
+        pass
+
+    def print_xsd_structure(self):
+        for count, element in enumerate(self.schema_tree.findall('*')):
+            # print(f'{count}: {self._extract_tag(element)}: {element.get("name")}')
+            self._print_tag(0,element)
+            self._explore_tree(element, 1)
+            print()
+
+    def _extract_tag(self, element):
+        return element.tag.replace('{http://www.w3.org/2001/XMLSchema}', '')
+
+    def _print_tag(self,depth,element):
+        element_tag = self._extract_tag(element)
+        spacer = '    '
+        if element_tag not in ['annotation', 'documentation', 'p']:
+            pnt_str = f'{spacer * depth}{element_tag}'
+            if element.items():
+                pnt_str += ' - ' + str(element.items())
+            print(pnt_str)
+
+    def _explore_tree(self, element, depth=-1):
+        '''Recusively explore the eTree'''
+
+        if depth < 10:
+            for sub_element in element:
+                self._print_tag(depth, sub_element)
+                self._explore_tree(sub_element, depth+1)
+
+
 
