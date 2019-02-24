@@ -1,11 +1,11 @@
 import unittest
 import json
-from dif_schema_builder import DifSchema
+from schema_builders import DifSchema
 import os
 
 BENCHMARK_SCHEMA_URL = 'https://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/raw/10.x/UmmCommon_1.3.xsd?at=refs%2Fheads%2Fmaster'
-BENCHMARK_JSON_PATH = 'testfiles/DIF-10_benchmark.json'
-TEST_JSON_PATH = 'testfiles/DIF-10_test.json'
+BENCHMARK_JSON_PATH = 'test files/DIF-10_benchmark.json'
+TEST_JSON_PATH = 'test files/DIF-10_test.json'
 
 class TestDifSchemaBuilder(unittest.TestCase):
 
@@ -37,7 +37,7 @@ class TestDifSchemaBuilder(unittest.TestCase):
         with open(TEST_JSON_PATH) as json_file:
             test_json = json.load(json_file)
 
-        os.remove(TEST_JSON_PATH)
+        # os.remove(TEST_JSON_PATH)
 
         # compare the JSON files
         self.assertEqual(test_json, self.BENCHMARK_JSON)
