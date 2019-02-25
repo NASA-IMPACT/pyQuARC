@@ -52,9 +52,6 @@ class SchemaTools:
         with open(json_path, 'w') as outfile:
             json.dump(self.schema_dict, outfile)
 
-    def _attribute_dict(self, element):
-        return dict(zip(element.attrib, map(lambda x: x.replace('xs:', ''), element.attrib.values())))
-
     def print_xsd_structure(self):
         for count, element in enumerate(self.schema_tree.findall('*')):
             print(f'{count}: {self._extract_tag(element)}: {element.get("name")}')
@@ -62,10 +59,16 @@ class SchemaTools:
             self._explore_tree(element, 1)
             print()
 
-    def _extract_tag(self, element):
+    @staticmethod
+    def _attribute_dict(element):
+        return dict(zip(element.attrib, map(lambda x: x.replace('xs:', ''), element.attrib.values())))
+
+    @staticmethod
+    def _extract_tag(element):
         return element.tag.replace('{http://www.w3.org/2001/XMLSchema}', '')
 
-    def _extract_parent_tag(self, element):
+    @staticmethod
+    def _extract_parent_tag(element):
         return element.getparent().tag.replace('{http://www.w3.org/2001/XMLSchema}', '')
 
     def _print_tag(self, depth, element):
@@ -74,8 +77,7 @@ class SchemaTools:
         if element_tag not in ['annotation', 'documentation', 'p', 'appinfo']:
             pnt_str = f'    {spacer * depth}{element_tag}'
             if element.items():
-                # pnt_str += ' - ' + str(element.items())
-                pnt_str += ' - ' + str(element.attrib)
+                pnt_str += ' - ' + str(self._attribute_dict(element))
             print(pnt_str)
 
     def _explore_tree(self, element, depth=-1):
@@ -86,8 +88,6 @@ class SchemaTools:
                 if type(sub_element) != etree._Comment:
                     self._print_tag(depth, sub_element)
                     self._explore_tree(sub_element, depth+1)
-
-
 
     def _get_simple_data(self, simple_type):
 
@@ -146,32 +146,6 @@ class DifSchema(SchemaTools):
             loop_dict[elem_name] = get_data_func(elem_obj)
 
         return loop_dict
-    #
-    # def _get_simple_data(self, simple_type):
-    #
-    #     simple_dict = {}
-    #
-    #     # unions
-    #     for union in simple_type.findall(BASE_SCHEMA + 'union'):
-    #         simple_dict['union'] = {'memberTypes': union.get('memberTypes')}
-    #
-    #     # restrictions
-    #     for restriction in simple_type.findall(BASE_SCHEMA + 'restriction'):
-    #         restriction_type = restriction.get('base').replace('xs:', '')
-    #         simple_dict['restriction'] = {'type': restriction_type}
-    #
-    #         # enumerations
-    #         for enumeration in restriction.findall(BASE_SCHEMA + 'enumeration'):
-    #             values = simple_dict['restriction'].get('values', [])
-    #             values.append(enumeration.get('value'))
-    #             simple_dict['restriction']['values'] = values
-    #
-    #         # minLength, maxLength, pattern
-    #         for attribute_str in ['minLength', 'maxLength', 'pattern']:
-    #             for attribute_obj in restriction.findall(BASE_SCHEMA + attribute_str):
-    #                 simple_dict['restriction'][attribute_str] = attribute_obj.get('value')
-    #
-    #     return simple_dict
 
     def _get_complex_data(self, complex_type):
 
@@ -203,8 +177,7 @@ class EchoSchema(SchemaTools):
         '''init'''
         SchemaTools.__init__(self, schema_url_input)
 
-        self.elem_functions = {'elementTag': 'matchingFunction',
-                               'sequence': self._sequence,
+        self.elem_functions = {'sequence': self._sequence,
                                'element': self._element,
                                'simpleType': self._simpleType}
 
@@ -223,8 +196,6 @@ class EchoSchema(SchemaTools):
 
                 self._temp = {}
                 self.schema_dict[element_name] = self._explore_tree_sub(element, 1)
-
-        # print(self.schema_dict)
 
     def _explore_tree_sub(self, element, depth=-1):
         '''
@@ -256,10 +227,10 @@ class EchoSchema(SchemaTools):
     def _element(self, element):
         '''are elements always inside of sequences?'''
 
-        # parent is [sequence]
-        if self._extract_tag(element.getparent()) == 'sequence':  # and self._is_base(element.getparent()):
+        # parent is [sequence, root]
+        if self._extract_tag(element.getparent()) == 'sequence' and self._is_base(element.getparent()):
             # self._temp_sub.append(element.attrib)  #
-            self._temp['sequence'].append(element.attrib)
+            self._temp['sequence'].append(self._attribute_dict(element))
 
             # if this element has a valid child, then it will prepare the temp dict for that child to store into
             child_tags = list(map(self._extract_tag, element.getchildren()))
@@ -269,13 +240,21 @@ class EchoSchema(SchemaTools):
                     # self._temp_sub = self._temp_sub[-1]
 
     def _simpleType(self, element):
-        # How do I know where to put this data in the self._temp???
-        # The parent must be storing it's data somewhere??
-        pass
-        # if element.parent
-        # print(self._get_simple_data(element))
+
+        # this is a HORRIBLE method for this. there should be some kind of built in path I can check against in the
+        # lxml library. I might need to parse the path a little bit if it includes memory addresses
+        # this method is just a quick proof of concept.
+        if self._extract_parent_tag(element) == 'element':
+            if self._extract_parent_tag(element.getparent()) == 'sequence':
+                if self._extract_parent_tag(element.getparent().getparent()) == 'complexType':
+                    if self._extract_parent_tag(element.getparent().getparent().getparent()) == 'schema':
+
+                        # this wont work if we skipped a child to the parent when storing
+                        # finding the index of the parent element within the sequence
+                        index = element.getparent().getparent().index(element.getparent())
+                        self._temp['sequence'][index].update(self._get_simple_data(element))
 
     def _is_base(self, element):
         '''tests if element is direct child of a simple/complex/etc'''
 
-        return self._extract_tag(element.getparent().getparent())=='schema'
+        return self._extract_tag(element.getparent().getparent()) == 'schema'
