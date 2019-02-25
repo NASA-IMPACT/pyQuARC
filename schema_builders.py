@@ -65,6 +65,9 @@ class SchemaTools:
     def _extract_tag(self, element):
         return element.tag.replace('{http://www.w3.org/2001/XMLSchema}', '')
 
+    def _extract_parent_tag(self, element):
+        return element.getparent().tag.replace('{http://www.w3.org/2001/XMLSchema}', '')
+
     def _print_tag(self, depth, element):
         element_tag = self._extract_tag(element)
         spacer = '    '
@@ -83,6 +86,34 @@ class SchemaTools:
                 if type(sub_element) != etree._Comment:
                     self._print_tag(depth, sub_element)
                     self._explore_tree(sub_element, depth+1)
+
+
+
+    def _get_simple_data(self, simple_type):
+
+        simple_dict = {}
+
+        # unions
+        for union in simple_type.findall(BASE_SCHEMA + 'union'):
+            simple_dict['union'] = {'memberTypes': union.get('memberTypes')}
+
+        # restrictions
+        for restriction in simple_type.findall(BASE_SCHEMA + 'restriction'):
+            restriction_type = restriction.get('base').replace('xs:', '')
+            simple_dict['restriction'] = {'type': restriction_type}
+
+            # enumerations
+            for enumeration in restriction.findall(BASE_SCHEMA + 'enumeration'):
+                values = simple_dict['restriction'].get('values', [])
+                values.append(enumeration.get('value'))
+                simple_dict['restriction']['values'] = values
+
+            # minLength, maxLength, pattern
+            for attribute_str in ['minLength', 'maxLength', 'pattern']:
+                for attribute_obj in restriction.findall(BASE_SCHEMA + attribute_str):
+                    simple_dict['restriction'][attribute_str] = attribute_obj.get('value')
+
+        return simple_dict
 
 
 class DifSchema(SchemaTools):
@@ -115,32 +146,32 @@ class DifSchema(SchemaTools):
             loop_dict[elem_name] = get_data_func(elem_obj)
 
         return loop_dict
-
-    def _get_simple_data(self, simple_type):
-
-        simple_dict = {}
-
-        # unions
-        for union in simple_type.findall(BASE_SCHEMA + 'union'):
-            simple_dict['union'] = {'memberTypes': union.get('memberTypes')}
-
-        # restrictions
-        for restriction in simple_type.findall(BASE_SCHEMA + 'restriction'):
-            restriction_type = restriction.get('base').replace('xs:', '')
-            simple_dict['restriction'] = {'type': restriction_type}
-
-            # enumerations
-            for enumeration in restriction.findall(BASE_SCHEMA + 'enumeration'):
-                values = simple_dict['restriction'].get('values', [])
-                values.append(enumeration.get('value'))
-                simple_dict['restriction']['values'] = values
-
-            # minLength, maxLength, pattern
-            for attribute_str in ['minLength', 'maxLength', 'pattern']:
-                for attribute_obj in restriction.findall(BASE_SCHEMA + attribute_str):
-                    simple_dict['restriction'][attribute_str] = attribute_obj.get('value')
-
-        return simple_dict
+    #
+    # def _get_simple_data(self, simple_type):
+    #
+    #     simple_dict = {}
+    #
+    #     # unions
+    #     for union in simple_type.findall(BASE_SCHEMA + 'union'):
+    #         simple_dict['union'] = {'memberTypes': union.get('memberTypes')}
+    #
+    #     # restrictions
+    #     for restriction in simple_type.findall(BASE_SCHEMA + 'restriction'):
+    #         restriction_type = restriction.get('base').replace('xs:', '')
+    #         simple_dict['restriction'] = {'type': restriction_type}
+    #
+    #         # enumerations
+    #         for enumeration in restriction.findall(BASE_SCHEMA + 'enumeration'):
+    #             values = simple_dict['restriction'].get('values', [])
+    #             values.append(enumeration.get('value'))
+    #             simple_dict['restriction']['values'] = values
+    #
+    #         # minLength, maxLength, pattern
+    #         for attribute_str in ['minLength', 'maxLength', 'pattern']:
+    #             for attribute_obj in restriction.findall(BASE_SCHEMA + attribute_str):
+    #                 simple_dict['restriction'][attribute_str] = attribute_obj.get('value')
+    #
+    #     return simple_dict
 
     def _get_complex_data(self, complex_type):
 
@@ -172,8 +203,79 @@ class EchoSchema(SchemaTools):
         '''init'''
         SchemaTools.__init__(self, schema_url_input)
 
+        self.elem_functions = {'elementTag': 'matchingFunction',
+                               'sequence': self._sequence,
+                               'element': self._element,
+                               'simpleType': self._simpleType}
+
+        self._temp = dict()
+        self._temp_sub = dict()
         self.build_dict()
 
     def build_dict(self):
-        pass
 
+        self.schema_dict = {}
+
+        for element in self.schema_tree.findall('*'):
+            if element.tag == (BASE_SCHEMA + 'simpleType') or element.tag == (BASE_SCHEMA + 'complexType'):
+
+                element_name = element.get('name')
+
+                self._temp = {}
+                self.schema_dict[element_name] = self._explore_tree_sub(element, 1)
+
+        # print(self.schema_dict)
+
+    def _explore_tree_sub(self, element, depth=-1):
+        '''
+        each explore tree only looks at the children of one top level element
+        such as simpleType of complexType
+        cleans the temp dict and builds a new one. The sub-functions build on it, they do not return it between themselves
+        '''
+
+        if depth < 10:
+            for sub_element in element:
+                if self._extract_tag(sub_element) in self.elem_functions.keys():  # if there is a function for the element tag
+                    self._build_temp(sub_element)
+                    self._explore_tree_sub(sub_element, depth+1)
+
+        return self._temp
+
+    def _build_temp(self, element):
+        '''
+        runs correct function for the current element
+        '''
+
+        self.elem_functions[self._extract_tag(element)](element)
+
+    def _sequence(self, element):
+        if self._is_base(element):
+            self._temp = {'sequence': []}
+            self._temp_sub = self._temp['sequence']
+
+    def _element(self, element):
+        '''are elements always inside of sequences?'''
+
+        # parent is [sequence]
+        if self._extract_tag(element.getparent()) == 'sequence':  # and self._is_base(element.getparent()):
+            # self._temp_sub.append(element.attrib)  #
+            self._temp['sequence'].append(element.attrib)
+
+            # if this element has a valid child, then it will prepare the temp dict for that child to store into
+            child_tags = list(map(self._extract_tag, element.getchildren()))
+            for child_tag in child_tags:
+                if child_tag in self.elem_functions.keys():
+                    pass
+                    # self._temp_sub = self._temp_sub[-1]
+
+    def _simpleType(self, element):
+        # How do I know where to put this data in the self._temp???
+        # The parent must be storing it's data somewhere??
+        pass
+        # if element.parent
+        # print(self._get_simple_data(element))
+
+    def _is_base(self, element):
+        '''tests if element is direct child of a simple/complex/etc'''
+
+        return self._extract_tag(element.getparent().getparent())=='schema'
