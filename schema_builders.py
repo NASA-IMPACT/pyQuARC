@@ -1,7 +1,8 @@
 '''
 DIF Schema Builder
 This class allows a user to input a schema URL, and then export it as a python dict or a JSON file.
-The URL can be specified at init or after creation using the xsd_import method.
+The URL can be specified at init or after creation using the _xsd_import method.
+A cleaned representation of the XSD file can be printed to the console using print_xsd_structure.
 '''
 
 # Import necessary libraries
@@ -16,58 +17,37 @@ BASE_SCHEMA = '{http://www.w3.org/2001/XMLSchema}'
 
 class SchemaBuilder:
 
-    def __init__(self, schema_url_input):
-        '''
-        Purpose: Initializes all class-wide variables, including importing the default schema and building a default tree.
-        Arguments: Accepts a schema_url from the user. This should be a valid XSD file.
-        '''
+    def __init__(self, xsd_file_url):
+        self._build_functions = {'element': self._element,
+                                 'simpleType': self._simple}
+        self.schema_url = xsd_file_url
+        self.schema_tree = self._xsd_import()
+        self.schema_dict = self._build_dict()
 
-        self.schema_dict = dict()
-        self.schema_tree = None
-        self.schema_url = schema_url_input
-
-        self.elem_functions = {'element': self._element,
-                               'simpleType': self._simple}
-
-        self.xsd_import(self.schema_url)
-
-    def xsd_import(self, schema_url_input):
-        '''
-        Purpose: Grabs xsd from the internet and creates an eTree object. Will flag invalid XLM.
-        Arguments: Accepts a valid schema_url.
-        Network: External function, is called during init, but can also be modified by user after class creation.
-        '''
-
-        response = requests.get(schema_url_input, headers={'Connection': 'close'})
+    def _xsd_import(self):
+        response = requests.get(self.schema_url, headers={'Connection': 'close'})
         schema_file = BytesIO(response.content)
-
-        self.schema_tree = etree.parse(schema_file)  # could fail for a lot of reasons
-
-        self.build_dict()
+        schema_tree = etree.parse(schema_file)  # could fail for a lot of reasons
+        return schema_tree
 
     def save_json(self, json_path='schema.json'):
-        '''
-        Rebuilds the dictionary (in case user has imported new url), and saves a json file.
-        '''
-
         with open(json_path, 'w') as outfile:
             json.dump(self.schema_dict, outfile)
 
-    def build_dict(self):
-        '''  loop of all the top level elements '''
-
-        self.schema_dict = {}
-
-        for main_Type in self.schema_tree.findall('*'):
-            if self._extract_tag(main_Type) == 'simpleType':
-                self.schema_dict[main_Type.get('name')] = self._simple(main_Type)
-            elif self._extract_tag(main_Type) == 'complexType':
-                self.schema_dict[main_Type.get('name')] = {}
-                for element in main_Type:
-                    self.schema_dict[main_Type.get('name')].update(self._recursion(element))
-
+    def _build_dict(self):
+        schema_dict = {}
+        
+        for element in self.schema_tree.findall('*'):
+            if self._extract_tag(element) == 'simpleType':
+                schema_dict[element.get('name')] = self._simple(element)
+            elif self._extract_tag(element) == 'complexType':
+                schema_dict[element.get('name')] = {}
+                for sub_element in element:
+                    schema_dict[element.get('name')].update(self._recursion(sub_element))
+        
+        return schema_dict
+    
     def _recursion(self, element):
-
         element_tag = self._extract_tag(element)
         current_level_dict = dict()
 
@@ -78,7 +58,7 @@ class SchemaBuilder:
                 current_level_dict[element_tag].append(self._recursion(sub_element))
 
         elif element_tag in ['element', 'simpleType']:
-            current_level_dict = self.elem_functions[element_tag](element)
+            current_level_dict = self._build_functions[element_tag](element)
 
         return current_level_dict
 
@@ -92,7 +72,6 @@ class SchemaBuilder:
 
     @staticmethod
     def _simple(simple_type):
-
         simple_dict = {}
 
         # unions
@@ -138,14 +117,13 @@ class SchemaBuilder:
     def _print_tag(self, depth, element):
         element_tag = self._extract_tag(element)
         spacer = '    '
-        if element_tag not in ['annotation', 'documentation', 'p', 'appinfo']:
+        if element_tag not in ['annotation', 'documentation', 'p', 'appinfo', 'a']:
             pnt_str = f'    {spacer * depth}{element_tag}'
             if element.items():
                 pnt_str += ' - ' + str(self._extract_attributes(element))
             print(pnt_str)
 
     def _explore_tree(self, element, depth=1):
-
         if element.getchildren():
             for sub_element in element:
                 if type(sub_element) != etree._Comment:
