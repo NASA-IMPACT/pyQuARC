@@ -34,61 +34,11 @@ class SchemaBuilder:
         with open(json_path, 'w') as outfile:
             json.dump(self.schema_dict, outfile)
 
-# ##################################################################
-#     def _build_dict(self):
-#         schema_dict = {}
-#
-#         for element in self.schema_tree.findall('*'):
-#
-#             element_tag = self._extract_tag(element)
-#             element_name = element.get('name')
-#
-#             if element_tag in ['simpleType', 'complexType']:
-#                 schema_dict[element_name] = {}
-#
-#                 # put these in the recursion???
-#                 if element_tag == 'simpleType':
-#                     schema_dict[element_name] = self._simple(element)
-#
-#                 elif element_tag == 'complexType':
-#                     for sub_element in element:
-#                         schema_dict[element_name].update(self._recursion(sub_element))
-#
-#         return schema_dict
-#
-#     def _recursion(self, element):
-#         element_tag = self._extract_tag(element)
-#         current_level_dict = dict()
-#
-#         if element_tag in ['choice', 'sequence']:
-#             current_level_dict[element_tag] = []
-#
-#             for sub_element in element:
-#                 current_level_dict[element_tag].append(self._recursion(sub_element))
-#
-#         elif element_tag in ['element']:
-#             current_level_dict = self._element(element)
-#
-#         elif element_tag in ['simpleType']:
-#             current_level_dict = self._simple(element)
-#
-#         return current_level_dict
-# #######################################################################
-
-    def _is_base(self, element):
-        '''tests if element is direct child of a simple/complex/etc'''
-
-        return self._extract_tag(element.getparent())=='schema'
-
-
-    ##################################################################
     def _build_dict(self):
         schema_dict = {}
 
         for element in self.schema_tree.findall('*'):
-
             if self._extract_tag(element) in ['simpleType', 'complexType']:
-
                 schema_dict.update(self._recursion(element))
 
         return schema_dict
@@ -121,10 +71,6 @@ class SchemaBuilder:
                 current_level_dict[element_name].update(self._recursion(sub_element))
 
         return current_level_dict
-
-    #######################################################################
-
-
 
     def _element(self, element):
         element_attributes = self._extract_attributes(element)
@@ -167,6 +113,10 @@ class SchemaBuilder:
     @staticmethod
     def _extract_tag(element):
         return element.tag.replace('{http://www.w3.org/2001/XMLSchema}', '')
+
+    def _is_base(self, element):
+        '''tests if element is a top level simple/complex/etc'''
+        return self._extract_tag(element.getparent()) == 'schema'
 
     ############################################
     # printing functions for debug and testing #
