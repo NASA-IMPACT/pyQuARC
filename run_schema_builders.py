@@ -9,7 +9,7 @@ SCHEMA_URL_ECHO = 'https://git.earthdata.nasa.gov/projects/EMFD/repos/echo-schem
 # testDif.save_json('test_DIF.json')
 
 testEcho = SchemaBuilder(SCHEMA_URL_ECHO)
-testEcho.print_xsd_structure()
-testEcho.save_json('test_ECHO.json')
+# testEcho.print_xsd_structure()
+# testEcho.save_json('no control.json')
 
 

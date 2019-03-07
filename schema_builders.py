@@ -34,21 +34,68 @@ class SchemaBuilder:
         with open(json_path, 'w') as outfile:
             json.dump(self.schema_dict, outfile)
 
+# ##################################################################
+#     def _build_dict(self):
+#         schema_dict = {}
+#
+#         for element in self.schema_tree.findall('*'):
+#
+#             element_tag = self._extract_tag(element)
+#             element_name = element.get('name')
+#
+#             if element_tag in ['simpleType', 'complexType']:
+#                 schema_dict[element_name] = {}
+#
+#                 # put these in the recursion???
+#                 if element_tag == 'simpleType':
+#                     schema_dict[element_name] = self._simple(element)
+#
+#                 elif element_tag == 'complexType':
+#                     for sub_element in element:
+#                         schema_dict[element_name].update(self._recursion(sub_element))
+#
+#         return schema_dict
+#
+#     def _recursion(self, element):
+#         element_tag = self._extract_tag(element)
+#         current_level_dict = dict()
+#
+#         if element_tag in ['choice', 'sequence']:
+#             current_level_dict[element_tag] = []
+#
+#             for sub_element in element:
+#                 current_level_dict[element_tag].append(self._recursion(sub_element))
+#
+#         elif element_tag in ['element']:
+#             current_level_dict = self._element(element)
+#
+#         elif element_tag in ['simpleType']:
+#             current_level_dict = self._simple(element)
+#
+#         return current_level_dict
+# #######################################################################
+
+    def _is_base(self, element):
+        '''tests if element is direct child of a simple/complex/etc'''
+
+        return self._extract_tag(element.getparent())=='schema'
+
+
+    ##################################################################
     def _build_dict(self):
         schema_dict = {}
-        
+
         for element in self.schema_tree.findall('*'):
-            if self._extract_tag(element) == 'simpleType':
-                schema_dict[element.get('name')] = self._simple(element)
-            elif self._extract_tag(element) == 'complexType':
-                schema_dict[element.get('name')] = {}
-                for sub_element in element:
-                    schema_dict[element.get('name')].update(self._recursion(sub_element))
-        
+
+            if self._extract_tag(element) in ['simpleType', 'complexType']:
+
+                schema_dict.update(self._recursion(element))
+
         return schema_dict
-    
+
     def _recursion(self, element):
         element_tag = self._extract_tag(element)
+        element_name = element.get('name')
         current_level_dict = dict()
 
         if element_tag in ['choice', 'sequence']:
@@ -57,10 +104,27 @@ class SchemaBuilder:
             for sub_element in element:
                 current_level_dict[element_tag].append(self._recursion(sub_element))
 
-        elif element_tag in ['element', 'simpleType']:
-            current_level_dict = self._build_functions[element_tag](element)
+        elif element_tag in ['element']:
+            current_level_dict = self._element(element)
+
+        # child simpleType
+        elif element_tag in ['simpleType'] and not self._is_base(element):
+            current_level_dict = self._simple(element)
+
+        # parent simpleType
+        elif element_tag in ['simpleType'] and self._is_base(element):
+            current_level_dict[element_name] = self._simple(element)
+
+        elif element_tag == 'complexType':
+            current_level_dict[element_name] = {}
+            for sub_element in element:
+                current_level_dict[element_name].update(self._recursion(sub_element))
 
         return current_level_dict
+
+    #######################################################################
+
+
 
     def _element(self, element):
         element_attributes = self._extract_attributes(element)
