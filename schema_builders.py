@@ -54,15 +54,15 @@ class SchemaBuilder:
             for sub_element in element:
                 current_level_dict[element_tag].append(self._recursion(sub_element))
 
-        elif element_tag in ['element']:
+        elif element_tag == 'element':
             current_level_dict = self._element(element)
 
         # child simpleType
-        elif element_tag in ['simpleType'] and not self._is_base(element):
+        elif element_tag == 'simpleType' and not self._is_base(element):
             current_level_dict = self._simple(element)
 
         # parent simpleType
-        elif element_tag in ['simpleType'] and self._is_base(element):
+        elif element_tag == 'simpleType' and self._is_base(element):
             current_level_dict[element_name] = self._simple(element)
 
         elif element_tag == 'complexType':
