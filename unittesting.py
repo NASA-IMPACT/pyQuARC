@@ -1,15 +1,18 @@
 import unittest
 
-from schema_builders import *
+from schema_builders import SchemaBuilder
+import json
 
 config = {'ECHO':
-              {'url': 'https://git.earthdata.nasa.gov/projects/EMFD/repos/echo-schemas/raw/schemas/10.0/Collection.xsd',
-               'benchmark_path': 'test files/ECHO_benchmark.json',
-               'test_path': 'test files/ECHO_test.json'},
+          {'url': 'https://git.earthdata.nasa.gov/projects/EMFD/repos/echo-schemas/raw/schemas/10.0/Collection.xsd',
+           'benchmark_path': 'test files/ECHO_benchmark.json',
+           'test_path': 'test files/ECHO_test.json'
+           },
           'DIF':
-              {'url': 'https://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/raw/10.x/UmmCommon_1.3.xsd',
-               'benchmark_path': 'test files/DIF-10_benchmark.json',
-               'test_path': 'test files/DIF-10_test.json'}
+          {'url': 'https://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/raw/10.x/UmmCommon_1.3.xsd',
+           'benchmark_path': 'test files/DIF-10_benchmark.json',
+           'test_path': 'test files/DIF-10_test.json'
+           }
           }
 
 
@@ -22,8 +25,7 @@ class TestDIF(unittest.TestCase):
         with open(config['ECHO']['benchmark_path']) as json_file:
             self.ECHO_JSON = json.load(json_file)
 
-
-    def test_build_dict(self):
+    def test_build_dict_DIF(self):
         '''
         Checks the output of the build_dict() function against a known correct JSON file
         '''
@@ -33,7 +35,7 @@ class TestDIF(unittest.TestCase):
         # compare the dicts
         self.assertEqual(test.schema_dict, self.DIF_JSON)
 
-    def test_save_json(self):
+    def test_save_json_DIF(self):
         '''
         Checks the output of the save_json() function against a known correct JSON file.
         '''
@@ -48,7 +50,6 @@ class TestDIF(unittest.TestCase):
 
         # compare the JSON files
         self.assertEqual(test_json, self.DIF_JSON)
-
 
     def test_save_json_ECHO(self):
         '''
@@ -66,6 +67,6 @@ class TestDIF(unittest.TestCase):
         # compare the JSON files
         self.assertEqual(test_json, self.ECHO_JSON)
 
+
 if __name__ == '__main__':
     unittest.main(warnings='ignore', verbosity=2)
-
