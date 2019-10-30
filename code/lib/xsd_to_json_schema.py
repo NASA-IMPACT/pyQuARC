@@ -183,6 +183,9 @@ def process_complextypes():
         if "xs:annotation" in complexType_obj:
             intermediate_dict['description'] = complexType_obj["xs:annotation"]["xs:documentation"]
 
+        if ("xs:annotation" in complexType_obj) and ("xs:appinfo" in complexType_obj["xs:annotation"]):
+            intermediate_dict['appinfo'] = complexType_obj["xs:annotation"]["xs:appinfo"]
+
         # regular xs:sequence > xs: elements
         try:
             sequence = complexType_obj["xs:sequence"]
