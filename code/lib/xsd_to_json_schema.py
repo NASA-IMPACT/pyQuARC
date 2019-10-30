@@ -6,8 +6,8 @@ from pprint import pprint
 
 p = Path(__file__).resolve().parents[2]
 
-INPUT_FILE = p / 'output' / 'collection.json'
-OUTPUT_FILE = p / 'output' / 'collection_json_schema.json'
+INPUT_FILE = p / 'output' / 'dif.json'
+OUTPUT_FILE = p / 'output' / 'dif_json_schema.json'
 
 with open(INPUT_FILE, 'r') as metadata:
     myjson = json.loads(metadata.read())
@@ -46,7 +46,11 @@ def parse_simpletype(simpleType_obj):
     # restrictions object within the simpleType
     restrictions = simpleType_obj['xs:restriction']
 
-    intermediate_dict['type'] = restrictions['@base'].split(':')[1]
+    try:
+        intermediate_dict['type'] = restrictions['@base'].split(':')[1]
+    except IndexError:
+        # print(f"go get the definition of {restrictions['@base']}")
+        intermediate_dict['type'] = f"#/definitions/{restrictions['@base']}"
 
     if intermediate_dict['type'] == "decimal":
         intermediate_dict['type'] = "number"
@@ -90,6 +94,12 @@ def parse_simpletype(simpleType_obj):
 
     if "xs:pattern" in restrictions:
         intermediate_dict['pattern'] = restrictions["xs:pattern"]["@value"]
+
+    if ("xs:annotation" in simpleType_obj) and ("xs:appinfo" in simpleType_obj["xs:annotation"]):
+        intermediate_dict['appinfo'] = simpleType_obj["xs:annotation"]["xs:appinfo"]
+
+    if "xs:annotation" in simpleType_obj:
+        intermediate_dict['description'] = simpleType_obj["xs:annotation"]["xs:documentation"]
 
     return intermediate_dict
 
@@ -250,7 +260,7 @@ def process_type(elem_type):
         or a base type
     """
 
-    if elem_type in ['string', 'decimal', 'dateTime']:
+    if elem_type in ['string', 'decimal', 'dateTime', 'int', 'integer', 'date', 'anyURI']:
         return elem_type
     else:
         return {"$ref": f"#/definitions/{elem_type}"}
@@ -272,7 +282,11 @@ def process_elem_dict(elems_dict):
     for elem in elems_dict:
         elem_name = elem
         elem = elems_dict[elem_name]
-        elem_type = elem["type"]
+        try:
+            elem_type = elem["type"]
+        except KeyError:
+            # print(f'setting {elem_name} type to string')
+            elem_type = 'string'
 
         min_occurs = 'minOccurs' in elem
         max_occurs = 'maxOccurs' in elem
