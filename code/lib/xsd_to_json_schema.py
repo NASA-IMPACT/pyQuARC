@@ -183,6 +183,12 @@ def process_complextypes():
         if "xs:annotation" in complexType_obj:
             intermediate_dict['description'] = complexType_obj["xs:annotation"]["xs:documentation"]
 
+        if "xs:attribute" in complexType_obj:
+            intermediate_dict['attribute'] = {
+                "name": complexType_obj["xs:attribute"]["@name"],
+                "type": f'#/definitions/{complexType_obj["xs:attribute"]["@type"]}'
+            }
+
         if ("xs:annotation" in complexType_obj) and ("xs:appinfo" in complexType_obj["xs:annotation"]):
             intermediate_dict['appinfo'] = complexType_obj["xs:annotation"]["xs:appinfo"]
 
@@ -201,8 +207,30 @@ def process_complextypes():
             except KeyError:
                 # this one is just empty type
                 # TODO: print some logs here
-                print("No sequence, no choice", intermediate_dict['name'])
-                continue
+                # this could be "xs:simpleContent" or "xs:complexContent"
+                if not (("xs:simpleContent" in complexType_obj) or ("xs:complexContent" in complexType_obj)):
+                    print("No sequence, no choice", intermediate_dict['name'])
+                    continue
+
+                if "xs:simpleContent" in complexType_obj:
+                    sequence = {
+                        "xs:element": {
+                            "@name": complexType_obj["xs:simpleContent"]["xs:extension"]["xs:attribute"]["@name"],
+                            "@type": complexType_obj["xs:simpleContent"]["xs:extension"]["xs:attribute"]["@type"]
+                        }
+                    }
+
+                if "xs:complexContent" in complexType_obj:
+                    sequence = {
+                        "xs:element": {
+                            "@name": complexType_obj["xs:complexContent"]["xs:extension"]["@base"],
+                            "@type": complexType_obj["xs:complexContent"]["xs:extension"]["@base"]
+                        }
+                    }
+
+                intermediate_dict["elements"] = [process_sequence(sequence)]
+                print("Got here for ", intermediate_dict['name'])
+                print(intermediate_dict["elements"])
 
         result_dict['complexType'].append(intermediate_dict)
     return result_dict['complexType']
@@ -249,11 +277,14 @@ def to_dict_elems(elem_list):
                 inter_dict[name] = mydict
             final_dict["oneOf"].append(inter_dict)
     else:
-        for mydict in elem_list[0]:
-            name = mydict['name']
-            mydict.pop("name", None)
-            final_dict[name] = mydict
-
+        try:
+            for mydict in elem_list[0]:
+                name = mydict['name']
+                mydict.pop("name", None)
+                final_dict[name] = mydict
+        except:
+            import ipdb
+            ipdb.set_trace()
     return final_dict
 
 
@@ -330,6 +361,10 @@ def complex_types_to_json_schema(complex_t_dict):
     for key in complex_t_dict:
         item = complex_t_dict[key]
         elems = item['elements']
+
+        if (len(elems) == 0):
+            import ipdb
+            ipdb.set_trace()
 
         elems_dict = to_dict_elems(elems)
 
