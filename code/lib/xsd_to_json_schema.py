@@ -176,8 +176,10 @@ def process_sequence(sequence):
         element_dict = parse_element(elements)
         intermediate_list.append(element_dict)
 
+    else:
+        raise TypeError("'sequence' must be either a list or a dict")
+
     return intermediate_list
-    # result_dict['complexType'].append(intermediate_dict)
 
 
 def process_complextypes():
