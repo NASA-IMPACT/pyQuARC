@@ -4,10 +4,10 @@ import json
 from pathlib import Path
 from pprint import pprint
 
-p = Path(__file__).resolve().parents[2]
+path = Path(__file__).resolve().parents[2]
 
-INPUT_FILE = p / 'output' / 'dif.json'
-OUTPUT_FILE = p / 'output' / 'dif_json_schema.json'
+INPUT_FILE = path / 'output' / 'dif.json'
+OUTPUT_FILE = path / 'output' / 'dif_json_schema.json'
 
 with open(INPUT_FILE, 'r') as metadata:
     myjson = json.loads(metadata.read())
