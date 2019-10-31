@@ -6,8 +6,8 @@ from pathlib import Path
 p = Path(__file__).resolve().parents[2]
 
 
-INPUT_XSD = 'Collection.xsd'
-OUTPUT_JSON = 'collection.json'
+INPUT_XSD = 'MetadataCommon.xsd'
+OUTPUT_JSON = 'metadata.json'
 
 INPUT_DIR = p / 'data' / 'xsd'
 OUTPUT_DIR = p / 'output'

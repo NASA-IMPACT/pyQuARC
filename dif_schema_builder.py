@@ -11,10 +11,11 @@ from lxml import etree
 # Shared global values
 SCHEMA_URL = 'https://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/raw/10.x/UmmCommon_1.3.xsd?at=refs%2Fheads%2Fmaster'
 VARIABLE_LIST = ['GranuleSpatialRepresentationEnum', 'CoordinateSystemEnum',
-'OrganizationTypeEnum' ,'PersonnelRoleEnum','DatasetLanguageEnum',
-'SpatialCoverageTypeEnum', 'PhoneTypeEnum', 'DatasetProgressEnum',
-'PersistentIdentifierEnum']
+                 'OrganizationTypeEnum', 'PersonnelRoleEnum', 'DatasetLanguageEnum',
+                 'SpatialCoverageTypeEnum', 'PhoneTypeEnum', 'DatasetProgressEnum',
+                 'PersistentIdentifierEnum']
 dif_dictionary = dict()
+
 
 class DifSchemaBuilder:
     def __init__(self):

@@ -357,8 +357,7 @@ def complex_types_to_json_schema(complex_t_dict):
         and makes it conform to JSON schema standard vocabulary
     """
 
-    for key in complex_t_dict:
-        item = complex_t_dict[key]
+    for item in complex_t_dict.values():
         elems = item['elements']
 
         if (len(elems) == 0):
