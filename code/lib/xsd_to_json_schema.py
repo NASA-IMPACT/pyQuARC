@@ -33,18 +33,18 @@ conversion_key_set = {
 }
 
 
-def parse_simpletype(simpleType_obj):
+def parse_simpletype(simple_type_obj):
     """
         Parse a simpletype object
     """
 
     intermediate_dict = {}
 
-    if '@name' in simpleType_obj:
-        intermediate_dict['name'] = simpleType_obj['@name']
+    if '@name' in simple_type_obj:
+        intermediate_dict['name'] = simple_type_obj['@name']
 
     # restrictions object within the simpleType
-    restrictions = simpleType_obj['xs:restriction']
+    restrictions = simple_type_obj['xs:restriction']
 
     try:
         intermediate_dict['type'] = restrictions['@base'].split(':')[1]
@@ -94,11 +94,11 @@ def parse_simpletype(simpleType_obj):
     if "xs:pattern" in restrictions:
         intermediate_dict['pattern'] = restrictions["xs:pattern"]["@value"]
 
-    if ("xs:annotation" in simpleType_obj) and ("xs:appinfo" in simpleType_obj["xs:annotation"]):
-        intermediate_dict['appinfo'] = simpleType_obj["xs:annotation"]["xs:appinfo"]
+    if ("xs:annotation" in simple_type_obj) and ("xs:appinfo" in simple_type_obj["xs:annotation"]):
+        intermediate_dict['appinfo'] = simple_type_obj["xs:annotation"]["xs:appinfo"]
 
-    if "xs:annotation" in simpleType_obj:
-        intermediate_dict['description'] = simpleType_obj["xs:annotation"]["xs:documentation"]
+    if "xs:annotation" in simple_type_obj:
+        intermediate_dict['description'] = simple_type_obj["xs:annotation"]["xs:documentation"]
 
     return intermediate_dict
 
@@ -108,8 +108,8 @@ def process_simpletypes():
         Process simpletypes first
     """
 
-    for simpleType_obj in myjson["xs:schema"]["xs:simpleType"]:
-        intermediate_dict = parse_simpletype(simpleType_obj)
+    for simple_type_obj in myjson["xs:schema"]["xs:simpleType"]:
+        intermediate_dict = parse_simpletype(simple_type_obj)
 
         result_dict['simpleType'].append(intermediate_dict)
     return result_dict['simpleType']
@@ -174,56 +174,56 @@ def process_complextypes():
         Goes through all the xs:complexType structures and returns a list
     """
 
-    for complexType_obj in myjson["xs:schema"]["xs:complexType"]:
+    for complex_type_obj in myjson["xs:schema"]["xs:complexType"]:
         intermediate_dict = {}
-        intermediate_dict['name'] = complexType_obj['@name']
+        intermediate_dict['name'] = complex_type_obj['@name']
 
         # get the description string
-        if "xs:annotation" in complexType_obj:
-            intermediate_dict['description'] = complexType_obj["xs:annotation"]["xs:documentation"]
+        if "xs:annotation" in complex_type_obj:
+            intermediate_dict['description'] = complex_type_obj["xs:annotation"]["xs:documentation"]
 
-        if "xs:attribute" in complexType_obj:
+        if "xs:attribute" in complex_type_obj:
             intermediate_dict['attribute'] = {
-                "name": complexType_obj["xs:attribute"]["@name"],
-                "type": f'#/definitions/{complexType_obj["xs:attribute"]["@type"]}'
+                "name": complex_type_obj["xs:attribute"]["@name"],
+                "type": f'#/definitions/{complex_type_obj["xs:attribute"]["@type"]}'
             }
 
-        if ("xs:annotation" in complexType_obj) and ("xs:appinfo" in complexType_obj["xs:annotation"]):
-            intermediate_dict['appinfo'] = complexType_obj["xs:annotation"]["xs:appinfo"]
+        if ("xs:annotation" in complex_type_obj) and ("xs:appinfo" in complex_type_obj["xs:annotation"]):
+            intermediate_dict['appinfo'] = complex_type_obj["xs:annotation"]["xs:appinfo"]
 
         # regular xs:sequence > xs: elements
         try:
-            sequence = complexType_obj["xs:sequence"]
+            sequence = complex_type_obj["xs:sequence"]
             intermediate_dict["elements"] = [process_sequence(sequence)]
         except KeyError:
             # these ones most likely have choice
             # xs:choice > [xs:sequence > xs: elements]
             try:
                 intermediate_dict["elements"] = []
-                sequences = complexType_obj["xs:choice"]['xs:sequence']
+                sequences = complex_type_obj["xs:choice"]['xs:sequence']
                 for sequence in sequences:
                     intermediate_dict["elements"].append(process_sequence(sequence))
             except KeyError:
                 # this one is just empty type
                 # TODO: print some logs here
                 # this could be "xs:simpleContent" or "xs:complexContent"
-                if not (("xs:simpleContent" in complexType_obj) or ("xs:complexContent" in complexType_obj)):
+                if not (("xs:simpleContent" in complex_type_obj) or ("xs:complexContent" in complex_type_obj)):
                     print("No sequence, no choice", intermediate_dict['name'])
                     continue
 
-                if "xs:simpleContent" in complexType_obj:
+                if "xs:simpleContent" in complex_type_obj:
                     sequence = {
                         "xs:element": {
-                            "@name": complexType_obj["xs:simpleContent"]["xs:extension"]["xs:attribute"]["@name"],
-                            "@type": complexType_obj["xs:simpleContent"]["xs:extension"]["xs:attribute"]["@type"]
+                            "@name": complex_type_obj["xs:simpleContent"]["xs:extension"]["xs:attribute"]["@name"],
+                            "@type": complex_type_obj["xs:simpleContent"]["xs:extension"]["xs:attribute"]["@type"]
                         }
                     }
 
-                if "xs:complexContent" in complexType_obj:
+                if "xs:complexContent" in complex_type_obj:
                     sequence = {
                         "xs:element": {
-                            "@name": complexType_obj["xs:complexContent"]["xs:extension"]["@base"],
-                            "@type": complexType_obj["xs:complexContent"]["xs:extension"]["@base"]
+                            "@name": complex_type_obj["xs:complexContent"]["xs:extension"]["@base"],
+                            "@type": complex_type_obj["xs:complexContent"]["xs:extension"]["@base"]
                         }
                     }
 
