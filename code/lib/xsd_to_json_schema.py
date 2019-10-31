@@ -20,7 +20,7 @@ result_dict = {
 # this is supposed to help us remove
 # some of the if statements in the following code
 # but we haven't used it that way yet
-conversion_dict = [
+conversion_key_set = {
     "@base",
     "xs:enumeration",
     "xs:minLength",
@@ -30,7 +30,7 @@ conversion_dict = [
     "xs:fractionDigits",
     "xs:totalDigits",
     "xs:pattern"
-]
+}
 
 
 def parse_simpletype(simpleType_obj):
@@ -57,7 +57,6 @@ def parse_simpletype(simpleType_obj):
 
     # if we miss a key, we want to find out about it
     restriction_key_set = set(restrictions.keys())
-    conversion_key_set = set(conversion_dict)
     if not (restriction_key_set.issubset(conversion_key_set)):
         # fail loudly
         assert False, (restriction_key_set - conversion_key_set)
