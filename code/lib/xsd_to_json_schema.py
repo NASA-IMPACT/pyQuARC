@@ -282,21 +282,10 @@ def to_dict_elems(elem_list):
     if len(elem_list) > 1:
         final_dict = {"oneOf": []}
         for dict_list in elem_list:
-            inter_dict = {}
-            for mydict in dict_list:
-                name = mydict['name']
-                mydict.pop("name", None)
-                inter_dict[name] = mydict
-            final_dict["oneOf"].append(inter_dict)
+            final_dict["oneOf"].append(to_dict(dict_list))
     else:
-        try:
-            for mydict in elem_list[0]:
-                name = mydict['name']
-                mydict.pop("name", None)
-                final_dict[name] = mydict
-        except:
-            import ipdb
-            ipdb.set_trace()
+        final_dict = to_dict(elem_list[0])
+
     return final_dict
 
 
