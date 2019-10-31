@@ -314,9 +314,7 @@ def process_elem_dict(elems_dict):
     # "minOccurs": "0", },
     # "Collections": {"type": "ListOfCollections", "minOccurs": "0", }, }
 
-    for elem in elems_dict:
-        elem_name = elem
-        elem = elems_dict[elem_name]
+    for elem_name, elem in elems_dict.items():
         try:
             elem_type = elem["type"]
         except KeyError:
