@@ -38,6 +38,17 @@ def parse_simpletype(simple_type_obj):
         Parse a simpletype object
     """
 
+    # sample simple_type_obj
+    # {
+    #   "@name": "VersionType",
+    #   "xs:annotation": {
+    #     "xs:documentation": "Version identifier of the data collection."
+    #   },
+    #   "xs:restriction": {
+    #     "@base": "xs:string"
+    #   }
+    # }
+
     intermediate_dict = {}
 
     if '@name' in simple_type_obj:
