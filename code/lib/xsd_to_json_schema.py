@@ -77,7 +77,6 @@ conversion_dict = {
         'out_key': 'pattern',
         'converter_function': lambda x: x
     },
-
     '@base': {
         'out_key': 'type',
         'converter_function': lambda x: base_converter(x)
