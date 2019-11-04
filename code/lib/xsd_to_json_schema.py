@@ -17,25 +17,92 @@ result_dict = {
     'complexType': []
 }
 
-# this is supposed to help us remove
-# some of the if statements in the following code
-# but we haven't used it that way yet
-conversion_key_set = {
-    "@base",
-    "xs:enumeration",
-    "xs:minLength",
-    "xs:maxLength",
-    "xs:minInclusive",
-    "xs:maxInclusive",
-    "xs:fractionDigits",
-    "xs:totalDigits",
-    "xs:pattern"
+
+def base_converter(restrictions):
+    """
+    Converts restrictions['@base'] to 'type'
+
+    eg:
+    restrictions['@base'] = 'xs:string'
+    becomes 'type' = 'string'
+    """
+
+    # remove the "xs:" if present
+    try:
+        output = restrictions.split(':')[1]
+    except IndexError:
+        output = f"#/definitions/{restrictions}"
+
+    if output == "decimal":
+        output = "number"
+
+    return output
+
+
+# dictionary for converting keys from xsd to JSON schema
+conversion_dict = {
+    'xs:minLength': {
+        'out_key': 'minLength',
+        'converter_function': lambda x: int(x)
+    },
+    'xs:maxLength': {
+        'out_key': 'maxLength',
+        'converter_function': lambda x: int(x)
+    },
+    'xs:minInclusive': {
+        'out_key': 'inclusiveMinimum',
+        'converter_function': lambda x: float(x)
+    },
+    'xs:maxInclusive': {
+        'out_key': 'inclusiveMaximum',
+        'converter_function': lambda x: float(x)
+    },
+    'xs:minExclusive': {
+        'out_key': 'exclusiveMinimum',
+        'converter_function': lambda x: float(x)
+    },
+    'xs:maxExclusive': {
+        'out_key': 'exclusiveMaximum',
+        'converter_function': lambda x: float(x)
+    },
+    'xs:fractionDigits': {
+        'out_key': 'multipleOf',
+        'converter_function': lambda x: 1 / (10**int(x))
+    },
+    'xs:totalDigits': {
+        'out_key': 'maximum',
+        'converter_function': lambda x: 10**(int(x) - 1)
+    },
+    'xs:pattern': {
+        'out_key': 'pattern',
+        'converter_function': lambda x: x
+    },
+
+    '@base': {
+        'out_key': 'type',
+        'converter_function': lambda x: base_converter(x)
+    }
 }
+
+
+def convert(in_key, converter_function, restrictions):
+    """
+        Converts keys from XSD to JSON schema
+    """
+
+    if in_key in restrictions:
+        # check if there's @value in restrictions
+        try:
+            return converter_function(restrictions[in_key]['@value'])
+        except TypeError:
+            return converter_function(restrictions[in_key])
+    else:
+        return None
 
 
 def parse_simpletype(simple_type_obj):
     """
-        Parse a simpletype object
+        Parse a simpleType object
     """
 
     # sample simple_type_obj
@@ -57,16 +124,10 @@ def parse_simpletype(simple_type_obj):
     # restrictions object within the simpleType
     restrictions = simple_type_obj['xs:restriction']
 
-    try:
-        intermediate_dict['type'] = restrictions['@base'].split(':')[1]
-    except IndexError:
-        # print(f"go get the definition of {restrictions['@base']}")
-        intermediate_dict['type'] = f"#/definitions/{restrictions['@base']}"
-
-    if intermediate_dict['type'] == "decimal":
-        intermediate_dict['type'] = "number"
+    # intermediate_dict['type'] = base_converter(restrictions['@base'])
 
     # if we miss a key, we want to find out about it
+    conversion_key_set = set(conversion_dict.keys())
     restriction_key_set = set(restrictions.keys())
     if not (restriction_key_set.issubset(conversion_key_set)):
         # fail loudly
@@ -78,32 +139,16 @@ def parse_simpletype(simple_type_obj):
         except TypeError:
             intermediate_dict['enum'] = restrictions["xs:enumeration"]["@value"]
 
-    if "xs:minLength" in restrictions:
-        intermediate_dict['minLength'] = int(restrictions["xs:minLength"]["@value"])
+    for key in conversion_dict:
+        out_key = conversion_dict[key]['out_key']
+        converted = convert(
+            in_key=key,
+            converter_function=conversion_dict[key]['converter_function'],
+            restrictions=restrictions
+        )
 
-    if "xs:maxLength" in restrictions:
-        intermediate_dict['maxLength'] = int(restrictions["xs:maxLength"]["@value"])
-
-    if "xs:minInclusive" in restrictions:
-        intermediate_dict['inclusiveMinimum'] = float(restrictions["xs:minInclusive"]["@value"])
-
-    if "xs:maxInclusive" in restrictions:
-        intermediate_dict['inclusiveMaximum'] = float(restrictions["xs:maxInclusive"]["@value"])
-
-    if "xs:minExclusive" in restrictions:
-        intermediate_dict['exclusiveMinimum'] = float(restrictions["xs:minExclusive"]["@value"])
-
-    if "xs:maxExclusive" in restrictions:
-        intermediate_dict['exclusiveMaximum'] = float(restrictions["xs:maxExclusive"]["@value"])
-
-    if "xs:fractionDigits" in restrictions:
-        intermediate_dict['multipleOf'] = 1 / (10**int(restrictions["xs:fractionDigits"]["@value"]))
-
-    if "xs:totalDigits" in restrictions:
-        intermediate_dict['maximum'] = 10**(int(restrictions["xs:totalDigits"]["@value"]) - 1)
-
-    if "xs:pattern" in restrictions:
-        intermediate_dict['pattern'] = restrictions["xs:pattern"]["@value"]
+        if converted:
+            intermediate_dict[out_key] = converted
 
     if ("xs:annotation" in simple_type_obj) and ("xs:appinfo" in simple_type_obj["xs:annotation"]):
         intermediate_dict['appinfo'] = simple_type_obj["xs:annotation"]["xs:appinfo"]
