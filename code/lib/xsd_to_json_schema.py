@@ -124,8 +124,6 @@ def parse_simpletype(simple_type_obj):
     # restrictions object within the simpleType
     restrictions = simple_type_obj['xs:restriction']
 
-    # intermediate_dict['type'] = base_converter(restrictions['@base'])
-
     # if we miss a key, we want to find out about it
     conversion_key_set = set(conversion_dict.keys())
     restriction_key_set = set(restrictions.keys())
