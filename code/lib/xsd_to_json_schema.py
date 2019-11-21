@@ -321,6 +321,10 @@ def get_single_obj_json(obj):
     elif (field_type == "long" or field_type == "int"):
         obj_json["type"] = "number"
 
+    elif (field_type == "anyURI"):
+        obj_json["type"] = "string"
+        obj_json["format"] = "uri"
+
     temp_obj = {}
     if isinstance(field_type, dict):
         field_type = field_type["$ref"]
