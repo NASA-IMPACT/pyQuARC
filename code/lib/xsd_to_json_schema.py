@@ -216,16 +216,6 @@ key_extractor_fuctions = {
 }
 
 
-def convert(input_object, schema):
-    """
-        Converts an object to json schema
-    """
-
-    dictionary = {}
-
-    return dictionary
-
-
 def type_based_keys_value(field_type, obj):
     """
         Handles restrictions etc
@@ -335,7 +325,7 @@ def get_single_obj_json(obj):
     return obj_json
 
 
-if __name__ == "__main__":
+def main():
     # set the paths for the input and output files
     file_name_list = ["metadata", "dif", "collection"]
     output_folder = path / "output"
@@ -378,3 +368,7 @@ if __name__ == "__main__":
         # write the output
         with open(file_dict["output_file"], "w") as output_file:
             output_file.write(json.dumps(final_schema))
+
+
+if __name__ == "__main__":
+    main()
