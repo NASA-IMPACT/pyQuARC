@@ -8,16 +8,29 @@ path = Path(__file__).resolve().parents[2]
 
 def process_type(elem_type):
     """
-        Returns a link to a type in definitions: #/definitions/SomeType
-        or a base type: "string", "number", etc
+        Returns a dictionary with
+        1) type and maybe a format
+        2) elem_type as a $ref
     """
 
     elem_type = elem_type.replace("xs:", "")
-    if elem_type == "decimal":
-        elem_type = "number"
+    temp_dict = {"type": "string"}
 
-    if elem_type in ["string", "number", "dateTime", "int", "integer", "date", "anyURI", "long"]:
-        return elem_type
+    if (elem_type == "dateTime"):
+        temp_dict["format"] = "date-time"
+    elif (elem_type == "long" or elem_type == "int" or elem_type == "decimal"):
+        temp_dict["type"] = "number"
+    elif (elem_type == "anyURI"):
+        temp_dict["format"] = "uri"
+    elif (elem_type == "date"):
+        temp_dict["format"] = "date"
+    elif (elem_type == "anyURI"):
+        temp_dict["format"] = "uri"
+    else:
+        temp_dict["type"] = elem_type
+
+    if temp_dict["type"] in ["string", "number", "integer", "date"]:
+        return temp_dict
     else:
         return {"$ref": f"#/definitions/{elem_type}"}
 
@@ -74,8 +87,7 @@ global_conversion_schema = {
     },
     'items': {
         'in_key': '@type',
-        'converter_function': lambda x:
-            {"type": process_type(x)} if isinstance(process_type(x), str) else process_type(x)
+        'converter_function': lambda x: process_type(x)
     }
 }
 
@@ -157,17 +169,13 @@ def type_extractor(inp_obj):
 
     if "xs:simpleContent" in inp_obj:
         temp = inp_obj["xs:simpleContent"]["xs:extension"]
-        return {
-            "type": temp["@base"].replace("xs:", ""),
-            "type_ref": temp["xs:attribute"]["@type"]
-        }
+        temp_dict = process_type(temp["@base"])
+        temp_dict.update({"type_ref": temp["xs:attribute"]["@type"]})
+        return temp_dict
 
     elif "xs:complexContent" in inp_obj:
         temp = inp_obj["xs:complexContent"]["xs:extension"]
-        return {
-            "type": "IN_BUILT",
-            "type_ref": temp["@base"]
-        }
+        return process_type(temp["@base"])
 
     elif "xs:sequence" in inp_obj or "xs:choice" in inp_obj:
         field_type = "object"
@@ -314,24 +322,7 @@ def get_single_obj_json(obj):
         return obj_json
 
     field_type = obj_json["type"]
-    if (field_type == "dateTime"):
-        obj_json["type"] = "string"
-        obj_json["format"] = "date-time"
-
-    elif (field_type == "long" or field_type == "int"):
-        obj_json["type"] = "number"
-
-    elif (field_type == "anyURI"):
-        obj_json["type"] = "string"
-        obj_json["format"] = "uri"
-
-    elif (field_type == "date"):
-        obj_json["type"] = "string"
-        obj_json["format"] = "date"
-
     temp_obj = {}
-    if isinstance(field_type, dict):
-        field_type = field_type["$ref"]
 
     if (field_type == "object"):
         # complex object types
