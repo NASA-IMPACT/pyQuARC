@@ -158,7 +158,7 @@ def type_extractor(inp_obj):
     if "xs:simpleContent" in inp_obj:
         temp = inp_obj["xs:simpleContent"]["xs:extension"]
         return {
-            "type": temp["@base"],
+            "type": temp["@base"].replace("xs:", ""),
             "type_ref": temp["xs:attribute"]["@type"]
         }
 
