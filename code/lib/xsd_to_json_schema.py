@@ -325,6 +325,10 @@ def get_single_obj_json(obj):
         obj_json["type"] = "string"
         obj_json["format"] = "uri"
 
+    elif (field_type == "date"):
+        obj_json["type"] = "string"
+        obj_json["format"] = "date"
+
     temp_obj = {}
     if isinstance(field_type, dict):
         field_type = field_type["$ref"]
