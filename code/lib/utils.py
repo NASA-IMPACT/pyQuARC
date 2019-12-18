@@ -1,3 +1,6 @@
+EXTRACTION_KEYS = ["name", "description", "type", "optional"]
+
+
 def _min_occurs(x):
     return "@minOccurs" in x
 
@@ -129,7 +132,6 @@ def _optional_extractor(inp_object):
     return {}
 
 
-extraction_keys = ["name", "description", "type", "optional"]
 key_extractor_fuctions = {
     "name": _name_extractor,
     "description": _description_extractor,

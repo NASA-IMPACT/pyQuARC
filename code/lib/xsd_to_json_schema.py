@@ -5,8 +5,8 @@ from pathlib import Path
 
 from constants import type_based_keys
 from utils import (
+    EXTRACTION_KEYS,
     global_conversion_schema,
-    extraction_keys,
     key_extractor_fuctions
 )
 
@@ -99,7 +99,7 @@ def get_single_obj_json(obj):
     """
 
     obj_json = {}
-    for extraction_key in extraction_keys:
+    for extraction_key in EXTRACTION_KEYS:
         val = key_extractor_fuctions[extraction_key](obj)
         obj_json.update(val)
 
