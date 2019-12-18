@@ -60,8 +60,7 @@ def _name_extractor(inp_obj):
         return {"name": inp_obj["@name"]}
     except KeyError:
         # this lets us know when some object doesn't have a name
-        import ipdb
-        ipdb.set_trace()
+        print(f"Key '@name' not found in:\n{input_obj}")
 
 
 def _description_extractor(inp_obj):
