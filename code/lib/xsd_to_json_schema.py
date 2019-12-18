@@ -2,444 +2,172 @@ import json
 import os
 
 from pathlib import Path
-from pprint import pprint
+
+from constants import type_based_keys
+from utils import (
+    EXTRACTION_KEYS,
+    global_conversion_schema,
+    key_extractor_fuctions
+)
 
 path = Path(__file__).resolve().parents[2]
 
-INPUT_FILE = path / 'output' / 'dif.json'
-OUTPUT_FILE = path / 'output' / 'dif_json_schema.json'
-
-with open(INPUT_FILE, 'r') as metadata:
-    myjson = json.loads(metadata.read())
-
-result_dict = {
-    'simpleType': [],
-    'complexType': []
-}
+# the following functions are used for setting optional=True and type=array
 
 
-def base_converter(restrictions):
+def type_based_keys_value(field_type, obj):
     """
-    Converts restrictions['@base'] to 'type'
-
-    eg:
-    restrictions['@base'] = 'xs:string'
-    becomes 'type' = 'string'
+        Handles restrictions etc
     """
 
-    # remove the "xs:" if present
-    try:
-        output = restrictions.split(':')[1]
-    except IndexError:
-        output = f"#/definitions/{restrictions}"
+    if "xs:simpleType" in obj:
+        return type_based_keys_value(field_type, obj["xs:simpleType"])
+    if "xs:restriction" in obj:
+        return type_based_keys_value(field_type, obj["xs:restriction"])
 
-    if output == "decimal":
-        output = "number"
-
-    return output
-
-
-# dictionary for converting keys from xsd to JSON schema
-conversion_dict = {
-    'xs:minLength': {
-        'out_key': 'minLength',
-        'converter_function': lambda x: int(x)
-    },
-    'xs:maxLength': {
-        'out_key': 'maxLength',
-        'converter_function': lambda x: int(x)
-    },
-    'xs:minInclusive': {
-        'out_key': 'inclusiveMinimum',
-        'converter_function': lambda x: float(x)
-    },
-    'xs:maxInclusive': {
-        'out_key': 'inclusiveMaximum',
-        'converter_function': lambda x: float(x)
-    },
-    'xs:minExclusive': {
-        'out_key': 'exclusiveMinimum',
-        'converter_function': lambda x: float(x)
-    },
-    'xs:maxExclusive': {
-        'out_key': 'exclusiveMaximum',
-        'converter_function': lambda x: float(x)
-    },
-    'xs:fractionDigits': {
-        'out_key': 'multipleOf',
-        'converter_function': lambda x: 1 / (10**int(x))
-    },
-    'xs:totalDigits': {
-        'out_key': 'maximum',
-        'converter_function': lambda x: 10**(int(x) - 1)
-    },
-    'xs:pattern': {
-        'out_key': 'pattern',
-        'converter_function': lambda x: x
-    },
-    '@base': {
-        'out_key': 'type',
-        'converter_function': lambda x: base_converter(x)
-    }
-}
-
-
-def convert(in_key, converter_function, restrictions):
-    """
-        Converts keys from XSD to JSON schema
-    """
-
-    if in_key in restrictions:
-        # check if there's @value in restrictions
+    temp_dict = {}
+    if field_type not in type_based_keys:
+        # if there is no field key in the type_based_keys, return empty
+        return temp_dict
+    for type_key in type_based_keys[field_type]:
+        schema = global_conversion_schema[type_key]
         try:
-            return converter_function(restrictions[in_key]['@value'])
-        except TypeError:
-            return converter_function(restrictions[in_key])
-    else:
-        return None
-
-
-def parse_simpletype(simple_type_obj):
-    """
-        Parse a simpleType object
-    """
-
-    # sample simple_type_obj
-    # {
-    #   "@name": "VersionType",
-    #   "xs:annotation": {
-    #     "xs:documentation": "Version identifier of the data collection."
-    #   },
-    #   "xs:restriction": {
-    #     "@base": "xs:string"
-    #   }
-    # }
-
-    intermediate_dict = {}
-
-    if '@name' in simple_type_obj:
-        intermediate_dict['name'] = simple_type_obj['@name']
-
-    # restrictions object within the simpleType
-    restrictions = simple_type_obj['xs:restriction']
-
-    # if we miss a key, we want to find out about it
-    conversion_key_set = set(conversion_dict.keys())
-    restriction_key_set = set(restrictions.keys())
-    if not (restriction_key_set.issubset(conversion_key_set)):
-        # fail loudly
-        assert False, (restriction_key_set - conversion_key_set)
-
-    if "xs:enumeration" in restrictions:
-        try:
-            intermediate_dict['enum'] = [i['@value'] for i in restrictions["xs:enumeration"]]
-        except TypeError:
-            intermediate_dict['enum'] = restrictions["xs:enumeration"]["@value"]
-
-    for key in conversion_dict:
-        out_key = conversion_dict[key]['out_key']
-        converted = convert(
-            in_key=key,
-            converter_function=conversion_dict[key]['converter_function'],
-            restrictions=restrictions
-        )
-
-        if converted:
-            intermediate_dict[out_key] = converted
-
-    if ("xs:annotation" in simple_type_obj) and ("xs:appinfo" in simple_type_obj["xs:annotation"]):
-        intermediate_dict['appinfo'] = simple_type_obj["xs:annotation"]["xs:appinfo"]
-
-    if "xs:annotation" in simple_type_obj:
-        intermediate_dict['description'] = simple_type_obj["xs:annotation"]["xs:documentation"]
-
-    return intermediate_dict
-
-
-def process_simpletypes():
-    """
-        Process simpletypes first
-    """
-
-    for simple_type_obj in myjson["xs:schema"]["xs:simpleType"]:
-        intermediate_dict = parse_simpletype(simple_type_obj)
-
-        result_dict['simpleType'].append(intermediate_dict)
-    return result_dict['simpleType']
-
-
-def parse_element(element):
-    """
-        An element is a part of a sequence.
-        This function takes an element and converts it to JSON schema-ish
-    """
-
-    element_dict = {}
-    element_dict["name"] = element["@name"]
-
-    if "@type" in element:
-        # remove the "xs:"
-        if len(element["@type"].split(':')) > 1:
-            element_dict["type"] = element["@type"].split(':')[1]
-        else:
-            element_dict["type"] = element["@type"]
-
-    if "xs:simpleType" in element:
-        element_dict.update(parse_simpletype(element["xs:simpleType"]))
-
-    if "@minOccurs" in element:
-        element_dict["minOccurs"] = element["@minOccurs"]
-
-    if "@maxOccurs" in element:
-        element_dict["maxOccurs"] = element["@maxOccurs"]
-
-    if "xs:annotation" in element:
-        element_dict['description'] = element["xs:annotation"]["xs:documentation"]
-
-    return element_dict
-
-
-def process_sequence(sequence):
-    """
-        Process a sequence and return a list of element dictionaries
-    """
-
-    elements = sequence["xs:element"]
-    intermediate_list = []
-
-    if isinstance(elements, list):
-        for element in elements:
-            element_dict = parse_element(element)
-
-            # change this:
-            intermediate_list.append(element_dict)
-
-    elif isinstance(elements, dict):
-        element_dict = parse_element(elements)
-        intermediate_list.append(element_dict)
-
-    else:
-        raise TypeError("'sequence' must be either a list or a dict")
-
-    return intermediate_list
-
-
-def process_complextypes():
-    """
-        Goes through all the xs:complexType structures and returns a list
-    """
-
-    for complex_type_obj in myjson["xs:schema"]["xs:complexType"]:
-        intermediate_dict = {}
-        intermediate_dict['name'] = complex_type_obj['@name']
-
-        # get the description string
-        if "xs:annotation" in complex_type_obj:
-            intermediate_dict['description'] = complex_type_obj["xs:annotation"]["xs:documentation"]
-
-        if "xs:attribute" in complex_type_obj:
-            intermediate_dict['attribute'] = {
-                "name": complex_type_obj["xs:attribute"]["@name"],
-                "type": f'#/definitions/{complex_type_obj["xs:attribute"]["@type"]}'
-            }
-
-        if ("xs:annotation" in complex_type_obj) and ("xs:appinfo" in complex_type_obj["xs:annotation"]):
-            intermediate_dict['appinfo'] = complex_type_obj["xs:annotation"]["xs:appinfo"]
-
-        # regular xs:sequence > xs: elements
-        try:
-            sequence = complex_type_obj["xs:sequence"]
-            intermediate_dict["elements"] = [process_sequence(sequence)]
-        except KeyError:
-            # these ones most likely have choice
-            # xs:choice > [xs:sequence > xs: elements]
+            in_value = obj[schema['in_key']]
+            if isinstance(in_value, dict):
+                in_value = in_value["@value"]
             try:
-                intermediate_dict["elements"] = []
-                sequences = complex_type_obj["xs:choice"]['xs:sequence']
-                for sequence in sequences:
-                    intermediate_dict["elements"].append(process_sequence(sequence))
-            except KeyError:
-                # this one is just empty type
-                # TODO: print some logs here
-                # this could be "xs:simpleContent" or "xs:complexContent"
-                if not (("xs:simpleContent" in complex_type_obj) or ("xs:complexContent" in complex_type_obj)):
-                    print("No sequence, no choice", intermediate_dict['name'])
-                    continue
-
-                if "xs:simpleContent" in complex_type_obj:
-                    sequence = {
-                        "xs:element": {
-                            "@name": complex_type_obj["xs:simpleContent"]["xs:extension"]["xs:attribute"]["@name"],
-                            "@type": complex_type_obj["xs:simpleContent"]["xs:extension"]["xs:attribute"]["@type"]
-                        }
-                    }
-
-                if "xs:complexContent" in complex_type_obj:
-                    sequence = {
-                        "xs:element": {
-                            "@name": complex_type_obj["xs:complexContent"]["xs:extension"]["@base"],
-                            "@type": complex_type_obj["xs:complexContent"]["xs:extension"]["@base"]
-                        }
-                    }
-
-                intermediate_dict["elements"] = [process_sequence(sequence)]
-                print("Got here for ", intermediate_dict['name'])
-                print(intermediate_dict["elements"])
-
-        result_dict['complexType'].append(intermediate_dict)
-    return result_dict['complexType']
-
-
-def to_dict(dict_list):
-    """
-        Convert to a JSON schema style dictionary
-        - Remove name
-        - Use the name as the key
-    """
-
-    final_dict = {}
-
-    for mydict in dict_list:
-        name = mydict['name']
-        mydict.pop("name", None)
-        final_dict[name] = mydict
-
-    return final_dict
-
-
-def to_dict_elems(elem_list):
-    """
-        Convert element list of lists to a dictionary
-    """
-
-    # Example input
-    # elem_list = [
-    #     [{'name': 'Point', 'type': 'Point', 'minOccurs': '2', 'maxOccurs': 'unbounded'},
-    #         {'name': 'CenterPoint', 'type': 'Point', 'minOccurs': '0'}]
-    # ]
-
-    final_dict = {}
-
-    # handle xs:choice field
-    if len(elem_list) > 1:
-        final_dict = {"oneOf": []}
-        for dict_list in elem_list:
-            final_dict["oneOf"].append(to_dict(dict_list))
-    else:
-        final_dict = to_dict(elem_list[0])
-
-    return final_dict
-
-
-def process_type(elem_type):
-    """
-        Returns a link to a type in definitions
-        or a base type
-    """
-
-    if elem_type in ['string', 'decimal', 'dateTime', 'int', 'integer', 'date', 'anyURI']:
-        return elem_type
-    else:
-        return {"$ref": f"#/definitions/{elem_type}"}
-
-
-def process_elem_dict(elems_dict):
-    """
-        Converts stuff to an array if necessary
-        Adds #/definitions/ to the type definition if necessary
-        Changes minOccurs -> minItems, maxOccurs -> maxItems inside array
-        Sets as optional if minOccurs = 0
-    """
-
-    # Example of input
-    # elems_dict = {"DataCenter": {"type": "string", "minLength": 1, "maxLength": 80,
-    # "minOccurs": "0", },
-    # "Collections": {"type": "ListOfCollections", "minOccurs": "0", }, }
-
-    for elem_name, elem in elems_dict.items():
-        try:
-            elem_type = elem["type"]
+                # exceptions, if there are many if condtion here
+                # think for a proper way to do this
+                if (type_key == "maxItems" and in_value == "unbounded"):
+                    pass
+                elif (type_key == "enum" and in_value == "Not Applicable"):
+                    pass
+                else:
+                    val = schema['converter_function'](in_value)
+                    temp_dict[type_key] = val
+            except TypeError:
+                import ipdb
+                ipdb.set_trace()
         except KeyError:
-            # print(f'setting {elem_name} type to string')
-            elem_type = 'string'
+            # if there is a key error, it means there is no in_key in the obj
+            # it is normal to not have it so we let it pass
+            pass
 
-        min_occurs = 'minOccurs' in elem
-        max_occurs = 'maxOccurs' in elem
-
-        min_0 = (min_occurs and elem['minOccurs'] == "0")
-        optional = min_0 and not max_occurs
-        no_occurs = not min_occurs and not max_occurs
-
-        # not an array
-        if optional or no_occurs:
-            elem["type"] = process_type(elem_type)
-        # an array
-        else:
-            elem["type"] = "array"
-            elem["items"] = process_type(elem_type)
-
-        # is min_occurs used to represent optional
-        if min_occurs:
-            if optional:
-                elem['required'] = False
-            else:
-                elem['minItems'] = elem['minOccurs']
-            elem.pop('minOccurs')
-
-        if max_occurs:
-            elem['maxItems'] = elem['maxOccurs']
-            elem.pop('maxOccurs')
-
-    return elems_dict
+    return temp_dict
 
 
-def complex_types_to_json_schema(complex_t_dict):
+def process_object_type(obj, enum=False):
     """
-        Takes a regular dictionary of complex types
-        and makes it conform to JSON schema standard vocabulary
+        Handles "sequence", "choice", and the underlying "element"s
     """
 
-    for item in complex_t_dict.values():
-        elems = item['elements']
+    temp = {}
+    if "xs:sequence" in obj:
+        sequence = obj["xs:sequence"]
+        if isinstance(sequence, dict):
+            return process_object_type(sequence)
+        elif isinstance(sequence, list):
+            return {
+                "oneOf": [
+                    process_object_type(s) for s in sequence
+                ]
+            }
+    elif "xs:choice" in obj:
+        temp = process_object_type(obj["xs:choice"], True)
 
-        if (len(elems) == 0):
-            import ipdb
-            ipdb.set_trace()
-
-        elems_dict = to_dict_elems(elems)
-
-        item["type"] = "object"
-
-        # xs:choice fields are handled differently
-        if 'oneOf' in elems_dict:
-            properties = {"oneOf": [process_elem_dict(d) for d in elems_dict['oneOf']]}
+    obj_list = []
+    if "xs:element" in obj:
+        if isinstance(obj["xs:element"], list):
+            obj_list = [
+                get_single_obj_json(item) for item in obj["xs:element"]
+            ]
         else:
-            properties = process_elem_dict(elems_dict)
+            obj_list = [get_single_obj_json(obj["xs:element"])]
+    if enum:
+        return {"enum": obj_list}
 
-        item["properties"] = properties
+    temp.update({
+        "properties": {item["name"]: item for item in obj_list}
+    })
 
-        # eliminate elements entirely
-        item.pop("elements", None)
-    return complex_t_dict
+    return temp
 
 
-if __name__ == '__main__':
-    simple_types = process_simpletypes()
-    complex_types = process_complextypes()
+def get_single_obj_json(obj):
+    """
+        Takes a raw json object and return a json schema object
+    """
 
-    simple_types_dictionary = to_dict(simple_types)
-    complex_types_dictionary = complex_types_to_json_schema(to_dict(complex_types))
+    obj_json = {}
+    for extraction_key in EXTRACTION_KEYS:
+        val = key_extractor_fuctions[extraction_key](obj)
+        obj_json.update(val)
 
-    final_schema = {
-        "$schema": "http://json-schema.org/schema#",
-        # definitions of simple types and complex types go together
-        "definitions": {**simple_types_dictionary, **complex_types_dictionary},
-        # here we only have definitions of types. The actual schema would look like:
-        # "type": "object",
-        # "properties": {}
-    }
+    # post processing the "type" key
+    if "type" not in obj_json:
+        return obj_json
+    elif obj_json["type"] == "N/A":
+        obj_json.pop("type")
+        return obj_json
 
-    # output to a json file
-    print(f"Writing to {str(OUTPUT_FILE)}")
-    with open(OUTPUT_FILE, 'w') as testing:
-        testing.write(json.dumps(final_schema))
+    field_type = obj_json["type"]
+    temp_obj = {}
+
+    if (field_type == "object"):
+        # complex object types
+        temp_obj = process_object_type(obj)
+    else:
+        temp_obj = type_based_keys_value(field_type, obj)
+
+    obj_json.update(temp_obj)
+
+    return obj_json
+
+
+def main():
+    # set the paths for the input and output files
+    file_name_list = ["metadata", "dif", "collection"]
+    output_folder = path / "output"
+
+    file_iterator = [
+        {
+            "input_file": output_folder / f"{file_name}.json",
+            "output_file": output_folder / f"{file_name}_output.json"
+        }
+        for file_name in file_name_list
+    ]
+
+    # iterate through the files
+    for file_dict in file_iterator:
+
+        # open the input file and read the json data
+        with open(file_dict["input_file"], "r") as input_file:
+            myjson = json.loads(input_file.read())
+
+        json_schemas = {}
+
+        # handling type definitions in simpleType and complexType
+        simple_types = myjson["xs:schema"]["xs:simpleType"]
+        complex_types = myjson["xs:schema"]["xs:complexType"]
+
+        # process the raw json data to create the json schema
+        for obj in [*simple_types, *complex_types]:
+            obj_json = get_single_obj_json(obj)
+            json_schemas.update({obj_json["name"]: obj_json})
+
+        final_schema = {
+            "$schema": "http://json-schema.org/schema#",
+            # definitions of simple types and complex types go together
+            "definitions": json_schemas,
+            # here we only have definitions of types. The actual schema would look like:
+            # "type": "object",
+            # "properties": {}
+        }
+
+        # write the output
+        with open(file_dict["output_file"], "w") as output_file:
+            output_file.write(json.dumps(final_schema))
+
+
+if __name__ == "__main__":
+    main()
