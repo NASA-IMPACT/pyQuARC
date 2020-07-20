@@ -9,15 +9,14 @@ class TestDownloader:
     """
 
     def setup_method(self):
-        # self.downloader = Downloader()
         self.concept_ids = {
             "collection": {
                 "real": "C1339230297-GES_DISC",
                 "dummy": "C123456-LPDAAC_ECS",
             },
             "granule": {
-                "real": "",
-                "dummy": "G1000000002-CMR_PROV1"
+                "real": "G1370895082-GES_DISC",
+                "dummy": "G1000000002-CMR_PROV1",
             },
             "invalid": "asdfasdf",
         }
@@ -52,3 +51,117 @@ class TestDownloader:
             Downloader._concept_id_type(self.concept_ids["invalid"])
             == Downloader.INVALID
         )
+
+    def test_construct_url_collection(self):
+        real_collection = self.concept_ids["collection"]["real"]
+        downloader = Downloader(real_collection)
+
+        assert (
+            downloader._construct_url()
+            == f"https://cmr.earthdata.nasa.gov/search/concepts/{real_collection}"
+        )
+
+    def test_construct_url_granule(self):
+        real_granule = self.concept_ids["granule"]["real"]
+        downloader = Downloader(real_granule)
+
+        assert (
+            downloader._construct_url()
+            == f"https://cmr.earthdata.nasa.gov/search/concepts/{real_granule}"
+        )
+
+    def test_log_error(self):
+        # create a dummy granule downloader
+        dummy_granule = self.concept_ids["granule"]["dummy"]
+        downloader = Downloader(dummy_granule)
+
+        downloader.log_error("invalid_concept_id", {"concept_id": dummy_granule})
+
+        downloader.log_error(
+            "request_failed",
+            {
+                "concept_id": dummy_granule,
+                "url": "https://dummy.url",
+                "status_code": 404,
+            },
+        )
+
+        assert downloader.errors == [
+            {"type": "invalid_concept_id", "details": {"concept_id": dummy_granule}},
+            {
+                "type": "request_failed",
+                "details": {
+                    "concept_id": dummy_granule,
+                    "url": "https://dummy.url",
+                    "status_code": 404,
+                },
+            },
+        ]
+
+    def test_download_invalid_concept_id(self):
+        invalid_concept_id = self.concept_ids["invalid"]
+        downloader = Downloader(invalid_concept_id)
+
+        downloader.download()
+
+        assert len(downloader.errors) == 1
+        assert downloader.errors == [
+            {
+                "type": "invalid_concept_id",
+                "details": {"concept_id": self.concept_ids["invalid"]},
+            }
+        ]
+
+    def test_download_dummy_collection_no_errors(self):
+        dummy_collection = self.concept_ids["collection"]["dummy"]
+        downloader = Downloader(dummy_collection)
+
+        downloader.download()
+
+        assert len(downloader.errors) == 1
+        assert downloader.errors == [
+            {
+                "type": "request_failed",
+                "details": {
+                    "concept_id": dummy_collection,
+                    "url": f"https://cmr.earthdata.nasa.gov/search/concepts/{dummy_collection}",
+                    "status_code": 404,
+                },
+            }
+        ]
+
+    def test_download_real_collection_no_errors(self):
+        real_collection = self.concept_ids["collection"]["real"]
+        downloader = Downloader(real_collection)
+
+        downloader.download()
+
+        # is the concept id valid and is the request going through?
+        assert downloader.errors == []
+
+    def test_download_dummy_granule_no_errors(self):
+        dummy_granule = self.concept_ids["granule"]["dummy"]
+        downloader = Downloader(dummy_granule)
+
+        downloader.download()
+
+        assert len(downloader.errors) == 1
+        assert downloader.errors == [
+            {
+                "type": "request_failed",
+                "details": {
+                    "concept_id": dummy_granule,
+                    "url": f"https://cmr.earthdata.nasa.gov/search/concepts/{dummy_granule}",
+                    "status_code": 404,
+                },
+            }
+        ]
+
+    def test_download_real_granule_no_errors(self):
+        real_collection = self.concept_ids["granule"]["real"]
+        downloader = Downloader(real_collection)
+
+        downloader.download()
+
+        # is the concept id valid and is the request going through?
+        assert downloader.errors == []
