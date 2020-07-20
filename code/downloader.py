@@ -50,9 +50,7 @@ class Downloader:
         """
 
         concept_id_type = Downloader._concept_id_type(self.concept_id)
-        constructed_url = Downloader.BASE_URL.format(
-            concept_id_type=concept_id_type, concept_id=self.concept_id
-        )
+        constructed_url = Downloader.BASE_URL.format(concept_id=self.concept_id)
 
         return constructed_url
 
