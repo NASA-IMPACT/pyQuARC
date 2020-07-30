@@ -1,9 +1,8 @@
 import os
 import environ
 
-
-ECHO10 = "echo10"
 DIF = "dif"
+ECHO10 = "echo10"
 UMM_JSON = "umm-json"
 
 ROOT_DIR = (
