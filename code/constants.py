@@ -1,19 +1,20 @@
 import os
-import environ
+from pathlib import Path
 
 DIF = "dif"
 ECHO10 = "echo10"
 UMM_JSON = "umm-json"
 
 ROOT_DIR = (
-    environ.Path(__file__) - 2
+    # go up one directory
+    Path(__file__).resolve().parents[1]
 )
 
-SCHEMAS_BASE_PATH = ROOT_DIR.path("schemas")
+SCHEMAS_BASE_PATH = ROOT_DIR / "schemas"
 SCHEMA_EXTENSION = "json"
 
 SCHEMA_PATHS = {
-    ECHO10: SCHEMAS_BASE_PATH.path(f"{ECHO10}.{SCHEMA_EXTENSION}"),
-    DIF: SCHEMAS_BASE_PATH.path(f"{DIF}.{SCHEMA_EXTENSION}"),
-    UMM_JSON: SCHEMAS_BASE_PATH.path(f"{UMM_JSON}.{SCHEMA_EXTENSION}")
+    ECHO10: SCHEMAS_BASE_PATH / f"{ECHO10}.{SCHEMA_EXTENSION}",
+    DIF: SCHEMAS_BASE_PATH / f"{DIF}.{SCHEMA_EXTENSION}",
+    UMM_JSON: SCHEMAS_BASE_PATH / f"{UMM_JSON}.{SCHEMA_EXTENSION}"
 }
