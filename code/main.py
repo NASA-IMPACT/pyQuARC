@@ -3,6 +3,7 @@ import requests
 import xmltodict
 
 from pprint import pprint
+from tqdm import tqdm
 
 from downloader import Downloader
 from validator import Validator
@@ -16,15 +17,14 @@ class PyCMR:
         2. Accepts custom list of concept_ids
     """
 
-    def __init__(self, query=None, concept_ids=[], validation_paths=[]):
-        self.concept_ids = concept_ids
+    def __init__(self, query=None, input_concept_ids=[], validation_paths=[]):
+        self.input_concept_ids = input_concept_ids
         self.query = query
         self.validation_paths = validation_paths
 
-        if self.query:
-            self._cmr_query()
+        self.concept_ids = self._cmr_query() if self.query else self.input_concept_ids
 
-        self.errors = {}
+        self.errors = []
 
     def _cmr_query(self):
         # TODO: Make the page_size dynamic and use page_num to advance through multiple pages of results
@@ -40,33 +40,41 @@ class PyCMR:
             for result in response_dict["results"]["references"]["reference"]
         ]
 
-        self.concept_ids = concept_ids
+        return concept_ids
 
     def validate(self):
-        if self.query and self.concept_ids:
+        if self.query and self.input_concept_ids:
             return {
                 "error": "PyCMR received both CMR query and concept_ids. It can only accept one of those."
             }
 
-        if not self.query and not self.concept_ids:
+        if not self.query and not self.input_concept_ids:
             return {
                 "error": "PyCMR expects either a CMR query or a list of concept_ids."
             }
 
-        for concept_id in self.concept_ids:
+        for concept_id in tqdm(self.concept_ids):
             downloader = Downloader(concept_id)
-            # content = downloader.download()
+            content = downloader.download()
             # with open("myfile", "w") as myfile:
             #     myfile.write(content)
             validator = Validator(
                 downloader.metadata_format, validation_paths=self.validation_paths
             )
 
-            with open("myfile", "r") as myfile:
-                content = myfile.read()
+            # with open("myfile", "r") as myfile:
+            #     content = myfile.read()
             validation_errors = validator.validate(content)
 
-            self.errors[concept_id] = validation_errors
+            [{"concept_id": "...", "errors": [], "checked_fields": []}]
+
+            self.errors.append(
+                {
+                    "concept_id": concept_id,
+                    "errors": validation_errors,
+                    "checked_fields": self.validation_paths or "all",
+                }
+            )
 
         return self.errors
 
@@ -84,24 +92,33 @@ if __name__ == "__main__":
         nargs="+",
         action="store",
         type=str,
-        help="List of concept_ids.",
+        help="List of concept IDs.",
     )
     parser.add_argument(
-        "--validation_paths",
+        "--fields_to_validate",
         nargs="+",
         action="store",
         type=str,
-        help="List of validation paths in the schema. By default, it takes all of them. For example, Collection>Temporal>RangeDateTime only validates that field.",
+        help="List of fields to validate in the schema. By default, it takes all of them. For example, Collection/Temporal/RangeDateTime only validates that field.",
     )
     args = parser.parse_args()
 
     pycmr = PyCMR(
         query=args.query,
-        concept_ids=args.concept_ids,
-        validation_paths=args.validation_paths or [],
+        input_concept_ids=args.concept_ids or [],
+        validation_paths=args.fields_to_validate or [],
     )
     results = pycmr.validate()
 
     pprint(results)
 
 # "https://cmr.earthdata.nasa.gov/search/collections?provider=GES_DISC&project=MERRA&page_size=2000"
+# demo video
+# normal: list key fields we're checking
+# show it's working
+# make changes and show changes so it's catching the cahnges
+# run for multiple concept ids
+# cmr query
+# only doing this for echo10 right now
+# haven't gone beyond this
+# schema is incomplete (but we can show in video)

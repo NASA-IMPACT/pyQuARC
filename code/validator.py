@@ -12,7 +12,7 @@ class Validator:
         Validates downloaded metadata for certain fields and returns the result.
     """
 
-    PATH_SEPARATOR = ">"
+    PATH_SEPARATOR = "/"
 
     def __init__(
         self, metadata_format=ECHO10, validation_paths=[],
@@ -105,7 +105,7 @@ class Validator:
             errors.append(
                 {
                     "message": error.message,
-                    "path": " > ".join(error.path),
+                    "path": Validator.PATH_SEPARATOR.join(error.path),
                     "instance": error.instance,
                     "validator": error.validator,
                     "validator_value": error.validator_value,
