@@ -1,6 +1,7 @@
 import json
-from fake_mapping import MAPPING
+import jsonschema
 
+from .constants import SCHEMA_PATHS
 
 class Validator:
     """
@@ -9,14 +10,13 @@ class Validator:
 
     def __init__(
         self,
-        content_to_validate,
-        validation_fields=["ShortName"],
         metadata_format="echo10",
+        validation_fields=["ShortName"], # TODO: path instead in a list
     ):
         self.validation_fields = validation_fields
-        self.content_to_validate = content_to_validate
         self.metadata_format = metadata_format
-        self.results = {}
+        self.validator = jsonschema.Draft7Validator(self.read_schema())
+        self.errors = []
 
     def validate(self):
         """
@@ -52,15 +52,44 @@ class Validator:
 
         return self.results
 
+    def validate_new(self, content_to_validate):
+        """
+            Validate passed content based on fields/schema and return any errors
+        """
+        errors = []
+
+        for error in sorted(self.validator.iter_errors(content_to_validate), key=str):
+            errors.append({
+                'message': error.message,
+                'path' : ' > '.join(error.path),
+                'instance': error.instance,
+                'validator': error.validator,
+                'validator_value': error.validator_value
+            })
+
+        return errors
+        
+
     def read_schema(self):
         """
             Reads the schema file based on the format and returns json schema
         """
 
-        schema = json.load(open("fake_validation_schema.json", "r"))
-
+        schema = json.load(open(SCHEMA_PATHS[self.metadata_format], "r"))
         return schema
 
+
+# Error dict
+
+# {
+#     "ShortName": {
+#         "message": "2019 is not a date-time",
+#         "path": "Collections > something > something > ShortName",
+#         "instance": "2019",
+#         "validator": "maxLength",
+#         "validator_value": "80"
+#     },   
+# }
 
 # results = library.function(schema, data)
 # function(schema, data)
