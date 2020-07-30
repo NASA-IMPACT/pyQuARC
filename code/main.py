@@ -16,9 +16,10 @@ class PyCMR:
         2. Accepts custom list of concept_ids
     """
 
-    def __init__(self, query=None, concept_ids=[]):
+    def __init__(self, query=None, concept_ids=[], validation_paths=[]):
         self.concept_ids = concept_ids
         self.query = query
+        self.validation_paths = validation_paths
 
         if self.query:
             self._cmr_query()
@@ -54,9 +55,15 @@ class PyCMR:
 
         for concept_id in self.concept_ids:
             downloader = Downloader(concept_id)
-            content = downloader.download()
-            validator = Validator(downloader.metadata_format)
+            # content = downloader.download()
+            # with open("myfile", "w") as myfile:
+            #     myfile.write(content)
+            validator = Validator(
+                downloader.metadata_format, validation_paths=self.validation_paths
+            )
 
+            with open("myfile", "r") as myfile:
+                content = myfile.read()
             validation_errors = validator.validate(content)
 
             self.errors[concept_id] = validation_errors
@@ -79,9 +86,20 @@ if __name__ == "__main__":
         type=str,
         help="List of concept_ids.",
     )
+    parser.add_argument(
+        "--validation_paths",
+        nargs="+",
+        action="store",
+        type=str,
+        help="List of validation paths in the schema. By default, it takes all of them. For example, Collection>Temporal>RangeDateTime only validates that field.",
+    )
     args = parser.parse_args()
 
-    pycmr = PyCMR(query=args.query, concept_ids=args.concept_ids)
+    pycmr = PyCMR(
+        query=args.query,
+        concept_ids=args.concept_ids,
+        validation_paths=args.validation_paths or [],
+    )
     results = pycmr.validate()
 
     pprint(results)
