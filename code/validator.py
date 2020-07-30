@@ -1,7 +1,9 @@
 import json
 import jsonschema
 
-from .constants import SCHEMA_PATHS
+from constants import DIF, ECHO10, UMM_JSON
+from constants import SCHEMA_PATHS
+
 
 class Validator:
     """
@@ -10,65 +12,33 @@ class Validator:
 
     def __init__(
         self,
-        metadata_format="echo10",
-        validation_fields=["ShortName"], # TODO: path instead in a list
+        metadata_format=ECHO10,
+        validation_fields=["ShortName"],  # TODO: path instead in a list
     ):
         self.validation_fields = validation_fields
         self.metadata_format = metadata_format
         self.validator = jsonschema.Draft7Validator(self.read_schema())
         self.errors = []
 
-    def validate(self):
-        """
-            Validate passed content based on fields and log any errors
-        """
-
-        schema = self.read_schema()
-        for field in validation_fields:
-            # run all checks for this field
-            # where do we get a list of checks to run
-            # how are the checks stored (utils.py?)
-            # how do we add more checks
-            self.results[field] = {
-                "errors": {"invalid_criteria": []},
-                "valid": False,
-                "field_exists_in_downloaded_content": False,
-            }
-
-            if field in content_to_validate:
-                self.results[field]["field_exists_in_downloaded_content"] = True
-
-                for key, val in schema[field].items():
-                    # not valid
-                    if not MAPPING[key](
-                        schema_val=val,
-                        content_val=content_to_validate[field]
-                    ):
-                        self.results[field]["errors"]["invalid_criteria"].append(
-                            key)
-
-                if len(self.results[field]["errors"]["invalid_criteria"]) == 0:
-                    self.results[field]["valid"] = True
-
-        return self.results
-
-    def validate_new(self, content_to_validate):
+    def validate(self, content_to_validate):
         """
             Validate passed content based on fields/schema and return any errors
         """
         errors = []
 
+        content_to_validate = json.loads(content_to_validate)
+
+        # this takes a json string
         for error in sorted(self.validator.iter_errors(content_to_validate), key=str):
             errors.append({
                 'message': error.message,
-                'path' : ' > '.join(error.path),
+                'path': ' > '.join(error.path),
                 'instance': error.instance,
                 'validator': error.validator,
                 'validator_value': error.validator_value
             })
 
         return errors
-        
 
     def read_schema(self):
         """
@@ -88,7 +58,7 @@ class Validator:
 #         "instance": "2019",
 #         "validator": "maxLength",
 #         "validator_value": "80"
-#     },   
+#     },
 # }
 
 # results = library.function(schema, data)

@@ -1,5 +1,10 @@
+import json
 import re
 import requests
+
+from xmltodict import parse
+
+from constants import DIF, ECHO10, UMM_JSON
 
 
 class Downloader:
@@ -7,20 +12,14 @@ class Downloader:
         Downloads data given a concept ID
     """
 
-    METADATA_FORMATS = [
-        "dif",
-        "echo10",
-        "umm-json",
-    ]
-
     # BASE_URL = "https://cmr.earthdata.nasa.gov/search/{concept_id_type}/{concept_id}"
-    BASE_URL = "https://cmr.earthdata.nasa.gov/search/concepts/{concept_id}"
+    BASE_URL = "https://cmr.earthdata.nasa.gov/search/concepts/{concept_id}.{metadata_format}"
 
     COLLECTION = "collection"
     GRANULE = "granule"
     INVALID = "invalid"
 
-    def __init__(self, concept_id, metadata_format="echo10", version=None):
+    def __init__(self, concept_id, metadata_format=ECHO10, version=None):
         self.concept_id = concept_id
         self.version = version
         self.metadata_format = metadata_format
@@ -50,14 +49,17 @@ class Downloader:
         """
 
         concept_id_type = Downloader._concept_id_type(self.concept_id)
-        constructed_url = Downloader.BASE_URL.format(concept_id=self.concept_id)
+        constructed_url = Downloader.BASE_URL.format(
+            concept_id=self.concept_id,
+            metadata_format=self.metadata_format
+        )
 
         return constructed_url
 
     def log_error(self, error_message_code, kwargs):
         """
             Logs errors in self.errors
-            
+
             Arguments:
                 error_message_code (str): The key to the ERROR_MESSAGES dict
                 **kwargs: any keyword arguments required for the error string
@@ -68,6 +70,19 @@ class Downloader:
 
         self.errors.append({"type": error_message_code, "details": kwargs})
 
+    def _convert_output_to_json(self):
+        """
+            Convert downloaded content to JSON if necessary
+        """
+
+        # TODO: Handle DIF here
+        if self.metadata_format == ECHO10:
+            result = parse(self.downloaded_content)
+        else:
+            result = self.downloaded_content
+
+        return json.dumps(result)
+
     def download(self):
         """
             Downloads metadata by calling the CMR API
@@ -75,7 +90,8 @@ class Downloader:
 
         # is the concept id valid? if not, log error
         if not self._valid_concept_id():
-            self.log_error("invalid_concept_id", {"concept_id": self.concept_id})
+            self.log_error("invalid_concept_id", {
+                           "concept_id": self.concept_id})
             return
 
         # constructs url based on concept id
@@ -97,15 +113,7 @@ class Downloader:
         # stores the data in the downloaded_content variable
         self.downloaded_content = response.text
 
-    def validate(self):
-        """
-            Compare json of downloaded data against json schema
-        """
-
-        # takes stuff from downloaded_content
-        # runs the downloaded response through the schema we've built
-        # log validation errors
-        pass
+        return self._convert_output_to_json()
 
     @staticmethod
     def _concept_id_type(concept_id: str) -> str:
