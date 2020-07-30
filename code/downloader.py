@@ -13,13 +13,16 @@ class Downloader:
     """
 
     # BASE_URL = "https://cmr.earthdata.nasa.gov/search/{concept_id_type}/{concept_id}"
-    BASE_URL = "https://cmr.earthdata.nasa.gov/search/concepts/{concept_id}.{metadata_format}"
+    BASE_URL = (
+        "https://cmr.earthdata.nasa.gov/search/concepts/{concept_id}.{metadata_format}"
+    )
 
     COLLECTION = "collection"
     GRANULE = "granule"
     INVALID = "invalid"
 
     def __init__(self, concept_id, metadata_format=ECHO10, version=None):
+        # TODO: Handle versions here
         self.concept_id = concept_id
         self.version = version
         self.metadata_format = metadata_format
@@ -50,8 +53,7 @@ class Downloader:
 
         concept_id_type = Downloader._concept_id_type(self.concept_id)
         constructed_url = Downloader.BASE_URL.format(
-            concept_id=self.concept_id,
-            metadata_format=self.metadata_format
+            concept_id=self.concept_id, metadata_format=self.metadata_format
         )
 
         return constructed_url
@@ -90,8 +92,7 @@ class Downloader:
 
         # is the concept id valid? if not, log error
         if not self._valid_concept_id():
-            self.log_error("invalid_concept_id", {
-                           "concept_id": self.concept_id})
+            self.log_error("invalid_concept_id", {"concept_id": self.concept_id})
             return
 
         # constructs url based on concept id

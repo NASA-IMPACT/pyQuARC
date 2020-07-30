@@ -30,13 +30,15 @@ class Validator:
 
         # this takes a json string
         for error in sorted(self.validator.iter_errors(content_to_validate), key=str):
-            errors.append({
-                'message': error.message,
-                'path': ' > '.join(error.path),
-                'instance': error.instance,
-                'validator': error.validator,
-                'validator_value': error.validator_value
-            })
+            errors.append(
+                {
+                    "message": error.message,
+                    "path": " > ".join(error.path),
+                    "instance": error.instance,
+                    "validator": error.validator,
+                    "validator_value": error.validator_value,
+                }
+            )
 
         return errors
 
