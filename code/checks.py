@@ -5,18 +5,6 @@ from datetime import datetime
 from urlextract import URLExtract
 
 
-def _get_path_value(input_json, path):
-    splits = path.split("/")
-
-    for split in splits:
-        input_json = input_json[split.strip()]
-
-    return input_json
-
-
-from datetime import datetime
-
-
 def _iso_datetime(datetime_string):
     if datetime_string.endswith("Z"):
         datetime_string = datetime_string.replace("Z", "+00:00")
@@ -41,7 +29,9 @@ def datetime_iso_format_check(datetime_string):
             False: if not
     """
 
-    return bool(_iso_datetime(datetime_string))
+    return {
+        "validity": bool(_iso_datetime(datetime_string))
+    }
 
 
 def data_updatetime_logic_check(earlier_datetime_string, later_datetime_string):
@@ -49,7 +39,9 @@ def data_updatetime_logic_check(earlier_datetime_string, later_datetime_string):
     earlier_datetime = _iso_datetime(earlier_datetime_string)
     later_datetime = _iso_datetime(later_datetime_string)
 
-    return earlier_datetime < later_datetime
+    return {
+        "validity": earlier_datetime < later_datetime
+    }
 
 
 def url_health_and_status_check(text):
@@ -65,9 +57,23 @@ def url_health_and_status_check(text):
 
     # check that URL returns a valid response
     for url in urls:
-        response = requests.get(url)
-        results.append(
-            {"url": url, "status_code": response.status_code,}
-        )
+        response_code = requests.get(url).status_code
+        if response_code != 200:
+            results.append(
+                {"url": url, "status_code": response_code}
+            )
 
-    return results
+    if len(results) == 0:
+        return True
+
+    return {
+        "validity" : False,
+        "result" : results
+    }
+
+
+dispatcher = {
+    "datetime_iso_format_check": datetime_iso_format_check,
+    "data_updatetime_logic_check": data_updatetime_logic_check,
+    "url_health_and_status_check": url_health_and_status_check
+}

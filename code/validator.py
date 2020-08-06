@@ -6,6 +6,30 @@ from copy import deepcopy
 from constants import DIF, ECHO10, UMM_JSON
 from constants import SCHEMA_PATHS
 
+from checks import dispatcher
+
+
+def _get_path_value(input_json, path):
+    splits = path.split("/")
+    input_json = json.loads(input_json)
+
+    try:
+        for split in splits:
+            input_json = input_json[split.strip()]
+    except KeyError as e:
+        return False
+    except TypeError as e:
+        print(path)
+
+    return input_json
+
+
+def _get_rule(name_id, ruleset):
+    for rule in ruleset:
+        if rule["name-id"].strip() == name_id.strip():
+            return rule
+    raise KeyError(name_id)
+
 
 class Validator:
     """
@@ -70,7 +94,7 @@ class Validator:
 
         return filtered_schema
 
-    def validate(self, content_to_validate):
+    def validate_schema(self, content_to_validate):
         """
             Validate passed content based on fields/schema and return any errors
         """
@@ -111,8 +135,66 @@ class Validator:
                     "validator_value": error.validator_value,
                 }
             )
+        
+        if len(errors) == 0:
+            return {
+                "valid": True
+            }
 
-        return errors
+        return {
+            "valid": False,
+            "errors": errors
+        }
+
+    def run_checks(self, content_to_validate):
+        """
+            Performs the custom checks based on the QA Rules
+        """
+        ruleset = json.load(open(SCHEMA_PATHS["ruleset"], 'r'))
+        rules_mapping = json.load(open(SCHEMA_PATHS["rules_mapping"], 'r'))
+
+        checks = {}
+
+        for mapping in rules_mapping:
+            path = mapping["path"]
+            checks[path] = {}
+            for rule_id in mapping["rules"]:
+                checks[path][rule_id] = {}
+                rule = _get_rule(rule_id, ruleset)
+                if rule_id == 'data_updatetime_logic_check':
+                    continue
+                else:
+                    value = _get_path_value(content_to_validate, path)
+                    if not value:
+                        checks[path]["exists"] = False
+                        continue
+
+                    checks[path]["exists"] = True
+                    try:
+                        result = dispatcher[rule["function"]](value)
+                    except KeyError as e:
+                        # print(e)
+                        continue
+
+                        if result["validity"] == False:
+                            checks[path][rule_id]["check_passes"] = False
+                            checks[path][rule_id]["severity"]: rule["severity"]
+                            checks[path][rule_id]["message"]: rule["message-fail"]
+                            checks[path][rule_id]["help_url"]: rule["help_url"]
+        
+        return checks
+
+
+    def validate(self, content_to_validate):
+        """
+            Performs schema check and custom checks and returns comprehensive report
+        """
+        result = {}
+        result["schema_check"] = self.validate_schema(content_to_validate)
+        result["checks"] = self.run_checks(content_to_validate)
+
+        return result
+
 
     def read_schema(self):
         """

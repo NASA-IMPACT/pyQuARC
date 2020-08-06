@@ -4,4 +4,4 @@ pytest==5.4.3
 requests==2.24.0
 strict-rfc3339==0.7
 xmltodict==0.12.0
-
+urlextract==1.0.0

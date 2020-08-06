@@ -211,7 +211,7 @@
         "spec_version": null
     },
     {
-        "name-id": "Version Description Not Provided ",
+        "name-id": "Version Description Not Provided",
         "name-display": "Version Description Not Provided ",
         "description": "Check if the version description states only \"Not provided\" (could be mixed case: \"not provided\", Not Provided\", etc.), provides info if it does",
         "severity ": "info",
