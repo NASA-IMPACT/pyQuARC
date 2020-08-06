@@ -65,39 +65,43 @@ class TestValidator:
         pass
 
     def test_dami_schema(self):
-        content = json.load(open('code/data/damidata.json', 'r'))
-        schema = json.load(open('code/data/damischema.json','r'))
+        content = json.load(open("code/data/damidata.json", "r"))
+        schema = json.load(open("code/data/damischema.json", "r"))
 
-        result = jsonschema.validate(content, schema, format_checker=jsonschema.draft7_format_checker,)
+        result = jsonschema.validate(
+            content, schema, format_checker=jsonschema.draft7_format_checker,
+        )
         assert result == None
 
     def test_dami_schema_xml(self):
-        with open('code/data/echo10.xml', 'r') as file:
+        with open("code/data/echo10.xml", "r") as file:
             content = file.read()
         content = xmltodict.parse(content)
 
         validator = Validator()
         errors = validator.validate_new(content)
+
+        # maybe we can use faker for tests
         assert errors == [
             {
-                'instance': '2009-04-20',
-                'message': "'2009-04-20' is not a 'date-time'",
-                'path': 'Collection > Temporal > RangeDateTime > BeginningDateTime',
-                'validator': 'format',
-                'validator_value': 'date-time'
+                "instance": "2009-04-20",
+                "message": "'2009-04-20' is not a 'date-time'",
+                "path": "Collection/Temporal/RangeDateTime/BeginningDateTime",
+                "validator": "format",
+                "validator_value": "date-time",
             },
             {
-                'instance': '21234132984132874132471241234124312423212341329841328741324712412341243124232123413298413287413247124123412431242321234132984132874132471241234124312423',
-                'message': "'21234132984132874132471241234124312423212341329841328741324712412341243124232123413298413287413247124123412431242321234132984132874132471241234124312423' "
-                            'is too long',
-                'path': 'Collection > ProcessingLevelId',
-                'validator': 'maxLength',
-                'validator_value': 80
-            }
+                "instance": "21234132984132874132471241234124312423212341329841328741324712412341243124232123413298413287413247124123412431242321234132984132874132471241234124312423",
+                "message": "'21234132984132874132471241234124312423212341329841328741324712412341243124232123413298413287413247124123412431242321234132984132874132471241234124312423' "
+                "is too long",
+                "path": "Collection > ProcessingLevelId",
+                "validator": "maxLength",
+                "validator_value": 80,
+            },
         ]
-
 
 # not in schema
 # in schema
-    # all keys are valid
-    # some keys are invalid
+# all keys are valid
+# some keys are invalid
+

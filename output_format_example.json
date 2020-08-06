@@ -1,0 +1,61 @@
+{
+    "concept_id": "this",
+    "schema_check": {
+        "valid": false,
+        "errors": [
+            {
+                "message": "error.message",
+                "path": "Validator.PATH_SEPARATOR.join(error.path)",
+                "instance": "error.instance",
+                "validator": "error.validator",
+                "validator_value": "error.validator_value"
+            }
+        ]
+    },
+    "checks": {
+        "path1": {
+            "exists": "true",
+            "instance": "instance",
+            "rule1": {
+                "check_passes": "false",
+                "severity": "info/warning/error",
+                "message_pass": "something",
+                "message_fail": "something",
+                "remediation": "something",
+                "help_url": "some url goes here"
+            },
+            "rule2": {
+                "check_passes": "false",
+                "severity": "info/warning/error",
+                "message_pass": "something",
+                "message_fail": "something",
+                "remediation": "something",
+                "help_url": "some url goes here"
+            }
+        },
+        "path2": {
+            "exists": "true",
+            "instance": "instance",
+            "rule1": {
+                "check_passes": "false",
+                "severity": "info/warning/error",
+                "message": {
+                    "pass": "something",
+                    "fail": "something"
+                },
+                // "message_pass": "something",
+                // "message_fail": "something",
+                "remediation": "something",
+                "help_url": "some url goes here"
+            },
+            "rule2": {
+                "check_passes": "false",
+                "severity": "info/warning/error",
+                "message_pass": "something",
+                "message_fail": "something",
+                "remediation": "something",
+                "help_url": "some url goes here"
+            }
+        }
+    }
+}

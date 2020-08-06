@@ -23,8 +23,8 @@
         "Temporal": {
             "EndsAtPresentFlag": "false",
             "RangeDateTime": {
-                "BeginningDateTime": "1979-01-0100:00:00.000Z",
-                "EndingDateTime": "2016-02-29T23:59:59.999Z"
+                "BeginningDateTime": "1979-01-01",
+                "EndingDateTime": "2016-02-2923:59:59.999Z"
             }
         },
         "Contacts": {

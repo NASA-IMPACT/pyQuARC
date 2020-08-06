@@ -1,0 +1,890 @@
+[
+    {
+        "path": "Collection/ShortName",
+        "rules": []
+    },
+    {
+        "path": "Collection/VersionId",
+        "rules": []
+    },
+    {
+        "path": "Collection/InsertTime",
+        "rules": [
+            "Date/dateTime ISO Format Check"
+        ]
+    },
+    {
+        "path": "Collection/LastUpdate",
+        "rules": [
+            "Date/dateTime ISO Format Check",
+            "Data Update Time Logic Check"
+        ]
+    },
+    {
+        "path": "Collection/DeleteTime",
+        "rules": [
+            "Date/dateTime ISO Format Check",
+            "DeleteTime Check"
+        ]
+    },
+    {
+        "path": "Collection/LongName",
+        "rules": []
+    },
+    {
+        "path": "Collection/DataSetId",
+        "rules": [
+            "Title - Short Name Uniqueness Check"
+        ]
+    },
+    {
+        "path": "Collection/Description",
+        "rules": [
+            "URL Health and Status Check",
+            "Abstract Length Check"
+        ]
+    },
+    {
+        "path": "Collection/DOI/DOI",
+        "rules": [
+            "NASA DOI - Missing Reason Presence Check",
+            "DOI Validity Check"
+        ]
+    },
+    {
+        "path": "Collection/DOI/Authority",
+        "rules": [
+            "EOSDIS DOI Authority Check (conditional)"
+        ]
+    },
+    {
+        "path": "Collection/DOI/MissingReason",
+        "rules": [
+            "DOI Missing Reason Enumeration Check"
+        ]
+    },
+    {
+        "path": "Collection/DOI/Explanation",
+        "rules": []
+    },
+    {
+        "path": "Collection/CollectionDataType",
+        "rules": [
+            "CollectionDataType Enumeration Check"
+        ]
+    },
+    {
+        "path": "Collection/Orderable",
+        "rules": []
+    },
+    {
+        "path": "Collection/Visible",
+        "rules": []
+    },
+    {
+        "path": "Collection/RevisionDate",
+        "rules": [
+            "Date/dateTime ISO Format Check"
+        ]
+    },
+    {
+        "path": "Collection/SuggestedUsage",
+        "rules": [
+            "URL Health and Status Check"
+        ]
+    },
+    {
+        "path": "Collection/ProcessingCenter",
+        "rules": [
+            "Data Center Short Name GCMD Check",
+            "ECHO10 Data Center Name Presence Check"
+        ]
+    },
+    {
+        "path": "Collection/ProcessingLevelId",
+        "rules": [
+            "EOSDIS Standard Processing Level Id Check"
+        ]
+    },
+    {
+        "path": "Collection/ProcessingLevelDescription",
+        "rules": [
+            "Processing Level Description Length Check"
+        ]
+    },
+    {
+        "path": "Collection/ArchiveCenter",
+        "rules": []
+    },
+    {
+        "path": "Collection/VersionDescription",
+        "rules": [
+            "Version Description Not Provided"
+        ]
+    },
+    {
+        "path": "Collection/CitationforExternalPublication",
+        "rules": []
+    },
+    {
+        "path": "Collection/CollectionState",
+        "rules": [
+            "UMM Controlled Collection State List"
+        ]
+    },
+    {
+        "path": "Collection/MaintenanceAndUpdateFrequency",
+        "rules": []
+    },
+    {
+        "path": "Collection/RestrictionFlag",
+        "rules": []
+    },
+    {
+        "path": "Collection/RestrictionComment",
+        "rules": []
+    },
+    {
+        "path": "Collection/UseConstraints",
+        "rules": []
+    },
+    {
+        "path": "Collection/Price",
+        "rules": []
+    },
+    {
+        "path": "Collection/DataFormat",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialKeywords/Keyword",
+        "rules": [
+            "ECHO10 Spatial GCMD Keyword Check"
+        ]
+    },
+    {
+        "path": "Collection/TemporalKeywords/Keyword",
+        "rules": []
+    },
+    {
+        "path": "Collection/Temporal/TimeType",
+        "rules": []
+    },
+    {
+        "path": "Temporal/DateType",
+        "rules": []
+    },
+    {
+        "path": "Temporal/TemporalRangeType",
+        "rules": []
+    },
+    {
+        "path": "Collection/Temporal/PrecisionOfSeconds",
+        "rules": []
+    },
+    {
+        "path": "Collection/Temporal/EndsAtPresentFlag",
+        "rules": [
+            "EndsAtPresentFlag Logic Check",
+            "EndsAtPresentFlag Presence Check"
+        ]
+    },
+    {
+        "path": "Collection/Temporal/SingleDateTime",
+        "rules": [
+            "Date/dateTime ISO Format Check",
+            "Temporal Extent Requirement Check",
+            "Validate Single Date Time Against Granules"
+        ]
+    },
+    {
+        "path": "Collection/Temporal/RangeDateTime/BeginningDateTime",
+        "rules": [
+            "Date/dateTime ISO Format Check",
+            "Temporal Extent Requirement Check",
+            "Range Date Time Logic Check",
+            "Validate Beginning Date Time Against Granules"
+        ]
+    },
+    {
+        "path": "Collection/Temporal/RangeDateTime/EndingDateTime",
+        "rules": [
+            "Date/dateTime ISO Format Check",
+            "Temporal Extent Requirement Check",
+            "Range Date Time Logic Check",
+            "Validate Ending Date Time Against Granules"
+        ]
+    },
+    {
+        "path": "Collection/Temporal/PeriodicDateTime/Name",
+        "rules": []
+    },
+    {
+        "path": "Collection/Temporal/PeriodicDateTime/StartDate",
+        "rules": [
+            "Date/dateTime ISO Format Check",
+            "Temporal Extent Requirement Check",
+            "Periodic Date Time Logic Check"
+        ]
+    },
+    {
+        "path": "Collection/Temporal/PeriodicDateTime/EndDate",
+        "rules": [
+            "Date/dateTime ISO Format Check",
+            "Temporal Extent Requirement Check",
+            "Periodic Date Time Logic Check"
+        ]
+    },
+    {
+        "path": "Collection/Temporal/PeriodicDateTime/DurationUnit",
+        "rules": []
+    },
+    {
+        "path": "Collection/Temporal/PeriodicDateTime/DurationValue",
+        "rules": []
+    },
+    {
+        "path": "Collection/Temporal/PeriodicDateTime/PeriodCycleDurationUnit",
+        "rules": []
+    },
+    {
+        "path": "Collection/Temporal/PeriodicDateTime/PeriodCycleDurationValue",
+        "rules": []
+    },
+    {
+        "path": "Collection/Contacts/Contact/Role",
+        "rules": [
+            "Controlled Contact Role Check"
+        ]
+    },
+    {
+        "path": "Collection/Contacts/Contact/HoursOfService",
+        "rules": []
+    },
+    {
+        "path": "Collection/Contacts/Contact/Instructions",
+        "rules": []
+    },
+    {
+        "path": "Collection/Contacts/Contact/OrganizationName",
+        "rules": [
+            "ECHO10 Data Center Name Presence Check"
+        ]
+    },
+    {
+        "path": "Collection/Contacts/Contact/OrganizationAddresses/Address/StreetAddress",
+        "rules": []
+    },
+    {
+        "path": "Collection/Contacts/Contact/OrganizationAddresses/Address/City",
+        "rules": []
+    },
+    {
+        "path": "Collection/Contacts/Contact/OrganizationAddresses/Address/StateProvince",
+        "rules": []
+    },
+    {
+        "path": "Collection/Contacts/Contact/OrganizationAddresses/Address/PostalCode",
+        "rules": []
+    },
+    {
+        "path": "Collection/Contacts/Contact/OrganizationAddresses/Address/Country",
+        "rules": []
+    },
+    {
+        "path": "Collection/Contacts/Contact/OrganizationPhones/Phone/Number",
+        "rules": []
+    },
+    {
+        "path": "Collection/Contacts/Contact/OrganizationPhones/Phone/Type",
+        "rules": [
+            "Contact Mechanism Enuemration Check"
+        ]
+    },
+    {
+        "path": "Collection/Contacts/Contact/OrganizationEmails/Email",
+        "rules": []
+    },
+    {
+        "path": "Collection/Contacts/Contact/ContactPersons/ContactPerson/FirstName",
+        "rules": []
+    },
+    {
+        "path": "Collection/Contacts/Contact/ContactPersons/ContactPerson/MiddleName",
+        "rules": []
+    },
+    {
+        "path": "Collection/Contacts/Contact/ContactPersons/ContactPerson/LastName",
+        "rules": []
+    },
+    {
+        "path": "Collection/Contacts/Contact/ContactPersons/ContactPerson/JobPosition",
+        "rules": [
+            "Data Contact Role Enumeration Check"
+        ]
+    },
+    {
+        "path": "Collection/ScienceKeywords/ScienceKeyword/CategoryKeyword",
+        "rules": []
+    },
+    {
+        "path": "Collection/ScienceKeywords/ScienceKeyword/TopicKeyword",
+        "rules": []
+    },
+    {
+        "path": "Collection/ScienceKeywords/ScienceKeyword/TermKeyword",
+        "rules": []
+    },
+    {
+        "path": "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/Value",
+        "rules": []
+    },
+    {
+        "path": "Collection/ScienceKeywords/ScienceKeyword/VariableLevel2Keyword/Value",
+        "rules": []
+    },
+    {
+        "path": "Collection/ScienceKeywords/ScienceKeyword/VariableLevel3Keyword/Value",
+        "rules": []
+    },
+    {
+        "path": "Collection/ScienceKeywords/ScienceKeyword/DetailedVariableKeyword",
+        "rules": []
+    },
+    {
+        "path": "Collection/Platforms/Platform/ShortName",
+        "rules": []
+    },
+    {
+        "path": "Collection/Platforms/Platform/LongName",
+        "rules": []
+    },
+    {
+        "path": "Collection/Platforms/Platform/Type",
+        "rules": []
+    },
+    {
+        "path": "Collection/Platforms/Platform/Characteristics/Characteristic/Name",
+        "rules": []
+    },
+    {
+        "path": "Collection/Platforms/Platform/Characteristics/Characteristic/Description",
+        "rules": []
+    },
+    {
+        "path": "Collection/Platforms/Platform/Characteristics/Characteristic/DataType",
+        "rules": []
+    },
+    {
+        "path": "Collection/Platforms/Platform/Characteristics/Characteristic/Unit",
+        "rules": []
+    },
+    {
+        "path": "Collection/Platforms/Platform/Characteristics/Characteristic/Value",
+        "rules": []
+    },
+    {
+        "path": "Collection/Platforms/Platform/Instruments/Instrument/ShortName",
+        "rules": [
+            "Instrument Short Name Check"
+        ]
+    },
+    {
+        "path": "Collection/Platforms/Platform/Instruments/Instrument/LongName",
+        "rules": [
+            "Instrument Long Name Check"
+        ]
+    },
+    {
+        "path": "Collection/Platforms/Platform/Instruments/Instrument/Technique",
+        "rules": []
+    },
+    {
+        "path": "Collection/Platforms/Platform/Instruments/Instrument/NumberOfSensors",
+        "rules": []
+    },
+    {
+        "path": "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Name",
+        "rules": [
+            "Characteristic Name Check"
+        ]
+    },
+    {
+        "path": "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Description",
+        "rules": [
+            "Characteristic Description Check"
+        ]
+    },
+    {
+        "path": "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Unit",
+        "rules": [
+            "Characteristic Unit Check"
+        ]
+    },
+    {
+        "path": "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Value",
+        "rules": [
+            "Characteristic Value Check"
+        ]
+    },
+    {
+        "path": "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/ShortName",
+        "rules": []
+    },
+    {
+        "path": "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/LongName",
+        "rules": []
+    },
+    {
+        "path": "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/Technique",
+        "rules": []
+    },
+    {
+        "path": "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/Characteristics/Characteristic/Name",
+        "rules": []
+    },
+    {
+        "path": "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/Characteristics/Characteristic/Description",
+        "rules": []
+    },
+    {
+        "path": "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/Characteristics/Characteristic/DataType",
+        "rules": []
+    },
+    {
+        "path": "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/Characteristics/Characteristic/Unit",
+        "rules": []
+    },
+    {
+        "path": "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/Characteristics/Characteristic/Value",
+        "rules": []
+    },
+    {
+        "path": "Collection/Platforms/Platform/Instruments/Instrument/OperationModes/OperationMode",
+        "rules": []
+    },
+    {
+        "path": "Collection/AdditionalAttributes/AdditionalAttribute/Name",
+        "rules": []
+    },
+    {
+        "path": "Collection/AdditionalAttributes/AdditionalAttribute/DataType",
+        "rules": [
+            "Data Type Control Check"
+        ]
+    },
+    {
+        "path": "Collection/AdditionalAttributes/AdditionalAttribute/Description",
+        "rules": []
+    },
+    {
+        "path": "Collection/AdditionalAttributes/AdditionalAttribute/MeasurementResolution",
+        "rules": []
+    },
+    {
+        "path": "Collection/AdditionalAttributes/AdditionalAttribute/ParameterRangeBegin",
+        "rules": []
+    },
+    {
+        "path": "Collection/AdditionalAttributes/AdditionalAttribute/ParameterRangeEnd",
+        "rules": []
+    },
+    {
+        "path": "Collection/AdditionalAttributes/AdditionalAttribute/ParameterUnitsOfMeasure",
+        "rules": []
+    },
+    {
+        "path": "Collection/AdditionalAttributes/AdditionalAttribute/ParameterValueAccuracy",
+        "rules": []
+    },
+    {
+        "path": "Collection/AdditionalAttributes/AdditionalAttribute/ValueAccuracyExplanation",
+        "rules": []
+    },
+    {
+        "path": "Collection/AdditionalAttributes/AdditionalAttribute/Value",
+        "rules": [
+            "DOI Link Update"
+        ]
+    },
+    {
+        "path": "Collection/CSDTDescriptions/CSDTDescription/PrimaryCDST",
+        "rules": []
+    },
+    {
+        "path": "Collection/CSDTDescriptions/CSDTDescription/Implementation",
+        "rules": []
+    },
+    {
+        "path": "Collection/CSDTDescriptions/CSDTDescription/CSDTComments",
+        "rules": []
+    },
+    {
+        "path": "Collection/CSDTDescriptions/CSDTDescription/IndirectReference",
+        "rules": []
+    },
+    {
+        "path": "Collection/CollectionAssociations/CollectionAssociation/ShortName",
+        "rules": []
+    },
+    {
+        "path": "Collection/CollectionAssociations/CollectionAssociation/VersionId",
+        "rules": []
+    },
+    {
+        "path": "Collection/CollectionAssociations/CollectionAssociation/CollectionType",
+        "rules": []
+    },
+    {
+        "path": "Collection/CollectionAssociations/CollectionAssociation/CollectionUse",
+        "rules": []
+    },
+    {
+        "path": "Collection/Campaigns/Campaign/ShortName",
+        "rules": []
+    },
+    {
+        "path": "Collection/Campaigns/Campaign/LongName",
+        "rules": []
+    },
+    {
+        "path": "Collection/Campaigns/Campaign/StartDate",
+        "rules": []
+    },
+    {
+        "path": "Collection/Campaigns/Campaign/EndDate",
+        "rules": []
+    },
+    {
+        "path": "Collection/AlgorithmPackages/AlgorithmPackage/Name",
+        "rules": []
+    },
+    {
+        "path": "Collection/AlgorithmPackages/AlgorithmPackage/Version",
+        "rules": []
+    },
+    {
+        "path": "Collection/AlgorithmPackages/AlgorithmPackage/Description",
+        "rules": []
+    },
+    {
+        "path": "Collection/TwoDCoordinateSystems/TwoDCoordinateSystem/TwoDCoordinateSystemName",
+        "rules": []
+    },
+    {
+        "path": "Collection/TwoDCoordinateSystems/TwoDCoordinateSystem/Coordinate1/MinimumValue",
+        "rules": []
+    },
+    {
+        "path": "Collection/TwoDCoordinateSystems/TwoDCoordinateSystem/Coordinate1/MaximumValue",
+        "rules": []
+    },
+    {
+        "path": "Collection/TwoDCoordinateSystems/TwoDCoordinateSystem/Coordinate2/MinimumValue",
+        "rules": []
+    },
+    {
+        "path": "Collection/TwoDCoordinateSystems/TwoDCoordinateSystem/Coordinate2/MaximumValue",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/SpatialCoverageType",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/VerticalCoordinateSystem/AltitudeSystemDefinition/DatumName",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/VerticalCoordinateSystem/AltitudeSystemDefinition/DistanceUnits",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/VerticalCoordinateSystem/AltitudeSystemDefinition/EncodingMethod",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/VerticalCoordinateSystem/AltitudeSystemDefinition/Resolutions/Resolution",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/VerticalCoordinateSystem/DepthSystemDefinition/DatumName",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/VerticalCoordinateSystem/DepthSystemDefinition/DistanceUnits",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/VerticalCoordinateSystem/DepthSystemDefinition/EncodingMethod",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/VerticalCoordinateSystem/DepthSystemDefinition/Resolutions/Resolution",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/GeodeticModel/HorizontalDatumName",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/GeodeticModel/EllipsoidName",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/GeodeticModel/SemiMajorAxis",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/GeodeticModel/DenominatorOfFlatteningRatio",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/GeographicCoordinateSystem/GeographicCoordinateUnits",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/GeographicCoordinateSystem/LatitudeResolution",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/GeographicCoordinateSystem/LongitudeResolution",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/PlanarCoordinateSystems/PlanarCoordinateSystem/PlanarCoordinateSystemId",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/PlanarCoordinateSystems/PlanarCoordinateSystem/PlanarCoordinateInformation/DistanceUnits",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/PlanarCoordinateSystems/PlanarCoordinateSystem/PlanarCoordinateInformation/EncodingMethod",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/PlanarCoordinateSystems/PlanarCoordinateSystem/PlanarCoordinateInformation/DistanceAndBearingRepresentation/DistanceResolution",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/PlanarCoordinateSystems/PlanarCoordinateSystem/PlanarCoordinateInformation/DistanceAndBearingRepresentation/BearingResolution",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/PlanarCoordinateSystems/PlanarCoordinateSystem/PlanarCoordinateInformation/DistanceAndBearingRepresentation/BearingUnits",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/PlanarCoordinateSystems/PlanarCoordinateSystem/PlanarCoordinateInformation/DistanceAndBearingRepresentation/BearingReferenceDirection",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/PlanarCoordinateSystems/PlanarCoordinateSystem/PlanarCoordinateInformation/DistanceAndBearingRepresentation/BearingReferenceMeridian",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/PlanarCoordinateSystems/PlanarCoordinateSystem/PlanarCoordinateInformation/CoordinateRepresentation/AbscissaResolution",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/PlanarCoordinateSystems/PlanarCoordinateSystem/PlanarCoordinateInformation/CoordinateRepresentation/OrdinateResolution",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/PlanarCoordinateSystem/MapProjection/MapProjectionName",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/PlanarCoordinateSystem/MapProjection/MapProjectionPointer",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/PlanarCoordinateSystem/LocalPlanarCoordinateSystem/Description",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/PlanarCoordinateSystem/LocalPlanarCoordinateSystem/GeoReferenceInformation",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/PlanarCoordinateSystem/LocalPlanarCoordinateSystem/GridCoordinateSystemName",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/LocalCoordinateSystem/Description",
+        "rules": []
+    },
+    {
+        "path": "Collection/SpatialInfo/HorizontalCoordinateSystem/LocalCoordinateSystem/GeoReferenceInformation",
+        "rules": []
+    },
+    {
+        "path": "Collection/OnlineAccessURLs/OnlineAccessURL/URL",
+        "rules": []
+    },
+    {
+        "path": "Collection/OnlineAccessURLs/OnlineAccessURL/URLDescription",
+        "rules": []
+    },
+    {
+        "path": "Collection/OnlineAccessURLs/OnlineAccessURL/MimeType",
+        "rules": []
+    },
+    {
+        "path": "Collection/OnlineResources/OnlineResource/URL",
+        "rules": []
+    },
+    {
+        "path": "Collection/OnlineResources/OnlineResource/Description",
+        "rules": []
+    },
+    {
+        "path": "Collection/OnlineResources/OnlineResource/Type",
+        "rules": []
+    },
+    {
+        "path": "Collection/OnlineResources/OnlineResource/MimeType",
+        "rules": [
+            "Mime Type Check"
+        ]
+    },
+    {
+        "path": "Collection/AssociatedDIFs/DIF/EntryId",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/SpatialCoverageType",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/HorizontalSpatialDomain/ZoneIdentifier",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/HorizontalSpatialDomain/Geometry/CoordinateSystem",
+        "rules": [
+            "Coordinate System Check"
+        ]
+    },
+    {
+        "path": "Collection/Spatial/HorizontalSpatialDomain/Geometry/Point/PointLongitude",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/HorizontalSpatialDomain/Geometry/Point/PointLatitude",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle/WestBoundingCoordinate",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle/NorthBoundingCoordinate",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle/EastBoundingCoordinate",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle/SouthBoundingCoordinate",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle/CenterPoint/Point/PointLongitude",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle/CenterPoint/Point/PointLatitude",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/HorizontalSpatialDomain/Geometry/GPolygon/Boundary/Point/PointLongitude",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/HorizontalSpatialDomain/Geometry/GPolygon/Boundary/Point/PointLatitude",
+        "rules": []
+    },
+    {
+        "path": "Collection/HorizontalSpatialDomain/Geometry/GPolygon/ExclusiveZone/Boundary/Point/PointLongitude",
+        "rules": []
+    },
+    {
+        "path": "Collection/HorizontalSpatialDomain/Geometry/GPolygon/ExclusiveZone/Boundary/Point/PointLatitude",
+        "rules": []
+    },
+    {
+        "path": "Collection/HorizontalSpatialDomain/Geometry/GPolygon/CenterPoint/Point/PointLongitude",
+        "rules": []
+    },
+    {
+        "path": "Collection/HorizontalSpatialDomain/Geometry/GPolygon/CenterPoint/Point/PointLatitude",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/HorizontalSpatialDomain/Geometry/Line/Point/PointLongitude",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/HorizontalSpatialDomain/Geometry/Line/Point/PointLatitude",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/HorizontalSpatialDomain/Geometry/Line/CenterPoint/Point/PointLongitude",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/HorizontalSpatialDomain/Geometry/Line/CenterPoint/Point/PointLatitude",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/VerticalSpatialDomain/Type",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/VerticalSpatialDomain/Value",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/OrbitParameters/SwathWidth",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/OrbitParameters/Period",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/OrbitParameters/InclinationAngle",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/OrbitParameters/NumberOfOrbits",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/OrbitParameters/StartCircularLatitude",
+        "rules": []
+    },
+    {
+        "path": "Collection/Spatial/GranuleSpatialRepresentation",
+        "rules": [
+            "Granule Spatial Representation Check"
+        ]
+    },
+    {
+        "path": "Collection/MetadataStandardName",
+        "rules": []
+    },
+    {
+        "path": "Collection/MetadataStandardVersion",
+        "rules": []
+    },
+    {
+        "path": "Collection/ProductFlag",
+        "rules": [
+            "Product Flag Check"
+        ]
+    }
+]

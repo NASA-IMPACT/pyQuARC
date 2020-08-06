@@ -1,0 +1,18 @@
+{
+    "path1": [
+        "rule1",
+        "rule2",
+        "rule3"
+    ],
+    "something/path2": [
+        "rule1",
+        "rule2",
+        "rule5"
+    ],
+    "something/something/path3": [
+        "rule2",
+        "rule4",
+        "rule5",
+        "rule6"
+    ]
+}
