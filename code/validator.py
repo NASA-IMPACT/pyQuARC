@@ -161,6 +161,7 @@ class Validator:
             for rule_id in mapping["rules"]:
                 checks[path][rule_id] = {}
                 rule = _get_rule(rule_id, ruleset)
+
                 if rule_id == 'data_updatetime_logic_check':
                     continue
                 else:
@@ -175,12 +176,12 @@ class Validator:
                     except KeyError as e:
                         # print(e)
                         continue
-
-                        if result["validity"] == False:
-                            checks[path][rule_id]["check_passes"] = False
-                            checks[path][rule_id]["severity"]: rule["severity"]
-                            checks[path][rule_id]["message"]: rule["message-fail"]
-                            checks[path][rule_id]["help_url"]: rule["help_url"]
+                    if result["valid"] == False:
+                        checks[path][rule_id]["check_passes"] = False
+                        checks[path][rule_id]["severity"] = rule["severity"]
+                        checks[path][rule_id]["message"] = rule["message-fail"]
+                        checks[path][rule_id]["help_url"] = rule["help_url"]
+                        # checks[path][rule_id]["error"] = result["result"]
         
         return checks
 
