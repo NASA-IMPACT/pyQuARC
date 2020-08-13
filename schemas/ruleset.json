@@ -326,7 +326,8 @@
         "remediation": "error - Recommend updating the beginning and/or ending date time to match the granule extent.\n\nwarning - The temporal Beginning Date Time and Ending Date Time are identical. Recommend removing the Beginning Date Time and Ending Date Time elements and instead provide a Single Date Time of {\"2012-09-18T00:00:00Z\"}",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "function": "data_update_time_logic_check"
     },
     {
         "name-id": "Validate Beginning Date Time Against Granules",

@@ -7,7 +7,7 @@ from urlextract import URLExtract
 
 
 def _iso_datetime(datetime_string):
-    regex = r'^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?(Z|[+-](?:2[0-3]|[01][0-9]):[0-5][0-9])?$'
+    regex = r"^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?(Z|[+-](?:2[0-3]|[01][0-9]):[0-5][0-9])?$"
     match_iso8601 = re.compile(regex).match
     try:
         if match_iso8601(datetime_string) is not None:
@@ -32,9 +32,7 @@ def datetime_iso_format_check(datetime_string):
             True: if date/time is in correct ISO format
             False: if not
     """
-    return {
-        "valid": bool(_iso_datetime(datetime_string))
-    }
+    return {"valid": bool(_iso_datetime(datetime_string)), "instance": datetime_string}
 
 
 def data_updatetime_logic_check(earlier_datetime_string, later_datetime_string):
@@ -43,7 +41,11 @@ def data_updatetime_logic_check(earlier_datetime_string, later_datetime_string):
     later_datetime = _iso_datetime(later_datetime_string)
 
     return {
-        "valid": earlier_datetime < later_datetime
+        "valid": earlier_datetime < later_datetime,
+        "instance": {
+            "earlier_datetime_string": earlier_datetime_string,
+            "later_datetime_string": later_datetime_string,
+        },
     }
 
 
@@ -63,35 +65,28 @@ def url_health_and_status_check(text):
         try:
             response_code = requests.get(url).status_code
             if response_code != 200:
-                results.append(
-                    {"url": url, "status_code": response_code}
-                )
+                results.append({"url": url, "status_code": response_code})
+        except requests.ConnectionError as exception:
+            result = {"url": url, "error": "The URL does not exist on Internet."}
         except Exception as e:
-            results.append(
-                    {"url": url, "error": "Invalid URL"}
-                )
+            result = {"url": url, "error": "Some unknown error occurred."}
+        results.append(result)
 
     if len(results) == 0:
-        return {
-            "valid" : True
-        }
+        return {"valid": True}
 
-    return {
-        "valid" : False,
-        "result" : results
-    }
+    return {"valid": False, "instance": results}
+
 
 def collection_datatype_enumeration_check(text):
     KEYWORDS = ["SCIENCE_QUALITY", "NEAR_REAL_TIME", "OTHER"]
 
-    return {
-        "valid": text in KEYWORDS
-    }
+    return {"valid": text in KEYWORDS, "instance": text}
 
 
 dispatcher = {
     "datetime_iso_format_check": datetime_iso_format_check,
     "data_updatetime_logic_check": data_updatetime_logic_check,
     "url_health_and_status_check": url_health_and_status_check,
-    "collection_datatype_enumeration_check": collection_datatype_enumeration_check
+    "collection_datatype_enumeration_check": collection_datatype_enumeration_check,
 }
