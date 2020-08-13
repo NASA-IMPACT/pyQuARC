@@ -162,26 +162,30 @@ class Validator:
                 checks[path][rule_id] = {}
                 rule = _get_rule(rule_id, ruleset)
 
-                if rule_id == 'data_updatetime_logic_check':
+                value = _get_path_value(content_to_validate, path)
+                if not value:
+                    checks[path]["exists"] = False
                     continue
-                else:
-                    value = _get_path_value(content_to_validate, path)
-                    if not value:
-                        checks[path]["exists"] = False
-                        continue
 
-                    checks[path]["exists"] = True
-                    try:
+                checks[path]["exists"] = True
+
+                try:
+                    if rule_id == 'Data Update Time Logic Check':
+                        value1 = _get_path_value(content_to_validate, 'Collection/InsertTime')
+                        value2 = _get_path_value(content_to_validate, 'Collection/UpdateTime')
+                        
+                        result = dispatcher[rule["function"]](value1, value2)
+                    else:
                         result = dispatcher[rule["function"]](value)
-                    except KeyError as e:
-                        # print(e)
-                        continue
-                    if result["valid"] == False:
-                        checks[path][rule_id]["check_passes"] = False
-                        checks[path][rule_id]["severity"] = rule["severity"]
-                        checks[path][rule_id]["message"] = rule["message-fail"]
-                        checks[path][rule_id]["help_url"] = rule["help_url"]
-                        # checks[path][rule_id]["error"] = result["result"]
+                except KeyError as e:
+                    # print(e)
+                    continue
+                if result["valid"] == False:
+                    checks[path][rule_id]["check_passes"] = False
+                    checks[path][rule_id]["severity"] = rule["severity"]
+                    checks[path][rule_id]["message"] = rule["message-fail"]
+                    checks[path][rule_id]["help_url"] = rule["help_url"]
+                    # checks[path][rule_id]["error"] = result["result"]
         
         return checks
 

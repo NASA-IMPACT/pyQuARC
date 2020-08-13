@@ -20,6 +20,14 @@ def _iso_datetime(datetime_string):
     return False
 
 
+def _time_logic_check(earlier_datetime_string, later_datetime_string):
+    # assume that iso check has already occurred
+    earlier_datetime = _iso_datetime(earlier_datetime_string)
+    later_datetime = _iso_datetime(later_datetime_string)
+
+    return earlier_datetime < later_datetime
+
+
 def datetime_iso_format_check(datetime_string):
     """
         Parses through input_json and date time is in correct ISO format
@@ -36,14 +44,9 @@ def datetime_iso_format_check(datetime_string):
         "valid": bool(_iso_datetime(datetime_string))
     }
 
-
-def data_updatetime_logic_check(earlier_datetime_string, later_datetime_string):
-    # assume that iso check has already occurred
-    earlier_datetime = _iso_datetime(earlier_datetime_string)
-    later_datetime = _iso_datetime(later_datetime_string)
-
+def update_time_logic_check(value1, value2):
     return {
-        "valid": earlier_datetime < later_datetime
+        "valid": _time_logic_check(value1, value2)
     }
 
 
@@ -91,7 +94,7 @@ def collection_datatype_enumeration_check(text):
 
 dispatcher = {
     "datetime_iso_format_check": datetime_iso_format_check,
-    "data_updatetime_logic_check": data_updatetime_logic_check,
+    "update_time_logic_check": update_time_logic_check,
     "url_health_and_status_check": url_health_and_status_check,
     "collection_datatype_enumeration_check": collection_datatype_enumeration_check
 }

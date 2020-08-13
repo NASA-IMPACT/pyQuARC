@@ -25,7 +25,7 @@
         "help_url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Dates",
         "specification": null,
         "spec_version": null,
-        "function": "data_update_time_logic_check"
+        "function": "update_time_logic_check"
     },
     {
         "name-id": "DeleteTime Check",
