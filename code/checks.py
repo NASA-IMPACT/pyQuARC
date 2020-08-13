@@ -25,7 +25,7 @@ def _time_logic_check(earlier_datetime_string, later_datetime_string):
     earlier_datetime = _iso_datetime(earlier_datetime_string)
     later_datetime = _iso_datetime(later_datetime_string)
 
-    return earlier_datetime < later_datetime
+    return earlier_datetime <= later_datetime
 
 
 def datetime_iso_format_check(datetime_string):
