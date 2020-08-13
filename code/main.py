@@ -1,4 +1,5 @@
 import argparse
+import json
 import requests
 import xmltodict
 
@@ -117,7 +118,7 @@ if __name__ == "__main__":
     )
     results = pycmr.validate()
 
-    pprint(results)
+    print(json.dumps(results, indent=4))
 
 # "https://cmr.earthdata.nasa.gov/search/collections?provider=GES_DISC&project=MERRA&page_size=2000"
 # demo video

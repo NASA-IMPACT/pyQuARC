@@ -1,5 +1,6 @@
 import json
 import jsonschema
+import re
 
 from copy import deepcopy
 
@@ -19,7 +20,9 @@ def _get_path_value(input_json, path):
     except KeyError as e:
         return False
     except TypeError as e:
-        print(path)
+        # TODO: need another way to parse lists
+        print(e, split.strip())
+        print(f"_get_path_value failed for {path}")
 
     return input_json
 
@@ -135,45 +138,56 @@ class Validator:
                     "validator_value": error.validator_value,
                 }
             )
-        
-        if len(errors) == 0:
-            return {
-                "valid": True
-            }
 
-        return {
-            "valid": False,
-            "errors": errors
-        }
+        if len(errors) == 0:
+            return {"valid": True}
+
+        return {"valid": False, "errors": errors}
 
     def run_checks(self, content_to_validate):
         """
             Performs the custom checks based on the QA Rules
         """
-        ruleset = json.load(open(SCHEMA_PATHS["ruleset"], 'r'))
-        rules_mapping = json.load(open(SCHEMA_PATHS["rules_mapping"], 'r'))
 
-        checks = {}
+        ruleset = json.load(open(SCHEMA_PATHS["ruleset"], "r"))
+        rules_mapping = json.load(open(SCHEMA_PATHS["rules_mapping"], "r"))
+
+        results = {}
 
         for mapping in rules_mapping:
+            # do nothing for paths that have no custom checks
+            if not mapping["rules"]:
+                continue
+
             path = mapping["path"]
-            checks[path] = {}
+            results[path] = {}
+
             for rule_id in mapping["rules"]:
-                checks[path][rule_id] = {}
+                # find this rule_id in ruleset
+                # TODO: Maybe this can be done better by constructing a mapping between name-id and function name
+                function_name = None
+                for rule in ruleset:
+                    if rule["name-id"] == rule_id:
+                        function_name = rule.get("function", None)
+
+                if not function_name:
+                    continue
+
+                results[path][rule_id] = {}
                 rule = _get_rule(rule_id, ruleset)
 
                 value = _get_path_value(content_to_validate, path)
                 if not value:
-                    checks[path]["exists"] = False
+                    del results[path][rule_id]
+                    # results[path]["exists"] = False
                     continue
 
-                checks[path]["exists"] = True
-
+                results[path]["exists"] = True
                 try:
-                    if rule_id == 'Data Update Time Logic Check':
-                        value1 = _get_path_value(content_to_validate, 'Collection/InsertTime')
-                        value2 = _get_path_value(content_to_validate, 'Collection/UpdateTime')
-                        
+                    if rule_id == "Data Update Time Logic Check":
+                        value1 = _get_path_value(content_to_validate, "Collection/InsertTime")
+                        value2 = _get_path_value(content_to_validate, "Collection/LastUpdate")
+
                         result = dispatcher[rule["function"]](value1, value2)
                     else:
                         result = dispatcher[rule["function"]](value)
@@ -181,14 +195,24 @@ class Validator:
                     # print(e)
                     continue
                 if result["valid"] == False:
-                    checks[path][rule_id]["check_passes"] = False
-                    checks[path][rule_id]["severity"] = rule["severity"]
-                    checks[path][rule_id]["message"] = rule["message-fail"]
-                    checks[path][rule_id]["help_url"] = rule["help_url"]
-                    # checks[path][rule_id]["error"] = result["result"]
-        
-        return checks
+                    results[path][rule_id]["check_passes"] = False
+                    results[path][rule_id]["severity"] = rule["severity"]
 
+                    results[path][rule_id]["message"] = re.sub(
+                        r"\{.*\}", str(result["instance"]), rule["message-fail"]
+                    )
+                    results[path][rule_id]["help_url"] = rule["help_url"]
+                    # checks[path][rule_id]["error"] = result["result"]
+                else:
+                    results[path][rule_id]["check_passes"] = True
+
+                results[path][rule_id]["instance"] = result["instance"]
+
+            # if there is no output for any of the rules
+            if not results[path]:
+                del results[path]
+
+        return results
 
     def validate(self, content_to_validate):
         """
@@ -199,7 +223,6 @@ class Validator:
         result["checks"] = self.run_checks(content_to_validate)
 
         return result
-
 
     def read_schema(self):
         """
