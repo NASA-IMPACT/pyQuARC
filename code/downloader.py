@@ -22,6 +22,12 @@ class Downloader:
     INVALID = "invalid"
 
     def __init__(self, concept_id, metadata_format=ECHO10, version=None):
+        """
+        Args:
+            concept_id (str): The concept id of the metadata to download
+            metadata_format (str): The file format of the metadata to download
+            version (str): The version of the metadata to download
+        """
         # TODO: Handle versions here
         self.concept_id = concept_id
         self.version = version
@@ -33,22 +39,21 @@ class Downloader:
 
     def _valid_concept_id(self):
         """
-            Check whether passed concept id is valid
+        Check whether passed concept id is valid
 
-            Returns:
-                True if the concept id is valid
-                False if the concept id is not valid
+        Returns:
+            (bool) True if the concept id is valid, False otherwise
         """
 
         return Downloader._concept_id_type(self.concept_id) != Downloader.INVALID
 
     def _construct_url(self):
         """
-            Constructs CMR API URL based on the concept ID.
-            It assumes that the concept_id is already valid.
+        Constructs CMR API URL based on the concept ID.
+        It assumes that the concept_id is already valid.
 
-            Returns:
-                constructed_url (str)
+        Returns:
+            (str) The URL constructed based on the concept ID
         """
 
         concept_id_type = Downloader._concept_id_type(self.concept_id)
@@ -60,21 +65,21 @@ class Downloader:
 
     def log_error(self, error_message_code, kwargs):
         """
-            Logs errors in self.errors
+        Logs errors in self.errors
 
-            Arguments:
-                error_message_code (str): The key to the ERROR_MESSAGES dict
-                **kwargs: any keyword arguments required for the error string
-
-            Returns:
-                None
+        Arguments:
+            error_message_code (str): The key to the ERROR_MESSAGES dict
+            kwargs (dict): any keyword arguments required for the error string
         """
 
         self.errors.append({"type": error_message_code, "details": kwargs})
 
     def _convert_output_to_json(self):
         """
-            Convert downloaded content to JSON if necessary
+        Convert downloaded content to JSON if necessary
+
+        Returns:
+            (str) The JSON string representation of the downloaded CMR metadata
         """
 
         # TODO: Handle DIF here
@@ -87,7 +92,10 @@ class Downloader:
 
     def download(self):
         """
-            Downloads metadata by calling the CMR API
+        Downloads metadata by calling the CMR API
+
+        Returns:
+            (str) The JSON string if download is successful, None otherwise
         """
 
         # is the concept id valid? if not, log error
@@ -119,12 +127,12 @@ class Downloader:
     @staticmethod
     def _concept_id_type(concept_id: str) -> str:
         """
-            Concept ID can be for a collection or granule. This function determines which one it is.
+        Concept ID can be for a collection or granule. This function determines which one it is.
 
-            Returns:
-                "collection" when the concept_id is a collection
-                "granule" when the concept_id is a granule
-                "invalid" when the concept_id is neither collection nor granule, or invalid concept id
+        Returns:
+            (str)   "collection" when the concept_id is a collection
+                    "granule" when the concept_id is a granule
+                    "invalid" when the concept_id is neither collection nor granule, or invalid concept id
         """
 
         concept_id_pattern: str = r"C\d+-([a-zA-Z]+_[a-zA-Z]+)+"

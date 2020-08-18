@@ -11,6 +11,17 @@ from checks import dispatcher
 
 
 def _get_path_value(input_json, path):
+    """
+    Gets the value of the field from the metadata (input_json)
+
+    Args:
+        input_json (str): The metadata content
+        path (str): The path of the field. Example: 'Collection/RangeDateTime/StartDate'
+
+    Returns:
+        (str) The value of the field from the metadata (input_json)
+    """
+
     splits = path.split("/")
     input_json = json.loads(input_json)
 
@@ -28,6 +39,19 @@ def _get_path_value(input_json, path):
 
 
 def _get_rule(name_id, ruleset):
+    """
+    Extracts the rule from the ruleset based on its name_id
+
+    Args:
+        name_id (str): The name-id of the rule
+        ruleset (list of dict): The ruleset that contains all the rules and their details
+
+    Returns:
+        (dict) The target rule and its details
+
+    Raises:
+        KeyError: When the name_id doesn't exist in the ruleset
+    """
     for rule in ruleset:
         if rule["name-id"].strip() == name_id.strip():
             return rule
@@ -36,7 +60,7 @@ def _get_rule(name_id, ruleset):
 
 class Validator:
     """
-        Validates downloaded metadata for certain fields and returns the result.
+    Validates downloaded metadata for certain fields and returns the result.
     """
 
     PATH_SEPARATOR = "/"
@@ -44,6 +68,15 @@ class Validator:
     def __init__(
         self, metadata_format=ECHO10, validation_paths=[],
     ):
+        """
+        Args:
+            metadata_format (str): The format of the metadata that needs to be validated. Can be either of { ECHO10, UMM-JSON, DIF }.
+            validation_paths (str): The path of the fields in the metadata that need to be validated. In the form 'Collection/StartDate'.
+
+        Returns:
+            None
+
+        """
         self.validation_paths = validation_paths
         self.metadata_format = metadata_format
         self.schema = self.read_schema()
@@ -52,8 +85,12 @@ class Validator:
 
     def _check_validation_paths_against_schema(self):
         """
-            Check list of validation paths against schema
+        Check list of validation paths against schema
+
+        Returns:
+            (list) A list of fields from validation_path that don't exist in the metadata
         """
+        # TODO: Add custom checks as well
 
         errors = []
 
@@ -73,7 +110,10 @@ class Validator:
 
     def _filtered_schema(self):
         """
-            Filters the schema based on validation paths passed
+        Filters the schema based on validation paths passed
+
+        Returns:
+            (list) A subset of the JSONSchema schema file that only contains the fields in validation_paths
         """
 
         filtered_schema = deepcopy(self.schema)
@@ -99,8 +139,16 @@ class Validator:
 
     def validate_schema(self, content_to_validate):
         """
-            Validate passed content based on fields/schema and return any errors
+        Validate passed content based on fields/schema and return any errors
+
+        Args:
+            content_to_validate (str): The metadata content as a json string
+
+        Returns:
+            (dict) A dictionary that gives the validity of the schema and errors if they exist
+
         """
+        # TODO: Make consistent return types
 
         errors = []
 
@@ -146,7 +194,13 @@ class Validator:
 
     def run_checks(self, content_to_validate):
         """
-            Performs the custom checks based on the QA Rules
+        Performs the custom checks based on the QA Rules
+
+        Args:
+            content_to_validate (str): The metadata content as a json string
+
+        Returns:
+            (dict) A dictionary that gives the result of the custom checks and errors if they exist
         """
 
         ruleset = json.load(open(SCHEMA_PATHS["ruleset"], "r"))
@@ -216,7 +270,14 @@ class Validator:
 
     def validate(self, content_to_validate):
         """
-            Performs schema check and custom checks and returns comprehensive report
+        Performs schema check and custom checks and returns comprehensive report
+
+        Args:
+            content_to_validate (str): The metadata content as a json string
+
+        Returns:
+            (dict) A comprehensive report of errors from jsonschema check and custom checks
+
         """
         result = {}
         result["schema_check"] = self.validate_schema(content_to_validate)
@@ -226,7 +287,10 @@ class Validator:
 
     def read_schema(self):
         """
-            Reads the schema file based on the format and returns json schema
+        Reads the schema file based on the format and returns json schema
+
+        Returns:
+            (dict) The schema dictionary read from the schema file
         """
 
         schema = json.load(open(SCHEMA_PATHS[self.metadata_format], "r"))
