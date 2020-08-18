@@ -67,11 +67,15 @@ def url_health_and_status_check(text):
     urls = set(url[:-1] if url.endswith(".") else url for url in urls)
 
     # check that URL returns a valid response
+    # TODO: snafu fix for multiple randomurl1.coms
     for url in urls:
+        if not url.startswith('http'):
+            url = f'http://{url}'
         try:
             response_code = requests.get(url).status_code
-            if response_code != 200:
-                results.append({"url": url, "status_code": response_code})
+            if response_code == 200:
+                continue
+            result = {"url": url, "status_code": response_code}
         except requests.ConnectionError as exception:
             result = {"url": url, "error": "The URL does not exist on Internet."}
         except Exception as e:
