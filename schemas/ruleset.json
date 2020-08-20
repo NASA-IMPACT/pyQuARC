@@ -11,7 +11,7 @@
         "help_url": "https://www.w3.org/TR/NOTE-datetime",
         "specification": "is this a schema requirement? not sure if this is required by all metadata formats or not",
         "spec_version": "<-",
-        "function": "datetime_iso_format_check"
+        "id": "date_datetime_iso_format_check"
     },
     {
         "name-id": "Data Update Time Logic Check",
@@ -25,7 +25,7 @@
         "help_url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Dates",
         "specification": null,
         "spec_version": null,
-        "function": "update_time_logic_check"
+        "id": "data_update_time_logic_check"
     },
     {
         "name-id": "DeleteTime Check",
@@ -38,7 +38,8 @@
         "remediation": "Consider updating the delete date to a future date or remove it from the metadata if it is no longer valid.",
         "help_url": "https://wiki.earthdata.nasa.gov/display/CMR/Metadata+Dates",
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "deletetime_check"
     },
     {
         "name-id": "Title - Short Name Uniqueness Check",
@@ -51,7 +52,8 @@
         "remediation": "ECHO10:\nSince DataSetId maps to Entry Title in the CMR, recommend providing a more descriptive, formal title for the dataset. \n\n\nDIF10.2 & DIF10.3:\nRecommend providing a more descriptive, formal title for the dataset.\n\n\nUMM-C/Common:\nRecommend providing a more descriptive, formal title for the dataset.",
         "help_url": "https://wiki.earthdata.nasa.gov/display/CMR/Entry+Title",
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "title_short_name_uniqueness_check"
     },
     {
         "name-id": "URL Health and Status Check",
@@ -65,7 +67,7 @@
         "help_url": "<insert URL checker wiki page documentation>",
         "specification": "n/a - not required but would be a business rule",
         "spec_version": 1,
-        "function": "url_health_and_status_check"
+        "id": "url_health_and_status_check"
     },
     {
         "name-id": "Abstract Length Check",
@@ -78,7 +80,8 @@
         "remediation": "Recommend providing a more comprehensive description, mimicking a journal abstract that is useful to the science community but also approachable for a first time user of the data.",
         "help_url": "https://wiki.earthdata.nasa.gov/display/CMR/Abstract",
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "abstract_length_check"
     },
     {
         "name-id": "Metadata Update Time Logic Check",
@@ -91,7 +94,8 @@
         "remediation": null,
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "metadata_update_time_logic_check"
     },
     {
         "name-id": "NASA DOI - Missing Reason Presence Check",
@@ -104,7 +108,8 @@
         "remediation": "ECHO10:\nDOIs are required for NASA datasets. Recommend providing the DOI if one is available. Otherwise, specify that a DOI is not applicable for the dataset.\n\n\nDIF10.2 & DIF10.3:\n\n\n\nUMM-C/Common:",
         "help_url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI\n\nhttps://wiki.earthdata.nasa.gov/display/DOIsforEOSDIS",
         "specification": "Required for NASA providers only",
-        "spec_version": null
+        "spec_version": null,
+        "id": "nasa_doi_missing_reason_presence_check"
     },
     {
         "name-id": "DOI Validity Check",
@@ -117,7 +122,8 @@
         "remediation": "ECHO10:\nError: {Collection/DOI/DOI} is invalid.\n\n\nDIF10.2 & DIF10.3:\n\n\n\nUMM-C/Common:",
         "help_url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI",
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "doi_validity_check"
     },
     {
         "name-id": "EOSDIS DOI Authority Check (conditional)",
@@ -130,7 +136,8 @@
         "remediation": "ECHO10:\nThe DOI Authority should be \"https://doi.org\" for all NASA collections. \n\n\nDIF10.2 & DIF10.3:\n\n\n\nUMM-C/Common:",
         "help_url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI",
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "eosdis_doi_authority_check_conditional"
     },
     {
         "name-id": "DOI Missing Reason Enumeration Check",
@@ -143,7 +150,8 @@
         "remediation": "The Missing Reason should read \"Not Applicable\"",
         "help_url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI",
         "specification": "ECHO10:\nhttps://git.earthdata.nasa.gov/projects/EMFD/repos/echo-schemas/browse/schemas/10.0/MetadataCommon.xsd#680\n\n\nDIF10.3 (this enumeration is not in 10.2):\nhttps://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/browse/10.x/UmmCommon_1.3.xsd#600\n\n\nUMM-C/Common:\nhttps://git.earthdata.nasa.gov/projects/EMFD/repos/unified-metadata-model/browse/collection/v1.15/umm-cmn-json-schema.json#532",
-        "spec_version": null
+        "spec_version": null,
+        "id": "doi_missing_reason_enumeration_check"
     },
     {
         "name-id": "CollectionDataType Enumeration Check",
@@ -157,7 +165,7 @@
         "help_url": null,
         "specification": "ECHO10:\nhttps://git.earthdata.nasa.gov/projects/EMFD/repos/echo-schemas/browse/schemas/10.0/Collection.xsd#240\n\n\nDIF10.2:\nhttps://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/browse/10.x/UmmCommon_1.2.xsd#211\n\nDIF10.3:\nhttps://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/browse/10.x/UmmCommon_1.3.xsd#251\n\n\nUMM-C/Common:",
         "spec_version": null,
-        "function": "collection_datatype_enumeration_check"
+        "id": "collectiondatatype_enumeration_check"
     },
     {
         "name-id": "Data Center Short Name GCMD Check",
@@ -170,7 +178,8 @@
         "remediation": null,
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "data_center_short_name_gcmd_check"
     },
     {
         "name-id": "ECHO10 Data Center Name Presence Check",
@@ -183,7 +192,8 @@
         "remediation": null,
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "echo10_data_center_name_presence_check"
     },
     {
         "name-id": "EOSDIS Standard Processing Level Id Check",
@@ -196,7 +206,8 @@
         "remediation": "Recommend changing the ID to match one of the EOSDIS standard processing levels: \n[0, 1A, 1B, 2, 3, 4]",
         "help_url": "https://wiki.earthdata.nasa.gov/display/CMR/Processing+Level\n\nhttps://science.nasa.gov/earth-science/earth-science-data/data-processing-levels-for-eosdis-data-products/",
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "eosdis_standard_processing_level_id_check"
     },
     {
         "name-id": "Processing Level Description Length Check",
@@ -209,7 +220,8 @@
         "remediation": "Recommend providing a more detailed processing level description, using the EOSDIS processing level descriptions as guidance:\n\nhttps://science.nasa.gov/earth-science/earth-science-data/data-processing-levels-for-eosdis-data-products/",
         "help_url": "https://wiki.earthdata.nasa.gov/display/CMR/Processing+Level\n\nhttps://science.nasa.gov/earth-science/earth-science-data/data-processing-levels-for-eosdis-data-products/",
         "specification": "not required but would be helpful for ARC reviewers",
-        "spec_version": null
+        "spec_version": null,
+        "id": "processing_level_description_length_check"
     },
     {
         "name-id": "Version Description Not Provided",
@@ -222,7 +234,8 @@
         "remediation": "Because the description reads \"Not provided,\" it can be removed from the metadata. Otherwise, please describe the version in more detail.",
         "help_url": "https://wiki.earthdata.nasa.gov/display/CMR/Version+Description",
         "specification": "not required but would be helpful for ARC reviewers",
-        "spec_version": null
+        "spec_version": null,
+        "id": "version_description_not_provided"
     },
     {
         "name-id": "UMM Controlled Collection State List",
@@ -235,7 +248,8 @@
         "remediation": "ECHO10:\nRecommend choosing a Collection State from the following list: [ACTIVE, PLANNED, COMPLETE, NOT APPLICABLE, NOT PROVIDED].\n\n\nUMM-C/Common:\nRecommend choosing the Collection Progress from the following list: [ACTIVE, PLANNED, COMPLETE, NOT APPLICABLE, NOT PROVIDED].",
         "help_url": "https://wiki.earthdata.nasa.gov/display/CMR/Collection+Progress",
         "specification": "UMM schema",
-        "spec_version": null
+        "spec_version": null,
+        "id": "umm_controlled_collection_state_list"
     },
     {
         "name-id": "ECHO10 Spatial GCMD Keyword Check",
@@ -248,7 +262,8 @@
         "remediation": null,
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "echo10_spatial_gcmd_keyword_check"
     },
     {
         "name-id": "Location GCMD Keyword Check",
@@ -261,7 +276,8 @@
         "remediation": null,
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "location_gcmd_keyword_check"
     },
     {
         "name-id": "EndsAtPresentFlag Logic Check",
@@ -274,7 +290,8 @@
         "remediation": "ECHO10:\nIf data collection is ongoing, recommend providing an EndsAtPresentFlag of \"true\"\n\n\nDIF10.2 & DIF10.3:\n\n\n\nUMM-C/Common:",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "endsatpresentflag_logic_check"
     },
     {
         "name-id": "EndsAtPresentFlag Presence Check",
@@ -287,7 +304,8 @@
         "remediation": "ECHO10:\nIf data collection is ongoing, recommend providing an EndsAtPresentFlag of \"true\"\n\n\nDIF10.2 & DIF10.3:\n\n\n\nUMM-C/Common:",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "endsatpresentflag_presence_check"
     },
     {
         "name-id": "Temporal Extent Requirement Check",
@@ -300,7 +318,8 @@
         "remediation": null,
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "temporal_extent_requirement_check"
     },
     {
         "name-id": "Contact Mechanism Enuemration Check",
@@ -313,7 +332,8 @@
         "remediation": "ECHO10:\nRecommend selecting a phone type from the following list:\n{print contact mechanism enumeration list} \n\nDIF10.2 & DIF10.3:\n\n\n\nUMM-C/Common:",
         "help_url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Center",
         "specification": "UMM-Common schema",
-        "spec_version": 1.15
+        "spec_version": 1.15,
+        "id": "contact_mechanism_enuemration_check"
     },
     {
         "name-id": "Range Date Time Logic Check",
@@ -327,7 +347,7 @@
         "help_url": null,
         "specification": null,
         "spec_version": null,
-        "function": "data_update_time_logic_check"
+        "id": "range_date_time_logic_check"
     },
     {
         "name-id": "Validate Beginning Date Time Against Granules",
@@ -340,7 +360,8 @@
         "remediation": "Recommend updating the Beginning Date Time to match the granule extent.\n\nNote:\nred/error: if the discrepancy is greater than or equal to 1 day/24 hours\nyellow/warning: if the discrepancy is less than 1 day and if the collection level temporal extent does not include the full extent of the granules\nblue/info: if the discrepancy is less than 1 day but the collection level temporal extent does include the full extent of the granules",
         "help_url": "https://wiki.earthdata.nasa.gov/display/CMR/Temporal+Extent",
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "validate_beginning_date_time_against_granules"
     },
     {
         "name-id": "Validate Ending Date Time Against Granules",
@@ -353,7 +374,8 @@
         "remediation": "Recommend updating the Ending Date Time to match the granule extent.\n\nNote:\nred/error: if the discrepancy is greater than or equal to 1 day/24 hours\nyellow/warning: if the discrepancy is less than 1 day and if the collection level temporal extent does not include the full extent of the granules\nblue/info: if the discrepancy is less than 1 day but the collection level temporal extent does include the full extent of the granules",
         "help_url": "https://wiki.earthdata.nasa.gov/display/CMR/Temporal+Extent",
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "validate_ending_date_time_against_granules"
     },
     {
         "name-id": "Validate Single Date Time Against Granules",
@@ -366,7 +388,8 @@
         "remediation": null,
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "validate_single_date_time_against_granules"
     },
     {
         "name-id": "Periodic Date Time Logic Check",
@@ -379,7 +402,8 @@
         "remediation": null,
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "periodic_date_time_logic_check"
     },
     {
         "name-id": "Data Contact Role Enumeration Check",
@@ -392,7 +416,8 @@
         "remediation": "ECHO10:\nRecommend selecting a Job Position from the following list:\n{print contact role enumeration list} \n\nDIF10.2 & DIF10.3:\n\n\n\nUMM-C/Common:",
         "help_url": "https://wiki.earthdata.nasa.gov/display/CMR/Contact+Person",
         "specification": "UMM-Common schema",
-        "spec_version": 1.15
+        "spec_version": 1.15,
+        "id": "data_contact_role_enumeration_check"
     },
     {
         "name-id": "Controlled Contact Role Check",
@@ -405,7 +430,8 @@
         "remediation": "ECHO10:\nRecommend selecting a Contact Role from the following list:\n['ARCHIVER', 'DISTRIBUTOR', 'PROCESSOR', 'ORIGINATOR']",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "controlled_contact_role_check"
     },
     {
         "name-id": "Data Type Control Check",
@@ -418,7 +444,8 @@
         "remediation": "ECHO 10:\nRecommend selecting a Data Type from the following list:\n[\"STRING\", \"FLOAT\", \"INT\", \"BOOLEAN\", \"DATE\", \"TIME\", \"DATETIME\", \"DATE_STRING\", \"TIME_STRING\", \"DATETIME_STRING\"]",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "data_type_control_check"
     },
     {
         "name-id": "DOI Link Update",
@@ -431,7 +458,8 @@
         "remediation": "Recommend updating \"http://dx.doi.org\" to \"https://doi.org\"",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "doi_link_update"
     },
     {
         "name-id": "Instrument Short Name Check",
@@ -444,7 +472,8 @@
         "remediation": "1. Please submit a request to support@earthdata.nasa.gov to have this instrument added to the GCMD Instrument KMS.\n2. Recommend providing the following as the associated instrument short name under the [associated platform short name] platform.",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "instrument_short_name_check"
     },
     {
         "name-id": "Instrument Long Name Check",
@@ -457,7 +486,8 @@
         "remediation": "1. Please submit a request to support@earthdata.nasa.gov to have this instrument added to the GCMD Instrument KMS.\n2. Recommend providing the following as the associated instrument long name for [the instrument] under the [associated platform short name] platform.",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "instrument_long_name_check"
     },
     {
         "name-id": "Characteristic Name Check",
@@ -470,7 +500,8 @@
         "remediation": "Please provide a name for the provided characteristic.",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "characteristic_name_check"
     },
     {
         "name-id": "Characteristic Description Check",
@@ -483,7 +514,8 @@
         "remediation": "Please provide a short description for the provided characteristic.",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "characteristic_description_check"
     },
     {
         "name-id": "Characteristic Unit Check",
@@ -496,7 +528,8 @@
         "remediation": "Please provide the unit associated with the value of the provided characteristic.",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "characteristic_unit_check"
     },
     {
         "name-id": "Characteristic Value Check",
@@ -509,7 +542,8 @@
         "remediation": "Please provide a value for the provided characteristic.",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "characteristic_value_check"
     },
     {
         "name-id": "Mime Type Check",
@@ -522,7 +556,8 @@
         "remediation": "1. Recommend providing a mime type for each USE SERVICE API link.\n\n2. Recommend selecting a Mime Type from the following list:\n [\"application/json\", \"application/xml\", \"application/x-netcdf\", \"application/gml+xml\", \"application/vnd.google-earth.kml+xml\", \"image/gif\", \"image/tiff\", \"image/bmp\", \"text/csv\", \"text/xml\", \"application/pdf\", \"application/x-hdf\", \"application/xhdf5\", \"application/octet-stream\", \"application/vnd.google-earth.kmz\", \"image/jpeg\", \"image/png\", \"image/vnd.collada+xml\", \"text/html\", \"text/plain\", \"Not provided\"]",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "mime_type_check"
     },
     {
         "name-id": "Coordinate System Check",
@@ -535,7 +570,8 @@
         "remediation": "Recommend selecting a Coordinate System from the following list: [\"CARTESIAN\", \"GEODETIC\"]",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "coordinate_system_check"
     },
     {
         "name-id": "Product Flag Check",
@@ -548,7 +584,8 @@
         "remediation": "Recommend selecting a Product Flag from this list:\n[\"DATA_PRODUCT_FILE\", \"INSTRUMENT_ANCILLARY_FILE\", \"SYSTEM/SPACECRAFT_FILE\", \"EXTERNAL_DATA\"]",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "product_flag_check"
     },
     {
         "name-id": "Granule Spatial Representation Check",
@@ -561,7 +598,8 @@
         "remediation": "Recommend selecting a Granule Spatial Representation from this list: [\"CARTESIAN\", \"GEODETIC\", \"ORBIT\", \" NO_SPATIAL\"]",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "granule_spatial_representation_check"
     },
     {
         "name-id": "PrivateEnum Check",
@@ -574,7 +612,8 @@
         "remediation": "Recommend selecting a value from the following list: [\"True\", \"False\"]",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "privateenum_check"
     },
     {
         "name-id": "Persistent Identifier Type Check",
@@ -587,7 +626,8 @@
         "remediation": "Recommend selecting a value from the following list: [\"DOI\", \"ARK\"]",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "persistent_identifier_type_check"
     },
     {
         "name-id": "Personnel Role Check",
@@ -600,7 +640,8 @@
         "remediation": "Recommend selecting a value from the following list: [\"INVESTIGATOR\", \"INVESTIGATOR, TECHNICAL CONTACT\", \"METADATA AUTHOR\", \"METADATA AUTHOR, TECHNICAL CONTACT\", \"TECHNICAL CONTACT\"]",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "personnel_role_check"
     },
     {
         "name-id": "Organization Personnel Role Check",
@@ -613,7 +654,8 @@
         "remediation": "Recommend selecting a value from the following list:\n[\"DATA CENTER CONTACT\"]",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "organization_personnel_role_check"
     },
     {
         "name-id": "Periodic Duration Unit Check",
@@ -626,7 +668,8 @@
         "remediation": "Recommend selecting a value from the following list:\n[\"DAY\", \"MONTH\", \"YEAR\"]",
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "periodic_duration_unit_check"
     },
     {
         "name-id": "Paleo Date Time Logic Check",
@@ -639,7 +682,8 @@
         "remediation": null,
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "paleo_date_time_logic_check"
     },
     {
         "name-id": "DIF10 Entry ID Check",
@@ -652,7 +696,8 @@
         "remediation": null,
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "dif10_entry_id_check"
     },
     {
         "name-id": "DIF10 Spatial Coverage Type check",
@@ -665,6 +710,7 @@
         "remediation": null,
         "help_url": null,
         "specification": null,
-        "spec_version": null
+        "spec_version": null,
+        "id": "dif10_spatial_coverage_type_check"
     }
 ]

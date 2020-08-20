@@ -11,7 +11,11 @@
         "path": "Collection/InsertTime",
         "rules": [
             {
-                "name": "Date/dateTime ISO Format Check",
+                "id": "date_datetime_iso_format_check",
+                "data": {}
+            },
+            {
+                "id": "data_update_time_logic_check",
                 "data": {
                     "related_paths": [
                         {
@@ -27,11 +31,11 @@
         "path": "Collection/LastUpdate",
         "rules": [
             {
-                "name": "Date/dateTime ISO Format Check",
+                "id": "date_datetime_iso_format_check",
                 "data": {}
             },
             {
-                "name": "Data Update Time Logic Check",
+                "id": "data_update_time_logic_check",
                 "data": {
                     "related_paths": [
                         {
@@ -47,11 +51,11 @@
         "path": "Collection/DeleteTime",
         "rules": [
             {
-                "name": "Date/dateTime ISO Format Check",
+                "id": "date_datetime_iso_format_check",
                 "data": {}
             },
             {
-                "name": "DeleteTime Check",
+                "id": "deletetime_check",
                 "data": {}
             }
         ]
@@ -64,7 +68,7 @@
         "path": "Collection/DataSetId",
         "rules": [
             {
-                "name": "Title - Short Name Uniqueness Check",
+                "id": "title_short_name_uniqueness_check",
                 "data": {}
             }
         ]
@@ -73,11 +77,11 @@
         "path": "Collection/Description",
         "rules": [
             {
-                "name": "URL Health and Status Check",
+                "id": "url_health_and_status_check",
                 "data": {}
             },
             {
-                "name": "Abstract Length Check",
+                "id": "abstract_length_check",
                 "data": {}
             }
         ]
@@ -86,11 +90,11 @@
         "path": "Collection/DOI/DOI",
         "rules": [
             {
-                "name": "NASA DOI - Missing Reason Presence Check",
+                "id": "nasa_doi_missing_reason_presence_check",
                 "data": {}
             },
             {
-                "name": "DOI Validity Check",
+                "id": "doi_validity_check",
                 "data": {}
             }
         ]
@@ -99,7 +103,7 @@
         "path": "Collection/DOI/Authority",
         "rules": [
             {
-                "name": "EOSDIS DOI Authority Check (conditional)",
+                "id": "eosdis_doi_authority_check_conditional",
                 "data": {}
             }
         ]
@@ -108,7 +112,7 @@
         "path": "Collection/DOI/MissingReason",
         "rules": [
             {
-                "name": "DOI Missing Reason Enumeration Check",
+                "id": "doi_missing_reason_enumeration_check",
                 "data": {}
             }
         ]
@@ -121,14 +125,8 @@
         "path": "Collection/CollectionDataType",
         "rules": [
             {
-                "name": "CollectionDataType Enumeration Check",
-                "data": {
-                    "valid_values": [
-                        "SCIENCE_QUALITY",
-                        "NEAR_REAL_TIME",
-                        "OTHER"
-                    ]
-                }
+                "id": "collectiondatatype_enumeration_check",
+                "data": {}
             }
         ]
     },
@@ -144,7 +142,7 @@
         "path": "Collection/RevisionDate",
         "rules": [
             {
-                "name": "Date/dateTime ISO Format Check",
+                "id": "date_datetime_iso_format_check",
                 "data": {}
             }
         ]
@@ -153,7 +151,7 @@
         "path": "Collection/SuggestedUsage",
         "rules": [
             {
-                "name": "URL Health and Status Check",
+                "id": "url_health_and_status_check",
                 "data": {}
             }
         ]
@@ -162,11 +160,11 @@
         "path": "Collection/ProcessingCenter",
         "rules": [
             {
-                "name": "Data Center Short Name GCMD Check",
+                "id": "data_center_short_name_gcmd_check",
                 "data": {}
             },
             {
-                "name": "ECHO10 Data Center Name Presence Check",
+                "id": "echo10_data_center_name_presence_check",
                 "data": {}
             }
         ]
@@ -175,7 +173,7 @@
         "path": "Collection/ProcessingLevelId",
         "rules": [
             {
-                "name": "EOSDIS Standard Processing Level Id Check",
+                "id": "eosdis_standard_processing_level_id_check",
                 "data": {}
             }
         ]
@@ -184,7 +182,7 @@
         "path": "Collection/ProcessingLevelDescription",
         "rules": [
             {
-                "name": "Processing Level Description Length Check",
+                "id": "processing_level_description_length_check",
                 "data": {}
             }
         ]
@@ -197,7 +195,7 @@
         "path": "Collection/VersionDescription",
         "rules": [
             {
-                "name": "Version Description Not Provided",
+                "id": "version_description_not_provided",
                 "data": {}
             }
         ]
@@ -210,7 +208,7 @@
         "path": "Collection/CollectionState",
         "rules": [
             {
-                "name": "UMM Controlled Collection State List",
+                "id": "umm_controlled_collection_state_list",
                 "data": {}
             }
         ]
@@ -243,7 +241,7 @@
         "path": "Collection/SpatialKeywords/Keyword",
         "rules": [
             {
-                "name": "ECHO10 Spatial GCMD Keyword Check",
+                "id": "echo10_spatial_gcmd_keyword_check",
                 "data": {}
             }
         ]
@@ -272,11 +270,11 @@
         "path": "Collection/Temporal/EndsAtPresentFlag",
         "rules": [
             {
-                "name": "EndsAtPresentFlag Logic Check",
+                "id": "endsatpresentflag_logic_check",
                 "data": {}
             },
             {
-                "name": "EndsAtPresentFlag Presence Check",
+                "id": "endsatpresentflag_presence_check",
                 "data": {}
             }
         ]
@@ -285,15 +283,15 @@
         "path": "Collection/Temporal/SingleDateTime",
         "rules": [
             {
-                "name": "Date/dateTime ISO Format Check",
+                "id": "date_datetime_iso_format_check",
                 "data": {}
             },
             {
-                "name": "Temporal Extent Requirement Check",
+                "id": "temporal_extent_requirement_check",
                 "data": {}
             },
             {
-                "name": "Validate Single Date Time Against Granules",
+                "id": "validate_single_date_time_against_granules",
                 "data": {}
             }
         ]
@@ -302,19 +300,19 @@
         "path": "Collection/Temporal/RangeDateTime/BeginningDateTime",
         "rules": [
             {
-                "name": "Date/dateTime ISO Format Check",
+                "id": "date_datetime_iso_format_check",
                 "data": {}
             },
             {
-                "name": "Temporal Extent Requirement Check",
+                "id": "temporal_extent_requirement_check",
                 "data": {}
             },
             {
-                "name": "Range Date Time Logic Check",
+                "id": "range_date_time_logic_check",
                 "data": {}
             },
             {
-                "name": "Validate Beginning Date Time Against Granules",
+                "id": "validate_beginning_date_time_against_granules",
                 "data": {}
             }
         ]
@@ -323,19 +321,19 @@
         "path": "Collection/Temporal/RangeDateTime/EndingDateTime",
         "rules": [
             {
-                "name": "Date/dateTime ISO Format Check",
+                "id": "date_datetime_iso_format_check",
                 "data": {}
             },
             {
-                "name": "Temporal Extent Requirement Check",
+                "id": "temporal_extent_requirement_check",
                 "data": {}
             },
             {
-                "name": "Range Date Time Logic Check",
+                "id": "range_date_time_logic_check",
                 "data": {}
             },
             {
-                "name": "Validate Ending Date Time Against Granules",
+                "id": "validate_ending_date_time_against_granules",
                 "data": {}
             }
         ]
@@ -348,15 +346,15 @@
         "path": "Collection/Temporal/PeriodicDateTime/StartDate",
         "rules": [
             {
-                "name": "Date/dateTime ISO Format Check",
+                "id": "date_datetime_iso_format_check",
                 "data": {}
             },
             {
-                "name": "Temporal Extent Requirement Check",
+                "id": "temporal_extent_requirement_check",
                 "data": {}
             },
             {
-                "name": "Periodic Date Time Logic Check",
+                "id": "periodic_date_time_logic_check",
                 "data": {}
             }
         ]
@@ -365,15 +363,15 @@
         "path": "Collection/Temporal/PeriodicDateTime/EndDate",
         "rules": [
             {
-                "name": "Date/dateTime ISO Format Check",
+                "id": "date_datetime_iso_format_check",
                 "data": {}
             },
             {
-                "name": "Temporal Extent Requirement Check",
+                "id": "temporal_extent_requirement_check",
                 "data": {}
             },
             {
-                "name": "Periodic Date Time Logic Check",
+                "id": "periodic_date_time_logic_check",
                 "data": {}
             }
         ]
@@ -398,7 +396,7 @@
         "path": "Collection/Contacts/Contact/Role",
         "rules": [
             {
-                "name": "Controlled Contact Role Check",
+                "id": "controlled_contact_role_check",
                 "data": {}
             }
         ]
@@ -415,7 +413,7 @@
         "path": "Collection/Contacts/Contact/OrganizationName",
         "rules": [
             {
-                "name": "ECHO10 Data Center Name Presence Check",
+                "id": "echo10_data_center_name_presence_check",
                 "data": {}
             }
         ]
@@ -448,7 +446,7 @@
         "path": "Collection/Contacts/Contact/OrganizationPhones/Phone/Type",
         "rules": [
             {
-                "name": "Contact Mechanism Enuemration Check",
+                "id": "contact_mechanism_enuemration_check",
                 "data": {}
             }
         ]
@@ -473,7 +471,7 @@
         "path": "Collection/Contacts/Contact/ContactPersons/ContactPerson/JobPosition",
         "rules": [
             {
-                "name": "Data Contact Role Enumeration Check",
+                "id": "data_contact_role_enumeration_check",
                 "data": {}
             }
         ]
@@ -542,7 +540,7 @@
         "path": "Collection/Platforms/Platform/Instruments/Instrument/ShortName",
         "rules": [
             {
-                "name": "Instrument Short Name Check",
+                "id": "instrument_short_name_check",
                 "data": {}
             }
         ]
@@ -551,7 +549,7 @@
         "path": "Collection/Platforms/Platform/Instruments/Instrument/LongName",
         "rules": [
             {
-                "name": "Instrument Long Name Check",
+                "id": "instrument_long_name_check",
                 "data": {}
             }
         ]
@@ -568,7 +566,7 @@
         "path": "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Name",
         "rules": [
             {
-                "name": "Characteristic Name Check",
+                "id": "characteristic_name_check",
                 "data": {}
             }
         ]
@@ -577,7 +575,7 @@
         "path": "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Description",
         "rules": [
             {
-                "name": "Characteristic Description Check",
+                "id": "characteristic_description_check",
                 "data": {}
             }
         ]
@@ -586,7 +584,7 @@
         "path": "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Unit",
         "rules": [
             {
-                "name": "Characteristic Unit Check",
+                "id": "characteristic_unit_check",
                 "data": {}
             }
         ]
@@ -595,7 +593,7 @@
         "path": "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Value",
         "rules": [
             {
-                "name": "Characteristic Value Check",
+                "id": "characteristic_value_check",
                 "data": {}
             }
         ]
@@ -644,7 +642,7 @@
         "path": "Collection/AdditionalAttributes/AdditionalAttribute/DataType",
         "rules": [
             {
-                "name": "Data Type Control Check",
+                "id": "data_type_control_check",
                 "data": {}
             }
         ]
@@ -681,7 +679,7 @@
         "path": "Collection/AdditionalAttributes/AdditionalAttribute/Value",
         "rules": [
             {
-                "name": "DOI Link Update",
+                "id": "doi_link_update",
                 "data": {}
             }
         ]
@@ -926,7 +924,7 @@
         "path": "Collection/OnlineResources/OnlineResource/MimeType",
         "rules": [
             {
-                "name": "Mime Type Check",
+                "id": "mime_type_check",
                 "data": {}
             }
         ]
@@ -947,7 +945,7 @@
         "path": "Collection/Spatial/HorizontalSpatialDomain/Geometry/CoordinateSystem",
         "rules": [
             {
-                "name": "Coordinate System Check",
+                "id": "coordinate_system_check",
                 "data": {}
             }
         ]
@@ -1056,7 +1054,7 @@
         "path": "Collection/Spatial/GranuleSpatialRepresentation",
         "rules": [
             {
-                "name": "Granule Spatial Representation Check",
+                "id": "granule_spatial_representation_check",
                 "data": {}
             }
         ]
@@ -1073,7 +1071,7 @@
         "path": "Collection/ProductFlag",
         "rules": [
             {
-                "name": "Product Flag Check",
+                "id": "product_flag_check",
                 "data": {}
             }
         ]
