@@ -99,9 +99,3 @@ class TestValidator:
                 "validator_value": 80,
             },
         ]
-
-# not in schema
-# in schema
-# all keys are valid
-# some keys are invalid
-
