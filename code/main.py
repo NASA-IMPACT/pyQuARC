@@ -61,7 +61,7 @@ class PyCMR:
         for concept_id in tqdm(self.concept_ids):
             downloader = Downloader(concept_id)
             if self.fake:
-                with open("myfile", "r") as myfile:
+                with open("tests/data/test_cmr_metadata_echo10", "r") as myfile:
                     content = myfile.read()
             else:
                 content = downloader.download()
@@ -90,7 +90,8 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("--query", action="store", type=str, help="CMR query URL.")
+    group.add_argument("--query", action="store",
+                       type=str, help="CMR query URL.")
     group.add_argument(
         "--concept_ids",
         nargs="+",
