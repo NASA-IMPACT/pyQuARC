@@ -12,16 +12,14 @@
         "rules": [
             {
                 "name": "Date/dateTime ISO Format Check",
-                "related_paths": {}
-            },
-            {
-                "name": "Data Update Time Logic Check",
-                "related_paths": [
-                    {
-                        "path": "Collection/LastUpdate",
-                        "relation": "lte"
-                    }
-                ]
+                "data": {
+                    "related_paths": [
+                        {
+                            "path": "Collection/LastUpdate",
+                            "relation": "lte"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -30,16 +28,18 @@
         "rules": [
             {
                 "name": "Date/dateTime ISO Format Check",
-                "related_paths": {}
+                "data": {}
             },
             {
                 "name": "Data Update Time Logic Check",
-                "related_paths": [
-                    {
-                        "path": "Collection/InsertTime",
-                        "relation": "gte"
-                    }
-                ]
+                "data": {
+                    "related_paths": [
+                        {
+                            "path": "Collection/InsertTime",
+                            "relation": "gte"
+                        }
+                    ]
+                }
             }
         ]
     },
@@ -48,11 +48,11 @@
         "rules": [
             {
                 "name": "Date/dateTime ISO Format Check",
-                "related_paths": {}
+                "data": {}
             },
             {
                 "name": "DeleteTime Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -65,7 +65,7 @@
         "rules": [
             {
                 "name": "Title - Short Name Uniqueness Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -74,11 +74,11 @@
         "rules": [
             {
                 "name": "URL Health and Status Check",
-                "related_paths": {}
+                "data": {}
             },
             {
                 "name": "Abstract Length Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -87,11 +87,11 @@
         "rules": [
             {
                 "name": "NASA DOI - Missing Reason Presence Check",
-                "related_paths": {}
+                "data": {}
             },
             {
                 "name": "DOI Validity Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -100,7 +100,7 @@
         "rules": [
             {
                 "name": "EOSDIS DOI Authority Check (conditional)",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -109,7 +109,7 @@
         "rules": [
             {
                 "name": "DOI Missing Reason Enumeration Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -122,7 +122,13 @@
         "rules": [
             {
                 "name": "CollectionDataType Enumeration Check",
-                "related_paths": {}
+                "data": {
+                    "valid_values": [
+                        "SCIENCE_QUALITY",
+                        "NEAR_REAL_TIME",
+                        "OTHER"
+                    ]
+                }
             }
         ]
     },
@@ -139,7 +145,7 @@
         "rules": [
             {
                 "name": "Date/dateTime ISO Format Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -148,7 +154,7 @@
         "rules": [
             {
                 "name": "URL Health and Status Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -157,11 +163,11 @@
         "rules": [
             {
                 "name": "Data Center Short Name GCMD Check",
-                "related_paths": {}
+                "data": {}
             },
             {
                 "name": "ECHO10 Data Center Name Presence Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -170,7 +176,7 @@
         "rules": [
             {
                 "name": "EOSDIS Standard Processing Level Id Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -179,7 +185,7 @@
         "rules": [
             {
                 "name": "Processing Level Description Length Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -192,7 +198,7 @@
         "rules": [
             {
                 "name": "Version Description Not Provided",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -205,7 +211,7 @@
         "rules": [
             {
                 "name": "UMM Controlled Collection State List",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -238,7 +244,7 @@
         "rules": [
             {
                 "name": "ECHO10 Spatial GCMD Keyword Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -267,11 +273,11 @@
         "rules": [
             {
                 "name": "EndsAtPresentFlag Logic Check",
-                "related_paths": {}
+                "data": {}
             },
             {
                 "name": "EndsAtPresentFlag Presence Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -280,15 +286,15 @@
         "rules": [
             {
                 "name": "Date/dateTime ISO Format Check",
-                "related_paths": {}
+                "data": {}
             },
             {
                 "name": "Temporal Extent Requirement Check",
-                "related_paths": {}
+                "data": {}
             },
             {
                 "name": "Validate Single Date Time Against Granules",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -297,19 +303,19 @@
         "rules": [
             {
                 "name": "Date/dateTime ISO Format Check",
-                "related_paths": {}
+                "data": {}
             },
             {
                 "name": "Temporal Extent Requirement Check",
-                "related_paths": {}
+                "data": {}
             },
             {
                 "name": "Range Date Time Logic Check",
-                "related_paths": {}
+                "data": {}
             },
             {
                 "name": "Validate Beginning Date Time Against Granules",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -318,19 +324,19 @@
         "rules": [
             {
                 "name": "Date/dateTime ISO Format Check",
-                "related_paths": {}
+                "data": {}
             },
             {
                 "name": "Temporal Extent Requirement Check",
-                "related_paths": {}
+                "data": {}
             },
             {
                 "name": "Range Date Time Logic Check",
-                "related_paths": {}
+                "data": {}
             },
             {
                 "name": "Validate Ending Date Time Against Granules",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -343,15 +349,15 @@
         "rules": [
             {
                 "name": "Date/dateTime ISO Format Check",
-                "related_paths": {}
+                "data": {}
             },
             {
                 "name": "Temporal Extent Requirement Check",
-                "related_paths": {}
+                "data": {}
             },
             {
                 "name": "Periodic Date Time Logic Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -360,15 +366,15 @@
         "rules": [
             {
                 "name": "Date/dateTime ISO Format Check",
-                "related_paths": {}
+                "data": {}
             },
             {
                 "name": "Temporal Extent Requirement Check",
-                "related_paths": {}
+                "data": {}
             },
             {
                 "name": "Periodic Date Time Logic Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -393,7 +399,7 @@
         "rules": [
             {
                 "name": "Controlled Contact Role Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -410,7 +416,7 @@
         "rules": [
             {
                 "name": "ECHO10 Data Center Name Presence Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -443,7 +449,7 @@
         "rules": [
             {
                 "name": "Contact Mechanism Enuemration Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -468,7 +474,7 @@
         "rules": [
             {
                 "name": "Data Contact Role Enumeration Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -537,7 +543,7 @@
         "rules": [
             {
                 "name": "Instrument Short Name Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -546,7 +552,7 @@
         "rules": [
             {
                 "name": "Instrument Long Name Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -563,7 +569,7 @@
         "rules": [
             {
                 "name": "Characteristic Name Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -572,7 +578,7 @@
         "rules": [
             {
                 "name": "Characteristic Description Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -581,7 +587,7 @@
         "rules": [
             {
                 "name": "Characteristic Unit Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -590,7 +596,7 @@
         "rules": [
             {
                 "name": "Characteristic Value Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -639,7 +645,7 @@
         "rules": [
             {
                 "name": "Data Type Control Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -676,7 +682,7 @@
         "rules": [
             {
                 "name": "DOI Link Update",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -921,7 +927,7 @@
         "rules": [
             {
                 "name": "Mime Type Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -942,7 +948,7 @@
         "rules": [
             {
                 "name": "Coordinate System Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -1051,7 +1057,7 @@
         "rules": [
             {
                 "name": "Granule Spatial Representation Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     },
@@ -1068,7 +1074,7 @@
         "rules": [
             {
                 "name": "Product Flag Check",
-                "related_paths": {}
+                "data": {}
             }
         ]
     }
