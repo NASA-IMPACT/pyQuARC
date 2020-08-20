@@ -10,21 +10,50 @@
     {
         "path": "Collection/InsertTime",
         "rules": [
-            "Date/dateTime ISO Format Check"
+            {
+                "name": "Date/dateTime ISO Format Check",
+                "related_paths": {}
+            },
+            {
+                "name": "Data Update Time Logic Check",
+                "related_paths": [
+                    {
+                        "path": "Collection/LastUpdate",
+                        "relation": "lte"
+                    }
+                ]
+            }
         ]
     },
     {
         "path": "Collection/LastUpdate",
         "rules": [
-            "Date/dateTime ISO Format Check",
-            "Data Update Time Logic Check"
+            {
+                "name": "Date/dateTime ISO Format Check",
+                "related_paths": {}
+            },
+            {
+                "name": "Data Update Time Logic Check",
+                "related_paths": [
+                    {
+                        "path": "Collection/InsertTime",
+                        "relation": "gte"
+                    }
+                ]
+            }
         ]
     },
     {
         "path": "Collection/DeleteTime",
         "rules": [
-            "Date/dateTime ISO Format Check",
-            "DeleteTime Check"
+            {
+                "name": "Date/dateTime ISO Format Check",
+                "related_paths": {}
+            },
+            {
+                "name": "DeleteTime Check",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -34,33 +63,54 @@
     {
         "path": "Collection/DataSetId",
         "rules": [
-            "Title - Short Name Uniqueness Check"
+            {
+                "name": "Title - Short Name Uniqueness Check",
+                "related_paths": {}
+            }
         ]
     },
     {
         "path": "Collection/Description",
         "rules": [
-            "URL Health and Status Check",
-            "Abstract Length Check"
+            {
+                "name": "URL Health and Status Check",
+                "related_paths": {}
+            },
+            {
+                "name": "Abstract Length Check",
+                "related_paths": {}
+            }
         ]
     },
     {
         "path": "Collection/DOI/DOI",
         "rules": [
-            "NASA DOI - Missing Reason Presence Check",
-            "DOI Validity Check"
+            {
+                "name": "NASA DOI - Missing Reason Presence Check",
+                "related_paths": {}
+            },
+            {
+                "name": "DOI Validity Check",
+                "related_paths": {}
+            }
         ]
     },
     {
         "path": "Collection/DOI/Authority",
         "rules": [
-            "EOSDIS DOI Authority Check (conditional)"
+            {
+                "name": "EOSDIS DOI Authority Check (conditional)",
+                "related_paths": {}
+            }
         ]
     },
     {
         "path": "Collection/DOI/MissingReason",
         "rules": [
-            "DOI Missing Reason Enumeration Check"
+            {
+                "name": "DOI Missing Reason Enumeration Check",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -70,7 +120,10 @@
     {
         "path": "Collection/CollectionDataType",
         "rules": [
-            "CollectionDataType Enumeration Check"
+            {
+                "name": "CollectionDataType Enumeration Check",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -84,32 +137,50 @@
     {
         "path": "Collection/RevisionDate",
         "rules": [
-            "Date/dateTime ISO Format Check"
+            {
+                "name": "Date/dateTime ISO Format Check",
+                "related_paths": {}
+            }
         ]
     },
     {
         "path": "Collection/SuggestedUsage",
         "rules": [
-            "URL Health and Status Check"
+            {
+                "name": "URL Health and Status Check",
+                "related_paths": {}
+            }
         ]
     },
     {
         "path": "Collection/ProcessingCenter",
         "rules": [
-            "Data Center Short Name GCMD Check",
-            "ECHO10 Data Center Name Presence Check"
+            {
+                "name": "Data Center Short Name GCMD Check",
+                "related_paths": {}
+            },
+            {
+                "name": "ECHO10 Data Center Name Presence Check",
+                "related_paths": {}
+            }
         ]
     },
     {
         "path": "Collection/ProcessingLevelId",
         "rules": [
-            "EOSDIS Standard Processing Level Id Check"
+            {
+                "name": "EOSDIS Standard Processing Level Id Check",
+                "related_paths": {}
+            }
         ]
     },
     {
         "path": "Collection/ProcessingLevelDescription",
         "rules": [
-            "Processing Level Description Length Check"
+            {
+                "name": "Processing Level Description Length Check",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -119,7 +190,10 @@
     {
         "path": "Collection/VersionDescription",
         "rules": [
-            "Version Description Not Provided"
+            {
+                "name": "Version Description Not Provided",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -129,7 +203,10 @@
     {
         "path": "Collection/CollectionState",
         "rules": [
-            "UMM Controlled Collection State List"
+            {
+                "name": "UMM Controlled Collection State List",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -159,7 +236,10 @@
     {
         "path": "Collection/SpatialKeywords/Keyword",
         "rules": [
-            "ECHO10 Spatial GCMD Keyword Check"
+            {
+                "name": "ECHO10 Spatial GCMD Keyword Check",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -185,34 +265,73 @@
     {
         "path": "Collection/Temporal/EndsAtPresentFlag",
         "rules": [
-            "EndsAtPresentFlag Logic Check",
-            "EndsAtPresentFlag Presence Check"
+            {
+                "name": "EndsAtPresentFlag Logic Check",
+                "related_paths": {}
+            },
+            {
+                "name": "EndsAtPresentFlag Presence Check",
+                "related_paths": {}
+            }
         ]
     },
     {
         "path": "Collection/Temporal/SingleDateTime",
         "rules": [
-            "Date/dateTime ISO Format Check",
-            "Temporal Extent Requirement Check",
-            "Validate Single Date Time Against Granules"
+            {
+                "name": "Date/dateTime ISO Format Check",
+                "related_paths": {}
+            },
+            {
+                "name": "Temporal Extent Requirement Check",
+                "related_paths": {}
+            },
+            {
+                "name": "Validate Single Date Time Against Granules",
+                "related_paths": {}
+            }
         ]
     },
     {
         "path": "Collection/Temporal/RangeDateTime/BeginningDateTime",
         "rules": [
-            "Date/dateTime ISO Format Check",
-            "Temporal Extent Requirement Check",
-            "Range Date Time Logic Check",
-            "Validate Beginning Date Time Against Granules"
+            {
+                "name": "Date/dateTime ISO Format Check",
+                "related_paths": {}
+            },
+            {
+                "name": "Temporal Extent Requirement Check",
+                "related_paths": {}
+            },
+            {
+                "name": "Range Date Time Logic Check",
+                "related_paths": {}
+            },
+            {
+                "name": "Validate Beginning Date Time Against Granules",
+                "related_paths": {}
+            }
         ]
     },
     {
         "path": "Collection/Temporal/RangeDateTime/EndingDateTime",
         "rules": [
-            "Date/dateTime ISO Format Check",
-            "Temporal Extent Requirement Check",
-            "Range Date Time Logic Check",
-            "Validate Ending Date Time Against Granules"
+            {
+                "name": "Date/dateTime ISO Format Check",
+                "related_paths": {}
+            },
+            {
+                "name": "Temporal Extent Requirement Check",
+                "related_paths": {}
+            },
+            {
+                "name": "Range Date Time Logic Check",
+                "related_paths": {}
+            },
+            {
+                "name": "Validate Ending Date Time Against Granules",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -222,17 +341,35 @@
     {
         "path": "Collection/Temporal/PeriodicDateTime/StartDate",
         "rules": [
-            "Date/dateTime ISO Format Check",
-            "Temporal Extent Requirement Check",
-            "Periodic Date Time Logic Check"
+            {
+                "name": "Date/dateTime ISO Format Check",
+                "related_paths": {}
+            },
+            {
+                "name": "Temporal Extent Requirement Check",
+                "related_paths": {}
+            },
+            {
+                "name": "Periodic Date Time Logic Check",
+                "related_paths": {}
+            }
         ]
     },
     {
         "path": "Collection/Temporal/PeriodicDateTime/EndDate",
         "rules": [
-            "Date/dateTime ISO Format Check",
-            "Temporal Extent Requirement Check",
-            "Periodic Date Time Logic Check"
+            {
+                "name": "Date/dateTime ISO Format Check",
+                "related_paths": {}
+            },
+            {
+                "name": "Temporal Extent Requirement Check",
+                "related_paths": {}
+            },
+            {
+                "name": "Periodic Date Time Logic Check",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -254,7 +391,10 @@
     {
         "path": "Collection/Contacts/Contact/Role",
         "rules": [
-            "Controlled Contact Role Check"
+            {
+                "name": "Controlled Contact Role Check",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -268,7 +408,10 @@
     {
         "path": "Collection/Contacts/Contact/OrganizationName",
         "rules": [
-            "ECHO10 Data Center Name Presence Check"
+            {
+                "name": "ECHO10 Data Center Name Presence Check",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -298,7 +441,10 @@
     {
         "path": "Collection/Contacts/Contact/OrganizationPhones/Phone/Type",
         "rules": [
-            "Contact Mechanism Enuemration Check"
+            {
+                "name": "Contact Mechanism Enuemration Check",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -320,7 +466,10 @@
     {
         "path": "Collection/Contacts/Contact/ContactPersons/ContactPerson/JobPosition",
         "rules": [
-            "Data Contact Role Enumeration Check"
+            {
+                "name": "Data Contact Role Enumeration Check",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -386,13 +535,19 @@
     {
         "path": "Collection/Platforms/Platform/Instruments/Instrument/ShortName",
         "rules": [
-            "Instrument Short Name Check"
+            {
+                "name": "Instrument Short Name Check",
+                "related_paths": {}
+            }
         ]
     },
     {
         "path": "Collection/Platforms/Platform/Instruments/Instrument/LongName",
         "rules": [
-            "Instrument Long Name Check"
+            {
+                "name": "Instrument Long Name Check",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -406,25 +561,37 @@
     {
         "path": "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Name",
         "rules": [
-            "Characteristic Name Check"
+            {
+                "name": "Characteristic Name Check",
+                "related_paths": {}
+            }
         ]
     },
     {
         "path": "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Description",
         "rules": [
-            "Characteristic Description Check"
+            {
+                "name": "Characteristic Description Check",
+                "related_paths": {}
+            }
         ]
     },
     {
         "path": "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Unit",
         "rules": [
-            "Characteristic Unit Check"
+            {
+                "name": "Characteristic Unit Check",
+                "related_paths": {}
+            }
         ]
     },
     {
         "path": "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Value",
         "rules": [
-            "Characteristic Value Check"
+            {
+                "name": "Characteristic Value Check",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -470,7 +637,10 @@
     {
         "path": "Collection/AdditionalAttributes/AdditionalAttribute/DataType",
         "rules": [
-            "Data Type Control Check"
+            {
+                "name": "Data Type Control Check",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -504,7 +674,10 @@
     {
         "path": "Collection/AdditionalAttributes/AdditionalAttribute/Value",
         "rules": [
-            "DOI Link Update"
+            {
+                "name": "DOI Link Update",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -746,7 +919,10 @@
     {
         "path": "Collection/OnlineResources/OnlineResource/MimeType",
         "rules": [
-            "Mime Type Check"
+            {
+                "name": "Mime Type Check",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -764,7 +940,10 @@
     {
         "path": "Collection/Spatial/HorizontalSpatialDomain/Geometry/CoordinateSystem",
         "rules": [
-            "Coordinate System Check"
+            {
+                "name": "Coordinate System Check",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -870,7 +1049,10 @@
     {
         "path": "Collection/Spatial/GranuleSpatialRepresentation",
         "rules": [
-            "Granule Spatial Representation Check"
+            {
+                "name": "Granule Spatial Representation Check",
+                "related_paths": {}
+            }
         ]
     },
     {
@@ -884,7 +1066,10 @@
     {
         "path": "Collection/ProductFlag",
         "rules": [
-            "Product Flag Check"
+            {
+                "name": "Product Flag Check",
+                "related_paths": {}
+            }
         ]
     }
 ]
