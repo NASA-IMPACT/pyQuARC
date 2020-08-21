@@ -4,58 +4,9 @@ import re
 
 from copy import deepcopy
 
+from checker import Checker
 from constants import DIF, ECHO10, UMM_JSON
 from constants import SCHEMA_PATHS
-
-from checks import dispatcher
-
-
-def _get_path_value(input_json, path):
-    """
-    Gets the value of the field from the metadata (input_json)
-
-    Args:
-        input_json (str): The metadata content
-        path (str): The path of the field. Example: 'Collection/RangeDateTime/StartDate'
-
-    Returns:
-        (str) The value of the field from the metadata (input_json)
-    """
-
-    splits = path.split("/")
-    input_json = json.loads(input_json)
-
-    try:
-        for split in splits:
-            input_json = input_json[split.strip()]
-    except KeyError as e:
-        return False
-    except TypeError as e:
-        # TODO: need another way to parse lists
-        print(e, split.strip())
-        print(f"_get_path_value failed for {path}")
-
-    return input_json
-
-
-def _get_rule(name_id, ruleset):
-    """
-    Extracts the rule from the ruleset based on its name_id
-
-    Args:
-        name_id (str): The name-id of the rule
-        ruleset (list of dict): The ruleset that contains all the rules and their details
-
-    Returns:
-        (dict) The target rule and its details
-
-    Raises:
-        KeyError: When the name_id doesn't exist in the ruleset
-    """
-    for rule in ruleset:
-        if rule["name-id"].strip() == name_id.strip():
-            return rule
-    raise KeyError(name_id)
 
 
 class Validator:
@@ -202,71 +153,7 @@ class Validator:
         Returns:
             (dict) A dictionary that gives the result of the custom checks and errors if they exist
         """
-
-        ruleset = json.load(open(SCHEMA_PATHS["ruleset"], "r"))
-        rules_mapping = json.load(open(SCHEMA_PATHS["rules_mapping"], "r"))
-
-        results = {}
-
-        for mapping in rules_mapping:
-            # do nothing for paths that have no custom checks
-            if not mapping["rules"]:
-                continue
-
-            path = mapping["path"]
-            results[path] = {}
-
-            for rule_id in mapping["rules"]:
-                # find this rule_id in ruleset
-                # TODO: Maybe this can be done better by constructing a mapping between name-id and function name
-                function_name = None
-                for rule in ruleset:
-                    if rule["name-id"] == rule_id:
-                        function_name = rule.get("function", None)
-
-                if not function_name:
-                    continue
-
-                results[path][rule_id] = {}
-                rule = _get_rule(rule_id, ruleset)
-
-                value = _get_path_value(content_to_validate, path)
-                if not value:
-                    del results[path][rule_id]
-                    # results[path]["exists"] = False
-                    continue
-
-                results[path]["exists"] = True
-                try:
-                    if rule_id == "Data Update Time Logic Check":
-                        value1 = _get_path_value(content_to_validate, "Collection/InsertTime")
-                        value2 = _get_path_value(content_to_validate, "Collection/LastUpdate")
-
-                        result = dispatcher[rule["function"]](value1, value2)
-                    else:
-                        result = dispatcher[rule["function"]](value)
-                except KeyError as e:
-                    # print(e)
-                    continue
-                if result["valid"] == False:
-                    results[path][rule_id]["check_passes"] = False
-                    results[path][rule_id]["severity"] = rule["severity"]
-
-                    results[path][rule_id]["message"] = re.sub(
-                        r"\{.*\}", str(result["instance"]), rule["message-fail"]
-                    )
-                    results[path][rule_id]["help_url"] = rule["help_url"]
-                    # checks[path][rule_id]["error"] = result["result"]
-                else:
-                    results[path][rule_id]["check_passes"] = True
-
-                results[path][rule_id]["instance"] = result["instance"]
-
-            # if there is no output for any of the rules
-            if not results[path]:
-                del results[path]
-
-        return results
+        pass
 
     def validate(self, content_to_validate):
         """
@@ -280,8 +167,9 @@ class Validator:
 
         """
         result = {}
+        checker = Checker(content_to_validate)
+        result["checks"] = checker.run()
         result["schema_check"] = self.validate_schema(content_to_validate)
-        result["checks"] = self.run_checks(content_to_validate)
 
         return result
 

@@ -21,4 +21,5 @@ SCHEMA_PATHS = {
     UMM_JSON: SCHEMAS_BASE_PATH / f"{UMM_JSON}.{SCHEMA_EXTENSION}",
     "ruleset": SCHEMAS_BASE_PATH / "ruleset.json",
     "rules_mapping": SCHEMAS_BASE_PATH / "rules_mapping.json",
+    "id_to_rule_mapping": SCHEMAS_BASE_PATH / "id_to_rule_mapping.json",
 }
