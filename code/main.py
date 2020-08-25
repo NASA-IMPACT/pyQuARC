@@ -61,7 +61,7 @@ class PyCMR:
         for concept_id in tqdm(self.concept_ids):
             downloader = Downloader(concept_id)
             if self.fake:
-                with open("tests/data/test_cmr_metadata_echo10", "r") as myfile:
+                with open("tests/data/test_cmr_metadata_echo10.json", "r") as myfile:
                     content = myfile.read()
             else:
                 content = downloader.download()

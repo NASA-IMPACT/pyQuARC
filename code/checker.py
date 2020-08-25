@@ -6,15 +6,18 @@ from datetime import datetime
 from urlextract import URLExtract
 
 from constants import SCHEMA_PATHS
+from relations import mapping as relations_mapping
 
 
 class Checker:
 
-    def __init__(self, content_to_check):
-        self.content_to_check = content_to_check
+    def __init__(self, content_to_validate):
+        self.content_to_validate = json.loads(content_to_validate)
         self.ruleset = json.load(open(SCHEMA_PATHS["ruleset"], "r"))
-        self.rules_mapping = json.load(open(SCHEMA_PATHS["rules_mapping"], "r"))
-
+        self.rules_mapping = json.load(
+            open(SCHEMA_PATHS["rules_mapping"], "r"))
+        self.id_to_rule_mapping = json.load(
+            open(SCHEMA_PATHS["id_to_rule_mapping"], "r"))
 
     def _get_rule(self, identifier):
         """
@@ -30,8 +33,7 @@ class Checker:
         Raises:
             KeyError: When the identifier doesn't exist in the ruleset
         """
-        return json.load(open(SCHEMA_PATHS["id_to_rule_mapping"], "r"))[identifier]
-
+        return self.id_to_rule_mapping[identifier]
 
     def _get_path_value(self, path):
         """
@@ -46,7 +48,7 @@ class Checker:
         """
 
         splits = path.split("/")
-        input_json = json.loads(self.content_to_check)
+        input_json = self.content_to_validate
 
         try:
             for split in splits:
@@ -59,14 +61,13 @@ class Checker:
             print(f"_get_path_value failed for {path}")
         return input_json
 
-
     def _iso_datetime(self, datetime_string):
         """
         Converts the input datetime string to iso datetime object
 
         Args:
             datetime_string (str): the datetime string
-        
+
         Returns:
             (datetime.datetime) if the string is valid iso string, False otherwise
         """
@@ -82,7 +83,6 @@ class Checker:
             pass
         return False
 
-
     def _time_logic_check(self, earlier_datetime_string, later_datetime_string):
         """
             Checks if the earlier datetime comes before later datetime
@@ -94,23 +94,24 @@ class Checker:
         return earlier_datetime <= later_datetime
 
 
-    def date_datetime_iso_format_check(self, datetime_string):
+    def date_datetime_iso_format_check(self, path_value, data):
         """
         Performs the Date/DateTime ISO Format Check - checks if the datetime
         is valid ISO formatted datetime string
 
         Args:
-            datetime_string (str): The datetime string
+            path_value (str): The datetime string
 
         Returns:
             (dict) an object with the validity of the check and the instance
         """
         return {
-            "valid": bool(self._iso_datetime(datetime_string)),
-            "instance": datetime_string
+            "valid": bool(self._iso_datetime(path_value)),
+            "instance": path_value
         }
 
-    def data_update_time_logic_check(self, value1, value2):
+
+    def data_update_time_logic_check(self, path_value, data):
         """
         Checks if the UpdateTime comes chronologically after the InsertTime
 
@@ -121,16 +122,23 @@ class Checker:
         Returns:
             (dict) an object with the validity of the check and the instance
         """
+        
+        date1 = self._iso_datetime(path_value)
+        date2 = self._iso_datetime(self._get_path_value(data["related_paths"]))
+        relation = data["related_paths"][0]["relation"]
+
+        result = relations_mapping["relation"](date1, date2)
+
         return {
-            "valid": self._time_logic_check(value1, value2),
+            "valid": result,
             "instance": {
-                "InsertTime": value1,
-                "LastUpdate": value2
+                "InsertTime": date1,
+                "LastUpdate": date2
             }
         }
 
 
-    def url_health_and_status_check(self, text):
+    def url_health_and_status_check(self, path_value, data):
         """
         Checks the health and status of the URLs included in the text
 
@@ -144,7 +152,7 @@ class Checker:
 
         # extract URLs from text
         extractor = URLExtract()
-        urls = extractor.find_urls(text)
+        urls = extractor.find_urls(path_value)
 
         # remove dots at the end
         # remove duplicated urls
@@ -161,7 +169,8 @@ class Checker:
                     continue
                 result = {"url": url, "status_code": response_code}
             except requests.ConnectionError as exception:
-                result = {"url": url, "error": "The URL does not exist on Internet."}
+                result = {"url": url,
+                          "error": "The URL does not exist on Internet."}
             except Exception as e:
                 result = {"url": url, "error": "Some unknown error occurred."}
             results.append(result)
@@ -172,7 +181,7 @@ class Checker:
         return {"valid": False, "instance": results}
 
 
-    def collectiondatatype_enumeration_check(self, text):
+    def collectiondatatype_enumeration_check(self, path_value, data):
         """
         Checks if Collection DataType is one of the valid keywords
 
@@ -182,12 +191,10 @@ class Checker:
         Returns:
             (dict) an object with the validity of the check and the instance/results
         """
-        print("Inside enum check")
-        KEYWORDS = ["SCIENCE_QUALITY", "NEAR_REAL_TIME", "OTHER"]
 
-        return {"valid": text in KEYWORDS, "instance": text}
+        return {"valid": path_value in data["valid_values"], "instance": path_value}
 
-    
+
     DISPATCHER = {
         "date_datetime_iso_format_check": date_datetime_iso_format_check,
         "data_update_time_logic_check": data_update_time_logic_check,
@@ -195,14 +202,15 @@ class Checker:
         "collectiondatatype_enumeration_check": collectiondatatype_enumeration_check,
     }
 
-    
-    def run(self):
+
+    def run_old(self):
         """
         Performs all the custom checks based on the QA Rules
 
         Returns:
             (dict) A dictionary that gives the result of the custom checks and errors if they exist
         """
+        # TODO: This code needs to be rewritten completely
         results = {}
 
         for mapping in self.rules_mapping:
@@ -233,9 +241,10 @@ class Checker:
                             "Collection/InsertTime")
                         value2 = self._get_path_value(
                             "Collection/LastUpdate"
-                            )
+                        )
 
-                        result = self.DISPATCHER[rule["id"]](self, value1, value2)
+                        result = self.DISPATCHER[rule["id"]](
+                            self, value1, value2)
                     else:
                         print(self.DISPATCHER[rule["id"]])
                         print(value)
@@ -248,7 +257,8 @@ class Checker:
                     results[path][rule_id]["severity"] = rule["severity"]
 
                     results[path][rule_id]["message"] = re.sub(
-                        r"\{.*\}", str(result["instance"]), rule["message-fail"]
+                        r"\{.*\}", str(result["instance"]
+                                       ), rule["message-fail"]
                     )
                     results[path][rule_id]["help_url"] = rule["help_url"]
                     # checks[path][rule_id]["error"] = result["result"]
@@ -262,3 +272,31 @@ class Checker:
                 del results[path]
 
         return results
+
+    def run(self, path):
+        '''
+            Runs all relevant checks on the given path
+
+            Args:
+                path (str): The path to the field in the metadata
+            Returns:
+                (dict) Result of the checks
+        '''
+
+        for mapping in self.rules_mapping:
+            if mapping["path"] == path:
+                rules = mapping
+
+        path_value = self._get_path_value(path)
+
+        try:
+            for rule in rules["rules"]:
+                rule_metadata = self.id_to_rule_mapping[rule["id"]]
+
+                result = self.DISPATCHER[rule_metadata["id"]](path_value, rule["data"])
+        except:
+            print(path)
+            # pass
+
+
+

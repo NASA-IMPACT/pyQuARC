@@ -88,6 +88,37 @@ class Validator:
 
         return filtered_schema
 
+
+    def _construct_paths_recursively(self, content_to_validate, container, prefix=''):
+        """
+        Use recursion to construct all the paths exhaustively
+        """
+        for key, value in content_to_validate.items():
+            pre = key if prefix == '' else f"{prefix}/{key}"
+                
+            if isinstance(value, dict):
+                self._construct_paths_recursively(value, container, pre)
+            elif isinstance(value, list):
+                self._construct_paths_recursively(value[0], container, pre)
+            else:
+                container.add(pre)
+
+
+    def generate_paths(self, content_to_validate):
+        """
+        Generate exhaustive list of paths from content_to_validate
+
+        Args:
+            content_to_validate (dict): The metadata file content
+
+        Returns:
+            (set) The set of all the paths
+        """
+        paths = set()
+        self._construct_paths_recursively(content_to_validate, paths)
+        return paths
+
+
     def validate_schema(self, content_to_validate):
         """
         Validate passed content based on fields/schema and return any errors
@@ -153,7 +184,11 @@ class Validator:
         Returns:
             (dict) A dictionary that gives the result of the custom checks and errors if they exist
         """
-        pass
+        checker = Checker(content_to_validate)
+        paths = self.generate_paths(checker.content_to_validate)
+        for path in paths:
+            checker.run(path)
+
 
     def validate(self, content_to_validate):
         """
@@ -167,8 +202,7 @@ class Validator:
 
         """
         result = {}
-        checker = Checker(content_to_validate)
-        result["checks"] = checker.run()
+        result["checks"] = self.run_checks(content_to_validate)
         result["schema_check"] = self.validate_schema(content_to_validate)
 
         return result
@@ -183,52 +217,3 @@ class Validator:
 
         schema = json.load(open(SCHEMA_PATHS[self.metadata_format], "r"))
         return schema
-
-
-# Error dict
-
-# {
-#     "ShortName": {
-#         "message": "2019 is not a date-time",
-#         "path": "Collections > something > something > ShortName",
-#         "instance": "2019",
-#         "validator": "maxLength",
-#         "validator_value": "80"
-#     },
-# }
-
-# results = library.function(schema, data)
-# function(schema, data)
-# for all keys in data:
-#     schema ko keys sanga match garna khojne
-#     manum match bhayo
-#     match bhako bhitra gayera tesko pani keys nikalnu paryo
-#     bhitri each key ko lagi euta function huncha
-#     jastai type ko lagi euta function
-#     min length ko lagi euta function
-#     kun key ko lagi kun function ho bhanne mapping pani chaincha
-#     yo sabbai run garepachi tyo euta metadata key ko kaam siddiyo ani result ma haldine
-
-# bhitri keys to function wala mapping
-
-# {
-#     "ShortName": {
-#         "valid": True,
-#         "errors": {}
-#     }
-#     OR
-#     "ShortName": {
-#         "valid": False,
-#         "errors": {
-#             "field_exists_in_downloaded_content": True
-#             "invalid_criteria": ["min_length"]
-#         }
-#     }
-# }
-
-
-# what do we do when something is in fields but not in content_to_validate
-# show error that field was not found
-
-# what do we do when something is in content_to_validate but not in fields
-# ignore

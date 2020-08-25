@@ -126,7 +126,9 @@
         "rules": [
             {
                 "id": "collectiondatatype_enumeration_check",
-                "data": {}
+                "data": {
+                    "valid_values": ["SCIENCE_QUALITY", "NEAR_REAL_TIME", "OTHER"]
+                }
             }
         ]
     },

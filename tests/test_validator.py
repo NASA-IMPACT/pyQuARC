@@ -99,3 +99,9 @@ class TestValidator:
                 "validator_value": 80,
             },
         ]
+
+    def test_generate_paths(self):
+        content_to_validate = json.load(open("tests/data/test_cmr_metadata_echo10.json", "r"))
+
+        validator = Validator()
+        assert validator.generate_paths(content_to_validate) == 0
