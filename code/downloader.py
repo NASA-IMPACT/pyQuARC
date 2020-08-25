@@ -4,7 +4,7 @@ import requests
 
 from xmltodict import parse
 
-from constants import DIF, ECHO10, UMM_JSON
+from .constants import DIF, ECHO10, UMM_JSON
 
 
 class Downloader:

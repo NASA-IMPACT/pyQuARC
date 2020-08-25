@@ -4,9 +4,9 @@ import re
 
 from copy import deepcopy
 
-from checker import Checker
-from constants import DIF, ECHO10, UMM_JSON
-from constants import SCHEMA_PATHS
+from .checker import Checker
+from .constants import DIF, ECHO10, UMM_JSON
+from .constants import SCHEMA_PATHS
 
 
 class Validator:
@@ -184,9 +184,7 @@ class Validator:
 
         checker = Checker(content_to_validate)
 
-        paths = self.generate_paths(checker.content_to_validate)
-        for path in paths:
-            checker.run(path)
+        return checker.run()
 
     def validate(self, content_to_validate):
         """
@@ -199,6 +197,7 @@ class Validator:
             (dict) A comprehensive report of errors from jsonschema check and custom checks
 
         """
+
         result = {}
         result["checks"] = self.run_checks(content_to_validate)
         result["schema_check"] = self.validate_schema(content_to_validate)

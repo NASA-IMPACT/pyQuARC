@@ -4,8 +4,8 @@ import jsonschema
 import pytest
 import xmltodict
 
-from ..code.validator import Validator
-from ..code.downloader import Downloader
+from ..validator import Validator
+from ..downloader import Downloader
 
 
 class TestValidator:

@@ -6,8 +6,8 @@ import xmltodict
 from pprint import pprint
 from tqdm import tqdm
 
-from downloader import Downloader
-from validator import Validator
+from .downloader import Downloader
+from .validator import Validator
 
 
 class PyCMR:

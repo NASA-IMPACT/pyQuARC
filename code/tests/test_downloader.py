@@ -1,6 +1,6 @@
 import pytest
 
-from ..code.downloader import Downloader
+from ..downloader import Downloader
 
 
 class TestDownloader:
