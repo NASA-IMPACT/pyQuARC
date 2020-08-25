@@ -67,9 +67,9 @@ class Downloader:
         """
         Logs errors in self.errors
 
-        Arguments:
+        Args:
             error_message_code (str): The key to the ERROR_MESSAGES dict
-            kwargs (dict): any keyword arguments required for the error string
+            kwargs (dict): Any keyword arguments required for the error string
         """
 
         self.errors.append({"type": error_message_code, "details": kwargs})

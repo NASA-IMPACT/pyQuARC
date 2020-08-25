@@ -102,7 +102,14 @@ class Checker:
 
     def _time_logic_check(self, earlier_datetime_string, later_datetime_string):
         """
-            Checks if the earlier datetime comes before later datetime
+        Checks if the earlier datetime comes before later datetime
+
+        Args:
+            earlier_datetime_string (str): The earlier datetime string
+            later_datetime_string (str): The later datetime string
+
+        Returns:
+            (bool) True if earlier_datetime comes before later_datetime, False otherwise
         """
         # assumes that iso check has already occurred
         earlier_datetime = self._iso_datetime(earlier_datetime_string)
@@ -211,7 +218,10 @@ class Checker:
             (dict) an object with the validity of the check and the instance/results
         """
 
-        return {"valid": path_value in data["valid_values"], "instance": path_value}
+        return {
+            "valid": relations_mapping["isin"](path_value, data["valid_values"]),
+            "instance": path_value
+        }
 
     def _result_dict(self, result, rule):
         """

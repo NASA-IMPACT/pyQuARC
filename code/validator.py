@@ -23,10 +23,6 @@ class Validator:
         Args:
             metadata_format (str): The format of the metadata that needs to be validated. Can be either of { ECHO10, UMM-JSON, DIF }.
             validation_paths (str): The path of the fields in the metadata that need to be validated. In the form 'Collection/StartDate'.
-
-        Returns:
-            None
-
         """
         self.validation_paths = validation_paths
         self.metadata_format = metadata_format

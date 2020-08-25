@@ -121,25 +121,3 @@ if __name__ == "__main__":
 
     print(json.dumps(results, indent=4))
 
-# "https://cmr.earthdata.nasa.gov/search/collections?provider=GES_DISC&project=MERRA&page_size=2000"
-# demo video
-# normal: list key fields we're checking
-# show it's working
-# make changes and show changes so it's catching the cahnges
-# run for multiple concept ids
-# cmr query
-# only doing this for echo10 right now
-# haven't gone beyond this
-# schema is incomplete (but we can show in video)
-
-# TODO
-# when the cmr url is wrong, it throws an error
-# --query matra halera argument haalena bhane k hunh
-
-# python code/main.py -h
-# file dekhaune, schema dekhaune
-# python code/main.py --concept_ids C1274767829-GES_DISC
-# python code/main.py --concept_ids C1274767829-GES_DISC C1274767835-GES_DISC C1274767715-GES_DISC C1274767795-GES_DISC C1274767802-GES_DISC
-# python code/main.py --concept_ids C1274767829-GES_DISC --fake yes
-# python code/main.py --concept_ids C1274767829-GES_DISC --fields_to_validate "Collection/ProcessingLevelId" --fake yes
-# python code/main.py --query "https://cmr.earthdata.nasa.gov/search/collections?provider=GES_DISC&project=MERRA&page_size=2000"
