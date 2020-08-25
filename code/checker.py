@@ -5,19 +5,34 @@ import requests
 from datetime import datetime
 from urlextract import URLExtract
 
-from constants import SCHEMA_PATHS
-from relations import mapping as relations_mapping
+from .constants import SCHEMA_PATHS
+from .relations import mapping as relations_mapping
 
 
 class Checker:
+    """
+    Class to implement custom checks
+    """
 
     def __init__(self, content_to_validate):
+        """
+        Args:
+            content_to_validate (str): JSON string containing downloaded metadata
+        """
+
         self.content_to_validate = json.loads(content_to_validate)
         self.ruleset = json.load(open(SCHEMA_PATHS["ruleset"], "r"))
         self.rules_mapping = json.load(
             open(SCHEMA_PATHS["rules_mapping"], "r"))
         self.id_to_rule_mapping = json.load(
             open(SCHEMA_PATHS["id_to_rule_mapping"], "r"))
+
+        self.DISPATCHER = {
+            "date_datetime_iso_format_check": self.date_datetime_iso_format_check,
+            "data_update_time_logic_check": self.data_update_time_logic_check,
+            "url_health_and_status_check": self.url_health_and_status_check,
+            "collectiondatatype_enumeration_check": self.collectiondatatype_enumeration_check,
+        }
 
     def _get_rule(self, identifier):
         """
@@ -33,6 +48,7 @@ class Checker:
         Raises:
             KeyError: When the identifier doesn't exist in the ruleset
         """
+
         return self.id_to_rule_mapping[identifier]
 
     def _get_path_value(self, path):
@@ -54,12 +70,13 @@ class Checker:
             for split in splits:
                 input_json = input_json[split.strip()]
         except KeyError as e:
-            return False
+            return False, None
         except TypeError as e:
             # TODO: need another way to parse lists
             print(e, split.strip())
             print(f"_get_path_value failed for {path}")
-        return input_json
+
+        return True, input_json
 
     def _iso_datetime(self, datetime_string):
         """
@@ -69,7 +86,7 @@ class Checker:
             datetime_string (str): the datetime string
 
         Returns:
-            (datetime.datetime) if the string is valid iso string, False otherwise
+            (datetime.datetime) If the string is valid iso string, False otherwise
         """
         regex = r"^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?(Z|[+-](?:2[0-3]|[01][0-9]):[0-5][0-9])?$"
         match_iso8601 = re.compile(regex).match
@@ -102,8 +119,9 @@ class Checker:
             path_value (str): The datetime string
 
         Returns:
-            (dict) an object with the validity of the check and the instance
+            (dict) An object with the validity of the check and the instance
         """
+
         return {
             "valid": bool(self._iso_datetime(path_value)),
             "instance": path_value
@@ -118,14 +136,19 @@ class Checker:
             value2 (str): The UpdateTime datetime string
 
         Returns:
-            (dict) an object with the validity of the check and the instance
+            (dict) An object with the validity of the check and the instance
         """
 
-        date1 = self._iso_datetime(path_value)
-        date2 = self._iso_datetime(self._get_path_value(data["related_paths"]))
-        relation = data["related_paths"][0]["relation"]
+        related_path = data["related_paths"][0]
+        _, related_date_value = self._get_path_value(related_path["path"])
 
-        result = relations_mapping["relation"](date1, date2)
+        date1 = self._iso_datetime(path_value)
+        date2 = self._iso_datetime(related_date_value)
+
+        relation = related_path["relation"]
+
+        # convert "gte", "lte" etc to corresponding functions
+        result = relations_mapping[relation](date1, date2)
 
         return {
             "valid": result,
@@ -143,7 +166,7 @@ class Checker:
             text (str): The text where the check needs to be performed
 
         Returns:
-            (dict) an object with the validity of the check and the instance/results
+            (dict) An object with the validity of the check and the instance/results
         """
         results = []
 
@@ -190,105 +213,90 @@ class Checker:
 
         return {"valid": path_value in data["valid_values"], "instance": path_value}
 
-    DISPATCHER = {
-        "date_datetime_iso_format_check": date_datetime_iso_format_check,
-        "data_update_time_logic_check": data_update_time_logic_check,
-        "url_health_and_status_check": url_health_and_status_check,
-        "collectiondatatype_enumeration_check": collectiondatatype_enumeration_check,
-    }
-
-    def run_old(self):
+    def _result_dict(self, result, rule):
         """
-        Performs all the custom checks based on the QA Rules
+        Creates an output dictionary based on the result of a check
+
+        Args:
+            result (dict): Result dict from a check function
+            rule (dict): The metadata of the rule that was applied to get the result
 
         Returns:
-            (dict) A dictionary that gives the result of the custom checks and errors if they exist
+            (dict) Output dictionary
         """
-        # TODO: This code needs to be rewritten completely
-        results = {}
 
-        for mapping in self.rules_mapping:
-            # do nothing for paths that have no custom checks
-            if not mapping["rules"]:
-                continue
+        result_dict = {}
 
-            path = mapping["path"]
-            results[path] = {}
+        if result["valid"] == False:
+            result_dict["check_passes"] = False
 
-            for rule in mapping["rules"]:
-                rule_id = rule["id"]
-                function_name = rule_id
+            # put path_value in message-fail string
+            fail_message = re.sub(
+                r"\{.*\}",
+                str(result["instance"]),
+                rule["message-fail"]
+            )
 
-                results[path][rule_id] = {}
-                rule = self._get_rule(rule_id)
+            # replace \n, \t with space
+            result_dict["message"] = "".join(fail_message.split())
 
-                value = self._get_path_value(path)
-                if not value:
-                    del results[path][rule_id]
-                    # results[path]["exists"] = False
-                    continue
+            result_dict["help_url"] = rule["help_url"]
+            result_dict["severity"] = rule["severity"]
+        elif result["valid"] is None:
+            result_dict["error"] = "Check function not implemented"
+        else:
+            result_dict["check_passes"] = True
 
-                results[path]["exists"] = True
-                try:
-                    if rule_id == "data_update_time_logic_check":
-                        value1 = self._get_path_value(
-                            "Collection/InsertTime")
-                        value2 = self._get_path_value(
-                            "Collection/LastUpdate"
-                        )
+        return result_dict
 
-                        result = self.DISPATCHER[rule["id"]](
-                            self, value1, value2)
-                    else:
-                        print(self.DISPATCHER[rule["id"]])
-                        print(value)
-                        result = self.DISPATCHER[rule["id"]](self, value)
-                except KeyError as e:
-                    # print(e)
-                    continue
-                if result["valid"] == False:
-                    results[path][rule_id]["check_passes"] = False
-                    results[path][rule_id]["severity"] = rule["severity"]
-
-                    results[path][rule_id]["message"] = re.sub(
-                        r"\{.*\}", str(result["instance"]
-                                       ), rule["message-fail"]
-                    )
-                    results[path][rule_id]["help_url"] = rule["help_url"]
-                    # checks[path][rule_id]["error"] = result["result"]
-                else:
-                    results[path][rule_id]["check_passes"] = True
-
-                results[path][rule_id]["instance"] = result["instance"]
-
-            # if there is no output for any of the rules
-            if not results[path]:
-                del results[path]
-
-        return results
-
-    def run(self, path):
-        '''
+    def run(self):
+        """
             Runs all relevant checks on the given path
 
             Args:
                 path (str): The path to the field in the metadata
             Returns:
                 (dict) Result of the checks
-        '''
+        """
+
+        # TODO: where do we check if the data is empty?
+
+        results = {}
 
         for mapping in self.rules_mapping:
-            if mapping["path"] == path:
-                rules = mapping
+            path = mapping["path"]
 
-        path_value = self._get_path_value(path)
+            # do nothing for paths that have no custom checks
+            if not mapping["rules"]:
+                continue
 
-        try:
-            for rule in rules["rules"]:
-                rule_metadata = self.id_to_rule_mapping[rule["id"]]
+            path_exists, path_value = self._get_path_value(path)
 
-                result = self.DISPATCHER[rule_metadata["id"]](
-                    path_value, rule["data"])
-        except:
-            print(path)
-            # pass
+            # if the path referenced in the rule is not in the data
+            # TODO: Required field checking can be done here
+            if not path_exists:
+                # TODO: maybe set exists = False
+                continue
+
+            results[path] = {}
+
+            # apply rules to the data
+            for rule in mapping["rules"]:
+                rule_id = rule["id"]
+
+                results[path][rule_id] = {}
+
+                try:
+                    result = self.DISPATCHER[rule_id](
+                        path_value, rule["data"])
+                except KeyError:  # rule function not implemented
+                    result = {"valid": None}
+
+                rule_metadata = self._get_rule(rule_id)
+
+                results[path][rule_id] = self._result_dict(
+                    result,
+                    rule_metadata
+                )
+
+        return results
