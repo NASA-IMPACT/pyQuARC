@@ -88,21 +88,19 @@ class Validator:
 
         return filtered_schema
 
-
     def _construct_paths_recursively(self, content_to_validate, container, prefix=''):
         """
         Use recursion to construct all the paths exhaustively
         """
         for key, value in content_to_validate.items():
             pre = key if prefix == '' else f"{prefix}/{key}"
-                
+
             if isinstance(value, dict):
                 self._construct_paths_recursively(value, container, pre)
             elif isinstance(value, list):
                 self._construct_paths_recursively(value[0], container, pre)
             else:
                 container.add(pre)
-
 
     def generate_paths(self, content_to_validate):
         """
@@ -117,7 +115,6 @@ class Validator:
         paths = set()
         self._construct_paths_recursively(content_to_validate, paths)
         return paths
-
 
     def validate_schema(self, content_to_validate):
         """
@@ -184,11 +181,12 @@ class Validator:
         Returns:
             (dict) A dictionary that gives the result of the custom checks and errors if they exist
         """
+
         checker = Checker(content_to_validate)
+
         paths = self.generate_paths(checker.content_to_validate)
         for path in paths:
             checker.run(path)
-
 
     def validate(self, content_to_validate):
         """

@@ -100,7 +100,8 @@ class Downloader:
 
         # is the concept id valid? if not, log error
         if not self._valid_concept_id():
-            self.log_error("invalid_concept_id", {"concept_id": self.concept_id})
+            self.log_error("invalid_concept_id", {
+                           "concept_id": self.concept_id})
             return
 
         # constructs url based on concept id
@@ -146,35 +147,3 @@ class Downloader:
             concept_id_type = Downloader.GRANULE
 
         return concept_id_type
-
-
-# new class for error logs
-
-# new class for validation
-
-
-# if __name__ == "__main__":
-#     concept_id = "C123456-LPDAAC_ECS"
-#     downloader = Downloader(concept_id)
-
-
-# take input from the user
-# concept ID
-
-# how to find out correct endpoint
-
-# need to figure out collection or granule
-# collection starts with c and granule starts with g
-
-# collection: C123456-LPDAAC_ECS
-# https://cmr.earthdata.nasa.gov/search/collections?concept_id\[\]=C123456-LPDAAC_ECS
-
-# granule id: G1000000002-CMR_PROV1
-# https://cmr.earthdata.nasa.gov/search/granules?provider=PROV1&echo_granule_id\[\]=G1000000002-CMR_PROV1
-
-# search for a collection
-# randomly select one granule
-# get details of that granule
-
-# granule metadata is automatically extracted
-# if you fix one, you fix all of them

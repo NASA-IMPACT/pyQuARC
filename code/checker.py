@@ -93,7 +93,6 @@ class Checker:
 
         return earlier_datetime <= later_datetime
 
-
     def date_datetime_iso_format_check(self, path_value, data):
         """
         Performs the Date/DateTime ISO Format Check - checks if the datetime
@@ -110,7 +109,6 @@ class Checker:
             "instance": path_value
         }
 
-
     def data_update_time_logic_check(self, path_value, data):
         """
         Checks if the UpdateTime comes chronologically after the InsertTime
@@ -122,7 +120,7 @@ class Checker:
         Returns:
             (dict) an object with the validity of the check and the instance
         """
-        
+
         date1 = self._iso_datetime(path_value)
         date2 = self._iso_datetime(self._get_path_value(data["related_paths"]))
         relation = data["related_paths"][0]["relation"]
@@ -136,7 +134,6 @@ class Checker:
                 "LastUpdate": date2
             }
         }
-
 
     def url_health_and_status_check(self, path_value, data):
         """
@@ -180,7 +177,6 @@ class Checker:
 
         return {"valid": False, "instance": results}
 
-
     def collectiondatatype_enumeration_check(self, path_value, data):
         """
         Checks if Collection DataType is one of the valid keywords
@@ -194,14 +190,12 @@ class Checker:
 
         return {"valid": path_value in data["valid_values"], "instance": path_value}
 
-
     DISPATCHER = {
         "date_datetime_iso_format_check": date_datetime_iso_format_check,
         "data_update_time_logic_check": data_update_time_logic_check,
         "url_health_and_status_check": url_health_and_status_check,
         "collectiondatatype_enumeration_check": collectiondatatype_enumeration_check,
     }
-
 
     def run_old(self):
         """
@@ -293,10 +287,8 @@ class Checker:
             for rule in rules["rules"]:
                 rule_metadata = self.id_to_rule_mapping[rule["id"]]
 
-                result = self.DISPATCHER[rule_metadata["id"]](path_value, rule["data"])
+                result = self.DISPATCHER[rule_metadata["id"]](
+                    path_value, rule["data"])
         except:
             print(path)
             # pass
-
-
-
