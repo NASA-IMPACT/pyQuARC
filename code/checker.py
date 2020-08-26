@@ -66,17 +66,28 @@ class Checker:
         splits = path.split("/")
         input_json = self.content_to_validate
 
+        results = []
+
         try:
             for split in splits:
+                if isinstance(split, list):
+                    list_of_values = []
+                    for value in split:
+                        list_of_values.append(value)
+
+        # path = 'Contacts/Contact/ContactPersons/ContactPerson/FirstName'
+
                 input_json = input_json[split.strip()]
         except KeyError as e:
             return False, None
         except TypeError as e:
             # TODO: need another way to parse lists
+
             print(e, split.strip())
             print(f"_get_path_value failed for {path}")
 
         return True, input_json
+
 
     def _iso_datetime(self, datetime_string):
         """
@@ -111,6 +122,7 @@ class Checker:
         Returns:
             (bool) True if earlier_datetime comes before later_datetime, False otherwise
         """
+
         # assumes that iso check has already occurred
         earlier_datetime = self._iso_datetime(earlier_datetime_string)
         later_datetime = self._iso_datetime(later_datetime_string)
@@ -160,8 +172,8 @@ class Checker:
         return {
             "valid": result,
             "instance": {
-                "InsertTime": date1,
-                "LastUpdate": date2
+                "InsertTime": path_value,
+                "LastUpdate": related_date_value
             }
         }
 
@@ -175,6 +187,7 @@ class Checker:
         Returns:
             (dict) An object with the validity of the check and the instance/results
         """
+
         results = []
 
         # extract URLs from text
@@ -248,10 +261,11 @@ class Checker:
             )
 
             # replace \n, \t with space
-            result_dict["message"] = "".join(fail_message.split())
+            result_dict["message"] = " ".join(fail_message.split())
 
             result_dict["help_url"] = rule["help_url"]
             result_dict["severity"] = rule["severity"]
+            result_dict["instance"] = result["instance"]
         elif result["valid"] is None:
             result_dict["error"] = "Check function not implemented"
         else:

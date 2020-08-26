@@ -6,8 +6,8 @@ import xmltodict
 from pprint import pprint
 from tqdm import tqdm
 
-from .downloader import Downloader
-from .validator import Validator
+from code.downloader import Downloader
+from code.validator import Validator
 
 
 class PyCMR:
@@ -61,7 +61,7 @@ class PyCMR:
         for concept_id in tqdm(self.concept_ids):
             downloader = Downloader(concept_id)
             if self.fake:
-                with open("tests/data/test_cmr_metadata_echo10.json", "r") as myfile:
+                with open("code/tests/data/test_cmr_metadata_echo10.json", "r") as myfile:
                     content = myfile.read()
             else:
                 content = downloader.download()
