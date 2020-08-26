@@ -67,6 +67,9 @@ class TestChecks:
                                     "FirstName": "MICHAEL",
                                     "LastName": "BOSILOVICH",
                                     "JobPosition": "INVESTIGATOR"
+                                },
+                                {
+                                    "blabla": "BOSILOVICH",
                                 }
                             ]
                         }
@@ -75,10 +78,22 @@ class TestChecks:
             },
         }
 
-        path = "Contacts/Contact/ContactPersons/ContactPerson/FirstName"
-
-        expected_output = ["SLESA", "DANA", "MICHAEL"]
+        input_output = [
+            {
+                "path": "Contacts/Contact/ContactPersons/ContactPerson/glabb",
+                "expected_output": (False, set())
+            },
+            {
+                "path": "Contacts/Contact/ContactPersons/ContactPerson/blabla",
+                "expected_output": (True, {"BOSILOVICH"})
+            },
+            {
+                "path": "Contacts/Contact/ContactPersons/ContactPerson/FirstName",
+                "expected_output": (True, {"DANA", "MICHAEL", "SLESA"})
+            }
+        ]
 
         checker = Checker(json.dumps(input_data))
 
-        assert checker._get_path_value(path) == (True, expected_output)
+        for item in input_output:
+            assert checker._get_path_value(item["path"]) == item["expected_output"]

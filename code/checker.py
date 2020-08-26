@@ -51,42 +51,53 @@ class Checker:
 
         return self.id_to_rule_mapping[identifier]
 
+
+    @staticmethod    
+    def _get_path_value_recursively(obj, path, container):
+        """
+        Gets the path value recursively while handling list or dictionary
+        Adds the values to `container`
+
+        Args:
+            path (str): The path of the field. Example: 'Collection/RangeDateTime/StartDate'
+        """
+
+        try:
+            content = obj[path[0]]
+        except KeyError as e:
+            return
+        new_path = path[1:]
+        if isinstance(content, str):
+            container.add(content)
+        elif isinstance(content, list):
+            for each in content:
+                try:
+                    Checker._get_path_value_recursively(each, new_path, container)
+                except KeyError as e:
+                    continue
+        elif isinstance(content, dict):
+            Checker._get_path_value_recursively(content, new_path, container)
+
+
     def _get_path_value(self, path):
         """
         Gets the value of the field from the metadata (input_json)
 
         Args:
-            input_json (str): The metadata content
             path (str): The path of the field. Example: 'Collection/RangeDateTime/StartDate'
 
         Returns:
-            (str) The value of the field from the metadata (input_json)
+            (bool, set) If the path exists, (True, set) of values of the path;
+                        else (False, empty set)
         """
 
-        splits = path.split("/")
-        input_json = self.content_to_validate
+        container = set()
 
-        results = []
+        path = path.split('/')
 
-        try:
-            for split in splits:
-                if isinstance(split, list):
-                    list_of_values = []
-                    for value in split:
-                        list_of_values.append(value)
+        Checker._get_path_value_recursively(self.content_to_validate, path, container)
 
-        # path = 'Contacts/Contact/ContactPersons/ContactPerson/FirstName'
-
-                input_json = input_json[split.strip()]
-        except KeyError as e:
-            return False, None
-        except TypeError as e:
-            # TODO: need another way to parse lists
-
-            print(e, split.strip())
-            print(f"_get_path_value failed for {path}")
-
-        return True, input_json
+        return bool(container), container
 
 
     def _iso_datetime(self, datetime_string):
@@ -99,6 +110,7 @@ class Checker:
         Returns:
             (datetime.datetime) If the string is valid iso string, False otherwise
         """
+
         regex = r"^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?(Z|[+-](?:2[0-3]|[01][0-9]):[0-5][0-9])?$"
         match_iso8601 = re.compile(regex).match
         try:
@@ -143,7 +155,7 @@ class Checker:
 
         return {
             "valid": bool(self._iso_datetime(path_value)),
-            "instance": path_value
+            "value": path_value
         }
 
     def data_update_time_logic_check(self, path_value, data):
@@ -160,6 +172,7 @@ class Checker:
 
         related_path = data["related_paths"][0]
         _, related_date_value = self._get_path_value(related_path["path"])
+        related_date_value = list(related_date_value)[0]
 
         date1 = self._iso_datetime(path_value)
         date2 = self._iso_datetime(related_date_value)
@@ -171,7 +184,7 @@ class Checker:
 
         return {
             "valid": result,
-            "instance": {
+            "value": {
                 "InsertTime": path_value,
                 "LastUpdate": related_date_value
             }
@@ -218,7 +231,7 @@ class Checker:
         if len(results) == 0:
             return {"valid": True}
 
-        return {"valid": False, "instance": results}
+        return {"valid": False, "value": results}
 
     def collectiondatatype_enumeration_check(self, path_value, data):
         """
@@ -233,7 +246,7 @@ class Checker:
 
         return {
             "valid": relations_mapping["isin"](path_value, data["valid_values"]),
-            "instance": path_value
+            "value": path_value
         }
 
     def _result_dict(self, result, rule):
@@ -250,13 +263,24 @@ class Checker:
 
         result_dict = {}
 
-        if result["valid"] == False:
+        if result["valid"] == None:
+            result_dict["error"] = "Check function not implemented"
+            return result_dict
+
+        for item in result["instances"]:
+            if item["valid"] ==  False:
+                flag = False
+                break
+            else:
+                flag = True
+
+        if flag == False:
             result_dict["check_passes"] = False
 
             # put path_value in message-fail string
             fail_message = re.sub(
                 r"\{.*\}",
-                str(result["instance"]),
+                str(result["instances"]),
                 rule["message-fail"]
             )
 
@@ -265,7 +289,7 @@ class Checker:
 
             result_dict["help_url"] = rule["help_url"]
             result_dict["severity"] = rule["severity"]
-            result_dict["instance"] = result["instance"]
+            result_dict["instances"] = result["instances"]
         elif result["valid"] is None:
             result_dict["error"] = "Check function not implemented"
         else:
@@ -294,7 +318,7 @@ class Checker:
             if not mapping["rules"]:
                 continue
 
-            path_exists, path_value = self._get_path_value(path)
+            path_exists, path_values = self._get_path_value(path)
 
             # if the path referenced in the rule is not in the data
             # TODO: Required field checking can be done here
@@ -310,16 +334,22 @@ class Checker:
 
                 results[path][rule_id] = {}
 
+                res = {}
+                res["instances"] = []
+                res["valid"] = True
+
                 try:
-                    result = self.DISPATCHER[rule_id](
-                        path_value, rule["data"])
+                    for path_value in path_values:
+                        result = self.DISPATCHER[rule_id](
+                            path_value, rule["data"])
+                        res["instances"].append(result)
                 except KeyError:  # rule function not implemented
-                    result = {"valid": None}
+                    res["valid"] = None
 
                 rule_metadata = self._get_rule(rule_id)
 
                 results[path][rule_id] = self._result_dict(
-                    result,
+                    res,
                     rule_metadata
                 )
 
