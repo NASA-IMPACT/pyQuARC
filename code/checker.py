@@ -59,7 +59,9 @@ class Checker:
         Adds the values to `container`
 
         Args:
-            subset_of_metadata_content (dict or list or str):
+            subset_of_metadata_content (dict or list or str): 
+                        The value of the field at a certain point;
+                        changes during each level of recursion
             path (list): The path of the field as a list
                          Example: 'Collection/RangeDateTime/StartDate' ->
                                   ['Collection', 'RangeDateTime', 'StartDate']
