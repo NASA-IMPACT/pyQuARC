@@ -5,7 +5,7 @@ from ..downloader import Downloader
 
 class TestDownloader:
     """
-    Test cases for the downloader script in downloder.py
+    Test cases for the methods in Downloader class in downloder.py
     """
 
     def setup_method(self):
