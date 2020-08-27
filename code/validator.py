@@ -87,34 +87,6 @@ class Validator:
 
         return filtered_schema
 
-    def _construct_paths_recursively(self, content_to_validate, container, prefix=''):
-        """
-        Use recursion to construct all the paths exhaustively
-        """
-        for key, value in content_to_validate.items():
-            pre = key if prefix == '' else f"{prefix}/{key}"
-
-            if isinstance(value, dict):
-                self._construct_paths_recursively(value, container, pre)
-            elif isinstance(value, list):
-                self._construct_paths_recursively(value[0], container, pre)
-            else:
-                container.add(pre)
-
-    def generate_paths(self, content_to_validate):
-        """
-        Generate exhaustive list of paths from content_to_validate
-
-        Args:
-            content_to_validate (dict): The metadata file content
-
-        Returns:
-            (set) The set of all the paths
-        """
-        paths = set()
-        self._construct_paths_recursively(content_to_validate, paths)
-        return paths
-
     def validate_schema(self, content_to_validate):
         """
         Validate passed content based on fields/schema and return any errors
@@ -126,7 +98,6 @@ class Validator:
             (dict) A dictionary that gives the validity of the schema and errors if they exist
 
         """
-        # TODO: Make consistent return types
 
         errors = []
 
