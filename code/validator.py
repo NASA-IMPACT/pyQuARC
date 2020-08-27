@@ -22,7 +22,8 @@ class Validator:
         """
         Args:
             metadata_format (str): The format of the metadata that needs to be validated. Can be either of { ECHO10, UMM-JSON, DIF }.
-            validation_paths (str): The path of the fields in the metadata that need to be validated. In the form 'Collection/StartDate'.
+            validation_paths (list of str): The path of the fields in the metadata that need to be validated. 
+                                            In the form ['Collection/StartDate', ...].
         """
         self.validation_paths = validation_paths
         self.metadata_format = metadata_format
@@ -37,7 +38,6 @@ class Validator:
         Returns:
             (list) A list of fields from validation_path that don't exist in the metadata
         """
-        # TODO: Add custom checks as well
 
         errors = []
 
@@ -46,8 +46,11 @@ class Validator:
                 i.strip() for i in validation_path.split(Validator.PATH_SEPARATOR)
             ]
 
+            # go inside each path iteratively to get the final value
             try:
+                # each level has the value in the "properties" key
                 check = self.schema["properties"]
+                # only go upto the second last value of the path because the last field doesn't have the "properties" key
                 for split in splits[:-1]:
                     check = check[split]["properties"]
                 check = check[splits[-1]]
