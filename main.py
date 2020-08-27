@@ -21,6 +21,14 @@ class PyCMR:
     def __init__(
         self, query=None, input_concept_ids=[], validation_paths=[], fake=None
     ):
+        """
+        Args:
+            query (str): The query url for the metadata content ids to download
+            input_concept_ids (list of str): The list of concept ids to download
+            validation_paths (list of str): The list of the fields/paths to validate in the metadata
+            fake (bool): If set to true, used a fake data to perform the validation
+        """
+
         self.input_concept_ids = input_concept_ids
         self.query = query
         self.validation_paths = validation_paths
@@ -32,6 +40,12 @@ class PyCMR:
         self.fake = fake
 
     def _cmr_query(self):
+        """
+        Reads from the query urls all the concept ids
+
+        Returns:
+            (list of str) Returns all the concept ids found in the `query_url` as a list 
+        """
         # TODO: Make the page_size dynamic and use page_num to advance through multiple pages of results
         response = requests.get(self.query)
 
@@ -48,6 +62,12 @@ class PyCMR:
         return concept_ids
 
     def validate(self):
+        """
+        Validates the metadata contents of all the `concept_ids` and returns the errors
+
+        Returns:
+            (list of dict) The errors found in the metadata content of all the `concept_id`s
+        """
         if self.query and self.input_concept_ids:
             return {
                 "error": "PyCMR received both CMR query and concept_ids. It can only accept one of those."
@@ -90,8 +110,12 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("--query", action="store",
-                       type=str, help="CMR query URL.")
+    group.add_argument(
+        "--query",
+        action="store",
+        type=str,
+        help="CMR query URL."
+    )
     group.add_argument(
         "--concept_ids",
         nargs="+",
@@ -120,4 +144,4 @@ if __name__ == "__main__":
     results = pycmr.validate()
 
     print(json.dumps(results, indent=4))
-
+    
