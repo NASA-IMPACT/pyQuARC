@@ -287,14 +287,15 @@ class Checker:
             result_dict["error"] = "Check function not implemented"
             return result_dict
 
+        # if any one instance fails the rule, the rule as a whole needs to fail the check
+        # a flag to determine if all instances have passed
+        all_instances_pass = True
         for item in result["instances"]:
-            if item["valid"] ==  False:
-                flag = False
+            if item["valid"]:
+                all_instances_pass = False
                 break
-            else:
-                flag = True
 
-        if flag == False:
+        if not all_instances_pass:
             result_dict["check_passes"] = False
 
             # put path_value in message-fail string
