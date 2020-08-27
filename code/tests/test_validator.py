@@ -7,6 +7,8 @@ import xmltodict
 from ..downloader import Downloader
 from ..validator import Validator
 
+from .fixtures.validator import REAL_COLLECTION_VALIDATOR_RESULT
+
 
 class TestValidator:
     """
@@ -29,31 +31,20 @@ class TestValidator:
     def test_read_schema(self):
         downloader = Downloader(self.concept_ids["collection"]["real"])
         content_to_validate = downloader.download()
-        validator = Validator(content_to_validate=content_to_validate)
+        validator = Validator()
         schema = validator.read_schema()
 
-        schema_dict = {
-            "ShortName": {"type": "string", "min_length": 1, "max_length": 40}
-        }
-
-        assert schema == schema_dict
+        assert schema["$schema"] == "http://json-schema.org/draft-07/schema#"
+        assert schema["definitions"]["RangeDateTime"]["type"] == "object"
 
     def test_validate(self):
         downloader = Downloader(self.concept_ids["collection"]["real"])
         content_to_validate = downloader.download()
 
-        validator = Validator(content_to_validate=content_to_validate)
-        results_dict = validator.validate()
+        validator = Validator()
+        results_dict = validator.validate(content_to_validate)
 
-        expected_results_dict = {
-            "ShortName": {
-                "field_exists_in_downloaded_content": True,
-                "valid": True,
-                "errors": [],
-            }
-        }
-
-        assert results_dict == expected_results_dict
+        assert results_dict == REAL_COLLECTION_VALIDATOR_RESULT
 
     def test_validate_field_not_in_schema(self):
         pass
@@ -63,45 +54,3 @@ class TestValidator:
 
     def test_validate_field_in_schema_some_keys_invalid(self):
         pass
-
-    def test_dami_schema(self):
-        content = json.load(open("code/data/damidata.json", "r"))
-        schema = json.load(open("code/data/damischema.json", "r"))
-
-        result = jsonschema.validate(
-            content, schema, format_checker=jsonschema.draft7_format_checker,
-        )
-        assert result == None
-
-    def test_dami_schema_xml(self):
-        with open("code/data/echo10.xml", "r") as file:
-            content = file.read()
-        content = xmltodict.parse(content)
-
-        validator = Validator()
-        errors = validator.validate_new(content)
-
-        # maybe we can use faker for tests
-        assert errors == [
-            {
-                "instance": "2009-04-20",
-                "message": "'2009-04-20' is not a 'date-time'",
-                "path": "Collection/Temporal/RangeDateTime/BeginningDateTime",
-                "validator": "format",
-                "validator_value": "date-time",
-            },
-            {
-                "instance": "21234132984132874132471241234124312423212341329841328741324712412341243124232123413298413287413247124123412431242321234132984132874132471241234124312423",
-                "message": "'21234132984132874132471241234124312423212341329841328741324712412341243124232123413298413287413247124123412431242321234132984132874132471241234124312423' "
-                "is too long",
-                "path": "Collection > ProcessingLevelId",
-                "validator": "maxLength",
-                "validator_value": 80,
-            },
-        ]
-
-    def test_generate_paths(self):
-        content_to_validate = json.load(open("tests/data/test_cmr_metadata_echo10.json", "r"))
-
-        validator = Validator()
-        assert validator.generate_paths(content_to_validate) == 0

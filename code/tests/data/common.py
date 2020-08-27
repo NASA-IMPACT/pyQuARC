@@ -1,1 +1,0 @@
-DUMMY_METADATA_FILE_PATH = "code/tests/data/test_cmr_metadata_echo10.json"
