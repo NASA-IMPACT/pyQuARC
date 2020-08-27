@@ -25,6 +25,7 @@ class Validator:
             validation_paths (list of str): The path of the fields in the metadata that need to be validated. 
                                             In the form ['Collection/StartDate', ...].
         """
+
         self.validation_paths = validation_paths
         self.metadata_format = metadata_format
         self.schema = self.read_schema()
@@ -136,7 +137,7 @@ class Validator:
                 }
             )
 
-        if len(errors) == 0:
+        if not errors:
             return {"valid": True}
 
         return {"valid": False, "errors": errors}
