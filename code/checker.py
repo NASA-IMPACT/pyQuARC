@@ -103,7 +103,7 @@ class Checker:
 
         Checker._get_path_value_recursively(self.content_to_validate, path, container)
 
-        return bool(container), container
+        return container
 
 
     def _iso_datetime(self, datetime_string):
@@ -172,7 +172,7 @@ class Checker:
         """
 
         related_path = data["related_paths"][0]
-        _, related_date_value = self._get_path_value(related_path["path"])
+        related_date_value = self._get_path_value(related_path["path"])
         related_date_value = list(related_date_value)[0]
 
         date1 = self._iso_datetime(datetime_string)
@@ -325,7 +325,8 @@ class Checker:
             if not mapping["rules"]:
                 continue
 
-            path_exists, path_values = self._get_path_value(path)
+            path_values = self._get_path_value(path)
+            path_exists = bool(path_values)
 
             # if the path referenced in the rule is not in the data
             # TODO: Required field checking can be done here
