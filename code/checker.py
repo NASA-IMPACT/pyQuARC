@@ -141,30 +141,43 @@ class Checker:
 
         return earlier_datetime <= later_datetime
 
-    def date_datetime_iso_format_check(self, path_value, data):
+    def date_datetime_iso_format_check(self, datetime_string, data):
         """
         Performs the Date/DateTime ISO Format Check - checks if the datetime
         is valid ISO formatted datetime string
 
         Args:
-            path_value (str): The datetime string
+            datetime_string (str): The datetime string
+            data (dict): The data associated with/required by the rule. May be empty.
+                         The format is: "data": {
+                                            other fields as required by the rule (here, nothing)
+                                        }
 
         Returns:
             (dict) An object with the validity of the check and the instance
         """
 
         return {
-            "valid": bool(self._iso_datetime(path_value)),
-            "value": path_value
+            "valid": bool(self._iso_datetime(datetime_string)),
+            "value": datetime_string
         }
 
-    def data_update_time_logic_check(self, path_value, data):
+    def data_update_time_logic_check(self, datetime_string, data):
         """
         Checks if the UpdateTime comes chronologically after the InsertTime
 
         Args:
-            value1 (str): The InsertTime datetime string
-            value2 (str): The UpdateTime datetime string
+            datetime_string (str): The datetime string from the field InsertTime
+            data (dict): The data associated with/required by the rule. May be empty.
+                         The format is: "data": {
+                                            "related_paths": [
+                                                {
+                                                    "path": "Collection/InsertTime",
+                                                    "relation": "gte"
+                                                }
+                                            ],
+                                            // other fields as required by the rule
+                                        }
 
         Returns:
             (dict) An object with the validity of the check and the instance
@@ -174,7 +187,7 @@ class Checker:
         _, related_date_value = self._get_path_value(related_path["path"])
         related_date_value = list(related_date_value)[0]
 
-        date1 = self._iso_datetime(path_value)
+        date1 = self._iso_datetime(datetime_string)
         date2 = self._iso_datetime(related_date_value)
 
         relation = related_path["relation"]
@@ -185,17 +198,21 @@ class Checker:
         return {
             "valid": result,
             "value": {
-                "InsertTime": path_value,
+                "InsertTime": datetime_string,
                 "LastUpdate": related_date_value
             }
         }
 
-    def url_health_and_status_check(self, path_value, data):
+    def url_health_and_status_check(self, text, data):
         """
-        Checks the health and status of the URLs included in the text
+        Checks the health and status of the URLs included in `text`
 
         Args:
-            text (str): The text where the check needs to be performed
+            text (str): The text that contains the URLs where the check needs to be performed
+            data (dict): The data associated with/required by the rule. May be empty.
+                         The format is: "data": {
+                                            // fields as required by the rule (here, nothing)
+                                        }
 
         Returns:
             (dict) An object with the validity of the check and the instance/results
@@ -205,7 +222,7 @@ class Checker:
 
         # extract URLs from text
         extractor = URLExtract()
-        urls = extractor.find_urls(path_value)
+        urls = extractor.find_urls(text)
 
         # remove dots at the end
         # remove duplicated urls
@@ -233,20 +250,24 @@ class Checker:
 
         return {"valid": False, "value": results}
 
-    def collectiondatatype_enumeration_check(self, path_value, data):
+    def collectiondatatype_enumeration_check(self, data_type, data):
         """
         Checks if Collection DataType is one of the valid keywords
 
         Args:
-            text (str): The value of the DataType field
+            data_type (str): The value of the DataType field
+            data (dict): The data associated with/required by the rule. May be empty.
+                         The format is: "data": {
+                                            "valid_values" : ["SCIENCE_TYPE", ...]
+                                        }
 
         Returns:
             (dict) an object with the validity of the check and the instance/results
         """
 
         return {
-            "valid": relations_mapping["isin"](path_value, data["valid_values"]),
-            "value": path_value
+            "valid": relations_mapping["isin"](data_type, data["valid_values"]),
+            "value": data_type
         }
 
     def _result_dict(self, result, rule):
