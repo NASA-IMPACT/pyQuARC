@@ -25,16 +25,16 @@ class TestChecks:
         with open(os.path.join(os.getcwd(), "code/tests/data/test_cmr_metadata_echo10.json"), "r") as content_file:
             return content_file.read()
 
-    # def test_time_logic_check(self):
-    #     assert _time_logic_check(self.insert_time, self.update_time) == True
-    #     assert _time_logic_check(
-    #         self.wrong_insert_time, self.update_time) == False
-    #     assert _time_logic_check(
-    #         self.insert_time, self.wrong_update_time) == False
+    def test_time_logic_check(self):
+        assert self.checker._time_logic_check(self.insert_time, self.update_time) == True
+        assert self.checker._time_logic_check(
+            self.wrong_insert_time, self.update_time) == False
+        assert self.checker._time_logic_check(
+            self.insert_time, self.wrong_update_time) == False
 
-    # def test_datetime_iso_format_check(self):
-    #     assert datetime_iso_format_check(self.iso_time)["valid"] == True
-    #     assert datetime_iso_format_check(self.non_iso_time)["valid"] == False
+    def test_datetime_iso_format_check(self):
+        assert self.checker.datetime_iso_format_check(self.iso_time)["valid"] == True
+        assert self.checker.datetime_iso_format_check(self.non_iso_time)["valid"] == False
 
     def test_run(self):
         self.checker.run()
