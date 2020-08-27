@@ -81,7 +81,7 @@ class PyCMR:
         for concept_id in tqdm(self.concept_ids):
             downloader = Downloader(concept_id)
             if self.fake:
-                with open("code/tests/data/test_cmr_metadata_echo10.json", "r") as myfile:
+                with open("code/tests/fixtures/test_cmr_metadata_echo10.json", "r") as myfile:
                     content = myfile.read()
             else:
                 content = downloader.download()
@@ -144,4 +144,3 @@ if __name__ == "__main__":
     results = pycmr.validate()
 
     print(json.dumps(results, indent=4))
-    
