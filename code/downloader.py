@@ -12,7 +12,6 @@ class Downloader:
         Downloads data given a concept ID
     """
 
-    # BASE_URL = "https://cmr.earthdata.nasa.gov/search/{concept_id_type}/{concept_id}"
     BASE_URL = (
         "https://cmr.earthdata.nasa.gov/search/concepts/{concept_id}.{metadata_format}"
     )
@@ -100,8 +99,10 @@ class Downloader:
 
         # is the concept id valid? if not, log error
         if not self._valid_concept_id():
-            self.log_error("invalid_concept_id", {
-                           "concept_id": self.concept_id})
+            self.log_error(
+                "invalid_concept_id",
+                { "concept_id": self.concept_id }
+            )
             return
 
         # constructs url based on concept id

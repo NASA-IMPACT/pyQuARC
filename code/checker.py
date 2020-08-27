@@ -53,30 +53,36 @@ class Checker:
 
 
     @staticmethod    
-    def _get_path_value_recursively(obj, path, container):
+    def _get_path_value_recursively(subset_of_metadata_content, path, container):
         """
-        Gets the path value recursively while handling list or dictionary
+        Gets the path values recursively while handling list or dictionary in `subset_of_metadata_content`
         Adds the values to `container`
 
         Args:
-            path (str): The path of the field. Example: 'Collection/RangeDateTime/StartDate'
+            subset_of_metadata_content (dict or list or str): 
+                        The value of the field at a certain point;
+                        changes during each level of recursion
+            path (list): The path of the field as a list
+                         Example: 'Collection/RangeDateTime/StartDate' ->
+                                  ['Collection', 'RangeDateTime', 'StartDate']
+            container (set): The container that holds all the path values
         """
 
         try:
-            content = obj[path[0]]
+            root_content = subset_of_metadata_content[path[0]]
         except KeyError as e:
             return
         new_path = path[1:]
-        if isinstance(content, str):
-            container.add(content)
-        elif isinstance(content, list):
-            for each in content:
+        if isinstance(root_content, str):
+            container.add(root_content)
+        elif isinstance(root_content, list):
+            for each in root_content:
                 try:
                     Checker._get_path_value_recursively(each, new_path, container)
                 except KeyError as e:
                     continue
-        elif isinstance(content, dict):
-            Checker._get_path_value_recursively(content, new_path, container)
+        elif isinstance(root_content, dict):
+            Checker._get_path_value_recursively(root_content, new_path, container)
 
 
     def _get_path_value(self, path):
@@ -87,7 +93,7 @@ class Checker:
             path (str): The path of the field. Example: 'Collection/RangeDateTime/StartDate'
 
         Returns:
-            (bool, set) If the path exists, (True, set) of values of the path;
+            (bool, set) If the path exists, (True, set of values of the path);
                         else (False, empty set)
         """
 
@@ -97,7 +103,7 @@ class Checker:
 
         Checker._get_path_value_recursively(self.content_to_validate, path, container)
 
-        return bool(container), container
+        return container
 
 
     def _iso_datetime(self, datetime_string):
@@ -123,58 +129,53 @@ class Checker:
             pass
         return False
 
-    def _time_logic_check(self, earlier_datetime_string, later_datetime_string):
-        """
-        Checks if the earlier datetime comes before later datetime
-
-        Args:
-            earlier_datetime_string (str): The earlier datetime string
-            later_datetime_string (str): The later datetime string
-
-        Returns:
-            (bool) True if earlier_datetime comes before later_datetime, False otherwise
-        """
-
-        # assumes that iso check has already occurred
-        earlier_datetime = self._iso_datetime(earlier_datetime_string)
-        later_datetime = self._iso_datetime(later_datetime_string)
-
-        return earlier_datetime <= later_datetime
-
-    def date_datetime_iso_format_check(self, path_value, data):
+    def date_datetime_iso_format_check(self, datetime_string, data):
         """
         Performs the Date/DateTime ISO Format Check - checks if the datetime
         is valid ISO formatted datetime string
 
         Args:
-            path_value (str): The datetime string
+            datetime_string (str): The datetime string
+            data (dict): The data associated with/required by the rule. May be empty.
+                         The format is: "data": {
+                                            other fields as required by the rule (here, nothing)
+                                        }
 
         Returns:
             (dict) An object with the validity of the check and the instance
         """
 
         return {
-            "valid": bool(self._iso_datetime(path_value)),
-            "value": path_value
+            "valid": bool(self._iso_datetime(datetime_string)),
+            "value": datetime_string
         }
 
-    def data_update_time_logic_check(self, path_value, data):
+    def data_update_time_logic_check(self, datetime_string, data):
         """
         Checks if the UpdateTime comes chronologically after the InsertTime
 
         Args:
-            value1 (str): The InsertTime datetime string
-            value2 (str): The UpdateTime datetime string
+            datetime_string (str): The datetime string from the field InsertTime
+            data (dict): The data associated with/required by the rule. May be empty.
+                         The format is: "data": {
+                                            "related_paths": [
+                                                {
+                                                    "path": "Collection/InsertTime",
+                                                    "relation": "gte"
+                                                }
+                                            ],
+                                            // other fields as required by the rule
+                                        }
 
         Returns:
             (dict) An object with the validity of the check and the instance
         """
 
         related_path = data["related_paths"][0]
-        _, related_date_value = self._get_path_value(related_path["path"])
+        related_date_value = self._get_path_value(related_path["path"])
         related_date_value = list(related_date_value)[0]
 
-        date1 = self._iso_datetime(path_value)
+        date1 = self._iso_datetime(datetime_string)
         date2 = self._iso_datetime(related_date_value)
 
         relation = related_path["relation"]
@@ -185,17 +186,21 @@ class Checker:
         return {
             "valid": result,
             "value": {
-                "InsertTime": path_value,
+                "InsertTime": datetime_string,
                 "LastUpdate": related_date_value
             }
         }
 
-    def url_health_and_status_check(self, path_value, data):
+    def url_health_and_status_check(self, text, data):
         """
-        Checks the health and status of the URLs included in the text
+        Checks the health and status of the URLs included in `text`
 
         Args:
-            text (str): The text where the check needs to be performed
+            text (str): The text that contains the URLs where the check needs to be performed
+            data (dict): The data associated with/required by the rule. May be empty.
+                         The format is: "data": {
+                                            // fields as required by the rule (here, nothing)
+                                        }
 
         Returns:
             (dict) An object with the validity of the check and the instance/results
@@ -205,14 +210,13 @@ class Checker:
 
         # extract URLs from text
         extractor = URLExtract()
-        urls = extractor.find_urls(path_value)
+        urls = extractor.find_urls(text)
 
-        # remove dots at the end
+        # remove dots at the end (The URLExtract library catches URLs, but sometimes appends a '.' at the end)
         # remove duplicated urls
         urls = set(url[:-1] if url.endswith(".") else url for url in urls)
 
         # check that URL returns a valid response
-        # TODO: snafu fix for multiple randomurl1.coms
         for url in urls:
             if not url.startswith('http'):
                 url = f'http://{url}'
@@ -228,25 +232,29 @@ class Checker:
                 result = {"url": url, "error": "Some unknown error occurred."}
             results.append(result)
 
-        if len(results) == 0:
+        if not results:
             return {"valid": True}
 
         return {"valid": False, "value": results}
 
-    def collectiondatatype_enumeration_check(self, path_value, data):
+    def collectiondatatype_enumeration_check(self, data_type, data):
         """
         Checks if Collection DataType is one of the valid keywords
 
         Args:
-            text (str): The value of the DataType field
+            data_type (str): The value of the DataType field
+            data (dict): The data associated with/required by the rule. May be empty.
+                         The format is: "data": {
+                                            "valid_values" : ["SCIENCE_TYPE", ...]
+                                        }
 
         Returns:
             (dict) an object with the validity of the check and the instance/results
         """
 
         return {
-            "valid": relations_mapping["isin"](path_value, data["valid_values"]),
-            "value": path_value
+            "valid": relations_mapping["isin"](data_type, data["valid_values"]),
+            "value": data_type
         }
 
     def _result_dict(self, result, rule):
@@ -267,14 +275,15 @@ class Checker:
             result_dict["error"] = "Check function not implemented"
             return result_dict
 
+        # if any one instance fails the rule, the rule as a whole needs to fail the check
+        # a flag to determine if all instances have passed
+        all_instances_pass = True
         for item in result["instances"]:
-            if item["valid"] ==  False:
-                flag = False
+            if item["valid"]:
+                all_instances_pass = False
                 break
-            else:
-                flag = True
 
-        if flag == False:
+        if not all_instances_pass:
             result_dict["check_passes"] = False
 
             # put path_value in message-fail string
@@ -301,8 +310,6 @@ class Checker:
         """
             Runs all relevant checks on the given path
 
-            Args:
-                path (str): The path to the field in the metadata
             Returns:
                 (dict) Result of the checks
         """
@@ -318,7 +325,8 @@ class Checker:
             if not mapping["rules"]:
                 continue
 
-            path_exists, path_values = self._get_path_value(path)
+            path_values = self._get_path_value(path)
+            path_exists = bool(path_values)
 
             # if the path referenced in the rule is not in the data
             # TODO: Required field checking can be done here

@@ -22,8 +22,10 @@ class Validator:
         """
         Args:
             metadata_format (str): The format of the metadata that needs to be validated. Can be either of { ECHO10, UMM-JSON, DIF }.
-            validation_paths (str): The path of the fields in the metadata that need to be validated. In the form 'Collection/StartDate'.
+            validation_paths (list of str): The path of the fields in the metadata that need to be validated. 
+                                            In the form ['Collection/StartDate', ...].
         """
+
         self.validation_paths = validation_paths
         self.metadata_format = metadata_format
         self.schema = self.read_schema()
@@ -37,7 +39,6 @@ class Validator:
         Returns:
             (list) A list of fields from validation_path that don't exist in the metadata
         """
-        # TODO: Add custom checks as well
 
         errors = []
 
@@ -46,8 +47,11 @@ class Validator:
                 i.strip() for i in validation_path.split(Validator.PATH_SEPARATOR)
             ]
 
+            # go inside each path iteratively to get the final value
             try:
+                # each level has the value in the "properties" key
                 check = self.schema["properties"]
+                # only go upto the second last value of the path because the last field doesn't have the "properties" key
                 for split in splits[:-1]:
                     check = check[split]["properties"]
                 check = check[splits[-1]]
@@ -84,34 +88,6 @@ class Validator:
 
         return filtered_schema
 
-    def _construct_paths_recursively(self, content_to_validate, container, prefix=''):
-        """
-        Use recursion to construct all the paths exhaustively
-        """
-        for key, value in content_to_validate.items():
-            pre = key if prefix == '' else f"{prefix}/{key}"
-
-            if isinstance(value, dict):
-                self._construct_paths_recursively(value, container, pre)
-            elif isinstance(value, list):
-                self._construct_paths_recursively(value[0], container, pre)
-            else:
-                container.add(pre)
-
-    def generate_paths(self, content_to_validate):
-        """
-        Generate exhaustive list of paths from content_to_validate
-
-        Args:
-            content_to_validate (dict): The metadata file content
-
-        Returns:
-            (set) The set of all the paths
-        """
-        paths = set()
-        self._construct_paths_recursively(content_to_validate, paths)
-        return paths
-
     def validate_schema(self, content_to_validate):
         """
         Validate passed content based on fields/schema and return any errors
@@ -123,7 +99,6 @@ class Validator:
             (dict) A dictionary that gives the validity of the schema and errors if they exist
 
         """
-        # TODO: Make consistent return types
 
         errors = []
 
@@ -150,7 +125,6 @@ class Validator:
             filtered_schema, format_checker=jsonschema.draft7_format_checker
         )
 
-        # this takes a json string
         for error in sorted(validator.iter_errors(content_to_validate), key=str):
             errors.append(
                 {
@@ -162,7 +136,7 @@ class Validator:
                 }
             )
 
-        if len(errors) == 0:
+        if not errors:
             return {"valid": True}
 
         return {"valid": False, "errors": errors}
