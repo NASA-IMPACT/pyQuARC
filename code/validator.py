@@ -125,7 +125,6 @@ class Validator:
             filtered_schema, format_checker=jsonschema.draft7_format_checker
         )
 
-        # this takes a json string
         for error in sorted(validator.iter_errors(content_to_validate), key=str):
             errors.append(
                 {
