@@ -123,24 +123,6 @@ class Checker:
             pass
         return False
 
-    def _time_logic_check(self, earlier_datetime_string, later_datetime_string):
-        """
-        Checks if the earlier datetime comes before later datetime
-
-        Args:
-            earlier_datetime_string (str): The earlier datetime string
-            later_datetime_string (str): The later datetime string
-
-        Returns:
-            (bool) True if earlier_datetime comes before later_datetime, False otherwise
-        """
-
-        # assumes that iso check has already occurred
-        earlier_datetime = self._iso_datetime(earlier_datetime_string)
-        later_datetime = self._iso_datetime(later_datetime_string)
-
-        return earlier_datetime <= later_datetime
-
     def date_datetime_iso_format_check(self, datetime_string, data):
         """
         Performs the Date/DateTime ISO Format Check - checks if the datetime
@@ -322,8 +304,6 @@ class Checker:
         """
             Runs all relevant checks on the given path
 
-            Args:
-                path (str): The path to the field in the metadata
             Returns:
                 (dict) Result of the checks
         """
