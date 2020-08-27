@@ -224,12 +224,11 @@ class Checker:
         extractor = URLExtract()
         urls = extractor.find_urls(text)
 
-        # remove dots at the end
+        # remove dots at the end (The URLExtract library catches URLs, but sometimes appends a '.' at the end)
         # remove duplicated urls
         urls = set(url[:-1] if url.endswith(".") else url for url in urls)
 
         # check that URL returns a valid response
-        # TODO: snafu fix for multiple randomurl1.coms
         for url in urls:
             if not url.startswith('http'):
                 url = f'http://{url}'
@@ -245,7 +244,7 @@ class Checker:
                 result = {"url": url, "error": "Some unknown error occurred."}
             results.append(result)
 
-        if len(results) == 0:
+        if not results:
             return {"valid": True}
 
         return {"valid": False, "value": results}
