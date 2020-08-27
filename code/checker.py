@@ -53,30 +53,34 @@ class Checker:
 
 
     @staticmethod    
-    def _get_path_value_recursively(obj, path, container):
+    def _get_path_value_recursively(subset_of_metadata_content, path, container):
         """
-        Gets the path value recursively while handling list or dictionary
+        Gets the path values recursively while handling list or dictionary in `subset_of_metadata_content`
         Adds the values to `container`
 
         Args:
-            path (str): The path of the field. Example: 'Collection/RangeDateTime/StartDate'
+            subset_of_metadata_content (dict or list or str):
+            path (list): The path of the field as a list
+                         Example: 'Collection/RangeDateTime/StartDate' ->
+                                  ['Collection', 'RangeDateTime', 'StartDate']
+            container (set): The container that holds all the path values
         """
 
         try:
-            content = obj[path[0]]
+            root_content = subset_of_metadata_content[path[0]]
         except KeyError as e:
             return
         new_path = path[1:]
-        if isinstance(content, str):
-            container.add(content)
-        elif isinstance(content, list):
-            for each in content:
+        if isinstance(root_content, str):
+            container.add(root_content)
+        elif isinstance(root_content, list):
+            for each in root_content:
                 try:
                     Checker._get_path_value_recursively(each, new_path, container)
                 except KeyError as e:
                     continue
-        elif isinstance(content, dict):
-            Checker._get_path_value_recursively(content, new_path, container)
+        elif isinstance(root_content, dict):
+            Checker._get_path_value_recursively(root_content, new_path, container)
 
 
     def _get_path_value(self, path):
@@ -87,7 +91,7 @@ class Checker:
             path (str): The path of the field. Example: 'Collection/RangeDateTime/StartDate'
 
         Returns:
-            (bool, set) If the path exists, (True, set) of values of the path;
+            (bool, set) If the path exists, (True, set of values of the path);
                         else (False, empty set)
         """
 
