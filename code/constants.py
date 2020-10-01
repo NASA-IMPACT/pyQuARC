@@ -19,7 +19,9 @@ SCHEMA_PATHS = {
     ECHO10: SCHEMAS_BASE_PATH / f"{ECHO10}.{SCHEMA_EXTENSION}",
     DIF: SCHEMAS_BASE_PATH / f"{DIF}.{SCHEMA_EXTENSION}",
     UMM_JSON: SCHEMAS_BASE_PATH / f"{UMM_JSON}.{SCHEMA_EXTENSION}",
-    "ruleset": SCHEMAS_BASE_PATH / "ruleset.json",
     "rules_mapping": SCHEMAS_BASE_PATH / "rules_mapping.json",
-    "id_to_rule_mapping": SCHEMAS_BASE_PATH / "id_to_rule_mapping.json",
+    "rule_mapping": SCHEMAS_BASE_PATH / "rule_mapping.json",
+    "checks": SCHEMAS_BASE_PATH / "checks.json",
+    "check_messages": SCHEMAS_BASE_PATH / "check_messages.json",
+    "check_messages_override": SCHEMAS_BASE_PATH / "check_messages_override.json",
 }

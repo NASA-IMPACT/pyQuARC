@@ -7,7 +7,7 @@ from pprint import pprint
 from tqdm import tqdm
 
 from code.downloader import Downloader
-from code.validator import Validator
+from code.checker import Checker
 
 
 class PyCMR:
@@ -86,11 +86,13 @@ class PyCMR:
             else:
                 content = downloader.download()
 
-            validator = Validator(
+            content = json.loads(content)
+
+            checker = Checker(
                 downloader.metadata_format, validation_paths=self.validation_paths
             )
 
-            validation_errors = validator.validate(content)
+            validation_errors = checker.run(content)
 
             self.errors.append(
                 {

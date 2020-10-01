@@ -1,0 +1,98 @@
+[
+    {
+        "rule_id": "date_compare",
+        "rule_name": "Data Update Time Logic Check",
+        "fields_to_apply": [
+            {
+                "fields": ["Collection/InsertTime", "Collection/LastUpdate"],
+                "relation": "lte"
+            },
+            {
+                "fields": ["Collection/Temporal/RangeDateTime/BeginningDateTime", "Collection/Temporal/RangeDateTime/EndingDateTime"],
+                "relation": "lte"
+            }
+        ]
+    },
+    {
+        "rule_id": "datetime_format_check",
+        "rule_name": "Datetime ISO Format Check",
+        "fields_to_apply": [
+            {
+                "fields": ["Collection/InsertTime"]
+            },
+            {
+                "fields": ["Collection/LastUpdate"]
+            },
+            {
+                "fields": ["Collection/DeleteTime"]
+            },
+            {
+                "fields": ["Collection/RevisionDate"]
+            },
+            {
+                "fields": ["Collection/Temporal/SingleDateTime"]
+            },
+            {
+                "fields": ["Collection/Temporal/RangeDateTime/BeginningDateTime"]
+            },
+            {
+                "fields": ["Collection/Temporal/RangeDateTime/EndingDateTime"]
+            },
+            {
+                "fields": ["Collection/Temporal/PeriodicDateTime/StartDate"]
+            },
+            {
+                "fields": ["Collection/Temporal/PeriodicDateTime/EndDate"]
+            }
+        ]
+    },
+    {
+        "rule_id": "url_check",
+        "rule_name": "URL Health and Status Check",
+        "fields_to_apply": [
+            {
+                "fields": ["Collection/Description"]
+            },
+            {
+                "fields": ["Collection/SuggestedUsage"]
+            }
+        ]
+    },
+    {
+        "rule_id": "shortname_uniqueness",
+        "rule_name": "Short Name uniqueness check",
+        "fields_to_apply": [
+            {
+                "fields": ["Collection/DataSetId", "Collection/ShortName"],
+                "relation": "eq"
+            }
+        ]
+    },
+    {
+        "rule_id": "length_check",
+        "rule_name": "Abstract length check",
+        "fields_to_apply": [
+            {
+                "fields": ["Collection/Description"]
+            }
+        ]
+    },
+    {
+        "rule_id": "doi_check",
+        "rule_name": "DOI Validity Check",
+        "fields_to_apply": [
+            {
+                "fields": ["Collection/DOI/DOI"]
+            }
+        ]
+    },
+    {
+        "rule_id": "processing_level_id_check",
+        "rule_name": "EOSDIS Standard Processing Level ID Check",
+        "fields_to_apply": [
+            {
+                "fields": ["Collection/ProcessingLevelId"]
+            }
+        ]
+    }
+]

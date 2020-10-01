@@ -1,0 +1,52 @@
+{
+    "date_compare": {
+        "data_type": "datetime",
+        "check_function": "compare",
+        "number_of_arguments": 2,
+        "dependencies": ["datetime_format_check"],
+        "description": "Compares two datetimes based on the relation given.",
+        "available": true
+    },
+    "datetime_format_check": {
+        "data_type": "datetime",
+        "check_function": "iso_format_check",
+        "description": "Checks whether a date or dateTime provided in a metadata field adheres to the ISO 8601 standard.",
+        "available": true
+    },
+    "url_check": {
+        "data_type": "url",
+        "check_function": "health_and_status_check",
+        "description": "Checks if the url provided exists and is reachable",
+        "available": true
+    },
+    "controlled_keywords_check": {
+        "data_type": "string",
+        "check_function": "is_in",
+        "description": "Checks if a given keyword is one of the controlled keywords",
+        "available": true
+    },
+    "shortname_uniqueness": {
+        "data_type": "string",
+        "check_function": "compare",
+        "description": "Checks if the shortname is unique.",
+        "available": true
+    },
+    "length_check": {
+        "data_type": "string",
+        "check_function": "length_check",
+        "description": "Checks if the length of a given keyword is less than or equal to a given value",
+        "available": true
+    },
+    "doi_check": {
+        "data_type": "url",
+        "check_function": "doi_check",
+        "description": "Checks if the DOI is valid.",
+        "available": true
+    },
+    "processing_level_id_check": {
+        "data_type": "string",
+        "check_function": "processing_level_id_check",
+        "description": "Checks ...",
+        "available": true
+    }
+}

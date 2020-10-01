@@ -1,0 +1,15 @@
+[
+    {
+        "check_id": "shortname_uniqueness",
+        "message": {
+            "success": "The Name is unique.",
+            "failure": "The Name {} is not unique.",
+            "warning": "Make sure Name is unique."
+        },
+        "help": {
+            "message": "The value of Name should be a unique value based on...",
+            "url": "someurl.com"
+        },
+        "remediation": "A remedy."
+    }
+]

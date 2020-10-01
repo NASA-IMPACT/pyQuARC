@@ -1,186 +1,194 @@
-import json
-import jsonschema
 import re
+import requests
 
-from copy import deepcopy
-
-from .checker import Checker
-from .constants import DIF, ECHO10, UMM_JSON
-from .constants import SCHEMA_PATHS
+from datetime import datetime
+from urlextract import URLExtract
 
 
-class Validator:
-    """
-    Validates downloaded metadata for certain fields and returns the result.
-    """
+class BaseValidator:
+    def __init__(self):
+        pass
 
-    PATH_SEPARATOR = "/"
+    @staticmethod
+    def eq(*args):
+        return args[0] == args[1]
 
-    def __init__(
-        self, metadata_format=ECHO10, validation_paths=[],
-    ):
+    @staticmethod
+    def lt(*args):
+        return args[0] < args[1]
+
+    @staticmethod
+    def lte(*args):
+        return args[0] <= args[1]
+
+    @staticmethod
+    def gt(*args):
+        return args[0] > args[1]
+
+    @staticmethod
+    def gte(*args):
+        return args[0] >= args[1]
+
+    @staticmethod
+    def is_in(*args):
+        return args[0] in args[1]
+
+    @staticmethod
+    def compare(*args):
+        func = getattr(BaseValidator, args[-1])
+        return func(*args[:-1])
+
+class DatetimeValidator(BaseValidator):
+    def __init__(self):
+        super().__init__()
+
+    @staticmethod
+    def _iso_datetime(datetime_string):
         """
+        Converts the input datetime string to iso datetime object
+
         Args:
-            metadata_format (str): The format of the metadata that needs to be validated. Can be either of { ECHO10, UMM-JSON, DIF }.
-            validation_paths (list of str): The path of the fields in the metadata that need to be validated. 
-                                            In the form ['Collection/StartDate', ...].
-        """
-
-        self.validation_paths = validation_paths
-        self.metadata_format = metadata_format
-        self.schema = self.read_schema()
-
-        self.errors = []
-
-    def _check_validation_paths_against_schema(self):
-        """
-        Check list of validation paths against schema
+            datetime_string (str): the datetime string
 
         Returns:
-            (list) A list of fields from validation_path that don't exist in the metadata
+            (datetime.datetime) If the string is valid iso string, False otherwise
         """
 
-        errors = []
+        regex = r"^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?(Z|[+-](?:2[0-3]|[01][0-9]):[0-5][0-9])?$"
+        match_iso8601 = re.compile(regex).match
+        try:
+            if match_iso8601(datetime_string) is not None:
+                if datetime_string.endswith("Z"):
+                    datetime_string = datetime_string.replace("Z", "+00:00")
+                value = datetime.fromisoformat(datetime_string)
+                return value
+        except:
+            pass
+        return False
 
-        for validation_path in self.validation_paths:
-            splits = [
-                i.strip() for i in validation_path.split(Validator.PATH_SEPARATOR)
-            ]
+    @staticmethod
+    def iso_format_check(*args):
+        """
+        Performs the Date/DateTime ISO Format Check - checks if the datetime
+        is valid ISO formatted datetime string
 
-            # go inside each path iteratively to get the final value
+        Args:
+            datetime_string (str): The datetime string
+            data (dict): The data associated with/required by the rule. May be empty.
+                            The format is: "data": {
+                                            other fields as required by the rule (here, nothing)
+                                        }
+
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
+        datetime_string = args[0]
+        return {
+            "valid": bool(DatetimeValidator._iso_datetime(datetime_string)),
+            "value": datetime_string
+        }
+
+    @staticmethod
+    def compare(*args):
+        values = [DatetimeValidator._iso_datetime(time) for time in args[:-1]]
+        result = BaseValidator.compare(*values, args[-1])
+        return {
+            "valid": result,
+            "value": (args[0], args[1])
+        }
+
+    @staticmethod
+    def temporal_extent_requirement_check(*args):
+        return {
+            "valid": False,
+            "value": None
+        }
+
+
+class StringValidator(BaseValidator):
+    def __init__(self):
+        super().__init__()
+
+    @staticmethod
+    def length_check(*args):
+        length = len(args[0])
+        return {
+            "valid": length <= 100,
+            "value": length
+        }
+    
+    @staticmethod
+    def controlled_keywords_check(*args):
+        return
+    
+    @staticmethod
+    def compare(*args):
+        return {
+            "valid": BaseValidator.compare(*args[:-1], args[-1]),
+            "value": (args[0], args[1])
+        }
+
+    @staticmethod
+    def processing_level_id_check(*args):
+        vocabulary = ['0', '1A', '1B', '2', '3', '4']
+        return {
+            "valid": BaseValidator.compare(str(args[0]), vocabulary, "is_in"),
+            "value": args[0]
+        }
+
+
+class UrlValidator(StringValidator):
+    def __init__(self):
+        super().__init__()
+
+    @staticmethod
+    def health_and_status_check(*args):
+        """
+        Checks the health and status of the URLs included in `text`
+
+        Args:
+            text (str): The text that contains the URLs where the check needs to be performed
+            data (dict): The data associated with/required by the rule. May be empty.
+                            The format is: "data": {
+                                            // fields as required by the rule (here, nothing)
+                                        }
+
+        Returns:
+            (dict) An object with the validity of the check and the instance/results
+        """
+        text = args[0]
+        results = []
+
+        # extract URLs from text
+        extractor = URLExtract()
+        urls = extractor.find_urls(text)
+
+        # remove dots at the end (The URLExtract library catches URLs, but sometimes appends a '.' at the end)
+        # remove duplicated urls
+        urls = set(url[:-1] if url.endswith(".") else url for url in urls)
+
+        # check that URL returns a valid response
+        for url in urls:
+            if not url.startswith('http'):
+                url = f'http://{url}'
             try:
-                # each level has the value in the "properties" key
-                check = self.schema["properties"]
-                # only go upto the second last value of the path because the last field doesn't have the "properties" key
-                for split in splits[:-1]:
-                    check = check[split]["properties"]
-                check = check[splits[-1]]
-            except KeyError:
-                errors.append(validation_path)
-        return errors
+                response_code = requests.get(url).status_code
+                if response_code == 200:
+                    continue
+                result = {"url": url, "status_code": response_code}
+            except requests.ConnectionError as exception:
+                result = {"url": url,
+                            "error": "The URL does not exist on Internet."}
+            except Exception as e:
+                result = {"url": url, "error": "Some unknown error occurred."}
+            results.append(result)
 
-    def _filtered_schema(self):
-        """
-        Filters the schema based on validation paths passed
+        if not results:
+            return {"valid": True, "value": args[0]}
 
-        Returns:
-            (list) A subset of the JSONSchema schema file that only contains the fields in validation_paths
-        """
+        return {"valid": False, "value": results}
 
-        filtered_schema = deepcopy(self.schema)
-        filtered_schema["properties"] = {}
-
-        for validation_path in self.validation_paths:
-            splits = [
-                i.strip() for i in validation_path.split(Validator.PATH_SEPARATOR)
-            ]
-
-            base = filtered_schema["properties"]
-            schema_path = self.schema["properties"]
-
-            for split in splits[:-1]:
-                if not split in base:
-                    base[split] = {"properties": {}}
-                base = base[split]["properties"]
-                schema_path = schema_path[split]["properties"]
-
-            base[splits[-1]] = schema_path[splits[-1]]
-
-        return filtered_schema
-
-    def validate_schema(self, content_to_validate):
-        """
-        Validate passed content based on fields/schema and return any errors
-
-        Args:
-            content_to_validate (str): The metadata content as a json string
-
-        Returns:
-            (dict) A dictionary that gives the validity of the schema and errors if they exist
-
-        """
-
-        errors = []
-
-        validation_path_errors = self._check_validation_paths_against_schema()
-
-        if validation_path_errors:
-            errors.append(
-                {
-                    "message": "Validation path not found in schema",
-                    "instance": str(validation_path_errors),
-                    "validator": "validation_path",
-                }
-            )
-
-            return errors
-
-        content_to_validate = json.loads(content_to_validate)
-
-        if self.validation_paths:
-            filtered_schema = self._filtered_schema()
-        else:
-            filtered_schema = self.schema
-        validator = jsonschema.Draft7Validator(
-            filtered_schema, format_checker=jsonschema.draft7_format_checker
-        )
-
-        for error in sorted(validator.iter_errors(content_to_validate), key=str):
-            errors.append(
-                {
-                    "message": error.message,
-                    "path": Validator.PATH_SEPARATOR.join(error.path),
-                    "instance": error.instance,
-                    "validator": error.validator,
-                    "validator_value": error.validator_value,
-                }
-            )
-
-        if not errors:
-            return {"valid": True}
-
-        return {"valid": False, "errors": errors}
-
-    def run_checks(self, content_to_validate):
-        """
-        Performs the custom checks based on the QA Rules
-
-        Args:
-            content_to_validate (str): The metadata content as a json string
-
-        Returns:
-            (dict) A dictionary that gives the result of the custom checks and errors if they exist
-        """
-
-        checker = Checker(content_to_validate)
-
-        return checker.run()
-
-    def validate(self, content_to_validate):
-        """
-        Performs schema check and custom checks and returns comprehensive report
-
-        Args:
-            content_to_validate (str): The metadata content as a json string
-
-        Returns:
-            (dict) A comprehensive report of errors from jsonschema check and custom checks
-
-        """
-
-        result = {}
-        result["checks"] = self.run_checks(content_to_validate)
-        result["schema_check"] = self.validate_schema(content_to_validate)
-
-        return result
-
-    def read_schema(self):
-        """
-        Reads the schema file based on the format and returns json schema
-
-        Returns:
-            (dict) The schema dictionary read from the schema file
-        """
-
-        schema = json.load(open(SCHEMA_PATHS[self.metadata_format], "r"))
-        return schema
+    @staticmethod
+    def doi_check(*args):
+        url = f"https://www.doi.org/{args[0]}"
+        return UrlValidator.health_and_status_check(url)
