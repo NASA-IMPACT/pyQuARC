@@ -10,7 +10,7 @@ from code.downloader import Downloader
 from code.checker import Checker
 
 
-class PyCMR:
+class VACQM:
     """
         Takes concept_ids and runs downloader/validator on each
 
@@ -70,12 +70,12 @@ class PyCMR:
         """
         if self.query and self.input_concept_ids:
             return {
-                "error": "PyCMR received both CMR query and concept_ids. It can only accept one of those."
+                "error": "VACQM received both CMR query and concept_ids. It can only accept one of those."
             }
 
         if not self.query and not self.input_concept_ids:
             return {
-                "error": "PyCMR expects either a CMR query or a list of concept_ids."
+                "error": "VACQM expects either a CMR query or a list of concept_ids."
             }
 
         for concept_id in tqdm(self.concept_ids):
@@ -137,12 +137,12 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    pycmr = PyCMR(
+    vacqm = VACQM(
         query=args.query,
         input_concept_ids=args.concept_ids or [],
         validation_paths=args.fields_to_validate or [],
         fake=args.fake,
     )
-    results = pycmr.validate()
+    results = vacqm.validate()
 
     print(json.dumps(results, indent=4))

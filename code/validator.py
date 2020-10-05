@@ -6,6 +6,10 @@ from urlextract import URLExtract
 
 
 class BaseValidator:
+    """
+    Base class for all the validators
+    """
+
     def __init__(self):
         pass
 
@@ -38,7 +42,12 @@ class BaseValidator:
         func = getattr(BaseValidator, args[-1])
         return func(*args[:-1])
 
+
 class DatetimeValidator(BaseValidator):
+    """
+    Validator class for datetime datatype
+    """
+
     def __init__(self):
         super().__init__()
 
@@ -90,6 +99,15 @@ class DatetimeValidator(BaseValidator):
 
     @staticmethod
     def compare(*args):
+        """
+        Compares two datetime values based on the argument relation
+
+        Args:
+            (list): the last argument is the relation and rest the values
+
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
         values = [DatetimeValidator._iso_datetime(time) for time in args[:-1]]
         result = BaseValidator.compare(*values, args[-1])
         return {
@@ -97,30 +115,33 @@ class DatetimeValidator(BaseValidator):
             "value": (args[0], args[1])
         }
 
-    @staticmethod
-    def temporal_extent_requirement_check(*args):
-        return {
-            "valid": False,
-            "value": None
-        }
-
 
 class StringValidator(BaseValidator):
+    """
+    Validator class for string values
+    """
+
     def __init__(self):
         super().__init__()
 
     @staticmethod
-    def length_check(*args):
+    def length_check(*args, maximum_length=100):
+        """
+        Checks if the length of the string is less than or equal to maximum length
+
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
         length = len(args[0])
         return {
-            "valid": length <= 100,
+            "valid": length <= maximum_length,
             "value": length
         }
-    
+
     @staticmethod
     def controlled_keywords_check(*args):
         return
-    
+
     @staticmethod
     def compare(*args):
         return {
@@ -138,6 +159,10 @@ class StringValidator(BaseValidator):
 
 
 class UrlValidator(StringValidator):
+    """
+    Validator class for URLs
+    """
+
     def __init__(self):
         super().__init__()
 
@@ -147,17 +172,16 @@ class UrlValidator(StringValidator):
         Checks the health and status of the URLs included in `text`
 
         Args:
-            text (str): The text that contains the URLs where the check needs to be performed
-            data (dict): The data associated with/required by the rule. May be empty.
-                            The format is: "data": {
-                                            // fields as required by the rule (here, nothing)
-                                        }
+            (str, required): The text that contains the URLs where the check needs to be performed
 
         Returns:
             (dict) An object with the validity of the check and the instance/results
         """
         text = args[0]
         results = []
+
+        validity = True
+        value = text
 
         # extract URLs from text
         extractor = URLExtract()
@@ -178,17 +202,24 @@ class UrlValidator(StringValidator):
                 result = {"url": url, "status_code": response_code}
             except requests.ConnectionError as exception:
                 result = {"url": url,
-                            "error": "The URL does not exist on Internet."}
+                          "error": "The URL does not exist on Internet."}
             except Exception as e:
                 result = {"url": url, "error": "Some unknown error occurred."}
             results.append(result)
 
-        if not results:
-            return {"valid": True, "value": args[0]}
+        if results:
+            validity = False
+            value = results
 
-        return {"valid": False, "value": results}
+        return {"valid": validity, "value": value}
 
     @staticmethod
     def doi_check(*args):
+        """
+        Checks if the doi link given in the text is a valid doi link
+
+        Returns:
+            (dict) An object with the validity of the check and the instance/results
+        """
         url = f"https://www.doi.org/{args[0]}"
         return UrlValidator.health_and_status_check(url)

@@ -101,7 +101,7 @@ class Downloader:
         if not self._valid_concept_id():
             self.log_error(
                 "invalid_concept_id",
-                { "concept_id": self.concept_id }
+                {"concept_id": self.concept_id}
             )
             return
 

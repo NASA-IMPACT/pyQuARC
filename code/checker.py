@@ -10,40 +10,74 @@ from .constants import SCHEMA_PATHS
 
 
 class Checker:
+    """
+    Handles both the structural and logical checks
+    """
+
     def __init__(self, metadata_format, validation_paths):
+        """
+        Args:
+            metadata_format (str): The format of the metadata
+            validation_paths ([str]): A list of paths for which
+            the structure of the metadata needs to be checked
+        """
         self.checks = json.load(
             open(SCHEMA_PATHS["checks"], "r")
-            )
+        )
         self.rule_mapping = json.load(
             open(SCHEMA_PATHS["rule_mapping"], "r")
-            )
+        )
 
         self.custom_checker = CustomChecker(self.rule_mapping, self.checks)
         self.scheduler = Scheduler(self.rule_mapping)
-        self.schema_validator = SchemaValidator(metadata_format, validation_paths)
+        self.schema_validator = SchemaValidator(
+            metadata_format, validation_paths)
         self.tracker = Tracker(self.rule_mapping)
         self.messages = json.load(
             open(SCHEMA_PATHS["check_messages"], "r")
-            )
+        )
         self.messages_override = json.load(
             open(SCHEMA_PATHS["check_messages_override"], "r")
-            )
+        )
 
     @staticmethod
     def map_to_function(data_type, function):
+        """
+        Maps the `data_type` and `function` to the corresponding function
+        in the corresponding class
+
+        Args:
+            data_type (str): The data type
+            function (str): The name of the function
+
+        Returns:
+            (func): The function reference
+        """
         class_object = globals()[f"{data_type.title()}Validator"]
         function_object = getattr(class_object, function)
         return function_object
 
     def get_fields(self, rule_id):
+        """
+        Get the applicable fields for `rule_id`
+        """
         for mapping in self.rule_mapping:
             if mapping["rule_id"] == rule_id:
                 return mapping["fields_to_apply"]
 
     def get_rule_ordering(self):
+        """
+        Get the ordering of the rule based on the dependencies
+
+        Returns:
+            (list): The ordered list of the rules based on the application order
+        """
         return self.scheduler.order_rules()
 
     def get_message(self, rule_id):
+        """
+        Get the success, failure, warning messages for the `rule_id`
+        """
         for message in self.messages_override:
             if message["check_id"] == rule_id:
                 return message["message"]
@@ -52,6 +86,9 @@ class Checker:
                 return message["message"]
 
     def build_message(self, result, rule_id):
+        """
+        Formats the message for `rule_id` based on the result
+        """
         message = self.get_message(rule_id)
         if not result["valid"] and result.get("value") and message:
             value = result["value"]
@@ -61,9 +98,15 @@ class Checker:
                 return message["failure"].format(value)
 
     def perform_jsonschema_check(self, metadata_content):
+        """ 
+        Performs JSONSchema check
+        """
         return self.schema_validator.run(metadata_content)
 
     def perform_custom_checks(self, metadata_content):
+        """ 
+        Performs custom checks
+        """
         ordered_rule = self.get_rule_ordering()
         result_dict = {}
 
@@ -83,7 +126,7 @@ class Checker:
                     if not self.tracker.read(dependency, main_field)["valid"]:
                         dependency_check = False
                 if dependency_check:
-                    result = self.custom_checker.run_v2(
+                    result = self.custom_checker.run(
                         metadata_content, field, func
                     )
                     self.tracker.update(rule_id, main_field, result["valid"])
@@ -96,6 +139,15 @@ class Checker:
         return result_dict
 
     def run(self, metadata_content):
+        """
+        Runs all checks on the `metadata_content`
+
+        Args:
+            metadata_content (dict): The downloaded metadata content
+
+        Returns:
+            (dict): The results of the jsonschema check and all custom checks
+        """
         result = {}
         result["jsonschema"] = self.perform_jsonschema_check(metadata_content)
         result["custom"] = self.perform_custom_checks(metadata_content)

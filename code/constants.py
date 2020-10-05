@@ -7,9 +7,7 @@ UMM_JSON = "umm-json"
 
 ROOT_DIR = (
     # go up one directory
-    Path(__file__)
-    .resolve()
-    .parents[1]
+    Path(__file__).resolve().parents[1]
 )
 
 SCHEMAS_BASE_PATH = ROOT_DIR / "schemas"

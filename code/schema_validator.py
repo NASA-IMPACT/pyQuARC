@@ -85,7 +85,7 @@ class SchemaValidator:
             base[splits[-1]] = schema_path[splits[-1]]
 
         return filtered_schema
-    
+
     def read_schema(self):
         """
         Reads the schema file based on the format and returns json schema
