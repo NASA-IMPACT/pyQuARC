@@ -58,8 +58,7 @@ INPUT_OUTPUT = {
         },
         {
             "input": "Contacts/Contact/ContactPersons/ContactPerson/FirstName",
-            "output": {"DANA", "MICHAEL", "SLESA"}
+            "output": {"DANA", "SLESA", "MICHAEL"}
         }
     ]
-    
 }

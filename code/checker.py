@@ -6,7 +6,7 @@ from .schema_validator import SchemaValidator
 from .tracker import Tracker
 from .validator import StringValidator, UrlValidator, DatetimeValidator
 
-from .constants import SCHEMA_PATHS
+from .constants import SCHEMA_PATHS, DIF, ECHO10, UMM_JSON
 
 
 class Checker:
@@ -14,7 +14,7 @@ class Checker:
     Handles both the structural and logical checks
     """
 
-    def __init__(self, metadata_format, validation_paths):
+    def __init__(self, metadata_format=ECHO10, validation_paths=[]):
         """
         Args:
             metadata_format (str): The format of the metadata
@@ -28,7 +28,7 @@ class Checker:
             open(SCHEMA_PATHS["rule_mapping"], "r")
         )
 
-        self.custom_checker = CustomChecker(self.rule_mapping, self.checks)
+        self.custom_checker = CustomChecker()
         self.scheduler = Scheduler(self.rule_mapping)
         self.schema_validator = SchemaValidator(
             metadata_format, validation_paths)

@@ -1,39 +1,14 @@
-import json
-import re
-import requests
-
-from .constants import SCHEMA_PATHS
-
-
 class CustomChecker:
     """
     Class to implement custom checks
     """
 
-    def __init__(self, rules_mapping, checks):
+    def __init__(self):
         """
         Args:
             content_to_validate (str): JSON string containing downloaded metadata
         """
-        self.checks = checks
-        self.rules_mapping = rules_mapping
-
-    def _get_rule(self, identifier):
-        """
-        Extracts the rule from the ruleset based on its identifier
-
-        Args:
-            identifier (str): The identifier of the rule
-            ruleset (list of dict): The ruleset that contains all the rules and their details
-
-        Returns:
-            (dict) The target rule and its details
-
-        Raises:
-            KeyError: When the identifier doesn't exist in the ruleset
-        """
-
-        return self.id_to_rule_mapping[identifier]
+        pass
 
     @staticmethod
     def _get_path_value_recursively(subset_of_metadata_content, path, container):
@@ -88,7 +63,7 @@ class CustomChecker:
         CustomChecker._get_path_value_recursively(
             content_to_validate, path, container)
         # TODO: Handle cases where there are multiple values for the field
-        return list(container)
+        return container
 
     def run(self, content_to_validate, field, func):
         """
@@ -118,7 +93,7 @@ class CustomChecker:
                 content_to_validate, fields[0])
             if value:
                 field_values.append(
-                    value[0]
+                    list(value)[0]
                 )
         else:
             for _field in fields:
@@ -126,7 +101,7 @@ class CustomChecker:
                     content_to_validate, _field)
                 if value:
                     field_values.append(
-                        value[0]
+                        list(value)[0]
                     )
         if field_values:
             result = func(*field_values, relation)

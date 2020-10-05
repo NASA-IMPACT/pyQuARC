@@ -98,7 +98,6 @@ class SchemaValidator:
         return schema
 
     def run(self, content_to_validate):
-        # Main function
         """
         Validate passed content based on fields/schema and return any errors
 
