@@ -32,7 +32,7 @@ class CustomChecker:
             return
         new_path = path[1:]
         if isinstance(root_content, str) or isinstance(root_content, int):
-            container.add(root_content)
+            container.append(root_content)
         elif isinstance(root_content, list):
             for each in root_content:
                 try:
@@ -57,12 +57,11 @@ class CustomChecker:
                         else (False, empty set)
         """
 
-        container = set()
+        container = list()
 
         path = path.split('/')
         CustomChecker._get_path_value_recursively(
             content_to_validate, path, container)
-        # TODO: Handle cases where there are multiple values for the field
         return container
 
     def run(self, content_to_validate, field, func):
@@ -92,17 +91,14 @@ class CustomChecker:
             value = CustomChecker._get_path_value(
                 content_to_validate, fields[0])
             if value:
-                field_values.append(
-                    list(value)[0]
-                )
+                field_values.append(value[0])
         else:
             for _field in fields:
                 value = CustomChecker._get_path_value(
                     content_to_validate, _field)
                 if value:
-                    field_values.append(
-                        list(value)[0]
-                    )
+                    field_values.append(value)
         if field_values:
+            print(field_values)
             result = func(*field_values, relation)
         return result

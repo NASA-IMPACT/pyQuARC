@@ -48,5 +48,11 @@
         "check_function": "processing_level_id_check",
         "description": "Checks ...",
         "available": true
+    },
+    "gcmd_keywords_check": {
+        "data_type": "string",
+        "check_function": "gcmd_keywords_check",
+        "description": "Checks if the science keywords are valid gcmd keywords",
+        "available": true
     }
 }

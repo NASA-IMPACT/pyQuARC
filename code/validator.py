@@ -1,8 +1,12 @@
+import csv
+import json
 import re
 import requests
 
 from datetime import datetime
 from urlextract import URLExtract
+
+from .constants import SCHEMA_PATHS
 
 
 class BaseValidator:
@@ -155,6 +159,37 @@ class StringValidator(BaseValidator):
         return {
             "valid": BaseValidator.compare(str(args[0]), vocabulary, "is_in"),
             "value": args[0]
+        }
+
+    @staticmethod
+    def gcmd_keywords_check(*args):
+        combined_keywords = {}
+        with open(SCHEMA_PATHS["science_keywords"]) as csvfile:
+            keywords_reader = csv.reader(csvfile)
+            for row in keywords_reader:
+                keyword = '/'.join([keyword.lower().strip() for keyword in row[:-1]])
+                keyword = keyword.strip('/')
+                combined_keywords[keyword] = True
+
+        keywords_lists_unordered = [arg for arg in args if arg is not None]
+        ordered_keyword_list = list(zip(*keywords_lists_unordered))
+        received_keywords = []
+        for keywords in ordered_keyword_list:
+            received_keywords.append(
+                '/'.join([keyword.lower().strip() for keyword in keywords if keyword != None])
+            )
+
+        valid = True
+        value = received_keywords
+
+        for keyword in received_keywords:
+            if keyword not in combined_keywords:
+                valid = False
+                value = keyword
+        
+        return {
+            "valid": valid,
+            "value": value
         }
 
 

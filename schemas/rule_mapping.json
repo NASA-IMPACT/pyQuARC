@@ -94,5 +94,22 @@
                 "fields": ["Collection/ProcessingLevelId"]
             }
         ]
+    },
+    {
+        "rule_id": "gcmd_keywords_check",
+        "rule_name": "GCMD keywords check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/ScienceKeywords/ScienceKeyword/CategoryKeyword",
+                    "Collection/ScienceKeywords/ScienceKeyword/TopicKeyword",
+                    "Collection/ScienceKeywords/ScienceKeyword/TermKeyword",
+                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/Value",
+                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel2Keyword/Value",
+                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel3Keyword/Value",
+                    "Collection/ScienceKeywords/ScienceKeyword/DetailedVariableKeyword"
+                ]
+            }
+        ]
     }
 ]

@@ -22,4 +22,5 @@ SCHEMA_PATHS = {
     "checks": SCHEMAS_BASE_PATH / "checks.json",
     "check_messages": SCHEMAS_BASE_PATH / "check_messages.json",
     "check_messages_override": SCHEMAS_BASE_PATH / "check_messages_override.json",
+    "science_keywords": SCHEMAS_BASE_PATH / "science_keywords.csv"
 }

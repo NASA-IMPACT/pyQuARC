@@ -102,5 +102,18 @@
             "url": ""
         },
         "remediation": ""
+    },
+    {
+        "check_id": "gcmd_keywords_check",
+        "message": {
+            "success": "",
+            "failure": "[ {} ] is not one of the valid GCMD keywords",
+            "warning": ""
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": ""
     }
 ]
