@@ -99,6 +99,5 @@ class CustomChecker:
                 if value:
                     field_values.append(value)
         if field_values:
-            print(field_values)
             result = func(*field_values, relation)
         return result

@@ -124,6 +124,10 @@ class StringValidator(BaseValidator):
     """
     Validator class for string values
     """
+    all_keywords = []
+    with open(SCHEMA_PATHS["science_keywords"]) as csvfile:
+        reader = csv.reader(csvfile)
+        all_keywords = [row for row in reader]
 
     def __init__(self):
         super().__init__()
@@ -164,12 +168,10 @@ class StringValidator(BaseValidator):
     @staticmethod
     def gcmd_keywords_check(*args):
         combined_keywords = {}
-        with open(SCHEMA_PATHS["science_keywords"]) as csvfile:
-            keywords_reader = csv.reader(csvfile)
-            for row in keywords_reader:
-                keyword = '/'.join([keyword.lower().strip() for keyword in row[:-1]])
-                keyword = keyword.strip('/')
-                combined_keywords[keyword] = True
+        for row in StringValidator.all_keywords:
+            keyword = '/'.join([keyword.lower().strip() for keyword in row[:-1]])
+            keyword = keyword.strip('/')
+            combined_keywords[keyword] = True
 
         keywords_lists_unordered = [arg for arg in args if arg is not None]
         ordered_keyword_list = list(zip(*keywords_lists_unordered))
