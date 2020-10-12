@@ -13,12 +13,24 @@ class Scheduler:
         self.rule_mapping = rule_mapping
 
     @staticmethod
-    def add_to_list(arg, the_list):
+    def append_if_not_exist(value, list_of_values):
+        if value not in list_of_values:
+            list_of_values.append(value)
+
+    def _add_to_list(self, rule_id, the_list):
         """
-        Adds `arg` to `the_list` only if it is not already present there
+        Adds `rule_id` to `the_list` based on the dependency order
         """
-        if arg not in the_list:
-            the_list.append(arg)
+        dependencies = self.check_list\
+                               .get(rule_id)\
+                               .get("dependencies")
+        if not dependencies:
+            Scheduler.append_if_not_exist(rule_id, the_list)
+            return
+        for dependency in dependencies:
+            self._add_to_list(dependency, the_list)
+    
+        Scheduler.append_if_not_exist(rule_id, the_list)
 
     def order_rules(self):
         """
@@ -30,13 +42,6 @@ class Scheduler:
         ordered_check_list = []
 
         for rule in self.rule_mapping:
-            dependencies = self.check_list\
-                               .get(rule["rule_id"])\
-                               .get("dependencies")
-            if dependencies:
-                for dependency in dependencies:
-                    Scheduler.add_to_list(dependency, ordered_check_list)
-
-            Scheduler.add_to_list(rule["rule_id"], ordered_check_list)
+            self._add_to_list(rule["rule_id"], ordered_check_list)
 
         return ordered_check_list
