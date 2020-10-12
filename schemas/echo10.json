@@ -34,9 +34,57 @@
         },
         "Temporal": {
           "type": "object",
+          "oneOf": [
+            {
+              "required": ["RangeDateTime"]
+            },
+            {
+              "required": ["SingleDateTime"]
+            },
+            {
+              "required": ["PeriodicDateTime"]
+            }
+          ],
           "properties": {
             "RangeDateTime": {
               "$ref": "#/definitions/RangeDateTime"
+            },
+            "SingleDateTime": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "PeriodicDateTime": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "DOI": {
+          "type": "object",
+          "oneOf": [
+            {
+              "required": [
+                "DOI"
+              ]
+            },
+            {
+              "required": [
+                "MissingReason"
+              ]
+            }
+          ],
+          "properties": {
+            "DOI": {
+              "type": "string"
+            },
+            "Authority": {
+              "type": "string"
+            },
+            "MissingReason": {
+              "type": "string"
+            },
+            "Explanation": {
+              "type": "string"
             }
           }
         }
