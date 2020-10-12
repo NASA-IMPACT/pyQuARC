@@ -148,5 +148,16 @@
                 ]
             }
         ]
+    },
+    {
+        "rule_id": "eosdis_doi_authority_check",
+        "rule_name": "EOSDIS DOI Authority Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/DOI/Authority"
+                ]
+            }
+        ]
     }
 ]

@@ -56,5 +56,11 @@
         "check_function": "gcmd_keywords_check",
         "description": "Checks if the science keywords are valid gcmd keywords",
         "available": true
+    },
+    "eosdis_doi_authority_check": {
+        "data_type": "string",
+        "check_function": "eosdis_doi_authority_check",
+        "description": "Checks ...",
+        "available": true
     }
 }

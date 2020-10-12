@@ -166,6 +166,14 @@ class StringValidator(BaseValidator):
         }
 
     @staticmethod
+    def eosdis_doi_authority_check(*args):
+        vocabulary = ["https://doi.org", "https://doi.org/"]
+        return {
+            "valid": BaseValidator.compare(str(args[0]), vocabulary, "is_in"),
+            "value": args[0]
+        }
+
+    @staticmethod
     def gcmd_keywords_check(*args):
         combined_keywords = {}
         for row in StringValidator.all_keywords:
