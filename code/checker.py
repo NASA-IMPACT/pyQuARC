@@ -53,8 +53,12 @@ class Checker:
         Returns:
             (func): The function reference
         """
-        class_object = globals()[f"{data_type.title()}Validator"]
-        function_object = getattr(class_object, function)
+        try:
+            class_object = globals()[f"{data_type.title()}Validator"]
+            function_object = getattr(class_object, function)
+        except AttributeError as e:
+            print("The function hasn't been implemented")
+            return None
         return function_object
 
     def get_fields(self, rule_id):
