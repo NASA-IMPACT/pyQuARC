@@ -14,23 +14,27 @@ class Scheduler:
 
     @staticmethod
     def append_if_not_exist(value, list_of_values):
+        """
+        Appends `value` if it doesn't exist in `list_of_values`
+        `list_of_values` is an ordered list
+        """
         if value not in list_of_values:
             list_of_values.append(value)
 
-    def _add_to_list(self, rule_id, the_list):
+    def _add_to_list(self, rule_id, rules_list):
         """
-        Adds `rule_id` to `the_list` based on the dependency order
+        Adds `rule_id` to `rules_list` based on the dependency order
         """
         dependencies = self.check_list\
                                .get(rule_id)\
                                .get("dependencies")
         if not dependencies:
-            Scheduler.append_if_not_exist(rule_id, the_list)
+            Scheduler.append_if_not_exist(rule_id, rules_list)
             return
         for dependency in dependencies:
-            self._add_to_list(dependency, the_list)
+            self._add_to_list(dependency, rules_list)
     
-        Scheduler.append_if_not_exist(rule_id, the_list)
+        Scheduler.append_if_not_exist(rule_id, rules_list)
 
     def order_rules(self):
         """
