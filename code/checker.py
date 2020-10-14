@@ -25,15 +25,12 @@ class Checker:
 
         self.custom_checker = CustomChecker()
         self.scheduler = Scheduler(self.rule_mapping)
-        self.schema_validator = SchemaValidator(
-            metadata_format, validation_paths)
+        self.schema_validator = SchemaValidator(metadata_format, validation_paths)
         self.tracker = Tracker(self.rule_mapping)
 
     @staticmethod
     def _json_load_schema(shema_name):
-        return json.load(
-            open(SCHEMA_PATHS[shema_name], "r")
-        )
+        return json.load(open(SCHEMA_PATHS[shema_name], "r"))
 
     def load_schemas(self):
         self.checks = Checker._json_load_schema("checks")
@@ -70,15 +67,6 @@ class Checker:
             if mapping["rule_id"] == rule_id:
                 return mapping["fields_to_apply"]
 
-    def get_rule_ordering(self):
-        """
-        Get the ordering of the rule based on the dependencies
-
-        Returns:
-            (list): The ordered list of the rules based on the application order
-        """
-        return self.scheduler.order_rules()
-
     def get_message(self, rule_id):
         """
         Get the success, failure, warning messages for the `rule_id`
@@ -97,32 +85,31 @@ class Checker:
         message = self.get_message(rule_id)
         if not result["valid"] and result.get("value") and message:
             value = result["value"]
+            formatted_message = message
             if isinstance(value, tuple):
-                return message["failure"].format(*value)
+                formatted_message = message["failure"].format(*value)
             else:
-                return message["failure"].format(value)
+                formatted_message = message["failure"].format(value)
+            return formatted_message
 
     def perform_jsonschema_check(self, metadata_content):
-        """ 
+        """
         Performs JSONSchema check
         """
         return self.schema_validator.run(metadata_content)
 
     def perform_custom_checks(self, metadata_content):
-        """ 
+        """
         Performs custom checks
         """
-        ordered_rule = self.get_rule_ordering()
+        ordered_rule = self.scheduler.order_rules()
         result_dict = {}
 
         for rule_id in ordered_rule:
             result_dict.setdefault(rule_id, {})
             fields_to_apply = self.get_fields(rule_id)
             rule = self.checks[rule_id]
-            func = Checker.map_to_function(
-                rule["data_type"],
-                rule["check_function"]
-            )
+            func = Checker.map_to_function(rule["data_type"], rule["check_function"])
             dependencies = rule.get("dependencies") or []
             for field in fields_to_apply:
                 main_field = field["fields"][0]
@@ -131,9 +118,7 @@ class Checker:
                     if not self.tracker.read(dependency, main_field)["valid"]:
                         dependency_check = False
                 if dependency_check:
-                    result = self.custom_checker.run(
-                        metadata_content, field, func
-                    )
+                    result = self.custom_checker.run(metadata_content, field, func)
                     self.tracker.update(rule_id, main_field, result["valid"])
                 if result["valid"] != None:
                     result_dict[rule_id][main_field] = result
