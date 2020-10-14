@@ -11,7 +11,7 @@ class CustomChecker:
         pass
 
     @staticmethod
-    def _get_path_value_recursively(subset_of_metadata_content, path, container):
+    def _get_path_value_recursively(subset_of_metadata_content, path_list, container):
         """
         Gets the path values recursively while handling list or dictionary in `subset_of_metadata_content`
         Adds the values to `container`
@@ -20,17 +20,17 @@ class CustomChecker:
             subset_of_metadata_content (dict or list or str): 
                         The value of the field at a certain point;
                         changes during each level of recursion
-            path (list): The path of the field as a list
+            path_list (list): The path of the field as a list
                          Example: 'Collection/RangeDateTime/StartDate' ->
                                   ['Collection', 'RangeDateTime', 'StartDate']
             container (set): The container that holds all the path values
         """
 
         try:
-            root_content = subset_of_metadata_content[path[0]]
+            root_content = subset_of_metadata_content[path_list[0]]
         except KeyError as e:
             return
-        new_path = path[1:]
+        new_path = path_list[1:]
         if isinstance(root_content, str) or isinstance(root_content, int):
             container.add(root_content)
         elif isinstance(root_content, list):
@@ -45,12 +45,12 @@ class CustomChecker:
                 root_content, new_path, container)
 
     @staticmethod
-    def _get_path_value(content_to_validate, path):
+    def _get_path_value(content_to_validate, path_string):
         """
         Gets the value of the field from the metadata (input_json)
 
         Args:
-            path (str): The path of the field. Example: 'Collection/RangeDateTime/StartDate'
+            path_string (str): The path of the field. Example: 'Collection/RangeDateTime/StartDate'
 
         Returns:
             (bool, set) If the path exists, (True, set of values of the path);
@@ -59,9 +59,9 @@ class CustomChecker:
 
         container = set()
 
-        path = path.split('/')
+        path_list = path_string.split('/')
         CustomChecker._get_path_value_recursively(
-            content_to_validate, path, container)
+            content_to_validate, path_list, container)
         # TODO: Handle cases where there are multiple values for the field
         return container
 
