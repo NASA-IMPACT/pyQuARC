@@ -114,10 +114,10 @@ class Checker:
             for field in fields_to_apply:
                 main_field = field["fields"][0]
                 for dependency in dependencies:
-                    if not self.tracker.read(dependency, main_field)["valid"]:
+                    if not self.tracker.read_data(dependency, main_field)["valid"]:
                         break
                 result = self.custom_checker.run(func, metadata_content, field)
-                self.tracker.update(rule_id, main_field, result["valid"])
+                self.tracker.update_data(rule_id, main_field, result["valid"])
                 if result["valid"] != None: # this is to avoid "valid" = null in the result, for rules that are not applied
                     result_dict[rule_id][main_field] = result
 
