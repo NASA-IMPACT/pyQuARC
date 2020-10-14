@@ -65,7 +65,7 @@ class CustomChecker:
         # TODO: Handle cases where there are multiple values for the field
         return container
 
-    def run(self, content_to_validate, field, func):
+    def run(self, func, content_to_validate, field):
         """
         Runs the custom check based on `func` to the `content_to_validate`'s `field` path
 
