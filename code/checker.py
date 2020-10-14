@@ -110,17 +110,15 @@ class Checker:
             fields_to_apply = self.get_fields(rule_id)
             rule = self.checks[rule_id]
             func = Checker.map_to_function(rule["data_type"], rule["check_function"])
-            dependencies = rule.get("dependencies") or []
+            dependencies = rule.get("dependencies", [])
             for field in fields_to_apply:
                 main_field = field["fields"][0]
-                dependency_check = True
                 for dependency in dependencies:
                     if not self.tracker.read(dependency, main_field)["valid"]:
-                        dependency_check = False
-                if dependency_check:
-                    result = self.custom_checker.run(metadata_content, field, func)
-                    self.tracker.update(rule_id, main_field, result["valid"])
-                if result["valid"] != None:
+                        break
+                result = self.custom_checker.run(metadata_content, field, func)
+                self.tracker.update(rule_id, main_field, result["valid"])
+                if result["valid"] != None: # this is to avoid "valid" = null in the result, for rules that are not applied
                     result_dict[rule_id][main_field] = result
 
                     message = self.build_message(result, rule_id)
