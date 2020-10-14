@@ -25,12 +25,7 @@ class Scheduler:
         """
         Adds `rule_id` to `rules_list` based on the dependency order
         """
-        dependencies = self.check_list\
-                               .get(rule_id)\
-                               .get("dependencies")
-        if not dependencies:
-            Scheduler.append_if_not_exist(rule_id, rules_list)
-            return
+        dependencies = self.check_list[rule_id].get("dependencies", [])
         for dependency in dependencies:
             self._add_to_list(dependency, rules_list)
     
