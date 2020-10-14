@@ -21,24 +21,25 @@ class Checker:
             validation_paths ([str]): A list of paths for which
             the structure of the metadata needs to be checked
         """
-        self.checks = json.load(
-            open(SCHEMA_PATHS["checks"], "r")
-        )
-        self.rule_mapping = json.load(
-            open(SCHEMA_PATHS["rule_mapping"], "r")
-        )
+        self.load_schemas()
 
         self.custom_checker = CustomChecker()
         self.scheduler = Scheduler(self.rule_mapping)
         self.schema_validator = SchemaValidator(
             metadata_format, validation_paths)
         self.tracker = Tracker(self.rule_mapping)
-        self.messages = json.load(
-            open(SCHEMA_PATHS["check_messages"], "r")
+
+    @staticmethod
+    def _json_load_schema(shema_name):
+        return json.load(
+            open(SCHEMA_PATHS[shema_name], "r")
         )
-        self.messages_override = json.load(
-            open(SCHEMA_PATHS["check_messages_override"], "r")
-        )
+
+    def load_schemas(self):
+        self.checks = Checker._json_load_schema("checks")
+        self.rule_mapping = Checker._json_load_schema("rule_mapping")
+        self.messages = Checker._json_load_schema("check_messages")
+        self.messages_override = Checker._json_load_schema("check_messages_override")
 
     @staticmethod
     def map_to_function(data_type, function):
