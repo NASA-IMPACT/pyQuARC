@@ -18,33 +18,33 @@ class BaseValidator:
         pass
 
     @staticmethod
-    def eq(*args):
-        return args[0] == args[1]
+    def eq(first, second):
+        return first == second
 
     @staticmethod
-    def lt(*args):
-        return args[0] < args[1]
+    def lt(first, second):
+        return first < second
 
     @staticmethod
-    def lte(*args):
-        return args[0] <= args[1]
+    def lte(first, second):
+        return first <= second
 
     @staticmethod
-    def gt(*args):
-        return args[0] > args[1]
+    def gt(first, second):
+        return first > second
 
     @staticmethod
-    def gte(*args):
-        return args[0] >= args[1]
+    def gte(first, second):
+        return first >= second
 
     @staticmethod
-    def is_in(*args):
-        return args[0] in args[1]
+    def is_in(value, list_of_values):
+        return value in list_of_values
 
     @staticmethod
-    def compare(*args):
-        func = getattr(BaseValidator, args[-1])
-        return func(*args[:-1])
+    def compare(first, second, relation):
+        func = getattr(BaseValidator, relation)
+        return func(first, second)
 
 
 class DatetimeValidator(BaseValidator):
@@ -80,43 +80,35 @@ class DatetimeValidator(BaseValidator):
         return False
 
     @staticmethod
-    def iso_format_check(*args):
+    def iso_format_check(datetime_string):
         """
         Performs the Date/DateTime ISO Format Check - checks if the datetime
         is valid ISO formatted datetime string
 
         Args:
             datetime_string (str): The datetime string
-            data (dict): The data associated with/required by the rule. May be empty.
-                            The format is: "data": {
-                                            other fields as required by the rule (here, nothing)
-                                        }
-
+        
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        datetime_string = args[0]
         return {
             "valid": bool(DatetimeValidator._iso_datetime(datetime_string)),
             "value": datetime_string
         }
 
     @staticmethod
-    def compare(*args):
+    def compare(first, second, relation):
         """
         Compares two datetime values based on the argument relation
-
-        Args:
-            (list): the last argument is the relation and rest the values
 
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        values = [DatetimeValidator._iso_datetime(time) for time in args[:-1]]
-        result = BaseValidator.compare(*values, args[-1])
+        values = [DatetimeValidator._iso_datetime(time) for time in [first, second]]
+        result = BaseValidator.compare(*values, relation)
         return {
             "valid": result,
-            "value": (args[0], args[1])
+            "value": (first, second)
         }
 
 
@@ -133,49 +125,73 @@ class StringValidator(BaseValidator):
         super().__init__()
 
     @staticmethod
-    def length_check(*args, maximum_length=100):
+    def length_check(string, maximum_length=100):
         """
         Checks if the length of the string is less than or equal to maximum length
 
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        length = len(args[0])
+        length = len(string)
         return {
             "valid": length <= maximum_length,
             "value": length
         }
 
     @staticmethod
-    def controlled_keywords_check(*args):
-        return
+    def compare(first, second, relation):
+        """
+        Compares two strings based on the relationship
 
-    @staticmethod
-    def compare(*args):
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
         return {
-            "valid": BaseValidator.compare(*args[:-1], args[-1]),
-            "value": (args[0], args[1])
+            "valid": BaseValidator.compare(first, second, relation),
+            "value": (first, second)
         }
 
     @staticmethod
-    def processing_level_id_check(*args):
+    def processing_level_id_check(processing_level_id):
+        """
+        Checks if the processing level id is one of the valid ids
+
+        Args:
+            processing_level_id (int/str): The processing level id
+        
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
         vocabulary = ['0', '1A', '1B', '2', '3', '4']
         return {
-            "valid": BaseValidator.compare(str(args[0]), vocabulary, "is_in"),
-            "value": args[0]
+            "valid": BaseValidator.compare(str(processing_level_id), vocabulary, "is_in"),
+            "value": processing_level_id
         }
 
     @staticmethod
-    def eosdis_doi_authority_check(*args):
+    def eosdis_doi_authority_check(input_url):
+        """
+        Checks if the DOI Authority is valid
+        """
         url = "https://doi.org"
         vocabulary = [url, f"{url}/"]
         return {
-            "valid": BaseValidator.compare(str(args[0]), vocabulary, "is_in"),
-            "value": args[0]
+            "valid": BaseValidator.compare(input_url, vocabulary, "is_in"),
+            "value": input_url
         }
 
     @staticmethod
     def gcmd_keywords_check(*args):
+        """
+        Checks if the GCMD keyword hierarchy is correct
+
+        Args:
+            args (list): List of the keywords based listed in order of hierarchy
+                [Category, Topic, Term, VariableLevel1, VariableLevel2, VariableLevel3, DetailedVariable]
+
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
         combined_keywords = {}
         for row in StringValidator.all_keywords:
             keyword = '/'.join([keyword.lower().strip() for keyword in row[:-1]])
@@ -213,25 +229,24 @@ class UrlValidator(StringValidator):
         super().__init__()
 
     @staticmethod
-    def health_and_status_check(*args):
+    def health_and_status_check(text_with_urls):
         """
         Checks the health and status of the URLs included in `text`
 
         Args:
-            (str, required): The text that contains the URLs where the check needs to be performed
+           text_with_urls (str, required): The text that contains the URLs where the check needs to be performed
 
         Returns:
             (dict) An object with the validity of the check and the instance/results
         """
-        text = args[0]
         results = []
 
         validity = True
-        value = text
+        value = text_with_urls
 
         # extract URLs from text
         extractor = URLExtract()
-        urls = extractor.find_urls(text)
+        urls = extractor.find_urls(text_with_urls)
 
         # remove dots at the end (The URLExtract library catches URLs, but sometimes appends a '.' at the end)
         # remove duplicated urls
@@ -260,12 +275,12 @@ class UrlValidator(StringValidator):
         return {"valid": validity, "value": value}
 
     @staticmethod
-    def doi_check(*args):
+    def doi_check(doi):
         """
         Checks if the doi link given in the text is a valid doi link
 
         Returns:
             (dict) An object with the validity of the check and the instance/results
         """
-        url = f"https://www.doi.org/{args[0]}"
+        url = f"https://www.doi.org/{doi}"
         return UrlValidator.health_and_status_check(url)
