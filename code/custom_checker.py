@@ -92,5 +92,6 @@ class CustomChecker:
             if value:
                 field_values.append(value)
         if field_values:
-            result = func(*field_values, relation)
+            arguments = [arg for arg in [*field_values, relation] if arg]
+            result = func(*arguments)
         return result
