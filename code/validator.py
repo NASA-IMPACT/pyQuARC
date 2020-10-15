@@ -119,6 +119,7 @@ class StringValidator(BaseValidator):
     all_keywords = []
     with open(SCHEMA_PATHS["science_keywords"]) as csvfile:
         reader = csv.reader(csvfile)
+        # each row in the csv file corresponds to one valid hierarchy instance of GCMD keyword
         all_keywords = [row for row in reader]
 
     def __init__(self):
@@ -181,36 +182,62 @@ class StringValidator(BaseValidator):
         }
 
     @staticmethod
-    def gcmd_keywords_check(*args):
-        """
-        Checks if the GCMD keyword hierarchy is correct
-
-        Args:
-            args (list): List of the keywords based listed in order of hierarchy
-                [Category, Topic, Term, VariableLevel1, VariableLevel2, VariableLevel3, DetailedVariable]
-
-        Returns:
-            (dict) An object with the validity of the check and the instance
-        """
+    def prepare_gcmd_keywords_dict(all_keywords):
         combined_keywords = {}
-        for row in StringValidator.all_keywords:
+        for row in all_keywords:
+            # converting the keywords to lowercase and
+            # stripping any whitespaces for consistency
             keyword = '/'.join([keyword.lower().strip() for keyword in row[:-1]])
             keyword = keyword.strip('/')
+            # making it a dict to make it more efficient to check for values
             combined_keywords[keyword] = True
+        return combined_keywords
 
+    @staticmethod
+    def prepare_received_gcmd_keywords_list(*args):
         keywords_lists_unordered = [arg for arg in args if arg is not None]
         ordered_keyword_list = list(zip(*keywords_lists_unordered))
         received_keywords = []
         for keywords in ordered_keyword_list:
             received_keywords.append(
-                '/'.join([keyword.lower().strip() for keyword in keywords if keyword != None])
+                # converting the keywords to lowercase and
+                # stripping any whitespaces for consistency
+                '/'.join([keyword.lower().strip() for keyword in keywords])
             )
+        return received_keywords
+    
+    @staticmethod
+    def gcmd_keywords_check(*args):
+        """
+        Checks if the GCMD keyword hierarchy is correct
+
+        Args:
+            args (list of lists): List of lists of the keywords in order of hierarchy
+                If there are multiple GCMD keywords, it'll be in the form:
+                [
+                    [Category_1, Category_2, ...],
+                    [Topic_1, Topic_2, ...],
+                    [Term_1, Term_2, ...],
+                    [VariableLevel1_1, VariableLevel1_2, ...],
+                    [VariableLevel2_1, VariableLevel2_2, ...],
+                    [VariableLevel3_1, VariableLevel3_2, ...],
+                    [DetailedVariable_1, DetailedVariable_2, ...]
+                ]
+
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
+        GCMD_KEYWORDS = StringValidator.prepare_gcmd_keywords_dict(
+            StringValidator.all_keywords
+        )
+
+        received_keywords = StringValidator.prepare_received_gcmd_keywords_list(*args)
 
         valid = True
         value = received_keywords
 
         for keyword in received_keywords:
-            if keyword not in combined_keywords:
+            if keyword not in GCMD_KEYWORDS:
                 valid = False
                 value = keyword
         
