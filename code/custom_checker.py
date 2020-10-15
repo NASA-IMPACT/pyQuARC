@@ -62,7 +62,7 @@ class CustomChecker:
         path = path.split('/')
         CustomChecker._get_path_value_recursively(
             content_to_validate, path, container)
-        return container
+        return container[0] if len(container) == 1 else container
 
     def run(self, content_to_validate, field, func):
         """
@@ -86,18 +86,11 @@ class CustomChecker:
         result = {
             "valid": None
         }
-        # REVIEWERS: better way to do this?
-        if len(fields) == 1:
+        for _field in fields:
             value = CustomChecker._get_path_value(
-                content_to_validate, fields[0])
+                content_to_validate, _field)
             if value:
-                field_values.append(value[0])
-        else:
-            for _field in fields:
-                value = CustomChecker._get_path_value(
-                    content_to_validate, _field)
-                if value:
-                    field_values.append(value)
+                field_values.append(value)
         if field_values:
             result = func(*field_values, relation)
         return result
