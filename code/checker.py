@@ -107,16 +107,16 @@ class Checker:
 
         for rule_id in ordered_rule:
             result_dict.setdefault(rule_id, {})
-            fields_to_apply = self.get_fields(rule_id)
+            list_of_fields_to_apply = self.get_fields(rule_id)
             rule = self.checks[rule_id]
             func = Checker.map_to_function(rule["data_type"], rule["check_function"])
             dependencies = rule.get("dependencies", [])
-            for field in fields_to_apply:
-                main_field = field["fields"][0]
+            for field_dict in list_of_fields_to_apply:
+                main_field = field_dict["fields"][0]
                 for dependency in dependencies:
                     if not self.tracker.read_data(dependency, main_field)["valid"]:
                         break
-                result = self.custom_checker.run(func, metadata_content, field)
+                result = self.custom_checker.run(func, metadata_content, field_dict)
                 self.tracker.update_data(rule_id, main_field, result["valid"])
                 if result["valid"] != None: # this is to avoid "valid" = null in the result, for rules that are not applied
                     result_dict[rule_id][main_field] = result

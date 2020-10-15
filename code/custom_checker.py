@@ -65,13 +65,17 @@ class CustomChecker:
         # TODO: Handle cases where there are multiple values for the field
         return container
 
-    def run(self, func, content_to_validate, field):
+    def run(self, func, content_to_validate, field_dict):
         """
-        Runs the custom check based on `func` to the `content_to_validate`'s `field` path
+        Runs the custom check based on `func` to the `content_to_validate`'s `field_dict` path
 
         Args:
             content_to_validate (dict): The metadata content
-            field (str): The field path
+            field_dict (dict): The field dictionary of the form: 
+                    {
+                        "fields": relavant fields,
+                        "relation": relation between the fields
+                    }
             func (function): The function reference to the check
 
         Returns:
@@ -81,9 +85,9 @@ class CustomChecker:
                 "value": "The instance value/s"
             }
         """
-        fields = field["fields"]
+        fields = field_dict["fields"]
         field_values = []
-        relation = field.get("relation")
+        relation = field_dict.get("relation")
         result = {
             "valid": None
         }
