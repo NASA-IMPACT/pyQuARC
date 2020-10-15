@@ -167,7 +167,8 @@ class StringValidator(BaseValidator):
 
     @staticmethod
     def eosdis_doi_authority_check(*args):
-        vocabulary = ["https://doi.org", "https://doi.org/"]
+        url = "https://doi.org"
+        vocabulary = [url, f"{url}/"]
         return {
             "valid": BaseValidator.compare(str(args[0]), vocabulary, "is_in"),
             "value": args[0]
