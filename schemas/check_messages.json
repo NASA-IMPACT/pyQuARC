@@ -107,7 +107,7 @@
         "check_id": "gcmd_keywords_check",
         "message": {
             "success": "",
-            "failure": "[ {} ] is not one of the valid GCMD keywords",
+            "failure": "[ {} ] is either not a valid hierarchy of GCMD keywords or it contains an invalid keyword",
             "warning": ""
         },
         "help": {

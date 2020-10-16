@@ -187,7 +187,7 @@ class StringValidator(BaseValidator):
         for row in all_keywords:
             # converting the keywords to lowercase and
             # stripping any whitespaces for consistency
-            keyword = '/'.join([keyword.lower().strip() for keyword in row[:-1]])
+            keyword = '/'.join([keyword.upper().strip() for keyword in row[:-1]])
             keyword = keyword.strip('/')
             # making it a dict to make it more efficient to check for values
             combined_keywords[keyword] = True
@@ -200,9 +200,9 @@ class StringValidator(BaseValidator):
         received_keywords = []
         for keywords in ordered_keyword_list:
             received_keywords.append(
-                # converting the keywords to lowercase and
+                # converting the keywords to uppercase and
                 # stripping any whitespaces for consistency
-                '/'.join([keyword.lower().strip() for keyword in keywords])
+                '/'.join([keyword.upper().strip() for keyword in keywords])
             )
         return received_keywords
     
@@ -234,16 +234,16 @@ class StringValidator(BaseValidator):
         received_keywords = StringValidator.prepare_received_gcmd_keywords_list(*args)
 
         valid = True
-        value = received_keywords
+        value = []
 
         for keyword in received_keywords:
             if keyword not in GCMD_KEYWORDS:
                 valid = False
-                value = keyword
+                value.append(keyword)
         
         return {
             "valid": valid,
-            "value": value
+            "value": value if value else received_keywords
         }
 
 
