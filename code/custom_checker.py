@@ -29,6 +29,9 @@ class CustomChecker:
         try:
             root_content = subset_of_metadata_content[path[0]]
         except KeyError as e:
+            # this is needed because GCMD keywords check needs the placement 
+            # of the values in the returned list
+            container.append(" ")
             return
         new_path = path[1:]
         if isinstance(root_content, str) or isinstance(root_content, int):
@@ -39,6 +42,7 @@ class CustomChecker:
                     CustomChecker._get_path_value_recursively(
                         each, new_path, container)
                 except KeyError as e:
+                    container.append(" ")
                     continue
         elif isinstance(root_content, dict):
             CustomChecker._get_path_value_recursively(
@@ -58,7 +62,6 @@ class CustomChecker:
         """
 
         container = list()
-
         path = path.split('/')
         CustomChecker._get_path_value_recursively(
             content_to_validate, path, container)
@@ -89,9 +92,9 @@ class CustomChecker:
         for _field in fields:
             value = CustomChecker._get_path_value(
                 content_to_validate, _field)
-            if value:
-                field_values.append(value)
-        if field_values:
-            arguments = [arg for arg in [*field_values, relation] if arg]
+            field_values.append(value)
+        # If relation is None, we don't want to pass it to the function
+        arguments = [arg for arg in [*field_values, relation] if arg]
+        if arguments[0] != " ": # Only if there is a value for a field
             result = func(*arguments)
         return result

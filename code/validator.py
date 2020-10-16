@@ -202,7 +202,8 @@ class StringValidator(BaseValidator):
             received_keywords.append(
                 # converting the keywords to uppercase and
                 # stripping any whitespaces for consistency
-                '/'.join([keyword.upper().strip() for keyword in keywords])
+                # stripping any extra slashes in case there's no value for the field
+                '/'.join([keyword.upper().strip() for keyword in keywords]).strip('/')
             )
         return received_keywords
     
