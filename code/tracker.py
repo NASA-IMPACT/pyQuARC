@@ -47,7 +47,7 @@ class Tracker:
                 )
         return data
 
-    def update(self, rule_id, field, validity):
+    def update_data(self, rule_id, field, validity):
         """
         Updates the tracking value for `rule_id` and `field` with the `validity` status
 
@@ -61,7 +61,7 @@ class Tracker:
                 self.data[rule_id][idx]["valid"] = validity
                 self.data[rule_id][idx]["applied"] = True
 
-    def read(self, rule_id, field):
+    def read_data(self, rule_id, field):
         """
         Reads the tracking data for `rule_id` and `field`
 

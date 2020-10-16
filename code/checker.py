@@ -21,24 +21,22 @@ class Checker:
             validation_paths ([str]): A list of paths for which
             the structure of the metadata needs to be checked
         """
-        self.checks = json.load(
-            open(SCHEMA_PATHS["checks"], "r")
-        )
-        self.rule_mapping = json.load(
-            open(SCHEMA_PATHS["rule_mapping"], "r")
-        )
+        self.load_schemas()
 
         self.custom_checker = CustomChecker()
         self.scheduler = Scheduler(self.rule_mapping)
-        self.schema_validator = SchemaValidator(
-            metadata_format, validation_paths)
+        self.schema_validator = SchemaValidator(metadata_format, validation_paths)
         self.tracker = Tracker(self.rule_mapping)
-        self.messages = json.load(
-            open(SCHEMA_PATHS["check_messages"], "r")
-        )
-        self.messages_override = json.load(
-            open(SCHEMA_PATHS["check_messages_override"], "r")
-        )
+
+    @staticmethod
+    def _json_load_schema(shema_name):
+        return json.load(open(SCHEMA_PATHS[shema_name], "r"))
+
+    def load_schemas(self):
+        self.checks = Checker._json_load_schema("checks")
+        self.rule_mapping = Checker._json_load_schema("rule_mapping")
+        self.messages = Checker._json_load_schema("check_messages")
+        self.messages_override = Checker._json_load_schema("check_messages_override")
 
     @staticmethod
     def map_to_function(data_type, function):
@@ -53,8 +51,12 @@ class Checker:
         Returns:
             (func): The function reference
         """
-        class_object = globals()[f"{data_type.title()}Validator"]
-        function_object = getattr(class_object, function)
+        try:
+            class_object = globals()[f"{data_type.title()}Validator"]
+            function_object = getattr(class_object, function)
+        except AttributeError as e:
+            print("The function hasn't been implemented")
+            return None
         return function_object
 
     def get_fields(self, rule_id):
@@ -64,15 +66,6 @@ class Checker:
         for mapping in self.rule_mapping:
             if mapping["rule_id"] == rule_id:
                 return mapping["fields_to_apply"]
-
-    def get_rule_ordering(self):
-        """
-        Get the ordering of the rule based on the dependencies
-
-        Returns:
-            (list): The ordered list of the rules based on the application order
-        """
-        return self.scheduler.order_rules()
 
     def get_message(self, rule_id):
         """
@@ -92,45 +85,40 @@ class Checker:
         message = self.get_message(rule_id)
         if not result["valid"] and result.get("value") and message:
             value = result["value"]
+            formatted_message = message
             if isinstance(value, tuple):
-                return message["failure"].format(*value)
+                formatted_message = message["failure"].format(*value)
             else:
-                return message["failure"].format(value)
+                formatted_message = message["failure"].format(value)
+            return formatted_message
 
     def perform_jsonschema_check(self, metadata_content):
-        """ 
+        """
         Performs JSONSchema check
         """
         return self.schema_validator.run(metadata_content)
 
     def perform_custom_checks(self, metadata_content):
-        """ 
+        """
         Performs custom checks
         """
-        ordered_rule = self.get_rule_ordering()
+        ordered_rule = self.scheduler.order_rules()
         result_dict = {}
 
         for rule_id in ordered_rule:
             result_dict.setdefault(rule_id, {})
-            fields_to_apply = self.get_fields(rule_id)
+            list_of_fields_to_apply = self.get_fields(rule_id)
             rule = self.checks[rule_id]
-            func = Checker.map_to_function(
-                rule["data_type"],
-                rule["check_function"]
-            )
-            dependencies = rule.get("dependencies") or []
-            for field in fields_to_apply:
-                main_field = field["fields"][0]
-                dependency_check = True
+            func = Checker.map_to_function(rule["data_type"], rule["check_function"])
+            dependencies = rule.get("dependencies", [])
+            for field_dict in list_of_fields_to_apply:
+                main_field = field_dict["fields"][0]
                 for dependency in dependencies:
-                    if not self.tracker.read(dependency, main_field)["valid"]:
-                        dependency_check = False
-                if dependency_check:
-                    result = self.custom_checker.run(
-                        metadata_content, field, func
-                    )
-                    self.tracker.update(rule_id, main_field, result["valid"])
-                if result["valid"] != None:
+                    if not self.tracker.read_data(dependency, main_field)["valid"]:
+                        break
+                result = self.custom_checker.run(func, metadata_content, field_dict)
+                self.tracker.update_data(rule_id, main_field, result["valid"])
+                if result["valid"] != None: # this is to avoid "valid" = null in the result, for rules that are not applied
                     result_dict[rule_id][main_field] = result
 
                     message = self.build_message(result, rule_id)

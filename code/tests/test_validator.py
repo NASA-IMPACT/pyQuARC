@@ -7,8 +7,7 @@ import xmltodict
 from ..downloader import Downloader
 from ..validator import DatetimeValidator
 
-from .fixtures.checker import INPUT_OUTPUT, DUMMY_METADATA_CONTENT
-from .fixtures.validator import REAL_COLLECTION_VALIDATOR_RESULT
+from .fixtures.validator import REAL_COLLECTION_VALIDATOR_RESULT, INPUT_OUTPUT
 
 
 class TestValidator:

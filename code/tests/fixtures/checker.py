@@ -36,29 +36,20 @@ DUMMY_METADATA_CONTENT = {
     },
 }
 
-INPUT_OUTPUT = {
-    "date_datetime_iso_format_check": [
+
+FUNCTION_MAPPING = {
+    "input": [
         {
-            "input": "2016-06-14T00:00:00.000Z",
-            "output": True,
+            "datatype": "datetime",
+            "function": "iso_format_check"
         },
         {
-            "input": "2016-06-1400:00:00.000",
-            "output": False,
+            "datatype": "datetime",
+            "function": "format_check"
         }
     ],
-    "get_path_value": [
-        {
-            "input": "Contacts/Contact/ContactPersons/ContactPerson/glabb",
-            "output": set()
-        },
-        {
-            "input": "Contacts/Contact/ContactPersons/ContactPerson/blabla",
-            "output": {"BOSILOVICH"}
-        },
-        {
-            "input": "Contacts/Contact/ContactPersons/ContactPerson/FirstName",
-            "output": {"DANA", "SLESA", "MICHAEL"}
-        }
+    "output": [
+        True,
+        False
     ]
 }

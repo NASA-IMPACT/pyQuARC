@@ -11,7 +11,7 @@ class CustomChecker:
         pass
 
     @staticmethod
-    def _get_path_value_recursively(subset_of_metadata_content, path, container):
+    def _get_path_value_recursively(subset_of_metadata_content, path_list, container):
         """
         Gets the path values recursively while handling list or dictionary in `subset_of_metadata_content`
         Adds the values to `container`
@@ -20,20 +20,20 @@ class CustomChecker:
             subset_of_metadata_content (dict or list or str): 
                         The value of the field at a certain point;
                         changes during each level of recursion
-            path (list): The path of the field as a list
+            path_list (list): The path of the field as a list
                          Example: 'Collection/RangeDateTime/StartDate' ->
                                   ['Collection', 'RangeDateTime', 'StartDate']
             container (set): The container that holds all the path values
         """
 
         try:
-            root_content = subset_of_metadata_content[path[0]]
+            root_content = subset_of_metadata_content[path_list[0]]
         except KeyError as e:
             # this is needed because GCMD keywords check needs the placement 
             # of the values in the returned list
             container.append(" ")
             return
-        new_path = path[1:]
+        new_path = path_list[1:]
         if isinstance(root_content, str) or isinstance(root_content, int):
             container.append(root_content)
         elif isinstance(root_content, list):
@@ -49,12 +49,12 @@ class CustomChecker:
                 root_content, new_path, container)
 
     @staticmethod
-    def _get_path_value(content_to_validate, path):
+    def _get_path_value(content_to_validate, path_string):
         """
         Gets the value of the field from the metadata (input_json)
 
         Args:
-            path (str): The path of the field. Example: 'Collection/RangeDateTime/StartDate'
+            path_string (str): The path of the field. Example: 'Collection/RangeDateTime/StartDate'
 
         Returns:
             (bool, set) If the path exists, (True, set of values of the path);
@@ -62,18 +62,22 @@ class CustomChecker:
         """
 
         container = list()
-        path = path.split('/')
+        path = path_string.split('/')
         CustomChecker._get_path_value_recursively(
             content_to_validate, path, container)
         return container[0] if len(container) == 1 else container
 
-    def run(self, content_to_validate, field, func):
+    def run(self, func, content_to_validate, field_dict):
         """
-        Runs the custom check based on `func` to the `content_to_validate`'s `field` path
+        Runs the custom check based on `func` to the `content_to_validate`'s `field_dict` path
 
         Args:
             content_to_validate (dict): The metadata content
-            field (str): The field path
+            field_dict (dict): The field dictionary of the form: 
+                    {
+                        "fields": relavant fields,
+                        "relation": relation between the fields
+                    }
             func (function): The function reference to the check
 
         Returns:
@@ -83,9 +87,9 @@ class CustomChecker:
                 "value": "The instance value/s"
             }
         """
-        fields = field["fields"]
+        fields = field_dict["fields"]
         field_values = []
-        relation = field.get("relation")
+        relation = field_dict.get("relation")
         result = {
             "valid": None
         }

@@ -3,8 +3,7 @@ import jsonschema
 
 from copy import deepcopy
 
-from .constants import DIF, ECHO10, UMM_JSON
-from .constants import SCHEMA_PATHS
+from .constants import DIF, ECHO10, UMM_JSON, SCHEMA_PATHS
 
 
 class SchemaValidator:
@@ -57,7 +56,7 @@ class SchemaValidator:
                 errors.append(validation_path)
         return errors
 
-    def _filtered_schema(self):
+    def _filter_schema(self):
         """
         Filters the schema based on validation paths passed
 
@@ -110,6 +109,10 @@ class SchemaValidator:
         """
 
         errors = []
+        error_dict = {
+            "valid": False,
+            "errors": errors
+        }
 
         validation_path_errors = self._check_validation_paths_against_schema()
 
@@ -122,30 +125,27 @@ class SchemaValidator:
                 }
             )
 
-            return errors
-
-        # content_to_validate = json.loads(content_to_validate)
-
-        if self.validation_paths:
-            filtered_schema = self._filtered_schema()
         else:
-            filtered_schema = self.schema
-        validator = jsonschema.Draft7Validator(
-            filtered_schema, format_checker=jsonschema.draft7_format_checker
-        )
-
-        for error in sorted(validator.iter_errors(content_to_validate), key=str):
-            errors.append(
-                {
-                    "message": error.message,
-                    "path": SchemaValidator.PATH_SEPARATOR.join(error.path),
-                    "instance": error.instance,
-                    "validator": error.validator,
-                    "validator_value": error.validator_value,
-                }
+            if self.validation_paths:
+                filtered_schema = self._filter_schema()
+            else:
+                filtered_schema = self.schema
+            validator = jsonschema.Draft7Validator(
+                filtered_schema, format_checker=jsonschema.draft7_format_checker
             )
 
-        if not errors:
-            return {"valid": True}
+            for error in sorted(validator.iter_errors(content_to_validate), key=str):
+                errors.append(
+                    {
+                        "message": error.message,
+                        "path": SchemaValidator.PATH_SEPARATOR.join(error.path),
+                        "instance": error.instance,
+                        "validator": error.validator,
+                        "validator_value": error.validator_value,
+                    }
+                )
 
-        return {"valid": False, "errors": errors}
+        if not errors:
+            error_dict["valid"] = True
+
+        return error_dict
