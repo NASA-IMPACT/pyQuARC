@@ -41,7 +41,8 @@ class SchemaValidator:
 
         for validation_path in self.validation_paths:
             splits = [
-                i.strip() for i in validation_path.split(SchemaValidator.PATH_SEPARATOR)
+                field.strip()
+                for field in validation_path.split(SchemaValidator.PATH_SEPARATOR)
             ]
 
             # go inside each path iteratively to get the final value
