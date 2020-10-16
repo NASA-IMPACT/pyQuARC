@@ -120,7 +120,7 @@ class StringValidator(BaseValidator):
     with open(SCHEMA_PATHS["science_keywords"]) as csvfile:
         reader = csv.reader(csvfile)
         # each row in the csv file corresponds to one valid hierarchy instance of GCMD keyword
-        all_keywords = [row for row in reader]
+        all_keywords = list(reader)
 
     def __init__(self):
         super().__init__()
@@ -238,7 +238,7 @@ class StringValidator(BaseValidator):
         value = []
 
         for keyword in received_keywords:
-            if keyword not in GCMD_KEYWORDS:
+            if not BaseValidator.compare(keyword, GCMD_KEYWORDS, "is_in"):
                 valid = False
                 value.append(keyword)
         
