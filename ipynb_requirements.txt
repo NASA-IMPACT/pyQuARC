@@ -1,0 +1,6 @@
+# Temporary file to hold requirements for running the ipynb
+# Will be deleted once we don't need to parse excel files and have a stable json
+
+jupyterlab
+pandas
+xlrd

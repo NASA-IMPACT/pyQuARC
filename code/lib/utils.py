@@ -58,9 +58,9 @@ def _process_type(elem_type):
         return {"$ref": f"#/definitions/{elem_type}"}
 
 
-def _name_extractor(inp_obj):
+def _name_extractor(input_obj):
     try:
-        return {"name": inp_obj["@name"]}
+        return {"name": input_obj["@name"]}
     except KeyError:
         # this lets us know when some object doesn't have a name
         print(f"Key '@name' not found in:\n{input_obj}")

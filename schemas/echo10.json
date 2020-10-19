@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "RangeDateTime": {
+      "type": "object",
+      "properties": {
+        "BeginningDateTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "EndingDateTime": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  },
+  "type": "object",
+  "properties": {
+    "Collection": {
+      "type": "object",
+      "properties": {
+        "DataSetId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1030,
+          "description": "Specifies a unique name for the\n          collection. This is considered the primary identifier for\n          a collection."
+        },
+        "ProcessingLevelId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "The processing level class contains the\n          level identifier and level description of the\n          collection."
+        },
+        "Temporal": {
+          "type": "object",
+          "oneOf": [
+            {
+              "required": ["RangeDateTime"]
+            },
+            {
+              "required": ["SingleDateTime"]
+            },
+            {
+              "required": ["PeriodicDateTime"]
+            }
+          ],
+          "properties": {
+            "RangeDateTime": {
+              "$ref": "#/definitions/RangeDateTime"
+            },
+            "SingleDateTime": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "PeriodicDateTime": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "DOI": {
+          "type": "object",
+          "oneOf": [
+            {
+              "required": [
+                "DOI"
+              ]
+            },
+            {
+              "required": [
+                "MissingReason"
+              ]
+            }
+          ],
+          "properties": {
+            "DOI": {
+              "type": "string"
+            },
+            "Authority": {
+              "type": "string"
+            },
+            "MissingReason": {
+              "type": "string"
+            },
+            "Explanation": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
