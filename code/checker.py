@@ -59,7 +59,7 @@ class Checker:
             return None
         return function_object
 
-    def get_fields(self, rule_id):
+    def fields(self, rule_id):
         """
         Get the applicable fields for `rule_id`
         """
@@ -67,7 +67,7 @@ class Checker:
             if mapping["rule_id"] == rule_id:
                 return mapping["fields_to_apply"]
 
-    def get_message(self, rule_id):
+    def message(self, rule_id):
         """
         Get the success, failure, warning messages for the `rule_id`
         """
