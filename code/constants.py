@@ -17,3 +17,4 @@ SCHEMAS = [
 ]
 
 SCHEMA_PATHS = { schema: SCHEMAS_BASE_PATH / f"{schema}.json" for schema in SCHEMAS }
+SCHEMA_PATHS["science_keywords"] = SCHEMAS_BASE_PATH / "science_keywords.csv"

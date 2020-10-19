@@ -102,5 +102,31 @@
             "url": ""
         },
         "remediation": ""
+    },
+    {
+        "check_id": "gcmd_keywords_check",
+        "message": {
+            "success": "",
+            "failure": "[ {} ] is either not a valid hierarchy of GCMD keywords or it contains an invalid keyword",
+            "warning": ""
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": ""
+    },
+    {
+        "check_id": "eosdis_doi_authority_check",
+        "message": {
+            "success": "",
+            "failure": "[ {} ] is not valid. It should either be 'https://doi.org' or 'https://doi.org/",
+            "warning": ""
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": ""
     }
 ]

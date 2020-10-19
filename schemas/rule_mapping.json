@@ -4,11 +4,17 @@
         "rule_name": "Data Update Time Logic Check",
         "fields_to_apply": [
             {
-                "fields": ["Collection/InsertTime", "Collection/LastUpdate"],
+                "fields": [
+                    "Collection/InsertTime",
+                    "Collection/LastUpdate"
+                ],
                 "relation": "lte"
             },
             {
-                "fields": ["Collection/Temporal/RangeDateTime/BeginningDateTime", "Collection/Temporal/RangeDateTime/EndingDateTime"],
+                "fields": [
+                    "Collection/Temporal/RangeDateTime/BeginningDateTime",
+                    "Collection/Temporal/RangeDateTime/EndingDateTime"
+                ],
                 "relation": "lte"
             }
         ]
@@ -18,31 +24,49 @@
         "rule_name": "Datetime ISO Format Check",
         "fields_to_apply": [
             {
-                "fields": ["Collection/InsertTime"]
+                "fields": [
+                    "Collection/InsertTime"
+                ]
             },
             {
-                "fields": ["Collection/LastUpdate"]
+                "fields": [
+                    "Collection/LastUpdate"
+                ]
             },
             {
-                "fields": ["Collection/DeleteTime"]
+                "fields": [
+                    "Collection/DeleteTime"
+                ]
             },
             {
-                "fields": ["Collection/RevisionDate"]
+                "fields": [
+                    "Collection/RevisionDate"
+                ]
             },
             {
-                "fields": ["Collection/Temporal/SingleDateTime"]
+                "fields": [
+                    "Collection/Temporal/SingleDateTime"
+                ]
             },
             {
-                "fields": ["Collection/Temporal/RangeDateTime/BeginningDateTime"]
+                "fields": [
+                    "Collection/Temporal/RangeDateTime/BeginningDateTime"
+                ]
             },
             {
-                "fields": ["Collection/Temporal/RangeDateTime/EndingDateTime"]
+                "fields": [
+                    "Collection/Temporal/RangeDateTime/EndingDateTime"
+                ]
             },
             {
-                "fields": ["Collection/Temporal/PeriodicDateTime/StartDate"]
+                "fields": [
+                    "Collection/Temporal/PeriodicDateTime/StartDate"
+                ]
             },
             {
-                "fields": ["Collection/Temporal/PeriodicDateTime/EndDate"]
+                "fields": [
+                    "Collection/Temporal/PeriodicDateTime/EndDate"
+                ]
             }
         ]
     },
@@ -51,10 +75,14 @@
         "rule_name": "URL Health and Status Check",
         "fields_to_apply": [
             {
-                "fields": ["Collection/Description"]
+                "fields": [
+                    "Collection/Description"
+                ]
             },
             {
-                "fields": ["Collection/SuggestedUsage"]
+                "fields": [
+                    "Collection/SuggestedUsage"
+                ]
             }
         ]
     },
@@ -63,7 +91,10 @@
         "rule_name": "Short Name uniqueness check",
         "fields_to_apply": [
             {
-                "fields": ["Collection/DataSetId", "Collection/ShortName"],
+                "fields": [
+                    "Collection/DataSetId",
+                    "Collection/ShortName"
+                ],
                 "relation": "eq"
             }
         ]
@@ -73,7 +104,9 @@
         "rule_name": "Abstract length check",
         "fields_to_apply": [
             {
-                "fields": ["Collection/Description"]
+                "fields": [
+                    "Collection/Description"
+                ]
             }
         ]
     },
@@ -82,7 +115,9 @@
         "rule_name": "DOI Validity Check",
         "fields_to_apply": [
             {
-                "fields": ["Collection/DOI/DOI"]
+                "fields": [
+                    "Collection/DOI/DOI"
+                ]
             }
         ]
     },
@@ -91,7 +126,37 @@
         "rule_name": "EOSDIS Standard Processing Level ID Check",
         "fields_to_apply": [
             {
-                "fields": ["Collection/ProcessingLevelId"]
+                "fields": [
+                    "Collection/ProcessingLevelId"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "gcmd_keywords_check",
+        "rule_name": "GCMD keywords check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/ScienceKeywords/ScienceKeyword/CategoryKeyword",
+                    "Collection/ScienceKeywords/ScienceKeyword/TopicKeyword",
+                    "Collection/ScienceKeywords/ScienceKeyword/TermKeyword",
+                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/Value",
+                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel2Keyword/Value",
+                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel3Keyword/Value",
+                    "Collection/ScienceKeywords/ScienceKeyword/DetailedVariableKeyword"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "eosdis_doi_authority_check",
+        "rule_name": "EOSDIS DOI Authority Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/DOI/Authority"
+                ]
             }
         ]
     }

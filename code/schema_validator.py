@@ -41,18 +41,18 @@ class SchemaValidator:
 
         for validation_path in self.validation_paths:
             splits = [
-                i.strip() for i in validation_path.split(SchemaValidator.PATH_SEPARATOR)
+                field.strip()
+                for field in validation_path.split(SchemaValidator.PATH_SEPARATOR)
             ]
 
             # go inside each path iteratively to get the final value
-            try:
                 # each level has the value in the "properties" key
-                check = self.schema["properties"]
+            if check := self.schema.get("properties"):
                 # only go upto the second last value of the path because the last field doesn't have the "properties" key
                 for split in splits[:-1]:
                     check = check[split]["properties"]
                 check = check[splits[-1]]
-            except KeyError:
+            else:
                 errors.append(validation_path)
         return errors
 
@@ -145,7 +145,6 @@ class SchemaValidator:
                     }
                 )
 
-        if not errors:
-            error_dict["valid"] = True
+        error_dict["valid"] = not(errors)
 
         return error_dict

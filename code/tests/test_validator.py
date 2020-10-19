@@ -7,7 +7,7 @@ import xmltodict
 from ..downloader import Downloader
 from ..validator import DatetimeValidator
 
-from .fixtures.validator import REAL_COLLECTION_VALIDATOR_RESULT, INPUT_OUTPUT
+from .fixtures.validator import INPUT_OUTPUT
 
 
 class TestValidator:
@@ -22,7 +22,7 @@ class TestValidator:
         for input_output in INPUT_OUTPUT["date_datetime_iso_format_check"]:
             assert (
                 DatetimeValidator.iso_format_check(
-                    input_output["input"], {})["valid"]
+                    input_output["input"])["valid"]
             ) == input_output["output"]
 
     def test_datetime_compare(self):

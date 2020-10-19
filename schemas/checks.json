@@ -3,7 +3,9 @@
         "data_type": "datetime",
         "check_function": "compare",
         "number_of_arguments": 2,
-        "dependencies": ["datetime_format_check"],
+        "dependencies": [
+            "datetime_format_check"
+        ],
         "description": "Compares two datetimes based on the relation given.",
         "available": true
     },
@@ -46,6 +48,18 @@
     "processing_level_id_check": {
         "data_type": "string",
         "check_function": "processing_level_id_check",
+        "description": "Checks ...",
+        "available": true
+    },
+    "gcmd_keywords_check": {
+        "data_type": "string",
+        "check_function": "gcmd_keywords_check",
+        "description": "Checks if the science keywords are valid gcmd keywords",
+        "available": true
+    },
+    "eosdis_doi_authority_check": {
+        "data_type": "string",
+        "check_function": "eosdis_doi_authority_check",
         "description": "Checks ...",
         "available": true
     }
