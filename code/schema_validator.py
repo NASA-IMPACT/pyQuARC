@@ -145,7 +145,6 @@ class SchemaValidator:
                     }
                 )
 
-        if not errors:
-            error_dict["valid"] = True
+        error_dict["valid"] = not(errors)
 
         return error_dict

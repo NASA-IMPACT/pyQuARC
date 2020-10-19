@@ -82,7 +82,7 @@ class Checker:
         """
         Formats the message for `rule_id` based on the result
         """
-        message = self.get_message(rule_id)
+        message = self.message(rule_id)
         if not result["valid"] and result.get("value") and message:
             value = result["value"]
             formatted_message = message
@@ -107,7 +107,7 @@ class Checker:
 
         for rule_id in ordered_rule:
             result_dict.setdefault(rule_id, {})
-            list_of_fields_to_apply = self.get_fields(rule_id)
+            list_of_fields_to_apply = self.fields(rule_id)
             rule = self.checks[rule_id]
             func = Checker.map_to_function(rule["data_type"], rule["check_function"])
             dependencies = rule.get("dependencies", [])
