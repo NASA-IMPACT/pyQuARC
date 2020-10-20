@@ -67,7 +67,7 @@ class CustomChecker:
             content_to_validate, path, container)
         return container[0] if len(container) == 1 else container
 
-    def run(self, func, content_to_validate, field_dict):
+    def run(self, func, content_to_validate, field_dict, external_data):
         """
         Runs the custom check based on `func` to the `content_to_validate`'s `field_dict` path
 
@@ -79,6 +79,7 @@ class CustomChecker:
                         "relation": relation between the fields
                     }
             func (function): The function reference to the check
+            external_data (any): External data required by the check if any
 
         Returns:
             (dict): The result of the check in the form:
@@ -98,7 +99,7 @@ class CustomChecker:
                 content_to_validate, _field)
             field_values.append(value)
         # If relation is None, we don't want to pass it to the function
-        arguments = [arg for arg in [*field_values, relation] if arg]
+        arguments = [arg for arg in [*field_values, relation, external_data] if arg]
         if arguments[0] != " ": # Only if there is a value for a field
             result = func(*arguments)
         return result

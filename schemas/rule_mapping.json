@@ -100,7 +100,7 @@
         ]
     },
     {
-        "rule_id": "length_check",
+        "rule_id": "abstract_length_check",
         "rule_name": "Abstract length check",
         "fields_to_apply": [
             {

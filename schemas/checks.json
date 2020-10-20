@@ -2,7 +2,6 @@
     "date_compare": {
         "data_type": "datetime",
         "check_function": "compare",
-        "number_of_arguments": 2,
         "dependencies": [
             "datetime_format_check"
         ],
@@ -33,10 +32,11 @@
         "description": "Checks if the shortname is unique.",
         "available": true
     },
-    "length_check": {
+    "abstract_length_check": {
         "data_type": "string",
         "check_function": "length_check",
         "description": "Checks if the length of a given keyword is less than or equal to a given value",
+        "data": 100,
         "available": true
     },
     "doi_check": {
@@ -47,8 +47,9 @@
     },
     "processing_level_id_check": {
         "data_type": "string",
-        "check_function": "processing_level_id_check",
-        "description": "Checks ...",
+        "check_function": "controlled_keywords_check",
+        "description": "Checks if the processing level id is one of the valid values",
+        "data": ["0", "1A", "1B", "2", "3", "4"],
         "available": true
     },
     "gcmd_keywords_check": {
@@ -59,8 +60,9 @@
     },
     "eosdis_doi_authority_check": {
         "data_type": "string",
-        "check_function": "eosdis_doi_authority_check",
+        "check_function": "controlled_keywords_check",
         "description": "Checks ...",
+        "data": ["https://doi.org", "https://doi.org/"],
         "available": true
     }
 }
