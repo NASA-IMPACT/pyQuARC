@@ -64,5 +64,18 @@
         "description": "Checks ...",
         "data": ["https://doi.org", "https://doi.org/"],
         "available": true
+    },
+    "delete_time_check": {
+        "data_type": "datetime",
+        "check_function": "delete_time_check",
+        "description": "Checks ...",
+        "available": true
+    },
+    "doi_missing_reason_enumeration_check": {
+        "data_type": "string",
+        "check_function": "controlled_keywords_check",
+        "description": "Checks ...",
+        "data": ["Not Applicable"],
+        "available": true
     }
 }

@@ -4,10 +4,6 @@ class CustomChecker:
     """
 
     def __init__(self):
-        """
-        Args:
-            content_to_validate (str): JSON string containing downloaded metadata
-        """
         pass
 
     @staticmethod

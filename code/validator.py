@@ -23,6 +23,10 @@ class BaseValidator:
         return first == second
 
     @staticmethod
+    def neq(first, second):
+        return first == second
+
+    @staticmethod
     def lt(first, second):
         return first < second
 
@@ -112,6 +116,18 @@ class DatetimeValidator(BaseValidator):
             "value": (first, second)
         }
 
+    @staticmethod
+    def delete_time_check(datetime_string):
+        delete_time = DatetimeValidator._iso_datetime(datetime_string)
+        result = BaseValidator.compare(
+            delete_time.replace(tzinfo=None), # need to make it offset-naive for comparison
+            datetime.now(),
+            "gte"
+            )
+        return {
+            "valid": result,
+            "value": datetime_string
+        }
 
 class StringValidator(BaseValidator):
     """

@@ -95,7 +95,7 @@
                     "Collection/DataSetId",
                     "Collection/ShortName"
                 ],
-                "relation": "eq"
+                "relation": "neq"
             }
         ]
     },
@@ -156,6 +156,28 @@
             {
                 "fields": [
                     "Collection/DOI/Authority"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "delete_time_check",
+        "rule_name": "Delete Time Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/DeleteTime"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "doi_missing_reason_enumeration_check",
+        "rule_name": "DOI Missing Reason Enumeration Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/DOI/MissingReason"
                 ]
             }
         ]
