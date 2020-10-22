@@ -143,16 +143,22 @@ class StringValidator(BaseValidator):
         super().__init__()
 
     @staticmethod
-    def length_check(string, maximum_length):
+    def length_check(string, args):
         """
-        Checks if the length of the string is less than or equal to maximum length
+        Checks if the length of the string is valid based on the extent 
+        and relation provided in the args
+
+        Args:
+            string (str): The input string
+            args (list): [extent (int), relation (str)] The extent and the relation
 
         Returns:
             (dict) An object with the validity of the check and the instance
         """
+        extent, relation = args
         length = len(string)
         return {
-            "valid": length <= maximum_length,
+            "valid": BaseValidator.compare(length, extent, relation),
             "value": length
         }
 
@@ -226,6 +232,38 @@ class StringValidator(BaseValidator):
             "value": value if value else received_keywords
         }
 
+    @staticmethod
+    def ends_at_present_flag_logic_check(
+        ends_at_present_flag,
+        ending_date_time,
+        collection_state
+        ):
+        valid = True
+        if ends_at_present_flag == "true":
+            if ending_date_time.strip() or collection_state == "COMPLETE":
+                valid = False
+        elif ends_at_present_flag == "false":
+            if not ending_date_time.strip() or collection_state == "ACTIVE":
+                valid = False
+
+        return {
+            "valid": valid,
+            "value": ends_at_present_flag
+        }
+
+    @staticmethod
+    def mime_type_check(mime_type, url_type, controlled_list):
+        result = {
+            "valid": True,
+            "value": mime_type
+        }
+
+        if "USE SERVICE API" in url_type:
+            if mime_type.strip():
+                result = StringValidator.controlled_keywords_check(mime_type, controlled_list)
+        
+        return result
+            
 
 class UrlValidator(StringValidator):
     """

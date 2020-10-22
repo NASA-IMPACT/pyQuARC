@@ -36,7 +36,7 @@
         "data_type": "string",
         "check_function": "length_check",
         "description": "Checks if the length of a given keyword is less than or equal to a given value",
-        "data": 100,
+        "data": [100, "gte"],
         "available": true
     },
     "doi_check": {
@@ -76,6 +76,110 @@
         "check_function": "controlled_keywords_check",
         "description": "Checks ...",
         "data": ["Not Applicable"],
+        "available": true
+    },
+    "processing_level_description_length_check": {
+        "data_type": "string",
+        "check_function": "length_check",
+        "description": "Checks if the processing level description is 50 characters or less",
+        "data": [50, "gte"],
+        "available": true
+    },
+    "umm_controlled_collection_state_list_check": {
+        "data_type": "string",
+        "check_function": "controlled_keywords_check",
+        "description": "Checks if CollectionState against controlled vocabulary",
+        "data": ["ACTIVE", "PLANNED", "COMPLETE", "NOT APPLICABLE", "NOT PROVIDED"],
+        "available": true
+    },
+    "ends_at_present_flag_logic_check": {
+        "data_type": "string",
+        "check_function": "ends_at_present_flag_logic_check",
+        "description": "Checks if ...",
+        "available": true
+    },
+    "contact_mechanism_enum_check": {
+        "data_type": "string",
+        "check_function": "controlled_keywords_check",
+        "description": "Checks if ...",
+        "data": ["Direct Line", "Email", "Facebook", "Fax", "Mobile", "Modem", "Primary", "TDD/TTY Phone", "Telephone", "Twitter", "U.S. toll free", "Other"],
+        "available": true
+    },
+    "data_contact_role_enum_check": {
+        "data_type": "string",
+        "check_function": "controlled_keywords_check",
+        "description": "Checks if ...",
+        "data": ["Data Center Contact", "Technical Contact", "Science Contact", "Investigator", "Metadata Author", "User Services", "Science Software Development"],
+        "available": true
+    },
+    "controlled_contact_role_check": {
+        "data_type": "string",
+        "check_function": "controlled_keywords_check",
+        "description": "Checks if ...",
+        "data": ["ARCHIVER", "DISTRIBUTOR", "PROCESSOR", "ORIGINATOR"],
+        "available": true
+    },
+    "data_type_control_check": {
+        "data_type": "string",
+        "check_function": "controlled_keywords_check",
+        "description": "Checks if ...",
+        "data": ["STRING", "FLOAT", "INT", "BOOLEAN", "DATE", "TIME", "DATETIME", "DATE_STRING", "TIME_STRING", "DATETIME_STRING"],
+        "available": true
+    },
+    "characteristic_name_check": {
+        "data_type": "string",
+        "check_function": "length_check",
+        "description": "Checks if ...",
+        "data": [80, "lte"],
+        "available": true
+    },
+    "characteristic_desc_check": {
+        "data_type": "string",
+        "check_function": "length_check",
+        "description": "Checks if ...",
+        "data": [2048, "lte"],
+        "available": true
+    },
+    "characteristic_unit_check": {
+        "data_type": "string",
+        "check_function": "length_check",
+        "description": "Checks if ...",
+        "data": [80, "lte"],
+        "available": true
+    },
+    "characteristic_value_check": {
+        "data_type": "string",
+        "check_function": "length_check",
+        "description": "Checks if ...",
+        "data": [80, "lte"],
+        "available": true
+    },
+    "mime_type_check": {
+        "data_type": "string",
+        "check_function": "mime_type_check",
+        "description": "Checks if ...",
+        "data": ["application/json", "application/xml", "application/x-netcdf", "application/gml+xml", "application/vnd.google-earth.kml+xml", "image/gif", "image/tiff", "image/bmp", "text/csv", "text/xml", "application/pdf", "application/x-hdf", "application/xhdf5", "application/octet-stream", "application/vnd.google-earth.kmz", "image/jpeg", "image/png", "image/vnd.collada+xml", "text/html", "text/plain", "Not provided"],
+        "available": true
+    },
+    "coordinate_system_check": {
+        "data_type": "string",
+        "check_function": "controlled_keywords_check",
+        "description": "Checks if ...",
+        "data": ["CARTESIAN", "GEODETIC"],
+        "available": true
+    },
+    "product_flag_check": {
+        "data_type": "string",
+        "check_function": "controlled_keywords_check",
+        "description": "Checks if ...",
+        "data": ["DATA_PRODUCT_FILE", "INSTRUMENT_ANCILLARY_FILE", "SYSTEM/SPACECRAFT_FILE", "EXTERNAL_DATA"],
+        "available": true
+    },
+    "granule_spatial_representation_check": {
+        "data_type": "string",
+        "check_function": "controlled_keywords_check",
+        "description": "Checks if ...",
+        "data": ["CARTESIAN", "GEODETIC", "ORBIT", "NO_SPATIAL"],
         "available": true
     }
 }
