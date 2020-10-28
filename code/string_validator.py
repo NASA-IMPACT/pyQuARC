@@ -1,19 +1,15 @@
 import csv
 
 from .constants import SCHEMA_PATHS
-from .utils import prepare_received_gcmd_keywords_list, prepare_gcmd_keywords_dict
+
 from .base_validator import BaseValidator
+from .gcmd_validator import GcmdValidator
 
 
 class StringValidator(BaseValidator):
     """
     Validator class for string values
     """
-    all_keywords = []
-    with open(SCHEMA_PATHS["science_keywords"]) as csvfile:
-        reader = csv.reader(csvfile)
-        # each row in the csv file corresponds to one valid hierarchy instance of GCMD keyword
-        all_keywords = list(reader)
 
     def __init__(self):
         super().__init__()
@@ -89,19 +85,19 @@ class StringValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        GCMD_KEYWORDS = prepare_gcmd_keywords_dict(
-            StringValidator.all_keywords
-        )
 
-        received_keywords = prepare_received_gcmd_keywords_list(*args)
+        gcmdValidator = GcmdValidator()
+
+        received_keywords = gcmdValidator.prepare_received_gcmd_keywords_list(*args)
 
         valid = True
         value = []
 
         for keyword in received_keywords:
-            if not BaseValidator.compare(keyword, GCMD_KEYWORDS, "is_in"):
+            validity, invalid_value = gcmdValidator.validate(keyword)
+            if not validity:
                 valid = False
-                value.append(keyword)
+                value.append((invalid_value, '/'.join(keyword)))
         
         return {
             "valid": valid,
