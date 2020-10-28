@@ -3,7 +3,7 @@
         "check_id": "shortname_uniqueness",
         "message": {
             "success": "The Name is unique.",
-            "failure": "The Name [ {} ] is not unique.",
+            "failure": "The Name `{}` is not unique.",
             "warning": "Make sure Name is unique."
         },
         "help": {

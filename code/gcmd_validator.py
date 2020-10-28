@@ -6,16 +6,37 @@ from .constants import SCHEMA_PATHS
 class GcmdValidator:
 
     def __init__(self):
-        all_keywords = []
-        with open(SCHEMA_PATHS["science_keywords"]) as csvfile:
-            reader = csv.reader(csvfile)
-            all_keywords = list(reader)[2:]
+        self.keywords = {
+            "science": GcmdValidator._create_science_keywords_dict(
+                GcmdValidator._read_from_csv("science_keywords")
+            ),
+            "provider_short_name": GcmdValidator._read_from_csv("providers", 4),
+            "instrument_short_name": GcmdValidator._read_from_csv("instruments", 4),
+            "instrument_long_name": GcmdValidator._read_from_csv("instruments", 5)
+        }
 
-        all_keywords = [[each for each in kw[:-1] if each.strip()] for kw in all_keywords]
-        self.gcmd_keywords_dict = {}
+    @staticmethod
+    def _create_science_keywords_dict(keywords):
+        all_keywords = [[each for each in kw[:-1] if each.strip()] for kw in keywords]
+        science_keywords_dict = {}
         for row in all_keywords:
             row_dict = GcmdValidator.create_dict_from_list(row)
-            GcmdValidator.merge(self.gcmd_keywords_dict, row_dict)
+            GcmdValidator.merge(science_keywords_dict, row_dict)
+        return science_keywords_dict
+
+    @staticmethod
+    def _read_from_csv(keyword_kind, row_num=None):
+        with open(SCHEMA_PATHS[keyword_kind]) as csvfile:
+            reader = csv.reader(csvfile)
+            if row_num:
+                return_value = [
+                    row[row_num]
+                        for row in list(reader)[2:]
+                            if row[row_num].strip()
+                ]
+            else:
+                return_value = list(reader)[2:]
+        return return_value
 
     @staticmethod
     def prepare_received_gcmd_keywords_list(*args):
@@ -64,5 +85,15 @@ class GcmdValidator:
             return True, None
         return GcmdValidator.validate_recursively(subset_dict, input_keyword_list[1:])
 
-    def validate(self, input_keyword):
-        return GcmdValidator.validate_recursively(self.gcmd_keywords_dict, input_keyword)
+    def validate_science_keyword(self, input_keyword):
+        return GcmdValidator.validate_recursively(self.keywords["science"], input_keyword)
+
+    def validate_instrument_short_name(self, input_keyword):
+        return input_keyword in self.keywords["instrument_short_name"]
+
+    def validate_instrument_long_name(self, input_keyword):
+        return input_keyword in self.keywords["instrument_long_name"]
+
+    def validate_provider_short_name(self, input_keyword):
+        return input_keyword in self.keywords["provider_short_name"]
+

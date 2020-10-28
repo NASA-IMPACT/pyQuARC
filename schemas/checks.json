@@ -52,9 +52,9 @@
         "data": ["0", "1A", "1B", "2", "3", "4"],
         "available": true
     },
-    "gcmd_keywords_check": {
+    "science_keywords_gcmd_check": {
         "data_type": "string",
-        "check_function": "gcmd_keywords_check",
+        "check_function": "science_keywords_gcmd_check",
         "description": "Checks if the science keywords are valid gcmd keywords",
         "available": true
     },
@@ -180,6 +180,24 @@
         "check_function": "controlled_keywords_check",
         "description": "Checks if ...",
         "data": ["CARTESIAN", "GEODETIC", "ORBIT", "NO_SPATIAL"],
+        "available": true
+    },
+    "data_center_short_name_gcmd_check": {
+        "data_type": "string",
+        "check_function": "data_center_short_name_gcmd_check",
+        "description": "Checks if ...",
+        "available": true
+    },
+    "instrument_short_name_gcmd_check": {
+        "data_type": "string",
+        "check_function": "instrument_short_name_gcmd_check",
+        "description": "Checks if ...",
+        "available": true
+    },
+    "instrument_long_name_gcmd_check": {
+        "data_type": "string",
+        "check_function": "instrument_long_name_gcmd_check",
+        "description": "Checks if ...",
         "available": true
     }
 }

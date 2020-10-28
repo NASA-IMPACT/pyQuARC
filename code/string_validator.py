@@ -11,6 +11,8 @@ class StringValidator(BaseValidator):
     Validator class for string values
     """
 
+    gcmdValidator = GcmdValidator()
+
     def __init__(self):
         super().__init__()
 
@@ -65,7 +67,7 @@ class StringValidator(BaseValidator):
         }
     
     @staticmethod
-    def gcmd_keywords_check(*args):
+    def science_keywords_gcmd_check(*args):
         """
         Checks if the GCMD keyword hierarchy is correct
 
@@ -86,15 +88,13 @@ class StringValidator(BaseValidator):
             (dict) An object with the validity of the check and the instance
         """
 
-        gcmdValidator = GcmdValidator()
-
-        received_keywords = gcmdValidator.prepare_received_gcmd_keywords_list(*args)
+        received_keywords = StringValidator.gcmdValidator.prepare_received_gcmd_keywords_list(*args)
 
         valid = True
         value = []
 
         for keyword in received_keywords:
-            validity, invalid_value = gcmdValidator.validate(keyword)
+            validity, invalid_value = StringValidator.gcmdValidator.validate_science_keyword(keyword)
             if not validity:
                 valid = False
                 value.append((invalid_value, '/'.join(keyword)))
@@ -102,6 +102,27 @@ class StringValidator(BaseValidator):
         return {
             "valid": valid,
             "value": value if value else received_keywords
+        }
+
+    @staticmethod
+    def data_center_short_name_gcmd_check(value):
+        return {
+            "valid": StringValidator.gcmdValidator.validate_provider_short_name(value),
+            "value": value
+        }
+
+    @staticmethod
+    def instrument_short_name_gcmd_check(value):
+        return {
+            "valid": StringValidator.gcmdValidator.validate_instrument_short_name(value),
+            "value": value
+        }
+
+    @staticmethod
+    def instrument_long_name_gcmd_check(value):
+        return {
+            "valid": StringValidator.gcmdValidator.validate_instrument_long_name(value),
+            "value": value
         }
 
     @staticmethod

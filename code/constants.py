@@ -12,9 +12,13 @@ ROOT_DIR = (
 
 SCHEMAS_BASE_PATH = ROOT_DIR / "schemas"
 
-SCHEMAS = [
-    ECHO10, DIF, UMM_JSON, "rule_mapping", "checks", "check_messages", "check_messages_override"
-]
+SCHEMAS = {
+    "json": [ ECHO10, DIF, UMM_JSON, "rule_mapping", "checks", "check_messages", "check_messages_override" ],
+    "csv": [ "science_keywords", "providers", "instruments"]
+}
 
-SCHEMA_PATHS = { schema: SCHEMAS_BASE_PATH / f"{schema}.json" for schema in SCHEMAS }
-SCHEMA_PATHS["science_keywords"] = SCHEMAS_BASE_PATH / "science_keywords.csv"
+SCHEMA_PATHS = {
+    schema: SCHEMAS_BASE_PATH / f"{schema}.{filetype}" 
+        for filetype, schemas in SCHEMAS.items()
+            for schema in schemas
+}

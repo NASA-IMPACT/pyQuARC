@@ -133,8 +133,8 @@
         ]
     },
     {
-        "rule_id": "gcmd_keywords_check",
-        "rule_name": "GCMD keywords check",
+        "rule_id": "science_keywords_gcmd_check",
+        "rule_name": "GCMD Science keywords check",
         "fields_to_apply": [
             {
                 "fields": [
@@ -351,6 +351,44 @@
             {
                 "fields": [
                     "Collection/Spatial/GranuleSpatialRepresentation"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "data_center_short_name_gcmd_check",
+        "rule_name": "Data Center Shortname GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/ProcessingCenter"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/ArchiveCenter"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "instrument_short_name_gcmd_check",
+        "rule_name": "Instrument Shortname GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/ShortName"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "instrument_long_name_gcmd_check",
+        "rule_name": "Instrument Longname GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/LongName"
                 ]
             }
         ]
