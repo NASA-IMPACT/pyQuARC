@@ -127,7 +127,7 @@ class StringValidator(BaseValidator):
         super().__init__()
 
     @staticmethod
-    def length_check(string, maximum_length=100):
+    def length_check(string, maximum_length):
         """
         Checks if the length of the string is less than or equal to maximum length
 
@@ -154,32 +154,20 @@ class StringValidator(BaseValidator):
         }
 
     @staticmethod
-    def processing_level_id_check(processing_level_id):
+    def controlled_keywords_check(value, keywords_list):
         """
-        Checks if the processing level id is one of the valid ids
+        Checks if `value` is in `keywords_list`
 
         Args:
-            processing_level_id (int/str): The processing level id
-        
+            value (str/int): The value of the field
+            keyword_list (list): The controlled keywords list
+
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        vocabulary = ['0', '1A', '1B', '2', '3', '4']
         return {
-            "valid": BaseValidator.compare(str(processing_level_id), vocabulary, "is_in"),
-            "value": processing_level_id
-        }
-
-    @staticmethod
-    def eosdis_doi_authority_check(input_url):
-        """
-        Checks if the DOI Authority is valid
-        """
-        url = "https://doi.org"
-        vocabulary = [url, f"{url}/"]
-        return {
-            "valid": BaseValidator.compare(input_url, vocabulary, "is_in"),
-            "value": input_url
+            "valid": str(value) in keywords_list,
+            "value": value
         }
     
     @staticmethod
