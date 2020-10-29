@@ -95,7 +95,7 @@ class CustomChecker:
                 content_to_validate, _field)
             field_values.append(value)
         # If relation/external_data is None, we don't want to pass it to the function
-        arguments = [arg for arg in [*field_values, relation, external_data] if arg]
+        arguments = [arg for arg in [*field_values, relation, *external_data] if arg]
         # Only if there is a value for a field, need better way to do this since it could
         # be a list too
         if arguments[0] != " ":

@@ -17,7 +17,7 @@ class StringValidator(BaseValidator):
         super().__init__()
 
     @staticmethod
-    def length_check(string, args):
+    def length_check(string, extent, relation):
         """
         Checks if the length of the string is valid based on the extent 
         and relation provided in the args
@@ -29,7 +29,6 @@ class StringValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        extent, relation = args
         length = len(string)
         return {
             "valid": BaseValidator.compare(length, extent, relation),
@@ -62,7 +61,7 @@ class StringValidator(BaseValidator):
             (dict) An object with the validity of the check and the instance
         """
         return {
-            "valid": str(value) in keywords_list,
+            "valid": str(value).upper() in [keyword.upper() for keyword in keywords_list],
             "value": value
         }
     
@@ -137,6 +136,22 @@ class StringValidator(BaseValidator):
                 valid = False
         elif ends_at_present_flag == "false":
             if not ending_date_time.strip() or collection_state == "ACTIVE":
+                valid = False
+
+        return {
+            "valid": valid,
+            "value": ends_at_present_flag
+        }
+
+    @staticmethod
+    def ends_at_present_flag_presence_check(
+        ends_at_present_flag,
+        ending_date_time,
+        collection_state
+        ):
+        valid = True
+        if not ends_at_present_flag.strip():
+            if ending_date_time.strip() or collection_state == "ACTIVE":
                 valid = False
 
         return {

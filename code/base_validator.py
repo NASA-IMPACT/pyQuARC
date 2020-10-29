@@ -12,7 +12,7 @@ class BaseValidator:
 
     @staticmethod
     def neq(first, second):
-        return first == second
+        return first != second
 
     @staticmethod
     def lt(first, second):
