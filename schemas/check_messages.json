@@ -104,10 +104,10 @@
         "remediation": ""
     },
     {
-        "check_id": "gcmd_keywords_check",
+        "check_id": "science_keywords_gcmd_check",
         "message": {
             "success": "",
-            "failure": "`{}` is either not a valid hierarchy of GCMD keywords or it contains an invalid keyword",
+            "failure": "`{}` is/are not valid GCMD keyword/s",
             "warning": ""
         },
         "help": {
@@ -121,6 +121,19 @@
         "message": {
             "success": "",
             "failure": "`{}` is not valid. It should either be 'https://doi.org' or 'https://doi.org/",
+            "warning": ""
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": ""
+    },
+    {
+        "check_id": "delete_time_check",
+        "message": {
+            "success": "",
+            "failure": "`{}` is in the past. Either update it or consider removing it.",
             "warning": ""
         },
         "help": {
