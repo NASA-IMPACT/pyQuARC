@@ -19,7 +19,7 @@ class VACQM:
     """
 
     def __init__(
-        self, query=None, input_concept_ids=[], validation_paths=[], fake=None
+        self, query=None, input_concept_ids=[], fake=None
     ):
         """
         Args:
@@ -31,7 +31,6 @@ class VACQM:
 
         self.input_concept_ids = input_concept_ids
         self.query = query
-        self.validation_paths = validation_paths
 
         self.concept_ids = self._cmr_query() if self.query else self.input_concept_ids
 
@@ -81,15 +80,13 @@ class VACQM:
         for concept_id in tqdm(self.concept_ids):
             downloader = Downloader(concept_id)
             if self.fake:
-                with open("code/tests/fixtures/test_cmr_metadata_echo10.json", "r") as myfile:
-                    content = myfile.read()
+                with open("code/tests/fixtures/test_cmr_metadata.echo10", "r") as myfile:
+                    content = myfile.read().encode()
             else:
                 content = downloader.download()
 
-            content = json.loads(content)
-
             checker = Checker(
-                downloader.metadata_format, validation_paths=self.validation_paths
+                downloader.metadata_format
             )
 
             validation_errors = checker.run(content)
@@ -98,7 +95,6 @@ class VACQM:
                 {
                     "concept_id": concept_id,
                     "errors": validation_errors,
-                    "checked_fields": self.validation_paths or "all",
                 }
             )
 
@@ -140,7 +136,6 @@ if __name__ == "__main__":
     vacqm = VACQM(
         query=args.query,
         input_concept_ids=args.concept_ids or [],
-        validation_paths=args.fields_to_validate or [],
         fake=args.fake,
     )
     results = vacqm.validate()

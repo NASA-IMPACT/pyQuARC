@@ -1,7 +1,11 @@
 import json
 import jsonschema
+import os
+import re
 
-from copy import deepcopy
+from io import BytesIO
+from lxml import etree
+from urllib.request import pathname2url
 
 from .constants import DIF, ECHO10, UMM_JSON, SCHEMA_PATHS
 
@@ -14,7 +18,7 @@ class SchemaValidator:
     PATH_SEPARATOR = "/"
 
     def __init__(
-        self, metadata_format=ECHO10, validation_paths=[],
+        self, metadata_format=ECHO10
     ):
         """
         Args:
@@ -22,83 +26,39 @@ class SchemaValidator:
             validation_paths (list of str): The path of the fields in the metadata that need to be validated. 
                                             In the form ['Collection/StartDate', ...].
         """
+        # The XML schema file (echo10_xml.xsd) imports another schema file (MetadataCommon.xsd)
+        # Python cannot figure out the import if they are in a different location than the calling script
+        # Thus we need to set an environment variable to let it know when the files are located
+        if "XML_CATALOG_FILES" not in os.environ:
+            # Path to catalog must be a url.
+            catalog_path = f"file:{pathname2url(str(SCHEMA_PATHS['catalog']))}"
+            # Temporarily set the environment variable.
+            os.environ['XML_CATALOG_FILES'] = catalog_path
 
-        self.validation_paths = validation_paths
         self.metadata_format = metadata_format
-        self.schema = self.read_schema()
+        self.xml_schema = self.read_xml_schema()
+        self.json_schema = self.read_json_schema()
 
-        self.errors = []
-
-    def _check_validation_paths_against_schema(self):
+    def read_json_schema(self):
         """
-        Check list of validation paths against schema
-
-        Returns:
-            (list) A list of fields from validation_path that don't exist in the metadata
+        Reads the json schema file
         """
-
-        errors = []
-
-        for validation_path in self.validation_paths:
-            splits = [
-                field.strip()
-                for field in validation_path.split(SchemaValidator.PATH_SEPARATOR)
-            ]
-
-            # go inside each path iteratively to get the final value
-                # each level has the value in the "properties" key
-            if check := self.schema.get("properties"):
-                # only go upto the second last value of the path because the last field doesn't have the "properties" key
-                for split in splits[:-1]:
-                    check = check[split]["properties"]
-                check = check[splits[-1]]
-            else:
-                errors.append(validation_path)
-        return errors
-
-    def _filter_schema(self):
-        """
-        Filters the schema based on validation paths passed
-
-        Returns:
-            (list) A subset of the JSONSchema schema file that only contains the fields in validation_paths
-        """
-
-        filtered_schema = deepcopy(self.schema)
-        filtered_schema["properties"] = {}
-
-        for validation_path in self.validation_paths:
-            splits = [
-                i.strip() for i in validation_path.split(SchemaValidator.PATH_SEPARATOR)
-            ]
-
-            base = filtered_schema["properties"]
-            schema_path = self.schema["properties"]
-
-            for split in splits[:-1]:
-                if not split in base:
-                    base[split] = {"properties": {}}
-                base = base[split]["properties"]
-                schema_path = schema_path[split]["properties"]
-
-            base[splits[-1]] = schema_path[splits[-1]]
-
-        return filtered_schema
-
-    def read_schema(self):
-        """
-        Reads the schema file based on the format and returns json schema
-
-        Returns:
-            (dict) The schema dictionary read from the schema file
-        """
-
-        schema = json.load(open(SCHEMA_PATHS[self.metadata_format], "r"))
+        schema = json.load(open(SCHEMA_PATHS["echo10_json"], "r"))
         return schema
 
-    def run(self, content_to_validate):
+    def read_xml_schema(self):
         """
-        Validate passed content based on fields/schema and return any errors
+        Reads the xml schema file
+        """
+        with open(SCHEMA_PATHS["echo10_xml"], 'r') as schema_file:
+            file_content = schema_file.read().encode()
+        xmlschema_doc = etree.parse(BytesIO(file_content))
+        schema = etree.XMLSchema(xmlschema_doc)
+        return schema
+
+    def run_json_validator(self, content_to_validate):
+        """
+        Validate passed content based on the schema and return any errors
 
         Args:
             content_to_validate (str): The metadata content as a json string
@@ -107,44 +67,91 @@ class SchemaValidator:
             (dict) A dictionary that gives the validity of the schema and errors if they exist
 
         """
-
         errors = []
         error_dict = {
             "valid": False,
             "errors": errors
         }
 
-        validation_path_errors = self._check_validation_paths_against_schema()
+        validator = jsonschema.Draft7Validator(
+            self.json_schema, format_checker=jsonschema.draft7_format_checker
+        )
 
-        if validation_path_errors:
+        for error in sorted(validator.iter_errors(content_to_validate), key=str):
             errors.append(
                 {
-                    "message": "Validation path not found in schema",
-                    "instance": str(validation_path_errors),
-                    "validator": "validation_path",
+                    "message": error.message,
+                    "path": SchemaValidator.PATH_SEPARATOR.join(error.path),
+                    "instance": error.instance,
+                    "validator": error.validator,
+                    "validator_value": error.validator_value,
                 }
             )
-
-        else:
-            if self.validation_paths:
-                filtered_schema = self._filter_schema()
-            else:
-                filtered_schema = self.schema
-            validator = jsonschema.Draft7Validator(
-                filtered_schema, format_checker=jsonschema.draft7_format_checker
-            )
-
-            for error in sorted(validator.iter_errors(content_to_validate), key=str):
-                errors.append(
-                    {
-                        "message": error.message,
-                        "path": SchemaValidator.PATH_SEPARATOR.join(error.path),
-                        "instance": error.instance,
-                        "validator": error.validator,
-                        "validator_value": error.validator_value,
-                    }
-                )
 
         error_dict["valid"] = not(errors)
 
         return error_dict
+
+    @staticmethod
+    def _build_errors(error_log):
+        """
+        Cleans up the error log given by the XML Validator and builds an error object in
+        the format accepted by our program
+
+        Args:
+            error_log (str): The error log as output by the xml validator
+
+        Returns:
+            (dict): The formatted error dictionary
+        """
+        lines = error_log.splitlines()
+        errors = [
+            {
+                "message": re.search("Element\s\'\w+\':\s(\[.*\])?(.*)", line)[2].strip(),
+                "field": re.search("Element\s\'(\w+)\'", line)[1]
+            }
+            for line in lines
+        ]
+        return errors
+
+    def run_xml_validator(self, content_to_validate):
+        """
+        Validate passed content based on the schema and return any errors
+
+        Args:
+            content_to_validate (str): The metadata content as a xml string
+
+        Returns:
+            (dict) A dictionary that gives the validity of the schema and errors if they exist
+
+        """
+        xml_content = content_to_validate
+        doc = etree.parse(BytesIO(xml_content))
+        errors = []
+
+        try:
+            self.xml_schema.assertValid(doc)
+        except etree.DocumentInvalid as err:
+            errors = SchemaValidator._build_errors(str(err.error_log))
+
+        result = {
+            "valid": not(errors),
+            "errors": errors
+        }
+        return result
+
+    def run(self, xml_metadata, json_metadata):
+        """
+        Runs both XML and JSON schema validation on the metadata
+
+        Args:
+            xml_metadata (str): The original metadata (in xml format)
+            json_metadata (str): The metadata converted to json
+
+        Returns:
+            (dict): Result of the validation from xml and json schema validators
+        """
+        return {
+            "json": self.run_json_validator(json_metadata),
+            "xml": self.run_xml_validator(xml_metadata)
+        }

@@ -1,5 +1,7 @@
 import json
 
+from xmltodict import parse
+
 from .custom_checker import CustomChecker
 from .datetime_validator import DatetimeValidator
 from .scheduler import Scheduler
@@ -16,7 +18,7 @@ class Checker:
     Handles both the structural and logical checks
     """
 
-    def __init__(self, metadata_format=ECHO10, validation_paths=[]):
+    def __init__(self, metadata_format=ECHO10):
         """
         Args:
             metadata_format (str): The format of the metadata
@@ -27,7 +29,7 @@ class Checker:
 
         self.custom_checker = CustomChecker()
         self.scheduler = Scheduler(self.rule_mapping)
-        self.schema_validator = SchemaValidator(metadata_format, validation_paths)
+        self.schema_validator = SchemaValidator(metadata_format)
         self.tracker = Tracker(self.rule_mapping)
 
     @staticmethod
@@ -94,11 +96,18 @@ class Checker:
                 formatted_message = message["failure"].format(value)
             return formatted_message
 
-    def perform_jsonschema_check(self, metadata_content):
+    def perform_schema_check(self, xml_metadata, json_metadata):
         """
-        Performs JSONSchema check
+        Performs Schema check
         """
-        return self.schema_validator.run(metadata_content)
+        return self.schema_validator.run(xml_metadata, json_metadata)
+
+    def _check_dependencies_validity(self, dependencies, field_dict):
+        for dependency in dependencies:
+            for field in field_dict["fields"]:
+                if not self.tracker.read_data(dependency, field)["valid"]:
+                    return False
+        return True
 
     def perform_custom_checks(self, metadata_content):
         """
@@ -106,6 +115,7 @@ class Checker:
         """
         ordered_rule = self.scheduler.order_rules()
         result_dict = {}
+        # metadata_content = json.loads(metadata_content)
 
         for rule_id in ordered_rule:
             result_dict.setdefault(rule_id, {})
@@ -116,17 +126,15 @@ class Checker:
             external_data = rule.get("data", [])
             for field_dict in list_of_fields_to_apply:
                 main_field = field_dict["fields"][0]
-                for dependency in dependencies:
-                    if not self.tracker.read_data(dependency, main_field)["valid"]:
-                        break
-                result = self.custom_checker.run(func, metadata_content, field_dict, external_data)
-                self.tracker.update_data(rule_id, main_field, result["valid"])
-                if result["valid"] != None: # this is to avoid "valid" = null in the result, for rules that are not applied
-                    result_dict[rule_id][main_field] = result
+                if self._check_dependencies_validity(dependencies, field_dict):
+                    result = self.custom_checker.run(func, metadata_content, field_dict, external_data)
+                    self.tracker.update_data(rule_id, main_field, result["valid"])
+                    if result["valid"] != None: # this is to avoid "valid" = null in the result, for rules that are not applied
+                        result_dict[rule_id][main_field] = result
 
-                    message = self.build_message(result, rule_id)
-                    if message:
-                        result["message"] = message
+                        message = self.build_message(result, rule_id)
+                        if message:
+                            result["message"] = message
         return result_dict
 
     def run(self, metadata_content):
@@ -134,12 +142,15 @@ class Checker:
         Runs all checks on the `metadata_content`
 
         Args:
-            metadata_content (dict): The downloaded metadata content
+            metadata_content (str): The downloaded metadata content
 
         Returns:
             (dict): The results of the jsonschema check and all custom checks
         """
+        json_metadata = parse(metadata_content)
         result = {}
-        result["jsonschema"] = self.perform_jsonschema_check(metadata_content)
-        result["custom"] = self.perform_custom_checks(metadata_content)
+        result["schema"] = self.perform_schema_check(
+            metadata_content, json_metadata
+        )
+        result["custom"] = self.perform_custom_checks(json_metadata)
         return result
