@@ -56,8 +56,8 @@ class GcmdValidator:
             if row_num:
                 return_value = [
                     row[row_num]
-                        for row in list(reader)[2:]
-                            if row[row_num].strip()
+                    for row in list(reader)[2:]
+                    if row[row_num].strip()
                 ]
             else:
                 return_value = list(reader)[2:]
@@ -71,14 +71,14 @@ class GcmdValidator:
         Returns:
             (list): List of list of all the input gcmd science keywords w/ hierarchy
         """
-        keywords_lists_unordered = [arg for arg in args if arg is not None]
+        keywords_lists_unordered = [arg for arg in args if arg]
         ordered_keyword_list = list(zip(*keywords_lists_unordered))
         received_keywords = []
         for keywords in ordered_keyword_list:
             received_keywords.append(
                 # converting the keywords to uppercase and
                 # stripping any whitespaces for consistency
-                [keyword.upper().strip() for keyword in keywords if keyword.strip()]
+                [kw.upper() for keyword in keywords if (kw := keyword.strip())]
             )
         return received_keywords
 
@@ -87,10 +87,8 @@ class GcmdValidator:
         """
         Converts a list to a nested dict
         """
-        intermediate_dict = {}
-        if len(row) == 1:
-            return {row[0]: None}
-        else:
+        intermediate_dict = { row[0]: None }
+        if len(row) > 1:
             intermediate_dict[row[0]] = GcmdValidator.dict_from_list(row[1:])
         return intermediate_dict
 
@@ -124,7 +122,7 @@ class GcmdValidator:
         current_val = input_keyword[0]
         try:
             subset_dict = all_keywords[current_val]
-        except:
+        except KeyError:
             return False, current_val
         if len(input_keyword) == 1:
             return True, None

@@ -26,12 +26,8 @@ class UrlValidator(StringValidator):
         """
         results = []
 
-        validity = True
-        value = text_with_urls
-
         # extract URLs from text
-        extractor = URLExtract()
-        urls = extractor.find_urls(text_with_urls)
+        urls = URLExtract().find_urls(text_with_urls)
 
         # remove dots at the end (The URLExtract library catches URLs, but sometimes appends a '.' at the end)
         # remove duplicated urls
@@ -53,11 +49,7 @@ class UrlValidator(StringValidator):
                 result = {"url": url, "error": "Some unknown error occurred."}
             results.append(result)
 
-        if results:
-            validity = False
-            value = results
-
-        return {"valid": validity, "value": value}
+        return {"valid": bool(results), "value": results}
 
     @staticmethod
     def doi_check(doi):

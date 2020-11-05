@@ -129,14 +129,21 @@ class StringValidator(BaseValidator):
         ends_at_present_flag,
         ending_date_time,
         collection_state
-        ):
-        valid = True
-        if ends_at_present_flag == "true":
-            if ending_date_time.strip() or collection_state == "COMPLETE":
-                valid = False
-        elif ends_at_present_flag == "false":
-            if not ending_date_time.strip() or collection_state == "ACTIVE":
-                valid = False
+    ):
+        value = ends_at_present_flag.strip().lower()
+        ending_date_time = ending_date_time.strip()
+        collection_state = collection_state.upper().strip()
+
+        valid = (
+            (
+                value == "true"
+                and (not(ending_date_time) or collection_state == "ACTIVE"))
+            or  
+            (
+                value == "false"
+                and (ending_date_time or collection_state == "COMPLETE")
+            )
+        )
 
         return {
             "valid": valid,
@@ -148,11 +155,10 @@ class StringValidator(BaseValidator):
         ends_at_present_flag,
         ending_date_time,
         collection_state
-        ):
+    ):
         valid = True
         if not ends_at_present_flag.strip():
-            if ending_date_time.strip() or collection_state == "ACTIVE":
-                valid = False
+            valid = ending_date_time.strip() or collection_state == "COMPLETE"
 
         return {
             "valid": valid,
