@@ -67,8 +67,9 @@
     },
     "delete_time_check": {
         "data_type": "datetime",
-        "check_function": "delete_time_check",
+        "check_function": "compare",
         "description": "Checks ...",
+        "data": ["now", "gte"],
         "available": true
     },
     "doi_missing_reason_enumeration_check": {

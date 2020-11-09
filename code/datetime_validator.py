@@ -62,22 +62,14 @@ class DatetimeValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        values = [DatetimeValidator._iso_datetime(time) for time in [first, second]]
-        result = BaseValidator.compare(*values, relation)
+        first = DatetimeValidator._iso_datetime(first)
+        if second == "now":
+            first = first.replace(tzinfo=None) # need to make it offset-naive for comparison with datetime.now()
+            second = datetime.now()
+        else:
+            second = DatetimeValidator._iso_datetime(second)
+        result = BaseValidator.compare(first, second, relation)
         return {
             "valid": result,
-            "value": (first, second)
-        }
-
-    @staticmethod
-    def delete_time_check(datetime_string):
-        delete_time = DatetimeValidator._iso_datetime(datetime_string)
-        result = BaseValidator.compare(
-            delete_time.replace(tzinfo=None), # need to make it offset-naive for comparison
-            datetime.now(),
-            "gte"
-            )
-        return {
-            "valid": result,
-            "value": datetime_string
+            "value": (str(first), str(second))
         }
