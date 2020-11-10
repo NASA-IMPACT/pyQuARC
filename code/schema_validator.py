@@ -12,7 +12,7 @@ from .constants import DIF, ECHO10, UMM_JSON, SCHEMA_PATHS
 
 class SchemaValidator:
     """
-    Validates downloaded metadata for certain fields and returns the result.
+    Validates downloaded metadata for its schema and returns the result.
     """
 
     PATH_SEPARATOR = "/"
@@ -119,7 +119,7 @@ class SchemaValidator:
         Validate passed content based on the schema and return any errors
 
         Args:
-            content_to_validate (str): The metadata content as a xml string
+            content_to_validate (bytes): The metadata content as a xml string
 
         Returns:
             (dict) A dictionary that gives the validity of the schema and errors if they exist
