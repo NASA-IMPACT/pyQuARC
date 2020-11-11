@@ -1,3 +1,4 @@
+import pytz
 import re
 
 from datetime import datetime
@@ -63,11 +64,9 @@ class DatetimeValidator(BaseValidator):
             (dict) An object with the validity of the check and the instance
         """
         first = DatetimeValidator._iso_datetime(first)
-        if second == "now":
-            first = first.replace(tzinfo=None) # need to make it offset-naive for comparison with datetime.now()
-            second = datetime.now()
-        else:
-            second = DatetimeValidator._iso_datetime(second)
+        second = DatetimeValidator._iso_datetime(second)
+        if not(second):
+            second = datetime.now().replace(tzinfo=pytz.UTC) # Making it UTC for comparison with other UTC times
         result = BaseValidator.compare(first, second, relation)
         return {
             "valid": result,
