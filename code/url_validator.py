@@ -24,7 +24,7 @@ class UrlValidator(StringValidator):
         Returns:
             (dict) An object with the validity of the check and the instance/results
         """
-        results = []
+        errors = []
 
         # extract URLs from text
         urls = URLExtract().find_urls(text_with_urls)
@@ -47,9 +47,9 @@ class UrlValidator(StringValidator):
                           "error": "The URL does not exist on Internet."}
             except Exception as e:
                 result = {"url": url, "error": "Some unknown error occurred."}
-            results.append(result)
+            errors.append(result)
 
-        return {"valid": bool(results), "value": results}
+        return {"valid": not(bool(errors)), "value": errors or text_with_urls}
 
     @staticmethod
     def doi_check(doi):
