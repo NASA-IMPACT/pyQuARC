@@ -1,11 +1,14 @@
 import json
 
 from .custom_checker import CustomChecker
-from .datetime_validator import DatetimeValidator
-from .scheduler import Scheduler
 from .schema_validator import SchemaValidator
-from .string_validator import StringValidator
+
+from .scheduler import Scheduler
 from .tracker import Tracker
+
+from .custom_validator import CustomValidator
+from .datetime_validator import DatetimeValidator
+from .string_validator import StringValidator
 from .url_validator import UrlValidator
 
 from .constants import SCHEMA_PATHS, DIF, ECHO10, UMM_JSON

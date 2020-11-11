@@ -94,13 +94,13 @@
         "available": true
     },
     "ends_at_present_flag_logic_check": {
-        "data_type": "string",
+        "data_type": "custom",
         "check_function": "ends_at_present_flag_logic_check",
         "description": "Checks if ...",
         "available": true
     },
     "ends_at_present_flag_presence_check": {
-        "data_type": "string",
+        "data_type": "custom",
         "check_function": "ends_at_present_flag_presence_check",
         "description": "Checks if ...",
         "available": true
@@ -162,7 +162,7 @@
         "available": true
     },
     "mime_type_check": {
-        "data_type": "string",
+        "data_type": "custom",
         "check_function": "mime_type_check",
         "description": "Checks if ...",
         "data": [["application/json", "application/xml", "application/x-netcdf", "application/gml+xml", "application/vnd.google-earth.kml+xml", "image/gif", "image/tiff", "image/bmp", "text/csv", "text/xml", "application/pdf", "application/x-hdf", "application/xhdf5", "application/octet-stream", "application/vnd.google-earth.kmz", "image/jpeg", "image/png", "image/vnd.collada+xml", "text/html", "text/plain", "Not provided"]],
