@@ -2,12 +2,12 @@ INPUT_OUTPUT = {
     "get_path_value": {
         "input": [
             "Collection/Shortname",
-            "Collection/DOI/DOI",
+            "Collection/DataSetId",
             "Collection/Contact/Role"
         ],
         "output": [
-            "MATMNXSLV",
-            "10.5067/W3UEUC5V7M9M",
+            "ACOS_L2S",
+            "ACOS GOSAT/TANSO-FTS Level 2 Full Physics Standard Product V7.3 (ACOS_L2S) at GES DISC",
             ["ARCHIVER", "TECHNICAL CONTACT"]
         ]
     }
