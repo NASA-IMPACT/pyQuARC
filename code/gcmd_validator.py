@@ -2,6 +2,7 @@ import csv
 
 from .constants import SCHEMA_PATHS
 
+LEAF = "this_is_the_leaf_node"
 
 class GcmdValidator:
     """
@@ -87,7 +88,7 @@ class GcmdValidator:
         """
         Converts a list to a nested dict
         """
-        intermediate_dict = { row[0]: None }
+        intermediate_dict = { row[0]: LEAF }
         if len(row) > 1:
             intermediate_dict[row[0]] = GcmdValidator.dict_from_list(row[1:])
         return intermediate_dict
@@ -97,7 +98,7 @@ class GcmdValidator:
         """
         Merges child dict to the parent dict avoiding repetitions
         """
-        if not (child):
+        if child == LEAF:
             return parent, child
         else:
             for key in child:
@@ -120,9 +121,8 @@ class GcmdValidator:
             (bool, str/None): The validity of the keyword and the invalid keyword (if any)
         """
         current_val = input_keyword[0]
-        try:
-            subset_dict = all_keywords[current_val]
-        except KeyError:
+        subset_dict = all_keywords.get(current_val)
+        if not subset_dict:
             return False, current_val
         if len(input_keyword) == 1:
             return True, None
