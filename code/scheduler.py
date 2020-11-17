@@ -25,11 +25,14 @@ class Scheduler:
         """
         Adds `rule_id` to `rules_list` based on the dependency order
         """
-        dependencies = self.check_list[rule_id].get("dependencies", [])
-        for dependency in dependencies:
-            self._add_to_list(dependency, rules_list)
-    
-        Scheduler.append_if_not_exist(rule_id, rules_list)
+        if check := self.check_list.get(rule_id):
+            dependencies = check.get("dependencies", [])
+            for dependency in dependencies:
+                self._add_to_list(dependency, rules_list)
+        
+            Scheduler.append_if_not_exist(rule_id, rules_list)
+        else:
+            print(f"Missing entry for {rule_id} in `checks.json`")
 
     def order_rules(self):
         """

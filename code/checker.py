@@ -55,11 +55,12 @@ class Checker:
         Returns:
             (func): The function reference
         """
+        class_name = f"{data_type.title()}Validator"
         try:
-            class_object = globals()[f"{data_type.title()}Validator"]
+            class_object = globals()[class_name]
             function_object = getattr(class_object, function)
         except AttributeError as e:
-            print("The function hasn't been implemented")
+            print(f"The function {class_name}.{function} hasn't been implemented")
             return None
         return function_object
 
