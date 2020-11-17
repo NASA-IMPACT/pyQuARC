@@ -1,5 +1,6 @@
 import argparse
 import json
+import os
 import requests
 import xmltodict
 
@@ -19,7 +20,7 @@ class VACQM:
     """
 
     def __init__(
-        self, query=None, input_concept_ids=[], fake=None
+        self, query=None, input_concept_ids=[], fake=None, file_path=None
     ):
         """
         Args:
@@ -27,6 +28,7 @@ class VACQM:
             input_concept_ids (list of str): The list of concept ids to download
             validation_paths (list of str): The list of the fields/paths to validate in the metadata
             fake (bool): If set to true, used a fake data to perform the validation
+            file (str): The absolute path to the sample/test metadata file
         """
 
         self.input_concept_ids = input_concept_ids
@@ -37,6 +39,7 @@ class VACQM:
         self.errors = []
 
         self.fake = fake
+        self.file_path = file_path
 
     def _cmr_query(self):
         """
@@ -80,7 +83,8 @@ class VACQM:
         for concept_id in tqdm(self.concept_ids):
             downloader = Downloader(concept_id)
             if self.fake:
-                with open("code/tests/fixtures/test_cmr_metadata.echo10", "r") as myfile:
+                fake_file_path = self.file_path or "code/tests/fixtures/test_cmr_metadata.echo10"
+                with open(os.path.abspath(fake_file_path), "r") as myfile:
                     content = myfile.read().encode()
             else:
                 content = downloader.download()
@@ -122,6 +126,12 @@ if __name__ == "__main__":
         help="List of concept IDs.",
     )
     parser.add_argument(
+        "--file",
+        action="store",
+        type=str,
+        help="Path to the test file, either absolute or relative to the root dir.",
+    )
+    parser.add_argument(
         "--fake", action="store", type=str, help="Fake content for testing.",
     )
     args = parser.parse_args()
@@ -130,6 +140,7 @@ if __name__ == "__main__":
         query=args.query,
         input_concept_ids=args.concept_ids or [],
         fake=args.fake,
+        file_path=args.file
     )
     results = vacqm.validate()
 
