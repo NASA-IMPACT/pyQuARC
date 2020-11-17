@@ -1,9 +1,9 @@
 INPUT_OUTPUT = {
     "get_path_value": {
         "input": [
-            "Collection/Shortname",
+            "Collection/ShortName",
             "Collection/DataSetId",
-            "Collection/Contact/Role"
+            "Collection/Contacts/Contact/Role"
         ],
         "output": [
             "ACOS_L2S",
