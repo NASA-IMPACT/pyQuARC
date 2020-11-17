@@ -57,7 +57,7 @@ class UrlValidator(StringValidator):
             validity = False
             value = results
 
-        return {"valid": validity, "value": value}
+        return {"valid": validity, "value": ", ".join(urls)}
 
     @staticmethod
     def doi_check(doi):

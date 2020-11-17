@@ -122,13 +122,6 @@ if __name__ == "__main__":
         help="List of concept IDs.",
     )
     parser.add_argument(
-        "--fields_to_validate",
-        nargs="+",
-        action="store",
-        type=str,
-        help="List of fields to validate in the schema. By default, it takes all of them. For example, Collection/Temporal/RangeDateTime only validates that field.",
-    )
-    parser.add_argument(
         "--fake", action="store", type=str, help="Fake content for testing.",
     )
     args = parser.parse_args()

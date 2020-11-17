@@ -13,11 +13,11 @@
         "remediation": "A remedy."
     },
     {
-        "check_id": "length_check",
+        "check_id": "abstract_length_check",
         "message": {
-            "success": "The Name is unique.",
-            "failure": "The length of the field should be less than 250. The current length is [{}].",
-            "warning": "Make sure Name is unique."
+            "success": "The legth is correct.",
+            "failure": "The length of the field should be less than 100. The current length is `{}`.",
+            "warning": "Make sure length is 100."
         },
         "help": {
             "message": "The value of Name should be a unique value based on...",

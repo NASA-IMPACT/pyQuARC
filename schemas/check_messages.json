@@ -65,7 +65,7 @@
         "remediation": ""
     },
     {
-        "check_id": "length_check",
+        "check_id": "abstract_length_check",
         "message": {
             "success": "",
             "failure": "`{}` is not the correct length for the field.",
@@ -134,6 +134,32 @@
         "message": {
             "success": "",
             "failure": "`{}` is in the past. Either update it or consider removing it.",
+            "warning": ""
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": ""
+    },
+    {
+        "check_id": "data_center_short_name_gcmd_check",
+        "message": {
+            "success": "",
+            "failure": "`{}` is not a valid data center.",
+            "warning": ""
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": ""
+    },
+    {
+        "check_id": "umm_controlled_collection_state_list_check",
+        "message": {
+            "success": "",
+            "failure": "`{}` is not a valid collection state.",
             "warning": ""
         },
         "help": {
