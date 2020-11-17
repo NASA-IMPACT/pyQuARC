@@ -134,7 +134,8 @@ Write a `@staticmethod` member method in the class for that particular check. Se
 ```
 You can re-use any functions that are already there to reduce redundancy.
 
- **Adding output messages to checks**
+**Adding output messages to checks**:
+
 Add an entry to the `schemas/check_messages_override.json` file like this:
 
 ```
@@ -168,7 +169,7 @@ An example:
 	"remediation": "A remedy."  
 }
 ```
-**Note:** See the `{}` in the failure message above? It is a placeholder for any value you want to show in the output message. To fill this placeholder with a particular value, you have to return that value from the check function that you write. You can have as many placeholders as you like.
+**Note:** See the `{}` in the failure message above? It is a placeholder for any value you want to show in the output message. To fill this placeholder with a particular value, you have to return that value from the check function that you write. You can have as many placeholders as you like, you just have to return that many values from your check function.
 
 An example:
 Suppose you have a check function:
