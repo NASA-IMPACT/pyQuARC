@@ -171,3 +171,30 @@ class StringValidator(BaseValidator):
                 result = StringValidator.controlled_keywords_check(mime_type, controlled_list)
         
         return result
+
+    @staticmethod
+    def doi_missing_reason_presence_check(doi, missing_reason):
+        result = {
+            "value": doi.strip() or missing_reason.strip()
+        }
+
+        if doi.strip() or missing_reason.strip():
+            result["valid"]: True
+        else:
+            result["valid"]: False
+
+        return result
+
+    @staticmethod
+    def data_center_name_presence_check(archive_center, processing_center, organization_name):
+        if value := archive_center.strip() or processing_center.strip() or organization_name.strip():
+            result = {
+                "valid": True,
+                "value": value
+            }
+        else:
+            result = {
+                "valid": False,
+            }
+
+        return result
