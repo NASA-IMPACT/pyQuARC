@@ -1,28 +1,56 @@
 [
     {
-        "rule_id": "date_compare",
+        "rule_id": "data_update_time_logic_check",
         "rule_name": "Data Update Time Logic Check",
         "fields_to_apply": [
             {
                 "fields": [
-                    "Collection/InsertTime",
-                    "Collection/LastUpdate"
+                    "Collection/LastUpdate",
+                    "Collection/InsertTime"
                 ],
-                "relation": "lte"
-            },
+                "relation": "gte"
+            }
+        ],
+        "severity": "info"
+    },
+    {
+        "rule_id": "range_date_time_logic_check_1",
+        "rule_name": "Range Date Time Logic Check",
+        "fields_to_apply": [
             {
                 "fields": [
                     "Collection/Temporal/RangeDateTime/BeginningDateTime",
                     "Collection/Temporal/RangeDateTime/EndingDateTime"
                 ],
                 "relation": "lte"
-            },
+            }
+        ],
+        "severity": "error"
+    },
+    {
+        "rule_id": "range_date_time_logic_check_2",
+        "rule_name": "Range Date Time Logic Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Temporal/RangeDateTime/BeginningDateTime",
+                    "Collection/Temporal/RangeDateTime/EndingDateTime"
+                ],
+                "relation": "neq"
+            }
+        ],
+        "severity": "warning"
+    },
+    {
+        "rule_id": "periodic_date_time_logic_check",
+        "rule_name": "Periodic Date Time Logic Check",
+        "fields_to_apply": [
             {
                 "fields": [
                     "Collection/Temporal/PeriodicDateTime/StartDate",
                     "Collection/Temporal/PeriodicDateTime/EndDate"
                 ],
-                "relation": "lte"
+                "relation": "lt"
             }
         ],
         "severity": "error"
@@ -122,7 +150,7 @@
         "severity": "warning"
     },
     {
-        "rule_id": "doi_check",
+        "rule_id": "doi_validity_check",
         "rule_name": "DOI Validity Check",
         "fields_to_apply": [
             {
@@ -208,7 +236,8 @@
                     "Collection/DOI/MissingReason"
                 ]
             }
-        ]
+        ],
+        "severity": "error"
     },
     {
         "rule_id": "doi_missing_reason_enumeration_check",
