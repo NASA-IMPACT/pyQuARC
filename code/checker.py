@@ -34,9 +34,15 @@ class Checker:
 
     @staticmethod
     def _json_load_schema(shema_name):
+        """
+        Loads json schema file
+        """
         return json.load(open(SCHEMA_PATHS[shema_name], "r"))
 
     def load_schemas(self):
+        """
+        Loads all the schema files to object variables
+        """
         self.checks = Checker._json_load_schema("checks")
         self.rule_mapping = Checker._json_load_schema("rule_mapping")
         self.messages = Checker._json_load_schema("check_messages")
@@ -65,13 +71,16 @@ class Checker:
         return function_object
 
     def rule(self, rule_id):
+        """
+        Gets the rule with rule_id key equal to `rule_id`
+        """
         for rule in self.rule_mapping:
             if rule["rule_id"] == rule_id:
                 return rule
 
     def fields(self, rule_id):
         """
-        Get the applicable fields for `rule_id`
+        Gets the applicable fields for `rule_id`
         """
         for mapping in self.rule_mapping:
             if mapping["rule_id"] == rule_id:
@@ -79,7 +88,7 @@ class Checker:
 
     def message(self, rule_id):
         """
-        Get the success, failure, warning messages for the `rule_id`
+        Gets the success, failure, warning messages for the `rule_id`
         """
         for message in self.messages_override:
             if message["rule_id"] == rule_id:
@@ -109,6 +118,9 @@ class Checker:
         return self.schema_validator.run(xml_metadata, json_metadata)
 
     def _check_dependencies_validity(self, dependencies, field_dict):
+        """
+        Checks if the dependent checks are valid
+        """
         for dependency in dependencies:
             for field in field_dict["fields"]:
                 if not self.tracker.read_data(dependency, field)["valid"]:
