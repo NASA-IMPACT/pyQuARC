@@ -1,6 +1,6 @@
 [
     {
-        "check_id": "datetime_format_check",
+        "rule_id": "datetime_format_check",
         "message": {
             "success": "`{}` adheres to the ISO 1601 standard",
             "failure": "`{}` does not adhere to the ISO 1601 standard"
@@ -12,7 +12,7 @@
         "remediation": ""
     },
     {
-        "check_id": "data_update_time_logic_check",
+        "rule_id": "data_update_time_logic_check",
         "message": {
             "success": "",
             "failure": "The UpdateTime `{}` comes after the provided InsertTime `{}`."
@@ -24,7 +24,7 @@
         "remediation": "Update the LastUpdate time so that it is identical to the InsertTime (in the event that the data has never been updated) or so that it comes chronologically after the InsertTime."
     },
     {
-        "check_id": "url_check",
+        "rule_id": "url_check",
         "message": {
             "success": "",
             "failure": "`{}`"
@@ -36,7 +36,7 @@
         "remediation": ""
     },
     {
-        "check_id": "shortname_uniqueness",
+        "rule_id": "shortname_uniqueness",
         "message": {
             "success": "",
             "failure": "The DataSetId `{}` is identical to the ShortName `{}`."
@@ -48,7 +48,7 @@
         "remediation": "Since DataSetId maps to Entry Title in the CMR, provide a more descriptive, formal title for the dataset. "
     },
     {
-        "check_id": "abstract_length_check",
+        "rule_id": "abstract_length_check",
         "message": {
             "success": "",
             "failure": "The abstract provided may be inadequate based on length."
@@ -60,7 +60,7 @@
         "remediation": "Provide a more comprehensive description, mimicking a journal abstract that is useful to the science community but also approachable for a first time user of the data."
     },
     {
-        "check_id": "doi_validity_check",
+        "rule_id": "doi_validity_check",
         "message": {
             "success": "",
             "failure": "`{}` is invalid."
@@ -72,7 +72,7 @@
         "remediation": "Provide a valid DOI."
     },
     {
-        "check_id": "doi_missing_reason_presence_check",
+        "rule_id": "doi_missing_reason_presence_check",
         "message": {
             "success": "",
             "failure": "No DOI or MissingReason provided."
@@ -84,7 +84,7 @@
         "remediation": "DOIs are required for NASA datasets. Provide the DOI if one is available. Otherwise, specify that a DOI is not applicable for the dataset."
     },
     {
-        "check_id": "doi_missing_reason_enumeration_check",
+        "rule_id": "doi_missing_reason_enumeration_check",
         "message": {
             "success": "",
             "failure": "`{}` is not a valid value."
@@ -96,7 +96,7 @@
         "remediation": "The Missing Reason should read \"Not Applicable\"."
     },
     {
-        "check_id": "processing_level_id_check",
+        "rule_id": "processing_level_id_check",
         "message": {
             "success": "",
             "failure": "`{}` is not an EOSDIS recognized processing level ID."
@@ -108,7 +108,7 @@
         "remediation": "Change the ID to match one of the EOSDIS standard processing levels: [0, 1A, 1B, 2, 3, 4]"
     },
     {
-        "check_id": "processing_level_description_length_check",
+        "rule_id": "processing_level_description_length_check",
         "message": {
             "success": "",
             "failure": "The provided description is less than 50 characters and therefore may be lacking in contextual information."
@@ -120,7 +120,7 @@
         "remediation": "Providing a more detailed processing level description."
     },
     {
-        "check_id": "science_keywords_gcmd_check",
+        "rule_id": "science_keywords_gcmd_check",
         "message": {
             "success": "",
             "failure": "`{}` is/are not valid GCMD keyword/s"
@@ -132,7 +132,7 @@
         "remediation": ""
     },
     {
-        "check_id": "eosdis_doi_authority_check",
+        "rule_id": "eosdis_doi_authority_check",
         "message": {
             "success": "",
             "failure": "`{}` may be an invalid value."
@@ -144,7 +144,7 @@
         "remediation": "The DOI Authority should be \"https://doi.org\" for all NASA collections."
     },
     {
-        "check_id": "delete_time_check",
+        "rule_id": "delete_time_check",
         "message": {
             "success": "",
             "failure": "The delete date `{}` is in the past."
@@ -156,7 +156,7 @@
         "remediation": "Consider updating the delete date to a future date or remove it from the metadata if it is no longer valid."
     },
     {
-        "check_id": "data_center_short_name_gcmd_check",
+        "rule_id": "data_center_short_name_gcmd_check",
         "message": {
             "success": "",
             "failure": "`{}` is not a valid data center."
@@ -168,7 +168,7 @@
         "remediation": ""
     },
     {
-        "check_id": "umm_controlled_collection_state_list_check",
+        "rule_id": "umm_controlled_collection_state_list_check",
         "message": {
             "success": "",
             "failure": "The provided Collection State `{}` is invalid."
@@ -180,7 +180,7 @@
         "remediation": "Choose a Collection State from the following list: [ACTIVE, PLANNED, COMPLETE, NOT APPLICABLE, NOT PROVIDED]."
     },
     {
-        "check_id": "collection_data_type_enumeration_check",
+        "rule_id": "collection_data_type_enumeration_check",
         "message": {
             "success": "",
             "failure": "`{}` is not a valid value."
@@ -192,7 +192,7 @@
         "remediation": "The Collection Data Type should match one of the following values: [SCIENCE_QUALITY, NEAR_REAL_TIME, OTHER]"
     },
     {
-        "check_id": "version_description_not_provided",
+        "rule_id": "version_description_not_provided",
         "message": {
             "success": "",
             "failure": "The provided description reads only `{}`"
@@ -204,7 +204,7 @@
         "remediation": "Because the description reads \"Not provided\", it can be removed from the metadata. Otherwise, please describe the version in more detail."
     },
     {
-        "check_id": "ends_at_present_flag_logic_check",
+        "rule_id": "ends_at_present_flag_logic_check",
         "message": {
             "success": "",
             "failure": "Potential issue with:\\n - EndsAtPresentFlag: value = \"true\" but EndingDateTime is provided. \\n - EndsAtPresentFlag: value = \"true\" but CollectionState = COMPLETE. \\n - EndsAtPresentFlag: value = \"false\" but EndingDateTime is missing.\\n - EndsAtPresentFlag: value = \"false\" but CollectionState = ACTIVE."
@@ -216,7 +216,7 @@
         "remediation": "If data collection is ongoing, provide an EndsAtPresentFlag of \"true\""
     },
     {
-        "check_id": "ends_at_present_flag_presence_check",
+        "rule_id": "ends_at_present_flag_presence_check",
         "message": {
             "success": "",
             "failure": ""
@@ -228,7 +228,7 @@
         "remediation": "If data collection is ongoing, provide an EndsAtPresentFlag of \"true\""
     },
     {
-        "check_id": "contact_mechanism_enum_check",
+        "rule_id": "contact_mechanism_enum_check",
         "message": {
             "success": "",
             "failure": "`{}` is not a valid phone type value."
@@ -240,7 +240,7 @@
         "remediation": "Select a phone type from the following list: ['Direct Line', 'Email', 'Facebook', 'Fax', 'Mobile', 'Modem', 'Primary', 'TDD/TTY Phone', 'Telephone', 'Twitter', 'U.S. toll free', 'Other']."
     },
     {
-        "check_id": "range_date_time_logic_check_1",
+        "rule_id": "range_date_time_logic_check_1",
         "message": {
             "success": "",
             "failure": "The Beginning Date Time `{}` comes after the Ending Date Time `{}`."
@@ -252,7 +252,7 @@
         "remediation": "Update the beginning and/or ending date time to match the granule extent."
     },
     {
-        "check_id": "range_date_time_logic_check_2",
+        "rule_id": "range_date_time_logic_check_2",
         "message": {
             "success": "",
             "failure": "The Beginning Date Time `{}` and Ending Date Time `{}` are the same."
@@ -264,7 +264,7 @@
         "remediation": "The temporal Beginning Date Time and Ending Date Time are identical. Recommend removing the Beginning Date Time and Ending Date Time elements and instead provide a Single Date Time."
     },
     {
-        "check_id": "periodic_date_time_logic_check",
+        "rule_id": "periodic_date_time_logic_check",
         "message": {
             "success": "",
             "failure": "The Start Date `{}` is not before the End Date `{}`."
@@ -276,7 +276,7 @@
         "remediation": "Update these fields to make sense logically."
     },
     {
-        "check_id": "data_contact_role_enum_check",
+        "rule_id": "data_contact_role_enum_check",
         "message": {
             "success": "",
             "failure": "`{}` is not a valid Job Position value."
@@ -288,7 +288,7 @@
         "remediation": "Select a Job Position from the following list: ['Data Center Contact', 'Technical Contact', 'Science Contact', 'Investigator', 'Metadata Author', 'User Services', 'Science Software Development']."
     },
     {
-        "check_id": "controlled_contact_role_check",
+        "rule_id": "controlled_contact_role_check",
         "message": {
             "success": "",
             "failure": "`{}` is not a valid Contact Role."
@@ -300,7 +300,7 @@
         "remediation": "Select a Contact Role from the following list: ['ARCHIVER', 'DISTRIBUTOR', 'PROCESSOR', 'ORIGINATOR']."
     },
     {
-        "check_id": "data_type_control_check",
+        "rule_id": "data_type_control_check",
         "message": {
             "success": "",
             "failure": "`{}` is not a valid Data Type."
@@ -312,7 +312,7 @@
         "remediation": "Select a Data Type from the following list: ['STRING', 'FLOAT', 'INT', 'BOOLEAN', 'DATE', 'TIME', 'DATETIME', 'DATE_STRING', 'TIME_STRING', 'DATETIME_STRING']."
     },
     {
-        "check_id": "doi_link_update",
+        "rule_id": "doi_link_update",
         "message": {
             "success": "",
             "failure": "Should be 'https://doi.org'"
@@ -324,7 +324,7 @@
         "remediation": "Select a Data Type from the following list: ['STRING', 'FLOAT', 'INT', 'BOOLEAN', 'DATE', 'TIME', 'DATETIME', 'DATE_STRING', 'TIME_STRING', 'DATETIME_STRING']."
     },
     {
-        "check_id": "instrument_short_name_gcmd_check",
+        "rule_id": "instrument_short_name_gcmd_check",
         "message": {
             "success": "",
             "failure": ""
@@ -336,7 +336,7 @@
         "remediation": ""
     },
     {
-        "check_id": "instrument_long_name_gcmd_check",
+        "rule_id": "instrument_long_name_gcmd_check",
         "message": {
             "success": "",
             "failure": ""
@@ -348,7 +348,7 @@
         "remediation": ""
     },
     {
-        "check_id": "characteristic_name_check",
+        "rule_id": "characteristic_name_check",
         "message": {
             "success": "",
             "failure": "A characteristic name is missing for the provided characteristic. "
@@ -360,7 +360,7 @@
         "remediation": "Please provide a name for the provided characteristic."
     },
     {
-        "check_id": "characteristic_desc_check",
+        "rule_id": "characteristic_desc_check",
         "message": {
             "success": "",
             "failure": "A characteristic description is missing for the provided characteristic. "
@@ -372,7 +372,7 @@
         "remediation": "Please provide a short description for the provided characteristic."
     },
     {
-        "check_id": "characteristic_unit_check",
+        "rule_id": "characteristic_unit_check",
         "message": {
             "success": "",
             "failure": "A characteristic unit is missing for the provided characteristic."
@@ -384,7 +384,7 @@
         "remediation": "Please provide the unit associated with the value of the provided characteristic. "
     },
     {
-        "check_id": "characteristic_value_check",
+        "rule_id": "characteristic_value_check",
         "message": {
             "success": "",
             "failure": "A characteristic value is missing for the provided characteristic. "
@@ -396,7 +396,7 @@
         "remediation": "Please provide a value for the provided characteristic. "
     },
     {
-        "check_id": "mime_type_check",
+        "rule_id": "mime_type_check",
         "message": {
             "success": "",
             "failure": ""
@@ -408,7 +408,7 @@
         "remediation": ""
     },
     {
-        "check_id": "coordinate_system_check",
+        "rule_id": "coordinate_system_check",
         "message": {
             "success": "",
             "failure": "`{}` is not a valid coordinate system."
@@ -420,7 +420,7 @@
         "remediation": "Select a Coordinate System from the following list: ['CARTESIAN', 'GEODETIC']."
     },
     {
-        "check_id": "product_flag_check",
+        "rule_id": "product_flag_check",
         "message": {
             "success": "",
             "failure": "`{}` is not a valid Product Flag."
@@ -432,7 +432,7 @@
         "remediation": "Select a Product Flag from this list: ['DATA_PRODUCT_FILE', 'INSTRUMENT_ANCILLARY_FILE', 'SYSTEM/SPACECRAFT_FILE', 'EXTERNAL_DATA']."
     },
     {
-        "check_id": "granule_spatial_representation_check",
+        "rule_id": "granule_spatial_representation_check",
         "message": {
             "success": "",
             "failure": "`{}` is not a valid Granule Spatial Representation."

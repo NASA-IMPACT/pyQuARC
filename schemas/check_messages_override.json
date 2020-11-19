@@ -1,6 +1,6 @@
 [
     {
-        "check_id": "shortname_uniqueness",
+        "rule_id": "shortname_uniqueness",
         "message": {
             "success": "The Name is unique.",
             "failure": "The Name `{}` is not unique.",
@@ -13,7 +13,7 @@
         "remediation": "A remedy."
     },
     {
-        "check_id": "abstract_length_check",
+        "rule_id": "abstract_length_check",
         "message": {
             "success": "The legth is correct.",
             "failure": "The length of the field should be less than 100. The current length is `{}`.",

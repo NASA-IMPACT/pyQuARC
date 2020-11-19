@@ -64,6 +64,11 @@ class Checker:
             return None
         return function_object
 
+    def rule(self, rule_id):
+        for rule in self.rule_mapping:
+            if rule["rule_id"] == rule_id:
+                return rule
+
     def fields(self, rule_id):
         """
         Get the applicable fields for `rule_id`
@@ -77,10 +82,10 @@ class Checker:
         Get the success, failure, warning messages for the `rule_id`
         """
         for message in self.messages_override:
-            if message["check_id"] == rule_id:
+            if message["rule_id"] == rule_id:
                 return message["message"]
         for message in self.messages:
-            if message["check_id"] == rule_id:
+            if message["rule_id"] == rule_id:
                 return message["message"]
 
     def build_message(self, result, rule_id):
@@ -121,7 +126,7 @@ class Checker:
         for rule_id in ordered_rule:
             result_dict.setdefault(rule_id, {})
             list_of_fields_to_apply = self.fields(rule_id)
-            rule = self.checks[rule_id]
+            rule = self.checks[self.rule(rule_id).get("check_id") or rule_id]
             func = Checker.map_to_function(rule["data_type"], rule["check_function"])
             dependencies = rule.get("dependencies", [])
             external_data = rule.get("data", [])

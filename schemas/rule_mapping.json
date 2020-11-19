@@ -11,7 +11,8 @@
                 "relation": "gte"
             }
         ],
-        "severity": "info"
+        "severity": "info",
+        "check_id": "date_compare"
     },
     {
         "rule_id": "range_date_time_logic_check_1",
@@ -25,7 +26,8 @@
                 "relation": "lte"
             }
         ],
-        "severity": "error"
+        "severity": "error",
+        "check_id": "date_compare"
     },
     {
         "rule_id": "range_date_time_logic_check_2",
@@ -39,7 +41,8 @@
                 "relation": "neq"
             }
         ],
-        "severity": "warning"
+        "severity": "warning",
+        "check_id": "date_compare"
     },
     {
         "rule_id": "periodic_date_time_logic_check",
@@ -53,7 +56,8 @@
                 "relation": "lt"
             }
         ],
-        "severity": "error"
+        "severity": "error",
+        "check_id": "date_compare"
     },
     {
         "rule_id": "datetime_format_check",

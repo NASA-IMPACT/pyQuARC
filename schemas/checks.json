@@ -1,29 +1,5 @@
 {
-    "data_update_time_logic_check": {
-        "data_type": "datetime",
-        "check_function": "compare",
-        "dependencies": [
-            "datetime_format_check"
-        ],
-        "available": true
-    },
-    "range_date_time_logic_check_1": {
-        "data_type": "datetime",
-        "check_function": "compare",
-        "dependencies": [
-            "datetime_format_check"
-        ],
-        "available": true
-    },
-    "range_date_time_logic_check_2": {
-        "data_type": "datetime",
-        "check_function": "compare",
-        "dependencies": [
-            "datetime_format_check"
-        ],
-        "available": true
-    },
-    "periodic_date_time_logic_check": {
+    "date_compare": {
         "data_type": "datetime",
         "check_function": "compare",
         "dependencies": [

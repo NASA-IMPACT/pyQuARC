@@ -12,6 +12,11 @@ class Scheduler:
         )
         self.rule_mapping = rule_mapping
 
+    def rule(self, check_id):
+        for rule in self.rule_mapping:
+            if rule["rule_id"] == check_id:
+                return rule
+
     @staticmethod
     def append_if_not_exist(value, list_of_values):
         """
@@ -21,18 +26,19 @@ class Scheduler:
         if value not in list_of_values:
             list_of_values.append(value)
 
-    def _add_to_list(self, rule_id, rules_list):
+    def _add_to_list(self, rule, rules_list):
         """
-        Adds `rule_id` to `rules_list` based on the dependency order
+        Adds `rule` to `rules_list` based on the dependency order
         """
-        if check := self.check_list.get(rule_id):
+        check_id = rule.get("check_id") or rule.get("rule_id")
+        if check := self.check_list.get(check_id):
             dependencies = check.get("dependencies", [])
             for dependency in dependencies:
-                self._add_to_list(dependency, rules_list)
+                self._add_to_list(self.rule(dependency), rules_list)
         
-            Scheduler.append_if_not_exist(rule_id, rules_list)
+            Scheduler.append_if_not_exist(rule["rule_id"], rules_list)
         else:
-            print(f"Missing entry for {rule_id} in `checks.json`")
+            print(f"Missing entry for {rule.check_id} in `checks.json`")
 
     def order_rules(self):
         """
@@ -44,6 +50,7 @@ class Scheduler:
         ordered_check_list = []
 
         for rule in self.rule_mapping:
-            self._add_to_list(rule["rule_id"], ordered_check_list)
+            # identity = rule.get("check_id") or rule["rule_id"]
+            self._add_to_list(rule, ordered_check_list)
 
         return ordered_check_list
