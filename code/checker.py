@@ -102,14 +102,17 @@ class Checker:
         Formats the message for `rule_id` based on the result
         """
         message = self.message(rule_id)
+        messages = []
         if not result["valid"] and result.get("value") and message:
-            value = result["value"]
-            formatted_message = message
-            if isinstance(value, tuple):
-                formatted_message = message["failure"].format(*value)
-            else:
-                formatted_message = message["failure"].format(value)
-            return formatted_message
+            for value in result["value"]:
+            # value = result["value"]
+                formatted_message = message
+                if isinstance(value, tuple):
+                    formatted_message = message["failure"].format(*value)
+                else:
+                    formatted_message = message["failure"].format(value)
+                messages.append(formatted_message)
+            return "\n".join(messages)
 
     def perform_schema_check(self, xml_metadata, json_metadata):
         """
@@ -133,26 +136,25 @@ class Checker:
         """
         ordered_rule = self.scheduler.order_rules()
         result_dict = {}
-        # metadata_content = json.loads(metadata_content)
-
         for rule_id in ordered_rule:
             result_dict.setdefault(rule_id, {})
             list_of_fields_to_apply = self.fields(rule_id)
             rule = self.checks[self.rule(rule_id).get("check_id") or rule_id]
             func = Checker.map_to_function(rule["data_type"], rule["check_function"])
-            dependencies = rule.get("dependencies", [])
-            external_data = rule.get("data", [])
-            for field_dict in list_of_fields_to_apply:
-                main_field = field_dict["fields"][0]
-                if self._check_dependencies_validity(dependencies, field_dict):
-                    result = self.custom_checker.run(func, metadata_content, field_dict, external_data)
-                    self.tracker.update_data(rule_id, main_field, result["valid"])
-                    if result["valid"] != None: # this is to avoid "valid" = null in the result, for rules that are not applied
-                        result_dict[rule_id][main_field] = result
+            if func:
+                dependencies = rule.get("dependencies", [])
+                external_data = rule.get("data", [])
+                for field_dict in list_of_fields_to_apply:
+                    main_field = field_dict["fields"][0]
+                    if self._check_dependencies_validity(dependencies, field_dict):
+                        result = self.custom_checker.run(func, metadata_content, field_dict, external_data)
+                        self.tracker.update_data(rule_id, main_field, result["valid"])
+                        if result["valid"] != None: # this is to avoid "valid" = null in the result, for rules that are not applied
+                            result_dict[rule_id][main_field] = result
 
-                        message = self.build_message(result, rule_id)
-                        if message:
-                            result["message"] = message
+                            message = self.build_message(result, rule_id)
+                            if message:
+                                result["message"] = message
         return result_dict
 
     def run(self, metadata_content):

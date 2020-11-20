@@ -27,7 +27,7 @@ class CustomChecker:
         except KeyError as e:
             # this is needed because GCMD keywords check needs the placement 
             # of the values in the returned list
-            container.append(" ")
+            container.append(None)
             return
         new_path = path_list[1:]
         if isinstance(root_content, str) or isinstance(root_content, int):
@@ -38,7 +38,7 @@ class CustomChecker:
                     CustomChecker._get_path_value_recursively(
                         each, new_path, container)
                 except KeyError as e:
-                    container.append(" ")
+                    container.append(None)
                     continue
         elif isinstance(root_content, dict):
             CustomChecker._get_path_value_recursively(
@@ -61,7 +61,7 @@ class CustomChecker:
         path = path_string.split('/')
         CustomChecker._get_path_value_recursively(
             content_to_validate, path, container)
-        return container[0] if len(container) == 1 else container
+        return container
 
     def run(self, func, content_to_validate, field_dict, external_data):
         """
@@ -70,19 +70,19 @@ class CustomChecker:
         Args:
             content_to_validate (dict): The metadata content
             field_dict (dict): The field dictionary of the form: 
-                    {
-                        "fields": relavant fields,
-                        "relation": relation between the fields
-                    }
+                {
+                    "fields": relavant fields,
+                    "relation": relation between the fields
+                }
             func (function): The function reference to the check
-            external_data (any): External data required by the check if any
+            external_data (list): External data required by the check if any
 
         Returns:
             (dict): The result of the check in the form:
-            {
-                "valid": "Validity status (bool)",
-                "value": "The instance value/s"
-            }
+                {
+                    "valid": "Validity status (bool)",
+                    "value": "The instance value/s"
+                }
         """
         fields = field_dict["fields"]
         field_values = []
@@ -94,10 +94,22 @@ class CustomChecker:
             value = CustomChecker._get_path_value(
                 content_to_validate, _field)
             field_values.append(value)
-        # If relation/external_data is None, we don't want to pass it to the function
-        arguments = [arg for arg in [*field_values, relation, *external_data] if arg]
-        # Only if there is a value for a field, need better way to do this since it could
-        # be a list too
-        if arguments[0] != " ":
-            result = func(*arguments)
+        args = zip(*field_values)
+    
+        invalid_values = []
+        validity = None
+        for arg in args:
+            function_args = [*arg]
+            function_args.extend([arg for arg in [relation, *external_data] if arg])
+            func_return = func(*function_args)
+            valid = func_return["valid"]
+            if valid is not None:
+                if valid:
+                    if validity or validity == None:
+                        validity = True
+                else:
+                    invalid_values.append(func_return["value"])
+                    validity = False
+        result["valid"] = validity
+        result["value"] = invalid_values if invalid_values else None
         return result

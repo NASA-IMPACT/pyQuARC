@@ -64,25 +64,6 @@ class GcmdValidator:
         return return_value
 
     @staticmethod
-    def prepare_received_gcmd_keywords_list(*args):
-        """
-        Based on the input args, created the list of input gcmd keywords
-
-        Returns:
-            (list): List of list of all the input gcmd science keywords w/ hierarchy
-        """
-        keywords_lists_unordered = [arg for arg in args if arg is not None]
-        ordered_keyword_list = list(zip(*keywords_lists_unordered))
-        received_keywords = []
-        for keywords in ordered_keyword_list:
-            received_keywords.append(
-                # converting the keywords to uppercase and
-                # stripping any whitespaces for consistency
-                [keyword.upper().strip() for keyword in keywords if keyword.strip()]
-            )
-        return received_keywords
-
-    @staticmethod
     def dict_from_list(row):
         """
         Converts a list to a nested dict
