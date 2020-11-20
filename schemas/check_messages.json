@@ -27,7 +27,7 @@
         "rule_id": "url_check",
         "message": {
             "success": "",
-            "failure": "`{}`"
+            "failure": "Invalid URL/s: `{}`."
         },
         "help": {
             "message": "",
