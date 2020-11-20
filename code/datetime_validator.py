@@ -3,6 +3,7 @@ import re
 from datetime import datetime
 
 from .base_validator import BaseValidator
+from .utils import if_arg
 
 
 class DatetimeValidator(BaseValidator):
@@ -24,7 +25,6 @@ class DatetimeValidator(BaseValidator):
         Returns:
             (datetime.datetime) If the string is valid iso string, False otherwise
         """
-
         REGEX = r"^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?(Z|[+-](?:2[0-3]|[01][0-9]):[0-5][0-9])?$"
         match_iso8601 = re.compile(REGEX).match
         try:
@@ -38,6 +38,7 @@ class DatetimeValidator(BaseValidator):
         return False
 
     @staticmethod
+    @if_arg
     def iso_format_check(datetime_string):
         """
         Performs the Date/DateTime ISO Format Check - checks if the datetime
@@ -55,6 +56,7 @@ class DatetimeValidator(BaseValidator):
         }
 
     @staticmethod
+    @if_arg
     def compare(first, second, relation):
         """
         Compares two datetime values based on the argument relation
@@ -70,6 +72,7 @@ class DatetimeValidator(BaseValidator):
         }
 
     @staticmethod
+    @if_arg
     def delete_time_check(datetime_string):
         delete_time = DatetimeValidator._iso_datetime(datetime_string)
         result = BaseValidator.compare(

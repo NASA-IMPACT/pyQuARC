@@ -4,6 +4,7 @@ import re
 from urlextract import URLExtract
 
 from .string_validator import StringValidator
+from .utils import if_arg
 
 class UrlValidator(StringValidator):
     """
@@ -14,6 +15,7 @@ class UrlValidator(StringValidator):
         super().__init__()
 
     @staticmethod
+    @if_arg
     def health_and_status_check(text_with_urls):
         """
         Checks the health and status of the URLs included in `text`
@@ -60,6 +62,7 @@ class UrlValidator(StringValidator):
         return {"valid": validity, "value": ", ".join(urls)}
 
     @staticmethod
+    @if_arg
     def doi_check(doi):
         """
         Checks if the doi link given in the text is a valid doi link
