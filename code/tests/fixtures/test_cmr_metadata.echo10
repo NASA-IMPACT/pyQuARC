@@ -1,8 +1,9 @@
 <Collection>
       <ShortName>ACOS_L2S</ShortName>
       <VersionId>2</VersionId>
-      <InsertTime>2016</InsertTime>
+      <InsertTime>2018-04-14T00:00:00.000Z</InsertTime>
       <LastUpdate>2016-04-14T00:00:00.000Z</LastUpdate>
+      <DeleteTime>2016-04-14T00:00:00.000Z</DeleteTime>
       <LongName>Not provided</LongName>
       <DataSetId>ACOS GOSAT/TANSO-FTS Level 2 Full Physics Standard Product V7.3 (ACOS_L2S) at GES DISC</DataSetId>
       <Description>Version 7.3 is the current version of the data set. Version 3.5 is no longer available and has been superseded by Version 7.3.
@@ -11,7 +12,7 @@ This data set is currently provided by the OCO (Orbiting Carbon Observatory) Pro
 
 The "ACOS" data set contains Carbon Dioxide (CO2) column averaged dry air mole fraction for all soundings for which retrieval was attempted. These are the highest-level products made available by the OCO Project, using TANSO-FTS spectral radiances, and algorithm build version 7.3.
 
-The GOSAT team at JAXA produces GOSAT TANSO-FTS Level 1B (L1B) data products for internal use and for distribution to collaborative partners, such as ESA and NASA. These calibrated products are augmented by the OCO Project with additional geolocation information and further corrections. Thus produced Level 1B products (with calibrated radiances and geolocation) are the input to the "ACOS" Level 2 production process.
+The GOSAT team at JAXA produces randomurl12338972.com slesaadajfsf.com GOSAT TANSO-FTS Level 1B (L1B) data products for internal use and for distribution to collaborative partners, such as ESA and NASA. These calibrated products are augmented by the OCO Project with additional geolocation information and further corrections. Thus produced Level 1B products (with calibrated radiances and geolocation) are the input to the "ACOS" Level 2 production process.
 
 Even though the GES DISC is not publicly distributing Level 1B ACOS products, it should be known that changes in this version are affecting both Level 1B and Level 2 data. An important enhancement in Level1B will address the degradation in the number of quality-passed soundings. 
 
@@ -43,6 +44,7 @@ Lastly, users should continue to carefully observe and weigh information from th
             <EndsAtPresentFlag>false</EndsAtPresentFlag>
             <RangeDateTime>
                   <BeginningDateTime>2009-04-20T00:00:00.000Z</BeginningDateTime>
+                  <EndingDateTime>2008-04-20T00:00:00.000Z</EndingDateTime>
             </RangeDateTime>
       </Temporal>
       <Contacts>
@@ -62,6 +64,17 @@ Lastly, users should continue to carefully observe and weigh information from th
             </Contact>
       </Contacts>
       <ScienceKeywords>
+            <ScienceKeyword>
+                  <CategoryKeyword>EARTH SCIENCE</CategoryKeyword>
+                  <TopicKeyword>SA</TopicKeyword>
+                  <TermKeyword>ATMOSPHERIC CHEMISTRY</TermKeyword>
+                  <VariableLevel1Keyword>
+                        <Value>CARBON AND HYDROCARBON COMPOUNDS</Value>
+                        <VariableLevel2Keyword>
+                              <Value>CARBON DIOXIDE</Value>
+                        </VariableLevel2Keyword>
+                  </VariableLevel1Keyword>
+            </ScienceKeyword>
             <ScienceKeyword>
                   <CategoryKeyword>EARTH SCIENCE</CategoryKeyword>
                   <TopicKeyword>ATMOSPHERE</TopicKeyword>
