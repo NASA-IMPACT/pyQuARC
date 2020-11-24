@@ -95,7 +95,7 @@
                     "Collection/DataSetId",
                     "Collection/ShortName"
                 ],
-                "relation": "eq"
+                "relation": "neq"
             }
         ]
     },
@@ -133,8 +133,8 @@
         ]
     },
     {
-        "rule_id": "gcmd_keywords_check",
-        "rule_name": "GCMD keywords check",
+        "rule_id": "science_keywords_gcmd_check",
+        "rule_name": "GCMD Science keywords check",
         "fields_to_apply": [
             {
                 "fields": [
@@ -156,6 +156,263 @@
             {
                 "fields": [
                     "Collection/DOI/Authority"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "delete_time_check",
+        "rule_name": "Delete Time Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/DeleteTime"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "doi_missing_reason_enumeration_check",
+        "rule_name": "DOI Missing Reason Enumeration Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/DOI/MissingReason"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "processing_level_description_length_check",
+        "rule_name": "Processing Level Description Length Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/ProcessingLevelDescription"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "umm_controlled_collection_state_list_check",
+        "rule_name": "UMM Controlled Collection State List",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/CollectionState"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "ends_at_present_flag_logic_check",
+        "rule_name": "Ends at present flag logic check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Temporal/EndsAtPresentFlag",
+                    "Collection/Temporal/RangeDateTime/EndingDateTime",
+                    "Collection/CollectionState"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "ends_at_present_flag_presence_check",
+        "rule_name": "Ends at present flag presence check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Temporal/EndsAtPresentFlag",
+                    "Collection/Temporal/RangeDateTime/EndingDateTime",
+                    "Collection/CollectionState"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "contact_mechanism_enum_check",
+        "rule_name": "Contact Mechanism Enumeration Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Contacts/Contact/OrganizationPhones/Phone/Type"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "data_contact_role_enum_check",
+        "rule_name": "Data Contact Role Enumeration Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Contacts/Contact/ContactPersons/ContactPerson/JobPosition"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "controlled_contact_role_check",
+        "rule_name": "Controlled Contact Role Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Contact/Role"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "data_type_control_check",
+        "rule_name": "Data type control Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/AdditionalAttributes/AdditionalAttribute/DataType"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Characteristics/Characteristic/DataType"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "characteristic_name_check",
+        "rule_name": "Characteristic Name Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Name"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "characteristic_desc_check",
+        "rule_name": "Characteristic Description Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Description"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "characteristic_unit_check",
+        "rule_name": "Characteristic Unit Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Unit"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "characteristic_value_check",
+        "rule_name": "Characteristic Value Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Value"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "mime_type_check",
+        "rule_name": "MIME type Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/OnlineResources/OnlineResource/MimeType",
+                    "Collection/OnlineResources/OnlineResource/Type"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "coordinate_system_check",
+        "rule_name": "Coordinate System Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Spatial/HorizontalSpatialDomain/Geometry/Coordinate System"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "product_flag_check",
+        "rule_name": "Product Flag Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/ProductFlag"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "granule_spatial_representation_check",
+        "rule_name": "Granule Spatial Representation Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Spatial/GranuleSpatialRepresentation"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "data_center_short_name_gcmd_check",
+        "rule_name": "Data Center Shortname GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/ProcessingCenter"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/ArchiveCenter"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "instrument_short_name_gcmd_check",
+        "rule_name": "Instrument Shortname GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/ShortName"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "instrument_long_name_gcmd_check",
+        "rule_name": "Instrument Longname GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/LongName"
+                ]
+            }
+        ]
+    },
+    {
+        "rule_id": "version_description_not_provided",
+        "rule_name": "Version Description Not Provided",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/VersionDescription"
                 ]
             }
         ]

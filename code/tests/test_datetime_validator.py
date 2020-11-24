@@ -1,11 +1,4 @@
-import json
-
-import jsonschema
-import pytest
-import xmltodict
-
-from ..downloader import Downloader
-from ..validator import DatetimeValidator
+from ..datetime_validator import DatetimeValidator
 
 from .fixtures.validator import INPUT_OUTPUT
 
@@ -26,19 +19,4 @@ class TestValidator:
             ) == input_output["output"]
 
     def test_datetime_compare(self):
-        pass
-
-    def test_string_length_check(self):
-        pass
-
-    def test_string_compare(self):
-        pass
-
-    def test_processing_level_id_check(self):
-        pass
-
-    def test_url_health_check(self):
-        pass
-
-    def test_doi_check(self):
         pass

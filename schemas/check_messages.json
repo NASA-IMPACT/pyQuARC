@@ -2,9 +2,9 @@
     {
         "check_id": "datetime_format_check",
         "message": {
-            "success": "[ {} ] adheres to the ISO 1601 standard",
-            "failure": "[ {} ] does not adhere to the ISO 1601 standard",
-            "warning": "Make sure [ {} ] adheres to the ISO 1601 standard"
+            "success": "`{}` adheres to the ISO 1601 standard",
+            "failure": "`{}` does not adhere to the ISO 1601 standard",
+            "warning": "Make sure `{}` adheres to the ISO 1601 standard"
         },
         "help": {
             "message": "",
@@ -16,7 +16,7 @@
         "check_id": "date_compare",
         "message": {
             "success": "",
-            "failure": "[ {} ] and [ {} ] do not satisfy the chronology logic",
+            "failure": "`{}` and `{}` do not satisfy the chronology logic",
             "warning": ""
         },
         "help": {
@@ -29,7 +29,7 @@
         "check_id": "url_check",
         "message": {
             "success": "",
-            "failure": "[ {} ] is not a valid url",
+            "failure": "`{}` is not a valid url",
             "warning": ""
         },
         "help": {
@@ -42,7 +42,7 @@
         "check_id": "controlled_keywords_check",
         "message": {
             "success": "",
-            "failure": "[ {} ] is not one of the valid keywords",
+            "failure": "`{}` is not one of the valid keywords",
             "warning": ""
         },
         "help": {
@@ -55,7 +55,7 @@
         "check_id": "shortname_uniqueness",
         "message": {
             "success": "",
-            "failure": "[ {} ] is not a unique ShortName",
+            "failure": "`{}` is not a unique ShortName",
             "warning": ""
         },
         "help": {
@@ -68,7 +68,7 @@
         "check_id": "length_check",
         "message": {
             "success": "",
-            "failure": "[ {} ] is not the correct length for the field.",
+            "failure": "`{}` is not the correct length for the field.",
             "warning": ""
         },
         "help": {
@@ -81,7 +81,7 @@
         "check_id": "doi_check",
         "message": {
             "success": "",
-            "failure": "[ {} ] is not a valid DOI.",
+            "failure": "`{}` is not a valid DOI.",
             "warning": ""
         },
         "help": {
@@ -94,7 +94,7 @@
         "check_id": "processing_level_id_check",
         "message": {
             "success": "",
-            "failure": "[ {} ] is not one of the valid keywords",
+            "failure": "`{}` is not one of the valid keywords",
             "warning": ""
         },
         "help": {
@@ -104,10 +104,10 @@
         "remediation": ""
     },
     {
-        "check_id": "gcmd_keywords_check",
+        "check_id": "science_keywords_gcmd_check",
         "message": {
             "success": "",
-            "failure": "[ {} ] is either not a valid hierarchy of GCMD keywords or it contains an invalid keyword",
+            "failure": "`{}` is/are not valid GCMD keyword/s",
             "warning": ""
         },
         "help": {
@@ -120,7 +120,20 @@
         "check_id": "eosdis_doi_authority_check",
         "message": {
             "success": "",
-            "failure": "[ {} ] is not valid. It should either be 'https://doi.org' or 'https://doi.org/",
+            "failure": "`{}` is not valid. It should either be 'https://doi.org' or 'https://doi.org/",
+            "warning": ""
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": ""
+    },
+    {
+        "check_id": "delete_time_check",
+        "message": {
+            "success": "",
+            "failure": "`{}` is in the past. Either update it or consider removing it.",
             "warning": ""
         },
         "help": {
