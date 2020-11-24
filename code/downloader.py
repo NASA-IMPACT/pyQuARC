@@ -20,7 +20,7 @@ class Downloader:
     GRANULE = "granule"
     INVALID = "invalid"
 
-    def __init__(self, concept_id, metadata_format=ECHO10, version=None):
+    def __init__(self, concept_id, metadata_format, version=None):
         """
         Args:
             concept_id (str): The concept id of the metadata to download
