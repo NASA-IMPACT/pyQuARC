@@ -6,8 +6,8 @@ INPUT_OUTPUT = {
             "Collection/Contacts/Contact/Role"
         ],
         "output": [
-            "ACOS_L2S",
-            "ACOS GOSAT/TANSO-FTS Level 2 Full Physics Standard Product V7.3 (ACOS_L2S) at GES DISC",
+            ["ACOS_L2S"],
+            ["ACOS GOSAT/TANSO-FTS Level 2 Full Physics Standard Product V7.3 (ACOS_L2S) at GES DISC"],
             ["ARCHIVER", "TECHNICAL CONTACT"]
         ]
     }

@@ -53,8 +53,7 @@ class TestDownloader:
 
     def test_construct_url_collection(self):
         real_collection = self.concept_ids["collection"]["real"]
-        downloader = Downloader(real_collection)
-
+        downloader = Downloader(real_collection, "echo10")
         assert (
             downloader._construct_url()
             == f"https://cmr.earthdata.nasa.gov/search/concepts/{real_collection}.echo10"
@@ -62,7 +61,7 @@ class TestDownloader:
 
     def test_construct_url_granule(self):
         real_granule = self.concept_ids["granule"]["real"]
-        downloader = Downloader(real_granule)
+        downloader = Downloader(real_granule, "echo10")
 
         assert (
             downloader._construct_url()
@@ -72,7 +71,7 @@ class TestDownloader:
     def test_log_error(self):
         # create a dummy granule downloader
         dummy_granule = self.concept_ids["granule"]["dummy"]
-        downloader = Downloader(dummy_granule)
+        downloader = Downloader(dummy_granule, "echo10")
 
         downloader.log_error("invalid_concept_id", {
                              "concept_id": dummy_granule})
@@ -100,7 +99,7 @@ class TestDownloader:
 
     def test_download_invalid_concept_id(self):
         invalid_concept_id = self.concept_ids["invalid"]
-        downloader = Downloader(invalid_concept_id)
+        downloader = Downloader(invalid_concept_id, "echo10")
 
         downloader.download()
 
@@ -114,7 +113,7 @@ class TestDownloader:
 
     def test_download_dummy_collection_no_errors(self):
         dummy_collection = self.concept_ids["collection"]["dummy"]
-        downloader = Downloader(dummy_collection)
+        downloader = Downloader(dummy_collection, "echo10")
 
         downloader.download()
 
@@ -132,7 +131,7 @@ class TestDownloader:
 
     def test_download_real_collection_no_errors(self):
         real_collection = self.concept_ids["collection"]["real"]
-        downloader = Downloader(real_collection)
+        downloader = Downloader(real_collection, "echo10")
 
         downloader.download()
 
@@ -141,7 +140,7 @@ class TestDownloader:
 
     def test_download_dummy_granule_no_errors(self):
         dummy_granule = self.concept_ids["granule"]["dummy"]
-        downloader = Downloader(dummy_granule)
+        downloader = Downloader(dummy_granule, "echo10")
 
         downloader.download()
 
@@ -159,7 +158,7 @@ class TestDownloader:
 
     def test_download_real_granule_no_errors(self):
         real_collection = self.concept_ids["granule"]["real"]
-        downloader = Downloader(real_collection)
+        downloader = Downloader(real_collection, "echo10")
 
         downloader.download()
 
