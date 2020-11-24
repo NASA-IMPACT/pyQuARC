@@ -13,19 +13,24 @@
 
 ```
 ▶ python main.py -h  
-usage: main.py [-h] (--query QUERY | --concept_ids CONCEPT_IDS [CONCEPT_IDS ...]) [--fake FAKE]  
-  
-optional arguments:  
--h, --help show this help message and exit  
---query QUERY CMR query URL.  
---concept_ids CONCEPT_IDS [CONCEPT_IDS ...]  
-List of concept IDs.  
---fake FAKE Fake content for testing.
+usage: usage: main.py [-h] [--query QUERY | --concept_ids CONCEPT_IDS [CONCEPT_IDS ...]] [--file FILE | --fake FAKE] [--format [FORMAT]]
+
+arguments:
+  -h, --help            show this help message and exit
+  --query QUERY         CMR query URL.
+  --concept_ids CONCEPT_IDS [CONCEPT_IDS ...]
+                        List of concept IDs.
+  --file FILE           Path to the test file, either absolute or relative to the root dir.
+  --fake FAKE           Use a fake content for testing.
+  --format [FORMAT]     The metadata format
 
 ```
-To test a local file, put the file in the directory: `code/tests/fixtures/` with name `test_cmr_metadata.echo10`, and run the script as:
+To test a local file, use the `--file` argument. Give it either an absolute file path or a file path relative to the project root directory.
 
-`▶ python main.py --concept_ids 1213234 --fake  true`
+Example:
+`▶ python main.py --file "code/tests/fixtures/test_cmr_metadata.echo10"`
+or
+`▶ python main.py --file "/Users/batman/projects/vacqm/code/tests/fixtures/test_cmr_metadata.echo10"`
 
 ## Adding a custom check
 
