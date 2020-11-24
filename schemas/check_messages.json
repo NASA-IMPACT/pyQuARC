@@ -159,13 +159,13 @@
         "rule_id": "data_center_short_name_gcmd_check",
         "message": {
             "success": "",
-            "failure": "`{}` is not a valid data center."
+            "failure": "The provided data center short name `{}` does not comply with the GCMD. "
         },
         "help": {
             "message": "",
             "url": ""
         },
-        "remediation": ""
+        "remediation": "Please submit a request to support@earthdata.nasa.gov to have this instrument added to the GCMD Instrument KMS."
     },
     {
         "rule_id": "umm_controlled_collection_state_list_check",
@@ -327,25 +327,25 @@
         "rule_id": "instrument_short_name_gcmd_check",
         "message": {
             "success": "",
-            "failure": ""
+            "failure": "The provided instrument short name `{}` does not comply with the GCMD."
         },
         "help": {
             "message": "",
             "url": ""
         },
-        "remediation": ""
+        "remediation": "Please submit a request to support@earthdata.nasa.gov to have this instrument added to the GCMD Instrument KMS."
     },
     {
         "rule_id": "instrument_long_name_gcmd_check",
         "message": {
             "success": "",
-            "failure": ""
+            "failure": "The provided instrument long name `{}` does not comply with the GCMD."
         },
         "help": {
             "message": "",
             "url": ""
         },
-        "remediation": ""
+        "remediation": "Please submit a request to support@earthdata.nasa.gov to have this instrument added to the GCMD Instrument KMS."
     },
     {
         "rule_id": "characteristic_name_check",
