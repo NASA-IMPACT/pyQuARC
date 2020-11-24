@@ -2,6 +2,8 @@ import csv
 
 from .constants import SCHEMA_PATHS
 
+LEAF = "this_is_the_leaf_node"
+
 
 class GcmdValidator:
     """
@@ -15,7 +17,7 @@ class GcmdValidator:
             ),
             "provider_short_name": GcmdValidator._read_from_csv("providers", 4),
             "instrument_short_name": GcmdValidator._read_from_csv("instruments", 4),
-            "instrument_long_name": GcmdValidator._read_from_csv("instruments", 5)
+            "instrument_long_name": GcmdValidator._read_from_csv("instruments", 5),
         }
 
     @staticmethod
@@ -42,7 +44,7 @@ class GcmdValidator:
         Reads keywords from the corresponding csv based on the kind of keyword
 
         Args:
-            keyword_kind (str): The kind of keyword 
+            keyword_kind (str): The kind of keyword
                                 (could be: science_keywords, providers, instruments)
             row_num (int, optional): The row number (zero indexed). Defaults to None.
                                      If row_num is provided, returns keywords from that specific row
@@ -55,9 +57,7 @@ class GcmdValidator:
             reader = csv.reader(csvfile)
             if row_num:
                 return_value = [
-                    row[row_num]
-                        for row in list(reader)[2:]
-                            if row[row_num].strip()
+                    row[row_num] for row in list(reader)[2:] if row[row_num].strip()
                 ]
             else:
                 return_value = list(reader)[2:]
@@ -68,10 +68,8 @@ class GcmdValidator:
         """
         Converts a list to a nested dict
         """
-        intermediate_dict = {}
-        if len(row) == 1:
-            return {row[0]: None}
-        else:
+        intermediate_dict = {row[0]: LEAF}
+        if len(row) > 1:
             intermediate_dict[row[0]] = GcmdValidator.dict_from_list(row[1:])
         return intermediate_dict
 
@@ -80,7 +78,7 @@ class GcmdValidator:
         """
         Merges child dict to the parent dict avoiding repetitions
         """
-        if not (child):
+        if child == LEAF:
             return parent, child
         else:
             for key in child:
@@ -103,9 +101,8 @@ class GcmdValidator:
             (bool, str/None): The validity of the keyword and the invalid keyword (if any)
         """
         current_val = input_keyword[0]
-        try:
-            subset_dict = all_keywords[current_val]
-        except:
+        subset_dict = all_keywords.get(current_val)
+        if not subset_dict:
             return False, current_val
         if len(input_keyword) == 1:
             return True, None
@@ -115,7 +112,9 @@ class GcmdValidator:
         """
         Validates GCMD science keywords
         """
-        return GcmdValidator.validate_recursively(self.keywords["science"], input_keyword)
+        return GcmdValidator.validate_recursively(
+            self.keywords["science"], input_keyword
+        )
 
     def validate_instrument_short_name(self, input_keyword):
         """

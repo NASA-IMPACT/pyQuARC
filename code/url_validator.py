@@ -6,6 +6,7 @@ from urlextract import URLExtract
 from .string_validator import StringValidator
 from .utils import if_arg
 
+
 class UrlValidator(StringValidator):
     """
     Validator class for URLs
@@ -19,10 +20,8 @@ class UrlValidator(StringValidator):
     def health_and_status_check(text_with_urls):
         """
         Checks the health and status of the URLs included in `text`
-
         Args:
            text_with_urls (str, required): The text that contains the URLs where the check needs to be performed
-
         Returns:
             (dict) An object with the validity of the check and the instance/results
         """
@@ -41,16 +40,15 @@ class UrlValidator(StringValidator):
 
         # check that URL returns a valid response
         for url in urls:
-            if not url.startswith('http'):
-                url = f'http://{url}'
+            if not url.startswith("http"):
+                url = f"http://{url}"
             try:
                 response_code = requests.get(url).status_code
                 if response_code == 200:
                     continue
                 result = {"url": url, "status_code": response_code}
             except requests.ConnectionError as exception:
-                result = {"url": url,
-                          "error": "The URL does not exist on Internet."}
+                result = {"url": url, "error": "The URL does not exist on Internet."}
             except Exception as e:
                 result = {"url": url, "error": "Some unknown error occurred."}
             results.append(result)
