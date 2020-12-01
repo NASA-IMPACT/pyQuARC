@@ -111,5 +111,6 @@ class CustomChecker:
                     invalid_values.append(func_return["value"])
                     validity = False
         result["valid"] = validity
-        result["value"] = invalid_values if invalid_values else None
+        if invalid_values:
+            result["value"] = invalid_values
         return result
