@@ -83,7 +83,7 @@ class VACQM:
         if self.concept_ids:
             for concept_id in tqdm(self.concept_ids):
                 downloader = Downloader(concept_id, self.metadata_format)
-                content = downloader.download()
+                content = downloader.download().encode()
 
                 validation_errors = checker.run(content)
                 self.errors.append(
@@ -159,7 +159,7 @@ if __name__ == "__main__":
         input_concept_ids=args.concept_ids or [],
         fake=args.fake,
         file_path=args.file,
-        metadata_format=args.format,
+        metadata_format=args.format or ECHO10,
     )
     results = vacqm.validate()
 
