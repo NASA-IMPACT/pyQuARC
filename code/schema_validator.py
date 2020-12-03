@@ -83,11 +83,7 @@ class SchemaValidator:
             if error.validator == "oneOf":
                 message = "One of `{}` or `{}` is required".format(*[f'{field}/{obj["required"][0]}' for obj in error.validator_value])
             errors.setdefault(field, {})["json_schema"] = {
-                    "message": message,
-                    "path": SchemaValidator.PATH_SEPARATOR.join(error.path),
-                    "instance": error.instance,
-                    "validator": error.validator,
-                    "validator_value": error.validator_value,
+                    "message": [f"Error: {message}"],
                     "valid": False
                 }
         return error_dict
@@ -108,8 +104,9 @@ class SchemaValidator:
         lines = error_log.splitlines()
         for line in lines:
             field = re.search("Element\s\'(\w+)\'", line)[1]
+            message = re.search("Element\s\'\w+\':\s(\[.*\])?(.*)", line)[2].strip()
             errors.setdefault(field, {})["xml_schema"] = {
-                "message": re.search("Element\s\'\w+\':\s(\[.*\])?(.*)", line)[2].strip(),
+                "message": [f"Error: {message}"],
                 "valid": False
             }
         return errors
