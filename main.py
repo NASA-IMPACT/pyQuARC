@@ -8,9 +8,10 @@ from pprint import pprint
 from tqdm import tqdm
 
 from code.checker import Checker
-from code.constants import ECHO10
+from code.constants import COLOR, ECHO10
 from code.downloader import Downloader
 
+END = COLOR["reset"]
 
 class VACQM:
     """
@@ -100,6 +101,7 @@ class VACQM:
                 validation_errors = checker.run(content)
                 self.errors.append(
                     {
+                        "file": self.file_path,
                         "errors": validation_errors,
                     }
                 )
@@ -109,15 +111,22 @@ class VACQM:
     def printable_result(self):
         result_string = "\n\n** Metadata Validation Errors **\n\n"
         for error in self.errors:
-            if concept_id := error.get("concept_id"):
-                result_string += (f"{concept_id}:\n\t")
+            if title := error.get("concept_id") or error.get("file"):
+                result_string += (f"METADATA: {COLOR['title']}{COLOR['bright']}{title}{END}\n")
             for field, result in error["errors"].items():
                 for rule_type, value in result.items():
                     if value.get("valid") == False:
-                        if value.get("message"):
-                            result_string += (f"{field}:\n\t")
-                            result_string += (f"{rule_type}:\n\t\t")
-                            result_string += (f"{value['message']}\n")
+                        if messages := value.get("message"):
+                            result_string += (f"\n>> {field}: {END}\n")
+                            for message in messages:
+                                severities = ["error", "warning", "info"]
+                                for severity in severities:
+                                    text = severity.title()
+                                    if message.startswith(text):
+                                        message = message.replace(text, f"{COLOR[severity]}{text}{END}")
+                                result_string += (f"\t{message}{END}\n")
+                        if value.get("remediation"):
+                            result_string += (f"\t{value['remediation']}\n")
         return result_string
 
 
@@ -177,9 +186,5 @@ if __name__ == "__main__":
     )
     results = vacqm.validate()
     print(vacqm.printable_result())
-    # for _, value in results[0]["errors"]["custom"].items():
-    #     for key, val in value.items():
-    #         if not val["valid"]:
-    #             print(f"{key}: {val['message']}")
 
     # print(json.dumps(results, indent=4))
