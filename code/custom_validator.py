@@ -58,3 +58,17 @@ class CustomValidator(BaseValidator):
             }
 
         return result
+
+    @staticmethod
+    def availability_check(
+        field_value,
+        parent_value
+    ):
+        validity = True
+        if parent_value:
+            if not field_value:
+                validity = False
+        return {
+            "valid": validity,
+            "value": field_value
+        }

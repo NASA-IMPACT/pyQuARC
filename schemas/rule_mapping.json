@@ -233,19 +233,6 @@
         "severity": "info"
     },
     {
-        "rule_id": "doi_missing_reason_presence_check",
-        "rule_name": "DOI Missing Reason Presence Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/DOI/DOI",
-                    "Collection/DOI/MissingReason"
-                ]
-            }
-        ],
-        "severity": "error"
-    },
-    {
         "rule_id": "doi_missing_reason_enumeration_check",
         "rule_name": "DOI Missing Reason Enumeration Check",
         "fields_to_apply": [
@@ -368,7 +355,8 @@
         "fields_to_apply": [
             {
                 "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Name"
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Name",
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
                 ]
             }
         ],
@@ -380,7 +368,8 @@
         "fields_to_apply": [
             {
                 "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Description"
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Description",
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
                 ]
             }
         ],
@@ -392,7 +381,8 @@
         "fields_to_apply": [
             {
                 "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Unit"
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Unit",
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
                 ]
             }
         ],
@@ -404,11 +394,60 @@
         "fields_to_apply": [
             {
                 "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Value"
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Value",
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
                 ]
             }
         ],
         "severity": "error"
+    },
+    {
+        "rule_id": "characteristic_name_length_check",
+        "rule_name": "Characteristic Name Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Name"
+                ]
+            }
+        ],
+        "severity": "info"
+    },
+    {
+        "rule_id": "characteristic_desc_length_check",
+        "rule_name": "Characteristic Description Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Description"
+                ]
+            }
+        ],
+        "severity": "info"
+    },
+    {
+        "rule_id": "characteristic_unit_length_check",
+        "rule_name": "Characteristic Unit Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Unit"
+                ]
+            }
+        ],
+        "severity": "info"
+    },
+    {
+        "rule_id": "characteristic_value_length_check",
+        "rule_name": "Characteristic Value Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Value"
+                ]
+            }
+        ],
+        "severity": "info"
     },
     {
         "rule_id": "mime_type_check",
@@ -477,6 +516,19 @@
         "severity": "error"
     },
     {
+        "rule_id": "instrument_short_name_check",
+        "rule_name": "Instrument Shortname Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/ShortName",
+                    "Collection/Platforms/Platform/Instruments/Instrument"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    {
         "rule_id": "instrument_short_name_gcmd_check",
         "rule_name": "Instrument Shortname GCMD Check",
         "fields_to_apply": [
@@ -495,6 +547,18 @@
             {
                 "fields": [
                     "Collection/Platforms/Platform/Instruments/Instrument/LongName"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    {
+        "rule_id": "spatial_keyword_gcmd_check",
+        "rule_name": "ECHO10 Spatial GCMD Keyword Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/SpatialKeywords/Keyword"
                 ]
             }
         ],

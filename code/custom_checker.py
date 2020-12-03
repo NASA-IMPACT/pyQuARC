@@ -21,13 +21,15 @@ class CustomChecker:
                                   ['Collection', 'RangeDateTime', 'StartDate']
             container (set): The container that holds all the path values
         """
-
         try:
             root_content = subset_of_metadata_content[path_list[0]]
         except KeyError as e:
             # this is needed because GCMD keywords check needs the placement 
             # of the values in the returned list
             container.append(None)
+            return
+        except IndexError as e:
+            container.append(subset_of_metadata_content)
             return
         new_path = path_list[1:]
         if isinstance(root_content, str) or isinstance(root_content, int):

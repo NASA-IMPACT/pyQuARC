@@ -70,3 +70,17 @@ class UrlValidator(StringValidator):
         """
         url = f"https://www.doi.org/{doi}"
         return UrlValidator.health_and_status_check(url)
+
+    @staticmethod
+    @if_arg
+    def doi_link_update(
+        value
+    ):
+        validity = True
+        if value == "http://dx.doi.org":
+            validity = False
+
+        return {
+            "valid": validity,
+            "Value": value
+        }

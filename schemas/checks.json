@@ -76,11 +76,6 @@
         "data": ["now", "gte"],
         "available": true
     },
-    "doi_missing_reason_presence_check": {
-        "data_type": "string",
-        "check_function": "doi_missing_reason_presence_check",
-        "available": true
-    },
     "doi_missing_reason_enumeration_check": {
         "data_type": "string",
         "check_function": "controlled_keywords_check",
@@ -115,12 +110,12 @@
         "available": true
     },
     "ends_at_present_flag_logic_check": {
-        "data_type": "string",
+        "data_type": "custom",
         "check_function": "ends_at_present_flag_logic_check",
         "available": true
     },
     "ends_at_present_flag_presence_check": {
-        "data_type": "string",
+        "data_type": "custom",
         "check_function": "ends_at_present_flag_presence_check",
         "available": true
     },
@@ -194,6 +189,26 @@
         "available": true
     },
     "characteristic_name_check": {
+        "data_type": "custom",
+        "check_function": "availability_check",
+        "available": true
+    },
+    "characteristic_desc_check": {
+        "data_type": "custom",
+        "check_function": "availability_check",
+        "available": true
+    },
+    "characteristic_unit_check": {
+        "data_type": "custom",
+        "check_function": "availability_check",
+        "available": true
+    },
+    "characteristic_value_check": {
+        "data_type": "custom",
+        "check_function": "availability_check",
+        "available": true
+    },
+    "characteristic_name_length_check": {
         "data_type": "string",
         "check_function": "length_check",
         "data": [
@@ -202,7 +217,7 @@
         ],
         "available": true
     },
-    "characteristic_desc_check": {
+    "characteristic_desc_length_check": {
         "data_type": "string",
         "check_function": "length_check",
         "data": [
@@ -211,7 +226,7 @@
         ],
         "available": true
     },
-    "characteristic_unit_check": {
+    "characteristic_unit_length_check": {
         "data_type": "string",
         "check_function": "length_check",
         "data": [
@@ -220,7 +235,7 @@
         ],
         "available": true
     },
-    "characteristic_value_check": {
+    "characteristic_value_length_check": {
         "data_type": "string",
         "check_function": "length_check",
         "data": [
@@ -230,7 +245,7 @@
         "available": true
     },
     "mime_type_check": {
-        "data_type": "string",
+        "data_type": "custom",
         "check_function": "mime_type_check",
         "data": [
             [
@@ -301,6 +316,11 @@
         "check_function": "data_center_short_name_gcmd_check",
         "available": true
     },
+    "instrument_short_name_check": {
+        "data_type": "custom",
+        "check_function": "availability_check",
+        "available": true
+    },
     "instrument_short_name_gcmd_check": {
         "data_type": "string",
         "check_function": "instrument_short_name_gcmd_check",
@@ -309,6 +329,11 @@
     "instrument_long_name_gcmd_check": {
         "data_type": "string",
         "check_function": "instrument_long_name_gcmd_check",
+        "available": true
+    },
+    "spatial_keyword_gcmd_check": {
+        "data_type": "string",
+        "check_function": "spatial_keyword_gcmd_check",
         "available": true
     },
     "version_description_not_provided": {
@@ -331,12 +356,12 @@
         "available": true
     },
     "data_center_name_presence_check": {
-        "data_type": "string",
+        "data_type": "custom",
         "check_function": "data_center_name_presence_check",
         "available": true
     },
     "doi_link_update": {
-        "data_type": "string",
+        "data_type": "url",
         "check_function": "doi_link_update",
         "available": true
     }

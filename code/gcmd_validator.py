@@ -15,9 +15,10 @@ class GcmdValidator:
             "science": GcmdValidator._create_science_keywords_dict(
                 GcmdValidator._read_from_csv("science_keywords")
             ),
-            "provider_short_name": GcmdValidator._read_from_csv("providers", 4),
-            "instrument_short_name": GcmdValidator._read_from_csv("instruments", 4),
-            "instrument_long_name": GcmdValidator._read_from_csv("instruments", 5),
+            "spatial_keyword": GcmdValidator._read_from_csv("locations", [1, 2, 3, 4]),
+            "provider_short_name": GcmdValidator._read_from_csv("providers", [4]),
+            "instrument_short_name": GcmdValidator._read_from_csv("instruments", [4]),
+            "instrument_long_name": GcmdValidator._read_from_csv("instruments", [5]),
         }
 
     @staticmethod
@@ -39,7 +40,7 @@ class GcmdValidator:
         return science_keywords_dict
 
     @staticmethod
-    def _read_from_csv(keyword_kind, row_num=None):
+    def _read_from_csv(keyword_kind, row_nums=None):
         """
         Reads keywords from the corresponding csv based on the kind of keyword
 
@@ -55,10 +56,12 @@ class GcmdValidator:
         """
         with open(SCHEMA_PATHS[keyword_kind]) as csvfile:
             reader = csv.reader(csvfile)
-            if row_num:
-                return_value = [
-                    row[row_num] for row in list(reader)[2:] if row[row_num].strip()
-                ]
+            if row_nums:
+                return_value = []
+                for row_num in row_nums:
+                    return_value.extend(
+                        row[row_num] for row in list(reader)[2:] if row[row_num].strip()
+                    )
             else:
                 return_value = list(reader)[2:]
         return return_value
@@ -133,3 +136,9 @@ class GcmdValidator:
         Validates GCMD provider short name
         """
         return input_keyword in self.keywords["provider_short_name"]
+
+    def validate_spatial_keyword(self, input_keyword):
+        """
+        Validates GCMD spatial keyword
+        """
+        return input_keyword in self.keywords["spatial_keyword"]

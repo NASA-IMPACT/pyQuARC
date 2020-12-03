@@ -118,3 +118,11 @@ class StringValidator(BaseValidator):
             "valid": StringValidator.gcmdValidator.validate_instrument_long_name(value),
             "value": value,
         }
+
+    @staticmethod
+    @if_arg
+    def spatial_keyword_gcmd_check(value):
+        return {
+            "valid": StringValidator.gcmdValidator.validate_spatial_keyword(value),
+            "value": value,
+        }
