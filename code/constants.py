@@ -28,8 +28,10 @@ SCHEMA_PATHS = {
 }
 
 COLOR = {
+    "title": Fore.GREEN,
     "info": Fore.BLUE,
     "error": Fore.RED,
     "warning": Fore.YELLOW,
-    "reset": Style.RESET_ALL
+    "reset": Style.RESET_ALL,
+    "bright": Style.BRIGHT
 }
