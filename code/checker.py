@@ -89,34 +89,35 @@ class Checker:
             if mapping["rule_id"] == rule_id:
                 return mapping["fields_to_apply"]
 
-    def message(self, rule_id):
+    def message(self, rule_id, msg_type):
         """
         Gets the success, failure, warning messages for the `rule_id`
+        msg_type can be any one of 'failure', 'remediation'
         """
         for message in self.messages_override:
             if message["rule_id"] == rule_id:
-                return message["message"]
+                return message[msg_type]
         for message in self.messages:
             if message["rule_id"] == rule_id:
-                return message["message"]
+                return message[msg_type]
 
     def build_message(self, result, rule_id):
         """
         Formats the message for `rule_id` based on the result
         """
-        message = self.message(rule_id)
+        failure_message = self.message(rule_id, "failure")
         severity = self.rule(rule_id).get("severity") or "error"
         messages = []
-        if not result["valid"] and result.get("value") and message:
+        if not result["valid"] and result.get("value"):
             for value in result["value"]:
-                formatted_message = message
+                formatted_message = failure_message
                 if isinstance(value, tuple):
-                    formatted_message = message["failure"].format(*value)
+                    formatted_message = failure_message.format(*value)
                 else:
-                    formatted_message = message["failure"].format(value)
-                formatted_message = f"{COLOR[severity]} {formatted_message} {COLOR['reset']}"
+                    formatted_message = failure_message.format(value)
+                formatted_message = f"{severity.title()}: {formatted_message}"
                 messages.append(formatted_message)
-            return "\n".join(messages)
+            return messages
 
     def perform_schema_check(self, xml_metadata, json_metadata):
         """
@@ -158,6 +159,7 @@ class Checker:
                             message = self.build_message(result, rule_id)
                             if message:
                                 result["message"] = message
+                                result["remediation"] = self.message(rule_id, "remediation")
         return result_dict
 
     def run(self, metadata_content):
@@ -171,7 +173,6 @@ class Checker:
             (dict): The results of the jsonschema check and all custom checks
         """
         json_metadata = parse(metadata_content)
-        result = {}
         result_schema = self.perform_schema_check(
             metadata_content, json_metadata
         )
@@ -180,3 +181,4 @@ class Checker:
             **result_schema, **result_custom
         }
         return result
+
