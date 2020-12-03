@@ -13,7 +13,7 @@ from .datetime_validator import DatetimeValidator
 from .string_validator import StringValidator
 from .url_validator import UrlValidator
 
-from .constants import SCHEMA_PATHS, DIF, ECHO10, UMM_JSON
+from .constants import COLOR, DIF, ECHO10, SCHEMA_PATHS, UMM_JSON
 
 
 class Checker:
@@ -105,15 +105,16 @@ class Checker:
         Formats the message for `rule_id` based on the result
         """
         message = self.message(rule_id)
+        severity = self.rule(rule_id).get("severity") or "error"
         messages = []
         if not result["valid"] and result.get("value") and message:
             for value in result["value"]:
-            # value = result["value"]
                 formatted_message = message
                 if isinstance(value, tuple):
                     formatted_message = message["failure"].format(*value)
                 else:
                     formatted_message = message["failure"].format(value)
+                formatted_message = f"{COLOR[severity]} {formatted_message} {COLOR['reset']}"
                 messages.append(formatted_message)
             return "\n".join(messages)
 
@@ -140,7 +141,7 @@ class Checker:
         ordered_rule = self.scheduler.order_rules()
         result_dict = {}
         for rule_id in ordered_rule:
-            result_dict.setdefault(rule_id, {})
+            # result_dict.setdefault(rule_id, {})
             list_of_fields_to_apply = self.fields(rule_id)
             rule = self.checks[self.rule(rule_id).get("check_id") or rule_id]
             func = Checker.map_to_function(rule["data_type"], rule["check_function"])
@@ -153,8 +154,7 @@ class Checker:
                         result = self.custom_checker.run(func, metadata_content, field_dict, external_data)
                         self.tracker.update_data(rule_id, main_field, result["valid"])
                         if result["valid"] != None: # this is to avoid "valid" = null in the result, for rules that are not applied
-                            result_dict[rule_id][main_field] = result
-
+                            result_dict.setdefault(main_field, {})[rule_id] = result
                             message = self.build_message(result, rule_id)
                             if message:
                                 result["message"] = message
@@ -172,8 +172,11 @@ class Checker:
         """
         json_metadata = parse(metadata_content)
         result = {}
-        result["schema"] = self.perform_schema_check(
+        result_schema = self.perform_schema_check(
             metadata_content, json_metadata
         )
-        result["custom"] = self.perform_custom_checks(json_metadata)
+        result_custom = self.perform_custom_checks(json_metadata)
+        result = {
+            **result_schema, **result_custom
+        }
         return result

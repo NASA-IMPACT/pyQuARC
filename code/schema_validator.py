@@ -67,7 +67,7 @@ class SchemaValidator:
             (dict) A dictionary that gives the validity of the schema and errors if they exist
 
         """
-        errors = []
+        errors = {}
         error_dict = {
             "valid": False,
             "errors": errors
@@ -78,18 +78,18 @@ class SchemaValidator:
         )
 
         for error in sorted(validator.iter_errors(content_to_validate), key=str):
-            errors.append(
-                {
-                    "message": error.message,
+            field = SchemaValidator.PATH_SEPARATOR.join(error.path)
+            message = error.message
+            if error.validator == "oneOf":
+                message = "One of `{}` or `{}` is required".format(*[f'{field}/{obj["required"][0]}' for obj in error.validator_value])
+            errors.setdefault(field, {})["json_schema"] = {
+                    "message": message,
                     "path": SchemaValidator.PATH_SEPARATOR.join(error.path),
                     "instance": error.instance,
                     "validator": error.validator,
                     "validator_value": error.validator_value,
+                    "valid": False
                 }
-            )
-
-        error_dict["valid"] = not(errors)
-
         return error_dict
 
     @staticmethod
@@ -104,14 +104,14 @@ class SchemaValidator:
         Returns:
             (dict): The formatted error dictionary
         """
+        errors = {}
         lines = error_log.splitlines()
-        errors = [
-            {
+        for line in lines:
+            field = re.search("Element\s\'(\w+)\'", line)[1]
+            errors.setdefault(field, {})["xml_schema"] = {
                 "message": re.search("Element\s\'\w+\':\s(\[.*\])?(.*)", line)[2].strip(),
-                "field": re.search("Element\s\'(\w+)\'", line)[1]
+                "valid": False
             }
-            for line in lines
-        ]
         return errors
 
     def run_xml_validator(self, content_to_validate):
@@ -127,7 +127,7 @@ class SchemaValidator:
         """
         xml_content = content_to_validate
         doc = etree.parse(BytesIO(xml_content))
-        errors = []
+        errors = {}
 
         try:
             self.xml_schema.assertValid(doc)
@@ -135,7 +135,6 @@ class SchemaValidator:
             errors = SchemaValidator._build_errors(str(err.error_log))
 
         result = {
-            "valid": not(errors),
             "errors": errors
         }
         return result
@@ -152,6 +151,6 @@ class SchemaValidator:
             (dict): Result of the validation from xml and json schema validators
         """
         return {
-            "json": self.run_json_validator(json_metadata),
-            "xml": self.run_xml_validator(xml_metadata)
+            ** self.run_json_validator(json_metadata)["errors"],
+            ** self.run_xml_validator(xml_metadata)["errors"]
         }

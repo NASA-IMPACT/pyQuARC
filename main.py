@@ -106,6 +106,20 @@ class VACQM:
 
         return self.errors
 
+    def printable_result(self):
+        result_string = "\n\n** Metadata Validation Errors **\n\n"
+        for error in self.errors:
+            if concept_id := error.get("concept_id"):
+                result_string += (f"{concept_id}:\n\t")
+            for field, result in error["errors"].items():
+                for rule_type, value in result.items():
+                    if value.get("valid") == False:
+                        if value.get("message"):
+                            result_string += (f"{field}:\n\t")
+                            result_string += (f"{rule_type}:\n\t\t")
+                            result_string += (f"{value['message']}\n")
+        return result_string
+
 
 if __name__ == "__main__":
     # parse command line arguments (argparse)
@@ -162,5 +176,10 @@ if __name__ == "__main__":
         metadata_format=args.format or ECHO10,
     )
     results = vacqm.validate()
+    print(vacqm.printable_result())
+    # for _, value in results[0]["errors"]["custom"].items():
+    #     for key, val in value.items():
+    #         if not val["valid"]:
+    #             print(f"{key}: {val['message']}")
 
-    print(json.dumps(results, indent=4))
+    # print(json.dumps(results, indent=4))
