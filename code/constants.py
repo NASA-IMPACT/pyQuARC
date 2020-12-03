@@ -1,4 +1,6 @@
 import os
+
+from colorama import Fore, Style
 from pathlib import Path
 
 DIF = "dif"
@@ -23,4 +25,11 @@ SCHEMA_PATHS = {
     schema: SCHEMAS_BASE_PATH / f"{schema}.{filetype}" 
         for filetype, schemas in SCHEMAS.items()
             for schema in schemas
+}
+
+COLOR = {
+    "info": Fore.BLUE,
+    "error": Fore.RED,
+    "warning": Fore.YELLOW,
+    "reset": Style.RESET_ALL
 }
