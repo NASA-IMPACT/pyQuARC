@@ -3,7 +3,7 @@
       <VersionId>2</VersionId>
       <InsertTime>2018-04-14T00:00:00.000Z</InsertTime>
       <LastUpdate>2016-04-14T00:00:00.000Z</LastUpdate>
-      <DeleteTime>2016-04-14T00:00:00.000Z</DeleteTime>
+      <DeleteTime>2016-04-14</DeleteTime>
       <LongName>Not provided</LongName>
       <DataSetId>ACOS GOSAT/TANSO-FTS Level 2 Full Physics Standard Product V7.3 (ACOS_L2S) at GES DISC</DataSetId>
       <Description>Version 7.3 is the current version of the data set. Version 3.5 is no longer available and has been superseded by Version 7.3.
@@ -30,6 +30,9 @@ Lastly, users should continue to carefully observe and weigh information from th
       "outcome_flag" - retrieval quality based upon certain internal thresholds (not thoroughly evaluated)    
 
       "master_quality_flag" - four possible values: "Good", "Caution" and "Bad", and "Failed", as determined from other flags in the L2 productThe short name for this data type is ACOS_L2S.</Description>
+      <DOI>
+            <Authority>https://doi.org</Authority>
+      </DOI>
       <RevisionDate>2019-11-21T14:37:19.000Z</RevisionDate>
       <ProcessingLevelId>2</ProcessingLevelId>
       <ArchiveCenter>NASA/GSFC/SED/ESD/GCDC/GESDISC</ArchiveCenter>
