@@ -89,13 +89,14 @@ class SchemaValidator:
         return error_dict
 
     @staticmethod
-    def _build_errors(error_log):
+    def _build_errors(error_log, paths):
         """
         Cleans up the error log given by the XML Validator and builds an error object in
         the format accepted by our program
 
         Args:
             error_log (str): The error log as output by the xml validator
+            paths (list): All available paths in the document file
 
         Returns:
             (dict): The formatted error dictionary
@@ -103,9 +104,13 @@ class SchemaValidator:
         errors = {}
         lines = error_log.splitlines()
         for line in lines:
-            field = re.search("Element\s\'(\w+)\'", line)[1]
+            field_name = re.search("Element\s\'(\w+)\'", line)[1]
+            field_paths = [
+                abs_path for abs_path in paths if field_name in abs_path
+            ]
+            field_name = field_paths[0] if len(field_paths) == 1 else field_name
             message = re.search("Element\s\'\w+\':\s(\[.*\])?(.*)", line)[2].strip()
-            errors.setdefault(field, {})["xml_schema"] = {
+            errors.setdefault(field_name, {})["xml_schema"] = {
                 "message": [f"Error: {message}"],
                 "valid": False
             }
@@ -124,12 +129,21 @@ class SchemaValidator:
         """
         xml_content = content_to_validate
         doc = etree.parse(BytesIO(xml_content))
+
+        # Getting a list of available paths in the document
+        # The validator only gives the field name, not full path
+        # Getting this to map it to the full path later
+        paths = []
+        for node in doc.xpath('//*'):
+            if not node.getchildren() and node.text:
+                paths.append(doc.getpath(node)[1:])
+    
         errors = {}
 
         try:
             self.xml_schema.assertValid(doc)
         except etree.DocumentInvalid as err:
-            errors = SchemaValidator._build_errors(str(err.error_log))
+            errors = SchemaValidator._build_errors(str(err.error_log), paths)
 
         result = {
             "errors": errors
