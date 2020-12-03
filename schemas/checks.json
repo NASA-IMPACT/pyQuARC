@@ -69,7 +69,11 @@
     },
     "delete_time_check": {
         "data_type": "datetime",
-        "check_function": "delete_time_check",
+        "check_function": "compare",
+        "dependencies": [
+            "datetime_format_check"
+        ],
+        "data": ["now", "gte"],
         "available": true
     },
     "doi_missing_reason_presence_check": {
