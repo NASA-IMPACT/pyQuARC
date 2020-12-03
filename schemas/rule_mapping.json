@@ -108,7 +108,8 @@
                     "Collection/Temporal/PeriodicDateTime/EndDate"
                 ]
             }
-        ]
+        ],
+        "severity": "error"
     },
     {
         "rule_id": "url_check",
@@ -204,7 +205,8 @@
                     "Collection/ScienceKeywords/ScienceKeyword/DetailedVariableKeyword"
                 ]
             }
-        ]
+        ],
+        "severity": "error"
     },
     {
         "rule_id": "eosdis_doi_authority_check",
