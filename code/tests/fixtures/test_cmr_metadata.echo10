@@ -97,8 +97,12 @@ Lastly, users should continue to carefully observe and weigh information from th
                   <Type>Earth Observation Satellites</Type>
                   <Instruments>
                         <Instrument>
-                              <ShortName>TANSO-FTS</ShortName>
                               <LongName>Thermal And Near Infrared Sensor For Carbon Observation</LongName>
+                              <Characteristics>
+                                    <Characteristic>
+                                          <Value>Some Value</Value>
+                                    </Characteristic>
+                              </Characteristics>
                         </Instrument>
                   </Instruments>
             </Platform>

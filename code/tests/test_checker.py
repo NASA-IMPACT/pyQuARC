@@ -21,7 +21,7 @@ class TestChecker:
 
     def test_run(self):
         result = self.checker.run(self.test_metadata)
-        assert result["schema"] and result["custom"]
+        assert result
 
     def test_map_to_function(self):
         for in_, out_ in zip(FUNCTION_MAPPING["input"], FUNCTION_MAPPING["output"]):
