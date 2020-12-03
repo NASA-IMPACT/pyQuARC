@@ -1,22 +1,16 @@
 [
     {
         "rule_id": "datetime_format_check",
-        "message": {
-            "success": "`{}` adheres to the ISO 1601 standard",
-            "failure": "`{}` does not adhere to the ISO 1601 standard"
-        },
+        "failure": "`{}` does not adhere to the ISO 1601 standard",
         "help": {
             "message": "",
             "url": "https://www.w3.org/TR/NOTE-datetime"
         },
-        "remediation": ""
+        "remediation": "Make sure the datetime complies with ISO 1601 standard."
     },
     {
         "rule_id": "data_update_time_logic_check",
-        "message": {
-            "success": "",
-            "failure": "The UpdateTime `{}` comes after the provided InsertTime `{}`."
-        },
+        "failure": "The UpdateTime `{}` comes after the provided InsertTime `{}`.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Dates"
@@ -25,10 +19,7 @@
     },
     {
         "rule_id": "url_check",
-        "message": {
-            "success": "",
-            "failure": "Invalid URL/s: `{}`."
-        },
+        "failure": "Invalid URL/s: `{}`.",
         "help": {
             "message": "",
             "url": ""
@@ -37,10 +28,7 @@
     },
     {
         "rule_id": "shortname_uniqueness",
-        "message": {
-            "success": "",
-            "failure": "The DataSetId `{}` is identical to the ShortName `{}`."
-        },
+        "failure": "The DataSetId `{}` is identical to the ShortName `{}`.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Entry+Title"
@@ -49,10 +37,7 @@
     },
     {
         "rule_id": "abstract_length_check",
-        "message": {
-            "success": "",
-            "failure": "The abstract provided may be inadequate based on length."
-        },
+        "failure": "The abstract provided may be inadequate based on length.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Abstract"
@@ -61,10 +46,7 @@
     },
     {
         "rule_id": "doi_validity_check",
-        "message": {
-            "success": "",
-            "failure": "`{}` is invalid."
-        },
+        "failure": "`{}` is invalid.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI"
@@ -73,10 +55,7 @@
     },
     {
         "rule_id": "doi_missing_reason_presence_check",
-        "message": {
-            "success": "",
-            "failure": "No DOI or MissingReason provided."
-        },
+        "failure": "No DOI or MissingReason provided.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI"
@@ -85,10 +64,7 @@
     },
     {
         "rule_id": "doi_missing_reason_enumeration_check",
-        "message": {
-            "success": "",
-            "failure": "`{}` is not a valid value."
-        },
+        "failure": "`{}` is not a valid value.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI"
@@ -97,10 +73,7 @@
     },
     {
         "rule_id": "processing_level_id_check",
-        "message": {
-            "success": "",
-            "failure": "`{}` is not an EOSDIS recognized processing level ID."
-        },
+        "failure": "`{}` is not an EOSDIS recognized processing level ID.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Processing+Level"
@@ -109,10 +82,7 @@
     },
     {
         "rule_id": "processing_level_description_length_check",
-        "message": {
-            "success": "",
-            "failure": "The provided description is less than 50 characters and therefore may be lacking in contextual information."
-        },
+        "failure": "The provided description is less than 50 characters and therefore may be lacking in contextual information.",
         "help": {
             "message": "Use the EOSDIS processing level descriptions as guidance",
             "url": "https://science.nasa.gov/earth-science/earth-science-data/data-processing-levels-for-eosdis-data-products/"
@@ -121,10 +91,7 @@
     },
     {
         "rule_id": "science_keywords_gcmd_check",
-        "message": {
-            "success": "",
-            "failure": "`{}` is/are not valid GCMD keyword/s"
-        },
+        "failure": "`{}` is not valid GCMD keyword",
         "help": {
             "message": "",
             "url": ""
@@ -133,10 +100,7 @@
     },
     {
         "rule_id": "eosdis_doi_authority_check",
-        "message": {
-            "success": "",
-            "failure": "`{}` may be an invalid value."
-        },
+        "failure": "`{}` may be an invalid value.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI"
@@ -145,10 +109,7 @@
     },
     {
         "rule_id": "delete_time_check",
-        "message": {
-            "success": "",
-            "failure": "The delete date `{}` is in the past."
-        },
+        "failure": "The delete date `{}` is in the past.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Metadata+Dates"
@@ -157,10 +118,7 @@
     },
     {
         "rule_id": "data_center_short_name_gcmd_check",
-        "message": {
-            "success": "",
-            "failure": "The provided data center short name `{}` does not comply with the GCMD. "
-        },
+        "failure": "The provided data center short name `{}` does not comply with the GCMD. ",
         "help": {
             "message": "",
             "url": ""
@@ -169,10 +127,7 @@
     },
     {
         "rule_id": "umm_controlled_collection_state_list_check",
-        "message": {
-            "success": "",
-            "failure": "The provided Collection State `{}` is invalid."
-        },
+        "failure": "The provided Collection State `{}` is invalid.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Collection+Progress"
@@ -181,10 +136,7 @@
     },
     {
         "rule_id": "collection_data_type_enumeration_check",
-        "message": {
-            "success": "",
-            "failure": "`{}` is not a valid value."
-        },
+        "failure": "`{}` is not a valid value.",
         "help": {
             "message": "",
             "url": ""
@@ -193,10 +145,7 @@
     },
     {
         "rule_id": "version_description_not_provided",
-        "message": {
-            "success": "",
-            "failure": "The provided description reads only `{}`"
-        },
+        "failure": "The provided description reads only `{}`",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Version+Description"
@@ -205,10 +154,7 @@
     },
     {
         "rule_id": "ends_at_present_flag_logic_check",
-        "message": {
-            "success": "",
-            "failure": "Potential issue with:\\n - EndsAtPresentFlag: value = \"true\" but EndingDateTime is provided. \\n - EndsAtPresentFlag: value = \"true\" but CollectionState = COMPLETE. \\n - EndsAtPresentFlag: value = \"false\" but EndingDateTime is missing.\\n - EndsAtPresentFlag: value = \"false\" but CollectionState = ACTIVE."
-        },
+        "failure": "Potential issue with:\\n - EndsAtPresentFlag: value = \"true\" but EndingDateTime is provided. \\n - EndsAtPresentFlag: value = \"true\" but CollectionState = COMPLETE. \\n - EndsAtPresentFlag: value = \"false\" but EndingDateTime is missing.\\n - EndsAtPresentFlag: value = \"false\" but CollectionState = ACTIVE.",
         "help": {
             "message": "",
             "url": ""
@@ -217,10 +163,7 @@
     },
     {
         "rule_id": "ends_at_present_flag_presence_check",
-        "message": {
-            "success": "",
-            "failure": ""
-        },
+        "failure": "",
         "help": {
             "message": "",
             "url": "Potential issue with:\\n - No EndingDateTime provided; no EndsAtPresentFlag provided for a potentially active collection. \\n - CollectionState = ACTIVE; no EndsAtPresentFlag provided for a potentially active collection."
@@ -229,10 +172,7 @@
     },
     {
         "rule_id": "contact_mechanism_enum_check",
-        "message": {
-            "success": "",
-            "failure": "`{}` is not a valid phone type value."
-        },
+        "failure": "`{}` is not a valid phone type value.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Center"
@@ -241,10 +181,7 @@
     },
     {
         "rule_id": "range_date_time_logic_check_1",
-        "message": {
-            "success": "",
-            "failure": "The Beginning Date Time `{}` comes after the Ending Date Time `{}`."
-        },
+        "failure": "The Beginning Date Time `{}` comes after the Ending Date Time `{}`.",
         "help": {
             "message": "",
             "url": ""
@@ -253,10 +190,7 @@
     },
     {
         "rule_id": "range_date_time_logic_check_2",
-        "message": {
-            "success": "",
-            "failure": "The Beginning Date Time `{}` and Ending Date Time `{}` are the same."
-        },
+        "failure": "The Beginning Date Time `{}` and Ending Date Time `{}` are the same.",
         "help": {
             "message": "",
             "url": ""
@@ -265,10 +199,7 @@
     },
     {
         "rule_id": "periodic_date_time_logic_check",
-        "message": {
-            "success": "",
-            "failure": "The Start Date `{}` is not before the End Date `{}`."
-        },
+        "failure": "The Start Date `{}` is not before the End Date `{}`.",
         "help": {
             "message": "",
             "url": ""
@@ -277,10 +208,7 @@
     },
     {
         "rule_id": "data_contact_role_enum_check",
-        "message": {
-            "success": "",
-            "failure": "`{}` is not a valid Job Position value."
-        },
+        "failure": "`{}` is not a valid Job Position value.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Contact+Person"
@@ -289,10 +217,7 @@
     },
     {
         "rule_id": "controlled_contact_role_check",
-        "message": {
-            "success": "",
-            "failure": "`{}` is not a valid Contact Role."
-        },
+        "failure": "`{}` is not a valid Contact Role.",
         "help": {
             "message": "",
             "url": ""
@@ -301,10 +226,7 @@
     },
     {
         "rule_id": "data_type_control_check",
-        "message": {
-            "success": "",
-            "failure": "`{}` is not a valid Data Type."
-        },
+        "failure": "`{}` is not a valid Data Type.",
         "help": {
             "message": "",
             "url": ""
@@ -313,10 +235,7 @@
     },
     {
         "rule_id": "doi_link_update",
-        "message": {
-            "success": "",
-            "failure": "Should be 'https://doi.org'"
-        },
+        "failure": "Should be 'https://doi.org'",
         "help": {
             "message": "",
             "url": ""
@@ -325,10 +244,7 @@
     },
     {
         "rule_id": "instrument_short_name_gcmd_check",
-        "message": {
-            "success": "",
-            "failure": "The provided instrument short name `{}` does not comply with the GCMD."
-        },
+        "failure": "The provided instrument short name `{}` does not comply with the GCMD.",
         "help": {
             "message": "",
             "url": ""
@@ -337,10 +253,7 @@
     },
     {
         "rule_id": "instrument_long_name_gcmd_check",
-        "message": {
-            "success": "",
-            "failure": "The provided instrument long name `{}` does not comply with the GCMD."
-        },
+        "failure": "The provided instrument long name `{}` does not comply with the GCMD.",
         "help": {
             "message": "",
             "url": ""
@@ -349,10 +262,7 @@
     },
     {
         "rule_id": "characteristic_name_check",
-        "message": {
-            "success": "",
-            "failure": "A characteristic name is missing for the provided characteristic. "
-        },
+        "failure": "A characteristic name is missing for the provided characteristic. ",
         "help": {
             "message": "",
             "url": ""
@@ -361,10 +271,7 @@
     },
     {
         "rule_id": "characteristic_desc_check",
-        "message": {
-            "success": "",
-            "failure": "A characteristic description is missing for the provided characteristic. "
-        },
+        "failure": "A characteristic description is missing for the provided characteristic. ",
         "help": {
             "message": "",
             "url": ""
@@ -373,10 +280,7 @@
     },
     {
         "rule_id": "characteristic_unit_check",
-        "message": {
-            "success": "",
-            "failure": "A characteristic unit is missing for the provided characteristic."
-        },
+        "failure": "A characteristic unit is missing for the provided characteristic.",
         "help": {
             "message": "",
             "url": ""
@@ -385,10 +289,7 @@
     },
     {
         "rule_id": "characteristic_value_check",
-        "message": {
-            "success": "",
-            "failure": "A characteristic value is missing for the provided characteristic. "
-        },
+        "failure": "A characteristic value is missing for the provided characteristic. ",
         "help": {
             "message": "",
             "url": ""
@@ -397,10 +298,7 @@
     },
     {
         "rule_id": "mime_type_check",
-        "message": {
-            "success": "",
-            "failure": ""
-        },
+        "failure": "",
         "help": {
             "message": "",
             "url": ""
@@ -409,10 +307,7 @@
     },
     {
         "rule_id": "coordinate_system_check",
-        "message": {
-            "success": "",
-            "failure": "`{}` is not a valid coordinate system."
-        },
+        "failure": "`{}` is not a valid coordinate system.",
         "help": {
             "message": "",
             "url": ""
@@ -421,10 +316,7 @@
     },
     {
         "rule_id": "product_flag_check",
-        "message": {
-            "success": "",
-            "failure": "`{}` is not a valid Product Flag."
-        },
+        "failure": "`{}` is not a valid Product Flag.",
         "help": {
             "message": "",
             "url": ""
@@ -433,10 +325,7 @@
     },
     {
         "rule_id": "granule_spatial_representation_check",
-        "message": {
-            "success": "",
-            "failure": "`{}` is not a valid Granule Spatial Representation."
-        },
+        "failure": "`{}` is not a valid Granule Spatial Representation.",
         "help": {
             "message": "",
             "url": ""
