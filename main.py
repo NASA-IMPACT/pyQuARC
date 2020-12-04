@@ -108,32 +108,51 @@ class VACQM:
 
         return self.errors
 
-    def printable_result(self):
-        result_string = "\n\n** Metadata Validation Errors **\n\n"
-        for error in self.errors:
-            if title := error.get("concept_id") or error.get("file"):
-                result_string += (f"METADATA: {COLOR['title']}{COLOR['bright']}{title}{END}\n")
-            for field, result in error["errors"].items():
-                for rule_type, value in result.items():
-                    if value.get("valid") == False:
-                        if messages := value.get("message"):
-                            result_string += (f"\n>> {field}: {END}\n")
-                            for message in messages:
-                                severities = ["error", "warning", "info"]
-                                for severity in severities:
-                                    text = severity.title()
-                                    if message.startswith(text):
-                                        message = message.replace(text, f"{COLOR[severity]}{text}{END}")
-                                result_string += (f"\t{message}{END}\n")
-                        if value.get("remediation"):
-                            result_string += (f"\t{value['remediation']}\n")
+    @staticmethod
+    def _error_message(messages):
+        severities = ["error", "warning", "info"]
+        result_string = ""
+        for message in messages:
+            colored_message = [
+                message.replace(
+                    text,
+                    f"{COLOR[severity]}{text}{END}"
+                )
+                for severity in severities
+                if (text := severity.title()) and message.startswith(text)
+            ][0]
+            result_string += (f"\t\t{colored_message}{END}\n")
         return result_string
 
+    def display_results(self):
+        result_string = '''
+        ********************************
+        ** Metadata Validation Errors **
+        ********************************\n'''
+        error_prompt = ""
+        for error in self.errors:
+            title = error.get("concept_id") or error.get("file")
+            error_prompt += (f"\n\tMETADATA: {COLOR['title']}{COLOR['bright']}{title}{END}\n")
+            validity = True
+            for field, result in error["errors"].items():
+                for rule_type, value in result.items():
+                    if not value.get("valid"):
+                        messages = value.get("message")
+                        error_prompt += (f"\n\t>> {field}: {END}\n")
+                        error_prompt += self._error_message(messages)
+                        error_prompt += (f"\t\t{remedy}\n") if (remedy := value.get('remediation')) else ""
+                        validity = False
+            if validity:
+                error_prompt += "\n\tNo validation errors\n"
+        result_string += error_prompt
+        print(result_string)
 
 if __name__ == "__main__":
     # parse command line arguments (argparse)
     # --query
     # --concept_ids
+    # --file
+    # --fake
 
     parser = argparse.ArgumentParser()
     download_group = parser.add_mutually_exclusive_group()
@@ -185,6 +204,6 @@ if __name__ == "__main__":
         metadata_format=args.format or ECHO10,
     )
     results = vacqm.validate()
-    print(vacqm.printable_result())
+    vacqm.display_results()
 
     # print(json.dumps(results, indent=4))
