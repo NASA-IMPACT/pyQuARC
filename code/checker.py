@@ -77,28 +77,20 @@ class Checker:
         """
         Gets the rule with rule_id key equal to `rule_id`
         """
-        for rule in self.rule_mapping:
-            if rule["rule_id"] == rule_id:
-                return rule
+        return self.rule_mapping.get(rule_id)
 
     def fields(self, rule_id):
         """
         Gets the applicable fields for `rule_id`
         """
-        for mapping in self.rule_mapping:
-            if mapping["rule_id"] == rule_id:
-                return mapping["fields_to_apply"]
+        return self.rule_mapping.get(rule_id)["fields_to_apply"]
 
     def message(self, rule_id):
         """
         Gets the success, failure, warning messages for the `rule_id`
         """
-        for message in self.messages_override:
-            if message["rule_id"] == rule_id:
-                return message["message"]
-        for message in self.messages:
-            if message["rule_id"] == rule_id:
-                return message["message"]
+        messages = self.messages_override.get(rule_id) or self.messages.get(rule_id)
+        return messages["message"]
 
     def build_message(self, result, rule_id):
         """
