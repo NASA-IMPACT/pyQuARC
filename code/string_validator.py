@@ -90,7 +90,7 @@ class StringValidator(BaseValidator):
             invalid_value,
         ) = StringValidator.gcmdValidator.validate_science_keyword(received_keyword)
         if not validity:
-            value = f"'{invalid_value}', '{'/'.join(received_keyword)}'"
+            value = f"'{invalid_value}' in the hierarchy '{'/'.join(received_keyword)}'"
         return {"valid": validity, "value": value if value else received_keyword}
 
     @staticmethod
