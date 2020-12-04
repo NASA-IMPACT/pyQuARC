@@ -50,7 +50,6 @@ class Scheduler:
         ordered_check_list = []
 
         for rule in self.rule_mapping:
-            # identity = rule.get("check_id") or rule["rule_id"]
             self._add_to_list(rule, ordered_check_list)
 
         return ordered_check_list

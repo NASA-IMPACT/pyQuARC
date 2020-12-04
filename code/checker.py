@@ -108,7 +108,6 @@ class Checker:
         messages = []
         if not result["valid"] and result.get("value") and message:
             for value in result["value"]:
-            # value = result["value"]
                 formatted_message = message
                 if isinstance(value, tuple):
                     formatted_message = message["failure"].format(*value)

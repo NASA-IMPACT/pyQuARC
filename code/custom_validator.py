@@ -11,15 +11,14 @@ class CustomValidator(BaseValidator):
         ends_at_present_flag, ending_date_time, collection_state
     ):
         value = ends_at_present_flag.lower()
-        ending_date_time = ending_date_time
         collection_state = collection_state.upper()
 
         valid = (
             value == "true"
-            and bool(not (ending_date_time) or collection_state == "ACTIVE")
+            and not (ending_date_time) or collection_state == "ACTIVE"
         ) or (
             value == "false"
-            and bool(ending_date_time or collection_state == "COMPLETE")
+            and ending_date_time or collection_state == "COMPLETE"
         )
 
         return {"valid": valid, "value": ends_at_present_flag}

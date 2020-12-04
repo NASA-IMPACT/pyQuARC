@@ -85,10 +85,8 @@ class StringValidator(BaseValidator):
         """
         value = None
         received_keyword = [arg.upper().strip() for arg in args if arg]
-        (
-            validity,
-            invalid_value,
-        ) = StringValidator.gcmdValidator.validate_science_keyword(received_keyword)
+        validity, invalid_value = \
+            StringValidator.gcmdValidator.validate_science_keyword(received_keyword)
         if not validity:
             value = f"'{invalid_value}', '{'/'.join(received_keyword)}'"
         return {"valid": validity, "value": value if value else received_keyword}
