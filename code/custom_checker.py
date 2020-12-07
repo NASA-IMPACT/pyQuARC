@@ -102,11 +102,10 @@ class CustomChecker:
             function_args = [*arg]
             function_args.extend([arg for arg in [relation, *external_data] if arg])
             func_return = func(*function_args)
-            valid = func_return["valid"]
+            valid = func_return["valid"] # can be True, False or None
             if valid is not None:
                 if valid:
-                    if validity or validity == None:
-                        validity = True
+                    validity = validity or (validity == None)
                 else:
                     invalid_values.append(func_return["value"])
                     validity = False
