@@ -31,7 +31,7 @@ class GcmdValidator:
         Returns:
             (dict): The lookup dictionary for GCMD science keywords
         """
-        all_keywords = [[each for each in kw[:-1] if each.strip()] for kw in keywords]
+        all_keywords = [[each.upper() for each in kw[:-1] if each.strip()] for kw in keywords]
         science_keywords_dict = {}
         for row in all_keywords:
             row_dict = GcmdValidator.dict_from_list(row)
@@ -57,7 +57,7 @@ class GcmdValidator:
             reader = csv.reader(csvfile)
             if row_num:
                 return_value = [
-                    row[row_num] for row in list(reader)[2:] if row[row_num].strip()
+                    row[row_num].upper() for row in list(reader)[2:] if row[row_num].strip()
                 ]
             else:
                 return_value = list(reader)[2:]
