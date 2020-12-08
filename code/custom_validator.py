@@ -49,11 +49,11 @@ class CustomValidator(BaseValidator):
     def data_center_name_presence_check(
         archive_center, processing_center, organization_name
     ):
+        result = {
+            "valid": False,
+        }
         if value := archive_center or processing_center or organization_name:
-            result = {"valid": True, "value": value}
-        else:
-            result = {
-                "valid": False,
-            }
+            result["valid"] = True
+            result["value"] = value
 
         return result

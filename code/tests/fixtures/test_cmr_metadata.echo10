@@ -97,6 +97,10 @@ Lastly, users should continue to carefully observe and weigh information from th
                               <ShortName>TANSO-FTS</ShortName>
                               <LongName>Thermal And Near Infrared Sensor For Carbon Observation</LongName>
                         </Instrument>
+                        <Instrument>
+                              <ShortName>GOES-12 Imager</ShortName>
+                              <LongName>Thermal And Near Infrared Sensor For Carbon Observation</LongName>
+                        </Instrument>
                   </Instruments>
             </Platform>
       </Platforms>
