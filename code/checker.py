@@ -65,13 +65,11 @@ class Checker:
             (func): The function reference
         """
         class_name = f"{data_type.title()}Validator"
-        try:
-            class_object = globals()[class_name]
-            function_object = getattr(class_object, function)
-        except AttributeError as e:
+        class_object = globals().get(class_name)
+        if not class_object or not hasattr(class_object, function):
             print(f"The function {class_name}.{function} hasn't been implemented")
             return None
-        return function_object
+        return  getattr(class_object, function)
 
     def message(self, rule_id):
         """
@@ -89,10 +87,8 @@ class Checker:
         if not result["valid"] and result.get("value") and message:
             for value in result["value"]:
                 formatted_message = message
-                if isinstance(value, tuple):
-                    formatted_message = message["failure"].format(*value)
-                else:
-                    formatted_message = message["failure"].format(value)
+                value = value if isinstance(value, tuple) else (value,)
+                formatted_message = message["failure"].format(value)
                 messages.append(formatted_message)
             return "\n".join(messages)
 
@@ -131,8 +127,12 @@ class Checker:
             main_field = field_dict["fields"][0]
             if not self._check_dependencies_validity(dependencies, field_dict):
                 continue
-            result = \
-                self.custom_checker.run(func, metadata_content, field_dict, external_data)
+            result = self.custom_checker.run(
+                func, 
+                metadata_content, 
+                field_dict, 
+                external_data
+            )
             self.tracker.update_data(rule_id, main_field, result["valid"])
             if result["valid"] == None: # this is to avoid "valid" = null in the result, for rules that are not applied
                 continue
