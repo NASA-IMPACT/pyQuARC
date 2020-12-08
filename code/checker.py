@@ -88,7 +88,7 @@ class Checker:
             for value in result["value"]:
                 formatted_message = message
                 value = value if isinstance(value, tuple) else (value,)
-                formatted_message = message["failure"].format(value)
+                formatted_message = message["failure"].format(*value)
                 messages.append(formatted_message)
             return "\n".join(messages)
 
