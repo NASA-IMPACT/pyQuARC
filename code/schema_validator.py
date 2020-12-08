@@ -28,12 +28,11 @@ class SchemaValidator:
         """
         # The XML schema file (echo10_xml.xsd) imports another schema file (MetadataCommon.xsd)
         # Python cannot figure out the import if they are in a different location than the calling script
-        # Thus we need to set an environment variable to let it know when the files are located
-        if "XML_CATALOG_FILES" not in os.environ:
-            # Path to catalog must be a url.
-            catalog_path = f"file:{pathname2url(str(SCHEMA_PATHS['catalog']))}"
-            # Temporarily set the environment variable.
-            os.environ['XML_CATALOG_FILES'] = catalog_path
+        # Thus we need to set an environment variable to let it know where the files are located
+        # Path to catalog must be a url
+        catalog_path = f"file:{pathname2url(str(SCHEMA_PATHS['catalog']))}"
+        # Temporarily set the environment variable
+        os.environ['XML_CATALOG_FILES'] = os.environ.get('XML_CATALOG_FILES', catalog_path)
 
         self.metadata_format = metadata_format
         self.xml_schema = self.read_xml_schema()

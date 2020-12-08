@@ -15,9 +15,9 @@ ROOT_DIR = (
 SCHEMAS_BASE_PATH = ROOT_DIR / "schemas"
 
 SCHEMAS = {
-    "json": [ "echo10_json", UMM_JSON, "rule_mapping", "checks", "check_messages", "check_messages_override" ],
-    "csv": [ "science_keywords", "providers", "instruments", "locations"],
-    "xsd": [ "echo10_xml", DIF ],
+    "json": [ "check_messages", "check_messages_override", "checks", "echo10_json", "rule_mapping", UMM_JSON ],
+    "csv": [ "instruments", "locations", "providers", "science_keywords" ],
+    "xsd": [ DIF, "echo10_xml" ],
     "xml": [ "catalog" ]
 }
 

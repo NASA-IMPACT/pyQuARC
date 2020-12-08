@@ -1,6 +1,5 @@
-[
-    {
-        "rule_id": "data_update_time_logic_check",
+{
+    "data_update_time_logic_check": {
         "rule_name": "Data Update Time Logic Check",
         "fields_to_apply": [
             {
@@ -14,8 +13,7 @@
         "severity": "info",
         "check_id": "date_compare"
     },
-    {
-        "rule_id": "range_date_time_logic_check_1",
+    "range_date_time_logic_check_1": {
         "rule_name": "Range Date Time Logic Check",
         "fields_to_apply": [
             {
@@ -29,8 +27,7 @@
         "severity": "error",
         "check_id": "date_compare"
     },
-    {
-        "rule_id": "range_date_time_logic_check_2",
+    "range_date_time_logic_check_2": {
         "rule_name": "Range Date Time Logic Check",
         "fields_to_apply": [
             {
@@ -44,8 +41,7 @@
         "severity": "warning",
         "check_id": "date_compare"
     },
-    {
-        "rule_id": "periodic_date_time_logic_check",
+    "periodic_date_time_logic_check": {
         "rule_name": "Periodic Date Time Logic Check",
         "fields_to_apply": [
             {
@@ -59,8 +55,7 @@
         "severity": "error",
         "check_id": "date_compare"
     },
-    {
-        "rule_id": "datetime_format_check",
+    "datetime_format_check": {
         "rule_name": "Datetime ISO Format Check",
         "fields_to_apply": [
             {
@@ -111,8 +106,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "url_check",
+    "url_check": {
         "rule_name": "URL Health and Status Check",
         "fields_to_apply": [
             {
@@ -128,8 +122,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "shortname_uniqueness",
+    "shortname_uniqueness": {
         "rule_name": "Short Name uniqueness check",
         "fields_to_apply": [
             {
@@ -142,8 +135,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "abstract_length_check",
+    "abstract_length_check": {
         "rule_name": "Abstract length check",
         "fields_to_apply": [
             {
@@ -154,8 +146,7 @@
         ],
         "severity": "warning"
     },
-    {
-        "rule_id": "doi_validity_check",
+    "doi_validity_check": {
         "rule_name": "DOI Validity Check",
         "fields_to_apply": [
             {
@@ -166,8 +157,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "doi_link_update",
+    "doi_link_update": {
         "rule_name": "DOI Link Update",
         "fields_to_apply": [
             {
@@ -178,8 +168,7 @@
         ],
         "severity": "info"
     },
-    {
-        "rule_id": "processing_level_id_check",
+    "processing_level_id_check": {
         "rule_name": "EOSDIS Standard Processing Level ID Check",
         "fields_to_apply": [
             {
@@ -190,8 +179,7 @@
         ],
         "severity": "warning"
     },
-    {
-        "rule_id": "science_keywords_gcmd_check",
+    "science_keywords_gcmd_check": {
         "rule_name": "GCMD Science keywords check",
         "fields_to_apply": [
             {
@@ -208,8 +196,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "eosdis_doi_authority_check",
+    "eosdis_doi_authority_check": {
         "rule_name": "EOSDIS DOI Authority Check",
         "fields_to_apply": [
             {
@@ -220,8 +207,7 @@
         ],
         "severity": "info"
     },
-    {
-        "rule_id": "delete_time_check",
+    "delete_time_check": {
         "rule_name": "Delete Time Check",
         "fields_to_apply": [
             {
@@ -232,8 +218,7 @@
         ],
         "severity": "info"
     },
-    {
-        "rule_id": "doi_missing_reason_enumeration_check",
+    "doi_missing_reason_enumeration_check": {
         "rule_name": "DOI Missing Reason Enumeration Check",
         "fields_to_apply": [
             {
@@ -244,8 +229,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "processing_level_description_length_check",
+    "processing_level_description_length_check": {
         "rule_name": "Processing Level Description Length Check",
         "fields_to_apply": [
             {
@@ -256,8 +240,7 @@
         ],
         "severity": "info"
     },
-    {
-        "rule_id": "umm_controlled_collection_state_list_check",
+    "umm_controlled_collection_state_list_check": {
         "rule_name": "UMM Controlled Collection State List",
         "fields_to_apply": [
             {
@@ -268,8 +251,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "ends_at_present_flag_logic_check",
+    "ends_at_present_flag_logic_check": {
         "rule_name": "Ends at present flag logic check",
         "fields_to_apply": [
             {
@@ -282,8 +264,7 @@
         ],
         "severity": "warning"
     },
-    {
-        "rule_id": "ends_at_present_flag_presence_check",
+    "ends_at_present_flag_presence_check": {
         "rule_name": "Ends at present flag presence check",
         "fields_to_apply": [
             {
@@ -296,8 +277,7 @@
         ],
         "severity": "warning"
     },
-    {
-        "rule_id": "contact_mechanism_enum_check",
+    "contact_mechanism_enum_check": {
         "rule_name": "Contact Mechanism Enumeration Check",
         "fields_to_apply": [
             {
@@ -308,8 +288,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "data_contact_role_enum_check",
+    "data_contact_role_enum_check": {
         "rule_name": "Data Contact Role Enumeration Check",
         "fields_to_apply": [
             {
@@ -320,8 +299,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "controlled_contact_role_check",
+    "controlled_contact_role_check": {
         "rule_name": "Controlled Contact Role Check",
         "fields_to_apply": [
             {
@@ -332,8 +310,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "data_type_control_check",
+    "data_type_control_check": {
         "rule_name": "Data type control Check",
         "fields_to_apply": [
             {
@@ -349,8 +326,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "characteristic_name_check",
+    "characteristic_name_check": {
         "rule_name": "Characteristic Name Check",
         "fields_to_apply": [
             {
@@ -362,8 +338,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "characteristic_desc_check",
+    "characteristic_desc_check": {
         "rule_name": "Characteristic Description Check",
         "fields_to_apply": [
             {
@@ -375,8 +350,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "characteristic_unit_check",
+    "characteristic_unit_check": {
         "rule_name": "Characteristic Unit Check",
         "fields_to_apply": [
             {
@@ -388,8 +362,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "characteristic_value_check",
+    "characteristic_value_check": {
         "rule_name": "Characteristic Value Check",
         "fields_to_apply": [
             {
@@ -401,56 +374,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "characteristic_name_length_check",
-        "rule_name": "Characteristic Name Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Name"
-                ]
-            }
-        ],
-        "severity": "info"
-    },
-    {
-        "rule_id": "characteristic_desc_length_check",
-        "rule_name": "Characteristic Description Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Description"
-                ]
-            }
-        ],
-        "severity": "info"
-    },
-    {
-        "rule_id": "characteristic_unit_length_check",
-        "rule_name": "Characteristic Unit Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Unit"
-                ]
-            }
-        ],
-        "severity": "info"
-    },
-    {
-        "rule_id": "characteristic_value_length_check",
-        "rule_name": "Characteristic Value Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Value"
-                ]
-            }
-        ],
-        "severity": "info"
-    },
-    {
-        "rule_id": "mime_type_check",
+    "mime_type_check": {
         "rule_name": "MIME type Check",
         "fields_to_apply": [
             {
@@ -462,8 +386,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "coordinate_system_check",
+    "coordinate_system_check": {
         "rule_name": "Coordinate System Check",
         "fields_to_apply": [
             {
@@ -474,8 +397,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "product_flag_check",
+    "product_flag_check": {
         "rule_name": "Product Flag Check",
         "fields_to_apply": [
             {
@@ -486,8 +408,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "granule_spatial_representation_check",
+    "granule_spatial_representation_check": {
         "rule_name": "Granule Spatial Representation Check",
         "fields_to_apply": [
             {
@@ -498,8 +419,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "data_center_short_name_gcmd_check",
+    "data_center_short_name_gcmd_check": {
         "rule_name": "Data Center Shortname GCMD Check",
         "fields_to_apply": [
             {
@@ -515,21 +435,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "instrument_short_name_check",
-        "rule_name": "Instrument Shortname Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/ShortName",
-                    "Collection/Platforms/Platform/Instruments/Instrument"
-                ]
-            }
-        ],
-        "severity": "error"
-    },
-    {
-        "rule_id": "instrument_short_name_gcmd_check",
+    "instrument_short_name_gcmd_check": {
         "rule_name": "Instrument Shortname GCMD Check",
         "fields_to_apply": [
             {
@@ -540,8 +446,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "instrument_long_name_gcmd_check",
+    "instrument_long_name_gcmd_check": {
         "rule_name": "Instrument Longname GCMD Check",
         "fields_to_apply": [
             {
@@ -552,20 +457,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "spatial_keyword_gcmd_check",
-        "rule_name": "ECHO10 Spatial GCMD Keyword Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/SpatialKeywords/Keyword"
-                ]
-            }
-        ],
-        "severity": "error"
-    },
-    {
-        "rule_id": "version_description_not_provided",
+    "version_description_not_provided": {
         "rule_name": "Version Description Not Provided",
         "fields_to_apply": [
             {
@@ -576,8 +468,7 @@
         ],
         "severity": "info"
     },
-    {
-        "rule_id": "collection_data_type_enumeration_check",
+    "collection_data_type_enumeration_check": {
         "rule_name": "Collection Data Type Enumeration Check",
         "fields_to_apply": [
             {
@@ -588,8 +479,7 @@
         ],
         "severity": "error"
     },
-    {
-        "rule_id": "data_center_name_presence_check",
+    "data_center_name_presence_check": {
         "rule_name": "Data Center Name Presence Check",
         "fields_to_apply": [
             {
@@ -602,4 +492,4 @@
         ],
         "severity": "info"
     }
-]
+}

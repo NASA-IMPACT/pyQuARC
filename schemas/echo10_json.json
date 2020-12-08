@@ -24,13 +24,13 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 1030,
-          "description": "Specifies a unique name for the\n          collection. This is considered the primary identifier for\n          a collection."
+          "description": "Specifies a unique name for the collection. This is considered the primary identifier for a collection."
         },
         "ProcessingLevelId": {
           "type": "string",
           "minLength": 1,
           "maxLength": 80,
-          "description": "The processing level class contains the\n          level identifier and level description of the\n          collection."
+          "description": "The processing level class contains the level identifier and level description of the collection."
         },
         "Temporal": {
           "type": "object",

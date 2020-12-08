@@ -34,10 +34,9 @@ class Tracker:
             }
         """
         data = {}
-        for mapping in rule_mapping:
-            rule_id = mapping["rule_id"]
+        for rule_id, rule in rule_mapping.items():
             data[rule_id] = []
-            for field in mapping["fields_to_apply"]:
+            for field in rule["fields_to_apply"]:
                 data[rule_id].append(
                     {
                         "field": field["fields"][0],

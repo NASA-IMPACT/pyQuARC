@@ -85,10 +85,9 @@ class StringValidator(BaseValidator):
         """
         value = None
         received_keyword = [arg.upper().strip() for arg in args if arg]
-        (
-            validity,
-            invalid_value,
-        ) = StringValidator.gcmdValidator.validate_science_keyword(received_keyword)
+        validity, invalid_value = StringValidator.gcmdValidator.validate_science_keyword(
+            received_keyword
+        )
         if not validity:
             value = f"'{invalid_value}' in the hierarchy '{'/'.join(received_keyword)}'"
         return {"valid": validity, "value": value if value else received_keyword}
@@ -97,7 +96,9 @@ class StringValidator(BaseValidator):
     @if_arg
     def data_center_short_name_gcmd_check(value):
         return {
-            "valid": StringValidator.gcmdValidator.validate_provider_short_name(value),
+            "valid": StringValidator.gcmdValidator.validate_provider_short_name(
+                value.upper()
+            ),
             "value": value,
         }
 
@@ -106,7 +107,7 @@ class StringValidator(BaseValidator):
     def instrument_short_name_gcmd_check(value):
         return {
             "valid": StringValidator.gcmdValidator.validate_instrument_short_name(
-                value
+                value.upper()
             ),
             "value": value,
         }
@@ -115,7 +116,9 @@ class StringValidator(BaseValidator):
     @if_arg
     def instrument_long_name_gcmd_check(value):
         return {
-            "valid": StringValidator.gcmdValidator.validate_instrument_long_name(value),
+            "valid": StringValidator.gcmdValidator.validate_instrument_long_name(
+                value.upper()
+            ),
             "value": value,
         }
 

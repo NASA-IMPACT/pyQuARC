@@ -1,25 +1,26 @@
 from .base_validator import BaseValidator
 from .string_validator import StringValidator
 
+from .utils import if_arg
 
 class CustomValidator(BaseValidator):
     def __init__(self):
         super().__init__()
 
     @staticmethod
+    @if_arg
     def ends_at_present_flag_logic_check(
         ends_at_present_flag, ending_date_time, collection_state
     ):
         value = ends_at_present_flag.lower()
-        ending_date_time = ending_date_time
         collection_state = collection_state.upper()
 
         valid = (
             value == "true"
-            and bool(not (ending_date_time) or collection_state == "ACTIVE")
+            and not (ending_date_time) or collection_state == "ACTIVE"
         ) or (
             value == "false"
-            and bool(ending_date_time or collection_state == "COMPLETE")
+            and ending_date_time or collection_state == "COMPLETE"
         )
 
         return {"valid": valid, "value": ends_at_present_flag}
@@ -50,12 +51,12 @@ class CustomValidator(BaseValidator):
     def data_center_name_presence_check(
         archive_center, processing_center, organization_name
     ):
+        result = {
+            "valid": False,
+        }
         if value := archive_center or processing_center or organization_name:
-            result = {"valid": True, "value": value}
-        else:
-            result = {
-                "valid": False,
-            }
+            result["valid"] = True
+            result["value"] = value
 
         return result
 
