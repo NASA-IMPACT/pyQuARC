@@ -60,7 +60,7 @@ class GcmdValidator:
                 return_value = []
                 for row_num in row_nums:
                     return_value.extend(
-                        row[row_num].upper() for row in list(reader)[2:] if row[row_num].strip()
+                        keyword.upper() for row in list(reader)[2:] if (keyword :=row[row_num].strip())
                     )
             else:
                 return_value = list(reader)[2:]

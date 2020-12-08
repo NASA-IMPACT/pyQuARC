@@ -126,6 +126,8 @@ class StringValidator(BaseValidator):
     @if_arg
     def spatial_keyword_gcmd_check(value):
         return {
-            "valid": StringValidator.gcmdValidator.validate_spatial_keyword(value),
+            "valid": StringValidator.gcmdValidator.validate_spatial_keyword(
+                value.upper()
+            ),
             "value": value,
         }
