@@ -1,4 +1,7 @@
 ## Running the program
+
+*Note:* This program requires `Python 3.8` installed in your system.
+
 **Clone the repo:** [https://github.com/NASA-IMPACT/revamped_pycmr/](https://github.com/NASA-IMPACT/revamped_pycmr/)
 
 **Go to the project directory:** `cd revamped_pycmr`

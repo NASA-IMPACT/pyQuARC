@@ -4,6 +4,7 @@ from .constants import SCHEMA_PATHS
 
 from .base_validator import BaseValidator
 from .gcmd_validator import GcmdValidator
+from .utils import if_arg
 
 
 class StringValidator(BaseValidator):
@@ -17,9 +18,10 @@ class StringValidator(BaseValidator):
         super().__init__()
 
     @staticmethod
+    @if_arg
     def length_check(string, extent, relation):
         """
-        Checks if the length of the string is valid based on the extent 
+        Checks if the length of the string is valid based on the extent
         and relation provided in the args
 
         Args:
@@ -32,10 +34,11 @@ class StringValidator(BaseValidator):
         length = len(string)
         return {
             "valid": BaseValidator.compare(length, extent, relation),
-            "value": length
+            "value": length,
         }
 
     @staticmethod
+    @if_arg
     def compare(first, second, relation):
         """
         Compares two strings based on the relationship
@@ -45,10 +48,11 @@ class StringValidator(BaseValidator):
         """
         return {
             "valid": BaseValidator.compare(first, second, relation),
-            "value": (first, second)
+            "value": (first, second),
         }
 
     @staticmethod
+    @if_arg
     def controlled_keywords_check(value, keywords_list):
         """
         Checks if `value` is in `keywords_list`
@@ -61,66 +65,59 @@ class StringValidator(BaseValidator):
             (dict) An object with the validity of the check and the instance
         """
         return {
-            "valid": str(value).upper() in [keyword.upper() for keyword in keywords_list],
-            "value": value
+            "valid": str(value).upper()
+            in [keyword.upper() for keyword in keywords_list],
+            "value": value,
         }
-    
+
     @staticmethod
+    @if_arg
     def science_keywords_gcmd_check(*args):
         """
         Checks if the GCMD keyword hierarchy is correct
 
         Args:
-            args (list of lists): List of lists of the keywords in order of hierarchy
-                If there are multiple GCMD keywords, it'll be in the form:
-                [
-                    [Category_1, Category_2, ...],
-                    [Topic_1, Topic_2, ...],
-                    [Term_1, Term_2, ...],
-                    [VariableLevel1_1, VariableLevel1_2, ...],
-                    [VariableLevel2_1, VariableLevel2_2, ...],
-                    [VariableLevel3_1, VariableLevel3_2, ...],
-                    [DetailedVariable_1, DetailedVariable_2, ...]
-                ]
+            args (list): List of the keyword in order of hierarchy
+                example: ['EARTH SCIENCE', "ATMOSPHERE", "ATMOSPHERIC PRESSURE", None]
 
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-
-        received_keywords = StringValidator.gcmdValidator.prepare_received_gcmd_keywords_list(*args)
-
-        valid = True
-        value = []
-
-        for keyword in received_keywords:
-            validity, invalid_value = StringValidator.gcmdValidator.validate_science_keyword(keyword)
-            if not validity:
-                valid = False
-                value.append((invalid_value, '/'.join(keyword)))
-        
-        return {
-            "valid": valid,
-            "value": value if value else received_keywords
-        }
+        value = None
+        received_keyword = [arg.upper().strip() for arg in args if arg]
+        validity, invalid_value = StringValidator.gcmdValidator.validate_science_keyword(
+            received_keyword
+        )
+        if not validity:
+            value = f"'{invalid_value}', '{'/'.join(received_keyword)}'"
+        return {"valid": validity, "value": value if value else received_keyword}
 
     @staticmethod
+    @if_arg
     def data_center_short_name_gcmd_check(value):
         return {
-            "valid": StringValidator.gcmdValidator.validate_provider_short_name(value),
-            "value": value
+            "valid": StringValidator.gcmdValidator.validate_provider_short_name(
+                value.upper()
+            ),
+            "value": value,
         }
 
     @staticmethod
+    @if_arg
     def instrument_short_name_gcmd_check(value):
         return {
-            "valid": StringValidator.gcmdValidator.validate_instrument_short_name(value),
-            "value": value
+            "valid": StringValidator.gcmdValidator.validate_instrument_short_name(
+                value.upper()
+            ),
+            "value": value,
         }
 
     @staticmethod
+    @if_arg
     def instrument_long_name_gcmd_check(value):
         return {
-            "valid": StringValidator.gcmdValidator.validate_instrument_long_name(value),
-            "value": value
+            "valid": StringValidator.gcmdValidator.validate_instrument_long_name(
+                value.upper()
+            ),
+            "value": value,
         }
-

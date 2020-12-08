@@ -20,7 +20,7 @@ class Downloader:
     GRANULE = "granule"
     INVALID = "invalid"
 
-    def __init__(self, concept_id, metadata_format=ECHO10, version=None):
+    def __init__(self, concept_id, metadata_format, version=None):
         """
         Args:
             concept_id (str): The concept id of the metadata to download
@@ -73,22 +73,6 @@ class Downloader:
 
         self.errors.append({"type": error_message_code, "details": kwargs})
 
-    def _convert_output_to_json(self):
-        """
-        Convert downloaded content to JSON if necessary
-
-        Returns:
-            (str) The JSON string representation of the downloaded CMR metadata
-        """
-
-        # TODO: Handle DIF here
-        if self.metadata_format == ECHO10:
-            result = parse(self.downloaded_content)
-        else:
-            result = self.downloaded_content
-
-        return json.dumps(result)
-
     def download(self):
         """
         Downloads metadata by calling the CMR API
@@ -123,8 +107,7 @@ class Downloader:
 
         # stores the data in the downloaded_content variable
         self.downloaded_content = response.text
-
-        return self._convert_output_to_json()
+        return self.downloaded_content
 
     @staticmethod
     def _concept_id_type(concept_id: str) -> str:

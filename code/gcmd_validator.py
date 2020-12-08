@@ -4,6 +4,7 @@ from .constants import SCHEMA_PATHS
 
 LEAF = "this_is_the_leaf_node"
 
+
 class GcmdValidator:
     """
     Validator class for all the GCMD keywords (science, instruments, providers)
@@ -16,7 +17,7 @@ class GcmdValidator:
             ),
             "provider_short_name": GcmdValidator._read_from_csv("providers", 4),
             "instrument_short_name": GcmdValidator._read_from_csv("instruments", 4),
-            "instrument_long_name": GcmdValidator._read_from_csv("instruments", 5)
+            "instrument_long_name": GcmdValidator._read_from_csv("instruments", 5),
         }
 
     @staticmethod
@@ -30,7 +31,7 @@ class GcmdValidator:
         Returns:
             (dict): The lookup dictionary for GCMD science keywords
         """
-        all_keywords = [[each for each in kw[:-1] if each.strip()] for kw in keywords]
+        all_keywords = [[each.upper() for each in kw[:-1] if each.strip()] for kw in keywords]
         science_keywords_dict = {}
         for row in all_keywords:
             row_dict = GcmdValidator.dict_from_list(row)
@@ -43,7 +44,7 @@ class GcmdValidator:
         Reads keywords from the corresponding csv based on the kind of keyword
 
         Args:
-            keyword_kind (str): The kind of keyword 
+            keyword_kind (str): The kind of keyword
                                 (could be: science_keywords, providers, instruments)
             row_num (int, optional): The row number (zero indexed). Defaults to None.
                                      If row_num is provided, returns keywords from that specific row
@@ -56,39 +57,18 @@ class GcmdValidator:
             reader = csv.reader(csvfile)
             if row_num:
                 return_value = [
-                    row[row_num]
-                    for row in list(reader)[2:]
-                    if row[row_num].strip()
+                    row[row_num].upper() for row in list(reader)[2:] if row[row_num].strip()
                 ]
             else:
                 return_value = list(reader)[2:]
         return return_value
 
     @staticmethod
-    def prepare_received_gcmd_keywords_list(*args):
-        """
-        Based on the input args, created the list of input gcmd keywords
-
-        Returns:
-            (list): List of list of all the input gcmd science keywords w/ hierarchy
-        """
-        keywords_lists_unordered = [arg for arg in args if arg]
-        ordered_keyword_list = list(zip(*keywords_lists_unordered))
-        received_keywords = []
-        for keywords in ordered_keyword_list:
-            received_keywords.append(
-                # converting the keywords to uppercase and
-                # stripping any whitespaces for consistency
-                [kw.upper() for keyword in keywords if (kw := keyword.strip())]
-            )
-        return received_keywords
-
-    @staticmethod
     def dict_from_list(row):
         """
         Converts a list to a nested dict
         """
-        intermediate_dict = { row[0]: LEAF }
+        intermediate_dict = {row[0]: LEAF}
         if len(row) > 1:
             intermediate_dict[row[0]] = GcmdValidator.dict_from_list(row[1:])
         return intermediate_dict
@@ -132,7 +112,9 @@ class GcmdValidator:
         """
         Validates GCMD science keywords
         """
-        return GcmdValidator.validate_recursively(self.keywords["science"], input_keyword)
+        return GcmdValidator.validate_recursively(
+            self.keywords["science"], input_keyword
+        )
 
     def validate_instrument_short_name(self, input_keyword):
         """

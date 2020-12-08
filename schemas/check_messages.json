@@ -1,10 +1,8 @@
-[
-    {
-        "check_id": "datetime_format_check",
+{
+    "datetime_format_check": {
         "message": {
             "success": "`{}` adheres to the ISO 1601 standard",
-            "failure": "`{}` does not adhere to the ISO 1601 standard",
-            "warning": "Make sure `{}` adheres to the ISO 1601 standard"
+            "failure": "`{}` does not adhere to the ISO 1601 standard"
         },
         "help": {
             "message": "",
@@ -12,12 +10,21 @@
         },
         "remediation": ""
     },
-    {
-        "check_id": "date_compare",
+    "data_update_time_logic_check": {
         "message": {
             "success": "",
-            "failure": "`{}` and `{}` do not satisfy the chronology logic",
-            "warning": ""
+            "failure": "The UpdateTime `{}` comes after the provided InsertTime `{}`."
+        },
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Dates"
+        },
+        "remediation": "Update the LastUpdate time so that it is identical to the InsertTime (in the event that the data has never been updated) or so that it comes chronologically after the InsertTime."
+    },
+    "url_check": {
+        "message": {
+            "success": "",
+            "failure": "Invalid URL/s: `{}`."
         },
         "help": {
             "message": "",
@@ -25,12 +32,87 @@
         },
         "remediation": ""
     },
-    {
-        "check_id": "url_check",
+    "shortname_uniqueness": {
         "message": {
             "success": "",
-            "failure": "`{}` is not a valid url",
-            "warning": ""
+            "failure": "The DataSetId `{}` is identical to the ShortName `{}`."
+        },
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Entry+Title"
+        },
+        "remediation": "Since DataSetId maps to Entry Title in the CMR, provide a more descriptive, formal title for the dataset. "
+    },
+    "abstract_length_check": {
+        "message": {
+            "success": "",
+            "failure": "The abstract provided may be inadequate based on length."
+        },
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Abstract"
+        },
+        "remediation": "Provide a more comprehensive description, mimicking a journal abstract that is useful to the science community but also approachable for a first time user of the data."
+    },
+    "doi_validity_check": {
+        "message": {
+            "success": "",
+            "failure": "`{}` is invalid."
+        },
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI"
+        },
+        "remediation": "Provide a valid DOI."
+    },
+    "doi_missing_reason_presence_check": {
+        "message": {
+            "success": "",
+            "failure": "No DOI or MissingReason provided."
+        },
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI"
+        },
+        "remediation": "DOIs are required for NASA datasets. Provide the DOI if one is available. Otherwise, specify that a DOI is not applicable for the dataset."
+    },
+    "doi_missing_reason_enumeration_check": {
+        "message": {
+            "success": "",
+            "failure": "`{}` is not a valid value."
+        },
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI"
+        },
+        "remediation": "The Missing Reason should read \"Not Applicable\"."
+    },
+    "processing_level_id_check": {
+        "message": {
+            "success": "",
+            "failure": "`{}` is not an EOSDIS recognized processing level ID."
+        },
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Processing+Level"
+        },
+        "remediation": "Change the ID to match one of the EOSDIS standard processing levels: [0, 1A, 1B, 2, 3, 4]"
+    },
+    "processing_level_description_length_check": {
+        "message": {
+            "success": "",
+            "failure": "The provided description is less than 50 characters and therefore may be lacking in contextual information."
+        },
+        "help": {
+            "message": "Use the EOSDIS processing level descriptions as guidance",
+            "url": "https://science.nasa.gov/earth-science/earth-science-data/data-processing-levels-for-eosdis-data-products/"
+        },
+        "remediation": "Providing a more detailed processing level description."
+    },
+    "science_keywords_gcmd_check": {
+        "message": {
+            "success": "",
+            "failure": "`{}` is/are not valid GCMD keyword/s"
         },
         "help": {
             "message": "",
@@ -38,12 +120,252 @@
         },
         "remediation": ""
     },
-    {
-        "check_id": "controlled_keywords_check",
+    "eosdis_doi_authority_check": {
         "message": {
             "success": "",
-            "failure": "`{}` is not one of the valid keywords",
-            "warning": ""
+            "failure": "`{}` may be an invalid value."
+        },
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI"
+        },
+        "remediation": "The DOI Authority should be \"https://doi.org\" for all NASA collections."
+    },
+    "delete_time_check": {
+        "message": {
+            "success": "",
+            "failure": "The delete date `{}` is in the past."
+        },
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Metadata+Dates"
+        },
+        "remediation": "Consider updating the delete date to a future date or remove it from the metadata if it is no longer valid."
+    },
+    "data_center_short_name_gcmd_check": {
+        "message": {
+            "success": "",
+            "failure": "The provided data center short name `{}` does not comply with the GCMD. "
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please submit a request to support@earthdata.nasa.gov to have this instrument added to the GCMD Instrument KMS."
+    },
+    "umm_controlled_collection_state_list_check": {
+        "message": {
+            "success": "",
+            "failure": "The provided Collection State `{}` is invalid."
+        },
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Collection+Progress"
+        },
+        "remediation": "Choose a Collection State from the following list: [ACTIVE, PLANNED, COMPLETE, NOT APPLICABLE, NOT PROVIDED]."
+    },
+    "collection_data_type_enumeration_check": {
+        "message": {
+            "success": "",
+            "failure": "`{}` is not a valid value."
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "The Collection Data Type should match one of the following values: [SCIENCE_QUALITY, NEAR_REAL_TIME, OTHER]"
+    },
+    "version_description_not_provided": {
+        "message": {
+            "success": "",
+            "failure": "The provided description reads only `{}`"
+        },
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Version+Description"
+        },
+        "remediation": "Because the description reads \"Not provided\", it can be removed from the metadata. Otherwise, please describe the version in more detail."
+    },
+    "ends_at_present_flag_logic_check": {
+        "message": {
+            "success": "",
+            "failure": "Potential issue with:\\n - EndsAtPresentFlag: value = \"true\" but EndingDateTime is provided. \\n - EndsAtPresentFlag: value = \"true\" but CollectionState = COMPLETE. \\n - EndsAtPresentFlag: value = \"false\" but EndingDateTime is missing.\\n - EndsAtPresentFlag: value = \"false\" but CollectionState = ACTIVE."
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "If data collection is ongoing, provide an EndsAtPresentFlag of \"true\""
+    },
+    "ends_at_present_flag_presence_check": {
+        "message": {
+            "success": "",
+            "failure": ""
+        },
+        "help": {
+            "message": "",
+            "url": "Potential issue with:\\n - No EndingDateTime provided; no EndsAtPresentFlag provided for a potentially active collection. \\n - CollectionState = ACTIVE; no EndsAtPresentFlag provided for a potentially active collection."
+        },
+        "remediation": "If data collection is ongoing, provide an EndsAtPresentFlag of \"true\""
+    },
+    "contact_mechanism_enum_check": {
+        "message": {
+            "success": "",
+            "failure": "`{}` is not a valid phone type value."
+        },
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Center"
+        },
+        "remediation": "Select a phone type from the following list: ['Direct Line', 'Email', 'Facebook', 'Fax', 'Mobile', 'Modem', 'Primary', 'TDD/TTY Phone', 'Telephone', 'Twitter', 'U.S. toll free', 'Other']."
+    },
+    "range_date_time_logic_check_1": {
+        "message": {
+            "success": "",
+            "failure": "The Beginning Date Time `{}` comes after the Ending Date Time `{}`."
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Update the beginning and/or ending date time to match the granule extent."
+    },
+    "range_date_time_logic_check_2": {
+        "message": {
+            "success": "",
+            "failure": "The Beginning Date Time `{}` and Ending Date Time `{}` are the same."
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "The temporal Beginning Date Time and Ending Date Time are identical. Recommend removing the Beginning Date Time and Ending Date Time elements and instead provide a Single Date Time."
+    },
+    "periodic_date_time_logic_check": {
+        "message": {
+            "success": "",
+            "failure": "The Start Date `{}` is not before the End Date `{}`."
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Update these fields to make sense logically."
+    },
+    "data_contact_role_enum_check": {
+        "message": {
+            "success": "",
+            "failure": "`{}` is not a valid Job Position value."
+        },
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Contact+Person"
+        },
+        "remediation": "Select a Job Position from the following list: ['Data Center Contact', 'Technical Contact', 'Science Contact', 'Investigator', 'Metadata Author', 'User Services', 'Science Software Development']."
+    },
+    "controlled_contact_role_check": {
+        "message": {
+            "success": "",
+            "failure": "`{}` is not a valid Contact Role."
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Select a Contact Role from the following list: ['ARCHIVER', 'DISTRIBUTOR', 'PROCESSOR', 'ORIGINATOR']."
+    },
+    "data_type_control_check": {
+        "message": {
+            "success": "",
+            "failure": "`{}` is not a valid Data Type."
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Select a Data Type from the following list: ['STRING', 'FLOAT', 'INT', 'BOOLEAN', 'DATE', 'TIME', 'DATETIME', 'DATE_STRING', 'TIME_STRING', 'DATETIME_STRING']."
+    },
+    "doi_link_update": {
+        "message": {
+            "success": "",
+            "failure": "Should be 'https://doi.org'"
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Select a Data Type from the following list: ['STRING', 'FLOAT', 'INT', 'BOOLEAN', 'DATE', 'TIME', 'DATETIME', 'DATE_STRING', 'TIME_STRING', 'DATETIME_STRING']."
+    },
+    "instrument_short_name_gcmd_check": {
+        "message": {
+            "success": "",
+            "failure": "The provided instrument short name `{}` does not comply with the GCMD."
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please submit a request to support@earthdata.nasa.gov to have this instrument added to the GCMD Instrument KMS."
+    },
+    "instrument_long_name_gcmd_check": {
+        "message": {
+            "success": "",
+            "failure": "The provided instrument long name `{}` does not comply with the GCMD."
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please submit a request to support@earthdata.nasa.gov to have this instrument added to the GCMD Instrument KMS."
+    },
+    "characteristic_name_check": {
+        "message": {
+            "success": "",
+            "failure": "A characteristic name is missing for the provided characteristic. "
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a name for the provided characteristic."
+    },
+    "characteristic_desc_check": {
+        "message": {
+            "success": "",
+            "failure": "A characteristic description is missing for the provided characteristic. "
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a short description for the provided characteristic."
+    },
+    "characteristic_unit_check": {
+        "message": {
+            "success": "",
+            "failure": "A characteristic unit is missing for the provided characteristic."
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide the unit associated with the value of the provided characteristic. "
+    },
+    "characteristic_value_check": {
+        "message": {
+            "success": "",
+            "failure": "A characteristic value is missing for the provided characteristic. "
+        },
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a value for the provided characteristic. "
+    },
+    "mime_type_check": {
+        "message": {
+            "success": "",
+            "failure": ""
         },
         "help": {
             "message": "",
@@ -51,95 +373,37 @@
         },
         "remediation": ""
     },
-    {
-        "check_id": "shortname_uniqueness",
+    "coordinate_system_check": {
         "message": {
             "success": "",
-            "failure": "`{}` is not a unique ShortName",
-            "warning": ""
+            "failure": "`{}` is not a valid coordinate system."
         },
         "help": {
             "message": "",
             "url": ""
         },
-        "remediation": ""
+        "remediation": "Select a Coordinate System from the following list: ['CARTESIAN', 'GEODETIC']."
     },
-    {
-        "check_id": "length_check",
+    "product_flag_check": {
         "message": {
             "success": "",
-            "failure": "`{}` is not the correct length for the field.",
-            "warning": ""
+            "failure": "`{}` is not a valid Product Flag."
         },
         "help": {
             "message": "",
             "url": ""
         },
-        "remediation": ""
+        "remediation": "Select a Product Flag from this list: ['DATA_PRODUCT_FILE', 'INSTRUMENT_ANCILLARY_FILE', 'SYSTEM/SPACECRAFT_FILE', 'EXTERNAL_DATA']."
     },
-    {
-        "check_id": "doi_check",
+    "granule_spatial_representation_check": {
         "message": {
             "success": "",
-            "failure": "`{}` is not a valid DOI.",
-            "warning": ""
+            "failure": "`{}` is not a valid Granule Spatial Representation."
         },
         "help": {
             "message": "",
             "url": ""
         },
-        "remediation": ""
-    },
-    {
-        "check_id": "processing_level_id_check",
-        "message": {
-            "success": "",
-            "failure": "`{}` is not one of the valid keywords",
-            "warning": ""
-        },
-        "help": {
-            "message": "",
-            "url": ""
-        },
-        "remediation": ""
-    },
-    {
-        "check_id": "science_keywords_gcmd_check",
-        "message": {
-            "success": "",
-            "failure": "`{}` is/are not valid GCMD keyword/s",
-            "warning": ""
-        },
-        "help": {
-            "message": "",
-            "url": ""
-        },
-        "remediation": ""
-    },
-    {
-        "check_id": "eosdis_doi_authority_check",
-        "message": {
-            "success": "",
-            "failure": "`{}` is not valid. It should either be 'https://doi.org' or 'https://doi.org/",
-            "warning": ""
-        },
-        "help": {
-            "message": "",
-            "url": ""
-        },
-        "remediation": ""
-    },
-    {
-        "check_id": "delete_time_check",
-        "message": {
-            "success": "",
-            "failure": "`{}` is in the past. Either update it or consider removing it.",
-            "warning": ""
-        },
-        "help": {
-            "message": "",
-            "url": ""
-        },
-        "remediation": ""
+        "remediation": "Select a Granule Spatial Representation from this list: ['CARTESIAN', 'GEODETIC', 'ORBIT', ' NO_SPATIAL']."
     }
-]
+}

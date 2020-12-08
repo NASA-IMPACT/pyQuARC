@@ -7,7 +7,7 @@ from datetime import datetime
 from ..checker import Checker
 
 from .fixtures.checker import FUNCTION_MAPPING, DUMMY_METADATA_CONTENT
-from .fixtures.common import DUMMY_METADATA_FILE_PATH
+from .common import read_test_metadata
 
 
 class TestChecker:
@@ -17,17 +17,11 @@ class TestChecker:
 
     def setup_method(self):
         self.checker = Checker()
-
-    @staticmethod
-    def _read_test_metadata():
-        with open(
-            os.path.join(os.getcwd(), DUMMY_METADATA_FILE_PATH), "r"
-        ) as content_file:
-            return content_file.read()
+        self.test_metadata = read_test_metadata()
 
     def test_run(self):
-        result = self.checker.run(DUMMY_METADATA_CONTENT)
-        assert result["jsonschema"] and result["custom"]
+        result = self.checker.run(self.test_metadata)
+        assert result["schema"] and result["custom"]
 
     def test_map_to_function(self):
         for in_, out_ in zip(FUNCTION_MAPPING["input"], FUNCTION_MAPPING["output"]):
