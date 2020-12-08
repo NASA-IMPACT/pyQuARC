@@ -97,15 +97,7 @@ Lastly, users should continue to carefully observe and weigh information from th
                   <Type>Earth Observation Satellites</Type>
                   <Instruments>
                         <Instrument>
-                              <LongName>Thermal And Near Infrared Sensor For Carbon Observation</LongName>
-                              <Characteristics>
-                                    <Characteristic>
-                                          <Value>Some Value</Value>
-                                    </Characteristic>
-                              </Characteristics>
-                        </Instrument>
-                        <Instrument>
-                              <ShortName>GOES-12 Imager</ShortName>
+                              <ShortName>TANSO-FTS</ShortName>
                               <LongName>Thermal And Near Infrared Sensor For Carbon Observation</LongName>
                         </Instrument>
                   </Instruments>
