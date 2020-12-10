@@ -21,7 +21,7 @@
             "message": "",
             "url": ""
         },
-        "remediation": ""
+        "remediation": "Please provide valid URL/s."
     },
     "shortname_uniqueness": {
         "failure": "The DataSetId `{}` is identical to the ShortName `{}`.",
@@ -77,15 +77,15 @@
             "message": "Use the EOSDIS processing level descriptions as guidance",
             "url": "https://science.nasa.gov/earth-science/earth-science-data/data-processing-levels-for-eosdis-data-products/"
         },
-        "remediation": "Providing a more detailed processing level description."
+        "remediation": "Provide a more detailed processing level description."
     },
     "science_keywords_gcmd_check": {
-        "failure": "`{}` is/are not valid GCMD keyword/s",
+        "failure": "`{}` is not a valid GCMD keyword.",
         "help": {
             "message": "",
             "url": ""
         },
-        "remediation": ""
+        "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
     },
     "eosdis_doi_authority_check": {
         "failure": "`{}` may be an invalid value.",
