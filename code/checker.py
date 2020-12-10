@@ -128,6 +128,7 @@ class Checker:
         list_of_fields_to_apply = self.rule_mapping.get(rule_id)["fields_to_apply"]
         for field_dict in list_of_fields_to_apply:
             main_field = field_dict["fields"][0]
+            result_dict.setdefault(main_field, {})
             if not self._check_dependencies_validity(dependencies, field_dict):
                 continue
             result = self.custom_checker.run(
@@ -139,7 +140,7 @@ class Checker:
             self.tracker.update_data(rule_id, main_field, result["valid"])
             if result["valid"] == None: # this is to avoid "valid" = null in the result, for rules that are not applied
                 continue
-            result_dict[rule_id][main_field] = result
+            result_dict[main_field][rule_id] = result
 
             message = self.build_message(result, rule_id)
             if message:
@@ -153,7 +154,6 @@ class Checker:
         ordered_rule = self.scheduler.order_rules()
         result_dict = {}
         for rule_id in ordered_rule:
-            result_dict.setdefault(rule_id, {})
             rule = self.checks[self.rule_mapping.get(rule_id).get("check_id") or rule_id]
             func = Checker.map_to_function(rule["data_type"], rule["check_function"])
             if func:
