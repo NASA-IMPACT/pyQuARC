@@ -364,5 +364,10 @@
         "data_type": "url",
         "check_function": "doi_link_update",
         "available": true
+    },
+    "bounding_coordinate_logic_check": {
+        "data_type": "custom",
+        "check_function": "bounding_coordinate_logic_check",
+        "available": true
     }
 }

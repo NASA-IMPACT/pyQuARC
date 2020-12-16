@@ -298,5 +298,13 @@
             "url": ""
         },
         "remediation": "Please populate the ArchiveCenter field in order to meet the UMM requirement."
+    },
+    "bounding_coordinate_logic_check": {
+        "failure": "North bounding coordinate should always be larger than South bounding coordinate and East bounding coordinate should always be larger than West bounding coordinate.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please make sure the coordinate values are correct."
     }
 }

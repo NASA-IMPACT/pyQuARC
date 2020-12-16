@@ -491,5 +491,16 @@
             }
         ],
         "severity": "info"
+    },
+    "bounding_coordinate_logic_check": {
+        "rule_name": "Bounding Coordinates Logic Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle"
+                ]
+            }
+        ],
+        "severity": "error"
     }
 }
