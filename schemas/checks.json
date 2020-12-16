@@ -349,9 +349,11 @@
         "data_type": "string",
         "check_function": "controlled_keywords_check",
         "data": [
-            "SCIENCE_QUALITY",
-            "NEAR_REAL_TIME",
-            "OTHER"
+            [
+                "SCIENCE_QUALITY",
+                "NEAR_REAL_TIME",
+                "OTHER"
+            ]
         ],
         "available": true
     },
