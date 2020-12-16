@@ -19,6 +19,9 @@ class GcmdValidator:
             "provider_short_name": GcmdValidator._read_from_csv("providers", [4]),
             "instrument_short_name": GcmdValidator._read_from_csv("instruments", [4]),
             "instrument_long_name": GcmdValidator._read_from_csv("instruments", [5]),
+            "platform_short_name": GcmdValidator._read_from_csv("platforms", [2]),
+            "platform_long_name": GcmdValidator._read_from_csv("platforms", [3]),
+            "platform_type": GcmdValidator._read_from_csv("platforms", [0]),
         }
 
     @staticmethod
@@ -130,6 +133,24 @@ class GcmdValidator:
         Validates GCMD instrument long name
         """
         return input_keyword in self.keywords["instrument_long_name"]
+
+    def validate_platform_short_name(self, input_keyword):
+        """
+        Validates GCMD Platform short name
+        """
+        return input_keyword in self.keywords["platform_short_name"]
+
+    def validate_platform_long_name(self, input_keyword):
+        """
+        Validates GCMD Platform long name
+        """
+        return input_keyword in self.keywords["platform_long_name"]
+
+    def validate_platform_type(self, input_keyword):
+        """
+        Validates GCMD platform type
+        """
+        return input_keyword in self.keywords["platform_type"]
 
     def validate_provider_short_name(self, input_keyword):
         """

@@ -16,7 +16,7 @@ SCHEMAS_BASE_PATH = ROOT_DIR / "schemas"
 
 SCHEMAS = {
     "json": [ "check_messages", "check_messages_override", "checks", "echo10_json", "rule_mapping", UMM_JSON ],
-    "csv": [ "instruments", "locations", "providers", "science_keywords" ],
+    "csv": [ "instruments", "locations", "platforms", "providers", "science_keywords" ],
     "xsd": [ DIF, "echo10_xml" ],
     "xml": [ "catalog" ]
 }

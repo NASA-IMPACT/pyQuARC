@@ -124,6 +124,36 @@ class StringValidator(BaseValidator):
 
     @staticmethod
     @if_arg
+    def platform_short_name_gcmd_check(value):
+        return {
+            "valid": StringValidator.gcmdValidator.validate_platform_short_name(
+                value.upper()
+            ),
+            "value": value,
+        }
+
+    @staticmethod
+    @if_arg
+    def platform_long_name_gcmd_check(value):
+        return {
+            "valid": StringValidator.gcmdValidator.validate_platform_long_name(
+                value.upper()
+            ),
+            "value": value,
+        }
+
+    @staticmethod
+    @if_arg
+    def platform_type_gcmd_check(value):
+        return {
+            "valid": StringValidator.gcmdValidator.validate_platform_type(
+                value.upper()
+            ),
+            "value": value,
+        }
+
+    @staticmethod
+    @if_arg
     def spatial_keyword_gcmd_check(value):
         return {
             "valid": StringValidator.gcmdValidator.validate_spatial_keyword(

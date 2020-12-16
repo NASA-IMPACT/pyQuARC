@@ -457,6 +457,39 @@
         ],
         "severity": "error"
     },
+    "platform_short_name_gcmd_check": {
+        "rule_name": "Platform Shortname GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/ShortName"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "platform_long_name_gcmd_check": {
+        "rule_name": "Platform Longname GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/LongName"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "platform_type_gcmd_check": {
+        "rule_name": "Platform Type GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Type"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
     "version_description_not_provided": {
         "rule_name": "Version Description Not Provided",
         "fields_to_apply": [
