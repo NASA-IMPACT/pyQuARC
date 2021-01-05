@@ -457,6 +457,50 @@
         ],
         "severity": "error"
     },
+    "data_format_gcmd_check": {
+        "rule_name": "Data Format GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/DataFormat"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "spatial_keyword_gcmd_check": {
+        "rule_name": "Spatial Keyword GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/SpatialKeywords/Keyword"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "campaign_short_name_gcmd_check": {
+        "rule_name": "Campaign Short Name GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Campaigns/Campaign/ShortName"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "campaign_long_name_gcmd_check": {
+        "rule_name": "Campaign Long Name GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Campaigns/Campaign/LongName"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
     "version_description_not_provided": {
         "rule_name": "Version Description Not Provided",
         "fields_to_apply": [

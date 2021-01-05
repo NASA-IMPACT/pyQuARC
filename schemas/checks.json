@@ -336,6 +336,21 @@
         "check_function": "spatial_keyword_gcmd_check",
         "available": true
     },
+    "campaign_short_name_gcmd_check": {
+        "data_type": "string",
+        "check_function": "campaign_short_name_gcmd_check",
+        "available": true
+    },
+    "campaign_long_name_gcmd_check": {
+        "data_type": "string",
+        "check_function": "campaign_long_name_gcmd_check",
+        "available": true
+    },
+    "data_format_gcmd_check": {
+        "data_type": "string",
+        "check_function": "data_format_gcmd_check",
+        "available": true
+    },
     "version_description_not_provided": {
         "data_type": "string",
         "check_function": "compare",

@@ -131,3 +131,33 @@ class StringValidator(BaseValidator):
             ),
             "value": value,
         }
+
+    @staticmethod
+    @if_arg
+    def campaign_short_name_gcmd_check(value):
+        return {
+            "valid": StringValidator.gcmdValidator.validate_campaign_short_name(
+                value.upper()
+            ),
+            "value": value,
+        }
+
+    @staticmethod
+    @if_arg
+    def campaign_long_name_gcmd_check(value):
+        return {
+            "valid": StringValidator.gcmdValidator.validate_campaign_long_name(
+                value.upper()
+            ),
+            "value": value,
+        }
+
+    @staticmethod
+    @if_arg
+    def data_format_gcmd_check(value):
+        return {
+            "valid": StringValidator.gcmdValidator.validate_data_format(
+                value.upper()
+            ),
+            "value": value,
+        }

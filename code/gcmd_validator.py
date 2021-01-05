@@ -19,6 +19,9 @@ class GcmdValidator:
             "provider_short_name": GcmdValidator._read_from_csv("providers", [4]),
             "instrument_short_name": GcmdValidator._read_from_csv("instruments", [4]),
             "instrument_long_name": GcmdValidator._read_from_csv("instruments", [5]),
+            "campaign_short_name": GcmdValidator._read_from_csv("projects", [1]),
+            "campaign_long_name": GcmdValidator._read_from_csv("projects", [2]),
+            "granule_data_format": GcmdValidator._read_from_csv("granuledataformat", [0, 1]),
         }
 
     @staticmethod
@@ -46,7 +49,7 @@ class GcmdValidator:
 
         Args:
             keyword_kind (str): The kind of keyword
-                                (could be: science_keywords, providers, instruments)
+                                (could be: science_keywords, projects, providers, instruments, locations)
             row_num (int, optional): The row number (zero indexed). Defaults to None.
                                      If row_num is provided, returns keywords from that specific row
                                      If not, returns all the rows
@@ -56,14 +59,16 @@ class GcmdValidator:
         """
         with open(SCHEMA_PATHS[keyword_kind]) as csvfile:
             reader = csv.reader(csvfile)
+            list_of_rows = list(reader)[2:]
             if row_nums:
                 return_value = []
                 for row_num in row_nums:
                     return_value.extend(
-                        keyword.upper() for row in list(reader)[2:] if (keyword :=row[row_num].strip())
+                        keyword.upper() for row in list_of_rows 
+                            if (keyword := row[row_num].strip())
                     )
             else:
-                return_value = list(reader)[2:]
+                return_value = list_of_rows
         return return_value
 
     @staticmethod
@@ -142,3 +147,21 @@ class GcmdValidator:
         Validates GCMD spatial keyword
         """
         return input_keyword in self.keywords["spatial_keyword"]
+
+    def validate_campaign_short_name(self, input_keyword):
+        """
+        Validates GCMD Campaign Short Name
+        """
+        return input_keyword in self.keywords["campaign_short_name"]
+
+    def validate_campaign_long_name(self, input_keyword):
+        """
+        Validates GCMD Campaign Long Name
+        """
+        return input_keyword in self.keywords["campaign_long_name"]
+
+    def validate_data_format(self, input_keyword):
+        """
+        Validates GCMD Granule Data Format
+        """
+        return input_keyword in self.keywords["granule_data_format"]
