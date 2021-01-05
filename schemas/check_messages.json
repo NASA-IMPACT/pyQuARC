@@ -8,7 +8,7 @@
         "remediation": "Make sure the datetime complies with ISO 1601 standard."
     },
     "data_update_time_logic_check": {
-        "failure": "The UpdateTime `{}` comes after the provided InsertTime `{}`.",
+        "failure": "The UpdateTime `{}` comes before the provided InsertTime `{}`.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Dates"
