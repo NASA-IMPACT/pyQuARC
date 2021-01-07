@@ -49,16 +49,16 @@ class GcmdValidator:
         return hierarchy_dict
 
     @staticmethod
-    def _read_from_csv(keyword_kind, row_nums=None):
+    def _read_from_csv(keyword_kind, col_nums=None):
         """
         Reads keywords from the corresponding csv based on the kind of keyword
 
         Args:
             keyword_kind (str): The kind of keyword
                                 (could be: science_keywords, projects, providers, instruments, locations)
-            row_num (int, optional): The row number (zero indexed). Defaults to None.
-                                     If row_num is provided, returns keywords from that specific row
-                                     If not, returns all the rows
+            col_nums (int, optional): The col number (zero indexed). Defaults to None.
+                                     If col_nums is provided, returns keywords from that specific column
+                                     If not, returns all useful keywords based on the keyword kind
 
         Returns:
             (list): list of keywords or list of list of rows from the csv
@@ -66,21 +66,17 @@ class GcmdValidator:
         with open(SCHEMA_PATHS[keyword_kind]) as csvfile:
             reader = csv.reader(csvfile)
             list_of_rows = list(reader)[2:]
-            if row_nums:
+            if col_nums:
                 return_value = []
-                for row_num in row_nums:
+                for col_num in col_nums:
                     return_value.extend(
                         keyword.upper() for row in list_of_rows 
-                            if (keyword := row[row_num].strip())
+                            if (keyword := row[col_num].strip())
                     )
             else:
-                if keyword_kind == "projects":
-                    start = 1
-                else:
-                    start = 0
+                start = 1 if keyword_kind == "projects" else 0
                 return_value = [
-                    [element
-                        for element in useful_data if element.strip()]
+                    [element for element in useful_data if element.strip()]
                         for row in list_of_rows if (useful_data := row[start:len(row)-1])
                 ]
         return return_value
