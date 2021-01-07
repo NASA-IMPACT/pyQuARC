@@ -189,8 +189,7 @@
                     "Collection/ScienceKeywords/ScienceKeyword/TermKeyword",
                     "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/Value",
                     "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/VariableLevel2Keyword/Value",
-                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/VariableLevel2Keyword/VariableLevel3Keyword/Value",
-                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/VariableLevel2Keyword/VariableLevel3Keyword/DetailedVariableKeyword"
+                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/VariableLevel2Keyword/VariableLevel3Keyword/Value"
                 ]
             }
         ],
