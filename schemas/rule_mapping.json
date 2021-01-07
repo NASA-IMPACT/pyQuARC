@@ -435,6 +435,18 @@
         ],
         "severity": "error"
     },
+    "instrument_short_long_name_consistency_check": {
+        "rule_name": "Instrument Short/Longname Consistency Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/ShortName",
+                    "Collection/Platforms/Platform/Instruments/Instrument/LongName"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
     "instrument_short_name_gcmd_check": {
         "rule_name": "Instrument Shortname GCMD Check",
         "fields_to_apply": [
@@ -474,6 +486,18 @@
             {
                 "fields": [
                     "Collection/SpatialKeywords/Keyword"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "campaign_short_long_name_consistency_check": {
+        "rule_name": "Campaign Short/Long name consistency Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Campaigns/Campaign/ShortName",
+                    "Collection/Campaigns/Campaign/LongName"
                 ]
             }
         ],

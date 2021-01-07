@@ -12,35 +12,41 @@ class GcmdValidator:
 
     def __init__(self):
         self.keywords = {
-            "science": GcmdValidator._create_science_keywords_dict(
+            "science": GcmdValidator._create_hierarchy_dict(
                 GcmdValidator._read_from_csv("science_keywords")
             ),
             "spatial_keyword": GcmdValidator._read_from_csv("locations", [1, 2, 3, 4]),
             "provider_short_name": GcmdValidator._read_from_csv("providers", [4]),
+            "instrument": GcmdValidator._create_hierarchy_dict(
+                GcmdValidator._read_from_csv("instruments")
+            ),
             "instrument_short_name": GcmdValidator._read_from_csv("instruments", [4]),
             "instrument_long_name": GcmdValidator._read_from_csv("instruments", [5]),
+            "campaign": GcmdValidator._create_hierarchy_dict(
+                GcmdValidator._read_from_csv("projects")
+            ),
             "campaign_short_name": GcmdValidator._read_from_csv("projects", [1]),
             "campaign_long_name": GcmdValidator._read_from_csv("projects", [2]),
             "granule_data_format": GcmdValidator._read_from_csv("granuledataformat", [0, 1]),
         }
 
     @staticmethod
-    def _create_science_keywords_dict(keywords):
+    def _create_hierarchy_dict(keywords):
         """
-        Creates the science keywords dictionary from the values from the csv
+        Creates the hierarchy dictionary from the values from the csv
 
         Args:
             keywords (list): List of list of row values from the csv file
 
         Returns:
-            (dict): The lookup dictionary for GCMD science keywords
+            (dict): The lookup dictionary for GCMD hierarchy
         """
-        all_keywords = [[each.upper() for each in kw[:-1] if each.strip()] for kw in keywords]
-        science_keywords_dict = {}
+        all_keywords = [[each.upper() for each in kw if each.strip()] for kw in keywords if kw]
+        hierarchy_dict = {}
         for row in all_keywords:
             row_dict = GcmdValidator.dict_from_list(row)
-            GcmdValidator.merge_dicts(science_keywords_dict, row_dict)
-        return science_keywords_dict
+            GcmdValidator.merge_dicts(hierarchy_dict, row_dict)
+        return hierarchy_dict
 
     @staticmethod
     def _read_from_csv(keyword_kind, row_nums=None):
@@ -68,7 +74,15 @@ class GcmdValidator:
                             if (keyword := row[row_num].strip())
                     )
             else:
-                return_value = list_of_rows
+                if keyword_kind == "projects":
+                    start = 1
+                else:
+                    start = 0
+                return_value = [
+                    [element
+                        for element in useful_data if element.strip()]
+                        for row in list_of_rows if (useful_data := row[start:len(row)-1])
+                ]
         return return_value
 
     @staticmethod
@@ -124,6 +138,14 @@ class GcmdValidator:
             self.keywords["science"], input_keyword
         )
 
+    def validate_instrument_short_long_name_consistency(self, input_keyword):
+        """
+        Validates GCMD instrument short name and long name consistency
+        """
+        return GcmdValidator.validate_recursively(
+            self.keywords["instrument"], input_keyword
+        )
+
     def validate_instrument_short_name(self, input_keyword):
         """
         Validates GCMD instrument short name
@@ -147,6 +169,14 @@ class GcmdValidator:
         Validates GCMD spatial keyword
         """
         return input_keyword in self.keywords["spatial_keyword"]
+
+    def validate_campaign_short_long_name_consistency(self, input_keyword):
+        """
+        Validates GCMD campaign short name and long name consistency
+        """
+        return GcmdValidator.validate_recursively(
+            self.keywords["campaign"], input_keyword
+        )
 
     def validate_campaign_short_name(self, input_keyword):
         """

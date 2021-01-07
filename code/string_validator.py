@@ -104,6 +104,18 @@ class StringValidator(BaseValidator):
 
     @staticmethod
     @if_arg
+    def instrument_short_long_name_consistency_check(*args):
+        value = None
+        received_keyword = [arg.upper().strip() for arg in args if arg]
+        return {
+            "valid": StringValidator.gcmdValidator.validate_instrument_short_long_name_consistency(
+                received_keyword
+            ),
+            "value": [args[0], args[1]],
+        }
+
+    @staticmethod
+    @if_arg
     def instrument_short_name_gcmd_check(value):
         return {
             "valid": StringValidator.gcmdValidator.validate_instrument_short_name(
@@ -130,6 +142,18 @@ class StringValidator(BaseValidator):
                 value.upper()
             ),
             "value": value,
+        }
+
+    @staticmethod
+    @if_arg
+    def campaign_short_long_name_consistency_check(*args):
+        value = None
+        received_keyword = [arg.upper().strip() for arg in args if arg]
+        return {
+            "valid": StringValidator.gcmdValidator.validate_campaign_short_long_name_consistency(
+                received_keyword
+            )[0],
+            "value": (args[0], args[1]),
         }
 
     @staticmethod

@@ -105,8 +105,9 @@ class Checker:
         """
         Checks if the dependent check called `dependency` is valid
         """
-        for field in field_dict["fields"]:
-            if not self.tracker.read_data(dependency, field)["valid"]:
+        dependency_fields = field_dict["fields"] if len(dependency) == 1 else [dependency[1]]
+        for field in dependency_fields:
+            if not self.tracker.read_data(dependency[0], field)["valid"]:
                 return False
         return True
 
