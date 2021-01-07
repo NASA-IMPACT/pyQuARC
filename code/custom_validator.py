@@ -77,10 +77,10 @@ class CustomValidator(BaseValidator):
     @staticmethod
     def bounding_coordinate_logic_check(coordinates_dictionary):
         coordinates = [
-            "WestBoundingCoordinate",
-            "EastBoundingCoordinate",
-            "NorthBoundingCoordinate",
-            "SouthBoundingCoordinate"
+                "WestBoundingCoordinate",
+                "EastBoundingCoordinate",
+                "NorthBoundingCoordinate",
+                "SouthBoundingCoordinate"
             ]
 
         result = {
