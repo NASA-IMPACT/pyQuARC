@@ -491,5 +491,16 @@
             }
         ],
         "severity": "info"
+    },
+    "vertical_spatial_domain_type_check": {
+        "rule_name": "Vertical Spatial Domain Type Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Spatial/VerticalSpatialDomain/Type"
+                ]
+            }
+        ],
+        "severity": "error"
     }
 }
