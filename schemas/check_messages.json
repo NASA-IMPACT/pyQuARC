@@ -298,5 +298,13 @@
             "url": ""
         },
         "remediation": "Please populate the ArchiveCenter field in order to meet the UMM requirement."
+    },
+    "oneOf": {
+        "failure": "One of `{}` should be populated.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Make sure one of the fields is populated."
     }
 }
