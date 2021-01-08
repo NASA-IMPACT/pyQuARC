@@ -15,6 +15,14 @@
         },
         "remediation": "Update the LastUpdate time so that it is identical to the InsertTime (in the event that the data has never been updated) or so that it comes chronologically after the InsertTime."
     },
+    "data_revision_date_logic_check": {
+        "failure": "The RevisionDate `{}` comes before the provided InsertTime `{}`.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Dates"
+        },
+        "remediation": "Update the RevisionDate so that it comes chronologically after the InsertTime."
+    },
     "url_check": {
         "failure": "Invalid URL/s: `{}`.",
         "help": {
