@@ -15,19 +15,19 @@ class GcmdValidator:
             "science": GcmdValidator._create_hierarchy_dict(
                 GcmdValidator._read_from_csv("science_keywords")
             ),
-            "spatial_keyword": GcmdValidator._read_from_csv("locations", [1, 2, 3, 4]),
-            "provider_short_name": GcmdValidator._read_from_csv("providers", [4]),
+            "spatial_keyword": GcmdValidator._read_from_csv("locations", columns=[1, 2, 3, 4]),
+            "provider_short_name": GcmdValidator._read_from_csv("providers", columns=[4]),
             "instrument": GcmdValidator._create_hierarchy_dict(
                 GcmdValidator._read_from_csv("instruments")
             ),
-            "instrument_short_name": GcmdValidator._read_from_csv("instruments", [4]),
-            "instrument_long_name": GcmdValidator._read_from_csv("instruments", [5]),
+            "instrument_short_name": GcmdValidator._read_from_csv("instruments", columns=[4]),
+            "instrument_long_name": GcmdValidator._read_from_csv("instruments", columns=[5]),
             "campaign": GcmdValidator._create_hierarchy_dict(
                 GcmdValidator._read_from_csv("projects")
             ),
-            "campaign_short_name": GcmdValidator._read_from_csv("projects", [1]),
-            "campaign_long_name": GcmdValidator._read_from_csv("projects", [2]),
-            "granule_data_format": GcmdValidator._read_from_csv("granuledataformat", [0, 1]),
+            "campaign_short_name": GcmdValidator._read_from_csv("projects", columns=[1]),
+            "campaign_long_name": GcmdValidator._read_from_csv("projects", columns=[2]),
+            "granule_data_format": GcmdValidator._read_from_csv("granuledataformat", columns=[0, 1]),
         }
 
     @staticmethod
@@ -49,15 +49,15 @@ class GcmdValidator:
         return hierarchy_dict
 
     @staticmethod
-    def _read_from_csv(keyword_kind, col_nums=None):
+    def _read_from_csv(keyword_kind, columns=None):
         """
         Reads keywords from the corresponding csv based on the kind of keyword
 
         Args:
             keyword_kind (str): The kind of keyword
                                 (could be: science_keywords, projects, providers, instruments, locations)
-            col_nums (int, optional): The col number (zero indexed). Defaults to None.
-                                     If col_nums is provided, returns keywords from that specific column
+            columns (list of int, optional): The columns to read (zero indexed). Defaults to None.
+                                     If columns is provided, returns keywords from that specific column
                                      If not, returns all useful keywords based on the keyword kind
 
         Returns:
@@ -66,18 +66,18 @@ class GcmdValidator:
         with open(SCHEMA_PATHS[keyword_kind]) as csvfile:
             reader = csv.reader(csvfile)
             list_of_rows = list(reader)[2:]
-            if col_nums:
+            if columns:
                 return_value = []
-                for col_num in col_nums:
+                for column in columns:
                     return_value.extend(
                         keyword.upper() for row in list_of_rows 
-                            if (keyword := row[col_num].strip())
+                            if (keyword := row[column].strip())
                     )
             else:
                 start = 1 if keyword_kind == "projects" else 0
                 return_value = [
-                    [element for element in useful_data if element.strip()]
-                        for row in list_of_rows if (useful_data := row[start:len(row)-1])
+                    [keyword for keyword in useful_data if keyword.strip()]
+                        for row in list_of_rows if (useful_data := row[start:len(row)-1]) #remove the UUID (last column)
                 ]
         return return_value
 
