@@ -13,6 +13,20 @@
         "severity": "info",
         "check_id": "date_compare"
     },
+    "data_revision_date_logic_check": {
+        "rule_name": "Data Revision Date Logic Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/RevisionDate",
+                    "Collection/InsertTime"
+                ],
+                "relation": "gte"
+            }
+        ],
+        "severity": "info",
+        "check_id": "date_compare"
+    },
     "range_date_time_logic_check_1": {
         "rule_name": "Range Date Time Logic Check",
         "fields_to_apply": [
