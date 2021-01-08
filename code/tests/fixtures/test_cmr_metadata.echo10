@@ -168,6 +168,9 @@ Lastly, users should continue to carefully observe and weigh information from th
                         </BoundingRectangle>
                   </Geometry>
             </HorizontalSpatialDomain>
+            <VerticalSpatialDomain>
+                  <Type>Maximum Deptha</Type>
+            </VerticalSpatialDomain>
             <GranuleSpatialRepresentation>GEODETIC</GranuleSpatialRepresentation>
       </Spatial>
       <AssociatedBrowseImageUrls>
