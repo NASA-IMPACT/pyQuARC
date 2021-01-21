@@ -17,19 +17,40 @@ class GcmdValidator:
             "science": GcmdValidator._create_hierarchy_dict(
                 GcmdValidator._read_from_csv("science_keywords")
             ),
-            "spatial_keyword": GcmdValidator._read_from_csv("locations", columns=[1, 2, 3, 4]),
-            "provider_short_name": GcmdValidator._read_from_csv("providers", columns=[4]),
+            "spatial_keyword": GcmdValidator._read_from_csv(
+                "locations",
+                columns=[
+                    "Location_Category",
+                    "Location_Type",
+                    "Location_Subregion1",
+                    "Location_Subregion2",
+                    "Location_Subregion3",
+                ],
+            ),
+            "provider_short_name": GcmdValidator._read_from_csv(
+                "providers", columns=["Short_Name"]
+            ),
             "instrument": GcmdValidator._create_hierarchy_dict(
                 GcmdValidator._read_from_csv("instruments")
             ),
-            "instrument_short_name": GcmdValidator._read_from_csv("instruments", columns=[4]),
-            "instrument_long_name": GcmdValidator._read_from_csv("instruments", columns=[5]),
+            "instrument_short_name": GcmdValidator._read_from_csv(
+                "instruments", columns=["Short_Name"]
+            ),
+            "instrument_long_name": GcmdValidator._read_from_csv(
+                "instruments", columns=["Long_Name"]
+            ),
             "campaign": GcmdValidator._create_hierarchy_dict(
                 GcmdValidator._read_from_csv("projects")
             ),
-            "campaign_short_name": GcmdValidator._read_from_csv("projects", columns=[1]),
-            "campaign_long_name": GcmdValidator._read_from_csv("projects", columns=[2]),
-            "granule_data_format": GcmdValidator._read_from_csv("granuledataformat", columns=[0, 1]),
+            "campaign_short_name": GcmdValidator._read_from_csv(
+                "projects", columns=["Short_Name"]
+            ),
+            "campaign_long_name": GcmdValidator._read_from_csv(
+                "projects", columns=["Long_Name"]
+            ),
+            "granule_data_format": GcmdValidator._read_from_csv(
+                "granuledataformat", columns=["Short_Name", "Long_Name"]
+            ),
         }
 
     @staticmethod
@@ -43,7 +64,9 @@ class GcmdValidator:
         Returns:
             (dict): The lookup dictionary for GCMD hierarchy
         """
-        all_keywords = [[each.upper() for each in kw if each.strip()] for kw in keywords if kw]
+        all_keywords = [
+            [each.upper() for each in kw if each.strip()] for kw in keywords if kw
+        ]
         hierarchy_dict = {}
         for row in all_keywords:
             row_dict = GcmdValidator.dict_from_list(row)
@@ -57,10 +80,10 @@ class GcmdValidator:
 
         Args:
             keyword_kind (str): The kind of keyword
-                                (could be: science_keywords, projects, providers, instruments, locations)
-            columns (list of int, optional): The columns to read (zero indexed). Defaults to None.
-                                     If columns is provided, returns keywords from that specific column
-                                     If not, returns all useful keywords based on the keyword kind
+                (could be: science_keywords, projects, providers, instruments, locations)
+            columns (list of int, optional): The columns to read. Defaults to None.
+                If columns is provided, returns keywords from that specific column
+                If not, returns all useful keywords based on the keyword kind
 
         Returns:
             (list): list of keywords or list of list of rows from the csv
@@ -70,19 +93,23 @@ class GcmdValidator:
         except:
             csvfile = open(SCHEMA_PATHS[keyword_kind])
         reader = csv.reader(csvfile)
-        list_of_rows = list(reader)[2:]
+        next(reader) # Remove the metadata (1st column)
+        headers = next(reader) # Get the headers (2nd column)
+        list_of_rows = list(reader)
         if columns:
             return_value = []
             for column in columns:
                 return_value.extend(
-                    keyword.upper() for row in list_of_rows 
-                        if (keyword := row[column].strip())
+                    keyword.upper()
+                    for row in list_of_rows
+                    if (keyword := row[headers.index(column)].strip())
                 )
         else:
             start = 1 if keyword_kind == "projects" else 0
             return_value = [
                 [kw for keyword in useful_data if (kw := keyword.strip())]
-                    for row in list_of_rows if (useful_data := row[start:len(row)-1]) #remove the UUID (last column)
+                for row in list_of_rows
+                if (useful_data := row[start : len(row) - 1]) # remove UUID (last column)
             ]
         csvfile.close()
         return return_value
