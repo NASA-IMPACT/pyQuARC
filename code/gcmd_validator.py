@@ -1,6 +1,8 @@
 import csv
+import io
+import urllib.request
 
-from .constants import SCHEMA_PATHS
+from .constants import SCHEMA_PATHS, GCMD_LINKS
 
 LEAF = "this_is_the_leaf_node"
 
@@ -63,22 +65,26 @@ class GcmdValidator:
         Returns:
             (list): list of keywords or list of list of rows from the csv
         """
-        with open(SCHEMA_PATHS[keyword_kind]) as csvfile:
-            reader = csv.reader(csvfile)
-            list_of_rows = list(reader)[2:]
-            if columns:
-                return_value = []
-                for column in columns:
-                    return_value.extend(
-                        keyword.upper() for row in list_of_rows 
-                            if (keyword := row[column].strip())
-                    )
-            else:
-                start = 1 if keyword_kind == "projects" else 0
-                return_value = [
-                    [kw for keyword in useful_data if (kw := keyword.strip())]
-                        for row in list_of_rows if (useful_data := row[start:len(row)-1]) #remove the UUID (last column)
-                ]
+        try:
+            csvfile = io.TextIOWrapper(urllib.request.urlopen(GCMD_LINKS[keyword_kind]))
+        except:
+            csvfile = open(SCHEMA_PATHS[keyword_kind])
+        reader = csv.reader(csvfile)
+        list_of_rows = list(reader)[2:]
+        if columns:
+            return_value = []
+            for column in columns:
+                return_value.extend(
+                    keyword.upper() for row in list_of_rows 
+                        if (keyword := row[column].strip())
+                )
+        else:
+            start = 1 if keyword_kind == "projects" else 0
+            return_value = [
+                [kw for keyword in useful_data if (kw := keyword.strip())]
+                    for row in list_of_rows if (useful_data := row[start:len(row)-1]) #remove the UUID (last column)
+            ]
+        csvfile.close()
         return return_value
 
     @staticmethod
