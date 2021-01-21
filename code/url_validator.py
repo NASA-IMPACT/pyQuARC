@@ -74,10 +74,10 @@ class UrlValidator(StringValidator):
     @staticmethod
     @if_arg
     def doi_link_update(
-        value, bad_url
+        value, bad_urls
     ):
         validity = True
-        if value in bad_url:
+        if value in bad_urls:
             validity = False
 
         return {
