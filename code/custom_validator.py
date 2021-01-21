@@ -93,8 +93,10 @@ class CustomValidator(BaseValidator):
             for coordinate in coordinates
         }
 
-        if ((values["NorthBoundingCoordinate"] > values["SouthBoundingCoordinate"])
-            and (values["EastBoundingCoordinate"] > values["WestBoundingCoordinate"])):
-            result["valid"] = True
+        result["valid"] = (
+            (values["NorthBoundingCoordinate"] > values["SouthBoundingCoordinate"])
+            and
+            (values["EastBoundingCoordinate"] > values["WestBoundingCoordinate"])
+        )
 
         return result
