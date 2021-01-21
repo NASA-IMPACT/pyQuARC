@@ -76,7 +76,7 @@ class GcmdValidator:
             else:
                 start = 1 if keyword_kind == "projects" else 0
                 return_value = [
-                    [keyword for keyword in useful_data if keyword.strip()]
+                    [kw for keyword in useful_data if (kw := keyword.strip())]
                         for row in list_of_rows if (useful_data := row[start:len(row)-1]) #remove the UUID (last column)
                 ]
         return return_value
