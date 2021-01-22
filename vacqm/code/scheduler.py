@@ -1,5 +1,6 @@
 import json
 
+from .constants import SCHEMAS_BASE_PATH
 
 class Scheduler:
     """
@@ -8,7 +9,7 @@ class Scheduler:
 
     def __init__(self, rule_mapping):
         self.check_list = json.loads(
-            open("vacqm/schemas/checks.json", "r").read()
+            open(f"{SCHEMAS_BASE_PATH}/checks.json", "r").read()
         )
         self.rule_mapping = rule_mapping
 

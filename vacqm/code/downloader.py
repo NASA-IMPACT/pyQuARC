@@ -92,7 +92,6 @@ class Downloader:
         # constructs url based on concept id
         url = self._construct_url()
         response = requests.get(url)
-
         # gets the response, makes sure it's 200, puts it in an object variable
         if response.status_code != 200:
             self.log_error(
@@ -120,8 +119,8 @@ class Downloader:
                     "invalid" when the concept_id is neither collection nor granule, or invalid concept id
         """
 
-        concept_id_pattern: str = r"C\d+-([a-zA-Z]+_[a-zA-Z]+)+"
-        granule_id_pattern: str = r"G\d+-([a-zA-Z]+_[a-zA-Z]+)+"
+        concept_id_pattern: str = r"C\d+-(([a-zA-Z]+(_[a-zA-Z]+)?$))+"
+        granule_id_pattern: str = r"G\d+-(([a-zA-Z]+(_[a-zA-Z]+)?$))+"
 
         concept_id_type: str = Downloader.INVALID
 

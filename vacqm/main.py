@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import os.path
 import requests
 import xmltodict
 
@@ -11,7 +12,9 @@ from .code.checker import Checker
 from .code.constants import COLOR, ECHO10
 from .code.downloader import Downloader
 
+ABS_PATH = os.path.abspath(os.path.dirname(__file__))
 END = COLOR["reset"]
+
 
 class VACQM:
     """
@@ -46,7 +49,10 @@ class VACQM:
         self.errors = []
 
         self.file_path = (
-            file_path if file_path else "../tests/fixtures/test_cmr_metadata.echo10"
+            file_path if file_path else os.path.join(
+                    ABS_PATH,
+                    "../tests/fixtures/test_cmr_metadata.echo10"
+                )
         )
         self.metadata_format = metadata_format
 
