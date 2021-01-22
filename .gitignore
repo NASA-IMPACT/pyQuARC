@@ -2,3 +2,6 @@ __pycache__/
 .vscode/
 .env/*
 *.ipynb
+build/*
+dist/*
+vacqm.egg-info/*
