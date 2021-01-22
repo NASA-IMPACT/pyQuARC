@@ -24,6 +24,6 @@ setuptools.setup(
     keywords='validation metadata cmr quality',
     python_requires='>=3.8',
     install_requires=requirements,
-    package_data={'vacqm': ['schemas/*']},
+    package_data={'vacqm': ['schemas/*'], 'tests': ['fixtures/*']},
     include_package_data=True,
 )
