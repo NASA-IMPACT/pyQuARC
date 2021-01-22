@@ -31,9 +31,9 @@ arguments:
 To test a local file, use the `--file` argument. Give it either an absolute file path or a file path relative to the project root directory.
 
 Example:
-`▶ python main.py --file "code/tests/fixtures/test_cmr_metadata.echo10"`
+`▶ python main.py --file "tests/fixtures/test_cmr_metadata.echo10"`
 or
-`▶ python main.py --file "/Users/batman/projects/vacqm/code/tests/fixtures/test_cmr_metadata.echo10"`
+`▶ python main.py --file "/Users/batman/projects/vacqm/tests/fixtures/test_cmr_metadata.echo10"`
 
 ## Adding a custom check
 
