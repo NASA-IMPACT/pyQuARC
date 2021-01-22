@@ -2,7 +2,7 @@ import os
 
 from xmltodict import parse
 
-from ..schema_validator import SchemaValidator
+from vacqm.schema_validator import SchemaValidator
 
 KEYS = [
     "no_error_metadata", "bad_syntax_metadata", "test_cmr_metadata"

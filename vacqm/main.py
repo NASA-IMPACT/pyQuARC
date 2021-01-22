@@ -7,9 +7,9 @@ import xmltodict
 from pprint import pprint
 from tqdm import tqdm
 
-from code.checker import Checker
-from code.constants import COLOR, ECHO10
-from code.downloader import Downloader
+from .code.checker import Checker
+from .code.constants import COLOR, ECHO10
+from .code.downloader import Downloader
 
 END = COLOR["reset"]
 
