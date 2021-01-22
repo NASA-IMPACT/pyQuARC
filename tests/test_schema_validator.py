@@ -2,7 +2,7 @@ import os
 
 from xmltodict import parse
 
-from vacqm.schema_validator import SchemaValidator
+from vacqm.code.schema_validator import SchemaValidator
 
 KEYS = [
     "no_error_metadata", "bad_syntax_metadata", "test_cmr_metadata"
@@ -29,7 +29,7 @@ class TestSchemaValidator:
             with open(
                 os.path.join(
                 os.getcwd(),
-                f"code/tests/fixtures/{data_key}.echo10"
+                f"tests/fixtures/{data_key}.echo10"
             ), "r"
             ) as myfile:
                 result[data_key] = myfile.read().encode()

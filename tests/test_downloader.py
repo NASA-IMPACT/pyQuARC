@@ -1,4 +1,4 @@
-from vacqm.downloader import Downloader
+from vacqm.code.downloader import Downloader
 
 
 class TestDownloader:

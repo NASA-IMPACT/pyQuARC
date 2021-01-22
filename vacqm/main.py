@@ -46,7 +46,7 @@ class VACQM:
         self.errors = []
 
         self.file_path = (
-            file_path if file_path else "code/tests/fixtures/test_cmr_metadata.echo10"
+            file_path if file_path else "../tests/fixtures/test_cmr_metadata.echo10"
         )
         self.metadata_format = metadata_format
 

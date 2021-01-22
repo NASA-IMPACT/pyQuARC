@@ -4,7 +4,7 @@ import pytest
 
 from datetime import datetime
 
-from vacqm.checker import Checker
+from vacqm.code.checker import Checker
 
 from .fixtures.checker import FUNCTION_MAPPING, DUMMY_METADATA_CONTENT
 from .common import read_test_metadata

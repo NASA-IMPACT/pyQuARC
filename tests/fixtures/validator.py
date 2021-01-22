@@ -2,7 +2,7 @@ import json
 import os
 
 WORKING_DIR = os.getcwd()
-FIXTURE_PATH = os.path.join(WORKING_DIR, "code/tests/fixtures/")
+FIXTURE_PATH = os.path.join(WORKING_DIR, "tests/fixtures/")
 
 INPUT_OUTPUT = {
     "date_datetime_iso_format_check": [

@@ -8,7 +8,7 @@ class Scheduler:
 
     def __init__(self, rule_mapping):
         self.check_list = json.loads(
-            open("schemas/checks.json", "r").read()
+            open("vacqm/schemas/checks.json", "r").read()
         )
         self.rule_mapping = rule_mapping
 
@@ -30,7 +30,7 @@ class Scheduler:
             dependencies = check.get("dependencies", [])
             for dependency in dependencies:
                 self._add_to_list(dependency, self.rule_mapping.get(dependency), rules_list)
-        
+
             Scheduler.append_if_not_exist(rule_id, rules_list)
         else:
             print(f"Missing entry for {check_id} in `checks.json`")

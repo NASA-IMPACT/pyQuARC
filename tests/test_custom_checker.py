@@ -4,7 +4,7 @@ import pytest
 
 from xmltodict import parse
 
-from vacqm.custom_checker import CustomChecker
+from vacqm.code.custom_checker import CustomChecker
 
 from .fixtures.custom_checker import INPUT_OUTPUT
 from .common import read_test_metadata
