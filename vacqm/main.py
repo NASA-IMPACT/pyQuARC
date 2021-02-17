@@ -31,6 +31,8 @@ class VACQM:
         fake=None,
         file_path=None,
         metadata_format=ECHO10,
+        checks_override=None,
+        messages_override=None
     ):
         """
         Args:
@@ -55,6 +57,8 @@ class VACQM:
                 )
         )
         self.metadata_format = metadata_format
+        self.checks_override = checks_override
+        self.messages_override = messages_override
 
     def _cmr_query(self):
         """
@@ -85,7 +89,11 @@ class VACQM:
         Returns:
             (list of dict) The errors found in the metadata content of all the `concept_id`s
         """
-        checker = Checker(self.metadata_format)
+        checker = Checker(
+            metadata_format=self.metadata_format,
+            checks_override=self.checks_override,
+            messages_override=self.messages_override
+        )
 
         if self.concept_ids:
             for concept_id in tqdm(self.concept_ids):
