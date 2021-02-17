@@ -199,3 +199,99 @@ Then, if the check function receives input `value1=0` and `value2=1`, the output
 ```
 The values 0 and 1 do not amount to a true value
 ```
+
+## Use as a package
+*Note:* This program requires `Python 3.8` installed in your system.
+
+**Clone the repo:** [https://github.com/NASA-IMPACT/revamped_pycmr/](https://github.com/NASA-IMPACT/revamped_pycmr/)
+
+**Go to the project directory:** `cd revamped_pycmr`
+
+**Install package:** `python setup.py install`
+
+**To check if the package was installed correctly:**
+```
+▶ python
+>>> from vacqm import VACQM
+>>> validator = VACQM(fake=True)
+>>> validator.validate()
+>>> ...
+```
+
+**To provide locally installed file:**
+```
+▶ python
+>>> from vacqm import VACQM
+>>> validator = VACQM(file_path="<path to metadata file>")
+>>> validator.validate()
+>>> ...
+```
+
+**To provide rules for new fields or override:**
+```
+▶ cat rule_override.json
+{
+    "data_update_time_logic_check": {
+        "rule_name": "Data Update Time Logic Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/LastUpdate",
+                    "Collection/InsertTime"
+                ],
+                "relation": "lte"
+            }
+        ],
+        "severity": "info",
+        "check_id": "date_compare"
+    },
+    "new_field": {
+        "rule_name": "Check for new field",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "<new field name>",
+                    "<other new field name>",
+                ],
+                "relation": "lte"
+            }
+        ],
+        "severity": "info",
+        "check_id": "<check_id>"
+    }
+}
+▶ python
+>>> from vacqm import VACQM
+>>> validator = VACQM(checks_override="<path to rule_override.json>")
+>>> validator.validate()
+>>> ...
+```
+
+
+**To provide custom messages for new or old fields:**
+```
+▶ cat messages_override.json
+{
+    "data_update_time_logic_check": {
+        "failure": "The UpdateTime `{}` comes after the provided InsertTime `{}`.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Dates"
+        },
+        "remediation": "Everything is alright!"
+    },
+    "new_check": {
+        "failure": "Custom check for `{}` and `{}.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Dates"
+        },
+        "remediation": "<remediation steps>"
+    }
+}
+▶ python
+>>> from vacqm import VACQM
+>>> validator = VACQM(checks_override="<path to rule_override.json>", messages_override=<path to messages_override.json>)
+>>> validator.validate()
+>>> ...
+```
