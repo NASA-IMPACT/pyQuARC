@@ -1,4 +1,4 @@
-from vacqm.code.string_validator import StringValidator
+from pyARC.code.string_validator import StringValidator
 
 from .fixtures.validator import INPUT_OUTPUT
 

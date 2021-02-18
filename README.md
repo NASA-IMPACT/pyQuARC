@@ -2,9 +2,9 @@
 
 *Note:* This program requires `Python 3.8` installed in your system.
 
-**Clone the repo:** [https://github.com/NASA-IMPACT/revamped_pycmr/](https://github.com/NASA-IMPACT/revamped_pycmr/)
+**Clone the repo:** [https://github.com/NASA-IMPACT/pyARC/](https://github.com/NASA-IMPACT/pyARC/)
 
-**Go to the project directory:** `cd revamped_pycmr`
+**Go to the project directory:** `cd pyARC`
 
 **Create a python virtual environment:** `python -m venv env`
 
@@ -33,7 +33,7 @@ To test a local file, use the `--file` argument. Give it either an absolute file
 Example:
 `▶ python main.py --file "tests/fixtures/test_cmr_metadata.echo10"`
 or
-`▶ python main.py --file "/Users/batman/projects/vacqm/tests/fixtures/test_cmr_metadata.echo10"`
+`▶ python main.py --file "/Users/batman/projects/pyARC/tests/fixtures/test_cmr_metadata.echo10"`
 
 ## Adding a custom check
 
@@ -203,17 +203,17 @@ The values 0 and 1 do not amount to a true value
 ## Use as a package
 *Note:* This program requires `Python 3.8` installed in your system.
 
-**Clone the repo:** [https://github.com/NASA-IMPACT/revamped_pycmr/](https://github.com/NASA-IMPACT/revamped_pycmr/)
+**Clone the repo:** [https://github.com/NASA-IMPACT/pyARC/](https://github.com/NASA-IMPACT/pyARC/)
 
-**Go to the project directory:** `cd revamped_pycmr`
+**Go to the project directory:** `cd pyARC`
 
 **Install package:** `python setup.py install`
 
 **To check if the package was installed correctly:**
 ```
 ▶ python
->>> from vacqm import VACQM
->>> validator = VACQM(fake=True)
+>>> from pyARC import ARC
+>>> validator = ARC(fake=True)
 >>> validator.validate()
 >>> ...
 ```
@@ -221,8 +221,8 @@ The values 0 and 1 do not amount to a true value
 **To provide locally installed file:**
 ```
 ▶ python
->>> from vacqm import VACQM
->>> validator = VACQM(file_path="<path to metadata file>")
+>>> from pyARC import ARC
+>>> validator = ARC(file_path="<path to metadata file>")
 >>> validator.validate()
 >>> ...
 ```
@@ -261,8 +261,8 @@ The values 0 and 1 do not amount to a true value
     }
 }
 ▶ python
->>> from vacqm import VACQM
->>> validator = VACQM(checks_override="<path to rule_override.json>")
+>>> from pyARC import ARC
+>>> validator = ARC(checks_override="<path to rule_override.json>")
 >>> validator.validate()
 >>> ...
 ```
@@ -290,8 +290,8 @@ The values 0 and 1 do not amount to a true value
     }
 }
 ▶ python
->>> from vacqm import VACQM
->>> validator = VACQM(checks_override="<path to rule_override.json>", messages_override=<path to messages_override.json>)
+>>> from pyARC import ARC
+>>> validator = ARC(checks_override="<path to rule_override.json>", messages_override=<path to messages_override.json>)
 >>> validator.validate()
 >>> ...
 ```

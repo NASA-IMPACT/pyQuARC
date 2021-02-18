@@ -16,7 +16,7 @@ ABS_PATH = os.path.abspath(os.path.dirname(__file__))
 END = COLOR["reset"]
 
 
-class VACQM:
+class ARC:
     """
     Takes concept_ids and runs downloader/validator on each
 
@@ -210,14 +210,14 @@ if __name__ == "__main__":
         )
         exit()
 
-    vacqm = VACQM(
+    arc = ARC(
         query=args.query,
         input_concept_ids=args.concept_ids or [],
         fake=args.fake,
         file_path=args.file,
         metadata_format=args.format or ECHO10,
     )
-    results = vacqm.validate()
-    vacqm.display_results()
+    results = arc.validate()
+    arc.display_results()
 
     # print(json.dumps(results, indent=4))

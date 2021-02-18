@@ -4,4 +4,4 @@ __pycache__/
 *.ipynb
 build/*
 dist/*
-vacqm.egg-info/*
+pyARC.egg-info/*
