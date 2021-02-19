@@ -22,6 +22,7 @@ SCHEMAS = {
         "checks_override",
         "echo10_json",
         "rule_mapping",
+        "rules_override",
         UMM_JSON
     ],
     "csv": [ "instruments", "locations", "providers", "science_keywords" ],
