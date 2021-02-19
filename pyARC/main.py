@@ -32,6 +32,7 @@ class ARC:
         file_path=None,
         metadata_format=ECHO10,
         checks_override=None,
+        rules_override=None,
         messages_override=None
     ):
         """
@@ -58,6 +59,7 @@ class ARC:
         )
         self.metadata_format = metadata_format
         self.checks_override = checks_override
+        self.rules_override = rules_override
         self.messages_override = messages_override
 
     def _cmr_query(self):
@@ -92,6 +94,7 @@ class ARC:
         checker = Checker(
             metadata_format=self.metadata_format,
             checks_override=self.checks_override,
+            rules_override=self.rules_override,
             messages_override=self.messages_override
         )
 
