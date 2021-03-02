@@ -1,11 +1,9 @@
 import argparse
-import json
 import os
 import os.path
 import requests
 import xmltodict
 
-from pprint import pprint
 from tqdm import tqdm
 
 from .code.checker import Checker
@@ -164,6 +162,7 @@ class ARC:
         result_string += error_prompt
         print(result_string)
 
+
 if __name__ == "__main__":
     # parse command line arguments (argparse)
     # --query
@@ -222,5 +221,3 @@ if __name__ == "__main__":
     )
     results = arc.validate()
     arc.display_results()
-
-    # print(json.dumps(results, indent=4))

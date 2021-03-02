@@ -1,4 +1,3 @@
-import json
 import os
 
 WORKING_DIR = os.getcwd()

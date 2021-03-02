@@ -1,11 +1,14 @@
 import setuptools
 
+
 with open("README.md", "r", encoding="utf-8") as readme_file:
     long_description = readme_file.read()
 
+
 with open("requirements.txt", "r", encoding="utf-8") as requirement_file:
     requirements = requirement_file.readlines()
-print(requirements)
+
+
 setuptools.setup(
     name="pyARC", # Replace with your own username
     version="0.0.1",

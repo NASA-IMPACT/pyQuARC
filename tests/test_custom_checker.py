@@ -1,13 +1,10 @@
-import json
-import os
-import pytest
-
 from xmltodict import parse
 
 from pyARC.code.custom_checker import CustomChecker
 
 from .fixtures.custom_checker import INPUT_OUTPUT
 from .common import read_test_metadata
+
 
 class TestCustomChecker:
     """

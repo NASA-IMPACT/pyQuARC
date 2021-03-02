@@ -1,12 +1,6 @@
-import json
-import os
-import pytest
-
-from datetime import datetime
-
 from pyARC.code.checker import Checker
 
-from .fixtures.checker import FUNCTION_MAPPING, DUMMY_METADATA_CONTENT
+from .fixtures.checker import FUNCTION_MAPPING
 from .common import read_test_metadata
 
 

@@ -1,7 +1,3 @@
-import json
-
-from .constants import SCHEMAS_BASE_PATH
-
 class Scheduler:
     """
     Schedules the rules based on the applicable ordering

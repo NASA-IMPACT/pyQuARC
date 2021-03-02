@@ -13,7 +13,7 @@ class CustomChecker:
         Adds the values to `container`
 
         Args:
-            subset_of_metadata_content (dict or list or str): 
+            subset_of_metadata_content (dict or list or str):
                         The value of the field at a certain point;
                         changes during each level of recursion
             path_list (list): The path of the field as a list
@@ -23,12 +23,12 @@ class CustomChecker:
         """
         try:
             root_content = subset_of_metadata_content[path_list[0]]
-        except KeyError as e:
-            # this is needed because GCMD keywords check needs the placement 
+        except KeyError:
+            # this is needed because GCMD keywords check needs the placement
             # of the values in the returned list
             container.append(None)
             return
-        except IndexError as e:
+        except IndexError:
             container.append(subset_of_metadata_content)
             return
         new_path = path_list[1:]
@@ -39,7 +39,7 @@ class CustomChecker:
                 try:
                     CustomChecker._get_path_value_recursively(
                         each, new_path, container)
-                except KeyError as e:
+                except KeyError:
                     container.append(None)
                     continue
         elif isinstance(root_content, dict):
@@ -71,7 +71,7 @@ class CustomChecker:
 
         Args:
             content_to_validate (dict): The metadata content
-            field_dict (dict): The field dictionary of the form: 
+            field_dict (dict): The field dictionary of the form:
                 {
                     "fields": relavant fields,
                     "relation": relation between the fields
@@ -97,7 +97,7 @@ class CustomChecker:
                 content_to_validate, _field)
             field_values.append(value)
         args = zip(*field_values)
-    
+
         invalid_values = []
         validity = None
         for arg in args:

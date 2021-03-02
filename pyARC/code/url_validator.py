@@ -1,5 +1,4 @@
 import requests
-import re
 
 from urlextract import URLExtract
 
@@ -47,7 +46,7 @@ class UrlValidator(StringValidator):
                 if response_code == 200:
                     continue
                 result = {"url": url, "status_code": response_code}
-            except requests.ConnectionError as exception:
+            except requests.ConnectionError:
                 result = {"url": url, "error": "The URL does not exist on Internet."}
             except Exception as e:
                 result = {"url": url, "error": "Some unknown error occurred."}
