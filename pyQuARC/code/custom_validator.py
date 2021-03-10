@@ -73,3 +73,30 @@ class CustomValidator(BaseValidator):
             "valid": validity,
             "value": field_value
         }
+
+    @staticmethod
+    def bounding_coordinate_logic_check(coordinates_dictionary):
+        coordinates = [
+                "WestBoundingCoordinate",
+                "EastBoundingCoordinate",
+                "NorthBoundingCoordinate",
+                "SouthBoundingCoordinate"
+            ]
+
+        result = {
+            "valid": False,
+            "value": ""
+        }
+
+        values = {
+            coordinate: int(coordinates_dictionary[coordinate])
+            for coordinate in coordinates
+        }
+
+        result["valid"] = (
+            (values["NorthBoundingCoordinate"] > values["SouthBoundingCoordinate"])
+            and
+            (values["EastBoundingCoordinate"] > values["WestBoundingCoordinate"])
+        )
+
+        return result

@@ -25,7 +25,14 @@ SCHEMAS = {
         "rules_override",
         UMM_JSON
     ],
-    "csv": [ "instruments", "locations", "providers", "science_keywords" ],
+    "csv": [
+        "granuledataformat",
+        "instruments",
+        "locations",
+        "projects",
+        "providers",
+        "science_keywords"
+    ],
     "xsd": [ DIF, "echo10_xml" ],
     "xml": [ "catalog" ]
 }
@@ -43,4 +50,14 @@ COLOR = {
     "warning": Fore.YELLOW,
     "reset": Style.RESET_ALL,
     "bright": Style.BRIGHT
+}
+
+GCMD_LINKS = {
+    "science_keywords": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/sciencekeywords?format=csv",
+    "locations": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/locations?format=csv",
+    "providers": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/providers?format=csv",
+    "instruments": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/instruments?format=csv",
+    "projects": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/projects?format=csv",
+    "granuledataformat": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/granuledataformat?format=csv",
+    "platforms": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/platforms?format=csv"
 }

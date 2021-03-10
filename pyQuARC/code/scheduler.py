@@ -29,14 +29,13 @@ class Scheduler:
             dependencies = check.get("dependencies", [])
             for dependency in dependencies:
                 check = self.rules_override.get(
-                    dependency
-                ) or self.rule_mapping.get(dependency)
+                    dependency[0]
+                ) or self.rule_mapping.get(dependency[0])
                 self._add_to_list(
-                    dependency,
+                    dependency[0],
                     check,
                     rules_list
                 )
-
             Scheduler.append_if_not_exist(rule_id, rules_list)
         else:
             print(f"Missing entry for {check_id} in `checks.json`")
