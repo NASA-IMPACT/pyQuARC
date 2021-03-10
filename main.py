@@ -57,18 +57,50 @@ class VACQM:
         Returns:
             (list of str) Returns all the concept ids found in the `query_url` as a list
         """
-        # TODO: Make the page_size dynamic and use page_num to advance through multiple pages of results
-        response = requests.get(self.query)
+        concept_ids = []
 
-        if response.status_code != 200:
-            return {"error": "CMR Query failed"}
+        # If any of the page query params is already specified in the url, it means that
+        # the user wants the subset of results provided by the query param, so we run 
+        # the get request only once
+        # Else, we need to get all the result, not just the one in the given page since
+        # there's pagination implemented by the API. Thus, we iterate the get request with
+        # page_num query param
 
-        response_dict = xmltodict.parse(response.text)
+        already_selected = False
+        page_qparams = ['page_size', 'page_num', 'offset']
+        for qparam in page_qparams:
+            if qparam in self.query:
+                already_selected = True
+        
+        page_size = 2000 # Set to maximum allowable so that we need the min # of get req
+        collected = 0
+        page_num = 1
 
-        concept_ids = [
-            result["id"]
-            for result in response_dict["results"]["references"]["reference"]
-        ]
+        orig_query = f"{self.query}&page_size={page_size}" if not already_selected else self.query
+        query = orig_query
+        
+        while True:
+            response = requests.get(query)
+
+            if response.status_code != 200:
+                return {"error": "CMR Query failed"}
+
+            response_dict = xmltodict.parse(response.text)
+            hits = int(response_dict["results"]["hits"])
+            collections = response_dict["results"]["references"]["reference"]
+
+            collected += len(collections)
+
+            concept_ids.extend([
+                collection["id"]
+                for collection in collections
+            ])
+
+            if collected >= hits or already_selected:
+                break
+            
+            page_num += 1
+            query = f"{orig_query}&page_num={page_num}"
 
         return concept_ids
 
