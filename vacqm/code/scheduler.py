@@ -30,8 +30,9 @@ class Scheduler:
         if check := self.check_list.get(check_id):
             dependencies = check.get("dependencies", [])
             for dependency in dependencies:
-                self._add_to_list(dependency, self.rule_mapping.get(dependency), rules_list)
-
+                self._add_to_list(
+                    dependency[0], self.rule_mapping.get(dependency[0]),rules_list
+                )
             Scheduler.append_if_not_exist(rule_id, rules_list)
         else:
             print(f"Missing entry for {check_id} in `checks.json`")
