@@ -368,6 +368,11 @@
     "doi_link_update": {
         "data_type": "url",
         "check_function": "doi_link_update",
+        "data": [[
+            "dx.doi.org",
+            "http://dx.doi.org",
+            "https://dx.doi.org"
+        ]],
         "available": true
     },
     "vertical_spatial_domain_type_check": {
