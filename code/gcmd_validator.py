@@ -51,6 +51,15 @@ class GcmdValidator:
             "granule_data_format": GcmdValidator._read_from_csv(
                 "granuledataformat", columns=["Short_Name", "Long_Name"]
             ),
+            "platform_short_name": GcmdValidator._read_from_csv(
+                "platforms", columns=["Short_Name"]
+            ),
+            "platform_long_name": GcmdValidator._read_from_csv(
+                "platforms", columns=["Long_Name"]
+            ),
+            "platform_type": GcmdValidator._read_from_csv(
+                "platforms", columns=["Category"]
+            ),
         }
 
     @staticmethod
