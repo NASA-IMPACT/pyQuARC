@@ -388,5 +388,10 @@
             ]
         ],
         "available": true
+    },
+    "bounding_coordinate_logic_check": {
+        "data_type": "custom",
+        "check_function": "bounding_coordinate_logic_check",
+        "available": true
     }
 }

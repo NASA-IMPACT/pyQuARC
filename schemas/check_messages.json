@@ -299,6 +299,14 @@
         },
         "remediation": "Please populate the ArchiveCenter field in order to meet the UMM requirement."
     },
+    "bounding_coordinate_logic_check": {
+        "failure": "North bounding coordinate should always be larger than South bounding coordinate and East bounding coordinate should always be larger than West bounding coordinate.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please make sure the coordinate values are correct."
+    },
     "vertical_spatial_domain_type_check": {
         "failure": "The Vertical Spatial Domain Type `{}` does not align with the values used in the UMM-C schema.",
         "help": {
