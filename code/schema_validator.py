@@ -18,7 +18,7 @@ class SchemaValidator:
     PATH_SEPARATOR = "/"
 
     def __init__(
-        self, metadata_format=ECHO10
+        self, check_messages, metadata_format=ECHO10,
     ):
         """
         Args:
@@ -35,6 +35,7 @@ class SchemaValidator:
         os.environ['XML_CATALOG_FILES'] = os.environ.get('XML_CATALOG_FILES', catalog_path)
 
         self.metadata_format = metadata_format
+        self.check_messages = check_messages
         self.xml_schema = self.read_xml_schema()
         self.json_schema = self.read_json_schema()
 
@@ -42,14 +43,14 @@ class SchemaValidator:
         """
         Reads the json schema file
         """
-        schema = json.load(open(SCHEMA_PATHS["echo10_json"], "r"))
+        schema = json.load(open(SCHEMA_PATHS[f"{self.metadata_format}_json"], "r"))
         return schema
 
     def read_xml_schema(self):
         """
         Reads the xml schema file
         """
-        with open(SCHEMA_PATHS["echo10_xml"], 'r') as schema_file:
+        with open(SCHEMA_PATHS[f"{self.metadata_format}_xml"], "r") as schema_file:
             file_content = schema_file.read().encode()
         xmlschema_doc = etree.parse(BytesIO(file_content))
         schema = etree.XMLSchema(xmlschema_doc)
@@ -79,10 +80,15 @@ class SchemaValidator:
         for error in sorted(validator.iter_errors(content_to_validate), key=str):
             field = SchemaValidator.PATH_SEPARATOR.join(error.path)
             message = error.message
+            remediation = None
             if error.validator == "oneOf":
-                message = "One of `{}` or `{}` is required".format(*[f'{field}/{obj["required"][0]}' for obj in error.validator_value])
+                check_message = self.check_messages[error.validator]
+                fields = [f'{field}/{obj["required"][0]}' for obj in error.validator_value]
+                message = check_message["failure"].format(fields)
+                remediation = check_message["remediation"]
             errors.setdefault(field, {})["json_schema"] = {
                     "message": [f"Error: {message}"],
+                    "remediation": remediation,
                     "valid": False
                 }
         return error_dict

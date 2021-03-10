@@ -47,7 +47,7 @@ class StringValidator(BaseValidator):
             (dict) An object with the validity of the check and the instance
         """
         return {
-            "valid": BaseValidator.compare(first, second, relation),
+            "valid": BaseValidator.compare(first.upper(), second.upper(), relation),
             "value": (first, second),
         }
 

@@ -11,7 +11,16 @@ KEYS = [
 class TestSchemaValidator:
     def setup_method(self):
         self.data = self.read_data()
-        self.schema_validator = SchemaValidator()
+        self.schema_validator = SchemaValidator({
+            "oneOf": {
+                "failure": "One of `{}` should be populated.",
+                "help": {
+                    "message": "",
+                    "url": ""
+                },
+                "remediation": "Make sure one of the fields is populated."
+            }
+        })
 
     def read_data(self):
         result = {}
