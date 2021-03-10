@@ -4,4 +4,4 @@ __pycache__/
 *.ipynb
 build/*
 dist/*
-pyARC.egg-info/*
+pyQuARC.egg-info/*

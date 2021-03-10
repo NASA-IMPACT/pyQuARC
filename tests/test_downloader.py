@@ -1,4 +1,4 @@
-from pyARC.code.downloader import Downloader
+from pyQuARC.code.downloader import Downloader
 
 
 class TestDownloader:

@@ -1,4 +1,4 @@
-from pyARC.code.checker import Checker
+from pyQuARC.code.checker import Checker
 
 from .fixtures.checker import FUNCTION_MAPPING
 from .common import read_test_metadata

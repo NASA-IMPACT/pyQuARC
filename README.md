@@ -2,9 +2,9 @@
 
 *Note:* This program requires `Python 3.8` installed in your system.
 
-**Clone the repo:** [https://github.com/NASA-IMPACT/pyARC/](https://github.com/NASA-IMPACT/pyARC/)
+**Clone the repo:** [https://github.com/NASA-IMPACT/pyQuARC/](https://github.com/NASA-IMPACT/pyQuARC/)
 
-**Go to the project directory:** `cd pyARC`
+**Go to the project directory:** `cd pyQuARC`
 
 **Create a python virtual environment:** `python -m venv env`
 
@@ -33,7 +33,7 @@ To test a local file, use the `--file` argument. Give it either an absolute file
 Example:
 `▶ python main.py --file "tests/fixtures/test_cmr_metadata.echo10"`
 or
-`▶ python main.py --file "/Users/batman/projects/pyARC/tests/fixtures/test_cmr_metadata.echo10"`
+`▶ python main.py --file "/Users/batman/projects/pyQuARC/tests/fixtures/test_cmr_metadata.echo10"`
 
 ## Adding a custom check
 
@@ -203,16 +203,16 @@ The values 0 and 1 do not amount to a true value
 ## Use as a package
 *Note:* This program requires `Python 3.8` installed in your system.
 
-**Clone the repo:** [https://github.com/NASA-IMPACT/pyARC/](https://github.com/NASA-IMPACT/pyARC/)
+**Clone the repo:** [https://github.com/NASA-IMPACT/pyQuARC/](https://github.com/NASA-IMPACT/pyQuARC/)
 
-**Go to the project directory:** `cd pyARC`
+**Go to the project directory:** `cd pyQuARC`
 
 **Install package:** `python setup.py install`
 
 **To check if the package was installed correctly:**
 ```
 ▶ python
->>> from pyARC import ARC
+>>> from pyQuARC import ARC
 >>> validator = ARC(fake=True)
 >>> validator.validate()
 >>> ...
@@ -221,7 +221,7 @@ The values 0 and 1 do not amount to a true value
 **To provide locally installed file:**
 ```
 ▶ python
->>> from pyARC import ARC
+>>> from pyQuARC import ARC
 >>> validator = ARC(file_path="<path to metadata file>")
 >>> validator.validate()
 >>> ...
@@ -261,7 +261,7 @@ The values 0 and 1 do not amount to a true value
     }
 }
 ▶ python
->>> from pyARC import ARC
+>>> from pyQuARC import ARC
 >>> validator = ARC(checks_override="<path to rule_override.json>")
 >>> validator.validate()
 >>> ...
@@ -290,7 +290,7 @@ The values 0 and 1 do not amount to a true value
     }
 }
 ▶ python
->>> from pyARC import ARC
+>>> from pyQuARC import ARC
 >>> validator = ARC(checks_override="<path to rule_override.json>", messages_override=<path to messages_override.json>)
 >>> validator.validate()
 >>> ...
