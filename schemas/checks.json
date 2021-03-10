@@ -3,7 +3,7 @@
         "data_type": "datetime",
         "check_function": "compare",
         "dependencies": [
-            "datetime_format_check"
+            ["datetime_format_check"]
         ],
         "available": true
     },
@@ -71,7 +71,7 @@
         "data_type": "datetime",
         "check_function": "compare",
         "dependencies": [
-            "datetime_format_check"
+            ["datetime_format_check"]
         ],
         "data": [
             "now",
@@ -324,6 +324,21 @@
         "check_function": "availability_check",
         "available": true
     },
+    "instrument_short_long_name_consistency_check": {
+        "data_type": "string",
+        "check_function": "instrument_short_long_name_consistency_check",
+        "dependencies": [
+            [
+                "instrument_short_name_gcmd_check",
+                "Collection/Platforms/Platform/Instruments/Instrument/ShortName"
+            ],
+            [
+                "instrument_long_name_gcmd_check",
+                "Collection/Platforms/Platform/Instruments/Instrument/LongName"
+            ]
+        ],
+        "available": true
+    },
     "instrument_short_name_gcmd_check": {
         "data_type": "string",
         "check_function": "instrument_short_name_gcmd_check",
@@ -352,6 +367,36 @@
     "spatial_keyword_gcmd_check": {
         "data_type": "string",
         "check_function": "spatial_keyword_gcmd_check",
+        "available": true
+    },
+    "campaign_short_long_name_consistency_check": {
+        "data_type": "string",
+        "check_function": "campaign_short_long_name_consistency_check",
+        "dependencies": [
+            [
+                "campaign_short_name_gcmd_check",
+                "Collection/Campaigns/Campaign/ShortName"
+            ],
+            [
+                "campaign_long_name_gcmd_check",
+                "Collection/Campaigns/Campaign/LongName"
+            ]
+        ],
+        "available": true
+    },
+    "campaign_short_name_gcmd_check": {
+        "data_type": "string",
+        "check_function": "campaign_short_name_gcmd_check",
+        "available": true
+    },
+    "campaign_long_name_gcmd_check": {
+        "data_type": "string",
+        "check_function": "campaign_long_name_gcmd_check",
+        "available": true
+    },
+    "data_format_gcmd_check": {
+        "data_type": "string",
+        "check_function": "data_format_gcmd_check",
         "available": true
     },
     "version_description_not_provided": {
@@ -402,6 +447,11 @@
                 "Minimum Depth"
             ]
         ],
+        "available": true
+    },
+    "bounding_coordinate_logic_check": {
+        "data_type": "custom",
+        "check_function": "bounding_coordinate_logic_check",
         "available": true
     }
 }

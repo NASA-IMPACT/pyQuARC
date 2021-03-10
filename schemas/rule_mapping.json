@@ -13,6 +13,20 @@
         "severity": "info",
         "check_id": "date_compare"
     },
+    "data_revision_date_logic_check": {
+        "rule_name": "Data Revision Date Logic Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/RevisionDate",
+                    "Collection/InsertTime"
+                ],
+                "relation": "gte"
+            }
+        ],
+        "severity": "info",
+        "check_id": "date_compare"
+    },
     "range_date_time_logic_check_1": {
         "rule_name": "Range Date Time Logic Check",
         "fields_to_apply": [
@@ -189,8 +203,7 @@
                     "Collection/ScienceKeywords/ScienceKeyword/TermKeyword",
                     "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/Value",
                     "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/VariableLevel2Keyword/Value",
-                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/VariableLevel2Keyword/VariableLevel3Keyword/Value",
-                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/VariableLevel2Keyword/VariableLevel3Keyword/DetailedVariableKeyword"
+                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/VariableLevel2Keyword/VariableLevel3Keyword/Value"
                 ]
             }
         ],
@@ -435,6 +448,18 @@
         ],
         "severity": "error"
     },
+    "instrument_short_long_name_consistency_check": {
+        "rule_name": "Instrument Short/Longname Consistency Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/ShortName",
+                    "Collection/Platforms/Platform/Instruments/Instrument/LongName"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
     "instrument_short_name_gcmd_check": {
         "rule_name": "Instrument Shortname GCMD Check",
         "fields_to_apply": [
@@ -468,6 +493,17 @@
         ],
         "severity": "error"
     },
+    "data_format_gcmd_check": {
+        "rule_name": "Data Format GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/DataFormat"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
     "platform_long_name_gcmd_check": {
         "rule_name": "Platform Longname GCMD Check",
         "fields_to_apply": [
@@ -479,12 +515,57 @@
         ],
         "severity": "error"
     },
+    "spatial_keyword_gcmd_check": {
+        "rule_name": "Spatial Keyword GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/SpatialKeywords/Keyword"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
     "platform_type_gcmd_check": {
         "rule_name": "Platform Type GCMD Check",
         "fields_to_apply": [
             {
                 "fields": [
                     "Collection/Platforms/Platform/Type"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "campaign_short_long_name_consistency_check": {
+        "rule_name": "Campaign Short/Long name consistency Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Campaigns/Campaign/ShortName",
+                    "Collection/Campaigns/Campaign/LongName"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "campaign_short_name_gcmd_check": {
+        "rule_name": "Campaign Short Name GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Campaigns/Campaign/ShortName"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "campaign_long_name_gcmd_check": {
+        "rule_name": "Campaign Long Name GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Campaigns/Campaign/LongName"
                 ]
             }
         ],
@@ -524,6 +605,17 @@
             }
         ],
         "severity": "info"
+    },
+    "bounding_coordinate_logic_check": {
+        "rule_name": "Bounding Coordinates Logic Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle"
+                    ]
+            }
+        ],
+        "severity": "error"
     },
     "vertical_spatial_domain_type_check": {
         "rule_name": "Vertical Spatial Domain Type Check",
