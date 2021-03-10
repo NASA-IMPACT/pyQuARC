@@ -51,6 +51,15 @@ class GcmdValidator:
             "granule_data_format": GcmdValidator._read_from_csv(
                 "granuledataformat", columns=["Short_Name", "Long_Name"]
             ),
+            "platform_short_name": GcmdValidator._read_from_csv(
+                "platforms", columns=["Short_Name"]
+            ),
+            "platform_long_name": GcmdValidator._read_from_csv(
+                "platforms", columns=["Long_Name"]
+            ),
+            "platform_type": GcmdValidator._read_from_csv(
+                "platforms", columns=["Category"]
+            ),
         }
 
     @staticmethod
@@ -186,6 +195,24 @@ class GcmdValidator:
         Validates GCMD instrument long name
         """
         return input_keyword in self.keywords["instrument_long_name"]
+
+    def validate_platform_short_name(self, input_keyword):
+        """
+        Validates GCMD Platform short name
+        """
+        return input_keyword in self.keywords["platform_short_name"]
+
+    def validate_platform_long_name(self, input_keyword):
+        """
+        Validates GCMD Platform long name
+        """
+        return input_keyword in self.keywords["platform_long_name"]
+
+    def validate_platform_type(self, input_keyword):
+        """
+        Validates GCMD platform type
+        """
+        return input_keyword in self.keywords["platform_type"]
 
     def validate_provider_short_name(self, input_keyword):
         """

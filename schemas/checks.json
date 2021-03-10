@@ -349,6 +349,21 @@
         "check_function": "instrument_long_name_gcmd_check",
         "available": true
     },
+    "platform_short_name_gcmd_check": {
+        "data_type": "string",
+        "check_function": "platform_short_name_gcmd_check",
+        "available": true
+    },
+    "platform_long_name_gcmd_check": {
+        "data_type": "string",
+        "check_function": "platform_long_name_gcmd_check",
+        "available": true
+    },
+    "platform_type_gcmd_check": {
+        "data_type": "string",
+        "check_function": "platform_type_gcmd_check",
+        "available": true
+    },
     "spatial_keyword_gcmd_check": {
         "data_type": "string",
         "check_function": "spatial_keyword_gcmd_check",

@@ -22,7 +22,7 @@ SCHEMAS = {
 }
 
 SCHEMA_PATHS = {
-    schema: SCHEMAS_BASE_PATH / f"{schema}.{filetype}" 
+    schema: SCHEMAS_BASE_PATH / f"{schema}.{filetype}"
         for filetype, schemas in SCHEMAS.items()
             for schema in schemas
 }
