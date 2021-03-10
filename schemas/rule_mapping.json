@@ -188,9 +188,9 @@
                     "Collection/ScienceKeywords/ScienceKeyword/TopicKeyword",
                     "Collection/ScienceKeywords/ScienceKeyword/TermKeyword",
                     "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/Value",
-                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel2Keyword/Value",
-                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel3Keyword/Value",
-                    "Collection/ScienceKeywords/ScienceKeyword/DetailedVariableKeyword"
+                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/VariableLevel2Keyword/Value",
+                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/VariableLevel2Keyword/VariableLevel3Keyword/Value",
+                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/VariableLevel2Keyword/VariableLevel3Keyword/DetailedVariableKeyword"
                 ]
             }
         ],
@@ -498,6 +498,17 @@
             {
                 "fields": [
                     "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle"
+                    ]
+            }
+        ],
+        "severity": "error"
+    },
+    "vertical_spatial_domain_type_check": {
+        "rule_name": "Vertical Spatial Domain Type Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Spatial/VerticalSpatialDomain/Type"
                 ]
             }
         ],

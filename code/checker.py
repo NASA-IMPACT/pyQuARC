@@ -32,7 +32,7 @@ class Checker:
 
         self.custom_checker = CustomChecker()
         self.scheduler = Scheduler(self.rule_mapping)
-        self.schema_validator = SchemaValidator(metadata_format)
+        self.schema_validator = SchemaValidator(self.messages, metadata_format)
         self.tracker = Tracker(self.rule_mapping)
 
     @staticmethod
@@ -84,9 +84,9 @@ class Checker:
         Formats the message for `rule_id` based on the result
         """
         failure_message = self.message(rule_id, "failure")
-        severity = self.rule_mapping[rule_id].get("severity") or "error"
+        severity = self.rule_mapping[rule_id].get("severity", "error")
         messages = []
-        if not result["valid"] and result.get("value"):
+        if not(result["valid"]) and result.get("value"):
             for value in result["value"]:
                 formatted_message = failure_message
                 value = value if isinstance(value, tuple) else (value,)

@@ -73,7 +73,10 @@
         "dependencies": [
             "datetime_format_check"
         ],
-        "data": ["now", "gte"],
+        "data": [
+            "now",
+            "gte"
+        ],
         "available": true
     },
     "doi_missing_reason_enumeration_check": {
@@ -349,9 +352,11 @@
         "data_type": "string",
         "check_function": "controlled_keywords_check",
         "data": [
-            "SCIENCE_QUALITY",
-            "NEAR_REAL_TIME",
-            "OTHER"
+            [
+                "SCIENCE_QUALITY",
+                "NEAR_REAL_TIME",
+                "OTHER"
+            ]
         ],
         "available": true
     },
@@ -363,6 +368,25 @@
     "doi_link_update": {
         "data_type": "url",
         "check_function": "doi_link_update",
+        "data": [[
+            "dx.doi.org",
+            "http://dx.doi.org",
+            "https://dx.doi.org"
+        ]],
+        "available": true
+    },
+    "vertical_spatial_domain_type_check": {
+        "data_type": "string",
+        "check_function": "controlled_keywords_check",
+        "data": [
+            [
+                "Atmosphere Layer",
+                "Maximum Altitude",
+                "Maximum Depth",
+                "Minimum Altitude",
+                "Minimum Depth"
+            ]
+        ],
         "available": true
     },
     "bounding_coordinate_logic_check": {
