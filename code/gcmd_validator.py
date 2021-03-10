@@ -1,6 +1,8 @@
 import csv
+import io
+import urllib.request
 
-from .constants import SCHEMA_PATHS
+from .constants import SCHEMA_PATHS, GCMD_LINKS
 
 LEAF = "this_is_the_leaf_node"
 
@@ -12,58 +14,104 @@ class GcmdValidator:
 
     def __init__(self):
         self.keywords = {
-            "science": GcmdValidator._create_science_keywords_dict(
+            "science": GcmdValidator._create_hierarchy_dict(
                 GcmdValidator._read_from_csv("science_keywords")
             ),
-            "spatial_keyword": GcmdValidator._read_from_csv("locations", [1, 2, 3, 4]),
-            "provider_short_name": GcmdValidator._read_from_csv("providers", [4]),
-            "instrument_short_name": GcmdValidator._read_from_csv("instruments", [4]),
-            "instrument_long_name": GcmdValidator._read_from_csv("instruments", [5]),
+            "spatial_keyword": GcmdValidator._read_from_csv(
+                "locations",
+                columns=[
+                    "Location_Category",
+                    "Location_Type",
+                    "Location_Subregion1",
+                    "Location_Subregion2",
+                    "Location_Subregion3",
+                ],
+            ),
+            "provider_short_name": GcmdValidator._read_from_csv(
+                "providers", columns=["Short_Name"]
+            ),
+            "instrument": GcmdValidator._create_hierarchy_dict(
+                GcmdValidator._read_from_csv("instruments")
+            ),
+            "instrument_short_name": GcmdValidator._read_from_csv(
+                "instruments", columns=["Short_Name"]
+            ),
+            "instrument_long_name": GcmdValidator._read_from_csv(
+                "instruments", columns=["Long_Name"]
+            ),
+            "campaign": GcmdValidator._create_hierarchy_dict(
+                GcmdValidator._read_from_csv("projects")
+            ),
+            "campaign_short_name": GcmdValidator._read_from_csv(
+                "projects", columns=["Short_Name"]
+            ),
+            "campaign_long_name": GcmdValidator._read_from_csv(
+                "projects", columns=["Long_Name"]
+            ),
+            "granule_data_format": GcmdValidator._read_from_csv(
+                "granuledataformat", columns=["Short_Name", "Long_Name"]
+            ),
         }
 
     @staticmethod
-    def _create_science_keywords_dict(keywords):
+    def _create_hierarchy_dict(keywords):
         """
-        Creates the science keywords dictionary from the values from the csv
+        Creates the hierarchy dictionary from the values from the csv
 
         Args:
             keywords (list): List of list of row values from the csv file
 
         Returns:
-            (dict): The lookup dictionary for GCMD science keywords
+            (dict): The lookup dictionary for GCMD hierarchy
         """
-        all_keywords = [[each.upper() for each in kw[:-1] if each.strip()] for kw in keywords]
-        science_keywords_dict = {}
+        all_keywords = [
+            [each.upper() for each in kw if each.strip()] for kw in keywords if kw
+        ]
+        hierarchy_dict = {}
         for row in all_keywords:
             row_dict = GcmdValidator.dict_from_list(row)
-            GcmdValidator.merge_dicts(science_keywords_dict, row_dict)
-        return science_keywords_dict
+            GcmdValidator.merge_dicts(hierarchy_dict, row_dict)
+        return hierarchy_dict
 
     @staticmethod
-    def _read_from_csv(keyword_kind, row_nums=None):
+    def _read_from_csv(keyword_kind, columns=None):
         """
         Reads keywords from the corresponding csv based on the kind of keyword
 
         Args:
             keyword_kind (str): The kind of keyword
-                                (could be: science_keywords, providers, instruments)
-            row_num (int, optional): The row number (zero indexed). Defaults to None.
-                                     If row_num is provided, returns keywords from that specific row
-                                     If not, returns all the rows
+                (could be: science_keywords, projects, providers, instruments, locations)
+            columns (list of int, optional): The columns to read. Defaults to None.
+                If columns is provided, returns keywords from that specific column
+                If not, returns all useful keywords based on the keyword kind
 
         Returns:
             (list): list of keywords or list of list of rows from the csv
         """
-        with open(SCHEMA_PATHS[keyword_kind]) as csvfile:
-            reader = csv.reader(csvfile)
-            if row_nums:
-                return_value = []
-                for row_num in row_nums:
-                    return_value.extend(
-                        keyword.upper() for row in list(reader)[2:] if (keyword :=row[row_num].strip())
-                    )
-            else:
-                return_value = list(reader)[2:]
+        try:
+            csvfile = io.TextIOWrapper(urllib.request.urlopen(GCMD_LINKS[keyword_kind]))
+        except:
+            csvfile = open(SCHEMA_PATHS[keyword_kind])
+        reader = csv.reader(csvfile)
+        next(reader) # Remove the metadata (1st column)
+        headers = next(reader) # Get the headers (2nd column)
+        list_of_rows = list(reader)
+        if columns:
+            return_value = []
+            for column in columns:
+                return_value.extend(
+                    keyword.upper()
+                    for row in list_of_rows
+                    if (keyword := row[headers.index(column)].strip())
+                )
+        else:
+            start = 1 if keyword_kind == "projects" else 0
+            return_value = [
+                [kw for keyword in useful_data if (kw := keyword.strip())]
+                for row in list_of_rows
+                if (useful_data := row[start : len(row) - 1]) # remove UUID (last column)
+            ]
+        csvfile.close()
         return return_value
 
     @staticmethod
@@ -119,6 +167,14 @@ class GcmdValidator:
             self.keywords["science"], input_keyword
         )
 
+    def validate_instrument_short_long_name_consistency(self, input_keyword):
+        """
+        Validates GCMD instrument short name and long name consistency
+        """
+        return GcmdValidator.validate_recursively(
+            self.keywords["instrument"], input_keyword
+        )
+
     def validate_instrument_short_name(self, input_keyword):
         """
         Validates GCMD instrument short name
@@ -142,3 +198,29 @@ class GcmdValidator:
         Validates GCMD spatial keyword
         """
         return input_keyword in self.keywords["spatial_keyword"]
+
+    def validate_campaign_short_long_name_consistency(self, input_keyword):
+        """
+        Validates GCMD campaign short name and long name consistency
+        """
+        return GcmdValidator.validate_recursively(
+            self.keywords["campaign"], input_keyword
+        )
+
+    def validate_campaign_short_name(self, input_keyword):
+        """
+        Validates GCMD Campaign Short Name
+        """
+        return input_keyword in self.keywords["campaign_short_name"]
+
+    def validate_campaign_long_name(self, input_keyword):
+        """
+        Validates GCMD Campaign Long Name
+        """
+        return input_keyword in self.keywords["campaign_long_name"]
+
+    def validate_data_format(self, input_keyword):
+        """
+        Validates GCMD Granule Data Format
+        """
+        return input_keyword in self.keywords["granule_data_format"]
