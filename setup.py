@@ -10,8 +10,8 @@ with open("requirements.txt", "r", encoding="utf-8") as requirement_file:
 
 
 setuptools.setup(
-    name="pyQuARC", # Replace with your own username
-    version="0.0.1",
+    name="pyQuARC",
+    version="1.0.0",
     author="NASA IMPACT",
     author_email="teamimpact@uah.edu",
     description="Validate and Analyze CMR for Quality Metadata",
@@ -21,7 +21,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3.8",
-        "License :: OSI Approved :: MIT License",
+        "License :: OSI Approved :: Apache License, Version 2.0",
         "Operating System :: OS Independent",
     ],
     keywords='validation metadata cmr quality',
