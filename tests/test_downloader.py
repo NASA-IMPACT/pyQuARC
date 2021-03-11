@@ -1,4 +1,4 @@
-from vacqm.code.downloader import Downloader
+from pyQuARC.code.downloader import Downloader
 
 
 class TestDownloader:
@@ -14,7 +14,7 @@ class TestDownloader:
             },
             "granule": {
                 "real": "G1370895082-GES_DISC",
-                "dummy": "G1000000002-CMR_PROV1",
+                "dummy": "G1000000002-CMR_PROV",
             },
             "invalid": "asdfasdf",
         }

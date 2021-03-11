@@ -76,6 +76,7 @@ class CustomValidator(BaseValidator):
 
     @staticmethod
     def bounding_coordinate_logic_check(coordinates_dictionary):
+        coordinates_dictionary = coordinates_dictionary or {}
         coordinates = [
                 "WestBoundingCoordinate",
                 "EastBoundingCoordinate",
@@ -89,7 +90,7 @@ class CustomValidator(BaseValidator):
         }
 
         values = {
-            coordinate: int(coordinates_dictionary[coordinate])
+            coordinate: int(coordinates_dictionary.get(coordinate, 0))
             for coordinate in coordinates
         }
 

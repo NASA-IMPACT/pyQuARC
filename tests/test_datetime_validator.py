@@ -1,4 +1,4 @@
-from vacqm.code.datetime_validator import DatetimeValidator
+from pyQuARC.code.datetime_validator import DatetimeValidator
 
 from .fixtures.validator import INPUT_OUTPUT
 

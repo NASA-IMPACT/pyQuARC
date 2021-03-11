@@ -1,11 +1,9 @@
 import argparse
-import json
 import os
 import os.path
 import requests
 import xmltodict
 
-from pprint import pprint
 from tqdm import tqdm
 
 from .code.checker import Checker
@@ -16,7 +14,7 @@ ABS_PATH = os.path.abspath(os.path.dirname(__file__))
 END = COLOR["reset"]
 
 
-class VACQM:
+class ARC:
     """
     Takes concept_ids and runs downloader/validator on each
 
@@ -31,6 +29,9 @@ class VACQM:
         fake=None,
         file_path=None,
         metadata_format=ECHO10,
+        checks_override=None,
+        rules_override=None,
+        messages_override=None
     ):
         """
         Args:
@@ -55,6 +56,9 @@ class VACQM:
                 )
         )
         self.metadata_format = metadata_format
+        self.checks_override = checks_override
+        self.rules_override = rules_override
+        self.messages_override = messages_override
 
     def _cmr_query(self):
         """
@@ -117,7 +121,12 @@ class VACQM:
         Returns:
             (list of dict) The errors found in the metadata content of all the `concept_id`s
         """
-        checker = Checker(self.metadata_format)
+        checker = Checker(
+            metadata_format=self.metadata_format,
+            checks_override=self.checks_override,
+            rules_override=self.rules_override,
+            messages_override=self.messages_override
+        )
 
         if self.concept_ids:
             for concept_id in tqdm(self.concept_ids):
@@ -185,6 +194,7 @@ class VACQM:
         result_string += error_prompt
         print(result_string)
 
+
 if __name__ == "__main__":
     # parse command line arguments (argparse)
     # --query
@@ -234,14 +244,12 @@ if __name__ == "__main__":
         )
         exit()
 
-    vacqm = VACQM(
+    arc = ARC(
         query=args.query,
         input_concept_ids=args.concept_ids or [],
         fake=args.fake,
         file_path=args.file,
         metadata_format=args.format or ECHO10,
     )
-    results = vacqm.validate()
-    vacqm.display_results()
-
-    # print(json.dumps(results, indent=4))
+    results = arc.validate()
+    arc.display_results()

@@ -21,26 +21,47 @@ class Checker:
     Handles both the structural and logical checks
     """
 
-    def __init__(self, metadata_format=ECHO10):
+    def __init__(
+        self,
+        metadata_format=ECHO10,
+        messages_override=None,
+        checks_override=None,
+        rules_override=None
+    ):
         """
         Args:
             metadata_format (str): The format of the metadata
             validation_paths ([str]): A list of paths for which
             the structure of the metadata needs to be checked
+
+            messages_override ([str]): path to json with override message
+            checks_override ([str]): path to json with override checks
+            rules_override ([str]): path to json with override rules
+            or add missing checks
         """
+        self.msgs_override_file = messages_override or "check_messages_override"
+        self.rules_override_file = rules_override or "rules_override"
+        self.checks_override_file = checks_override or "checks_override"
+
         self.load_schemas()
 
         self.custom_checker = CustomChecker()
-        self.scheduler = Scheduler(self.rule_mapping)
+        self.scheduler = Scheduler(
+            self.rule_mapping,
+            self.rules_override,
+            self.checks,
+            self.checks_override
+        )
         self.schema_validator = SchemaValidator(self.messages, metadata_format)
-        self.tracker = Tracker(self.rule_mapping)
+        self.tracker = Tracker(self.rule_mapping, self.rules_override)
+
 
     @staticmethod
     def _json_load_schema(schema_name):
         """
         Loads json schema file
         """
-        return json.load(open(SCHEMA_PATHS[schema_name], "r"))
+        return json.load(open(SCHEMA_PATHS.get(schema_name, schema_name), "r"))
 
     def load_schemas(self):
         """
@@ -49,7 +70,15 @@ class Checker:
         self.checks = Checker._json_load_schema("checks")
         self.rule_mapping = Checker._json_load_schema("rule_mapping")
         self.messages = Checker._json_load_schema("check_messages")
-        self.messages_override = Checker._json_load_schema("check_messages_override")
+        self.messages_override = Checker._json_load_schema(
+            self.msgs_override_file
+        )
+        self.rules_override = Checker._json_load_schema(
+            self.rules_override_file
+        )
+        self.checks_override = Checker._json_load_schema(
+            self.checks_override_file
+        )
 
     @staticmethod
     def map_to_function(data_type, function):
@@ -84,7 +113,10 @@ class Checker:
         Formats the message for `rule_id` based on the result
         """
         failure_message = self.message(rule_id, "failure")
-        severity = self.rule_mapping[rule_id].get("severity", "error")
+        rule_mapping = self.rules_override.get(
+            rule_id
+        ) or self.rule_mapping.get(rule_id)
+        severity = rule_mapping.get("severity", "error")
         messages = []
         if not(result["valid"]) and result.get("value"):
             for value in result["value"]:
@@ -126,16 +158,19 @@ class Checker:
         """
         dependencies = rule.get("dependencies", [])
         external_data = rule.get("data", [])
-        list_of_fields_to_apply = self.rule_mapping.get(rule_id)["fields_to_apply"]
+        rule_mapping = self.rules_override.get(
+            rule_id
+        ) or self.rule_mapping.get(rule_id)
+        list_of_fields_to_apply = rule_mapping.get("fields_to_apply")
         for field_dict in list_of_fields_to_apply:
             main_field = field_dict["fields"][0]
             result_dict.setdefault(main_field, {})
             if not self._check_dependencies_validity(dependencies, field_dict):
                 continue
             result = self.custom_checker.run(
-                func, 
-                metadata_content, 
-                field_dict, 
+                func,
+                metadata_content,
+                field_dict,
                 external_data
             )
             self.tracker.update_data(rule_id, main_field, result["valid"])
@@ -155,7 +190,11 @@ class Checker:
         ordered_rule = self.scheduler.order_rules()
         result_dict = {}
         for rule_id in ordered_rule:
-            rule = self.checks[self.rule_mapping.get(rule_id).get("check_id") or rule_id]
+            rule_mapping = self.rules_override.get(
+                rule_id
+            ) or self.rule_mapping.get(rule_id)
+            check_id = rule_mapping.get("check_id", rule_id)
+            rule = self.checks_override.get(check_id) or self.checks.get(check_id)
             func = Checker.map_to_function(rule["data_type"], rule["check_function"])
             if func:
                 self._run_func(func, rule, rule_id, metadata_content, result_dict)
