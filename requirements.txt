@@ -1,3 +1,5 @@
+colorama==0.4.4
+idna==2.10
 jsonschema==3.2.0
 lxml==4.6.1
 pathlib==1.0.1

@@ -1,0 +1,631 @@
+{
+    "data_update_time_logic_check": {
+        "rule_name": "Data Update Time Logic Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/LastUpdate",
+                    "Collection/InsertTime"
+                ],
+                "relation": "gte"
+            }
+        ],
+        "severity": "info",
+        "check_id": "date_compare"
+    },
+    "data_revision_date_logic_check": {
+        "rule_name": "Data Revision Date Logic Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/RevisionDate",
+                    "Collection/InsertTime"
+                ],
+                "relation": "gte"
+            }
+        ],
+        "severity": "info",
+        "check_id": "date_compare"
+    },
+    "range_date_time_logic_check_1": {
+        "rule_name": "Range Date Time Logic Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Temporal/RangeDateTime/BeginningDateTime",
+                    "Collection/Temporal/RangeDateTime/EndingDateTime"
+                ],
+                "relation": "lte"
+            }
+        ],
+        "severity": "error",
+        "check_id": "date_compare"
+    },
+    "range_date_time_logic_check_2": {
+        "rule_name": "Range Date Time Logic Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Temporal/RangeDateTime/BeginningDateTime",
+                    "Collection/Temporal/RangeDateTime/EndingDateTime"
+                ],
+                "relation": "neq"
+            }
+        ],
+        "severity": "warning",
+        "check_id": "date_compare"
+    },
+    "periodic_date_time_logic_check": {
+        "rule_name": "Periodic Date Time Logic Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Temporal/PeriodicDateTime/StartDate",
+                    "Collection/Temporal/PeriodicDateTime/EndDate"
+                ],
+                "relation": "lt"
+            }
+        ],
+        "severity": "error",
+        "check_id": "date_compare"
+    },
+    "datetime_format_check": {
+        "rule_name": "Datetime ISO Format Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/InsertTime"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/LastUpdate"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/DeleteTime"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/RevisionDate"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/Temporal/SingleDateTime"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/Temporal/RangeDateTime/BeginningDateTime"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/Temporal/RangeDateTime/EndingDateTime"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/Temporal/PeriodicDateTime/StartDate"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/Temporal/PeriodicDateTime/EndDate"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "url_check": {
+        "rule_name": "URL Health and Status Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Description"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/SuggestedUsage"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "shortname_uniqueness": {
+        "rule_name": "Short Name uniqueness check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/DataSetId",
+                    "Collection/ShortName"
+                ],
+                "relation": "neq"
+            }
+        ],
+        "severity": "error"
+    },
+    "abstract_length_check": {
+        "rule_name": "Abstract length check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Description"
+                ]
+            }
+        ],
+        "severity": "warning"
+    },
+    "doi_validity_check": {
+        "rule_name": "DOI Validity Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/DOI/DOI"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "doi_link_update": {
+        "rule_name": "DOI Link Update",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/AdditionalAttributes/AdditionalAttribute/Value"
+                ]
+            }
+        ],
+        "severity": "info"
+    },
+    "processing_level_id_check": {
+        "rule_name": "EOSDIS Standard Processing Level ID Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/ProcessingLevelId"
+                ]
+            }
+        ],
+        "severity": "warning"
+    },
+    "science_keywords_gcmd_check": {
+        "rule_name": "GCMD Science keywords check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/ScienceKeywords/ScienceKeyword/CategoryKeyword",
+                    "Collection/ScienceKeywords/ScienceKeyword/TopicKeyword",
+                    "Collection/ScienceKeywords/ScienceKeyword/TermKeyword",
+                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/Value",
+                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/VariableLevel2Keyword/Value",
+                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/VariableLevel2Keyword/VariableLevel3Keyword/Value"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "eosdis_doi_authority_check": {
+        "rule_name": "EOSDIS DOI Authority Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/DOI/Authority"
+                ]
+            }
+        ],
+        "severity": "info"
+    },
+    "delete_time_check": {
+        "rule_name": "Delete Time Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/DeleteTime"
+                ]
+            }
+        ],
+        "severity": "info"
+    },
+    "doi_missing_reason_enumeration_check": {
+        "rule_name": "DOI Missing Reason Enumeration Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/DOI/MissingReason"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "processing_level_description_length_check": {
+        "rule_name": "Processing Level Description Length Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/ProcessingLevelDescription"
+                ]
+            }
+        ],
+        "severity": "info"
+    },
+    "umm_controlled_collection_state_list_check": {
+        "rule_name": "UMM Controlled Collection State List",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/CollectionState"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "ends_at_present_flag_logic_check": {
+        "rule_name": "Ends at present flag logic check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Temporal/EndsAtPresentFlag",
+                    "Collection/Temporal/RangeDateTime/EndingDateTime",
+                    "Collection/CollectionState"
+                ]
+            }
+        ],
+        "severity": "warning"
+    },
+    "ends_at_present_flag_presence_check": {
+        "rule_name": "Ends at present flag presence check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Temporal/EndsAtPresentFlag",
+                    "Collection/Temporal/RangeDateTime/EndingDateTime",
+                    "Collection/CollectionState"
+                ]
+            }
+        ],
+        "severity": "warning"
+    },
+    "contact_mechanism_enum_check": {
+        "rule_name": "Contact Mechanism Enumeration Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Contacts/Contact/OrganizationPhones/Phone/Type"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "data_contact_role_enum_check": {
+        "rule_name": "Data Contact Role Enumeration Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Contacts/Contact/ContactPersons/ContactPerson/JobPosition"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "controlled_contact_role_check": {
+        "rule_name": "Controlled Contact Role Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Contact/Role"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "data_type_control_check": {
+        "rule_name": "Data type control Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/AdditionalAttributes/AdditionalAttribute/DataType"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Characteristics/Characteristic/DataType"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "characteristic_name_check": {
+        "rule_name": "Characteristic Name Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Name",
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "characteristic_desc_check": {
+        "rule_name": "Characteristic Description Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Description",
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "characteristic_unit_check": {
+        "rule_name": "Characteristic Unit Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Unit",
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "characteristic_value_check": {
+        "rule_name": "Characteristic Value Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Value",
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "mime_type_check": {
+        "rule_name": "MIME type Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/OnlineResources/OnlineResource/MimeType",
+                    "Collection/OnlineResources/OnlineResource/Type"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "coordinate_system_check": {
+        "rule_name": "Coordinate System Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Spatial/HorizontalSpatialDomain/Geometry/Coordinate System"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "product_flag_check": {
+        "rule_name": "Product Flag Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/ProductFlag"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "granule_spatial_representation_check": {
+        "rule_name": "Granule Spatial Representation Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Spatial/GranuleSpatialRepresentation"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "data_center_short_name_gcmd_check": {
+        "rule_name": "Data Center Shortname GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/ProcessingCenter"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/ArchiveCenter"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "instrument_short_long_name_consistency_check": {
+        "rule_name": "Instrument Short/Longname Consistency Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/ShortName",
+                    "Collection/Platforms/Platform/Instruments/Instrument/LongName"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "instrument_short_name_gcmd_check": {
+        "rule_name": "Instrument Shortname GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/ShortName"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "instrument_long_name_gcmd_check": {
+        "rule_name": "Instrument Longname GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/LongName"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "platform_short_name_gcmd_check": {
+        "rule_name": "Platform Shortname GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/ShortName"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "data_format_gcmd_check": {
+        "rule_name": "Data Format GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/DataFormat"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "platform_long_name_gcmd_check": {
+        "rule_name": "Platform Longname GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/LongName"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "spatial_keyword_gcmd_check": {
+        "rule_name": "Spatial Keyword GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/SpatialKeywords/Keyword"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "platform_type_gcmd_check": {
+        "rule_name": "Platform Type GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Type"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "campaign_short_long_name_consistency_check": {
+        "rule_name": "Campaign Short/Long name consistency Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Campaigns/Campaign/ShortName",
+                    "Collection/Campaigns/Campaign/LongName"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "campaign_short_name_gcmd_check": {
+        "rule_name": "Campaign Short Name GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Campaigns/Campaign/ShortName"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "campaign_long_name_gcmd_check": {
+        "rule_name": "Campaign Long Name GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Campaigns/Campaign/LongName"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "version_description_not_provided": {
+        "rule_name": "Version Description Not Provided",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/VersionDescription"
+                ]
+            }
+        ],
+        "severity": "info"
+    },
+    "collection_data_type_enumeration_check": {
+        "rule_name": "Collection Data Type Enumeration Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/CollectionDataType"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "data_center_name_presence_check": {
+        "rule_name": "Data Center Name Presence Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/ArchiveCenter",
+                    "Collection/ProcessingCenter",
+                    "Collection/Contacts/Contact/OrganizationName"
+                ]
+            }
+        ],
+        "severity": "info"
+    },
+    "bounding_coordinate_logic_check": {
+        "rule_name": "Bounding Coordinates Logic Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle"
+                    ]
+            }
+        ],
+        "severity": "error"
+    },
+    "vertical_spatial_domain_type_check": {
+        "rule_name": "Vertical Spatial Domain Type Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Spatial/VerticalSpatialDomain/Type"
+                ]
+            }
+        ],
+        "severity": "error"
+    }
+}
