@@ -31,23 +31,19 @@ def type_based_keys_value(field_type, obj):
         return temp_dict
     for type_key in type_based_keys[field_type]:
         schema = global_conversion_schema[type_key]
+        in_value = obj[schema['in_key']]
+        if isinstance(in_value, dict):
+            in_value = in_value["@value"]
         try:
-            in_value = obj[schema['in_key']]
-            if isinstance(in_value, dict):
-                in_value = in_value["@value"]
-            try:
-                # exceptions, if there are many if condtion here
-                # think for a proper way to do this
-                if (type_key == "maxItems" and in_value == "unbounded"):
-                    pass
-                elif (type_key == "enum" and in_value == "Not Applicable"):
-                    pass
-                else:
-                    val = schema['converter_function'](in_value)
-                    temp_dict[type_key] = val
-            except TypeError:
-                import ipdb
-                ipdb.set_trace()
+            # exceptions, if there are many if condtion here
+            # think for a proper way to do this
+            if (type_key == "maxItems" and in_value == "unbounded"):
+                pass
+            elif (type_key == "enum" and in_value == "Not Applicable"):
+                pass
+            else:
+                val = schema['converter_function'](in_value)
+                temp_dict[type_key] = val
         except KeyError:
             # if there is a key error, it means there is no in_key in the obj
             # it is normal to not have it so we let it pass
