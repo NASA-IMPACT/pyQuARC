@@ -2,9 +2,9 @@
 
 *Note:* This program requires `Python 3.8` installed in your system.
 
-**Clone the repo:** [https://github.com/NASA-IMPACT/revamped_pycmr/](https://github.com/NASA-IMPACT/revamped_pycmr/)
+**Clone the repo:** [https://github.com/NASA-IMPACT/pyQuARC/](https://github.com/NASA-IMPACT/pyQuARC/)
 
-**Go to the project directory:** `cd revamped_pycmr`
+**Go to the project directory:** `cd pyQuARC`
 
 **Create a python virtual environment:** `python -m venv env`
 
@@ -31,9 +31,9 @@ arguments:
 To test a local file, use the `--file` argument. Give it either an absolute file path or a file path relative to the project root directory.
 
 Example:
-`▶ python main.py --file "code/tests/fixtures/test_cmr_metadata.echo10"`
+`▶ python main.py --file "tests/fixtures/test_cmr_metadata.echo10"`
 or
-`▶ python main.py --file "/Users/batman/projects/vacqm/code/tests/fixtures/test_cmr_metadata.echo10"`
+`▶ python main.py --file "/Users/batman/projects/pyQuARC/tests/fixtures/test_cmr_metadata.echo10"`
 
 ## Adding a custom check
 
@@ -198,4 +198,100 @@ And a message:
 Then, if the check function receives input `value1=0` and `value2=1`, the output message will be:
 ```
 The values 0 and 1 do not amount to a true value
+```
+
+## Use as a package
+*Note:* This program requires `Python 3.8` installed in your system.
+
+**Clone the repo:** [https://github.com/NASA-IMPACT/pyQuARC/](https://github.com/NASA-IMPACT/pyQuARC/)
+
+**Go to the project directory:** `cd pyQuARC`
+
+**Install package:** `python setup.py install`
+
+**To check if the package was installed correctly:**
+```
+▶ python
+>>> from pyQuARC import ARC
+>>> validator = ARC(fake=True)
+>>> validator.validate()
+>>> ...
+```
+
+**To provide locally installed file:**
+```
+▶ python
+>>> from pyQuARC import ARC
+>>> validator = ARC(file_path="<path to metadata file>")
+>>> validator.validate()
+>>> ...
+```
+
+**To provide rules for new fields or override:**
+```
+▶ cat rule_override.json
+{
+    "data_update_time_logic_check": {
+        "rule_name": "Data Update Time Logic Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/LastUpdate",
+                    "Collection/InsertTime"
+                ],
+                "relation": "lte"
+            }
+        ],
+        "severity": "info",
+        "check_id": "date_compare"
+    },
+    "new_field": {
+        "rule_name": "Check for new field",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "<new field name>",
+                    "<other new field name>",
+                ],
+                "relation": "lte"
+            }
+        ],
+        "severity": "info",
+        "check_id": "<check_id>"
+    }
+}
+▶ python
+>>> from pyQuARC import ARC
+>>> validator = ARC(checks_override="<path to rule_override.json>")
+>>> validator.validate()
+>>> ...
+```
+
+
+**To provide custom messages for new or old fields:**
+```
+▶ cat messages_override.json
+{
+    "data_update_time_logic_check": {
+        "failure": "The UpdateTime `{}` comes after the provided InsertTime `{}`.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Dates"
+        },
+        "remediation": "Everything is alright!"
+    },
+    "new_check": {
+        "failure": "Custom check for `{}` and `{}.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Dates"
+        },
+        "remediation": "<remediation steps>"
+    }
+}
+▶ python
+>>> from pyQuARC import ARC
+>>> validator = ARC(checks_override="<path to rule_override.json>", messages_override=<path to messages_override.json>)
+>>> validator.validate()
+>>> ...
 ```
