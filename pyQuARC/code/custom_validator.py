@@ -3,6 +3,7 @@ from .string_validator import StringValidator
 
 from .utils import if_arg
 
+
 class CustomValidator(BaseValidator):
     def __init__(self):
         super().__init__()

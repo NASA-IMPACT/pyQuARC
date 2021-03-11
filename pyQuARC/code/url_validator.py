@@ -48,7 +48,7 @@ class UrlValidator(StringValidator):
                 result = {"url": url, "status_code": response_code}
             except requests.ConnectionError:
                 result = {"url": url, "error": "The URL does not exist on Internet."}
-            except Exception as e:
+            except:
                 result = {"url": url, "error": "Some unknown error occurred."}
             results.append(result)
 

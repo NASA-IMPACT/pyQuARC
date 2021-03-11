@@ -22,9 +22,11 @@ class SchemaValidator:
     ):
         """
         Args:
-            metadata_format (str): The format of the metadata that needs to be validated. Can be either of { ECHO10, UMM-JSON, DIF }.
-            validation_paths (list of str): The path of the fields in the metadata that need to be validated. 
-                                            In the form ['Collection/StartDate', ...].
+            metadata_format (str): The format of the metadata that needs
+                to be validated. Can be either of { ECHO10, UMM-JSON, DIF }.
+            validation_paths (list of str): The path of the fields in the
+                metadata that need to be validated. In the form
+                ['Collection/StartDate', ...].
         """
         # The XML schema file (echo10_xml.xsd) imports another schema file (MetadataCommon.xsd)
         # Python cannot figure out the import if they are in a different location than the calling script
@@ -142,7 +144,7 @@ class SchemaValidator:
         for node in doc.xpath('//*'):
             if not node.getchildren() and node.text:
                 paths.append(doc.getpath(node)[1:])
-    
+
         errors = {}
 
         try:

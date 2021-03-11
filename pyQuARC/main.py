@@ -70,7 +70,7 @@ class ARC:
         concept_ids = []
 
         # If any of the page query params is already specified in the url, it means that
-        # the user wants the subset of results provided by the query param, so we run 
+        # the user wants the subset of results provided by the query param, so we run
         # the get request only once
         # Else, we need to get all the result, not just the one in the given page since
         # there's pagination implemented by the API. Thus, we iterate the get request with
@@ -81,14 +81,15 @@ class ARC:
         for qparam in page_qparams:
             if qparam in self.query:
                 already_selected = True
-        
-        page_size = 2000 # Set to maximum allowable so that we need the min # of get req
+
+        # Set to maximum allowable so that we need the min # of get req
+        page_size = 2000
         collected = 0
         page_num = 1
 
         orig_query = f"{self.query}&page_size={page_size}" if not already_selected else self.query
         query = orig_query
-        
+
         while True:
             response = requests.get(query)
 
@@ -108,7 +109,7 @@ class ARC:
 
             if collected >= hits or already_selected:
                 break
-            
+
             page_num += 1
             query = f"{orig_query}&page_num={page_num}"
 

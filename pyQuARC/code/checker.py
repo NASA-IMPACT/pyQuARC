@@ -8,12 +8,7 @@ from .schema_validator import SchemaValidator
 from .scheduler import Scheduler
 from .tracker import Tracker
 
-from .custom_validator import CustomValidator
-from .datetime_validator import DatetimeValidator
-from .string_validator import StringValidator
-from .url_validator import UrlValidator
-
-from .constants import COLOR, DIF, ECHO10, SCHEMA_PATHS, UMM_JSON
+from .constants import ECHO10, SCHEMA_PATHS
 
 
 class Checker:
@@ -54,7 +49,6 @@ class Checker:
         )
         self.schema_validator = SchemaValidator(self.messages, metadata_format)
         self.tracker = Tracker(self.rule_mapping, self.rules_override)
-
 
     @staticmethod
     def _json_load_schema(schema_name):
@@ -98,7 +92,7 @@ class Checker:
         if not class_object or not hasattr(class_object, function):
             print(f"The function {class_name}.{function} hasn't been implemented")
             return None
-        return  getattr(class_object, function)
+        return getattr(class_object, function)
 
     def message(self, rule_id, msg_type):
         """
@@ -174,7 +168,9 @@ class Checker:
                 external_data
             )
             self.tracker.update_data(rule_id, main_field, result["valid"])
-            if result["valid"] == None: # this is to avoid "valid" = null in the result, for rules that are not applied
+
+            # this is to avoid "valid" = null in the result, for rules that are not applied
+            if result["valid"] is None:
                 continue
             result_dict[main_field][rule_id] = result
 
@@ -219,4 +215,3 @@ class Checker:
             **result_schema, **result_custom
         }
         return result
-

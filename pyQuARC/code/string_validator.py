@@ -1,7 +1,3 @@
-import csv
-
-from .constants import SCHEMA_PATHS
-
 from .base_validator import BaseValidator
 from .gcmd_validator import GcmdValidator
 from .utils import if_arg
@@ -105,7 +101,6 @@ class StringValidator(BaseValidator):
     @staticmethod
     @if_arg
     def instrument_short_long_name_consistency_check(*args):
-        value = None
         received_keyword = [arg.upper().strip() for arg in args if arg]
         return {
             "valid": StringValidator.gcmdValidator.validate_instrument_short_long_name_consistency(
@@ -177,7 +172,6 @@ class StringValidator(BaseValidator):
     @staticmethod
     @if_arg
     def campaign_short_long_name_consistency_check(*args):
-        value = None
         received_keyword = [arg.upper().strip() for arg in args if arg]
         return {
             "valid": StringValidator.gcmdValidator.validate_campaign_short_long_name_consistency(
