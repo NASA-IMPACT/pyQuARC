@@ -107,7 +107,7 @@ class CustomChecker:
             valid = func_return["valid"] # can be True, False or None
             if valid is not None:
                 if valid:
-                    validity = validity or (validity == None)
+                    validity = validity or (validity is None)
                 else:
                     invalid_values.append(func_return["value"])
                     validity = False

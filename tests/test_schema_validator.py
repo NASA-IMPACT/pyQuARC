@@ -8,6 +8,7 @@ KEYS = [
     "no_error_metadata", "bad_syntax_metadata", "test_cmr_metadata"
 ]
 
+
 class TestSchemaValidator:
     def setup_method(self):
         self.data = self.read_data()
@@ -28,9 +29,10 @@ class TestSchemaValidator:
             # os.path.join(os.getcwd(), DUMMY_METADATA_FILE_PATH)
             with open(
                 os.path.join(
-                os.getcwd(),
-                f"tests/fixtures/{data_key}.echo10"
-            ), "r"
+                    os.getcwd(),
+                    f"tests/fixtures/{data_key}.echo10"
+                ),
+                "r"
             ) as myfile:
                 result[data_key] = myfile.read().encode()
             result[f"{data_key}_json"] = parse(result[data_key])
