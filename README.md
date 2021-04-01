@@ -26,7 +26,8 @@ The CMR is designed around its own metadata standard called the [Unified Metadat
 **Currently, pyQuARC only supports ECHO 10 collection-level metadata. Support for additional metadata standards will continue to be added in the coming months.** When completed, pyQuARC will support the DIF 10 (collection only), ECHO 10 (collection and granule), UMM-C and UMM-G standards. At this time, there are no plans to add ISO 19115 or UMM-S specific checks. 
 
 ## Architechture
-(coming soon)
+![pyQuARC Architecture](/images/architecture.jpg)
+
 
 ## Customization
 pyQuARC is designed to be customizable. New QA rules can be added and existing QA rules can be edited or removed. Support for new metadata standards can be added as well. Details on how to customize pyQuARC will be provided in the technical user’s guide below. 
