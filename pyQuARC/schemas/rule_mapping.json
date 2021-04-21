@@ -322,7 +322,7 @@
         "fields_to_apply": [
             {
                 "fields": [
-                    "Collection/Contact/Role"
+                    "Collection/Contacts/Contact/Role"
                 ]
             }
         ],
