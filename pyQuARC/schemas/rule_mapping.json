@@ -132,6 +132,11 @@
                 "fields": [
                     "Collection/SuggestedUsage"
                 ]
+            },
+            {
+                "fields": [
+                    "Collection/CitationforExternalPublication"
+                ]
             }
         ],
         "severity": "error"
