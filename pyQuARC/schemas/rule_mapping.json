@@ -502,6 +502,11 @@
                 "fields": [
                     "Collection/Platforms/Platform/Instruments/Instrument/ShortName"
                 ]
+            },
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/ShortName"
+                ]
             }
         ],
         "severity": "error"
