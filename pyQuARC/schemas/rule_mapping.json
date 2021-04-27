@@ -518,6 +518,11 @@
                 "fields": [
                     "Collection/Platforms/Platform/Instruments/Instrument/LongName"
                 ]
+            },
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/LongName"
+                ]
             }
         ],
         "severity": "error"
