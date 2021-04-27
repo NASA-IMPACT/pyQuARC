@@ -55,6 +55,34 @@
         "severity": "warning",
         "check_id": "date_compare"
     },
+    "project_date_time_logic_check_1": {
+        "rule_name": "Project Date Time Logic Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Campaigns/Campaign/StartDate",
+                    "Collection/Campaigns/Campaign/EndDate"
+                ],
+                "relation": "lte"
+            }
+        ],
+        "severity": "error",
+        "check_id": "date_compare"
+    },
+    "project_date_time_logic_check_2": {
+        "rule_name": "Project Date Time Logic Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Campaigns/Campaign/StartDate",
+                    "Collection/Campaigns/Campaign/EndDate"
+                ],
+                "relation": "neq"
+            }
+        ],
+        "severity": "warning",
+        "check_id": "date_compare"
+    },
     "periodic_date_time_logic_check": {
         "rule_name": "Periodic Date Time Logic Check",
         "fields_to_apply": [

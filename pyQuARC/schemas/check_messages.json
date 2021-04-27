@@ -183,6 +183,22 @@
         },
         "remediation": "The temporal Beginning Date Time and Ending Date Time are identical. Recommend removing the Beginning Date Time and Ending Date Time elements and instead provide a Single Date Time."
     },
+    "project_date_time_logic_check_1": {
+        "failure": "The Start Date Time `{}` comes after the End Date Time `{}`.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Update the start and/or end date time so that the timeline is logical."
+    },
+    "project_date_time_logic_check_2": {
+        "failure": "The Start Date Time `{}` and End Date Time `{}` are the same.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "The temporal Start Date Time and End Date Time are identical."
+    },
     "periodic_date_time_logic_check": {
         "failure": "The Start Date `{}` is not before the End Date `{}`.",
         "help": {
