@@ -116,6 +116,16 @@
                 "fields": [
                     "Collection/Temporal/PeriodicDateTime/EndDate"
                 ]
+            },
+            {
+                "fields": [
+                    "Collection/Campaigns/Campaign/StartDate"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/Campaigns/Campaign/EndDate"
+                ]
             }
         ],
         "severity": "error"
@@ -136,6 +146,16 @@
             {
                 "fields": [
                     "Collection/CitationforExternalPublication"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/OnlineResources/OnlineResource/URL"
                 ]
             }
         ],
@@ -339,6 +359,16 @@
             {
                 "fields": [
                     "Collection/Platforms/Platform/Characteristics/Characteristic/DataType"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/DataType"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/Characteristics/Characteristic/DataType"
                 ]
             }
         ],
