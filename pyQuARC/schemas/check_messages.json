@@ -438,5 +438,13 @@
             "url": ""
         },
         "remediation": "Please provide a depth unit from the following list: ['Fathoms', 'Feet', 'HectoPascals', 'Meters', 'Millibars']"
+    },
+    "altitude_unit_check": {
+        "failure": "The Altitude Unit provided `{}` is invalid.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a altitude unit from the following list: ['HectoPascals', 'Kilometers', 'Millibars']"
     }
 }

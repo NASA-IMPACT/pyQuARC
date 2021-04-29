@@ -727,5 +727,16 @@
             }
         ],
         "severity": "error"
+    },
+    "altitude_unit_check": {
+        "rule_name": "Altitude Unit Controlled Vocabulary Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/SpatialInfo/VerticalCoordinateSystem/AltitudeSystemDefinition/DistanceUnits"
+                ]
+            }
+        ],
+        "severity": "error"
     }
 }

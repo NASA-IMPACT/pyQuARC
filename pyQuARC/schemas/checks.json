@@ -483,5 +483,17 @@
             ]
         ],
         "available": true
+    },
+    "altitude_unit_check": {
+        "data_type": "string",
+        "check_function": "controlled_keywords_check",
+        "data": [
+            [   
+                "HectoPascals",
+                "Kilometers",
+                "Millibars"
+            ]
+        ],
+        "available": true
     }
 }
