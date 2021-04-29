@@ -181,7 +181,7 @@
             "message": "",
             "url": ""
         },
-        "remediation": "The temporal Beginning Date Time and Ending Date Time are identical. Recommend removing the Beginning Date Time and Ending Date Time elements and instead provide a Single Date Time."
+        "remediation": "The Beginning Date Time and Ending Date Time are identical. Recommend removing the Beginning Date Time and Ending Date Time elements and instead provide a Single Date Time."
     },
     "project_date_time_logic_check_1": {
         "failure": "The Start Date Time `{}` comes after the End Date Time `{}`.",
@@ -197,7 +197,7 @@
             "message": "",
             "url": ""
         },
-        "remediation": "The temporal Start Date Time and End Date Time are identical."
+        "remediation": "The Start Date Time and End Date Time are identical."
     },
     "periodic_date_time_logic_check": {
         "failure": "The Start Date `{}` is not before the End Date `{}`.",
@@ -429,7 +429,7 @@
             "message": "",
             "url": ""
         },
-        "remediation": "Please provide a spatial coverage type from the following list: ['HORIZONTAL', 'VERTICAL', 'ORBITAL', 'HORIZONTAL_VERTICAL', ORBITAL_VERTICAL', 'HORIZONTAL_ORBITAL', 'HORIZONTAL_VERTICAL_ORBITAL']"
+        "remediation": "Please provide a Spatial Coverage Type from the following list: ['HORIZONTAL', 'VERTICAL', 'ORBITAL', 'HORIZONTAL_VERTICAL', ORBITAL_VERTICAL', 'HORIZONTAL_ORBITAL', 'HORIZONTAL_VERTICAL_ORBITAL']"
     },
     "depth_unit_check": {
         "failure": "The Depth Unit provided `{}` is invalid.",
