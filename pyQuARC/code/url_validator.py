@@ -27,11 +27,11 @@ class UrlValidator(StringValidator):
             (list) List of texts that start with 'http' from `text_with_urls`
         """
         texts = text_with_urls.split(' ')
-        part_urls = set()
+        starts_with_http = set()
         for text in texts:
             if text.startswith('http'):
-                part_urls.add(text)
-        return part_urls
+                starts_with_http.add(text)
+        return starts_with_http
 
     @staticmethod
     @if_arg
