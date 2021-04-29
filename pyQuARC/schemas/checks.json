@@ -469,5 +469,19 @@
             ]
         ],
         "available": true
+    },
+    "depth_unit_check": {
+        "data_type": "string",
+        "check_function": "controlled_keywords_check",
+        "data": [
+            [   
+                "Fathoms",
+                "Feet",
+                "HectoPascals",
+                "Meters",
+                "Millibars"
+            ]
+        ],
+        "available": true
     }
 }

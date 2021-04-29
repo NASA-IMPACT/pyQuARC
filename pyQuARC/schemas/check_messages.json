@@ -430,5 +430,13 @@
             "url": ""
         },
         "remediation": "Please provide a spatial coverage type from the following list: ['HORIZONTAL', 'VERTICAL', 'ORBITAL', 'HORIZONTAL_VERTICAL', ORBITAL_VERTICAL', 'HORIZONTAL_ORBITAL', 'HORIZONTAL_VERTICAL_ORBITAL']"
+    },
+    "depth_unit_check": {
+        "failure": "The Depth Unit provided `{}` is invalid.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a depth unit from the following list: ['Fathoms', 'Feet', 'HectoPascals', 'Meters', 'Millibars']"
     }
 }

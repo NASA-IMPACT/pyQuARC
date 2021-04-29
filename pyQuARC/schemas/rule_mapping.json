@@ -716,5 +716,16 @@
             }
         ],
         "severity": "error"
+    },
+    "depth_unit_check": {
+        "rule_name": "Depth Unit Controlled Vocabulary Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/SpatialInfo/VerticalCoordinateSystem/DepthSystemDefinition/DistanceUnits"
+                ]
+            }
+        ],
+        "severity": "error"
     }
 }
