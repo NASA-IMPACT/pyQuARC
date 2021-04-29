@@ -700,5 +700,21 @@
             }
         ],
         "severity": "error"
+    },
+    "spatial_coverage_type_check": {
+        "rule_name": "Spatial Coverage Type Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Spatial/SpatialCoverageType"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/SpatialInfo/SpatialCoverageType"
+                ]
+            }
+        ],
+        "severity": "error"
     }
 }

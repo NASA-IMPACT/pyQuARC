@@ -453,5 +453,21 @@
         "data_type": "custom",
         "check_function": "bounding_coordinate_logic_check",
         "available": true
+    },
+    "spatial_coverage_type_check": {
+        "data_type": "string",
+        "check_function": "controlled_keywords_check",
+        "data": [
+            [   
+                "HORIZONTAL",
+                "VERTICAL",
+                "ORBITAL",
+                "HORIZONTAL_VERTICAL",
+                "ORBITAL_VERTICAL",
+                "HORIZONTAL_ORBITAL",
+                "HORIZONTAL_VERTICAL_ORBITAL"
+            ]
+        ],
+        "available": true
     }
 }
