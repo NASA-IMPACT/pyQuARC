@@ -15,10 +15,29 @@ class UrlValidator(StringValidator):
         super().__init__()
 
     @staticmethod
+    def _extract_http_texts(text_with_urls):
+        """
+        Extracts anything that starts with 'http' from `text_with_urls`. 
+        This is required for catching "wrong" urls that aren't extracted by `URLExtract.find_urls()` because they are not urls at all
+        An example: https://randomurl
+        Args:
+            text_with_urls (str, required): The text that contains the URLs where the check needs to be performed
+
+        Returns:
+            (list) List of texts that start with 'http' from `text_with_urls`
+        """
+        texts = text_with_urls.split(' ')
+        starts_with_http = set()
+        for text in texts:
+            if text.startswith('http'):
+                starts_with_http.add(text)
+        return starts_with_http
+
+    @staticmethod
     @if_arg
     def health_and_status_check(text_with_urls):
         """
-        Checks the health and status of the URLs included in `text`
+        Checks the health and status of the URLs included in `text_with_urls`
         Args:
            text_with_urls (str, required): The text that contains the URLs where the check needs to be performed
         Returns:
@@ -32,6 +51,9 @@ class UrlValidator(StringValidator):
         # extract URLs from text
         extractor = URLExtract()
         urls = extractor.find_urls(text_with_urls)
+        urls.extend(
+            UrlValidator._extract_http_texts(text_with_urls)
+        )
 
         # remove dots at the end (The URLExtract library catches URLs, but sometimes appends a '.' at the end)
         # remove duplicated urls

@@ -55,6 +55,34 @@
         "severity": "warning",
         "check_id": "date_compare"
     },
+    "project_date_time_logic_check_1": {
+        "rule_name": "Project Date Time Logic Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Campaigns/Campaign/StartDate",
+                    "Collection/Campaigns/Campaign/EndDate"
+                ],
+                "relation": "lte"
+            }
+        ],
+        "severity": "error",
+        "check_id": "date_compare"
+    },
+    "project_date_time_logic_check_2": {
+        "rule_name": "Project Date Time Logic Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Campaigns/Campaign/StartDate",
+                    "Collection/Campaigns/Campaign/EndDate"
+                ],
+                "relation": "neq"
+            }
+        ],
+        "severity": "warning",
+        "check_id": "date_compare"
+    },
     "periodic_date_time_logic_check": {
         "rule_name": "Periodic Date Time Logic Check",
         "fields_to_apply": [
@@ -116,6 +144,16 @@
                 "fields": [
                     "Collection/Temporal/PeriodicDateTime/EndDate"
                 ]
+            },
+            {
+                "fields": [
+                    "Collection/Campaigns/Campaign/StartDate"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/Campaigns/Campaign/EndDate"
+                ]
             }
         ],
         "severity": "error"
@@ -131,6 +169,21 @@
             {
                 "fields": [
                     "Collection/SuggestedUsage"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/CitationforExternalPublication"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/OnlineResources/OnlineResource/URL"
                 ]
             }
         ],
@@ -317,7 +370,7 @@
         "fields_to_apply": [
             {
                 "fields": [
-                    "Collection/Contact/Role"
+                    "Collection/Contacts/Contact/Role"
                 ]
             }
         ],
@@ -334,6 +387,16 @@
             {
                 "fields": [
                     "Collection/Platforms/Platform/Characteristics/Characteristic/DataType"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/DataType"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/Characteristics/Characteristic/DataType"
                 ]
             }
         ],
@@ -467,6 +530,11 @@
                 "fields": [
                     "Collection/Platforms/Platform/Instruments/Instrument/ShortName"
                 ]
+            },
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/ShortName"
+                ]
             }
         ],
         "severity": "error"
@@ -477,6 +545,11 @@
             {
                 "fields": [
                     "Collection/Platforms/Platform/Instruments/Instrument/LongName"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/LongName"
                 ]
             }
         ],
@@ -623,6 +696,44 @@
             {
                 "fields": [
                     "Collection/Spatial/VerticalSpatialDomain/Type"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "spatial_coverage_type_check": {
+        "rule_name": "Spatial Coverage Type Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Spatial/SpatialCoverageType"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/SpatialInfo/SpatialCoverageType"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "depth_unit_check": {
+        "rule_name": "Depth Unit Controlled Vocabulary Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/SpatialInfo/VerticalCoordinateSystem/DepthSystemDefinition/DistanceUnits"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "altitude_unit_check": {
+        "rule_name": "Altitude Unit Controlled Vocabulary Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/SpatialInfo/VerticalCoordinateSystem/AltitudeSystemDefinition/DistanceUnits"
                 ]
             }
         ],

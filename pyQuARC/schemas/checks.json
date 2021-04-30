@@ -453,5 +453,47 @@
         "data_type": "custom",
         "check_function": "bounding_coordinate_logic_check",
         "available": true
+    },
+    "spatial_coverage_type_check": {
+        "data_type": "string",
+        "check_function": "controlled_keywords_check",
+        "data": [
+            [   
+                "HORIZONTAL",
+                "VERTICAL",
+                "ORBITAL",
+                "HORIZONTAL_VERTICAL",
+                "ORBITAL_VERTICAL",
+                "HORIZONTAL_ORBITAL",
+                "HORIZONTAL_VERTICAL_ORBITAL"
+            ]
+        ],
+        "available": true
+    },
+    "depth_unit_check": {
+        "data_type": "string",
+        "check_function": "controlled_keywords_check",
+        "data": [
+            [   
+                "Fathoms",
+                "Feet",
+                "HectoPascals",
+                "Meters",
+                "Millibars"
+            ]
+        ],
+        "available": true
+    },
+    "altitude_unit_check": {
+        "data_type": "string",
+        "check_function": "controlled_keywords_check",
+        "data": [
+            [   
+                "HectoPascals",
+                "Kilometers",
+                "Millibars"
+            ]
+        ],
+        "available": true
     }
 }
