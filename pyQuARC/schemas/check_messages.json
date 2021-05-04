@@ -470,5 +470,13 @@
             "url": ""
         },
         "remediation": "Please provide a Horizontal Datum Name."
+    },
+    "online_access_url_presence_check": {
+        "failure": "No Online Access URL is provided. A link to access the data is required by the UMM/CMR.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide at least one Online Access URL."
     }
 }

@@ -771,5 +771,16 @@
             }
         ],
         "severity": "info"
+    },
+    "online_access_url_presence_check": {
+        "rule_name": "Online Access URL Presence Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
+                ]
+            }
+        ],
+        "severity": "error"
     }
 }
