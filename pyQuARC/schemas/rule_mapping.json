@@ -760,5 +760,16 @@
             }
         ],
         "severity": "info"
+    },
+    "horizontal_datum_name_check": {
+        "rule_name": "Horizontal Datum Name Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/SpatialInfo/HorizontalCoordinateSystem/GeodeticModel/HorizontalDatumName"
+                ]
+            }
+        ],
+        "severity": "info"
     }
 }

@@ -462,5 +462,13 @@
             "url": ""
         },
         "remediation": "Please provide a spatial coverage type from the following list: ['HORIZONTAL', 'VERTICAL', 'ORBITAL', 'HORIZONTAL_VERTICAL', 'ORBITAL_VERTICAL', 'HORIZONTAL_ORBITAL', 'HORIZONTAL_VERTICAL_ORBITAL']"
+    },
+    "horizontal_datum_name_check": {
+        "failure": "Horizontal Datum Name is missing.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a Horizontal Datum Name."
     }
 }
