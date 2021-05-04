@@ -454,5 +454,13 @@
             "url": ""
         },
         "remediation": "Please add a GCMD compliant Campaign name if applicable to the dataset."
+    },
+    "spatial_coverage_type_presence_check": {
+        "failure": "Spatial Coverage Type is missing.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a spatial coverage type from the following list: ['HORIZONTAL', 'VERTICAL', 'ORBITAL', 'HORIZONTAL_VERTICAL', 'ORBITAL_VERTICAL', 'HORIZONTAL_ORBITAL', 'HORIZONTAL_VERTICAL_ORBITAL']"
     }
 }

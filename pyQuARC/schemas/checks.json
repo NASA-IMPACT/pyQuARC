@@ -500,5 +500,10 @@
         "data_type": "custom",
         "check_function": "presence_check",
         "available": true
+    },
+    "spatial_coverage_type_presence_check": {
+        "data_type": "custom",
+        "check_function": "presence_check",
+        "available": true
     }
 }

@@ -749,5 +749,16 @@
             }
         ],
         "severity": "info"
+    },
+    "spatial_coverage_type_presence_check": {
+        "rule_name": "Spatial Coverage Type Presence Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/SpatialInfo/SpatialCoverageType"
+                ]
+            }
+        ],
+        "severity": "info"
     }
 }
