@@ -446,5 +446,13 @@
             "url": ""
         },
         "remediation": "Please provide a altitude unit from the following list: ['HectoPascals', 'Kilometers', 'Millibars']"
+    },
+    "campaign_name_presence_check": {
+        "failure": "Campaign/Project name is missing.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please add a GCMD compliant Campaign name if applicable to the dataset."
     }
 }

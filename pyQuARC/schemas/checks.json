@@ -422,7 +422,7 @@
     },
     "data_center_name_presence_check": {
         "data_type": "custom",
-        "check_function": "data_center_name_presence_check",
+        "check_function": "presence_check",
         "available": true
     },
     "doi_link_update": {
@@ -494,6 +494,11 @@
                 "Millibars"
             ]
         ],
+        "available": true
+    },
+    "campaign_name_presence_check": {
+        "data_type": "custom",
+        "check_function": "presence_check",
         "available": true
     }
 }

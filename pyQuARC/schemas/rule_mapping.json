@@ -738,5 +738,16 @@
             }
         ],
         "severity": "error"
+    },
+    "campaign_name_presence_check": {
+        "rule_name": "Campaign Name Presence Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Campaigns/Campaign/ShortName"
+                ]
+            }
+        ],
+        "severity": "info"
     }
 }

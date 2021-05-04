@@ -49,19 +49,6 @@ class CustomValidator(BaseValidator):
         return result
 
     @staticmethod
-    def data_center_name_presence_check(
-        archive_center, processing_center, organization_name
-    ):
-        result = {
-            "valid": False,
-        }
-        if value := archive_center or processing_center or organization_name:
-            result["valid"] = True
-            result["value"] = value
-
-        return result
-
-    @staticmethod
     def availability_check(
         field_value,
         parent_value
@@ -102,3 +89,18 @@ class CustomValidator(BaseValidator):
         )
 
         return result
+
+    @staticmethod
+    def presence_check(*field_values):
+        validity = False
+        value = None
+
+        for field_value in field_values:
+            if value := field_value and field_value.strip():
+                value = field_value
+                validity = True
+
+        return {
+            "valid": validity,
+            "value": value
+        }
