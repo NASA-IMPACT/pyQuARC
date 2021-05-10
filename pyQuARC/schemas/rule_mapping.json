@@ -857,5 +857,16 @@
             }
         ],
         "severity": "info"
+    },
+    "license_information_check": {
+        "rule_name": "License Information Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/UseConstraints"
+                ]
+            }
+        ],
+        "severity": "warning"
     }
 }

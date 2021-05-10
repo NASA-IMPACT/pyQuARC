@@ -526,5 +526,13 @@
             "url": ""
         },
         "remediation": "Please provide a spatial extent in one of the following form: Point, Bounding Rectangle, GPolygon, Line"
+    },
+    "license_information_check": {
+        "failure": "No license information is provided.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide information about the license applicable to the dataset, preferably as a URL. For EOSDIS records, please providing the following link (unless under different usage terms): https://earthdata.nasa.gov/earth-observation-data/data-use-policy"
     }
 }

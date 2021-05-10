@@ -545,5 +545,10 @@
         "data_type": "custom",
         "check_function": "presence_check",
         "available": true
+    },
+    "license_information_check": {
+        "data_type": "custom",
+        "check_function": "presence_check",
+        "available": true
     }
 }
