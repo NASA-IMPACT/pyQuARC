@@ -518,5 +518,13 @@
             "url": ""
         },
         "remediation": "Please add a location keyword."
+    },
+    "spatial_extent_requirement_fulfillment_check": {
+        "failure": "No spatial extent is provided.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a spatial extent in one of the following form: Point, Bounding Rectangle, GPolygon, Line"
     }
 }

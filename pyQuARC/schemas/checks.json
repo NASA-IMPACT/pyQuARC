@@ -540,5 +540,10 @@
         "data_type": "custom",
         "check_function": "presence_check",
         "available": true
+    },
+    "spatial_extent_requirement_fulfillment_check": {
+        "data_type": "custom",
+        "check_function": "presence_check",
+        "available": true
     }
 }

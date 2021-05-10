@@ -837,5 +837,25 @@
             }
         ],
         "severity": "info"
+    },
+    "spatial_extent_requirement_fulfillment_check": {
+        "rule_name": "Spatial Extent Requirement Fulfillment Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Spatial/HorizontalSpatialDomain/Geometry/Point/PointLongitude",
+                    "Collection/Spatial/HorizontalSpatialDomain/Geometry/Point/PointLatitude",
+                    "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle/WestBoundingCoordinate",
+                    "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle/EastBoundingCoordinate",
+                    "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle/SouthBoundingCoordinate",
+                    "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle/NorthBoundingCoordinate",
+                    "Collection/Spatial/HorizontalSpatialDomain/Geometry/GPolygon/Boundary/Point/PointLongitude",
+                    "Collection/Spatial/HorizontalSpatialDomain/Geometry/GPolygon/Boundary/Point/PointLatitude",
+                    "Collection/Spatial/HorizontalSpatialDomain/Geometry/Line/Point/PointLongitude",
+                    "Collection/Spatial/HorizontalSpatialDomain/Geometry/Line/Point/PointLatitude"
+                ]
+            }
+        ],
+        "severity": "info"
     }
 }
