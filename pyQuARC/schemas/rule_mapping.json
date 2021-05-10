@@ -868,5 +868,16 @@
             }
         ],
         "severity": "warning"
+    },
+    "collection_citation_presence_check": {
+        "rule_name": "Collection Citation Presence Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/CitationforExternalPublication"
+                ]
+            }
+        ],
+        "severity": "warning"
     }
 }

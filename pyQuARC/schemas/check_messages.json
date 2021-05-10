@@ -534,5 +534,13 @@
             "url": ""
         },
         "remediation": "Please provide information about the license applicable to the dataset, preferably as a URL. For EOSDIS records, please providing the following link (unless under different usage terms): https://earthdata.nasa.gov/earth-observation-data/data-use-policy"
+    },
+    "collection_citation_presence_check": {
+        "failure": "No CitationforExternalPublication is provided.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a citation for the dataset in the CitationforExternalPublication field."
     }
 }
