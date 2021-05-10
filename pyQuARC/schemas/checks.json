@@ -515,5 +515,20 @@
         "data_type": "custom",
         "check_function": "presence_check",
         "available": true
+    },
+    "online_resource_url_presence_check": {
+        "data_type": "custom",
+        "check_function": "presence_check",
+        "available": true
+    },
+    "online_access_url_description_check": {
+        "data_type": "custom",
+        "check_function": "presence_check",
+        "available": true
+    },
+    "online_resource_url_description_check": {
+        "data_type": "custom",
+        "check_function": "presence_check",
+        "available": true
     }
 }

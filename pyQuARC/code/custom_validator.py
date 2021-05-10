@@ -39,13 +39,14 @@ class CustomValidator(BaseValidator):
     @staticmethod
     def mime_type_check(mime_type, url_type, controlled_list):
         result = {"valid": True, "value": mime_type}
-
-        if "USE SERVICE API" in url_type:
-            if mime_type:
-                result = StringValidator.controlled_keywords_check(
-                    mime_type, controlled_list
-                )
-
+        if url_type:
+            if "USE SERVICE API" in url_type:
+                if mime_type:
+                    result = StringValidator.controlled_keywords_check(
+                        mime_type, controlled_list
+                    )
+                else:
+                    result["valid"] = False
         return result
 
     @staticmethod

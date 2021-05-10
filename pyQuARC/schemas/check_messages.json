@@ -360,12 +360,12 @@
         "remediation": "Please provide a value for the provided characteristic. "
     },
     "mime_type_check": {
-        "failure": "",
+        "failure": "MimeType isn't valid.",
         "help": {
             "message": "",
             "url": ""
         },
-        "remediation": ""
+        "remediation": "If the URL Type is 'USE SERVIE API', please make sure to specify a MimeType from the list: ['application/json', 'application/xml', 'application/x-netcdf', 'application/gml+xml', 'application/vnd.google-earth.kml+xml', 'image/gif', 'image/tiff', 'image/bmp', 'text/csv', 'text/xml', 'application/pdf', 'application/x-hdf', 'application/xhdf5', 'application/octet-stream', 'application/vnd.google-earth.kmz', 'image/jpeg', 'image/png', 'image/vnd.collada+xml', 'text/html', 'text/plain', 'Not provided']"
     },
     "coordinate_system_check": {
         "failure": "`{}` is not a valid coordinate system.",
@@ -472,11 +472,35 @@
         "remediation": "Please provide a Horizontal Datum Name."
     },
     "online_access_url_presence_check": {
-        "failure": "No Online Access URL is provided. A link to access the data is required by the UMM/CMR.",
+        "failure": "No Online Access URLs provided. A link to access the data is required by the UMM/CMR.",
         "help": {
             "message": "",
             "url": ""
         },
         "remediation": "Please provide at least one Online Access URL."
+    },
+    "online_resource_url_presence_check": {
+        "failure": "No Online Resource URLs provided. A link to access the data is required by the UMM/CMR.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide at least one Online Resource URL."
+    },
+    "online_access_url_description_check": {
+        "failure": "The Online Access URL description is optional, but is highly recommended.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a URL description for the field."
+    },
+    "online_resource_url_description_check": {
+        "failure": "The Online Resource URL description is optional, but is highly recommended.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a URL description for the field."
     }
 }

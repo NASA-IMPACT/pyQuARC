@@ -782,5 +782,38 @@
             }
         ],
         "severity": "error"
+    },
+    "online_resource_url_presence_check": {
+        "rule_name": "Online Resource URL Presence Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/OnlineResources/OnlineResource/URL"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "online_access_url_description_check": {
+        "rule_name": "Online Access URL Description Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/OnlineAccessURLs/OnlineAccessURL/URLDescription"
+                ]
+            }
+        ],
+        "severity": "info"
+    },
+    "online_resource_url_description_check": {
+        "rule_name": "Online Resource URL Description Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/OnlineResources/OnlineResource/Description"
+                ]
+            }
+        ],
+        "severity": "info"
     }
 }
