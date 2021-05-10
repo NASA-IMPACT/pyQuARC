@@ -113,3 +113,11 @@ class CustomValidator(BaseValidator):
             "valid": 'opendap' not in field_value.lower(),
             "value": field_value
         }
+
+    @staticmethod
+    @if_arg
+    def user_services_check(first_name, middle_name, last_name):
+        return {
+            "valid": not (first_name.lower() == 'user' and last_name.lower() == 'services' and (not middle_name)),
+            "value": f'{first_name} {last_name}'
+        }

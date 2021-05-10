@@ -555,5 +555,10 @@
         "data_type": "custom",
         "check_function": "presence_check",
         "available": true
+    },
+    "user_services_check": {
+        "data_type": "custom",
+        "check_function": "user_services_check",
+        "available": true
     }
 }

@@ -879,5 +879,18 @@
             }
         ],
         "severity": "warning"
+    },
+    "user_services_check": {
+        "rule_name": " User Services Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Contacts/Contact/ContactPersons/ContactPerson/FirstName",
+                    "Collection/Contacts/Contact/ContactPersons/ContactPerson/MiddleName",
+                    "Collection/Contacts/Contact/ContactPersons/ContactPerson/LastName"
+                ]
+            }
+        ],
+        "severity": "error"
     }
 }

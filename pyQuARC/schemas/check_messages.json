@@ -542,5 +542,13 @@
             "url": ""
         },
         "remediation": "Please provide a citation for the dataset in the CitationforExternalPublication field."
+    },
+    "user_services_check": {
+        "failure": "`{}` is provided as a Contact.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please remove this field from the metadata and consider placing 'User Services' in the Organization Name field."
     }
 }
