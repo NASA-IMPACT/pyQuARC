@@ -535,5 +535,10 @@
         "data_type": "custom",
         "check_function": "opendap_url_location_check",
         "available": true
+    },
+    "location_keyword_presence_check": {
+        "data_type": "custom",
+        "check_function": "presence_check",
+        "available": true
     }
 }

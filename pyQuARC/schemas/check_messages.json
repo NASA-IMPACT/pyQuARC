@@ -510,5 +510,13 @@
             "url": ""
         },
         "remediation": "Please move the OPeNDAP URL to the field `OnlineResourceURL/URL` instead."
+    },
+    "location_keyword_presence_check": {
+        "failure": "No location keyword is provided.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please add a location keyword."
     }
 }

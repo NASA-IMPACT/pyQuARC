@@ -826,5 +826,16 @@
             }
         ],
         "severity": "error"
+    },
+    "location_keyword_presence_check": {
+        "rule_name": "Location Keyword Presence Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/SpatialKeywords/Keyword"
+                ]
+            }
+        ],
+        "severity": "info"
     }
 }
