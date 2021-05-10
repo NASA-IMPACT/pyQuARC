@@ -815,5 +815,16 @@
             }
         ],
         "severity": "info"
+    },
+    "opendap_url_location_check": {
+        "rule_name": "ECHO10 OPeNDAP URL Location Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
+                ]
+            }
+        ],
+        "severity": "error"
     }
 }

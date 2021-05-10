@@ -502,5 +502,13 @@
             "url": ""
         },
         "remediation": "Please provide a URL description for the field."
+    },
+    "opendap_url_location_check": {
+        "failure": "The provided Online Access URL `{}` is an OPeNDAP URL.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please move the OPeNDAP URL to the field `OnlineResourceURL/URL` instead."
     }
 }

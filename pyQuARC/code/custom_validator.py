@@ -105,3 +105,11 @@ class CustomValidator(BaseValidator):
             "valid": validity,
             "value": value
         }
+
+    @staticmethod
+    @if_arg
+    def opendap_url_location_check(field_value):
+        return {
+            "valid": 'opendap' not in field_value.lower(),
+            "value": field_value
+        }
