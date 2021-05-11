@@ -560,11 +560,19 @@
         "remediation": "Please provide an explanation for why the DOI is not provided."
     },
     "boolean_check": {
-        "failure": "Field value `{}` isn't a boolen.",
+        "failure": "Field value `{}` is not a boolen.",
         "help": {
             "message": "",
             "url": ""
         },
         "remediation": "The field is a boolean field. Please provide an entry of 'true' or 'false'."
+    },
+    "collection_progress_consistency_check": {
+        "failure": "CollectionState `{}` is not consistent with EndingDateTime/EndsAtPresentFlag.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please udate the CollectionState based on the EndingDateTime/EndsAtPresentFlag values."
     }
 }

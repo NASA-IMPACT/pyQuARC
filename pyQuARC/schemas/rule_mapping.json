@@ -921,5 +921,18 @@
             }
         ],
         "severity": "error"
+    },
+    "collection_progress_consistency_check": {
+        "rule_name": "Collection Progress Related Fields Consistency Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Temporal/EndsAtPresentFlag",
+                    "Collection/Temporal/RangeDateTime/EndingDateTime",
+                    "Collection/CollectionState"
+                ]
+            }
+        ],
+        "severity": "warning"
     }
 }

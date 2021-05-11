@@ -570,5 +570,10 @@
         "data_type": "custom",
         "check_function": "boolean_check",
         "available": true
+    },
+    "collection_progress_consistency_check": {
+        "data_type": "custom",
+        "check_function": "collection_progress_consistency_check",
+        "available": true
     }
 }
