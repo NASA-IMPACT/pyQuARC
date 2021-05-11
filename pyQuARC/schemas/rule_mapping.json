@@ -905,5 +905,21 @@
             }
         ],
         "severity": "info"
+    },
+    "boolean_check": {
+        "rule_name": "Boolean check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Orderable"
+                ]
+            },
+            {
+                "fields": [
+                    "Collection/Visible"
+                ]
+            }
+        ],
+        "severity": "error"
     }
 }

@@ -128,3 +128,11 @@ class CustomValidator(BaseValidator):
             "valid": not((not doi) and (missing_reason) and (not explanation)),
             "value": explanation
         }
+
+    @staticmethod
+    @if_arg
+    def boolean_check(field_value):
+        return {
+            "valid": field_value.lower() in ["true", "false"],
+            "value": field_value
+        }

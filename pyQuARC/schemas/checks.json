@@ -565,5 +565,10 @@
         "data_type": "custom",
         "check_function": "doi_missing_reason_explanation",
         "available": true
+    },
+    "boolean_check": {
+        "data_type": "custom",
+        "check_function": "boolean_check",
+        "available": true
     }
 }
