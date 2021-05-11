@@ -881,7 +881,7 @@
         "severity": "warning"
     },
     "user_services_check": {
-        "rule_name": " User Services Check",
+        "rule_name": "User Services Check",
         "fields_to_apply": [
             {
                 "fields": [
@@ -892,5 +892,18 @@
             }
         ],
         "severity": "error"
+    },
+    "doi_missing_reason_explanation": {
+        "rule_name": "DOI Missing Reason Explanation",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/DOI/Explanation",
+                    "Collection/DOI/MissingReason",
+                    "Collection/DOI/DOI"
+                ]
+            }
+        ],
+        "severity": "info"
     }
 }

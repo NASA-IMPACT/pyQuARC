@@ -560,5 +560,10 @@
         "data_type": "custom",
         "check_function": "user_services_check",
         "available": true
+    },
+    "doi_missing_reason_explanation": {
+        "data_type": "custom",
+        "check_function": "doi_missing_reason_explanation",
+        "available": true
     }
 }

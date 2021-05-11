@@ -121,3 +121,10 @@ class CustomValidator(BaseValidator):
             "valid": not (first_name.lower() == 'user' and last_name.lower() == 'services' and (not middle_name)),
             "value": f'{first_name} {last_name}'
         }
+
+    @staticmethod
+    def doi_missing_reason_explanation(explanation, missing_reason, doi):
+        return {
+            "valid": not((not doi) and (missing_reason) and (not explanation)),
+            "value": explanation
+        }

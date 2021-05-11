@@ -550,5 +550,13 @@
             "url": ""
         },
         "remediation": "Please remove this field from the metadata and consider placing 'User Services' in the Organization Name field."
+    },
+    "doi_missing_reason_explanation": {
+        "failure": "DOI Missing reason explanation is not provided.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide an explanation for why the DOI is not provided."
     }
 }
