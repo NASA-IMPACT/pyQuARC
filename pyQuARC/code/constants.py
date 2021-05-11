@@ -59,5 +59,6 @@ GCMD_LINKS = {
     "instruments": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/instruments?format=csv",
     "projects": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/projects?format=csv",
     "granuledataformat": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/granuledataformat?format=csv",
-    "platforms": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/platforms?format=csv"
+    "platforms": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/platforms?format=csv",
+    "rucontenttype": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/rucontenttype?format=csv"
 }

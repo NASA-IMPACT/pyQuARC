@@ -209,3 +209,13 @@ class StringValidator(BaseValidator):
             ),
             "value": value,
         }
+
+    @staticmethod
+    @if_arg
+    def online_resource_type_gcmd_check(resource_type):
+        return {
+            "valid": StringValidator.gcmdValidator.validate_online_resource_type(
+                resource_type.upper()
+            ),
+            "value": resource_type,
+        }

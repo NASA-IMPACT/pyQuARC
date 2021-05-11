@@ -934,5 +934,28 @@
             }
         ],
         "severity": "warning"
+    },
+    "online_resource_type_gcmd_check": {
+        "rule_name": "Online Resource Type GCMD Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/OnlineResources/OnlineResource/Type"
+                ]
+            }
+        ],
+        "severity": "error"
+    },
+    "online_resource_type_presence_check": {
+        "rule_name": "Online Resource Type Presence Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/OnlineResources/OnlineResource/Type",
+                    "Collection/OnlineResources/OnlineResource/URL"
+                ]
+            }
+        ],
+        "severity": "warning"
     }
 }

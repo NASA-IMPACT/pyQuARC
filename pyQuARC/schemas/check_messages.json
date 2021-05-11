@@ -574,5 +574,21 @@
             "url": ""
         },
         "remediation": "Please udate the CollectionState based on the EndingDateTime/EndsAtPresentFlag values."
+    },
+    "online_resource_type_gcmd_check": {
+        "failure": "Online Resource Type `{}` is not consistent with GCMD 'rucontenttype' list.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a GCMD compliant Online Resource Type."
+    },
+    "online_resource_type_presence_check": {
+        "failure": "Online Resource Type missing.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a corresponding GCMD compliant Online Resource Type for each Online Resource URL."
     }
 }

@@ -60,6 +60,9 @@ class GcmdValidator:
             "platform_type": GcmdValidator._read_from_csv(
                 "platforms", columns=["Category"]
             ),
+            "rucontenttype": GcmdValidator._read_from_csv(
+                "rucontenttype", columns=["Type", "Subtype"]
+            )
         }
 
     @staticmethod
@@ -251,3 +254,9 @@ class GcmdValidator:
         Validates GCMD Granule Data Format
         """
         return input_keyword in self.keywords["granule_data_format"]
+
+    def validate_online_resource_type(self, input_keyword):
+        """
+        Validates the Online Resource Type agains GCMD 'rucontent' list
+        """
+        return input_keyword in self.keywords["rucontenttype"]
