@@ -957,5 +957,16 @@
             }
         ],
         "severity": "warning"
+    },
+    "characteristic_name_uniqueness_check": {
+        "rule_name": "Characteristic Name Uniqueness Check",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Platforms/Platform/Characteristics"
+                ]
+            }
+        ],
+        "severity": "warning"
     }
 }

@@ -590,5 +590,13 @@
             "url": ""
         },
         "remediation": "Please provide a corresponding GCMD compliant Online Resource Type for each Online Resource URL."
+    },
+    "characteristic_name_uniqueness_check": {
+        "failure": "Duplicate characteristic name/s `{}`.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a unique name for each characteristic."
     }
 }
