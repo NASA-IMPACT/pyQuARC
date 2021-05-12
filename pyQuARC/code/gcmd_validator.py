@@ -77,8 +77,7 @@ class GcmdValidator:
             with open(VERSION_FILE) as file:
                 date_str = file.readline().replace('\n', '')
         gcmd_date = datetime.strptime(date_str, DATE_FORMAT)
-
-        if gcmd_date < current_datetime or force:
+        if gcmd_date.date() < current_datetime.date() or force:
             try:
                 for keyword, link in GCMD_LINKS.items():
                     print(f"Downloading {keyword} file from GCMD ...")
