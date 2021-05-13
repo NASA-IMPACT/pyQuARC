@@ -968,5 +968,29 @@
             }
         ],
         "severity": "warning"
+    },
+    "validate_ending_datetime_against_granules": {
+        "rule_name": "Ending Datetime validation against granules",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Temporal/RangeDateTime/EndingDateTime",
+                    "Collection/ShortName"
+                ]
+            }
+        ],
+        "severity": "warning"
+    },
+    "validate_beginning_datetime_against_granules": {
+        "rule_name": "Beginning Datetime validation against granules",
+        "fields_to_apply": [
+            {
+                "fields": [
+                    "Collection/Temporal/RangeDateTime/BeginningDateTime",
+                    "Collection/ShortName"
+                ]
+            }
+        ],
+        "severity": "warning"
     }
 }

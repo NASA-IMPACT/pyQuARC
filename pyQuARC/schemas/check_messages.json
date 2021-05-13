@@ -598,5 +598,21 @@
             "url": ""
         },
         "remediation": "Please provide a unique name for each characteristic."
+    },
+    "validate_beginning_datetime_against_granules": {
+        "failure": "The collection beginning datetime `{}` isn't consistent with the first granule's beginning datetime `{}`.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please update to make these consistent."
+    },
+    "validate_ending_datetime_against_granules": {
+        "failure": "The collection ending datetime `{}` isn't consistent with the last granule's ending datetime `{}`.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please update to make these consistent."
     }
 }

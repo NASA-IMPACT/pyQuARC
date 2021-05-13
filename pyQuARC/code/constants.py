@@ -62,3 +62,5 @@ GCMD_LINKS = {
     "platforms": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/platforms?format=csv",
     "rucontenttype": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/rucontenttype?format=csv"
 }
+
+CRM_URL = "https://cmr.earthdata.nasa.gov"
