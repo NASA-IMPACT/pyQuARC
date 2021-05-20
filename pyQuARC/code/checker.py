@@ -39,6 +39,8 @@ class Checker:
             rules_override ([str]): path to json with override rules
             or add missing checks
         """
+        self.metadata_format = metadata_format
+
         self.msgs_override_file = messages_override or "check_messages_override"
         self.rules_override_file = rules_override or "rules_override"
         self.checks_override_file = checks_override or "checks_override"
@@ -53,7 +55,7 @@ class Checker:
             self.checks_override
         )
         self.schema_validator = SchemaValidator(self.messages, metadata_format)
-        self.tracker = Tracker(self.rule_mapping, self.rules_override)
+        self.tracker = Tracker(self.rule_mapping, self.rules_override, metadata_format)
 
     @staticmethod
     def _json_load_schema(schema_name):
@@ -160,7 +162,8 @@ class Checker:
         rule_mapping = self.rules_override.get(
             rule_id
         ) or self.rule_mapping.get(rule_id)
-        list_of_fields_to_apply = rule_mapping.get("fields_to_apply")
+        list_of_fields_to_apply = \
+            rule_mapping.get("fields_to_apply").get(self.metadata_format)
         for field_dict in list_of_fields_to_apply:
             main_field = field_dict["fields"][0]
             result_dict.setdefault(main_field, {})

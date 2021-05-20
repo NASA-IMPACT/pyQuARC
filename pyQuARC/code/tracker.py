@@ -3,18 +3,21 @@ class Tracker:
     Tracks the status of each check
     """
 
-    def __init__(self, rule_mapping, rules_override):
+    def __init__(self, rule_mapping, rules_override, metadata_format):
         """
         Args:
             rule_mapping (dict): The mapping from rule to fields
+            rules_override (dict): The override of mapping from rule to fields
+            metadata_format (str): The format of the metadata file (eg. echo10, dif10)
         """
         self.data = Tracker.create_initial_track(
             rule_mapping,
-            rules_override
+            rules_override,
+            metadata_format
         )
 
     @staticmethod
-    def create_initial_track(rule_mapping, rules_override):
+    def create_initial_track(rule_mapping, rules_override, metadata_format):
         """
         Creats an initial tracking data where for each rule, the validity and the applied
         status is False
@@ -22,6 +25,7 @@ class Tracker:
         Args:
             rule_mapping (dict): The mapping from rule to fields
             rules_override (dict): The override of mapping from rule to fields
+            metadata_format (str): The format of the metadata file (eg. echo10, dif10)
 
         Returns:
             (dict): A dictionary in the form:
@@ -43,7 +47,7 @@ class Tracker:
         for rule_id in set(keys):
             data[rule_id] = []
             rule = rules_override.get(rule_id) or rule_mapping.get(rule_id)
-            for field in rule["fields_to_apply"]:
+            for field in rule["fields_to_apply"].get(metadata_format):
                 data[rule_id].append(
                     {
                         "field": field["fields"][0],
