@@ -287,7 +287,12 @@
                 },
                 {
                     "fields": [
-                        "DIF/Metadata_Dates/Data_Furture_Review"
+                        "DIF/Metadata_Dates/Data_Future_Review"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Future_Review"
                     ]
                 },
                 {
@@ -1496,5 +1501,23 @@
             ]
         },
         "severity": "warning"
+    },
+    "future_date_check": {
+        "rule_name": "Future Date Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Future_Review"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Future_Review"
+                    ]
+                }
+            ]
+        },
+        "severity": "info"
     }
 }

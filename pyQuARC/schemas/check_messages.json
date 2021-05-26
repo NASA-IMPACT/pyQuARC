@@ -614,5 +614,13 @@
             "url": ""
         },
         "remediation": "Please update to make these consistent."
+    },
+    "future_date_check": {
+        "failure": "The metadata review date `{}` is in the past.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Metadata+Dates"
+        },
+        "remediation": "Consider updating the review date to a future date or remove it from the metadata if it is no longer valid."
     }
 }
