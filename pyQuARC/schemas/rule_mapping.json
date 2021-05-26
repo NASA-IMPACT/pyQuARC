@@ -10,6 +10,15 @@
                     ],
                     "relation": "gte"
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Last_Revision",
+                        "DIF/Metadata_Dates/Data_Creation"
+                    ],
+                    "relation": "gte"
+                }
             ]
         },
         "severity": "info",
@@ -23,6 +32,15 @@
                     "fields": [
                         "Collection/RevisionDate",
                         "Collection/InsertTime"
+                    ],
+                    "relation": "gte"
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Last_Revision",
+                        "DIF/Metadata_Dates/Metadata_Creation"
                     ],
                     "relation": "gte"
                 }
@@ -42,6 +60,15 @@
                     ],
                     "relation": "lte"
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time",
+                        "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time"
+                    ],
+                    "relation": "lte"
+                }
             ]
         },
         "severity": "error",
@@ -55,6 +82,15 @@
                     "fields": [
                         "Collection/Temporal/RangeDateTime/BeginningDateTime",
                         "Collection/Temporal/RangeDateTime/EndingDateTime"
+                    ],
+                    "relation": "neq"
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time",
+                        "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time"
                     ],
                     "relation": "neq"
                 }
@@ -74,6 +110,15 @@
                     ],
                     "relation": "lte"
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Project/Start_Date",
+                        "DIF/Project/End_Date"
+                    ],
+                    "relation": "lte"
+                }
             ]
         },
         "severity": "error",
@@ -90,6 +135,15 @@
                     ],
                     "relation": "neq"
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Project/Start_Date",
+                        "DIF/Project/End_Date"
+                    ],
+                    "relation": "neq"
+                }
             ]
         },
         "severity": "warning",
@@ -103,6 +157,15 @@
                     "fields": [
                         "Collection/Temporal/PeriodicDateTime/StartDate",
                         "Collection/Temporal/PeriodicDateTime/EndDate"
+                    ],
+                    "relation": "lt"
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Periodic_DateTime/Start_Date",
+                        "DIF/Temporal_Coverage/Periodic_DateTime/End_Date"
                     ],
                     "relation": "lt"
                 }
@@ -170,6 +233,78 @@
                         "Collection/Campaigns/Campaign/EndDate"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Single_Date_Time"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Periodic_DateTime/Start_Date"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Periodic_DateTime/End_Date"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Creation"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Last_Revision"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Delete"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Creation"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Last_Revision"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Furture_Review"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Delete"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Paleo_DateTime/Paleo_Stop_Date"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Paleo_DateTime/Paleo_Start_Date"
+                    ]
+                }
             ]
         },
         "severity": "error"
@@ -218,6 +353,15 @@
                     ],
                     "relation": "neq"
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Entry_Title",
+                        "DIF/Entry_ID/Short_Name"
+                    ],
+                    "relation": "neq"
+                }
             ]
         },
         "severity": "error"
@@ -244,6 +388,28 @@
                         "Collection/DOI/DOI"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Dataset_Citation/Persistent_Identifier/Identifier"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Reference/Persistent_Identifier/Identifier"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Extended_Metadata/Metadata/Value"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Extended_Metadata/Value"
+                    ]
+                }
             ]
         },
         "severity": "error"
@@ -257,6 +423,13 @@
                         "Collection/AdditionalAttributes/AdditionalAttribute/Value"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Additional_Attributes/Value"
+                    ]
+                }
             ]
         },
         "severity": "info"
@@ -268,6 +441,13 @@
                 {
                     "fields": [
                         "Collection/ProcessingLevelId"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/ProductLevelId"
                     ]
                 }
             ]
@@ -301,6 +481,13 @@
                         "Collection/DOI/Authority"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Dataset_Citation/Persistent_Identifier/Authority"
+                    ]
+                }
             ]
         },
         "severity": "info"
@@ -312,6 +499,18 @@
                 {
                     "fields": [
                         "Collection/DeleteTime"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Delete"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Delete"
                     ]
                 }
             ]
@@ -368,6 +567,15 @@
                         "Collection/CollectionState"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Ends_At_Present_Flag",
+                        "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time",
+                        "DIF/Dataset_Progress"
+                    ]
+                }
             ]
         },
         "severity": "warning"
@@ -381,6 +589,15 @@
                         "Collection/Temporal/EndsAtPresentFlag",
                         "Collection/Temporal/RangeDateTime/EndingDateTime",
                         "Collection/CollectionState"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Ends_At_Present_Flag",
+                        "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time",
+                        "DIF/Dataset_Progress"
                     ]
                 }
             ]
@@ -520,9 +737,17 @@
                         "Collection/OnlineResources/OnlineResource/Type"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Related_URL/Mime_Type",
+                        "DIF/Related_URL/URL_Content_Type/Type"
+                    ]
+                }
             ]
         },
-        "severity": "error"
+        "severity": "info"
     },
     "coordinate_system_check": {
         "rule_name": "Coordinate System Check",
@@ -591,6 +816,14 @@
                         "Collection/Platforms/Platform/Instruments/Instrument/LongName"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Instrument/Short_Name",
+                        "DIF/Platform/Instrument/Long_Name"
+                    ]
+                }
             ]
         },
         "severity": "error"
@@ -609,6 +842,18 @@
                         "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/ShortName"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Instrument/Short_Name"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Platform/Instrument/Sensor/Short_Name"
+                    ]
+                }
             ]
         },
         "severity": "error"
@@ -625,6 +870,18 @@
                 {
                     "fields": [
                         "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/LongName"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Instrument/Long_Name"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Platform/Instrument/Sensor/Long_Name"
                     ]
                 }
             ]
@@ -666,6 +923,13 @@
                         "Collection/Platforms/Platform/LongName"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Long_Name"
+                    ]
+                }
             ]
         },
         "severity": "error"
@@ -690,6 +954,13 @@
                 {
                     "fields": [
                         "Collection/Platforms/Platform/Type"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Type"
                     ]
                 }
             ]
@@ -743,6 +1014,13 @@
                 {
                     "fields": [
                         "Collection/VersionDescription"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Version_Description"
                     ]
                 }
             ]
@@ -830,9 +1108,16 @@
                         "Collection/SpatialInfo/VerticalCoordinateSystem/DepthSystemDefinition/DistanceUnits"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Spatial_Coverage/Geometry/Bounding_Rectangle/Depth_Unit"
+                    ]
+                }
             ]
         },
-        "severity": "error"
+        "severity": "warning"
     },
     "altitude_unit_check": {
         "rule_name": "Altitude Unit Controlled Vocabulary Check",
@@ -843,9 +1128,16 @@
                         "Collection/SpatialInfo/VerticalCoordinateSystem/AltitudeSystemDefinition/DistanceUnits"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Spatial_Coverage/Geometry/Bounding_Rectangle/Altitude_Unit"
+                    ]
+                }
             ]
         },
-        "severity": "error"
+        "severity": "warning"
     },
     "campaign_name_presence_check": {
         "rule_name": "Campaign Name Presence Check",
@@ -854,6 +1146,13 @@
                 {
                     "fields": [
                         "Collection/Campaigns/Campaign/ShortName"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Project/Short_Name"
                     ]
                 }
             ]
@@ -880,6 +1179,13 @@
                 {
                     "fields": [
                         "Collection/SpatialInfo/HorizontalCoordinateSystem/GeodeticModel/HorizontalDatumName"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Spatial_Coverage/Spatial_Info/Horizontal_Coordinate_System/Geodetic_Model/Horizontal_DatumName"
                     ]
                 }
             ]
@@ -960,6 +1266,13 @@
                         "Collection/SpatialKeywords/Keyword"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Location/Location_Category"
+                    ]
+                }
             ]
         },
         "severity": "info"
@@ -1008,6 +1321,13 @@
                         "Collection/CitationforExternalPublication"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Dataset_Citation/Dataset_Title"
+                    ]
+                }
             ]
         },
         "severity": "warning"
@@ -1038,6 +1358,15 @@
                         "Collection/DOI/DOI"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Dataset_Citation/Persistent_Identifier/Explanation",
+                        "DIF/Dataset_Citation/Persistent_Identifier/MissingReason",
+                        "DIF/Dataset_Citation/Persistent_Identifier/Identifier"
+                    ]
+                }
             ]
         },
         "severity": "info"
@@ -1066,9 +1395,18 @@
             "echo10": [
                 {
                     "fields": [
+                        "Collection/CollectionState",
                         "Collection/Temporal/EndsAtPresentFlag",
-                        "Collection/Temporal/RangeDateTime/EndingDateTime",
-                        "Collection/CollectionState"
+                        "Collection/Temporal/RangeDateTime/EndingDateTime"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Dataset_Progress",
+                        "DIF/Temporal_Coverage/Ends_At_Present_Flag",
+                        "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time"
                     ]
                 }
             ]
@@ -1125,6 +1463,14 @@
                         "Collection/ShortName"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time",
+                        "DIF/Entry_ID/Short_Name"
+                    ]
+                }
             ]
         },
         "severity": "warning"
@@ -1137,6 +1483,14 @@
                     "fields": [
                         "Collection/Temporal/RangeDateTime/BeginningDateTime",
                         "Collection/ShortName"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time",
+                        "DIF/Entry_ID/Short_Name"
                     ]
                 }
             ]
