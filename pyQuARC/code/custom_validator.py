@@ -138,7 +138,8 @@ class CustomValidator(BaseValidator):
         }
 
     @staticmethod
-    def collection_progress_consistency_check(ends_at_present_flag, ending_date_time, collection_state):
+    @if_arg
+    def collection_progress_consistency_check(collection_state, ends_at_present_flag, ending_date_time):
         # Logic: https://github.com/NASA-IMPACT/pyQuARC/issues/61
         validity = True
         if collection_state.upper() == "ACTIVE":
