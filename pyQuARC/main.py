@@ -6,9 +6,14 @@ import xmltodict
 
 from tqdm import tqdm
 
-from .code.checker import Checker
-from .code.constants import COLOR, ECHO10
-from .code.downloader import Downloader
+if __name__ == '__main__':
+    from code.checker import Checker
+    from code.constants import COLOR, ECHO10
+    from code.downloader import Downloader
+else:
+    from .code.checker import Checker
+    from .code.constants import COLOR, ECHO10
+    from .code.downloader import Downloader
 
 ABS_PATH = os.path.abspath(os.path.dirname(__file__))
 END = COLOR["reset"]
@@ -37,9 +42,12 @@ class ARC:
         Args:
             query (str): The query url for the metadata content ids to download
             input_concept_ids (list of str): The list of concept ids to download
-            validation_paths (list of str): The list of the fields/paths to validate in the metadata
             fake (bool): If set to true, used a fake data to perform the validation
-            file (str): The absolute path to the sample/test metadata file
+            file_path (str): The absolute path to the sample/test metadata file
+            metadata_format (str): The format of the metadata file (echo10, dif10, etc)
+            checks_override (str): The filepath of the checks_override file
+            rules_override (str): The filepath of the rules_override file
+            messages_override (str): The filepath of the checks_override file
         """
 
         self.input_concept_ids = input_concept_ids
@@ -52,7 +60,7 @@ class ARC:
         self.file_path = (
             file_path if file_path else os.path.join(
                     ABS_PATH,
-                    "../tests/fixtures/test_cmr_metadata.echo10"
+                    f"../tests/fixtures/test_cmr_metadata.{metadata_format}"
                 )
         )
         self.metadata_format = metadata_format

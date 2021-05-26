@@ -54,7 +54,7 @@ class Checker:
             self.checks,
             self.checks_override
         )
-        self.schema_validator = SchemaValidator(self.messages, metadata_format)
+        # self.schema_validator = SchemaValidator(self.messages, metadata_format)
         self.tracker = Tracker(self.rule_mapping, self.rules_override, metadata_format)
 
     @staticmethod
@@ -140,8 +140,9 @@ class Checker:
         """
         dependency_fields = field_dict["fields"] if len(dependency) == 1 else [dependency[1]]
         for field in dependency_fields:
-            if not self.tracker.read_data(dependency[0], field)["valid"]:
-                return False
+            if self.tracker.read_data(dependency[0], field):
+                if not self.tracker.read_data(dependency[0], field).get("valid"):
+                    return False
         return True
 
     def _check_dependencies_validity(self, dependencies, field_dict):
@@ -163,7 +164,7 @@ class Checker:
             rule_id
         ) or self.rule_mapping.get(rule_id)
         list_of_fields_to_apply = \
-            rule_mapping.get("fields_to_apply").get(self.metadata_format)
+            rule_mapping.get("fields_to_apply").get(self.metadata_format, {})
         for field_dict in list_of_fields_to_apply:
             main_field = field_dict["fields"][0]
             result_dict.setdefault(main_field, {})
@@ -215,9 +216,10 @@ class Checker:
             (dict): The results of the jsonschema check and all custom checks
         """
         json_metadata = parse(metadata_content)
-        result_schema = self.perform_schema_check(
-            metadata_content, json_metadata
-        )
+        result_schema = {}
+        # self.perform_schema_check(
+        #     metadata_content, json_metadata
+        # )
         result_custom = self.perform_custom_checks(json_metadata)
         result = {
             **result_schema, **result_custom

@@ -47,7 +47,7 @@ class Tracker:
         for rule_id in set(keys):
             data[rule_id] = []
             rule = rules_override.get(rule_id) or rule_mapping.get(rule_id)
-            for field in rule["fields_to_apply"].get(metadata_format):
+            for field in rule["fields_to_apply"].get(metadata_format, {}):
                 data[rule_id].append(
                     {
                         "field": field["fields"][0],

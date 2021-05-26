@@ -3,7 +3,7 @@ import os
 from colorama import Fore, Style
 from pathlib import Path
 
-DIF = "dif"
+DIF = "dif10"
 ECHO10 = "echo10"
 UMM_JSON = "umm-json"
 
@@ -33,7 +33,7 @@ SCHEMAS = {
         "providers",
         "science_keywords"
     ],
-    "xsd": [ DIF, "echo10_xml" ],
+    "xsd": [ f"{DIF}_xml", "echo10_xml" ],
     "xml": [ "catalog" ]
 }
 
