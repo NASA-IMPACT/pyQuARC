@@ -1519,5 +1519,18 @@
             ]
         },
         "severity": "info"
+    },
+    "iso_topic_category_check": {
+        "rule_name": "ISO Topic Category Vocabulary Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/ISO_Topic_Category"
+                    ]
+                }
+            ]
+        },
+        "severity": "error"
     }
 }

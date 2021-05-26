@@ -3,7 +3,9 @@
         "data_type": "datetime",
         "check_function": "compare",
         "dependencies": [
-            ["datetime_format_check"]
+            [
+                "datetime_format_check"
+            ]
         ],
         "available": true
     },
@@ -71,7 +73,9 @@
         "data_type": "datetime",
         "check_function": "compare",
         "dependencies": [
-            ["datetime_format_check"]
+            [
+                "datetime_format_check"
+            ]
         ],
         "data": [
             "now",
@@ -428,11 +432,13 @@
     "doi_link_update": {
         "data_type": "url",
         "check_function": "doi_link_update",
-        "data": [[
-            "dx.doi.org",
-            "http://dx.doi.org",
-            "https://dx.doi.org"
-        ]],
+        "data": [
+            [
+                "dx.doi.org",
+                "http://dx.doi.org",
+                "https://dx.doi.org"
+            ]
+        ],
         "available": true
     },
     "vertical_spatial_domain_type_check": {
@@ -458,7 +464,7 @@
         "data_type": "string",
         "check_function": "controlled_keywords_check",
         "data": [
-            [   
+            [
                 "HORIZONTAL",
                 "VERTICAL",
                 "ORBITAL",
@@ -474,7 +480,7 @@
         "data_type": "string",
         "check_function": "controlled_keywords_check",
         "data": [
-            [   
+            [
                 "Fathoms",
                 "Feet",
                 "HectoPascals",
@@ -488,7 +494,7 @@
         "data_type": "string",
         "check_function": "controlled_keywords_check",
         "data": [
-            [   
+            [
                 "HectoPascals",
                 "Kilometers",
                 "Millibars"
@@ -595,7 +601,9 @@
         "data_type": "datetime",
         "check_function": "validate_ending_datetime_against_granules",
         "dependencies": [
-            ["datetime_format_check"]
+            [
+                "datetime_format_check"
+            ]
         ],
         "available": true
     },
@@ -603,7 +611,9 @@
         "data_type": "datetime",
         "check_function": "validate_beginning_datetime_against_granules",
         "dependencies": [
-            ["datetime_format_check"]
+            [
+                "datetime_format_check"
+            ]
         ],
         "available": true
     },
@@ -611,11 +621,43 @@
         "data_type": "datetime",
         "check_function": "compare",
         "dependencies": [
-            ["datetime_format_check"]
+            [
+                "datetime_format_check"
+            ]
         ],
         "data": [
             "now",
             "gte"
+        ],
+        "available": true
+    },
+    "iso_topic_category_check": {
+        "data_type": "string",
+        "check_function": "controlled_keywords_check",
+        "data": [
+            [
+                "BIOTA",
+                "BOUNDARIES",
+                "CLIMATOLOGY/METEOROLOGY/ATMOSPHERE",
+                "DISASTER",
+                "ECONOMY",
+                "ELEVATION",
+                "ENVIRONMENT",
+                "EXTRA TERRESTRIAL",
+                "FARMING",
+                "GEOSCIENTIFIC INFORMATION",
+                "HEALTH",
+                "IMAGERY/BASE MAPS/EARTH COVER",
+                "INLAND WATERS",
+                "INTELLIGENCE/MILITARY",
+                "LOCATION",
+                "OCEANS",
+                "PLANNING CADASTRE",
+                "SOCIETY",
+                "STRUCTURE",
+                "TRANSPORTATION",
+                "UTILITIES/COMMUNICATIONS"
+            ]
         ],
         "available": true
     }
