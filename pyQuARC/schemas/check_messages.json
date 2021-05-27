@@ -627,8 +627,16 @@
         "failure": "Invalid ISO Topic Category.",
         "help": {
             "message": "",
-            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Metadata+Dates"
+            "url": ""
         },
         "remediation": "Provide a valid ISO Topic Category value from the following list:  ['BIOTA', 'BOUNDARIES', 'CLIMATOLOGY/METEOROLOGY/ATMOSPHERE', 'DISASTER', 'ECONOMY', 'ELEVATION', 'ENVIRONMENT', 'EXTRA TERRESTRIAL', 'FARMING', 'GEOSCIENTIFIC INFORMATION', 'HEALTH', 'IMAGERY/BASE MAPS/EARTH COVER', 'INLAND WATERS', 'INTELLIGENCE/MILITARY', 'LOCATION', 'OCEANS', 'PLANNING CADASTRE', 'SOCIETY', 'STRUCTURE', 'TRANSPORTATION', 'UTILITIES/COMMUNICATIONS']."
+    },
+    "dif10_date_not_provided_check": {
+        "failure": "Date listed as `{}`",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Metadata+Dates"
+        },
+        "remediation": "Please provide a date, if known."
     }
 }

@@ -660,5 +660,14 @@
             ]
         ],
         "available": true
+    },
+    "dif10_date_not_provided_check": {
+        "data_type": "string",
+        "check_function": "compare",
+        "data": [
+            "NOT PROVIDED",
+            "neq"
+        ],
+        "available": true
     }
 }

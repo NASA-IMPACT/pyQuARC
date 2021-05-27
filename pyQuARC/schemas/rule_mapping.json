@@ -1532,5 +1532,52 @@
             ]
         },
         "severity": "error"
+    },
+    "dif10_date_not_provided_check": {
+        "rule_name": "DIF10 Date Not Provided Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Creation"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Last_Revision"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Future_Review"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Delete"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Creation"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Last_Revision"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Future_Review"
+                    ]
+                },{
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Delete"
+                    ]
+                }
+            ]
+        },
+        "severity": "info"
     }
 }
