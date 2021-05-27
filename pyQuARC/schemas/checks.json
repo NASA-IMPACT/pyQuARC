@@ -669,5 +669,19 @@
             "neq"
         ],
         "available": true
+    },
+    "temporal_extent_requirement_check": {
+        "data_type": "custom",
+        "check_function": "presence_check",
+        "available": true
+    },
+    "ftp_protocol_check": {
+        "data_type": "string",
+        "check_function": "compare",
+        "data": [
+            "FTP",
+            "neq"
+        ],
+        "available": true
     }
 }

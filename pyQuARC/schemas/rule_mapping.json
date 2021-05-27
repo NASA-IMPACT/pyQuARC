@@ -1579,5 +1579,47 @@
             ]
         },
         "severity": "info"
+    },
+    "temporal_extent_requirement_check": {
+        "rule_name": "Temporal Extent Requirement Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Temporal/SingleDateTime",
+                        "Collection/Temporal/RangeDateTime",
+                        "Collection/Temporal/PeriodicDateTime"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Single_Date_Time",
+                        "DIF/Temporal_Coverage/Range_DateTime",
+                        "DIF/Temporal_Coverage/Periodic_DateTime"
+                    ]
+                }
+            ]
+        },
+        "severity": "info"
+    },
+    "ftp_protocol_check": {
+        "rule_name": "FTP Protocol Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Related_URL/Protocol"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Use_Constraints/License_URL/Protocol"
+                    ]
+                }
+            ]
+        },
+        "severity": "error"
     }
 }

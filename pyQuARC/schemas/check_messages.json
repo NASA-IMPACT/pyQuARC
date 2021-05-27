@@ -638,5 +638,21 @@
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Metadata+Dates"
         },
         "remediation": "Please provide a date, if known."
+    },
+    "temporal_extent_requirement_check": {
+        "failure": "The Temporal requirements aren't met.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide at least one of SingleDateTime, RangeDateTime, PeriodicDateTime"
+    },
+    "ftp_protocol_check": {
+        "failure": "FTP links should no longer be used due to US Government security requirements. This check only applies to NASA/EOSDIS records.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please remove the FTP link."
     }
 }
