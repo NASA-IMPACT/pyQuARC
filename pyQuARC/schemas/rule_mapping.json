@@ -168,6 +168,13 @@
                         "DIF/Temporal_Coverage/Periodic_DateTime/End_Date"
                     ],
                     "relation": "lt"
+                },
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Paleo_DateTime/Paleo_Start_Date",
+                        "DIF/Temporal_Coverage/Paleo_DateTime/Paleo_Stop_Date"
+                    ],
+                    "relation": "lt"
                 }
             ]
         },
