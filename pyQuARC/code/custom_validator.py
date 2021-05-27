@@ -60,7 +60,7 @@ class CustomValidator(BaseValidator):
                 validity = False
         return {
             "valid": validity,
-            "value": field_value
+            "value": parent_value
         }
 
     @staticmethod
@@ -93,11 +93,14 @@ class CustomValidator(BaseValidator):
 
     @staticmethod
     def presence_check(*field_values):
+        """
+            Checks if one of the field has a value
+        """
         validity = False
         value = None
 
         for field_value in field_values:
-            if value := field_value and field_value.strip():
+            if field_value:
                 value = field_value
                 validity = True
 
