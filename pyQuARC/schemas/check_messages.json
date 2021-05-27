@@ -654,5 +654,13 @@
             "url": ""
         },
         "remediation": "Please remove the FTP link."
+    },
+    "citation_version_check": {
+        "failure": "The version listed in the citation does not match the version of the collection.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please revise the version listed in the citation to match the version of the collection."
     }
 }

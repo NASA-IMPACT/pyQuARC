@@ -1615,5 +1615,19 @@
             ]
         },
         "severity": "error"
+    },
+    "citation_version_check": {
+        "rule_name": "Citation Version Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Dataset_Citation/Version",
+                        "DIF/Entry_ID/Version"
+                    ]
+                }
+            ]
+        },
+        "severity": "info"
     }
 }
