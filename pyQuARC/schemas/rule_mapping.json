@@ -693,6 +693,14 @@
                         "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics/Name",
+                        "DIF/Platform/Characteristics"
+                    ]
+                }
             ]
         },
         "severity": "error"
@@ -705,6 +713,14 @@
                     "fields": [
                         "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Description",
                         "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics/Description",
+                        "DIF/Platform/Characteristics"
                     ]
                 }
             ]
@@ -721,6 +737,14 @@
                         "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics/Unit",
+                        "DIF/Platform/Characteristics"
+                    ]
+                }
             ]
         },
         "severity": "error"
@@ -733,6 +757,14 @@
                     "fields": [
                         "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Value",
                         "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics/Value",
+                        "DIF/Platform/Characteristics"
                     ]
                 }
             ]
