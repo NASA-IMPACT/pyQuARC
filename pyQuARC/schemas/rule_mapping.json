@@ -1624,6 +1624,55 @@
                     "fields": [
                         "DIF/Dataset_Citation/Version",
                         "DIF/Entry_ID/Version"
+                    ],
+                    "relation": "eq"
+                }
+            ]
+        },
+        "severity": "info"
+    },
+    "default_date_check": {
+        "rule_name": "Default Date Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Creation"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Last_Revision"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Future_Review"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Delete"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Creation"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Last_Revision"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Future_Review"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Delete"
                     ]
                 }
             ]

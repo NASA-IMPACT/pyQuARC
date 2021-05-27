@@ -687,8 +687,14 @@
     "citation_version_check": {
         "data_type": "string",
         "check_function": "compare",
+        "available": true
+    },
+    "default_date_check": {
+        "data_type": "datetime",
+        "check_function": "compare",
         "data": [
-            "eq"
+            "1970-01-01T00:00:00Z",
+            "neq"
         ],
         "available": true
     }

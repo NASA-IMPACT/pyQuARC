@@ -656,11 +656,19 @@
         "remediation": "Please remove the FTP link."
     },
     "citation_version_check": {
-        "failure": "The version listed in the citation does not match the version of the collection.",
+        "failure": "The version listed in the citation `{}` does not match the version of the collection `{}`.",
         "help": {
             "message": "",
             "url": ""
         },
         "remediation": "Please revise the version listed in the citation to match the version of the collection."
+    },
+    "default_date_check": {
+        "failure": "A default value of '1970-01-01T00:00:00.000Z' is provided.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a more specific date if possible."
     }
 }
