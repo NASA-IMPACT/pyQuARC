@@ -697,5 +697,10 @@
             "neq"
         ],
         "available": true
+    },
+    "url_desc_presence_check": {
+        "data_type": "custom",
+        "check_function": "availability_check",
+        "available": true
     }
 }

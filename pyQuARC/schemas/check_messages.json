@@ -670,5 +670,13 @@
             "url": ""
         },
         "remediation": "Please provide a more specific date if possible."
+    },
+    "url_desc_presence_check": {
+        "failure": "URL Description is not provided for URL `{}`.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a suitable description for the URL."
     }
 }

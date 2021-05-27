@@ -1717,5 +1717,45 @@
             ]
         },
         "severity": "info"
+    },
+    "url_desc_presence_check": {
+        "rule_name": "Online Description Presence Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/OnlineAccessURLs/OnlineAccessURL/URLDescription",
+                        "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/OnlineResources/OnlineResource/Description",
+                        "Collection/OnlineResources/OnlineResource/URL"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Related_URL/Description",
+                        "DIF/Related_URL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Multimedia_Sample/Description",
+                        "DIF/Multimedia_Sample/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Use_Constraints/License_URL/Description",
+                        "DIF/Use_Constraints/License_URL/URL"
+                    ]
+                }
+            ]
+        },
+        "severity": "info"
     }
 }
