@@ -702,5 +702,10 @@
         "data_type": "custom",
         "check_function": "availability_check",
         "available": true
+    },
+    "get_data_url_check": {
+        "data_type": "custom",
+        "check_function": "get_data_url_check",
+        "available": true
     }
 }

@@ -678,5 +678,13 @@
             "url": ""
         },
         "remediation": "Please provide a suitable description for the URL."
+    },
+    "get_data_url_check": {
+        "failure": "No 'GET DATA' link detected.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a data access URL. This link should point as directly to the described data as possible. "
     }
 }

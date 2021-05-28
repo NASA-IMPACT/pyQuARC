@@ -1757,5 +1757,18 @@
             ]
         },
         "severity": "info"
+    },
+    "get_data_url_check": {
+        "rule_name": "GET DATA URL check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF"
+                    ]
+                }
+            ]
+        },
+        "severity": "error"
     }
 }
