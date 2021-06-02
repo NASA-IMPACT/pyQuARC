@@ -5,7 +5,7 @@ import requests
 from datetime import datetime
 
 from .base_validator import BaseValidator
-from .constants import CRM_URL
+from .constants import CMR_URL
 from .utils import if_arg
 
 
@@ -89,10 +89,10 @@ class DatetimeValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        granules = requests.get(f'{CRM_URL}/search/granules.json?short_name={collection_shortname}&sort_key[]=-end_date').json()
+        granules = requests.get(f'{CMR_URL}/search/granules.json?short_name={collection_shortname}&sort_key[]=-end_date').json()
         last_granule = granules['feed']['entry'][0]
         last_granule_endtime = last_granule['time_end']
-        
+
         return {
             "valid": ending_datetime == last_granule_endtime,
             "value": (ending_datetime, last_granule_endtime)
@@ -111,7 +111,7 @@ class DatetimeValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        granules = requests.get(f'{CRM_URL}/search/granules.json?short_name={collection_shortname}&sort_key[]=%2Bstart_date').json()
+        granules = requests.get(f'{CMR_URL}/search/granules.json?short_name={collection_shortname}&sort_key[]=%2Bstart_date').json()
         first_granule = granules['feed']['entry'][0]
         first_granule_beginning_time = first_granule['time_start']
 
