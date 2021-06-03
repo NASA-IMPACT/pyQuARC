@@ -387,6 +387,13 @@
                         "Collection/Description"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Summary/Abstract"
+                    ]
+                }
             ]
         },
         "severity": "warning"
@@ -410,16 +417,6 @@
                 {
                     "fields": [
                         "DIF/Reference/Persistent_Identifier/Identifier"
-                    ]
-                },
-                {
-                    "fields": [
-                        "DIF/Extended_Metadata/Metadata/Value"
-                    ]
-                },
-                {
-                    "fields": [
-                        "DIF/Extended_Metadata/Value"
                     ]
                 }
             ]
@@ -1344,6 +1341,13 @@
                 {
                     "fields": [
                         "Collection/UseConstraints"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Use_Constraints"
                     ]
                 }
             ]
