@@ -57,6 +57,7 @@ class CustomValidator(BaseValidator):
         field_value,
         parent_value
     ):
+        # If the parent is available, the child should be available too, else it is invalid
         validity = True
         if parent_value:
             if not field_value:
@@ -68,6 +69,7 @@ class CustomValidator(BaseValidator):
 
     @staticmethod
     def bounding_coordinate_logic_check(coordinates_dictionary):
+        # Checks if the logic for coordinate values make sense
         coordinates_dictionary = coordinates_dictionary or {}
         coordinates = [
                 "WestBoundingCoordinate",
@@ -96,6 +98,8 @@ class CustomValidator(BaseValidator):
 
     @staticmethod
     def presence_check(*field_values):
+        # At least one of all the fields should have a value
+        # It is basically a OneOf check
         validity = False
         value = None
 
@@ -112,6 +116,7 @@ class CustomValidator(BaseValidator):
     @staticmethod
     @if_arg
     def opendap_url_location_check(field_value):
+        # The field shouldn't have a opendap url
         return {
             "valid": 'opendap' not in field_value.lower(),
             "value": field_value
@@ -135,6 +140,7 @@ class CustomValidator(BaseValidator):
     @staticmethod
     @if_arg
     def boolean_check(field_value):
+        # Checks if the value is a boolean, basically one of 'true' or 'false'
         return {
             "valid": field_value.lower() in ["true", "false"],
             "value": field_value
