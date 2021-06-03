@@ -39,7 +39,8 @@ class SchemaValidator:
         self.metadata_format = metadata_format
         self.check_messages = check_messages
         self.xml_schema = self.read_xml_schema()
-        self.json_schema = self.read_json_schema()
+        if (metadata_format == ECHO10):
+            self.json_schema = self.read_json_schema()
 
     def read_json_schema(self):
         """
@@ -111,12 +112,18 @@ class SchemaValidator:
         errors = {}
         lines = error_log.splitlines()
         for line in lines:
-            field_name = re.search("Element\s\'(\w+)\'", line)[1]
+            # For DIF, because the namespace is specified in the metadata file, lxml library
+            # provides field name concatenated with the namespace,
+            # the following 3 lines of code removes the namespace
+            namespaces = re.findall("(\{[^}]*\})", line)
+            for namespace in namespaces:
+                line = line.replace(namespace, '')
+            field_name = re.search("Element\s\'(.*)\'", line)[1]
             field_paths = [
                 abs_path for abs_path in paths if field_name in abs_path
             ]
             field_name = field_paths[0] if len(field_paths) == 1 else field_name
-            message = re.search("Element\s\'\w+\':\s(\[.*\])?(.*)", line)[2].strip()
+            message = re.search("Element\s\'.+\':\s(\[.*\])?(.*)", line)[2].strip()
             errors.setdefault(field_name, {})["xml_schema"] = {
                 "message": [f"Error: {message}"],
                 "valid": False
@@ -169,6 +176,6 @@ class SchemaValidator:
             (dict): Result of the validation from xml and json schema validators
         """
         return {
-            ** self.run_json_validator(json_metadata)["errors"],
+            **(self.run_json_validator(json_metadata)["errors"] if self.metadata_format == ECHO10 else {}),
             ** self.run_xml_validator(xml_metadata)["errors"]
         }

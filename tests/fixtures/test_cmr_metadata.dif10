@@ -1,0 +1,175 @@
+<DIF xmlns="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/">
+  <Entry_ID>
+    <Short_Name>ASTGTM_003</Short_Name>
+    <Version>002</Version>
+  </Entry_ID>
+  <Entry_Title>ASTER Global Digital Elevation Model V003</Entry_Title>
+  <Dataset_Citation>
+    <Dataset_Creator>NASA/METI/AIST/Japan Spacesystems and U.S./Japan ASTER Science Team</Dataset_Creator>
+    <Dataset_Title>ASTER Global Digital Elevation Model V003</Dataset_Title>
+    <Dataset_Series_Name>ASTGTM.003</Dataset_Series_Name>
+    <Dataset_Release_Date>2019-08-05T00:00:00.000Z</Dataset_Release_Date>
+    <Dataset_Publisher>NASA EOSDIS Land Processes DAAC</Dataset_Publisher>
+    <Version>003</Version>
+    <Other_Citation_Details>The DOI landing page provides citations in APA and Chicago styles.</Other_Citation_Details>
+    <Dataset_DOI>10.5067/ASTER/ASTGTM.003</Dataset_DOI>
+    <Online_Resource>https://doi.org/10.5067/ASTER/ASTGTM.003</Online_Resource>
+  </Dataset_Citation>
+  <Parameters>
+    <Category>EARTH SCIENCE</Category>
+    <Topic>LAND SURFACE</Topic>
+    <Term>TOPOGRAPHY</Term>
+    <Variable_Level_1>TERRAIN ELEVATION</Variable_Level_1>
+  </Parameters>
+  <Parameters>
+    <Category>EARTH SCIENCE</Category>
+    <Topic>LAND SURFACE</Topic>
+    <Term>TOPOGRAPHY</Term>
+    <Variable_Level_1>TERRAIN ELEVATION</Variable_Level_1>
+    <Variable_Level_2>DIGITAL ELEVATION/TERRAIN MODEL (DEM)</Variable_Level_2>
+  </Parameters>
+  <Parameters>
+    <Category>EARTH SCIENCE</Category>
+    <Topic>LAND SURFACE</Topic>
+    <Term>TOPOGRAPHY</Term>
+    <Variable_Level_1>TERRAIN ELEVATION</Variable_Level_1>
+    <Variable_Level_2>TOPOGRAPHICAL RELIEF MAPS</Variable_Level_2>
+  </Parameters>
+  <Sensor_Name>
+    <Short_Name>ASTER</Short_Name>
+    <Long_Name>Advanced Spaceborne Thermal Emission and Reflection Radiometer</Long_Name>
+  </Sensor_Name>
+  <Source_Name>
+    <Short_Name>Terra</Short_Name>
+    <Long_Name>Earth Observing System, Terra (AM-1)</Long_Name>
+  </Source_Name>
+  <Temporal_Coverage>
+    <Paleo_DateTime>
+      <Paleo_Start_Date>2014-03-01T00:00:00.000Z</Paleo_Start_Date>
+      <Paleo_Stop_Date>2013-11-30T23:59:59.999Z</Paleo_Stop_Date>
+    </Paleo_DateTime>
+  </Temporal_Coverage>
+  <Data_Set_Progress>COMPLETE</Data_Set_Progress>
+  <Spatial_Coverage>
+    <Southernmost_Latitude>-83.0</Southernmost_Latitude>
+    <Northernmost_Latitude>82.0</Northernmost_Latitude>
+    <Westernmost_Longitude>-180.0</Westernmost_Longitude>
+    <Easternmost_Longitude>180.0</Easternmost_Longitude>
+  </Spatial_Coverage>
+  <Location>
+    <Location_Category>GEOGRAPHIC REGION</Location_Category>
+    <Location_Type>GLOBAL</Location_Type>
+  </Location>
+  <Project>
+    <Short_Name>Terra</Short_Name>
+    <Long_Name>Earth Observing System (EOS), Terra</Long_Name>
+  </Project>
+  <Access_Constraints>None</Access_Constraints>
+  <Data_Center>
+    <Data_Center_Name>
+      <Short_Name>LP DAAC</Short_Name>
+      <Long_Name>Land Processes Distributed Active Archive Center</Long_Name>
+    </Data_Center_Name>
+    <Data_Center_URL>https://lpdaac.usgs.gov/</Data_Center_URL>
+    <Personnel>
+      <Role>Not provided</Role>
+      <Last_Name>Not provided</Last_Name>
+    </Personnel>
+  </Data_Center>
+  <Summary>
+    <Abstract>The ASTER Global Digital Elevation Model (GDEM) Version 3 (ASTGTM) provides a global digital elevation model (DEM) of land areas on Earth at a spatial resolution of 1 arc second (approximately 30 meter horizontal posting at the equator).
+
+The development of the ASTER GDEM data products is a collaborative effort between National Aeronautics and Space Administration (NASA) and Japan’s Ministry of Economy, Trade, and Industry (METI). The ASTER GDEM data products are created by the Sensor Information Laboratory Corporation (SILC) in Tokyo. 
+
+The ASTER GDEM Version 3 data product was created from the automated processing of the entire ASTER Level 1A (https://doi.org/10.5067/ASTER/AST_L1A.003) archive of scenes acquired between March 1, 2000, and November 30, 2013. Stereo correlation was used to produce over one million individual scene based ASTER DEMs, to which cloud masking was applied. All cloud screened DEMs and non-cloud screened DEMs were stacked. Residual bad values and outliers were removed. In areas with limited data stacking, several existing reference DEMs were used to supplement ASTER data to correct for residual anomalies. Selected data were averaged to create final pixel values before partitioning the data into 1 degree latitude by 1 degree longitude tiles with a one pixel overlap. To correct elevation values of water body surfaces, the ASTER Global Water Bodies Database (ASTWBD) (https://doi.org/10.5067/ASTER/ASTWBD.001) Version 1 data product was also generated. 
+
+The geographic coverage of the ASTER GDEM extends from 83° North to 83° South. Each tile is distributed in GeoTIFF format and projected on the 1984 World Geodetic System (WGS84)/1996 Earth Gravitational Model (EGM96) geoid. Each of the 22,912 tiles in the collection contain at least 0.01% land area. 
+
+Provided in the ASTER GDEM product are layers for DEM and number of scenes (NUM). The NUM layer indicates the number of scenes that were processed for each pixel and the source of the data.
+
+While the ASTER GDEM Version 3 data products offer substantial improvements over Version 2, users are advised that the products still may contain anomalies and artifacts that will reduce its usability for certain applications. 
+
+Improvements/Changes from Previous Versions 
+• Expansion of acquisition coverage to increase the amount of cloud-free input scenes from about 1.5 million in Version 2 to about 1.88 million scenes in Version 3.
+• Separation of rivers from lakes in the water body processing. 
+• Minimum water body detection size decreased from 1 km2 to 0.2 km2. </Abstract>
+    <Purpose>Science Research</Purpose>
+  </Summary>
+  <Related_URL>
+    <URL_Content_Type>
+      <Type>DATA SET LANDING PAGE</Type>
+    </URL_Content_Type>
+    <Protocol>FTP</Protocol>
+    <URL>https://doi.org/10.5067/ASTER/ASTGTM.003</URL>
+    <Description>The LP DAAC product page provides information on Science Data Set layers and links for user guides, ATBDs, data access, tools, customer support, etc. </Description>
+  </Related_URL>
+  <Related_URL>
+    <URL_Content_Type>
+      <Type>PROJECT HOME PAGE</Type>
+    </URL_Content_Type>
+    <URL>https://lpdaac.usgs.gov</URL>
+    <Description>The LP DAAC website provides detailed information on discovery, distribution, access, and support of land data products.</Description>
+  </Related_URL>
+  <Related_URL>
+    <URL_Content_Type>
+      <Type>PROJECT HOME PAGE</Type>
+    </URL_Content_Type>
+    <URL>https://asterweb.jpl.nasa.gov/</URL>
+    <Description>The ASTER home page is maintained through NASA's Jet Propulsion Laboratory and documents various aspects of the ASTER mission.      </Description>
+  </Related_URL>
+  <Related_URL>
+    <URL_Content_Type>
+      <Type>VIEW RELATED INFORMATION</Type>
+      <Subtype>USER'S GUIDE</Subtype>
+    </URL_Content_Type>
+    <URL>https://lpdaac.usgs.gov/documents/434/ASTGTM_User_Guide_V3.pdf</URL>
+    <Description>The technical information in the User's Guide enables users to interpret and use the data products.</Description>
+  </Related_URL>
+  <Related_URL>
+    <URL_Content_Type>
+      <Type>GET RELATED VISUALIZATION</Type>
+    </URL_Content_Type>
+    <URL>https://cmr.earthdata.nasa.gov/browse-scaler/browse_images/granules/G1726374754-LPCLOUD?h=512&amp;w=512</URL>
+    <Description>Browse image for Earthdata Search</Description>
+  </Related_URL>
+  <Metadata_Name>CEOS IDN DIF</Metadata_Name>
+  <Metadata_Version>VERSION 9.9.3</Metadata_Version>
+  <Metadata_Dates>
+    <Metadata_Future_Review>
+      1970-01-01T00:00:00Z
+    </Metadata_Future_Review>
+  </Metadata_Dates>
+  <DIF_Creation_Date>2020-11-17</DIF_Creation_Date>
+  <Last_DIF_Revision_Date>2021-05-05</Last_DIF_Revision_Date>
+  <ISO_Topic_Category>
+    FARMING
+  </ISO_Topic_Category>
+  <Extended_Metadata>
+    <Metadata>
+      <Group>AdditionalAttribute</Group>
+      <Name>identifier_product_doi</Name>
+      <Description>Digital object identifier that uniquely identifies this data product</Description>
+      <Type>STRING</Type>
+      <Value>10.5067/ASTER/ASTGTM.003</Value>
+    </Metadata>
+    <Metadata>
+      <Group>AdditionalAttribute</Group>
+      <Name>identifier_product_doi_authority</Name>
+      <Description>URL of the digital object identifier resolving authority</Description>
+      <Type>STRING</Type>
+      <Value>https://doi.org</Value>
+    </Metadata>
+    <Metadata>
+      <Name>ProcessingLevelId</Name>
+      <Value>3</Value>
+    </Metadata>
+    <Metadata>
+      <Name>ProcessingLevelDescription</Name>
+      <Value>GRID</Value>
+    </Metadata>
+    <Metadata>
+      <Name>GranuleSpatialRepresentation</Name>
+      <Value>GEODETIC</Value>
+    </Metadata>
+  </Extended_Metadata>
+</DIF>

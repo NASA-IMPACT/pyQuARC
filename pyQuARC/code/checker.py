@@ -54,7 +54,7 @@ class Checker:
             self.checks,
             self.checks_override
         )
-        # self.schema_validator = SchemaValidator(self.messages, metadata_format)
+        self.schema_validator = SchemaValidator(self.messages, metadata_format)
         self.tracker = Tracker(self.rule_mapping, self.rules_override, metadata_format)
 
     @staticmethod
@@ -216,10 +216,9 @@ class Checker:
             (dict): The results of the jsonschema check and all custom checks
         """
         json_metadata = parse(metadata_content)
-        result_schema = {}
-        # self.perform_schema_check(
-        #     metadata_content, json_metadata
-        # )
+        result_schema = self.perform_schema_check(
+            metadata_content, json_metadata
+        )
         result_custom = self.perform_custom_checks(json_metadata)
         result = {
             **result_schema, **result_custom

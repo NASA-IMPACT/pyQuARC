@@ -3,4 +3,5 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <!-- The path in @uri is relative to this file (catalog.xml). -->
     <system systemId="MetadataCommon.xsd" uri="MetadataCommon.xsd"/>
+    <system systemId="UmmCommon_1.3.xsd" uri="UmmCommon_1.3.xsd"/>
 </catalog>
