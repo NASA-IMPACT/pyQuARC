@@ -418,6 +418,11 @@
                     "fields": [
                         "DIF/Reference/Persistent_Identifier/Identifier"
                     ]
+                },
+                {
+                    "fields": [
+                        "DIF/Associated_DOIs/DOI"
+                    ]
                 }
             ]
         },
@@ -495,6 +500,11 @@
                 {
                     "fields": [
                         "DIF/Dataset_Citation/Persistent_Identifier/Authority"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Associated_DOIs/Authority"
                     ]
                 }
             ]
@@ -1347,7 +1357,8 @@
             "dif10": [
                 {
                     "fields": [
-                        "DIF/Use_Constraints"
+                        "DIF/Use_Constraints/License_URL/URL",
+                        "DIF/Use_Constraints/License_Text"
                     ]
                 }
             ]
