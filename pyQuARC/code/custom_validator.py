@@ -175,16 +175,15 @@ class CustomValidator(BaseValidator):
     @staticmethod
     def get_data_url_check(metadata_json):
         required_type = 'GET DATA'
-        related_urls = metadata_json.get('Related_URL')
+        related_urls = metadata_json.get('Related_URL', [])
         validity = False
         value = None
-        if related_urls:
-            for url in related_urls:
-                if (url_type := url.get('URL_Content_Type', {}).get('Type')) and \
-                    url_type.upper() == required_type:
-                    validity = True
-                    value = url_type
-                    break
+        for url in related_urls:
+            if (url_type := url.get('URL_Content_Type', {}).get('Type')) and \
+                url_type.upper() == required_type:
+                validity = True
+                value = url_type
+                break
         
         return {
             "valid": validity,
