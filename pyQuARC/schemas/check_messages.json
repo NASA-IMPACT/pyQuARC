@@ -573,7 +573,7 @@
             "message": "",
             "url": ""
         },
-        "remediation": "Please udate the CollectionState based on the EndingDateTime/EndsAtPresentFlag values."
+        "remediation": "Please update the CollectionState based on the EndingDateTime/EndsAtPresentFlag values."
     },
     "online_resource_type_gcmd_check": {
         "failure": "Online Resource Type `{}` is not consistent with GCMD 'rucontenttype' list.",
