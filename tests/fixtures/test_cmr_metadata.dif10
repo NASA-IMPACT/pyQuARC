@@ -1,175 +1,323 @@
-<DIF xmlns="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/">
+<?xml version="1.0" encoding="UTF-8"?>
+<DIF xmlns="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/" xmlns:dif="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/ https://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/dif_v10.2.xsd">
   <Entry_ID>
-    <Short_Name>ASTGTM_003</Short_Name>
-    <Version>002</Version>
+    <Short_Name>MYD05_L2</Short_Name>
+    <Version>6.1</Version>
   </Entry_ID>
-  <Entry_Title>ASTER Global Digital Elevation Model V003</Entry_Title>
+  <Version_Description>Aqua MODIS Version 6.1 Data Collection Processing and Reprocessing</Version_Description>
+  <Entry_Title>MODIS/Aqua Total Precipitable Water Vapor 5-Min L2 Swath 1km and 5km</Entry_Title>
   <Dataset_Citation>
-    <Dataset_Creator>NASA/METI/AIST/Japan Spacesystems and U.S./Japan ASTER Science Team</Dataset_Creator>
-    <Dataset_Title>ASTER Global Digital Elevation Model V003</Dataset_Title>
-    <Dataset_Series_Name>ASTGTM.003</Dataset_Series_Name>
-    <Dataset_Release_Date>2019-08-05T00:00:00.000Z</Dataset_Release_Date>
-    <Dataset_Publisher>NASA EOSDIS Land Processes DAAC</Dataset_Publisher>
-    <Version>003</Version>
-    <Other_Citation_Details>The DOI landing page provides citations in APA and Chicago styles.</Other_Citation_Details>
-    <Dataset_DOI>10.5067/ASTER/ASTGTM.003</Dataset_DOI>
-    <Online_Resource>https://doi.org/10.5067/ASTER/ASTGTM.003</Online_Resource>
+    <Dataset_Creator>MODIS Science Team</Dataset_Creator>
+    <Dataset_Title>MODIS/Aqua Total Precipitable Water Vapor 5-Min L2 Swath 1km and 5km</Dataset_Title>
+    <Dataset_Release_Date>2017-11-01</Dataset_Release_Date>
+    <Dataset_Release_Place>MODAPS at NASA/GSFC</Dataset_Release_Place>
+    <Dataset_Publisher>L1 and Atmosphere Archive and Distribution System (LAADS)</Dataset_Publisher>
+    <Version>6.1</Version>
+    <Persistent_Identifier>
+      <Type>DOI</Type>
+      <Identifier>10.5067/MODIS/MYD05_L2.061</Identifier>
+    </Persistent_Identifier>
+    <Online_Resource>https://doi.org/10.5067/MODIS/MYD05_L2.061</Online_Resource>
   </Dataset_Citation>
-  <Parameters>
+  <Personnel>
+    <Role>TECHNICAL CONTACT</Role>
+    <Contact_Group>
+      <Name>MODAPS USER SUPPORT TEAM</Name>
+      <Address>
+        <Street_Address>MODAPS User Support Team</Street_Address>
+        <Street_Address>NASA/GSFC</Street_Address>
+        <Street_Address>Mail Code: 619</Street_Address>
+        <City>Greenbelt</City>
+        <State_Province>MD</State_Province>
+        <Postal_Code>20771</Postal_Code>
+        <Country>United States</Country>
+      </Address>
+      <Phone>
+        <Number>800-596-8132</Number>
+        <Type>U.S. toll free</Type>
+      </Phone>
+      <Phone>
+        <Number>301-794-7035</Number>
+        <Type>Fax</Type>
+      </Phone>
+      <Email>MODAPSUSO@lists.nasa.gov</Email>
+    </Contact_Group>
+  </Personnel>
+  <Personnel>
+    <Role>METADATA AUTHOR</Role>
+    <Contact_Person>
+      <First_Name>ASAD</First_Name>
+      <Last_Name>ULLAH</Last_Name>
+      <Email>MODAPSUSO@lists.nasa.gov</Email>
+    </Contact_Person>
+  </Personnel>
+  <Science_Keywords>
     <Category>EARTH SCIENCE</Category>
-    <Topic>LAND SURFACE</Topic>
-    <Term>TOPOGRAPHY</Term>
-    <Variable_Level_1>TERRAIN ELEVATION</Variable_Level_1>
-  </Parameters>
-  <Parameters>
+    <Topic>ATMOSPHERE</Topic>
+    <Term>ATMOSPHERIC WATER VAPOR</Term>
+    <Variable_Level_1>WATER VAPOR INDICATORS</Variable_Level_1>
+    <Variable_Level_2>HUMIDITY</Variable_Level_2>
+  </Science_Keywords>
+  <Science_Keywords>
     <Category>EARTH SCIENCE</Category>
-    <Topic>LAND SURFACE</Topic>
-    <Term>TOPOGRAPHY</Term>
-    <Variable_Level_1>TERRAIN ELEVATION</Variable_Level_1>
-    <Variable_Level_2>DIGITAL ELEVATION/TERRAIN MODEL (DEM)</Variable_Level_2>
-  </Parameters>
-  <Parameters>
+    <Topic>ATMOSPHERE</Topic>
+    <Term>ATMOSPHERIC WATER VAPOR</Term>
+    <Variable_Level_1>WATER VAPOR INDICATORS</Variable_Level_1>
+    <Variable_Level_2>TOTAL PRECIPITABLE WATER</Variable_Level_2>
+  </Science_Keywords>
+  <Science_Keywords>
     <Category>EARTH SCIENCE</Category>
-    <Topic>LAND SURFACE</Topic>
-    <Term>TOPOGRAPHY</Term>
-    <Variable_Level_1>TERRAIN ELEVATION</Variable_Level_1>
-    <Variable_Level_2>TOPOGRAPHICAL RELIEF MAPS</Variable_Level_2>
-  </Parameters>
-  <Sensor_Name>
-    <Short_Name>ASTER</Short_Name>
-    <Long_Name>Advanced Spaceborne Thermal Emission and Reflection Radiometer</Long_Name>
-  </Sensor_Name>
-  <Source_Name>
-    <Short_Name>Terra</Short_Name>
-    <Long_Name>Earth Observing System, Terra (AM-1)</Long_Name>
-  </Source_Name>
+    <Topic>ATMOSPHERE</Topic>
+    <Term>ATMOSPHERIC WATER VAPOR</Term>
+    <Variable_Level_1>WATER VAPOR PROFILES</Variable_Level_1>
+  </Science_Keywords>
+  <ISO_Topic_Category>CLIMATOLOGY/METEOROLOGY/ATMOSPHERE</ISO_Topic_Category>
+  <Platform>
+    <Type>Earth Observation Satellites</Type>
+    <Short_Name>Aqua</Short_Name>
+    <Long_Name>Earth Observing System, Aqua</Long_Name>
+    <Characteristics>
+      <Name>EquatorCrossingTime</Name>
+      <Description>Local time of the equator crossing and direction (ascending or descending)</Description>
+      <DataType>Time/direction (ascending)</DataType>
+      <Unit>Local Mean Time</Unit>
+      <Value>3:30, ascending</Value>
+    </Characteristics>
+    <Instrument>
+      <Short_Name>MODIS</Short_Name>
+      <Long_Name>Moderate-Resolution Imaging Spectroradiometer</Long_Name>
+      <Technique>Imaging Spectroradiometry</Technique>
+    </Instrument>
+  </Platform>
   <Temporal_Coverage>
-    <Paleo_DateTime>
-      <Paleo_Start_Date>2014-03-01T00:00:00.000Z</Paleo_Start_Date>
-      <Paleo_Stop_Date>2013-11-30T23:59:59.999Z</Paleo_Stop_Date>
-    </Paleo_DateTime>
+    <Time_Type>UTC</Time_Type>
+    <Date_Type>Gregorian</Date_Type>
+    <Temporal_Range_Type>Continuous Range</Temporal_Range_Type>
+    <Precision_Of_Seconds>1</Precision_Of_Seconds>
+    <Ends_At_Present_Flag>true</Ends_At_Present_Flag>
+    <Range_DateTime>
+      <Beginning_Date_Time>2002-07-04T00:00:00.000Z</Beginning_Date_Time>
+    </Range_DateTime>
   </Temporal_Coverage>
-  <Data_Set_Progress>COMPLETE</Data_Set_Progress>
+  <Dataset_Progress>shafjh</Dataset_Progress>
   <Spatial_Coverage>
-    <Southernmost_Latitude>-83.0</Southernmost_Latitude>
-    <Northernmost_Latitude>82.0</Northernmost_Latitude>
-    <Westernmost_Longitude>-180.0</Westernmost_Longitude>
-    <Easternmost_Longitude>180.0</Easternmost_Longitude>
+    <Granule_Spatial_Representation>GEODETIC</Granule_Spatial_Representation>
+    <Geometry>
+      <Coordinate_System>CARTESIAN</Coordinate_System>
+      <Bounding_Rectangle>
+        <Southernmost_Latitude>-90</Southernmost_Latitude>
+        <Northernmost_Latitude>90</Northernmost_Latitude>
+        <Westernmost_Longitude>-180</Westernmost_Longitude>
+        <Easternmost_Longitude>180</Easternmost_Longitude>
+      </Bounding_Rectangle>
+    </Geometry>
   </Spatial_Coverage>
   <Location>
     <Location_Category>GEOGRAPHIC REGION</Location_Category>
     <Location_Type>GLOBAL</Location_Type>
   </Location>
+  <Data_Resolution>
+    <Latitude_Resolution>1km and 5km at nadir</Latitude_Resolution>
+    <Longitude_Resolution>1km and 5km at nadir</Longitude_Resolution>
+    <Temporal_Resolution>5 minutes</Temporal_Resolution>
+  </Data_Resolution>
   <Project>
-    <Short_Name>Terra</Short_Name>
-    <Long_Name>Earth Observing System (EOS), Terra</Long_Name>
+    <Short_Name>Aqua</Short_Name>
+    <Long_Name>Earth Observing System (EOS), Aqua</Long_Name>
   </Project>
-  <Access_Constraints>None</Access_Constraints>
-  <Data_Center>
-    <Data_Center_Name>
-      <Short_Name>LP DAAC</Short_Name>
-      <Long_Name>Land Processes Distributed Active Archive Center</Long_Name>
-    </Data_Center_Name>
-    <Data_Center_URL>https://lpdaac.usgs.gov/</Data_Center_URL>
+  <Quality>See https://modaps.modaps.eosdis.nasa.gov/services/qa/</Quality>
+  <Access_Constraints></Access_Constraints>
+  <Use_Constraints></Use_Constraints>
+  <Dataset_Language>English</Dataset_Language>
+  <Originating_Center>The MODIS Adaptive Processing System (MODAPS)</Originating_Center>
+  <Organization>
+    <Organization_Type>ORIGINATOR</Organization_Type>
+    <Organization_Name>
+      <Short_Name>NASA/GSFC/SED/ESD/HBSL/BISB/MODAPS</Short_Name>
+      <Long_Name>MODIS Adaptive Processing System, Biospheric Information Systems Branch, Hydrospheric and Biospheric Sciences Laboratory, Earth Sciences Division, Science and Exploration Directorate, Goddard Space Flight Center, NASA</Long_Name>
+    </Organization_Name>
+    <Organization_URL>https://modaps.modaps.eosdis.nasa.gov/</Organization_URL>
     <Personnel>
-      <Role>Not provided</Role>
-      <Last_Name>Not provided</Last_Name>
+      <Role>DATA CENTER CONTACT</Role>
+      <Contact_Group>
+        <Name>MODAPS USER SUPPORT TEAM</Name>
+        <Address>
+          <Street_Address>MODAPS User Support Team</Street_Address>
+          <Street_Address>NASA/GSFC</Street_Address>
+          <Street_Address>Mail Code: 619</Street_Address>
+          <City>Greenbelt</City>
+          <State_Province>MD</State_Province>
+          <Postal_Code>20771</Postal_Code>
+          <Country>United States</Country>
+        </Address>
+        <Phone>
+          <Number>800-596-8132</Number>
+          <Type>U.S. toll free</Type>
+        </Phone>
+        <Phone>
+          <Number>301-794-7035</Number>
+          <Type>Fax</Type>
+        </Phone>
+        <Email>MODAPSUSO@lists.nasa.gov</Email>
+      </Contact_Group>
     </Personnel>
-  </Data_Center>
+  </Organization>
+  <Organization>
+    <Organization_Type>PROCESSOR</Organization_Type>
+    <Organization_Name>
+      <Short_Name>NASA/GSFC/SED/ESD/HBSL/BISB/MODAPS</Short_Name>
+      <Long_Name>MODIS Adaptive Processing System, Biospheric Information Systems Branch, Hydrospheric and Biospheric Sciences Laboratory, Earth Sciences Division, Science and Exploration Directorate, Goddard Space Flight Center, NASA</Long_Name>
+    </Organization_Name>
+    <Organization_URL>https://modaps.modaps.eosdis.nasa.gov/</Organization_URL>
+    <Personnel>
+      <Role>DATA CENTER CONTACT</Role>
+      <Contact_Group>
+        <Name>MODAPS USER SUPPORT TEAM</Name>
+        <Address>
+          <Street_Address>MODAPS User Support Team</Street_Address>
+          <Street_Address>NASA/GSFC</Street_Address>
+          <Street_Address>Mail Code: 619</Street_Address>
+          <City>Greenbelt</City>
+          <State_Province>MD</State_Province>
+          <Postal_Code>20771</Postal_Code>
+          <Country>United States</Country>
+        </Address>
+        <Phone>
+          <Number>800-596-8132</Number>
+          <Type>U.S. toll free</Type>
+        </Phone>
+        <Phone>
+          <Number>301-794-7035</Number>
+          <Type>Fax</Type>
+        </Phone>
+        <Email>MODAPSUSO@lists.nasa.gov</Email>
+      </Contact_Group>
+    </Personnel>
+  </Organization>
+  <Organization>
+    <Organization_Type>DISTRIBUTOR</Organization_Type>
+    <Organization_Name>
+      <Short_Name>NASA/GSFC/SED/ESD/HBSL/BISB/LAADS</Short_Name>
+      <Long_Name>L1 and Atmosphere Archive and Distribution System,Biospheric Information Systems Branch, Hydrospheric and Biospheric Sciences Laboratory, Earth Sciences Division, Science and Exploration Directorate, Goddard Space Flight Center, NASA</Long_Name>
+    </Organization_Name>
+    <Organization_URL>https://ladsweb.modaps.eosdis.nasa.gov/</Organization_URL>
+    <Personnel>
+      <Role>DATA CENTER CONTACT</Role>
+      <Contact_Group>
+        <Name>MODAPS USER SUPPORT TEAM</Name>
+        <Address>
+          <Street_Address>MODAPS User Support Team</Street_Address>
+          <Street_Address>NASA/GSFC</Street_Address>
+          <Street_Address>Mail Code: 619</Street_Address>
+          <City>Greenbelt</City>
+          <State_Province>MD</State_Province>
+          <Postal_Code>20771</Postal_Code>
+          <Country>United States</Country>
+        </Address>
+        <Phone>
+          <Number>800-596-8132</Number>
+          <Type>U.S. toll free</Type>
+        </Phone>
+        <Phone>
+          <Number>301-794-7035</Number>
+          <Type>Fax</Type>
+        </Phone>
+        <Email>MODAPSUSO@lists.nasa.gov</Email>
+      </Contact_Group>
+    </Personnel>
+  </Organization>
+  <Distribution>
+    <Distribution_Media>Online (HTTPS)</Distribution_Media>
+    <Distribution_Format>HDF-EOS</Distribution_Format>
+    <Fees>No Fee</Fees>
+  </Distribution>
   <Summary>
-    <Abstract>The ASTER Global Digital Elevation Model (GDEM) Version 3 (ASTGTM) provides a global digital elevation model (DEM) of land areas on Earth at a spatial resolution of 1 arc second (approximately 30 meter horizontal posting at the equator).
-
-The development of the ASTER GDEM data products is a collaborative effort between National Aeronautics and Space Administration (NASA) and Japan’s Ministry of Economy, Trade, and Industry (METI). The ASTER GDEM data products are created by the Sensor Information Laboratory Corporation (SILC) in Tokyo. 
-
-The ASTER GDEM Version 3 data product was created from the automated processing of the entire ASTER Level 1A (https://doi.org/10.5067/ASTER/AST_L1A.003) archive of scenes acquired between March 1, 2000, and November 30, 2013. Stereo correlation was used to produce over one million individual scene based ASTER DEMs, to which cloud masking was applied. All cloud screened DEMs and non-cloud screened DEMs were stacked. Residual bad values and outliers were removed. In areas with limited data stacking, several existing reference DEMs were used to supplement ASTER data to correct for residual anomalies. Selected data were averaged to create final pixel values before partitioning the data into 1 degree latitude by 1 degree longitude tiles with a one pixel overlap. To correct elevation values of water body surfaces, the ASTER Global Water Bodies Database (ASTWBD) (https://doi.org/10.5067/ASTER/ASTWBD.001) Version 1 data product was also generated. 
-
-The geographic coverage of the ASTER GDEM extends from 83° North to 83° South. Each tile is distributed in GeoTIFF format and projected on the 1984 World Geodetic System (WGS84)/1996 Earth Gravitational Model (EGM96) geoid. Each of the 22,912 tiles in the collection contain at least 0.01% land area. 
-
-Provided in the ASTER GDEM product are layers for DEM and number of scenes (NUM). The NUM layer indicates the number of scenes that were processed for each pixel and the source of the data.
-
-While the ASTER GDEM Version 3 data products offer substantial improvements over Version 2, users are advised that the products still may contain anomalies and artifacts that will reduce its usability for certain applications. 
-
-Improvements/Changes from Previous Versions 
-• Expansion of acquisition coverage to increase the amount of cloud-free input scenes from about 1.5 million in Version 2 to about 1.88 million scenes in Version 3.
-• Separation of rivers from lakes in the water body processing. 
-• Minimum water body detection size decreased from 1 km2 to 0.2 km2. </Abstract>
-    <Purpose>Science Research</Purpose>
+    <Abstract>The MODIS/Aqua Total Precipitable Water Vapor 5-Min L2 Swath 1km and 5km (MYD05_L2) product consists of atmospheric column water-vapor amounts. This product is derived from data collected by the Moderate-Resolution Imaging Spectroradiometer (MODIS) on board the Aqua satellite. There are two different algorithms used to derive total precipitable water vapor in this data product: a near-infrared algorithm and an infrared algorithm. The near-infrared algorithm relies on observations of reflected solar radiation in MODIS's near-infrared channels, thus, the near-infrared retrievals are only produced during the daytime over surfaces that reflect near-infrared energy. As a result, the near-infrared algorithm is only applied over clear, cloud free land areas of the globe and above clouds over both the land and ocean. Over clear ocean areas, water-vapor estimates are provided over extended sun glint areas. Data produced by the near-infrared algorithm are generated at a 1-km spatial resolution. The other algorithm is the infrared algorithm which can be used to derive atmospheric precipitable water vapor profiles during both day and night. Data from the infrared algorithm are generated at a 5-km spatial resolution when at least nine field of views (FOVs) are cloud free. The infrared-derived precipitable water vapor is generated as a component of product MYD07, and is simply added to product MYD05 for convenience. There are two MODIS Precipitable Water Vapor products: MOD05_L2, containing data collected from the Terra platform; and MYD05_L2, containing data collected from the Aqua platform. This dataset has a short name of MYD05_L2 and provides data from the Aqua platform only. The MODIS Adaptive Processing System (MODAPS) is currently generating an improved version 6.1 (061) for all MODIS Level-1 (L1) and higher-level Level-2 (L2) &amp; Level-3 (L3) Atmosphere Team products. The decision to create a new improved Collection 6.1 (061) was driven by the need to address a number of issues in the current Collection 6 (006) Level-1B (L1B) data, which have a negative impact in varying degrees in downstream products. It should be noted that the near-infrared algorithm refinement for this product is no longer being supported by NASA and as such there has been no update to this algorithm for Collection 6.1.For more information, visit the MODIS Atmosphere website at:https://modis-atmos.gsfc.nasa.gov/products/water-vapor</Abstract>
   </Summary>
+  <Related_URL>
+    <URL_Content_Type>
+      <Type>VIEW RELATED INFORMATION</Type>
+      <Subtype>GENERAL DOCUMENTATION</Subtype>
+    </URL_Content_Type>
+    <URL>https://modis-atmos.gsfc.nasa.gov/products/water-vapor</URL>
+    <Description>Overview of MODIS Water Vapor products.</Description>
+    <Mime_Type>text/html</Mime_Type>
+  </Related_URL>
   <Related_URL>
     <URL_Content_Type>
       <Type>DATA SET LANDING PAGE</Type>
     </URL_Content_Type>
-    <Protocol>FTP</Protocol>
-    <URL>https://doi.org/10.5067/ASTER/ASTGTM.003</URL>
-    <Description>The LP DAAC product page provides information on Science Data Set layers and links for user guides, ATBDs, data access, tools, customer support, etc. </Description>
-  </Related_URL>
-  <Related_URL>
-    <URL_Content_Type>
-      <Type>PROJECT HOME PAGE</Type>
-    </URL_Content_Type>
-    <URL>https://lpdaac.usgs.gov</URL>
-    <Description>The LP DAAC website provides detailed information on discovery, distribution, access, and support of land data products.</Description>
-  </Related_URL>
-  <Related_URL>
-    <URL_Content_Type>
-      <Type>PROJECT HOME PAGE</Type>
-    </URL_Content_Type>
-    <URL>https://asterweb.jpl.nasa.gov/</URL>
-    <Description>The ASTER home page is maintained through NASA's Jet Propulsion Laboratory and documents various aspects of the ASTER mission.      </Description>
+    <URL>https://doi.org/10.5067/MODIS/MYD05_L2.061</URL>
+    <Description>The product landing page</Description>
+    <Mime_Type>text/xml</Mime_Type>
   </Related_URL>
   <Related_URL>
     <URL_Content_Type>
       <Type>VIEW RELATED INFORMATION</Type>
-      <Subtype>USER'S GUIDE</Subtype>
+      <Subtype>ALGORITHM THEORETICAL BASIS DOCUMENT (ATBD)</Subtype>
     </URL_Content_Type>
-    <URL>https://lpdaac.usgs.gov/documents/434/ASTGTM_User_Guide_V3.pdf</URL>
-    <Description>The technical information in the User's Guide enables users to interpret and use the data products.</Description>
+    <URL>https://modis-atmos.gsfc.nasa.gov/sites/default/files/ModAtmo/atbd_mod03_0.pdf</URL>
+    <Description>Water Vapor product ATBD</Description>
+    <Mime_Type>application/pdf</Mime_Type>
   </Related_URL>
   <Related_URL>
     <URL_Content_Type>
-      <Type>GET RELATED VISUALIZATION</Type>
+      <Type>GET DATA</Type>
+      <Subtype>LAADS</Subtype>
     </URL_Content_Type>
-    <URL>https://cmr.earthdata.nasa.gov/browse-scaler/browse_images/granules/G1726374754-LPCLOUD?h=512&amp;w=512</URL>
-    <Description>Browse image for Earthdata Search</Description>
+    <URL>https://ladsweb.modaps.eosdis.nasa.gov/search/order/2/MYD05_L2--61</URL>
+    <Description>Search and order products from LAADS website.</Description>
+    <Mime_Type>text/html</Mime_Type>
   </Related_URL>
+  <Related_URL>
+    <URL_Content_Type>
+      <Type>GET DATA</Type>
+      <Subtype>DIRECT DOWNLOAD</Subtype>
+    </URL_Content_Type>
+    <URL>https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MYD05_L2/</URL>
+    <Description>Direct access to MYD05_L2 C6.1 data set.</Description>
+    <Mime_Type>text/html</Mime_Type>
+  </Related_URL>
+  <Related_URL>
+    <URL_Content_Type>
+      <Type>USE SERVICE API</Type>
+      <Subtype>OPENDAP DATA</Subtype>
+    </URL_Content_Type>
+    <URL>https://ladsweb.modaps.eosdis.nasa.gov/opendap/allData/61/MYD05_L2/contents.html</URL>
+    <Description>Direct access to product's OPeNDAP directory</Description>
+    <Mime_Type>text/html</Mime_Type>
+  </Related_URL>
+  <Originating_Metadata_Node>GCMD</Originating_Metadata_Node>
   <Metadata_Name>CEOS IDN DIF</Metadata_Name>
-  <Metadata_Version>VERSION 9.9.3</Metadata_Version>
+  <Metadata_Version>VERSION 10.2</Metadata_Version>
   <Metadata_Dates>
-    <Metadata_Future_Review>
-      1970-01-01T00:00:00Z
-    </Metadata_Future_Review>
+    <Metadata_Creation>2017-09-15</Metadata_Creation>
+    <Metadata_Last_Revision>2019-12-27</Metadata_Last_Revision>
+    <Data_Creation>2017-11-01</Data_Creation>
+    <Data_Last_Revision>present</Data_Last_Revision>
   </Metadata_Dates>
-  <DIF_Creation_Date>2020-11-17</DIF_Creation_Date>
-  <Last_DIF_Revision_Date>2021-05-05</Last_DIF_Revision_Date>
-  <ISO_Topic_Category>
-    FARMING
-  </ISO_Topic_Category>
+  <Private>False</Private>
+  <Additional_Attributes>
+    <Name>SuccessfulRetrievalPct_IR</Name>
+    <DataType>FLOAT</DataType>
+    <Description>None</Description>
+    <ParameterRangeBegin>-1e-06</ParameterRangeBegin>
+    <ParameterRangeEnd>100.000001</ParameterRangeEnd>
+  </Additional_Attributes>
+  <Additional_Attributes>
+    <Name>SuccessfulRetrievalPct_NIR</Name>
+    <DataType>FLOAT</DataType>
+    <Description>None</Description>
+    <ParameterRangeBegin>-1e-06</ParameterRangeBegin>
+    <ParameterRangeEnd>100.000001</ParameterRangeEnd>
+  </Additional_Attributes>
+  <Product_Level_Id>2</Product_Level_Id>
+  <Collection_Data_Type>SCIENCE_QUALITY</Collection_Data_Type>
   <Extended_Metadata>
     <Metadata>
-      <Group>AdditionalAttribute</Group>
-      <Name>identifier_product_doi</Name>
-      <Description>Digital object identifier that uniquely identifies this data product</Description>
-      <Type>STRING</Type>
-      <Value>10.5067/ASTER/ASTGTM.003</Value>
-    </Metadata>
-    <Metadata>
-      <Group>AdditionalAttribute</Group>
-      <Name>identifier_product_doi_authority</Name>
-      <Description>URL of the digital object identifier resolving authority</Description>
-      <Type>STRING</Type>
-      <Value>https://doi.org</Value>
-    </Metadata>
-    <Metadata>
-      <Name>ProcessingLevelId</Name>
-      <Value>3</Value>
-    </Metadata>
-    <Metadata>
-      <Name>ProcessingLevelDescription</Name>
-      <Value>GRID</Value>
-    </Metadata>
-    <Metadata>
-      <Name>GranuleSpatialRepresentation</Name>
-      <Value>GEODETIC</Value>
+      <Group>gov.nasa.gsfc.gcmd</Group>
+      <Name>metadata.tool</Name>
+      <Value>2019-12-27:docbuilder</Value>
     </Metadata>
   </Extended_Metadata>
 </DIF>
