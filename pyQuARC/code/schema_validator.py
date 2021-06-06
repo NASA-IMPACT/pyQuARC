@@ -115,10 +115,10 @@ class SchemaValidator:
             # For DIF, because the namespace is specified in the metadata file, lxml library
             # provides field name concatenated with the namespace,
             # the following 3 lines of code removes the namespace
-            namespaces = re.findall("(\{[^}]*\})", line)
+            namespaces = re.findall("(\{http[^}]*\})", line)
             for namespace in namespaces:
                 line = line.replace(namespace, '')
-            field_name = re.search("Element\s\'(.*)\'", line)[1]
+            field_name = re.search("Element\s\'(.*)\':", line)[1]
             field_paths = [
                 abs_path for abs_path in paths if field_name in abs_path
             ]
@@ -176,6 +176,7 @@ class SchemaValidator:
             (dict): Result of the validation from xml and json schema validators
         """
         return {
+            # because we only have json schema for ECHO10
             **(self.run_json_validator(json_metadata)["errors"] if self.metadata_format == ECHO10 else {}),
             ** self.run_xml_validator(xml_metadata)["errors"]
         }
