@@ -89,3 +89,4 @@ class Tracker:
         for row in self.data[rule_id]:
             if row["field"] == field:
                 return row
+        return {}

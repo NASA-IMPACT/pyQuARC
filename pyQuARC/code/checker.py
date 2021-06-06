@@ -140,9 +140,8 @@ class Checker:
         """
         dependency_fields = field_dict["fields"] if len(dependency) == 1 else [dependency[1]]
         for field in dependency_fields:
-            if self.tracker.read_data(dependency[0], field):
-                if not self.tracker.read_data(dependency[0], field).get("valid"):
-                    return False
+            if not self.tracker.read_data(dependency[0], field).get("valid"):
+                return False
         return True
 
     def _check_dependencies_validity(self, dependencies, field_dict):
