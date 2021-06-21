@@ -39,6 +39,9 @@ class CustomValidator(BaseValidator):
     @staticmethod
     def mime_type_check(mime_type, url_type, controlled_list):
         result = {"valid": True, "value": mime_type}
+        # The check checks that if the value for url_type is "USE SERVICE API",
+        # the mime_type should be one of the values from a controlled list
+        # For all other cases, the check should be valid
         if url_type:
             if "USE SERVICE API" in url_type:
                 if mime_type:
@@ -54,6 +57,7 @@ class CustomValidator(BaseValidator):
         field_value,
         parent_value
     ):
+        # If the parent is available, the child should be available too, else it is invalid
         validity = True
         if parent_value:
             if not field_value:
@@ -65,6 +69,7 @@ class CustomValidator(BaseValidator):
 
     @staticmethod
     def bounding_coordinate_logic_check(coordinates_dictionary):
+        # Checks if the logic for coordinate values make sense
         coordinates_dictionary = coordinates_dictionary or {}
         coordinates = [
                 "WestBoundingCoordinate",
@@ -96,6 +101,8 @@ class CustomValidator(BaseValidator):
         """
             Checks if one of the field has a value
         """
+        # At least one of all the fields should have a value
+        # It is basically a OneOf check
         validity = False
         value = None
 
@@ -112,6 +119,7 @@ class CustomValidator(BaseValidator):
     @staticmethod
     @if_arg
     def opendap_url_location_check(field_value):
+        # The field shouldn't have a opendap url
         return {
             "valid": 'opendap' not in field_value.lower(),
             "value": field_value
@@ -135,6 +143,7 @@ class CustomValidator(BaseValidator):
     @staticmethod
     @if_arg
     def boolean_check(field_value):
+        # Checks if the value is a boolean, basically one of 'true' or 'false'
         return {
             "valid": field_value.lower() in ["true", "false"],
             "value": field_value
@@ -184,7 +193,7 @@ class CustomValidator(BaseValidator):
                 validity = True
                 value = url_type
                 break
-        
+
         return {
             "valid": validity,
             "value": value
