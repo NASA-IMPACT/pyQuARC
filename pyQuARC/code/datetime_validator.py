@@ -5,7 +5,7 @@ import requests
 from datetime import datetime
 
 from .base_validator import BaseValidator
-from .constants import CRM_URL
+from .constants import CMR_URL
 from .utils import if_arg
 
 
@@ -77,6 +77,30 @@ class DatetimeValidator(BaseValidator):
         }
 
     @staticmethod
+    def validate_datetime_against_granules(datetime, collection_shortname, sort_key, time_key):
+        """
+        Validates the collection datetime against the datetime of the last granule in the collection
+
+        Args:
+            datetime (str): datetime string
+            collection_shortname (str): ShortName of the parent collection
+            sort_key (str): choice of start_date and end_date
+            time_key (str): choice of time_end and time_start
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
+        granules = requests.get(f'{CMR_URL}/search/granules.json?short_name={collection_shortname}&sort_key[]=-{sort_key}').json()
+
+        if len(granules['feed']['entry']) > 0:
+            last_granule = granules['feed']['entry'][0]
+            last_granule_datetime = last_granule[time_key]
+
+        return {
+            "valid": datetime == last_granule_datetime,
+            "value": (datetime, last_granule_datetime)
+        }
+
+    @staticmethod
     @if_arg
     def validate_ending_datetime_against_granules(ending_datetime, collection_shortname):
         """
@@ -89,14 +113,12 @@ class DatetimeValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        granules = requests.get(f'{CRM_URL}/search/granules.json?short_name={collection_shortname}&sort_key[]=-end_date').json()
-        last_granule = granules['feed']['entry'][0]
-        last_granule_endtime = last_granule['time_end']
-        
-        return {
-            "valid": ending_datetime == last_granule_endtime,
-            "value": (ending_datetime, last_granule_endtime)
-        }
+        return DatetimeValidator.validate_datetime_against_granules(
+            ending_datetime,
+            collection_shortname,
+            'end_date',
+            'time_end'
+        )
 
     @staticmethod
     @if_arg
@@ -111,11 +133,9 @@ class DatetimeValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        granules = requests.get(f'{CRM_URL}/search/granules.json?short_name={collection_shortname}&sort_key[]=%2Bstart_date').json()
-        first_granule = granules['feed']['entry'][0]
-        first_granule_beginning_time = first_granule['time_start']
-
-        return {
-            "valid": beginning_datetime == first_granule_beginning_time,
-            "value": (beginning_datetime, first_granule_beginning_time)
-        }
+        return DatetimeValidator.validate_datetime_against_granules(
+            beginning_datetime,
+            collection_shortname,
+            'start_date',
+            'time_start'
+        )

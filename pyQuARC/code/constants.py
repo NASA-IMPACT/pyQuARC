@@ -52,15 +52,21 @@ COLOR = {
     "bright": Style.BRIGHT
 }
 
+GCMD_BASIC_URL = "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/"
+
+GCMD_KEYWORDS = [
+    "granuledataformat",
+    "instruments",
+    "locations",
+    "platforms",
+    "projects",
+    "providers",
+    "rucontenttype",
+    "science_keywords"
+]
+
 GCMD_LINKS = {
-    "science_keywords": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/sciencekeywords?format=csv",
-    "locations": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/locations?format=csv",
-    "providers": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/providers?format=csv",
-    "instruments": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/instruments?format=csv",
-    "projects": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/projects?format=csv",
-    "granuledataformat": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/granuledataformat?format=csv",
-    "platforms": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/platforms?format=csv",
-    "rucontenttype": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/rucontenttype?format=csv"
+    keyword: f"{GCMD_BASIC_URL}{keyword}?format=csv" for keyword in GCMD_KEYWORDS
 }
 
-CRM_URL = "https://cmr.earthdata.nasa.gov"
+CMR_URL = "https://cmr.earthdata.nasa.gov"
