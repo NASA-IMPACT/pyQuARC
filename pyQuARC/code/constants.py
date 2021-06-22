@@ -20,7 +20,6 @@ SCHEMAS = {
         "check_messages",
         "check_messages_override",
         "checks_override",
-        f"{ECHO10}_json",
         "rule_mapping",
         "rules_override",
         UMM_JSON

@@ -54,7 +54,7 @@ class Checker:
             self.checks,
             self.checks_override
         )
-        self.schema_validator = SchemaValidator(self.messages, metadata_format)
+        self.schema_validator = SchemaValidator(metadata_format)
         self.tracker = Tracker(self.rule_mapping, self.rules_override, metadata_format)
 
     @staticmethod
@@ -128,11 +128,11 @@ class Checker:
                 messages.append(formatted_message)
         return messages
 
-    def perform_schema_check(self, xml_metadata, json_metadata):
+    def perform_schema_check(self, xml_metadata):
         """
         Performs Schema check
         """
-        return self.schema_validator.run(xml_metadata, json_metadata)
+        return self.schema_validator.run(xml_metadata)
 
     def _check_dependency_validity(self, dependency, field_dict):
         """
@@ -216,7 +216,7 @@ class Checker:
         """
         json_metadata = parse(metadata_content)
         result_schema = self.perform_schema_check(
-            metadata_content, json_metadata
+            metadata_content
         )
         result_custom = self.perform_custom_checks(json_metadata)
         result = {

@@ -1,5 +1,4 @@
 import json
-import jsonschema
 import os
 import re
 
@@ -18,7 +17,7 @@ class SchemaValidator:
     PATH_SEPARATOR = "/"
 
     def __init__(
-        self, check_messages, metadata_format=ECHO10,
+        self, metadata_format=ECHO10,
     ):
         """
         Args:
@@ -37,17 +36,7 @@ class SchemaValidator:
         os.environ['XML_CATALOG_FILES'] = os.environ.get('XML_CATALOG_FILES', catalog_path)
 
         self.metadata_format = metadata_format
-        self.check_messages = check_messages
         self.xml_schema = self.read_xml_schema()
-        if (metadata_format == ECHO10):
-            self.json_schema = self.read_json_schema()
-
-    def read_json_schema(self):
-        """
-        Reads the json schema file
-        """
-        schema = json.load(open(SCHEMA_PATHS[f"{self.metadata_format}_json"], "r"))
-        return schema
 
     def read_xml_schema(self):
         """
@@ -58,43 +47,6 @@ class SchemaValidator:
         xmlschema_doc = etree.parse(BytesIO(file_content))
         schema = etree.XMLSchema(xmlschema_doc)
         return schema
-
-    def run_json_validator(self, content_to_validate):
-        """
-        Validate passed content based on the schema and return any errors
-
-        Args:
-            content_to_validate (str): The metadata content as a json string
-
-        Returns:
-            (dict) A dictionary that gives the validity of the schema and errors if they exist
-
-        """
-        errors = {}
-        error_dict = {
-            "valid": False,
-            "errors": errors
-        }
-
-        validator = jsonschema.Draft7Validator(
-            self.json_schema, format_checker=jsonschema.draft7_format_checker
-        )
-
-        for error in sorted(validator.iter_errors(content_to_validate), key=str):
-            field = SchemaValidator.PATH_SEPARATOR.join(error.path)
-            message = error.message
-            remediation = None
-            if error.validator == "oneOf":
-                check_message = self.check_messages[error.validator]
-                fields = [f'{field}/{obj["required"][0]}' for obj in error.validator_value]
-                message = check_message["failure"].format(fields)
-                remediation = check_message["remediation"]
-            errors.setdefault(field, {})["json_schema"] = {
-                    "message": [f"Error: {message}"],
-                    "remediation": remediation,
-                    "valid": False
-                }
-        return error_dict
 
     @staticmethod
     def _build_errors(error_log, paths):
@@ -159,24 +111,16 @@ class SchemaValidator:
         except etree.DocumentInvalid as err:
             errors = SchemaValidator._build_errors(str(err.error_log), paths)
 
-        result = {
-            "errors": errors
-        }
-        return result
+        return errors
 
-    def run(self, xml_metadata, json_metadata):
+    def run(self, xml_metadata):
         """
-        Runs both XML and JSON schema validation on the metadata
+        Runs schema validation on the metadata
 
         Args:
             xml_metadata (str): The original metadata (in xml format)
-            json_metadata (str): The metadata converted to json
 
         Returns:
             (dict): Result of the validation from xml and json schema validators
         """
-        return {
-            # because we only have json schema for ECHO10
-            **(self.run_json_validator(json_metadata)["errors"] if self.metadata_format == ECHO10 else {}),
-            ** self.run_xml_validator(xml_metadata)["errors"]
-        }
+        return self.run_xml_validator(xml_metadata)
