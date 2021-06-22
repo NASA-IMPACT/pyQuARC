@@ -12,16 +12,7 @@ KEYS = [
 class TestSchemaValidator:
     def setup_method(self):
         self.data = self.read_data()
-        self.schema_validator = SchemaValidator({
-            "oneOf": {
-                "failure": "One of `{}` should be populated.",
-                "help": {
-                    "message": "",
-                    "url": ""
-                },
-                "remediation": "Make sure one of the fields is populated."
-            }
-        })
+        self.schema_validator = SchemaValidator()
 
     def read_data(self):
         result = {}
@@ -35,17 +26,10 @@ class TestSchemaValidator:
                 "r"
             ) as myfile:
                 result[data_key] = myfile.read().encode()
-            result[f"{data_key}_json"] = parse(result[data_key])
         return result
-
-    def test_json_validator(self):
-        for data_key in KEYS:
-            assert self.schema_validator.run_json_validator(
-                self.data[f"{data_key}_json"]
-            )
 
     def test_xml_validator(self):
         for data_key in KEYS:
-            assert self.schema_validator.run_json_validator(
+            assert self.schema_validator.run_xml_validator(
                 self.data[data_key]
             )
