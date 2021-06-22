@@ -241,7 +241,7 @@ if __name__ == "__main__":
         action="store",
         nargs="?",
         type=str,
-        help="The metadata format",
+        help="The metadata format (currently supported: 'echo10' and 'dif10')",
     )
 
     args = parser.parse_args()
