@@ -143,7 +143,7 @@ class CustomValidator(BaseValidator):
     @staticmethod
     @if_arg
     def boolean_check(field_value):
-        # Checks if the value is a boolean, basically one of 'true' or 'false'
+        # Checks if the value is a boolean, basically 'true' or 'false' or their case variants
         return {
             "valid": field_value.lower() in ["true", "false"],
             "value": field_value

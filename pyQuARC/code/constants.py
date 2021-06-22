@@ -20,7 +20,7 @@ SCHEMAS = {
         "check_messages",
         "check_messages_override",
         "checks_override",
-        "echo10_json",
+        f"{ECHO10}_json",
         "rule_mapping",
         "rules_override",
         UMM_JSON
@@ -33,7 +33,7 @@ SCHEMAS = {
         "providers",
         "science_keywords"
     ],
-    "xsd": [ f"{DIF}_xml", "echo10_xml" ],
+    "xsd": [ f"{DIF}_xml", f"{ECHO10}_xml" ],
     "xml": [ "catalog" ]
 }
 
