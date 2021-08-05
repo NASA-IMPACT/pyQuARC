@@ -359,6 +359,38 @@
         },
         "remediation": "Please provide a value for the provided characteristic. "
     },
+    "characteristic_name_length_check": {
+        "failure": "The characteristic name has invalid length.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a name that is a string between 1 and 80 characters."
+    },
+    "characteristic_desc_length_check": {
+        "failure": "A characteristic description has invalid length. ",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a short description that is a string between 1 and 2048 characters"
+    },
+    "characteristic_unit_length_check": {
+        "failure": "A characteristic unit has invalid length.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a unit that is a string between 1 and 80 characters."
+    },
+    "characteristic_value_length_check": {
+        "failure": "A characteristic value has invalid length. ",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a value that is a string between 1 and 80 characters."
+    },
     "mime_type_check": {
         "failure": "MimeType isn't valid.",
         "help": {
