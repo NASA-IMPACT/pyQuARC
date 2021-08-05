@@ -2000,7 +2000,8 @@
             "NOT PROVIDED",
             "neq"
         ],
-        "severity": "info"
+        "severity": "info",
+        "check_id": "string_compare"
     },
     "temporal_extent_requirement_check": {
         "rule_name": "Temporal Extent Requirement Check",

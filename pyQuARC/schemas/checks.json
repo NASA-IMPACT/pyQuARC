@@ -214,11 +214,6 @@
         ],
         "available": true
     },
-    "dif10_date_not_provided_check": {
-        "data_type": "string",
-        "check_function": "compare",
-        "available": true
-    },
     "get_data_url_check": {
         "data_type": "custom",
         "check_function": "get_data_url_check",
