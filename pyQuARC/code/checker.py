@@ -107,7 +107,7 @@ class Checker:
         msg_type can be any one of 'failure', 'remediation'
         """
         messages = self.messages_override.get(rule_id) or self.messages.get(rule_id)
-        return messages[msg_type]
+        return messages[msg_type] if messages else ''
 
     def build_message(self, result, rule_id):
         """
@@ -158,10 +158,10 @@ class Checker:
         Run the check function for `rule_id` and update `result_dict`
         """
         dependencies = rule.get("dependencies", [])
-        external_data = rule.get("data", [])
         rule_mapping = self.rules_override.get(
             rule_id
         ) or self.rule_mapping.get(rule_id)
+        external_data = rule_mapping.get("data", [])
         list_of_fields_to_apply = \
             rule_mapping.get("fields_to_apply").get(self.metadata_format, {})
         for field_dict in list_of_fields_to_apply:
