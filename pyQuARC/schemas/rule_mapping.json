@@ -352,7 +352,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "url_check"
     },
     "shortname_uniqueness": {
         "rule_name": "Short Name uniqueness check",
@@ -376,7 +377,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "string_compare"
     },
     "abstract_length_check": {
         "rule_name": "Abstract length check",
@@ -396,7 +398,12 @@
                 }
             ]
         },
-        "severity": "warning"
+        "data": [
+            100,
+            "gte"
+        ],
+        "severity": "warning",
+        "check_id": "length_check"
     },
     "doi_validity_check": {
         "rule_name": "DOI Validity Check",
@@ -426,7 +433,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "doi_validity_check"
     },
     "doi_link_update": {
         "rule_name": "DOI Link Update",
@@ -446,6 +454,13 @@
                 }
             ]
         },
+        "data": [
+            [
+                "dx.doi.org",
+                "http://dx.doi.org",
+                "https://dx.doi.org"
+            ]
+        ],
         "severity": "info"
     },
     "processing_level_id_check": {
@@ -466,7 +481,18 @@
                 }
             ]
         },
-        "severity": "warning"
+        "data": [
+            [
+                "0",
+                "1A",
+                "1B",
+                "2",
+                "3",
+                "4"
+            ]
+        ],
+        "severity": "warning",
+        "check_id": "controlled_keywords_check"
     },
     "science_keywords_gcmd_check": {
         "rule_name": "GCMD Science keywords check",
@@ -509,7 +535,14 @@
                 }
             ]
         },
-        "severity": "info"
+        "data": [
+            [
+                "https://doi.org",
+                "https://doi.org/"
+            ]
+        ],
+        "severity": "info",
+        "check_id": "controlled_keywords_check"
     },
     "delete_time_check": {
         "rule_name": "Delete Time Check",
@@ -534,7 +567,12 @@
                 }
             ]
         },
-        "severity": "info"
+        "data": [
+            "now",
+            "gte"
+        ],
+        "severity": "info",
+        "check_id": "date_compare"
     },
     "doi_missing_reason_enumeration_check": {
         "rule_name": "DOI Missing Reason Enumeration Check",
@@ -547,7 +585,13 @@
                 }
             ]
         },
-        "severity": "error"
+        "data": [
+            [
+                "Not Applicable"
+            ]
+        ],
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "processing_level_description_length_check": {
         "rule_name": "Processing Level Description Length Check",
@@ -560,7 +604,12 @@
                 }
             ]
         },
-        "severity": "info"
+        "data": [
+            50,
+            "gte"
+        ],
+        "severity": "info",
+        "check_id": "length_check"
     },
     "umm_controlled_collection_state_list_check": {
         "rule_name": "UMM Controlled Collection State List",
@@ -573,7 +622,17 @@
                 }
             ]
         },
-        "severity": "error"
+        "data": [
+            [
+                "ACTIVE",
+                "PLANNED",
+                "COMPLETE",
+                "NOT APPLICABLE",
+                "NOT PROVIDED"
+            ]
+        ],
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "ends_at_present_flag_logic_check": {
         "rule_name": "Ends at present flag logic check",
@@ -634,7 +693,24 @@
                 }
             ]
         },
-        "severity": "error"
+        "data": [
+            [
+                "Direct Line",
+                "Email",
+                "Facebook",
+                "Fax",
+                "Mobile",
+                "Modem",
+                "Primary",
+                "TDD/TTY Phone",
+                "Telephone",
+                "Twitter",
+                "U.S. toll free",
+                "Other"
+            ]
+        ],
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "data_contact_role_enum_check": {
         "rule_name": "Data Contact Role Enumeration Check",
@@ -647,7 +723,19 @@
                 }
             ]
         },
-        "severity": "error"
+        "data": [
+            [
+                "Data Center Contact",
+                "Technical Contact",
+                "Science Contact",
+                "Investigator",
+                "Metadata Author",
+                "User Services",
+                "Science Software Development"
+            ]
+        ],
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "controlled_contact_role_check": {
         "rule_name": "Controlled Contact Role Check",
@@ -660,7 +748,16 @@
                 }
             ]
         },
-        "severity": "error"
+        "data": [
+            [
+                "ARCHIVER",
+                "DISTRIBUTOR",
+                "PROCESSOR",
+                "ORIGINATOR"
+            ]
+        ],
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "data_type_control_check": {
         "rule_name": "Data type control Check",
@@ -688,7 +785,22 @@
                 }
             ]
         },
-        "severity": "error"
+        "data": [
+            [
+                "STRING",
+                "FLOAT",
+                "INT",
+                "BOOLEAN",
+                "DATE",
+                "TIME",
+                "DATETIME",
+                "DATE_STRING",
+                "TIME_STRING",
+                "DATETIME_STRING"
+            ]
+        ],
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "characteristic_name_check": {
         "rule_name": "Characteristic Name Check",
@@ -710,7 +822,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "availability_check"
     },
     "characteristic_desc_check": {
         "rule_name": "Characteristic Description Check",
@@ -732,7 +845,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "availability_check"
     },
     "characteristic_unit_check": {
         "rule_name": "Characteristic Unit Check",
@@ -754,7 +868,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "availability_check"
     },
     "characteristic_value_check": {
         "rule_name": "Characteristic Value Check",
@@ -776,7 +891,109 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "availability_check"
+    },
+    "characteristic_name_length_check": {
+        "rule_name": "Characteristic Name Length Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Name"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics/Name"
+                    ]
+                }
+            ]
+        },
+
+      "data": [
+        80,
+        "lte"
+    ],
+        "severity": "error",
+        "check_id": "length_check"
+    },
+    "characteristic_desc_length_check": {
+        "rule_name": "Characteristic Description Length Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Description"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics/Description"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            2048,
+            "lte"
+        ],
+        "severity": "error",
+        "check_id": "length_check"
+    },
+    "characteristic_unit_length_check": {
+        "rule_name": "Characteristic Unit Length Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Unit"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics/Unit"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            80,
+            "lte"
+        ],
+        "severity": "error",
+        "check_id": "length_check"
+    },
+    "characteristic_value_length_check": {
+        "rule_name": "Characteristic Value Length Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Value"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics/Value"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            80,
+            "lte"
+        ],
+        "severity": "error",
+        "check_id": "length_check"
     },
     "mime_type_check": {
         "rule_name": "MIME type Check",
@@ -798,6 +1015,31 @@
                 }
             ]
         },
+        "data": [
+            [
+                "application/json",
+                "application/xml",
+                "application/x-netcdf",
+                "application/gml+xml",
+                "application/vnd.google-earth.kml+xml",
+                "image/gif",
+                "image/tiff",
+                "image/bmp",
+                "text/csv",
+                "text/xml",
+                "application/pdf",
+                "application/x-hdf",
+                "application/xhdf5",
+                "application/octet-stream",
+                "application/vnd.google-earth.kmz",
+                "image/jpeg",
+                "image/png",
+                "image/vnd.collada+xml",
+                "text/html",
+                "text/plain",
+                "Not provided"
+            ]
+        ],
         "severity": "info"
     },
     "coordinate_system_check": {
@@ -811,7 +1053,14 @@
                 }
             ]
         },
-        "severity": "error"
+        "data": [
+            [
+                "CARTESIAN",
+                "GEODETIC"
+            ]
+        ],
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "product_flag_check": {
         "rule_name": "Product Flag Check",
@@ -824,7 +1073,16 @@
                 }
             ]
         },
-        "severity": "error"
+        "data": [
+            [
+                "DATA_PRODUCT_FILE",
+                "INSTRUMENT_ANCILLARY_FILE",
+                "SYSTEM/SPACECRAFT_FILE",
+                "EXTERNAL_DATA"
+            ]
+        ],
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "granule_spatial_representation_check": {
         "rule_name": "Granule Spatial Representation Check",
@@ -837,7 +1095,16 @@
                 }
             ]
         },
-        "severity": "error"
+        "data": [
+            [
+                "CARTESIAN",
+                "GEODETIC",
+                "ORBIT",
+                "NO_SPATIAL"
+            ]
+        ],
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "data_center_short_name_gcmd_check": {
         "rule_name": "Data Center Shortname GCMD Check",
@@ -1076,7 +1343,12 @@
                 }
             ]
         },
-        "severity": "info"
+        "data": [
+            "NOT PROVIDED",
+            "neq"
+        ],
+        "severity": "info",
+        "check_id": "string_compare"
     },
     "collection_data_type_enumeration_check": {
         "rule_name": "Collection Data Type Enumeration Check",
@@ -1089,7 +1361,15 @@
                 }
             ]
         },
-        "severity": "error"
+        "data": [
+            [
+                "SCIENCE_QUALITY",
+                "NEAR_REAL_TIME",
+                "OTHER"
+            ]
+        ],
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "data_center_name_presence_check": {
         "rule_name": "Data Center Name Presence Check",
@@ -1104,7 +1384,8 @@
                 }
             ]
         },
-        "severity": "info"
+        "severity": "info",
+        "check_id": "presence_check"
     },
     "bounding_coordinate_logic_check": {
         "rule_name": "Bounding Coordinates Logic Check",
@@ -1130,7 +1411,17 @@
                 }
             ]
         },
-        "severity": "error"
+        "data": [
+            [
+                "Atmosphere Layer",
+                "Maximum Altitude",
+                "Maximum Depth",
+                "Minimum Altitude",
+                "Minimum Depth"
+            ]
+        ],
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "spatial_coverage_type_check": {
         "rule_name": "Spatial Coverage Type Check",
@@ -1148,7 +1439,19 @@
                 }
             ]
         },
-        "severity": "error"
+        "data": [
+            [
+                "HORIZONTAL",
+                "VERTICAL",
+                "ORBITAL",
+                "HORIZONTAL_VERTICAL",
+                "ORBITAL_VERTICAL",
+                "HORIZONTAL_ORBITAL",
+                "HORIZONTAL_VERTICAL_ORBITAL"
+            ]
+        ],
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "depth_unit_check": {
         "rule_name": "Depth Unit Controlled Vocabulary Check",
@@ -1168,7 +1471,17 @@
                 }
             ]
         },
-        "severity": "warning"
+        "data": [
+            [
+                "Fathoms",
+                "Feet",
+                "HectoPascals",
+                "Meters",
+                "Millibars"
+            ]
+        ],
+        "severity": "warning",
+        "check_id": "controlled_keywords_check"
     },
     "altitude_unit_check": {
         "rule_name": "Altitude Unit Controlled Vocabulary Check",
@@ -1188,7 +1501,15 @@
                 }
             ]
         },
-        "severity": "warning"
+        "data": [
+            [
+                "HectoPascals",
+                "Kilometers",
+                "Millibars"
+            ]
+        ],
+        "severity": "warning",
+        "check_id": "controlled_keywords_check"
     },
     "campaign_name_presence_check": {
         "rule_name": "Campaign Name Presence Check",
@@ -1208,7 +1529,8 @@
                 }
             ]
         },
-        "severity": "info"
+        "severity": "info",
+        "check_id": "presence_check"
     },
     "spatial_coverage_type_presence_check": {
         "rule_name": "Spatial Coverage Type Presence Check",
@@ -1221,7 +1543,8 @@
                 }
             ]
         },
-        "severity": "info"
+        "severity": "info",
+        "check_id": "presence_check"
     },
     "horizontal_datum_name_check": {
         "rule_name": "Horizontal Datum Name Check",
@@ -1241,7 +1564,8 @@
                 }
             ]
         },
-        "severity": "info"
+        "severity": "info",
+        "check_id": "presence_check"
     },
     "online_access_url_presence_check": {
         "rule_name": "Online Access URL Presence Check",
@@ -1254,7 +1578,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "presence_check"
     },
     "online_resource_url_presence_check": {
         "rule_name": "Online Resource URL Presence Check",
@@ -1267,7 +1592,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "presence_check"
     },
     "online_access_url_description_check": {
         "rule_name": "Online Access URL Description Check",
@@ -1280,7 +1606,8 @@
                 }
             ]
         },
-        "severity": "info"
+        "severity": "info",
+        "check_id": "presence_check"
     },
     "online_resource_url_description_check": {
         "rule_name": "Online Resource URL Description Check",
@@ -1293,7 +1620,8 @@
                 }
             ]
         },
-        "severity": "info"
+        "severity": "info",
+        "check_id": "presence_check"
     },
     "opendap_url_location_check": {
         "rule_name": "ECHO10 OPeNDAP URL Location Check",
@@ -1306,7 +1634,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "opendap_url_location_check"
     },
     "location_keyword_presence_check": {
         "rule_name": "Location Keyword Presence Check",
@@ -1326,7 +1655,8 @@
                 }
             ]
         },
-        "severity": "info"
+        "severity": "info",
+        "check_id": "presence_check"
     },
     "spatial_extent_requirement_fulfillment_check": {
         "rule_name": "Spatial Extent Requirement Fulfillment Check",
@@ -1342,7 +1672,8 @@
                 }
             ]
         },
-        "severity": "info"
+        "severity": "info",
+        "check_id": "presence_check"
     },
     "license_information_check": {
         "rule_name": "License Information Check",
@@ -1363,7 +1694,8 @@
                 }
             ]
         },
-        "severity": "warning"
+        "severity": "warning",
+        "check_id": "presence_check"
     },
     "collection_citation_presence_check": {
         "rule_name": "Collection Citation Presence Check",
@@ -1383,7 +1715,8 @@
                 }
             ]
         },
-        "severity": "warning"
+        "severity": "warning",
+        "check_id": "presence_check"
     },
     "user_services_check": {
         "rule_name": "User Services Check",
@@ -1398,7 +1731,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "user_services_check"
     },
     "doi_missing_reason_explanation": {
         "rule_name": "DOI Missing Reason Explanation",
@@ -1422,7 +1756,8 @@
                 }
             ]
         },
-        "severity": "info"
+        "severity": "info",
+        "check_id": "doi_missing_reason_explanation"
     },
     "boolean_check": {
         "rule_name": "Boolean check",
@@ -1440,7 +1775,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "boolean_check"
     },
     "collection_progress_consistency_check": {
         "rule_name": "Collection Progress Related Fields Consistency Check",
@@ -1464,7 +1800,8 @@
                 }
             ]
         },
-        "severity": "warning"
+        "severity": "warning",
+        "check_id": "collection_progress_consistency_check"
     },
     "online_resource_type_gcmd_check": {
         "rule_name": "Online Resource Type GCMD Check",
@@ -1491,7 +1828,8 @@
                 }
             ]
         },
-        "severity": "warning"
+        "severity": "warning",
+        "check_id": "availability_check"
     },
     "characteristic_name_uniqueness_check": {
         "rule_name": "Characteristic Name Uniqueness Check",
@@ -1504,7 +1842,8 @@
                 }
             ]
         },
-        "severity": "warning"
+        "severity": "warning",
+        "check_id": "characteristic_name_uniqueness_check"
     },
     "validate_ending_datetime_against_granules": {
         "rule_name": "Ending Datetime validation against granules",
@@ -1566,7 +1905,12 @@
                 }
             ]
         },
-        "severity": "info"
+        "data": [
+            "now",
+            "gte"
+        ],
+        "severity": "info",
+        "check_id": "date_compare"
     },
     "iso_topic_category_check": {
         "rule_name": "ISO Topic Category Vocabulary Check",
@@ -1579,7 +1923,33 @@
                 }
             ]
         },
-        "severity": "error"
+        "data": [
+            [
+                "BIOTA",
+                "BOUNDARIES",
+                "CLIMATOLOGY/METEOROLOGY/ATMOSPHERE",
+                "DISASTER",
+                "ECONOMY",
+                "ELEVATION",
+                "ENVIRONMENT",
+                "EXTRA TERRESTRIAL",
+                "FARMING",
+                "GEOSCIENTIFIC INFORMATION",
+                "HEALTH",
+                "IMAGERY/BASE MAPS/EARTH COVER",
+                "INLAND WATERS",
+                "INTELLIGENCE/MILITARY",
+                "LOCATION",
+                "OCEANS",
+                "PLANNING CADASTRE",
+                "SOCIETY",
+                "STRUCTURE",
+                "TRANSPORTATION",
+                "UTILITIES/COMMUNICATIONS"
+            ]
+        ],
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "dif10_date_not_provided_check": {
         "rule_name": "DIF10 Date Not Provided Check",
@@ -1626,6 +1996,10 @@
                 }
             ]
         },
+        "data": [
+            "NOT PROVIDED",
+            "neq"
+        ],
         "severity": "info"
     },
     "temporal_extent_requirement_check": {
@@ -1650,7 +2024,8 @@
                 }
             ]
         },
-        "severity": "info"
+        "severity": "info",
+        "check_id": "presence_check"
     },
     "ftp_protocol_check": {
         "rule_name": "FTP Protocol Check",
@@ -1668,7 +2043,12 @@
                 }
             ]
         },
-        "severity": "error"
+        "data": [
+            "FTP",
+            "neq"
+        ],
+        "severity": "error",
+        "check_id": "string_compare"
     },
     "citation_version_check": {
         "rule_name": "Citation Version Check",
@@ -1683,7 +2063,8 @@
                 }
             ]
         },
-        "severity": "info"
+        "severity": "info",
+        "check_id": "string_compare"
     },
     "default_date_check": {
         "rule_name": "Default Date Check",
@@ -1731,7 +2112,12 @@
                 }
             ]
         },
-        "severity": "info"
+        "data": [
+            "1970-01-01T00:00:00Z",
+            "neq"
+        ],
+        "severity": "info",
+        "check_id": "date_compare"
     },
     "url_desc_presence_check": {
         "rule_name": "Online Description Presence Check",
@@ -1771,7 +2157,8 @@
                 }
             ]
         },
-        "severity": "info"
+        "severity": "info",
+        "check_id": "availability_check"
     },
     "get_data_url_check": {
         "rule_name": "GET DATA URL check",

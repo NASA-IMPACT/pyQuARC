@@ -19,18 +19,14 @@
         "check_function": "health_and_status_check",
         "available": true
     },
-    "shortname_uniqueness": {
+    "string_compare": {
         "data_type": "string",
         "check_function": "compare",
         "available": true
     },
-    "abstract_length_check": {
+    "length_check": {
         "data_type": "string",
         "check_function": "length_check",
-        "data": [
-            100,
-            "gte"
-        ],
         "available": true
     },
     "doi_validity_check": {
@@ -38,82 +34,14 @@
         "check_function": "doi_check",
         "available": true
     },
-    "processing_level_id_check": {
+    "controlled_keywords_check": {
         "data_type": "string",
         "check_function": "controlled_keywords_check",
-        "data": [
-            [
-                "0",
-                "1A",
-                "1B",
-                "2",
-                "3",
-                "4"
-            ]
-        ],
         "available": true
     },
     "science_keywords_gcmd_check": {
         "data_type": "string",
         "check_function": "science_keywords_gcmd_check",
-        "available": true
-    },
-    "eosdis_doi_authority_check": {
-        "data_type": "string",
-        "check_function": "controlled_keywords_check",
-        "data": [
-            [
-                "https://doi.org",
-                "https://doi.org/"
-            ]
-        ],
-        "available": true
-    },
-    "delete_time_check": {
-        "data_type": "datetime",
-        "check_function": "compare",
-        "dependencies": [
-            [
-                "datetime_format_check"
-            ]
-        ],
-        "data": [
-            "now",
-            "gte"
-        ],
-        "available": true
-    },
-    "doi_missing_reason_enumeration_check": {
-        "data_type": "string",
-        "check_function": "controlled_keywords_check",
-        "data": [
-            [
-                "Not Applicable"
-            ]
-        ],
-        "available": true
-    },
-    "processing_level_description_length_check": {
-        "data_type": "string",
-        "check_function": "length_check",
-        "data": [
-            50,
-            "gte"
-        ],
-        "available": true
-    },
-    "umm_controlled_collection_state_list_check": {
-        "data_type": "string",
-        "check_function": "controlled_keywords_check",
-        "data": [
-            [
-                "ACTIVE",
-                "PLANNED",
-                "COMPLETE",
-                "NOT APPLICABLE",
-                "NOT PROVIDED"
-            ]
-        ],
         "available": true
     },
     "ends_at_present_flag_logic_check": {
@@ -126,206 +54,19 @@
         "check_function": "ends_at_present_flag_presence_check",
         "available": true
     },
-    "contact_mechanism_enum_check": {
-        "data_type": "string",
-        "check_function": "controlled_keywords_check",
-        "data": [
-            [
-                "Direct Line",
-                "Email",
-                "Facebook",
-                "Fax",
-                "Mobile",
-                "Modem",
-                "Primary",
-                "TDD/TTY Phone",
-                "Telephone",
-                "Twitter",
-                "U.S. toll free",
-                "Other"
-            ]
-        ],
-        "available": true
-    },
-    "data_contact_role_enum_check": {
-        "data_type": "string",
-        "check_function": "controlled_keywords_check",
-        "data": [
-            [
-                "Data Center Contact",
-                "Technical Contact",
-                "Science Contact",
-                "Investigator",
-                "Metadata Author",
-                "User Services",
-                "Science Software Development"
-            ]
-        ],
-        "available": true
-    },
-    "controlled_contact_role_check": {
-        "data_type": "string",
-        "check_function": "controlled_keywords_check",
-        "data": [
-            [
-                "ARCHIVER",
-                "DISTRIBUTOR",
-                "PROCESSOR",
-                "ORIGINATOR"
-            ]
-        ],
-        "available": true
-    },
-    "data_type_control_check": {
-        "data_type": "string",
-        "check_function": "controlled_keywords_check",
-        "data": [
-            [
-                "STRING",
-                "FLOAT",
-                "INT",
-                "BOOLEAN",
-                "DATE",
-                "TIME",
-                "DATETIME",
-                "DATE_STRING",
-                "TIME_STRING",
-                "DATETIME_STRING"
-            ]
-        ],
-        "available": true
-    },
-    "characteristic_name_check": {
+    "availability_check": {
         "data_type": "custom",
         "check_function": "availability_check",
-        "available": true
-    },
-    "characteristic_desc_check": {
-        "data_type": "custom",
-        "check_function": "availability_check",
-        "available": true
-    },
-    "characteristic_unit_check": {
-        "data_type": "custom",
-        "check_function": "availability_check",
-        "available": true
-    },
-    "characteristic_value_check": {
-        "data_type": "custom",
-        "check_function": "availability_check",
-        "available": true
-    },
-    "characteristic_name_length_check": {
-        "data_type": "string",
-        "check_function": "length_check",
-        "data": [
-            80,
-            "lte"
-        ],
-        "available": true
-    },
-    "characteristic_desc_length_check": {
-        "data_type": "string",
-        "check_function": "length_check",
-        "data": [
-            2048,
-            "lte"
-        ],
-        "available": true
-    },
-    "characteristic_unit_length_check": {
-        "data_type": "string",
-        "check_function": "length_check",
-        "data": [
-            80,
-            "lte"
-        ],
-        "available": true
-    },
-    "characteristic_value_length_check": {
-        "data_type": "string",
-        "check_function": "length_check",
-        "data": [
-            80,
-            "lte"
-        ],
         "available": true
     },
     "mime_type_check": {
         "data_type": "custom",
         "check_function": "mime_type_check",
-        "data": [
-            [
-                "application/json",
-                "application/xml",
-                "application/x-netcdf",
-                "application/gml+xml",
-                "application/vnd.google-earth.kml+xml",
-                "image/gif",
-                "image/tiff",
-                "image/bmp",
-                "text/csv",
-                "text/xml",
-                "application/pdf",
-                "application/x-hdf",
-                "application/xhdf5",
-                "application/octet-stream",
-                "application/vnd.google-earth.kmz",
-                "image/jpeg",
-                "image/png",
-                "image/vnd.collada+xml",
-                "text/html",
-                "text/plain",
-                "Not provided"
-            ]
-        ],
-        "available": true
-    },
-    "coordinate_system_check": {
-        "data_type": "string",
-        "check_function": "controlled_keywords_check",
-        "data": [
-            [
-                "CARTESIAN",
-                "GEODETIC"
-            ]
-        ],
-        "available": true
-    },
-    "product_flag_check": {
-        "data_type": "string",
-        "check_function": "controlled_keywords_check",
-        "data": [
-            [
-                "DATA_PRODUCT_FILE",
-                "INSTRUMENT_ANCILLARY_FILE",
-                "SYSTEM/SPACECRAFT_FILE",
-                "EXTERNAL_DATA"
-            ]
-        ],
-        "available": true
-    },
-    "granule_spatial_representation_check": {
-        "data_type": "string",
-        "check_function": "controlled_keywords_check",
-        "data": [
-            [
-                "CARTESIAN",
-                "GEODETIC",
-                "ORBIT",
-                "NO_SPATIAL"
-            ]
-        ],
         "available": true
     },
     "data_center_short_name_gcmd_check": {
         "data_type": "string",
         "check_function": "data_center_short_name_gcmd_check",
-        "available": true
-    },
-    "instrument_short_name_check": {
-        "data_type": "custom",
-        "check_function": "availability_check",
         "available": true
     },
     "instrument_short_long_name_consistency_check": {
@@ -403,28 +144,7 @@
         "check_function": "data_format_gcmd_check",
         "available": true
     },
-    "version_description_not_provided": {
-        "data_type": "string",
-        "check_function": "compare",
-        "data": [
-            "NOT PROVIDED",
-            "neq"
-        ],
-        "available": true
-    },
-    "collection_data_type_enumeration_check": {
-        "data_type": "string",
-        "check_function": "controlled_keywords_check",
-        "data": [
-            [
-                "SCIENCE_QUALITY",
-                "NEAR_REAL_TIME",
-                "OTHER"
-            ]
-        ],
-        "available": true
-    },
-    "data_center_name_presence_check": {
+    "presence_check": {
         "data_type": "custom",
         "check_function": "presence_check",
         "available": true
@@ -432,27 +152,6 @@
     "doi_link_update": {
         "data_type": "url",
         "check_function": "doi_link_update",
-        "data": [
-            [
-                "dx.doi.org",
-                "http://dx.doi.org",
-                "https://dx.doi.org"
-            ]
-        ],
-        "available": true
-    },
-    "vertical_spatial_domain_type_check": {
-        "data_type": "string",
-        "check_function": "controlled_keywords_check",
-        "data": [
-            [
-                "Atmosphere Layer",
-                "Maximum Altitude",
-                "Maximum Depth",
-                "Minimum Altitude",
-                "Minimum Depth"
-            ]
-        ],
         "available": true
     },
     "bounding_coordinate_logic_check": {
@@ -460,106 +159,9 @@
         "check_function": "bounding_coordinate_logic_check",
         "available": true
     },
-    "spatial_coverage_type_check": {
-        "data_type": "string",
-        "check_function": "controlled_keywords_check",
-        "data": [
-            [
-                "HORIZONTAL",
-                "VERTICAL",
-                "ORBITAL",
-                "HORIZONTAL_VERTICAL",
-                "ORBITAL_VERTICAL",
-                "HORIZONTAL_ORBITAL",
-                "HORIZONTAL_VERTICAL_ORBITAL"
-            ]
-        ],
-        "available": true
-    },
-    "depth_unit_check": {
-        "data_type": "string",
-        "check_function": "controlled_keywords_check",
-        "data": [
-            [
-                "Fathoms",
-                "Feet",
-                "HectoPascals",
-                "Meters",
-                "Millibars"
-            ]
-        ],
-        "available": true
-    },
-    "altitude_unit_check": {
-        "data_type": "string",
-        "check_function": "controlled_keywords_check",
-        "data": [
-            [
-                "HectoPascals",
-                "Kilometers",
-                "Millibars"
-            ]
-        ],
-        "available": true
-    },
-    "campaign_name_presence_check": {
-        "data_type": "custom",
-        "check_function": "presence_check",
-        "available": true
-    },
-    "spatial_coverage_type_presence_check": {
-        "data_type": "custom",
-        "check_function": "presence_check",
-        "available": true
-    },
-    "horizontal_datum_name_check": {
-        "data_type": "custom",
-        "check_function": "presence_check",
-        "available": true
-    },
-    "online_access_url_presence_check": {
-        "data_type": "custom",
-        "check_function": "presence_check",
-        "available": true
-    },
-    "online_resource_url_presence_check": {
-        "data_type": "custom",
-        "check_function": "presence_check",
-        "available": true
-    },
-    "online_access_url_description_check": {
-        "data_type": "custom",
-        "check_function": "presence_check",
-        "available": true
-    },
-    "online_resource_url_description_check": {
-        "data_type": "custom",
-        "check_function": "presence_check",
-        "available": true
-    },
     "opendap_url_location_check": {
         "data_type": "custom",
         "check_function": "opendap_url_location_check",
-        "available": true
-    },
-    "location_keyword_presence_check": {
-        "data_type": "custom",
-        "check_function": "presence_check",
-        "available": true
-    },
-    "spatial_extent_requirement_fulfillment_check": {
-        "data_type": "custom",
-        "check_function": "presence_check",
-        "available": true
-    },
-    "license_information_check": {
-        "data_type": "custom",
-        "check_function": "presence_check",
-        "available": true
-    },
-    "collection_citation_presence_check": {
-        "data_type": "custom",
-        "check_function": "presence_check",
         "available": true
     },
     "user_services_check": {
@@ -587,11 +189,6 @@
         "check_function": "online_resource_type_gcmd_check",
         "available": true
     },
-    "online_resource_type_presence_check": {
-        "data_type": "custom",
-        "check_function": "availability_check",
-        "available": true
-    },
     "characteristic_name_uniqueness_check": {
         "data_type": "custom",
         "check_function": "characteristic_name_uniqueness_check",
@@ -617,90 +214,9 @@
         ],
         "available": true
     },
-    "future_date_check": {
-        "data_type": "datetime",
-        "check_function": "compare",
-        "dependencies": [
-            [
-                "datetime_format_check"
-            ]
-        ],
-        "data": [
-            "now",
-            "gte"
-        ],
-        "available": true
-    },
-    "iso_topic_category_check": {
-        "data_type": "string",
-        "check_function": "controlled_keywords_check",
-        "data": [
-            [
-                "BIOTA",
-                "BOUNDARIES",
-                "CLIMATOLOGY/METEOROLOGY/ATMOSPHERE",
-                "DISASTER",
-                "ECONOMY",
-                "ELEVATION",
-                "ENVIRONMENT",
-                "EXTRA TERRESTRIAL",
-                "FARMING",
-                "GEOSCIENTIFIC INFORMATION",
-                "HEALTH",
-                "IMAGERY/BASE MAPS/EARTH COVER",
-                "INLAND WATERS",
-                "INTELLIGENCE/MILITARY",
-                "LOCATION",
-                "OCEANS",
-                "PLANNING CADASTRE",
-                "SOCIETY",
-                "STRUCTURE",
-                "TRANSPORTATION",
-                "UTILITIES/COMMUNICATIONS"
-            ]
-        ],
-        "available": true
-    },
     "dif10_date_not_provided_check": {
         "data_type": "string",
         "check_function": "compare",
-        "data": [
-            "NOT PROVIDED",
-            "neq"
-        ],
-        "available": true
-    },
-    "temporal_extent_requirement_check": {
-        "data_type": "custom",
-        "check_function": "presence_check",
-        "available": true
-    },
-    "ftp_protocol_check": {
-        "data_type": "string",
-        "check_function": "compare",
-        "data": [
-            "FTP",
-            "neq"
-        ],
-        "available": true
-    },
-    "citation_version_check": {
-        "data_type": "string",
-        "check_function": "compare",
-        "available": true
-    },
-    "default_date_check": {
-        "data_type": "datetime",
-        "check_function": "compare",
-        "data": [
-            "1970-01-01T00:00:00Z",
-            "neq"
-        ],
-        "available": true
-    },
-    "url_desc_presence_check": {
-        "data_type": "custom",
-        "check_function": "availability_check",
         "available": true
     },
     "get_data_url_check": {
