@@ -55,7 +55,11 @@ class Checker:
             self.checks_override
         )
         self.schema_validator = SchemaValidator(metadata_format)
-        self.tracker = Tracker(self.rule_mapping, self.rules_override, metadata_format)
+        self.tracker = Tracker(
+            self.rule_mapping,
+            self.rules_override,
+            metadata_format=metadata_format
+        )
 
     @staticmethod
     def _json_load_schema(schema_name):
