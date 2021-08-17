@@ -15,6 +15,7 @@ else:
     from .code.constants import COLOR, ECHO10
     from .code.downloader import Downloader
 
+
 ABS_PATH = os.path.abspath(os.path.dirname(__file__))
 END = COLOR["reset"]
 
@@ -205,12 +206,13 @@ class ARC:
 
 
 if __name__ == "__main__":
-    # parse command line arguments (argparse)
-    # --query
-    # --concept_ids
-    # --file
-    # --fake
-
+    """
+        parse command line arguments (argparse)
+        --query
+        --concept_ids
+        --file
+        --fake
+    """
     parser = argparse.ArgumentParser()
     download_group = parser.add_mutually_exclusive_group()
     download_group.add_argument(

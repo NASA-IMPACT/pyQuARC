@@ -12,7 +12,7 @@ ROOT_DIR = (
     Path(__file__).resolve().parents[1]
 )
 
-SCHEMAS_BASE_PATH = ROOT_DIR / "schemas"
+SCHEMAS_BASE_PATH = f"{ROOT_DIR}/schemas"
 
 SCHEMAS = {
     "json": [
@@ -30,6 +30,7 @@ SCHEMAS = {
         "locations",
         "projects",
         "providers",
+        "platforms",
         "science_keywords"
     ],
     "xsd": [ f"{DIF}_xml", f"{ECHO10}_xml" ],
@@ -37,10 +38,12 @@ SCHEMAS = {
 }
 
 SCHEMA_PATHS = {
-    schema: SCHEMAS_BASE_PATH / f"{schema}.{filetype}"
+    schema:  f"{SCHEMAS_BASE_PATH}/{schema}.{filetype}"
         for filetype, schemas in SCHEMAS.items()
             for schema in schemas
 }
+
+VERSION_FILE = f"{SCHEMAS_BASE_PATH}/version.txt"
 
 COLOR = {
     "title": Fore.GREEN,

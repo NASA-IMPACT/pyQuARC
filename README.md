@@ -47,8 +47,8 @@ Furthermore, the `rule_mapping.json` file specifies the level of severity associ
 ## Customization
 pyQuARC is designed to be customizable. Output messages can be modified using the `messages_override.json` file - any messages added to `messages_override.json` will display over the default messages in the `message.json` file. Similarly, there is a `rule_mapping_override.json` file which can be used to override the default settings for which rules/checks are applied to which metadata elements.  
 
-There is also the opportunity for more sophisticated customization. New QA rules can be added and existing QA rules can be edited or removed. Support for new metadata standards can be added as well. Further details on how to customize pyQuARC will be provided in the technical user’s guide below. 
- 
+There is also the opportunity for more sophisticated customization. New QA rules can be added and existing QA rules can be edited or removed. Support for new metadata standards can be added as well. Further details on how to customize pyQuARC will be provided in the technical user’s guide below.
+
 While the pyQuARC base package is currently managed by the ARC team, the long term goal is for it to be owned and governed by the broader EOSDIS metadata community.
 
 ## Install/User’s Guide
@@ -70,7 +70,7 @@ While the pyQuARC base package is currently managed by the ARC team, the long te
 
 ```
 ▶ python pyQuARC/main.py -h  
-usage: usage: main.py [-h] [--query QUERY | --concept_ids CONCEPT_IDS [CONCEPT_IDS ...]] [--file FILE | --fake FAKE] [--format [FORMAT]]
+usage: main.py [-h] [--query QUERY | --concept_ids CONCEPT_IDS [CONCEPT_IDS ...]] [--file FILE | --fake FAKE] [--format [FORMAT]]
 
 arguments:
   -h, --help            show this help message and exit
@@ -93,7 +93,7 @@ or
 
 To add a custom check, follow the following steps:
 
-  
+
 
 **Add an entry to the `schemas/rule_mapping.json` file in the form:**
 ```
