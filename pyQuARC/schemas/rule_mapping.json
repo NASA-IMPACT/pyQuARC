@@ -1,742 +1,2177 @@
 {
     "data_update_time_logic_check": {
         "rule_name": "Data Update Time Logic Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/LastUpdate",
-                    "Collection/InsertTime"
-                ],
-                "relation": "gte"
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/LastUpdate",
+                        "Collection/InsertTime"
+                    ],
+                    "relation": "gte"
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Last_Revision",
+                        "DIF/Metadata_Dates/Data_Creation"
+                    ],
+                    "relation": "gte"
+                }
+            ]
+        },
         "severity": "info",
         "check_id": "date_compare"
     },
     "data_revision_date_logic_check": {
         "rule_name": "Data Revision Date Logic Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/RevisionDate",
-                    "Collection/InsertTime"
-                ],
-                "relation": "gte"
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/RevisionDate",
+                        "Collection/InsertTime"
+                    ],
+                    "relation": "gte"
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Last_Revision",
+                        "DIF/Metadata_Dates/Metadata_Creation"
+                    ],
+                    "relation": "gte"
+                }
+            ]
+        },
         "severity": "info",
         "check_id": "date_compare"
     },
     "range_date_time_logic_check_1": {
         "rule_name": "Range Date Time Logic Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Temporal/RangeDateTime/BeginningDateTime",
-                    "Collection/Temporal/RangeDateTime/EndingDateTime"
-                ],
-                "relation": "lte"
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Temporal/RangeDateTime/BeginningDateTime",
+                        "Collection/Temporal/RangeDateTime/EndingDateTime"
+                    ],
+                    "relation": "lte"
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time",
+                        "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time"
+                    ],
+                    "relation": "lte"
+                }
+            ]
+        },
         "severity": "error",
         "check_id": "date_compare"
     },
     "range_date_time_logic_check_2": {
         "rule_name": "Range Date Time Logic Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Temporal/RangeDateTime/BeginningDateTime",
-                    "Collection/Temporal/RangeDateTime/EndingDateTime"
-                ],
-                "relation": "neq"
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Temporal/RangeDateTime/BeginningDateTime",
+                        "Collection/Temporal/RangeDateTime/EndingDateTime"
+                    ],
+                    "relation": "neq"
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time",
+                        "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time"
+                    ],
+                    "relation": "neq"
+                }
+            ]
+        },
         "severity": "warning",
         "check_id": "date_compare"
     },
     "project_date_time_logic_check_1": {
         "rule_name": "Project Date Time Logic Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Campaigns/Campaign/StartDate",
-                    "Collection/Campaigns/Campaign/EndDate"
-                ],
-                "relation": "lte"
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Campaigns/Campaign/StartDate",
+                        "Collection/Campaigns/Campaign/EndDate"
+                    ],
+                    "relation": "lte"
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Project/Start_Date",
+                        "DIF/Project/End_Date"
+                    ],
+                    "relation": "lte"
+                }
+            ]
+        },
         "severity": "error",
         "check_id": "date_compare"
     },
     "project_date_time_logic_check_2": {
         "rule_name": "Project Date Time Logic Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Campaigns/Campaign/StartDate",
-                    "Collection/Campaigns/Campaign/EndDate"
-                ],
-                "relation": "neq"
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Campaigns/Campaign/StartDate",
+                        "Collection/Campaigns/Campaign/EndDate"
+                    ],
+                    "relation": "neq"
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Project/Start_Date",
+                        "DIF/Project/End_Date"
+                    ],
+                    "relation": "neq"
+                }
+            ]
+        },
         "severity": "warning",
         "check_id": "date_compare"
     },
     "periodic_date_time_logic_check": {
         "rule_name": "Periodic Date Time Logic Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Temporal/PeriodicDateTime/StartDate",
-                    "Collection/Temporal/PeriodicDateTime/EndDate"
-                ],
-                "relation": "lt"
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Temporal/PeriodicDateTime/StartDate",
+                        "Collection/Temporal/PeriodicDateTime/EndDate"
+                    ],
+                    "relation": "lt"
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Periodic_DateTime/Start_Date",
+                        "DIF/Temporal_Coverage/Periodic_DateTime/End_Date"
+                    ],
+                    "relation": "lt"
+                },
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Paleo_DateTime/Paleo_Start_Date",
+                        "DIF/Temporal_Coverage/Paleo_DateTime/Paleo_Stop_Date"
+                    ],
+                    "relation": "lt"
+                }
+            ]
+        },
         "severity": "error",
         "check_id": "date_compare"
     },
     "datetime_format_check": {
         "rule_name": "Datetime ISO Format Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/InsertTime"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/LastUpdate"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/DeleteTime"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/RevisionDate"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/Temporal/SingleDateTime"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/Temporal/RangeDateTime/BeginningDateTime"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/Temporal/RangeDateTime/EndingDateTime"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/Temporal/PeriodicDateTime/StartDate"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/Temporal/PeriodicDateTime/EndDate"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/Campaigns/Campaign/StartDate"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/Campaigns/Campaign/EndDate"
-                ]
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/InsertTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/LastUpdate"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/DeleteTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/RevisionDate"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/Temporal/SingleDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/Temporal/RangeDateTime/BeginningDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/Temporal/RangeDateTime/EndingDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/Temporal/PeriodicDateTime/StartDate"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/Temporal/PeriodicDateTime/EndDate"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/Campaigns/Campaign/StartDate"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/Campaigns/Campaign/EndDate"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Single_Date_Time"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Periodic_DateTime/Start_Date"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Periodic_DateTime/End_Date"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Creation"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Last_Revision"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Delete"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Creation"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Last_Revision"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Future_Review"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Future_Review"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Delete"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Paleo_DateTime/Paleo_Stop_Date"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Paleo_DateTime/Paleo_Start_Date"
+                    ]
+                }
+            ]
+        },
         "severity": "error"
     },
     "url_check": {
         "rule_name": "URL Health and Status Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Description"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/SuggestedUsage"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/CitationforExternalPublication"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/OnlineResources/OnlineResource/URL"
-                ]
-            }
-        ],
-        "severity": "error"
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Description"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/SuggestedUsage"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/CitationforExternalPublication"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/OnlineResources/OnlineResource/URL"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "url_check"
     },
     "shortname_uniqueness": {
         "rule_name": "Short Name uniqueness check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/DataSetId",
-                    "Collection/ShortName"
-                ],
-                "relation": "neq"
-            }
-        ],
-        "severity": "error"
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/DataSetId",
+                        "Collection/ShortName"
+                    ],
+                    "relation": "neq"
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Entry_Title",
+                        "DIF/Entry_ID/Short_Name"
+                    ],
+                    "relation": "neq"
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "string_compare"
     },
     "abstract_length_check": {
         "rule_name": "Abstract length check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Description"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Description"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Summary/Abstract"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            100,
+            "gte"
         ],
-        "severity": "warning"
+        "severity": "warning",
+        "check_id": "length_check"
     },
     "doi_validity_check": {
         "rule_name": "DOI Validity Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/DOI/DOI"
-                ]
-            }
-        ],
-        "severity": "error"
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/DOI/DOI"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Dataset_Citation/Persistent_Identifier/Identifier"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Reference/Persistent_Identifier/Identifier"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Associated_DOIs/DOI"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "doi_validity_check"
     },
     "doi_link_update": {
         "rule_name": "DOI Link Update",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/AdditionalAttributes/AdditionalAttribute/Value"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/AdditionalAttributes/AdditionalAttribute/Value"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Additional_Attributes/Value"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "dx.doi.org",
+                "http://dx.doi.org",
+                "https://dx.doi.org"
+            ]
         ],
         "severity": "info"
     },
     "processing_level_id_check": {
         "rule_name": "EOSDIS Standard Processing Level ID Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/ProcessingLevelId"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/ProcessingLevelId"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/ProductLevelId"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "0",
+                "1A",
+                "1B",
+                "2",
+                "3",
+                "4"
+            ]
         ],
-        "severity": "warning"
+        "severity": "warning",
+        "check_id": "controlled_keywords_check"
     },
     "science_keywords_gcmd_check": {
         "rule_name": "GCMD Science keywords check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/ScienceKeywords/ScienceKeyword/CategoryKeyword",
-                    "Collection/ScienceKeywords/ScienceKeyword/TopicKeyword",
-                    "Collection/ScienceKeywords/ScienceKeyword/TermKeyword",
-                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/Value",
-                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/VariableLevel2Keyword/Value",
-                    "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/VariableLevel2Keyword/VariableLevel3Keyword/Value"
-                ]
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/ScienceKeywords/ScienceKeyword/CategoryKeyword",
+                        "Collection/ScienceKeywords/ScienceKeyword/TopicKeyword",
+                        "Collection/ScienceKeywords/ScienceKeyword/TermKeyword",
+                        "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/Value",
+                        "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/VariableLevel2Keyword/Value",
+                        "Collection/ScienceKeywords/ScienceKeyword/VariableLevel1Keyword/VariableLevel2Keyword/VariableLevel3Keyword/Value"
+                    ]
+                }
+            ]
+        },
         "severity": "error"
     },
     "eosdis_doi_authority_check": {
         "rule_name": "EOSDIS DOI Authority Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/DOI/Authority"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/DOI/Authority"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Dataset_Citation/Persistent_Identifier/Authority"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Associated_DOIs/Authority"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "https://doi.org",
+                "https://doi.org/"
+            ]
         ],
-        "severity": "info"
+        "severity": "info",
+        "check_id": "controlled_keywords_check"
     },
     "delete_time_check": {
         "rule_name": "Delete Time Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/DeleteTime"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/DeleteTime"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Delete"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Delete"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            "now",
+            "gte"
         ],
-        "severity": "info"
+        "severity": "info",
+        "check_id": "date_compare"
     },
     "doi_missing_reason_enumeration_check": {
         "rule_name": "DOI Missing Reason Enumeration Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/DOI/MissingReason"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/DOI/MissingReason"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "Not Applicable"
+            ]
         ],
-        "severity": "error"
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "processing_level_description_length_check": {
         "rule_name": "Processing Level Description Length Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/ProcessingLevelDescription"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/ProcessingLevelDescription"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            50,
+            "gte"
         ],
-        "severity": "info"
+        "severity": "info",
+        "check_id": "length_check"
     },
     "umm_controlled_collection_state_list_check": {
         "rule_name": "UMM Controlled Collection State List",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/CollectionState"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/CollectionState"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "ACTIVE",
+                "PLANNED",
+                "COMPLETE",
+                "NOT APPLICABLE",
+                "NOT PROVIDED"
+            ]
         ],
-        "severity": "error"
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "ends_at_present_flag_logic_check": {
         "rule_name": "Ends at present flag logic check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Temporal/EndsAtPresentFlag",
-                    "Collection/Temporal/RangeDateTime/EndingDateTime",
-                    "Collection/CollectionState"
-                ]
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Temporal/EndsAtPresentFlag",
+                        "Collection/Temporal/RangeDateTime/EndingDateTime",
+                        "Collection/CollectionState"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Ends_At_Present_Flag",
+                        "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time",
+                        "DIF/Dataset_Progress"
+                    ]
+                }
+            ]
+        },
         "severity": "warning"
     },
     "ends_at_present_flag_presence_check": {
         "rule_name": "Ends at present flag presence check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Temporal/EndsAtPresentFlag",
-                    "Collection/Temporal/RangeDateTime/EndingDateTime",
-                    "Collection/CollectionState"
-                ]
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Temporal/EndsAtPresentFlag",
+                        "Collection/Temporal/RangeDateTime/EndingDateTime",
+                        "Collection/CollectionState"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Ends_At_Present_Flag",
+                        "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time",
+                        "DIF/Dataset_Progress"
+                    ]
+                }
+            ]
+        },
         "severity": "warning"
     },
     "contact_mechanism_enum_check": {
         "rule_name": "Contact Mechanism Enumeration Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Contacts/Contact/OrganizationPhones/Phone/Type"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Contacts/Contact/OrganizationPhones/Phone/Type"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "Direct Line",
+                "Email",
+                "Facebook",
+                "Fax",
+                "Mobile",
+                "Modem",
+                "Primary",
+                "TDD/TTY Phone",
+                "Telephone",
+                "Twitter",
+                "U.S. toll free",
+                "Other"
+            ]
         ],
-        "severity": "error"
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "data_contact_role_enum_check": {
         "rule_name": "Data Contact Role Enumeration Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Contacts/Contact/ContactPersons/ContactPerson/JobPosition"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Contacts/Contact/ContactPersons/ContactPerson/JobPosition"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "Data Center Contact",
+                "Technical Contact",
+                "Science Contact",
+                "Investigator",
+                "Metadata Author",
+                "User Services",
+                "Science Software Development"
+            ]
         ],
-        "severity": "error"
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "controlled_contact_role_check": {
         "rule_name": "Controlled Contact Role Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Contacts/Contact/Role"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Contacts/Contact/Role"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "ARCHIVER",
+                "DISTRIBUTOR",
+                "PROCESSOR",
+                "ORIGINATOR"
+            ]
         ],
-        "severity": "error"
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "data_type_control_check": {
         "rule_name": "Data type control Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/AdditionalAttributes/AdditionalAttribute/DataType"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/Characteristics/Characteristic/DataType"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/DataType"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/Characteristics/Characteristic/DataType"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/AdditionalAttributes/AdditionalAttribute/DataType"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Characteristics/Characteristic/DataType"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/DataType"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/Characteristics/Characteristic/DataType"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "STRING",
+                "FLOAT",
+                "INT",
+                "BOOLEAN",
+                "DATE",
+                "TIME",
+                "DATETIME",
+                "DATE_STRING",
+                "TIME_STRING",
+                "DATETIME_STRING"
+            ]
         ],
-        "severity": "error"
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "characteristic_name_check": {
         "rule_name": "Characteristic Name Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Name",
-                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
-                ]
-            }
-        ],
-        "severity": "error"
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Name",
+                        "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics/Name",
+                        "DIF/Platform/Characteristics"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "availability_check"
     },
     "characteristic_desc_check": {
         "rule_name": "Characteristic Description Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Description",
-                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
-                ]
-            }
-        ],
-        "severity": "error"
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Description",
+                        "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics/Description",
+                        "DIF/Platform/Characteristics"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "availability_check"
     },
     "characteristic_unit_check": {
         "rule_name": "Characteristic Unit Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Unit",
-                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
-                ]
-            }
-        ],
-        "severity": "error"
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Unit",
+                        "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics/Unit",
+                        "DIF/Platform/Characteristics"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "availability_check"
     },
     "characteristic_value_check": {
         "rule_name": "Characteristic Value Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Value",
-                    "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Value",
+                        "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics/Value",
+                        "DIF/Platform/Characteristics"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "availability_check"
+    },
+    "characteristic_name_length_check": {
+        "rule_name": "Characteristic Name Length Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Name"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics/Name"
+                    ]
+                }
+            ]
+        },
+
+      "data": [
+        80,
+        "lte"
+    ],
+        "severity": "error",
+        "check_id": "length_check"
+    },
+    "characteristic_desc_length_check": {
+        "rule_name": "Characteristic Description Length Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Description"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics/Description"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            2048,
+            "lte"
         ],
-        "severity": "error"
+        "severity": "error",
+        "check_id": "length_check"
+    },
+    "characteristic_unit_length_check": {
+        "rule_name": "Characteristic Unit Length Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Unit"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics/Unit"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            80,
+            "lte"
+        ],
+        "severity": "error",
+        "check_id": "length_check"
+    },
+    "characteristic_value_length_check": {
+        "rule_name": "Characteristic Value Length Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Value"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics/Value"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            80,
+            "lte"
+        ],
+        "severity": "error",
+        "check_id": "length_check"
     },
     "mime_type_check": {
         "rule_name": "MIME type Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/OnlineResources/OnlineResource/MimeType",
-                    "Collection/OnlineResources/OnlineResource/Type"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/OnlineResources/OnlineResource/MimeType",
+                        "Collection/OnlineResources/OnlineResource/Type"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Related_URL/Mime_Type",
+                        "DIF/Related_URL/URL_Content_Type/Type"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "application/json",
+                "application/xml",
+                "application/x-netcdf",
+                "application/gml+xml",
+                "application/vnd.google-earth.kml+xml",
+                "image/gif",
+                "image/tiff",
+                "image/bmp",
+                "text/csv",
+                "text/xml",
+                "application/pdf",
+                "application/x-hdf",
+                "application/xhdf5",
+                "application/octet-stream",
+                "application/vnd.google-earth.kmz",
+                "image/jpeg",
+                "image/png",
+                "image/vnd.collada+xml",
+                "text/html",
+                "text/plain",
+                "Not provided"
+            ]
         ],
-        "severity": "error"
+        "severity": "info"
     },
     "coordinate_system_check": {
         "rule_name": "Coordinate System Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Spatial/HorizontalSpatialDomain/Geometry/Coordinate System"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Spatial/HorizontalSpatialDomain/Geometry/Coordinate System"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "CARTESIAN",
+                "GEODETIC"
+            ]
         ],
-        "severity": "error"
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "product_flag_check": {
         "rule_name": "Product Flag Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/ProductFlag"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/ProductFlag"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "DATA_PRODUCT_FILE",
+                "INSTRUMENT_ANCILLARY_FILE",
+                "SYSTEM/SPACECRAFT_FILE",
+                "EXTERNAL_DATA"
+            ]
         ],
-        "severity": "error"
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "granule_spatial_representation_check": {
         "rule_name": "Granule Spatial Representation Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Spatial/GranuleSpatialRepresentation"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Spatial/GranuleSpatialRepresentation"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "CARTESIAN",
+                "GEODETIC",
+                "ORBIT",
+                "NO_SPATIAL"
+            ]
         ],
-        "severity": "error"
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "data_center_short_name_gcmd_check": {
         "rule_name": "Data Center Shortname GCMD Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/ProcessingCenter"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/ArchiveCenter"
-                ]
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/ProcessingCenter"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/ArchiveCenter"
+                    ]
+                }
+            ]
+        },
         "severity": "error"
     },
     "instrument_short_long_name_consistency_check": {
         "rule_name": "Instrument Short/Longname Consistency Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/ShortName",
-                    "Collection/Platforms/Platform/Instruments/Instrument/LongName"
-                ]
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/ShortName",
+                        "Collection/Platforms/Platform/Instruments/Instrument/LongName"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Instrument/Short_Name",
+                        "DIF/Platform/Instrument/Long_Name"
+                    ]
+                }
+            ]
+        },
         "severity": "error"
     },
     "instrument_short_name_gcmd_check": {
         "rule_name": "Instrument Shortname GCMD Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/ShortName"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/ShortName"
-                ]
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/ShortName"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/ShortName"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Instrument/Short_Name"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Platform/Instrument/Sensor/Short_Name"
+                    ]
+                }
+            ]
+        },
         "severity": "error"
     },
     "instrument_long_name_gcmd_check": {
         "rule_name": "Instrument Longname GCMD Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/LongName"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/LongName"
-                ]
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/LongName"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/LongName"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Instrument/Long_Name"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Platform/Instrument/Sensor/Long_Name"
+                    ]
+                }
+            ]
+        },
         "severity": "error"
     },
     "platform_short_name_gcmd_check": {
         "rule_name": "Platform Shortname GCMD Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/ShortName"
-                ]
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/ShortName"
+                    ]
+                }
+            ]
+        },
         "severity": "error"
     },
     "data_format_gcmd_check": {
         "rule_name": "Data Format GCMD Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/DataFormat"
-                ]
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/DataFormat"
+                    ]
+                }
+            ]
+        },
         "severity": "error"
     },
     "platform_long_name_gcmd_check": {
         "rule_name": "Platform Longname GCMD Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/LongName"
-                ]
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/LongName"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Long_Name"
+                    ]
+                }
+            ]
+        },
         "severity": "error"
     },
     "spatial_keyword_gcmd_check": {
         "rule_name": "Spatial Keyword GCMD Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/SpatialKeywords/Keyword"
-                ]
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/SpatialKeywords/Keyword"
+                    ]
+                }
+            ]
+        },
         "severity": "error"
     },
     "platform_type_gcmd_check": {
         "rule_name": "Platform Type GCMD Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Platforms/Platform/Type"
-                ]
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Type"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Type"
+                    ]
+                }
+            ]
+        },
         "severity": "error"
     },
     "campaign_short_long_name_consistency_check": {
         "rule_name": "Campaign Short/Long name consistency Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Campaigns/Campaign/ShortName",
-                    "Collection/Campaigns/Campaign/LongName"
-                ]
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Campaigns/Campaign/ShortName",
+                        "Collection/Campaigns/Campaign/LongName"
+                    ]
+                }
+            ]
+        },
         "severity": "error"
     },
     "campaign_short_name_gcmd_check": {
         "rule_name": "Campaign Short Name GCMD Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Campaigns/Campaign/ShortName"
-                ]
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Campaigns/Campaign/ShortName"
+                    ]
+                }
+            ]
+        },
         "severity": "error"
     },
     "campaign_long_name_gcmd_check": {
         "rule_name": "Campaign Long Name GCMD Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Campaigns/Campaign/LongName"
-                ]
-            }
-        ],
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Campaigns/Campaign/LongName"
+                    ]
+                }
+            ]
+        },
         "severity": "error"
     },
     "version_description_not_provided": {
         "rule_name": "Version Description Not Provided",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/VersionDescription"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/VersionDescription"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Version_Description"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            "NOT PROVIDED",
+            "neq"
         ],
-        "severity": "info"
+        "severity": "info",
+        "check_id": "string_compare"
     },
     "collection_data_type_enumeration_check": {
         "rule_name": "Collection Data Type Enumeration Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/CollectionDataType"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/CollectionDataType"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "SCIENCE_QUALITY",
+                "NEAR_REAL_TIME",
+                "OTHER"
+            ]
         ],
-        "severity": "error"
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "data_center_name_presence_check": {
         "rule_name": "Data Center Name Presence Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/ArchiveCenter",
-                    "Collection/ProcessingCenter",
-                    "Collection/Contacts/Contact/OrganizationName"
-                ]
-            }
-        ],
-        "severity": "info"
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/ArchiveCenter",
+                        "Collection/ProcessingCenter",
+                        "Collection/Contacts/Contact/OrganizationName"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "presence_check"
     },
     "bounding_coordinate_logic_check": {
         "rule_name": "Bounding Coordinates Logic Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle"
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle"
                     ]
-            }
-        ],
+                }
+            ]
+        },
         "severity": "error"
     },
     "vertical_spatial_domain_type_check": {
         "rule_name": "Vertical Spatial Domain Type Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Spatial/VerticalSpatialDomain/Type"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Spatial/VerticalSpatialDomain/Type"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "Atmosphere Layer",
+                "Maximum Altitude",
+                "Maximum Depth",
+                "Minimum Altitude",
+                "Minimum Depth"
+            ]
         ],
-        "severity": "error"
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "spatial_coverage_type_check": {
         "rule_name": "Spatial Coverage Type Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/Spatial/SpatialCoverageType"
-                ]
-            },
-            {
-                "fields": [
-                    "Collection/SpatialInfo/SpatialCoverageType"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Spatial/SpatialCoverageType"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/SpatialInfo/SpatialCoverageType"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "HORIZONTAL",
+                "VERTICAL",
+                "ORBITAL",
+                "HORIZONTAL_VERTICAL",
+                "ORBITAL_VERTICAL",
+                "HORIZONTAL_ORBITAL",
+                "HORIZONTAL_VERTICAL_ORBITAL"
+            ]
         ],
-        "severity": "error"
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
     },
     "depth_unit_check": {
         "rule_name": "Depth Unit Controlled Vocabulary Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/SpatialInfo/VerticalCoordinateSystem/DepthSystemDefinition/DistanceUnits"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/SpatialInfo/VerticalCoordinateSystem/DepthSystemDefinition/DistanceUnits"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Spatial_Coverage/Geometry/Bounding_Rectangle/Depth_Unit"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "Fathoms",
+                "Feet",
+                "HectoPascals",
+                "Meters",
+                "Millibars"
+            ]
         ],
-        "severity": "error"
+        "severity": "warning",
+        "check_id": "controlled_keywords_check"
     },
     "altitude_unit_check": {
         "rule_name": "Altitude Unit Controlled Vocabulary Check",
-        "fields_to_apply": [
-            {
-                "fields": [
-                    "Collection/SpatialInfo/VerticalCoordinateSystem/AltitudeSystemDefinition/DistanceUnits"
-                ]
-            }
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/SpatialInfo/VerticalCoordinateSystem/AltitudeSystemDefinition/DistanceUnits"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Spatial_Coverage/Geometry/Bounding_Rectangle/Altitude_Unit"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "HectoPascals",
+                "Kilometers",
+                "Millibars"
+            ]
         ],
+        "severity": "warning",
+        "check_id": "controlled_keywords_check"
+    },
+    "campaign_name_presence_check": {
+        "rule_name": "Campaign Name Presence Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Campaigns/Campaign/ShortName"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Project/Short_Name"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "presence_check"
+    },
+    "spatial_coverage_type_presence_check": {
+        "rule_name": "Spatial Coverage Type Presence Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/SpatialInfo/SpatialCoverageType"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "presence_check"
+    },
+    "horizontal_datum_name_check": {
+        "rule_name": "Horizontal Datum Name Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/SpatialInfo/HorizontalCoordinateSystem/GeodeticModel/HorizontalDatumName"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Spatial_Coverage/Spatial_Info/Horizontal_Coordinate_System/Geodetic_Model/Horizontal_DatumName"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "presence_check"
+    },
+    "online_access_url_presence_check": {
+        "rule_name": "Online Access URL Presence Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "presence_check"
+    },
+    "online_resource_url_presence_check": {
+        "rule_name": "Online Resource URL Presence Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/OnlineResources/OnlineResource/URL"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "presence_check"
+    },
+    "online_access_url_description_check": {
+        "rule_name": "Online Access URL Description Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/OnlineAccessURLs/OnlineAccessURL/URLDescription"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "presence_check"
+    },
+    "online_resource_url_description_check": {
+        "rule_name": "Online Resource URL Description Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/OnlineResources/OnlineResource/Description"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "presence_check"
+    },
+    "opendap_url_location_check": {
+        "rule_name": "ECHO10 OPeNDAP URL Location Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "opendap_url_location_check"
+    },
+    "location_keyword_presence_check": {
+        "rule_name": "Location Keyword Presence Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/SpatialKeywords/Keyword"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Location/Location_Category"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "presence_check"
+    },
+    "spatial_extent_requirement_fulfillment_check": {
+        "rule_name": "Spatial Extent Requirement Fulfillment Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Spatial/HorizontalSpatialDomain/Geometry/Point",
+                        "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle",
+                        "Collection/Spatial/HorizontalSpatialDomain/Geometry/GPolygon",
+                        "Collection/Spatial/HorizontalSpatialDomain/Geometry/Line"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "presence_check"
+    },
+    "license_information_check": {
+        "rule_name": "License Information Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/UseConstraints"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Use_Constraints/License_URL/URL",
+                        "DIF/Use_Constraints/License_Text"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "presence_check"
+    },
+    "collection_citation_presence_check": {
+        "rule_name": "Collection Citation Presence Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/CitationforExternalPublication"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Dataset_Citation/Dataset_Title"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "presence_check"
+    },
+    "user_services_check": {
+        "rule_name": "User Services Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Contacts/Contact/ContactPersons/ContactPerson/FirstName",
+                        "Collection/Contacts/Contact/ContactPersons/ContactPerson/MiddleName",
+                        "Collection/Contacts/Contact/ContactPersons/ContactPerson/LastName"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "user_services_check"
+    },
+    "doi_missing_reason_explanation": {
+        "rule_name": "DOI Missing Reason Explanation",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/DOI/Explanation",
+                        "Collection/DOI/MissingReason",
+                        "Collection/DOI/DOI"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Dataset_Citation/Persistent_Identifier/Explanation",
+                        "DIF/Dataset_Citation/Persistent_Identifier/MissingReason",
+                        "DIF/Dataset_Citation/Persistent_Identifier/Identifier"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "doi_missing_reason_explanation"
+    },
+    "boolean_check": {
+        "rule_name": "Boolean check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Orderable"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/Visible"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "boolean_check"
+    },
+    "collection_progress_consistency_check": {
+        "rule_name": "Collection Progress Related Fields Consistency Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/CollectionState",
+                        "Collection/Temporal/EndsAtPresentFlag",
+                        "Collection/Temporal/RangeDateTime/EndingDateTime"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Dataset_Progress",
+                        "DIF/Temporal_Coverage/Ends_At_Present_Flag",
+                        "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "collection_progress_consistency_check"
+    },
+    "online_resource_type_gcmd_check": {
+        "rule_name": "Online Resource Type GCMD Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/OnlineResources/OnlineResource/Type"
+                    ]
+                }
+            ]
+        },
+        "severity": "error"
+    },
+    "online_resource_type_presence_check": {
+        "rule_name": "Online Resource Type Presence Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/OnlineResources/OnlineResource/Type",
+                        "Collection/OnlineResources/OnlineResource/URL"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "availability_check"
+    },
+    "characteristic_name_uniqueness_check": {
+        "rule_name": "Characteristic Name Uniqueness Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Characteristics"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "characteristic_name_uniqueness_check"
+    },
+    "validate_ending_datetime_against_granules": {
+        "rule_name": "Ending Datetime validation against granules",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Temporal/RangeDateTime/EndingDateTime",
+                        "Collection/ShortName"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time",
+                        "DIF/Entry_ID/Short_Name"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning"
+    },
+    "validate_beginning_datetime_against_granules": {
+        "rule_name": "Beginning Datetime validation against granules",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Temporal/RangeDateTime/BeginningDateTime",
+                        "Collection/ShortName"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time",
+                        "DIF/Entry_ID/Short_Name"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning"
+    },
+    "future_date_check": {
+        "rule_name": "Future Date Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Future_Review"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Future_Review"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            "now",
+            "gte"
+        ],
+        "severity": "info",
+        "check_id": "date_compare"
+    },
+    "iso_topic_category_check": {
+        "rule_name": "ISO Topic Category Vocabulary Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/ISO_Topic_Category"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "BIOTA",
+                "BOUNDARIES",
+                "CLIMATOLOGY/METEOROLOGY/ATMOSPHERE",
+                "DISASTER",
+                "ECONOMY",
+                "ELEVATION",
+                "ENVIRONMENT",
+                "EXTRA TERRESTRIAL",
+                "FARMING",
+                "GEOSCIENTIFIC INFORMATION",
+                "HEALTH",
+                "IMAGERY/BASE MAPS/EARTH COVER",
+                "INLAND WATERS",
+                "INTELLIGENCE/MILITARY",
+                "LOCATION",
+                "OCEANS",
+                "PLANNING CADASTRE",
+                "SOCIETY",
+                "STRUCTURE",
+                "TRANSPORTATION",
+                "UTILITIES/COMMUNICATIONS"
+            ]
+        ],
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
+    },
+    "dif10_date_not_provided_check": {
+        "rule_name": "DIF10 Date Not Provided Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Creation"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Last_Revision"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Future_Review"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Delete"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Creation"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Last_Revision"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Future_Review"
+                    ]
+                },{
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Delete"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            "NOT PROVIDED",
+            "neq"
+        ],
+        "severity": "info",
+        "check_id": "string_compare"
+    },
+    "temporal_extent_requirement_check": {
+        "rule_name": "Temporal Extent Requirement Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Temporal/SingleDateTime",
+                        "Collection/Temporal/RangeDateTime",
+                        "Collection/Temporal/PeriodicDateTime"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Single_Date_Time",
+                        "DIF/Temporal_Coverage/Range_DateTime",
+                        "DIF/Temporal_Coverage/Periodic_DateTime"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "presence_check"
+    },
+    "ftp_protocol_check": {
+        "rule_name": "FTP Protocol Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Related_URL/Protocol"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Use_Constraints/License_URL/Protocol"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            "FTP",
+            "neq"
+        ],
+        "severity": "error",
+        "check_id": "string_compare"
+    },
+    "citation_version_check": {
+        "rule_name": "Citation Version Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Dataset_Citation/Version",
+                        "DIF/Entry_ID/Version"
+                    ],
+                    "relation": "eq"
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "string_compare"
+    },
+    "default_date_check": {
+        "rule_name": "Default Date Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Creation"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Last_Revision"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Future_Review"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Metadata_Delete"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Creation"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Last_Revision"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Future_Review"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Metadata_Dates/Data_Delete"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            "1970-01-01T00:00:00Z",
+            "neq"
+        ],
+        "severity": "info",
+        "check_id": "date_compare"
+    },
+    "url_desc_presence_check": {
+        "rule_name": "Online Description Presence Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/OnlineAccessURLs/OnlineAccessURL/URLDescription",
+                        "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/OnlineResources/OnlineResource/Description",
+                        "Collection/OnlineResources/OnlineResource/URL"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Related_URL/Description",
+                        "DIF/Related_URL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Multimedia_Sample/Description",
+                        "DIF/Multimedia_Sample/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Use_Constraints/License_URL/Description",
+                        "DIF/Use_Constraints/License_URL/URL"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "availability_check"
+    },
+    "get_data_url_check": {
+        "rule_name": "GET DATA URL check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF"
+                    ]
+                }
+            ]
+        },
         "severity": "error"
     }
 }

@@ -39,6 +39,8 @@ class Checker:
             rules_override ([str]): path to json with override rules
             or add missing checks
         """
+        self.metadata_format = metadata_format
+
         self.msgs_override_file = messages_override or "check_messages_override"
         self.rules_override_file = rules_override or "rules_override"
         self.checks_override_file = checks_override or "checks_override"
@@ -52,8 +54,12 @@ class Checker:
             self.checks,
             self.checks_override
         )
-        self.schema_validator = SchemaValidator(self.messages, metadata_format)
-        self.tracker = Tracker(self.rule_mapping, self.rules_override)
+        self.schema_validator = SchemaValidator(metadata_format)
+        self.tracker = Tracker(
+            self.rule_mapping,
+            self.rules_override,
+            metadata_format=metadata_format
+        )
 
     @staticmethod
     def _json_load_schema(schema_name):
@@ -105,7 +111,7 @@ class Checker:
         msg_type can be any one of 'failure', 'remediation'
         """
         messages = self.messages_override.get(rule_id) or self.messages.get(rule_id)
-        return messages[msg_type]
+        return messages[msg_type] if messages else ''
 
     def build_message(self, result, rule_id):
         """
@@ -126,11 +132,11 @@ class Checker:
                 messages.append(formatted_message)
         return messages
 
-    def perform_schema_check(self, xml_metadata, json_metadata):
+    def perform_schema_check(self, xml_metadata):
         """
         Performs Schema check
         """
-        return self.schema_validator.run(xml_metadata, json_metadata)
+        return self.schema_validator.run(xml_metadata)
 
     def _check_dependency_validity(self, dependency, field_dict):
         """
@@ -138,7 +144,7 @@ class Checker:
         """
         dependency_fields = field_dict["fields"] if len(dependency) == 1 else [dependency[1]]
         for field in dependency_fields:
-            if not self.tracker.read_data(dependency[0], field)["valid"]:
+            if not self.tracker.read_data(dependency[0], field).get("valid"):
                 return False
         return True
 
@@ -156,11 +162,12 @@ class Checker:
         Run the check function for `rule_id` and update `result_dict`
         """
         dependencies = rule.get("dependencies", [])
-        external_data = rule.get("data", [])
         rule_mapping = self.rules_override.get(
             rule_id
         ) or self.rule_mapping.get(rule_id)
-        list_of_fields_to_apply = rule_mapping.get("fields_to_apply")
+        external_data = rule_mapping.get("data", [])
+        list_of_fields_to_apply = \
+            rule_mapping.get("fields_to_apply").get(self.metadata_format, {})
         for field_dict in list_of_fields_to_apply:
             main_field = field_dict["fields"][0]
             result_dict.setdefault(main_field, {})
@@ -213,7 +220,7 @@ class Checker:
         """
         json_metadata = parse(metadata_content)
         result_schema = self.perform_schema_check(
-            metadata_content, json_metadata
+            metadata_content
         )
         result_custom = self.perform_custom_checks(json_metadata)
         result = {

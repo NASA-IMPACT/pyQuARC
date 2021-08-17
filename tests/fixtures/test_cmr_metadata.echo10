@@ -32,6 +32,7 @@ Lastly, users should continue to carefully observe and weigh information from th
       "master_quality_flag" - four possible values: "Good", "Caution" and "Bad", and "Failed", as determined from other flags in the L2 productThe short name for this data type is ACOS_L2S.</Description>
       <DOI>
             <Authority>https://doi.org</Authority>
+            <MissingReason>Some Reason</MissingReason>
       </DOI>
       <RevisionDate>2019-11-21T14:37:19.000Z</RevisionDate>
       <ProcessingLevelId>2</ProcessingLevelId>
@@ -43,13 +44,7 @@ Lastly, users should continue to carefully observe and weigh information from th
       <SpatialKeywords>
             <Keyword>GLOBAL</Keyword>
       </SpatialKeywords>
-      <Temporal>
-            <EndsAtPresentFlag>false</EndsAtPresentFlag>
-            <RangeDateTime>
-                  <BeginningDateTime>2009-04-20T00:00:00.000Z</BeginningDateTime>
-                  <EndingDateTime>2008-04-20T00:00:00.000Z</EndingDateTime>
-            </RangeDateTime>
-      </Temporal>
+      <Orderable>true</Orderable>
       <Contacts>
             <Contact>
                   <Role>ARCHIVER</Role>
@@ -59,9 +54,9 @@ Lastly, users should continue to carefully observe and weigh information from th
                   <Role>TECHNICAL CONTACT</Role>
                   <ContactPersons>
                         <ContactPerson>
-                              <FirstName>ANDREY</FirstName>
-                              <LastName>SAVTCHENKO</LastName>
-                              <JobPosition>METADATA AUTHOR</JobPosition>
+                              <FirstName>User</FirstName>
+                              <LastName>Services</LastName>
+                              <JobPosition>AUTHOR</JobPosition>
                         </ContactPerson>
                   </ContactPersons>
             </Contact>
@@ -101,6 +96,20 @@ Lastly, users should continue to carefully observe and weigh information from th
                               <LongName>Thermal And Near Infrared Sensor For Carbon Observation</LongName>
                         </Instrument>
                   </Instruments>
+                  <Characteristics>
+                        <Characteristic>
+                              <Name>SLESA</Name>
+                        </Characteristic>
+                        <Characteristic>
+                              <Name>ADHIKARI</Name>
+                        </Characteristic>
+                        <Characteristic>
+                              <Name>SLESA</Name>
+                        </Characteristic>
+                        <Characteristic>
+                              <Name>ADHIKARI</Name>
+                        </Characteristic>
+                  </Characteristics>
             </Platform>
       </Platforms>
       <Campaigns>
@@ -123,7 +132,6 @@ Lastly, users should continue to carefully observe and weigh information from th
             <OnlineResource>
                   <URL>https://disc.gsfc.nasa.gov/datacollection/ACOS_L2S_7.3.html</URL>
                   <Description>Access the dataset landing page from the GES DISC website.</Description>
-                  <Type>CollectionURL : DATA SET LANDING PAGE</Type>
             </OnlineResource>
             <OnlineResource>
                   <URL>https://oco2.gesdisc.eosdis.nasa.gov/opendap/ACOS_L2S.7.3/</URL>

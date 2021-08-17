@@ -6,3 +6,4 @@ env/*
 build/*
 dist/*
 pyQuARC.egg-info/*
+env/*

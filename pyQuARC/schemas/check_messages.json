@@ -359,13 +359,45 @@
         },
         "remediation": "Please provide a value for the provided characteristic. "
     },
-    "mime_type_check": {
-        "failure": "",
+    "characteristic_name_length_check": {
+        "failure": "The characteristic name has invalid length.",
         "help": {
             "message": "",
             "url": ""
         },
-        "remediation": ""
+        "remediation": "Please provide a name that is a string between 1 and 80 characters."
+    },
+    "characteristic_desc_length_check": {
+        "failure": "A characteristic description has invalid length. ",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a short description that is a string between 1 and 2048 characters"
+    },
+    "characteristic_unit_length_check": {
+        "failure": "A characteristic unit has invalid length.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a unit that is a string between 1 and 80 characters."
+    },
+    "characteristic_value_length_check": {
+        "failure": "A characteristic value has invalid length. ",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a value that is a string between 1 and 80 characters."
+    },
+    "mime_type_check": {
+        "failure": "MimeType isn't valid.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "If the URL Type is 'USE SERVICE API', please make sure to specify a MimeType from the list: ['application/json', 'application/xml', 'application/x-netcdf', 'application/gml+xml', 'application/vnd.google-earth.kml+xml', 'image/gif', 'image/tiff', 'image/bmp', 'text/csv', 'text/xml', 'application/pdf', 'application/x-hdf', 'application/xhdf5', 'application/octet-stream', 'application/vnd.google-earth.kmz', 'image/jpeg', 'image/png', 'image/vnd.collada+xml', 'text/html', 'text/plain', 'Not provided']"
     },
     "coordinate_system_check": {
         "failure": "`{}` is not a valid coordinate system.",
@@ -446,5 +478,245 @@
             "url": ""
         },
         "remediation": "Please provide a altitude unit from the following list: ['HectoPascals', 'Kilometers', 'Millibars']"
+    },
+    "campaign_name_presence_check": {
+        "failure": "Campaign/Project name is missing.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please add a GCMD compliant Campaign name if applicable to the dataset."
+    },
+    "spatial_coverage_type_presence_check": {
+        "failure": "Spatial Coverage Type is missing.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a spatial coverage type from the following list: ['HORIZONTAL', 'VERTICAL', 'ORBITAL', 'HORIZONTAL_VERTICAL', 'ORBITAL_VERTICAL', 'HORIZONTAL_ORBITAL', 'HORIZONTAL_VERTICAL_ORBITAL']"
+    },
+    "horizontal_datum_name_check": {
+        "failure": "Horizontal Datum Name is missing.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a Horizontal Datum Name."
+    },
+    "online_access_url_presence_check": {
+        "failure": "No Online Access URLs provided. A link to access the data is required by the UMM/CMR.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide at least one Online Access URL."
+    },
+    "online_resource_url_presence_check": {
+        "failure": "No Online Resource URLs provided. A link to access the data is required by the UMM/CMR.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide at least one Online Resource URL."
+    },
+    "online_access_url_description_check": {
+        "failure": "The Online Access URL description is optional, but is highly recommended.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a URL description for the field."
+    },
+    "online_resource_url_description_check": {
+        "failure": "The Online Resource URL description is optional, but is highly recommended.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a URL description for the field."
+    },
+    "opendap_url_location_check": {
+        "failure": "The provided Online Access URL `{}` is an OPeNDAP URL.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please move the OPeNDAP URL to the field `OnlineResourceURL/URL` instead."
+    },
+    "location_keyword_presence_check": {
+        "failure": "No location keyword is provided.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please add a location keyword."
+    },
+    "spatial_extent_requirement_fulfillment_check": {
+        "failure": "No spatial extent is provided.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a spatial extent in one of the following form: Point, Bounding Rectangle, GPolygon, Line"
+    },
+    "license_information_check": {
+        "failure": "No license information is provided.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide information about the license applicable to the dataset, preferably as a URL. For EOSDIS records, please providing the following link (unless under different usage terms): https://earthdata.nasa.gov/earth-observation-data/data-use-policy"
+    },
+    "collection_citation_presence_check": {
+        "failure": "No CitationforExternalPublication is provided.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a citation for the dataset in the CitationforExternalPublication field."
+    },
+    "user_services_check": {
+        "failure": "`{}` is provided as a Contact.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please remove this field from the metadata and consider placing 'User Services' in the Organization Name field."
+    },
+    "doi_missing_reason_explanation": {
+        "failure": "DOI Missing Reason Explanation is not provided.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide an explanation for why the DOI is not provided."
+    },
+    "boolean_check": {
+        "failure": "Field value `{}` is not a boolen.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "The field is a boolean field. Please provide an entry of 'true' or 'false'."
+    },
+    "collection_progress_consistency_check": {
+        "failure": "CollectionState `{}` is not consistent with EndingDateTime/EndsAtPresentFlag.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please update the CollectionState based on the EndingDateTime/EndsAtPresentFlag values."
+    },
+    "online_resource_type_gcmd_check": {
+        "failure": "Online Resource Type `{}` is not consistent with GCMD 'rucontenttype' list.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a GCMD compliant Online Resource Type."
+    },
+    "online_resource_type_presence_check": {
+        "failure": "Online Resource Type missing.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a corresponding GCMD compliant Online Resource Type for each Online Resource URL."
+    },
+    "characteristic_name_uniqueness_check": {
+        "failure": "Duplicate characteristic name/s `{}`.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a unique name for each characteristic."
+    },
+    "validate_beginning_datetime_against_granules": {
+        "failure": "The collection beginning datetime `{}` isn't consistent with the first granule's beginning datetime `{}`.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please update to make these consistent."
+    },
+    "validate_ending_datetime_against_granules": {
+        "failure": "The collection ending datetime `{}` isn't consistent with the last granule's ending datetime `{}`.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please update to make these consistent."
+    },
+    "future_date_check": {
+        "failure": "The metadata review date `{}` is in the past.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Metadata+Dates"
+        },
+        "remediation": "Consider updating the review date to a future date or remove it from the metadata if it is no longer valid."
+    },
+    "iso_topic_category_check": {
+        "failure": "Invalid ISO Topic Category.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Provide a valid ISO Topic Category value from the following list:  ['BIOTA', 'BOUNDARIES', 'CLIMATOLOGY/METEOROLOGY/ATMOSPHERE', 'DISASTER', 'ECONOMY', 'ELEVATION', 'ENVIRONMENT', 'EXTRA TERRESTRIAL', 'FARMING', 'GEOSCIENTIFIC INFORMATION', 'HEALTH', 'IMAGERY/BASE MAPS/EARTH COVER', 'INLAND WATERS', 'INTELLIGENCE/MILITARY', 'LOCATION', 'OCEANS', 'PLANNING CADASTRE', 'SOCIETY', 'STRUCTURE', 'TRANSPORTATION', 'UTILITIES/COMMUNICATIONS']."
+    },
+    "dif10_date_not_provided_check": {
+        "failure": "Date listed as `{}`",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Metadata+Dates"
+        },
+        "remediation": "Please provide a date, if known."
+    },
+    "temporal_extent_requirement_check": {
+        "failure": "The Temporal requirements aren't met.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide at least one of SingleDateTime, RangeDateTime, PeriodicDateTime"
+    },
+    "ftp_protocol_check": {
+        "failure": "FTP links should no longer be used due to US Government security requirements. This check only applies to NASA/EOSDIS records.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please remove the FTP link."
+    },
+    "citation_version_check": {
+        "failure": "The version listed in the citation `{}` does not match the version of the collection `{}`.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please revise the version listed in the citation to match the version of the collection."
+    },
+    "default_date_check": {
+        "failure": "A default value of '1970-01-01T00:00:00.000Z' is provided.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a more specific date if possible."
+    },
+    "url_desc_presence_check": {
+        "failure": "URL Description is not provided for URL `{}`.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a suitable description for the URL."
+    },
+    "get_data_url_check": {
+        "failure": "No 'GET DATA' link detected.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a data access URL. This link should point as directly to the described data as possible. "
     }
 }
