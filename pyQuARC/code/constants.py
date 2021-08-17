@@ -31,7 +31,8 @@ SCHEMAS = {
         "projects",
         "providers",
         "platforms",
-        "science_keywords"
+        "science_keywords",
+        "rucontenttype"
     ],
     "xsd": [ f"{DIF}_xml", f"{ECHO10}_xml" ],
     "xml": [ "catalog" ]
