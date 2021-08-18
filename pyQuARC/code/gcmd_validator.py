@@ -19,7 +19,7 @@ class GcmdValidator:
         GcmdValidator._download_files()
         self.keywords = {
             "science": GcmdValidator._create_hierarchy_dict(
-                GcmdValidator._read_from_csv("science_keywords")
+                GcmdValidator._read_from_csv("sciencekeywords")
             ),
             "spatial_keyword": GcmdValidator._read_from_csv(
                 "locations",
@@ -120,7 +120,7 @@ class GcmdValidator:
 
         Args:
             keyword_kind (str): The kind of keyword
-                (could be: science_keywords, projects, providers, instruments, locations)
+                (could be: sciencekeywords, projects, providers, instruments, locations)
             columns (list of int, optional): The columns to read. Defaults to None.
                 If columns is provided, returns keywords from that specific column
                 If not, returns all useful keywords based on the keyword kind
