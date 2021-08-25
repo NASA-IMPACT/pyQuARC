@@ -1132,6 +1132,32 @@
                     "fields": [
                         "Collection/Platforms/Platform/Instruments/Instrument/ShortName",
                         "Collection/Platforms/Platform/Instruments/Instrument/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "instrument_short_name_gcmd_check",
+                            "Collection/Platforms/Platform/Instruments/Instrument/ShortName"
+                        ],
+                        [
+                            "instrument_long_name_gcmd_check",
+                            "Collection/Platforms/Platform/Instruments/Instrument/LongName"
+                        ]
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/ShortName",
+                        "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "instrument_short_name_gcmd_check",
+                            "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/ShortName"
+                        ],
+                        [
+                            "instrument_long_name_gcmd_check",
+                            "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/LongName"
+                        ]
                     ]
                 }
             ],
@@ -1140,6 +1166,16 @@
                     "fields": [
                         "DIF/Platform/Instrument/Short_Name",
                         "DIF/Platform/Instrument/Long_Name"
+                    ],
+                    "dependencies": [
+                        [
+                            "instrument_short_name_gcmd_check",
+                            "DIF/Platform/Instrument/Short_Name"
+                        ],
+                        [
+                            "instrument_long_name_gcmd_check",
+                            "DIF/Platform/Instrument/Long_Name"
+                        ]
                     ]
                 }
             ]
@@ -1295,6 +1331,18 @@
                         "Collection/Campaigns/Campaign/LongName"
                     ]
                 }
+            ]
+        },
+        "dependencies": {
+            "echo10": [
+                [
+                    "campaign_short_name_gcmd_check",
+                    "Collection/Campaigns/Campaign/ShortName"
+                ],
+                [
+                    "campaign_long_name_gcmd_check",
+                    "Collection/Campaigns/Campaign/LongName"
+                ]
             ]
         },
         "severity": "error"

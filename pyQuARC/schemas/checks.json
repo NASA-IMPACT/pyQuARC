@@ -72,16 +72,6 @@
     "instrument_short_long_name_consistency_check": {
         "data_type": "string",
         "check_function": "instrument_short_long_name_consistency_check",
-        "dependencies": [
-            [
-                "instrument_short_name_gcmd_check",
-                "Collection/Platforms/Platform/Instruments/Instrument/ShortName"
-            ],
-            [
-                "instrument_long_name_gcmd_check",
-                "Collection/Platforms/Platform/Instruments/Instrument/LongName"
-            ]
-        ],
         "available": true
     },
     "instrument_short_name_gcmd_check": {
@@ -117,16 +107,6 @@
     "campaign_short_long_name_consistency_check": {
         "data_type": "string",
         "check_function": "campaign_short_long_name_consistency_check",
-        "dependencies": [
-            [
-                "campaign_short_name_gcmd_check",
-                "Collection/Campaigns/Campaign/ShortName"
-            ],
-            [
-                "campaign_long_name_gcmd_check",
-                "Collection/Campaigns/Campaign/LongName"
-            ]
-        ],
         "available": true
     },
     "campaign_short_name_gcmd_check": {
