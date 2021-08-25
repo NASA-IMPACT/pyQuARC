@@ -176,6 +176,7 @@ An example:
 
 "data": [ ["keyword1", "keyword2"] ]
 ```
+`check_id` is the id of the corresponding check from `checks.json`. It'll usually be one of the available checks. An exhaustive list of all the available checks can be found in [CHECKS.md](./CHECKS.md).
 
 **If you're writing your own custom check to `schemas/checks.json`:**
 
