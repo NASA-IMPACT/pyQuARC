@@ -208,10 +208,9 @@ class GcmdValidator:
         """
         Validates GCMD instrument short name and long name consistency
         """
-        validity, _ = GcmdValidator.validate_recursively(
+        return GcmdValidator.validate_recursively(
             self.keywords["instrument"], input_keyword
-        )
-        return validity
+        )[0]
 
     def validate_instrument_short_name(self, input_keyword):
         """
@@ -259,10 +258,9 @@ class GcmdValidator:
         """
         Validates GCMD campaign short name and long name consistency
         """
-        validity, _ = GcmdValidator.validate_recursively(
+        return GcmdValidator.validate_recursively(
             self.keywords["campaign"], input_keyword
-        )
-        return validity
+        )[0]
 
     def validate_campaign_short_name(self, input_keyword):
         """
