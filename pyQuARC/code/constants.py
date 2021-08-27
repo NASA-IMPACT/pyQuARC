@@ -31,7 +31,7 @@ SCHEMAS = {
         "projects",
         "providers",
         "platforms",
-        "science_keywords",
+        "sciencekeywords",
         "rucontenttype"
     ],
     "xsd": [ f"{DIF}_xml", f"{ECHO10}_xml" ],
@@ -65,7 +65,7 @@ GCMD_KEYWORDS = [
     "projects",
     "providers",
     "rucontenttype",
-    "science_keywords"
+    "sciencekeywords"
 ]
 
 GCMD_LINKS = {
