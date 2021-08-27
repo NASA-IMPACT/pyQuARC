@@ -106,7 +106,7 @@ class StringValidator(BaseValidator):
             "valid": StringValidator.gcmdValidator.validate_instrument_short_long_name_consistency(
                 received_keyword
             ),
-            "value": [args[0], args[1]],
+            "value": (args[0], args[1]),
         }
 
     @staticmethod
@@ -176,7 +176,7 @@ class StringValidator(BaseValidator):
         return {
             "valid": StringValidator.gcmdValidator.validate_campaign_short_long_name_consistency(
                 received_keyword
-            )[0],
+            ),
             "value": (args[0], args[1]),
         }
 

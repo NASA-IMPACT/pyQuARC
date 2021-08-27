@@ -210,7 +210,7 @@ class GcmdValidator:
         """
         return GcmdValidator.validate_recursively(
             self.keywords["instrument"], input_keyword
-        )
+        )[0]
 
     def validate_instrument_short_name(self, input_keyword):
         """
@@ -260,7 +260,7 @@ class GcmdValidator:
         """
         return GcmdValidator.validate_recursively(
             self.keywords["campaign"], input_keyword
-        )
+        )[0]
 
     def validate_campaign_short_name(self, input_keyword):
         """

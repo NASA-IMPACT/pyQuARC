@@ -89,9 +89,9 @@ Example:
 or
 `▶ python pyQuARC/main.py --file "/Users/batman/projects/pyQuARC/tests/fixtures/test_cmr_metadata.echo10"`
 
-### Adding a custom check
+### Adding a custom rule
 
-To add a custom check, follow the following steps:
+To add a custom rule, follow the following steps:
 
 
 
@@ -109,7 +109,13 @@ To add a custom check, follow the following steps:
 				"<Related field ...>",
 				"<Related field 1n>",  
 			],
-			"relation": "relation_between_the_fields_if_any"  
+			"relation": "relation_between_the_fields_if_any",
+                        "dependencies": [
+                            [
+                                "<any dependent check that needs to be run before this check (if any)>",
+                                "<field to apply this dependent check to (if any)>"
+                            ]
+                        ]
 		},
 
 		{  
@@ -122,7 +128,9 @@ To add a custom check, follow the following steps:
 			],
 			"relation": "relation_between_the_fields_if_any"  
 		}  
-	]  	
+	],
+        "data" : [ <any external data that you want to send to the rule> ],
+        "check_id": "< one of the available checks, see CHECKS.md, or custom check if you are a developer>"
 }
 ```
 
@@ -138,8 +146,18 @@ An example:
 				"Collection/InsertTime",  
 				"Collection/LastUpdate"  
 			],  
-			"relation": "lte"  
-		},  
+			"relation": "lte",
+                        "dependencies": [
+                            [
+                                "datetime_format_check",
+                                "Collection/InsertTime"
+                            ],
+                            [
+                                "datetime_format_check",
+                                "Collection/LastUpdate"
+                            ]
+                        ]
+		},
 		{  
 			"fields": [  
 				"Collection/Temporal/RangeDateTime/BeginningDateTime",  
@@ -147,13 +165,24 @@ An example:
 			],  
 			"relation": "lte"  
 		}  
-	]  
+	],
+    "data": [],
+    "check_id": "date_compare"
 },
 ```
-**Add a corresponding entry to `schemas/checks.json` in the format:**
+`data` is any external data that you want to pass to the check. For example, for a `controlled_keywords_check`, it would be the controlled keywords list:
 
 ```
-"<rule_id from rule_mapping.json>": {  
+
+"data": [ ["keyword1", "keyword2"] ]
+```
+`check_id` is the id of the corresponding check from `checks.json`. It'll usually be one of the available checks. An exhaustive list of all the available checks can be found in [CHECKS.md](./CHECKS.md).
+
+**If you're writing your own custom check to `schemas/checks.json`:**
+
+Add an entry in the format:
+```
+"<a check id>": {  
 	"data_type": "<the data type of the value>",  
 	"check_function": "<the function that implements the check>",  
 	"dependencies": [  

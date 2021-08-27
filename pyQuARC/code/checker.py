@@ -52,7 +52,8 @@ class Checker:
             self.rule_mapping,
             self.rules_override,
             self.checks,
-            self.checks_override
+            self.checks_override,
+            metadata_format=metadata_format
         )
         self.schema_validator = SchemaValidator(metadata_format)
         self.tracker = Tracker(
@@ -157,11 +158,10 @@ class Checker:
                 return False
         return True
 
-    def _run_func(self, func, rule, rule_id, metadata_content, result_dict):
+    def _run_func(self, func, check, rule_id, metadata_content, result_dict):
         """
         Run the check function for `rule_id` and update `result_dict`
         """
-        dependencies = rule.get("dependencies", [])
         rule_mapping = self.rules_override.get(
             rule_id
         ) or self.rule_mapping.get(rule_id)
@@ -169,6 +169,7 @@ class Checker:
         list_of_fields_to_apply = \
             rule_mapping.get("fields_to_apply").get(self.metadata_format, {})
         for field_dict in list_of_fields_to_apply:
+            dependencies = self.scheduler.get_all_dependencies(rule_id, check, field_dict)
             main_field = field_dict["fields"][0]
             result_dict.setdefault(main_field, {})
             if not self._check_dependencies_validity(dependencies, field_dict):
@@ -202,10 +203,10 @@ class Checker:
                 rule_id
             ) or self.rule_mapping.get(rule_id)
             check_id = rule_mapping.get("check_id", rule_id)
-            rule = self.checks_override.get(check_id) or self.checks.get(check_id)
-            func = Checker.map_to_function(rule["data_type"], rule["check_function"])
+            check = self.checks_override.get(check_id) or self.checks.get(check_id)
+            func = Checker.map_to_function(check["data_type"], check["check_function"])
             if func:
-                self._run_func(func, rule, rule_id, metadata_content, result_dict)
+                self._run_func(func, check, rule_id, metadata_content, result_dict)
         return result_dict
 
     def run(self, metadata_content):
