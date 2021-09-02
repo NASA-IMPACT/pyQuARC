@@ -2,7 +2,7 @@
 
 ## v1.1.0
 
-- Support for **DIF10** collection level metadata
+- Support for [DIF10](https://earthdata.nasa.gov/esdis/eso/standards-and-references/directory-interchange-format-dif-standard) collection level metadata
 - Added new checks and rules listed in the following section
 - Restructured the schema files for ease of new rule addition
   - Users will now be able to deal with just the `rule_mapping.json` file without having to mess with `checks.json`
