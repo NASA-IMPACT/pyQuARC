@@ -3,7 +3,7 @@ import os
 from colorama import Fore, Style
 from pathlib import Path
 
-DIF = "dif"
+DIF = "dif10"
 ECHO10 = "echo10"
 UMM_JSON = "umm-json"
 
@@ -12,7 +12,7 @@ ROOT_DIR = (
     Path(__file__).resolve().parents[1]
 )
 
-SCHEMAS_BASE_PATH = ROOT_DIR / "schemas"
+SCHEMAS_BASE_PATH = f"{ROOT_DIR}/schemas"
 
 SCHEMAS = {
     "json": [
@@ -20,7 +20,6 @@ SCHEMAS = {
         "check_messages",
         "check_messages_override",
         "checks_override",
-        "echo10_json",
         "rule_mapping",
         "rules_override",
         UMM_JSON
@@ -31,17 +30,21 @@ SCHEMAS = {
         "locations",
         "projects",
         "providers",
-        "science_keywords"
+        "platforms",
+        "sciencekeywords",
+        "rucontenttype"
     ],
-    "xsd": [ DIF, "echo10_xml" ],
+    "xsd": [ f"{DIF}_xml", f"{ECHO10}_xml" ],
     "xml": [ "catalog" ]
 }
 
 SCHEMA_PATHS = {
-    schema: SCHEMAS_BASE_PATH / f"{schema}.{filetype}"
+    schema:  f"{SCHEMAS_BASE_PATH}/{schema}.{filetype}"
         for filetype, schemas in SCHEMAS.items()
             for schema in schemas
 }
+
+VERSION_FILE = f"{SCHEMAS_BASE_PATH}/version.txt"
 
 COLOR = {
     "title": Fore.GREEN,
@@ -52,12 +55,21 @@ COLOR = {
     "bright": Style.BRIGHT
 }
 
+GCMD_BASIC_URL = "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/"
+
+GCMD_KEYWORDS = [
+    "granuledataformat",
+    "instruments",
+    "locations",
+    "platforms",
+    "projects",
+    "providers",
+    "rucontenttype",
+    "sciencekeywords"
+]
+
 GCMD_LINKS = {
-    "science_keywords": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/sciencekeywords?format=csv",
-    "locations": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/locations?format=csv",
-    "providers": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/providers?format=csv",
-    "instruments": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/instruments?format=csv",
-    "projects": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/projects?format=csv",
-    "granuledataformat": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/granuledataformat?format=csv",
-    "platforms": "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/platforms?format=csv"
+    keyword: f"{GCMD_BASIC_URL}{keyword}?format=csv" for keyword in GCMD_KEYWORDS
 }
+
+CMR_URL = "https://cmr.earthdata.nasa.gov"

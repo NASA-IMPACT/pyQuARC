@@ -1,4 +1,4 @@
-"Keyword Version: 9.1.5","Revision: 2020-09-22 14:51:27","Timestamp: 2021-01-05 06:43:47","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/granuledataformat/?format=xml""Case native"
+"Hits: 118","page_num: 1","page_size: 2000","Keyword Version: 10.7","Revision: 2021-07-23 10:30:44","Timestamp: 2021-08-17 10:52:14","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/granuledataformat/?format=xml""Case native"
 Short_Name,Long_Name,UUID
 "ACCDB","Microsoft Access ACCDB File Format Family","378d394c-8230-49f1-8ba0-8ee7e7abe316"
 "ADF","ArcInfo Binary Grid Format","81782805-cc0d-4325-8f35-aa0c8e439b16"
@@ -25,6 +25,7 @@ Short_Name,Long_Name,UUID
 "CRD","Consolidated Laser Ranging Data Format","49028622-39d1-46b1-b89f-0fc2b4923882"
 "CSV","Comma-Separated Values File","465809cc-e76c-4630-8594-bb8bd7a1a380"
 "DBF","dBASE Database File","c087e039-7d05-4067-a0e3-150e0ff19aa3"
+"DEM","Shuttle Topography Mission (SRTM) Data File","191a9f1d-cfd3-469d-86b8-ce2d2355034a"
 "DLG","Digital Line Graph","78fe04cb-d68f-4b4f-a6b5-3b59660d3f95"
 "DTA","State Data Format","61225045-76c9-439f-a44b-b5c1a26635f1"
 "DXF","Drawing Interchange Format","e1b78739-ebcf-43c9-8181-3d4e79003f72"

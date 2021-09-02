@@ -1,21 +1,25 @@
 import csv
 import io
+import os
 import urllib.request
 
-from .constants import SCHEMA_PATHS, GCMD_LINKS
+from .constants import SCHEMA_PATHS, GCMD_LINKS, VERSION_FILE
+from datetime import datetime
 
 LEAF = "this_is_the_leaf_node"
-
+DATE_FORMAT = "%Y-%m-%d"
 
 class GcmdValidator:
     """
     Validator class for all the GCMD keywords (science, instruments, providers)
     """
+    downloaded = { keyword: False for keyword in GCMD_LINKS }
 
     def __init__(self):
+        GcmdValidator._download_files()
         self.keywords = {
             "science": GcmdValidator._create_hierarchy_dict(
-                GcmdValidator._read_from_csv("science_keywords")
+                GcmdValidator._read_from_csv("sciencekeywords")
             ),
             "spatial_keyword": GcmdValidator._read_from_csv(
                 "locations",
@@ -60,7 +64,34 @@ class GcmdValidator:
             "platform_type": GcmdValidator._read_from_csv(
                 "platforms", columns=["Category"]
             ),
+            "rucontenttype": GcmdValidator._read_from_csv(
+                "rucontenttype", columns=["Type", "Subtype"]
+            )
         }
+
+    @staticmethod
+    def _download_files(force=False):
+        """
+        Downloads and maintains a copy of the csv files from the gcmd server once a day
+        """
+        current_datetime = datetime.now()
+        date_str = current_datetime.strftime(DATE_FORMAT)
+        if os.path.exists(VERSION_FILE):
+            with open(VERSION_FILE) as file:
+                date_str = file.readline().replace('\n', '')
+        gcmd_date = datetime.strptime(date_str, DATE_FORMAT)
+        if gcmd_date.date() < current_datetime.date() or force:
+            try:
+                for keyword, link in GCMD_LINKS.items():
+                    print(f"Downloading {keyword} file from GCMD ...")
+                    response = urllib.request.urlopen(GCMD_LINKS[keyword])
+                    data = response.read()
+                    with open(SCHEMA_PATHS[keyword], 'wb') as download_file:
+                        download_file.write(data)
+                with open(VERSION_FILE, 'w') as version_file:
+                    version_file.write(current_datetime.strftime(DATE_FORMAT))
+            except:
+                print("Download of files failed. Using local copies.")
 
     @staticmethod
     def _create_hierarchy_dict(keywords):
@@ -89,7 +120,7 @@ class GcmdValidator:
 
         Args:
             keyword_kind (str): The kind of keyword
-                (could be: science_keywords, projects, providers, instruments, locations)
+                (could be: sciencekeywords, projects, providers, instruments, locations)
             columns (list of int, optional): The columns to read. Defaults to None.
                 If columns is provided, returns keywords from that specific column
                 If not, returns all useful keywords based on the keyword kind
@@ -97,10 +128,7 @@ class GcmdValidator:
         Returns:
             (list): list of keywords or list of list of rows from the csv
         """
-        try:
-            csvfile = io.TextIOWrapper(urllib.request.urlopen(GCMD_LINKS[keyword_kind]))
-        except:
-            csvfile = open(SCHEMA_PATHS[keyword_kind])
+        csvfile = open(SCHEMA_PATHS[keyword_kind])
         reader = csv.reader(csvfile)
         next(reader) # Remove the metadata (1st column)
         headers = next(reader) # Get the headers (2nd column)
@@ -182,7 +210,7 @@ class GcmdValidator:
         """
         return GcmdValidator.validate_recursively(
             self.keywords["instrument"], input_keyword
-        )
+        )[0]
 
     def validate_instrument_short_name(self, input_keyword):
         """
@@ -232,7 +260,7 @@ class GcmdValidator:
         """
         return GcmdValidator.validate_recursively(
             self.keywords["campaign"], input_keyword
-        )
+        )[0]
 
     def validate_campaign_short_name(self, input_keyword):
         """
@@ -251,3 +279,9 @@ class GcmdValidator:
         Validates GCMD Granule Data Format
         """
         return input_keyword in self.keywords["granule_data_format"]
+
+    def validate_online_resource_type(self, input_keyword):
+        """
+        Validates the Online Resource Type agains GCMD 'rucontent' list
+        """
+        return input_keyword in self.keywords["rucontenttype"]

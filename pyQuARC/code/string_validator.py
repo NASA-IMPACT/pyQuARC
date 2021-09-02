@@ -106,7 +106,7 @@ class StringValidator(BaseValidator):
             "valid": StringValidator.gcmdValidator.validate_instrument_short_long_name_consistency(
                 received_keyword
             ),
-            "value": [args[0], args[1]],
+            "value": (args[0], args[1]),
         }
 
     @staticmethod
@@ -176,7 +176,7 @@ class StringValidator(BaseValidator):
         return {
             "valid": StringValidator.gcmdValidator.validate_campaign_short_long_name_consistency(
                 received_keyword
-            )[0],
+            ),
             "value": (args[0], args[1]),
         }
 
@@ -208,4 +208,14 @@ class StringValidator(BaseValidator):
                 value.upper()
             ),
             "value": value,
+        }
+
+    @staticmethod
+    @if_arg
+    def online_resource_type_gcmd_check(resource_type):
+        return {
+            "valid": StringValidator.gcmdValidator.validate_online_resource_type(
+                resource_type.upper()
+            ),
+            "value": resource_type,
         }

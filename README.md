@@ -1,18 +1,22 @@
 # pyQuARC
+
 ### Open Source Library for Earth Observation Metadata Quality Assessment
 
+
 ## Introduction
-The pyQuARC library was designed to read and evaluate descriptive metadata used to catalog Earth observation data products and files. This type of metadata focuses and limits attention to important aspects of data, such as the spatial and temporal extent, in a structured manner that can be leveraged by data catalogs and other applications designed to connect users to data. Therefore, poor quality metadata (e.g. inaccurate, incomplete, improperly formatted, inconsistent) can yield subpar results when users search for data. Metadata that inaccurately represents the data it describes risks matching users with data that does not reflect their search criteria and, in the worst-case scenario, can make data difficult or impossible to find. 
+
+The pyQuARC library was designed to read and evaluate descriptive metadata used to catalog Earth observation data products and files. This type of metadata focuses and limits attention to important aspects of data, such as the spatial and temporal extent, in a structured manner that can be leveraged by data catalogs and other applications designed to connect users to data. Therefore, poor quality metadata (e.g. inaccurate, incomplete, improperly formatted, inconsistent) can yield subpar results when users search for data. Metadata that inaccurately represents the data it describes risks matching users with data that does not reflect their search criteria and, in the worst-case scenario, can make data difficult or impossible to find.
 
 Given the importance of high quality metadata, it is necessary that metadata be regularly assessed and updated as needed. pyQuARC is a tool that can help streamline the process of assessing metadata quality by automating it as much as possible, freeing human evaluators to make more sophisticated assessments. In addition to basic validation checks (e.g. adherence to the metadata schema, controlled vocabularies, and link checking), pyQuARC flags opportunities to improve or add contextual metadata information in order to help the user connect to, access, and better understand relevant data products. pyQuARC also ensures that information common to both data product (i.e. collection) and the file-level (i.e. granule) metadata are consistent and compatible. As open source software, pyQuARC can be adapted and customized to allow for quality checks unique to different needs.
 
 ## pyQuARC Base Package
+
 pyQuARC was specifically designed to assess metadata in NASA’s [Common Metadata Repository (CMR)](https://earthdata.nasa.gov/eosdis/science-system-description/eosdis-components), which is a centralized metadata repository for all of NASA’s Earth observation data products. In addition to NASA’s ~8,000 data products, the CMR also holds metadata for over 20,000 additional Earth observation data products submitted by external data partners. The CMR serves as the backend for NASA’s Earthdata Search (search.earthdata.nasa.gov) and is also the authoritative metadata source for NASA’s [Earth Observing System Data and Information System (EOSDIS).](https://earthdata.nasa.gov/eosdis)
 
 pyQuARC was developed by a group called the [Analysis and Review of the CMR (ARC)](https://earthdata.nasa.gov/esds/impact/arc) team. The ARC team conducts quality assessments of NASA’s metadata records in CMR, identifies opportunities for improvement in the metadata records, and collaborates with the data archive centers to resolve any identified issues. ARC has developed a metadata quality assessment framework which specifies a common set of assessment criteria. These criteria focus on correctness, completeness, and consistency with the goal of making data more discoverable, accessible, and usable. The ARC metadata quality assessment framework is the basis for the metadata checks that have been incorporated into pyQuARC base package. Specific quality criteria for each CMR metadata element is documented in the following wiki:
 [https://wiki.earthdata.nasa.gov/display/CMR/CMR+Metadata+Best+Practices%3A+Landing+Page](https://wiki.earthdata.nasa.gov/display/CMR/CMR+Metadata+Best+Practices%3A+Landing+Page)
 
-There is an “ARC Metadata QA/QC” section on the wiki page for each metadata element that lists quality criteria categorized by level of [priority. Priority categories](https://wiki.earthdata.nasa.gov/display/CMR/ARC+Priority+Matrix) are designated as high (red), medium (yellow), or low (blue), and are intended to communicate the importance of meeting the specified criteria.    
+There is an “ARC Metadata QA/QC” section on the wiki page for each metadata element that lists quality criteria categorized by level of [priority. Priority categories](https://wiki.earthdata.nasa.gov/display/CMR/ARC+Priority+Matrix) are designated as high (red), medium (yellow), or low (blue), and are intended to communicate the importance of meeting the specified criteria.
 
 The CMR is designed around its own metadata standard called the [Unified Metadata Model (UMM).](https://earthdata.nasa.gov/eosdis/science-system-description/eosdis-components/cmr/umm) In addition to being an extensible metadata model, the UMM also provides a cross-walk for mapping between the various CMR-supported metadata standards. CMR-supported metadata standards currently include:
 * [DIF10](https://earthdata.nasa.gov/esdis/eso/standards-and-references/directory-interchange-format-dif-standard) (Collection/Data Product-level only)
@@ -23,9 +27,10 @@ The CMR is designed around its own metadata standard called the [Unified Metadat
 	* UMM-G (Granule/File-level metadata)
 	* UMM-S (Service metadata)
 
-**Currently, pyQuARC only supports ECHO 10 collection-level metadata. Support for additional metadata standards will continue to be added in the coming months.** When completed, pyQuARC will support the DIF 10 (collection only), ECHO 10 (collection and granule), UMM-C and UMM-G standards. At this time, there are no plans to add ISO 19115 or UMM-S specific checks. 
+**Currently, pyQuARC only supports ECHO 10 collection-level metadata. Support for additional metadata standards will continue to be added in the coming months.** When completed, pyQuARC will support the DIF 10 (collection only), ECHO 10 (collection and granule), UMM-C and UMM-G standards. At this time, there are no plans to add ISO 19115 or UMM-S specific checks.
 
 ## Architecture
+
 ![pyQuARC Architecture](/images/architecture.png)
 
 The Downloader is used to obtain a copy of a metadata record of interest from the CMR. This is accomplished using a [CMR API query,](https://cmr.earthdata.nasa.gov/search/site/docs/search/api.html) where the metadata record of interest is identified by its unique identifier in the CMR (concept_id). CMR API documentation can be found here:
@@ -33,17 +38,17 @@ The Downloader is used to obtain a copy of a metadata record of interest from th
 
 There is also the option to select a metadata record already downloaded to your local desktop.
 
-The "checks.json" file includes a comprehensive list of rules. Each rule is specified by its "rule_id," associated function, and any dependencies on specific metadata elements. 
+The `checks.json` file includes a comprehensive list of rules. Each rule is specified by its `rule_id,` associated function, and any dependencies on specific metadata elements. 
 
-The "rules_to_fields_mapping.json" file specifies which metadata element(s) each rule applies to. The "rules_to_fields_mapping.json" also references the "messages.json" file which includes messages that can be displayed when a check passes or fails. 
+The `rule_mapping.json` file specifies which metadata element(s) each rule applies to. The `rule_mapping.json` also references the `messages.json` file which includes messages that can be displayed when a check passes or fails.
 
-Furthermore, the "rules_to_fields_mapping.json" file specifies the level of severity associated with a failure. If a check fails, it will be assigned a severity category of “error,” “warning,” or “info.” These categories correspond to priority categorizations in [ARC’s priority matrix](https://wiki.earthdata.nasa.gov/display/CMR/ARC+Priority+Matrix) and attempt to communicate the importance of the failed check, with “error” being the most critical category, “warning” indicating a failure of medium priority, and “info” indicating a minor issue or inconsistency. Default severity values are assigned based on ARC’s metadata quality assessment framework, but can be customized to meet individual needs.   
+Furthermore, the `rule_mapping.json` file specifies the level of severity associated with a failure. If a check fails, it will be assigned a severity category of “<span style="color:red">error</span>,” “<span style="color:orange">warning</span>,” or <span style="color:blue">info</span>.” These categories correspond to priority categorizations in [ARC’s priority matrix](https://wiki.earthdata.nasa.gov/display/CMR/ARC+Priority+Matrix) and attempt to communicate the importance of the failed check, with “error” being the most critical category, “warning” indicating a failure of medium priority, and “info” indicating a minor issue or inconsistency. Default severity values are assigned based on ARC’s metadata quality assessment framework, but can be customized to meet individual needs.
 
 ## Customization
-pyQuARC is designed to be customizable. Output messages can be modified using the "messages_override.json" file - any messages added to "messages_override.json" will display over the default messages in the "message.json" file. Similarly, there is a "rules_to_fields_mapping_override.json" file which can be used to override the default settings for which rules/checks are applied to which metadata elements.  
+pyQuARC is designed to be customizable. Output messages can be modified using the `messages_override.json` file - any messages added to `messages_override.json` will display over the default messages in the `message.json` file. Similarly, there is a `rule_mapping_override.json` file which can be used to override the default settings for which rules/checks are applied to which metadata elements.  
 
-There is also the opportunity for more sophisticated customization. New QA rules can be added and existing QA rules can be edited or removed. Support for new metadata standards can be added as well. Further details on how to customize pyQuARC will be provided in the technical user’s guide below. 
- 
+There is also the opportunity for more sophisticated customization. New QA rules can be added and existing QA rules can be edited or removed. Support for new metadata standards can be added as well. Further details on how to customize pyQuARC will be provided in the technical user’s guide below.
+
 While the pyQuARC base package is currently managed by the ARC team, the long term goal is for it to be owned and governed by the broader EOSDIS metadata community.
 
 ## Install/User’s Guide
@@ -64,8 +69,8 @@ While the pyQuARC base package is currently managed by the ARC team, the long te
 **Run `main.py`:**
 
 ```
-▶ python main.py -h  
-usage: usage: main.py [-h] [--query QUERY | --concept_ids CONCEPT_IDS [CONCEPT_IDS ...]] [--file FILE | --fake FAKE] [--format [FORMAT]]
+▶ python pyQuARC/main.py -h  
+usage: main.py [-h] [--query QUERY | --concept_ids CONCEPT_IDS [CONCEPT_IDS ...]] [--file FILE | --fake FAKE] [--format [FORMAT]]
 
 arguments:
   -h, --help            show this help message and exit
@@ -74,21 +79,21 @@ arguments:
                         List of concept IDs.
   --file FILE           Path to the test file, either absolute or relative to the root dir.
   --fake FAKE           Use a fake content for testing.
-  --format [FORMAT]     The metadata format
+--format [FORMAT]     	The metadata format (currently supported: 'echo10' and 'dif10')
 
 ```
 To test a local file, use the `--file` argument. Give it either an absolute file path or a file path relative to the project root directory.
 
 Example:
-`▶ python main.py --file "tests/fixtures/test_cmr_metadata.echo10"`
+`▶ python pyQuARC/main.py --file "tests/fixtures/test_cmr_metadata.echo10"`
 or
-`▶ python main.py --file "/Users/batman/projects/pyQuARC/tests/fixtures/test_cmr_metadata.echo10"`
+`▶ python pyQuARC/main.py --file "/Users/batman/projects/pyQuARC/tests/fixtures/test_cmr_metadata.echo10"`
 
-### Adding a custom check
+### Adding a custom rule
 
-To add a custom check, follow the following steps:
+To add a custom rule, follow the following steps:
 
-  
+
 
 **Add an entry to the `schemas/rule_mapping.json` file in the form:**
 ```
@@ -104,7 +109,13 @@ To add a custom check, follow the following steps:
 				"<Related field ...>",
 				"<Related field 1n>",  
 			],
-			"relation": "relation_between_the_fields_if_any"  
+			"relation": "relation_between_the_fields_if_any",
+                        "dependencies": [
+                            [
+                                "<any dependent check that needs to be run before this check (if any)>",
+                                "<field to apply this dependent check to (if any)>"
+                            ]
+                        ]
 		},
 
 		{  
@@ -117,7 +128,9 @@ To add a custom check, follow the following steps:
 			],
 			"relation": "relation_between_the_fields_if_any"  
 		}  
-	]  	
+	],
+        "data" : [ <any external data that you want to send to the rule> ],
+        "check_id": "< one of the available checks, see CHECKS.md, or custom check if you are a developer>"
 }
 ```
 
@@ -133,8 +146,18 @@ An example:
 				"Collection/InsertTime",  
 				"Collection/LastUpdate"  
 			],  
-			"relation": "lte"  
-		},  
+			"relation": "lte",
+                        "dependencies": [
+                            [
+                                "datetime_format_check",
+                                "Collection/InsertTime"
+                            ],
+                            [
+                                "datetime_format_check",
+                                "Collection/LastUpdate"
+                            ]
+                        ]
+		},
 		{  
 			"fields": [  
 				"Collection/Temporal/RangeDateTime/BeginningDateTime",  
@@ -142,13 +165,24 @@ An example:
 			],  
 			"relation": "lte"  
 		}  
-	]  
+	],
+    "data": [],
+    "check_id": "date_compare"
 },
 ```
-**Add a corresponding entry to `schemas/checks.json` in the format:**
+`data` is any external data that you want to pass to the check. For example, for a `controlled_keywords_check`, it would be the controlled keywords list:
 
 ```
-"<rule_id from rule_mapping.json>": {  
+
+"data": [ ["keyword1", "keyword2"] ]
+```
+`check_id` is the id of the corresponding check from `checks.json`. It'll usually be one of the available checks. An exhaustive list of all the available checks can be found in [CHECKS.md](./CHECKS.md).
+
+**If you're writing your own custom check to `schemas/checks.json`:**
+
+Add an entry in the format:
+```
+"<a check id>": {  
 	"data_type": "<the data type of the value>",  
 	"check_function": "<the function that implements the check>",  
 	"dependencies": [  

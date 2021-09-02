@@ -1,9 +1,11 @@
 import pytz
 import re
+import requests
 
 from datetime import datetime
 
 from .base_validator import BaseValidator
+from .constants import CMR_URL
 from .utils import if_arg
 
 
@@ -73,3 +75,67 @@ class DatetimeValidator(BaseValidator):
             "valid": result,
             "value": (str(first), str(second))
         }
+
+    @staticmethod
+    def validate_datetime_against_granules(datetime, collection_shortname, sort_key, time_key):
+        """
+        Validates the collection datetime against the datetime of the last granule in the collection
+
+        Args:
+            datetime (str): datetime string
+            collection_shortname (str): ShortName of the parent collection
+            sort_key (str): choice of start_date and end_date
+            time_key (str): choice of time_end and time_start
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
+        granules = requests.get(f'{CMR_URL}/search/granules.json?short_name={collection_shortname}&sort_key[]=-{sort_key}').json()
+
+        if len(granules['feed']['entry']) > 0:
+            last_granule = granules['feed']['entry'][0]
+            last_granule_datetime = last_granule[time_key]
+
+        return {
+            "valid": datetime == last_granule_datetime,
+            "value": (datetime, last_granule_datetime)
+        }
+
+    @staticmethod
+    @if_arg
+    def validate_ending_datetime_against_granules(ending_datetime, collection_shortname):
+        """
+        Validates the collection EndingDatetime against the datetime of the last granule in the collection
+
+        Args:
+            ending_datetime (str): EndingDatetime string
+            collection_shortname (str): ShortName of the parent collection
+
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
+        return DatetimeValidator.validate_datetime_against_granules(
+            ending_datetime,
+            collection_shortname,
+            'end_date',
+            'time_end'
+        )
+
+    @staticmethod
+    @if_arg
+    def validate_beginning_datetime_against_granules(beginning_datetime, collection_shortname):
+        """
+        Validates the collection BeginningDateTime against the datetime of the last granule in the collection
+
+        Args:
+            beginning_datetime (str): BeginningDateTime string
+            collection_shortname (str): ShortName of the parent collection
+
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
+        return DatetimeValidator.validate_datetime_against_granules(
+            beginning_datetime,
+            collection_shortname,
+            'start_date',
+            'time_start'
+        )
