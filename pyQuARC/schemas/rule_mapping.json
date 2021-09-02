@@ -1329,20 +1329,18 @@
                     "fields": [
                         "Collection/Campaigns/Campaign/ShortName",
                         "Collection/Campaigns/Campaign/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "campaign_short_name_gcmd_check",
+                            "Collection/Campaigns/Campaign/ShortName"
+                        ],
+                        [
+                            "campaign_long_name_gcmd_check",
+                            "Collection/Campaigns/Campaign/LongName"
+                        ]
                     ]
                 }
-            ]
-        },
-        "dependencies": {
-            "echo10": [
-                [
-                    "campaign_short_name_gcmd_check",
-                    "Collection/Campaigns/Campaign/ShortName"
-                ],
-                [
-                    "campaign_long_name_gcmd_check",
-                    "Collection/Campaigns/Campaign/LongName"
-                ]
             ]
         },
         "severity": "error"
