@@ -430,6 +430,11 @@
                     "fields": [
                         "DIF/Associated_DOIs/DOI"
                     ]
+                },
+                {
+                    "fields": [
+                        "DIF/Extended_Metadata/Metadata/Value"
+                    ]
                 }
             ]
         },
@@ -1106,8 +1111,8 @@
         "severity": "error",
         "check_id": "controlled_keywords_check"
     },
-    "data_center_short_name_gcmd_check": {
-        "rule_name": "Data Center Shortname GCMD Check",
+    "organization_short_name_gcmd_check": {
+        "rule_name": "Organization Shortname GCMD Check",
         "fields_to_apply": {
             "echo10": [
                 {
@@ -1122,7 +1127,22 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "organization_short_name_gcmd_check"
+    },
+    "organization_long_name_gcmd_check": {
+        "rule_name": "Organization Longname GCMD Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Organization/Organization_Name/Long_Name"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "organization_long_name_gcmd_check"
     },
     "instrument_short_long_name_consistency_check": {
         "rule_name": "Instrument Short/Longname Consistency Check",
@@ -1301,6 +1321,24 @@
         },
         "severity": "error"
     },
+    "location_gcmd_check": {
+        "rule_name": "Location GCMD Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Location/Location_Category",
+                        "DIF/Location/Location_Type",
+                        "DIF/Location/Location_Subregion1",
+                        "DIF/Location/Location_Subregion2",
+                        "DIF/Location/Location_Subregion3"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "location_gcmd_check"
+    },
     "platform_type_gcmd_check": {
         "rule_name": "Platform Type GCMD Check",
         "fields_to_apply": {
@@ -1439,7 +1477,20 @@
             "echo10": [
                 {
                     "fields": [
-                        "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle"
+                        "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle/WestBoundingCoordinate",
+                        "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle/NorthBoundingCoordinate",
+                        "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle/EastBoundingCoordinate",
+                        "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle/SouthBoundingCoordinate"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Spatial_Coverage/Geometry/Bounding_Rectangle/Westernmost_Longitude",
+                        "DIF/Spatial_Coverage/Geometry/Bounding_Rectangle/Northernmost_Latitude",
+                        "DIF/Spatial_Coverage/Geometry/Bounding_Rectangle/Easternmost_Longitude",
+                        "DIF/Spatial_Coverage/Geometry/Bounding_Rectangle/Southernmost_Latitude"
                     ]
                 }
             ]
@@ -2219,5 +2270,94 @@
             ]
         },
         "severity": "error"
+    },
+    "horizontal_resolution_range_check": {
+        "rule_name": "Horizontal resolution Range GCMD Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Data_Resolution/Horizontal_Resolution_Range"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "horizontal_range_res_gcmd_check"
+    },
+    "vertical_resolution_range_check": {
+        "rule_name": "Vertical resolution Range GCMD Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Data_Resolution/Vertical_Resolution_Range"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "vertical_range_res_gcmd_check"
+    },
+    "temporal_resolution_range_check": {
+        "rule_name": "Temporal resolution Range GCMD Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Data_Resolution/Temporal_Resolution_Range"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "temporal_range_res_gcmd_check"
+    },
+    "mime_type_gcmd_check": {
+        "rule_name": "Mime Type GCMD Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Use_Constraints/License_URL/Mime_Type"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "mime_type_gcmd_check"
+    },
+    "chrono_unit_gcmd_check": {
+        "rule_name": "Chrono Unit GCMD Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Temporal_Coverage/Paleo_DateTime/Chronostratigraphic_Unit/Eon",
+                        "DIF/Temporal_Coverage/Paleo_DateTime/Chronostratigraphic_Unit/Era",
+                        "DIF/Temporal_Coverage/Paleo_DateTime/Chronostratigraphic_Unit/Period",
+                        "DIF/Temporal_Coverage/Paleo_DateTime/Chronostratigraphic_Unit/Epoch",
+                        "DIF/Temporal_Coverage/Paleo_DateTime/Chronostratigraphic_Unit/Stage"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "chrono_unit_gcmd_check"
+    },
+    "sensor_number_check": {
+        "rule_name": "Sensor Number Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Instrument/NumberOfSensors",
+                        "DIF/Platform/Instrument/Sensor/Short_Name"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "count_check"
     }
 }

@@ -64,9 +64,9 @@
         "check_function": "mime_type_check",
         "available": true
     },
-    "data_center_short_name_gcmd_check": {
+    "organization_short_name_gcmd_check": {
         "data_type": "string",
-        "check_function": "data_center_short_name_gcmd_check",
+        "check_function": "organization_short_name_gcmd_check",
         "available": true
     },
     "instrument_short_long_name_consistency_check": {
@@ -99,9 +99,19 @@
         "check_function": "platform_type_gcmd_check",
         "available": true
     },
+    "platform_short_long_name_consistency_check": {
+        "data_type": "string",
+        "check_function": "platform_short_long_name_consistency_check",
+        "available": true
+    },
     "spatial_keyword_gcmd_check": {
         "data_type": "string",
         "check_function": "spatial_keyword_gcmd_check",
+        "available": true
+    },
+    "location_gcmd_check": {
+        "data_type": "string",
+        "check_function": "location_gcmd_check",
         "available": true
     },
     "campaign_short_long_name_consistency_check": {
@@ -122,6 +132,31 @@
     "data_format_gcmd_check": {
         "data_type": "string",
         "check_function": "data_format_gcmd_check",
+        "available": true
+    },
+    "mime_type_gcmd_check": {
+        "data_type": "string",
+        "check_function": "mime_type_gcmd_check",
+        "available": true
+    },
+    "temporal_range_res_gcmd_check": {
+        "data_type": "string",
+        "check_function": "temporal_range_res_gcmd_check",
+        "available": true
+    },
+    "vertical_range_res_gcmd_check": {
+        "data_type": "string",
+        "check_function": "vertical_range_res_gcmd_check",
+        "available": true
+    },
+    "horizontal_range_res_gcmd_check": {
+        "data_type": "string",
+        "check_function": "horizontal_range_res_gcmd_check",
+        "available": true
+    },
+    "chrono_unit_gcmd_check": {
+        "data_type": "string",
+        "check_function": "chrono_gcmd_check",
         "available": true
     },
     "presence_check": {

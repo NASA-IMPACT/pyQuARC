@@ -25,14 +25,19 @@ SCHEMAS = {
         UMM_JSON
     ],
     "csv": [
+        "chronounits",
         "granuledataformat",
+        "horizontalresolutionrange",
         "instruments",
         "locations",
+        "MimeType",
+        "platforms",
         "projects",
         "providers",
-        "platforms",
+        "rucontenttype",
         "sciencekeywords",
-        "rucontenttype"
+        "temporalresolutionrange",
+        "verticalresolutionrange"
     ],
     "xsd": [ f"{DIF}_xml", f"{ECHO10}_xml" ],
     "xml": [ "catalog" ]
@@ -58,14 +63,19 @@ COLOR = {
 GCMD_BASIC_URL = "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/"
 
 GCMD_KEYWORDS = [
+    "chronounits",
     "granuledataformat",
+    "horizontalresolutionrange",
     "instruments",
     "locations",
+    "MimeType",
     "platforms",
     "projects",
     "providers",
     "rucontenttype",
-    "sciencekeywords"
+    "sciencekeywords",
+    "temporalresolutionrange",
+    "verticalresolutionrange",
 ]
 
 GCMD_LINKS = {

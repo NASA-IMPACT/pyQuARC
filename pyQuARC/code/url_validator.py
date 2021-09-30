@@ -89,7 +89,10 @@ class UrlValidator(StringValidator):
         Returns:
             (dict) An object with the validity of the check and the instance/results
         """
-        url = f"https://www.doi.org/{doi}"
+        if "doi.org/" in doi:
+            url = doi
+        else:
+            url = f"https://www.doi.org/{doi}"
         return UrlValidator.health_and_status_check(url)
 
     @staticmethod
