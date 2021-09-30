@@ -46,7 +46,6 @@ class UrlValidator(StringValidator):
         results = []
 
         validity = True
-        value = text_with_urls
 
         # extract URLs from text
         extractor = URLExtract()
@@ -58,6 +57,7 @@ class UrlValidator(StringValidator):
         # remove dots at the end (The URLExtract library catches URLs, but sometimes appends a '.' at the end)
         # remove duplicated urls
         urls = set(url[:-1] if url.endswith(".") else url for url in urls)
+        value = ", ".join(urls)
 
         # check that URL returns a valid response
         for url in urls:
@@ -66,8 +66,14 @@ class UrlValidator(StringValidator):
             try:
                 response_code = requests.get(url).status_code
                 if response_code == 200:
-                    continue
-                result = {"url": url, "status_code": response_code}
+                    if url.startswith("http://"):
+                        url = url.replace("http://", "https://")
+                        if requests.get(url).status_code == 200:
+                            result = {"url": url, "error": "The URL is secure. Please use 'https' instead of 'http'."}
+                    else:
+                        continue
+                else:
+                    result = {"url": url, "error": f'Status code {response_code}'}
             except requests.ConnectionError:
                 result = {"url": url, "error": "The URL does not exist on Internet."}
             except:
@@ -78,7 +84,7 @@ class UrlValidator(StringValidator):
             validity = False
             value = results
 
-        return {"valid": validity, "value": ", ".join(urls)}
+        return {"valid": validity, "value": value}
 
     @staticmethod
     @if_arg
