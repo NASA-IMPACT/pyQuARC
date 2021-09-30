@@ -24,12 +24,12 @@
         "remediation": "Update the RevisionDate so that it comes chronologically after the InsertTime."
     },
     "url_check": {
-        "failure": "Invalid URL/s: `{}`.",
+        "failure": "Incorrect/subpar URL/s: `{}`.",
         "help": {
             "message": "",
             "url": ""
         },
-        "remediation": "Please provide valid URL/s."
+        "remediation": "Please provide valid/correct URL/s."
     },
     "shortname_uniqueness": {
         "failure": "The DataSetId `{}` is identical to the ShortName `{}`.",
