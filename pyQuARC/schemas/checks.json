@@ -139,6 +139,11 @@
         "check_function": "mime_type_gcmd_check",
         "available": true
     },
+    "idnnode_shortname_gcmd_check": {
+        "data_type": "string",
+        "check_function": "idnnode_shortname_gcmd_check",
+        "available": true
+    },
     "temporal_range_res_gcmd_check": {
         "data_type": "string",
         "check_function": "temporal_range_res_gcmd_check",

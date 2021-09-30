@@ -766,5 +766,13 @@
             "url": ""
         },
         "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+    },
+    "idnnode_shortname_gcmd_check": {
+        "failure": "The provided IDN_Node `{}` does not comply with the GCMD.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
     }
 }

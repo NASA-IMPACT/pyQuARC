@@ -111,6 +111,9 @@ class GcmdValidator:
             "mimetype": self._read_from_csv(
                 "MimeType", columns=["MimeType"]
             ),
+            "idnnode_shortname": self._read_from_csv(
+                "idnnode", columns=["Short_Name"]
+            )
         }
 
     @staticmethod
@@ -400,3 +403,9 @@ class GcmdValidator:
         return GcmdValidator.validate_recursively(
             self.keywords["chronounits"], input_keyword
         )
+
+    def validate_idnnode_shortname(self, input_keyword):
+        """
+        Validates GCMD science keywords
+        """
+        return input_keyword in self.keywords["idnnode_shortname"]

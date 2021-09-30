@@ -2329,6 +2329,20 @@
         "severity": "error",
         "check_id": "mime_type_gcmd_check"
     },
+    "idnnode_shortname_gcmd_check": {
+        "rule_name": "IDN Node Shortname GCMD Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/IDN_Node/Short_Name"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "idnnode_shortname_gcmd_check"
+    },
     "chrono_unit_gcmd_check": {
         "rule_name": "Chrono Unit GCMD Check",
         "fields_to_apply": {

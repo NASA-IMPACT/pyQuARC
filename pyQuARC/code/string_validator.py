@@ -335,3 +335,13 @@ class StringValidator(BaseValidator):
             ),
             "value": resource_type,
         }
+
+    @staticmethod
+    @if_arg
+    def idnnode_shortname_gcmd_check(resource_type):
+        return {
+            "valid": StringValidator.gcmdValidator.validate_idnnode_shortname(
+                resource_type.upper()
+            ),
+            "value": resource_type,
+        }
