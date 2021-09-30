@@ -350,6 +350,13 @@
                         "Collection/OnlineResources/OnlineResource/URL"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Summary/Abstract"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -429,11 +436,6 @@
                 {
                     "fields": [
                         "DIF/Associated_DOIs/DOI"
-                    ]
-                },
-                {
-                    "fields": [
-                        "DIF/Extended_Metadata/Metadata/Value"
                     ]
                 }
             ]

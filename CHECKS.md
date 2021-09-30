@@ -204,7 +204,7 @@ Checks whether the value adheres to GCMD, specifically the project list short na
 
 Checks whether the campaign  (project) short name and long name GCMD keywords are consistent: basically that they belong to the same row.
 
-#### `data_center_short_name_gcmd_check`
+#### `organization_short_name_gcmd_check`
 
 Checks whether the value adheres to GCMD, specifically the provider list short name column.
 
