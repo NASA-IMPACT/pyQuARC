@@ -68,6 +68,7 @@ class CustomValidator(BaseValidator):
         }
 
     @staticmethod
+    @if_arg
     def bounding_coordinate_logic_check(west, north, east, south):
         # Checks if the logic for coordinate values make sense
         result = {
