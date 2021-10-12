@@ -14,6 +14,23 @@ ROOT_DIR = (
 
 SCHEMAS_BASE_PATH = f"{ROOT_DIR}/schemas"
 
+GCMD_KEYWORDS = [
+    "chronounits",
+    "granuledataformat",
+    "horizontalresolutionrange",
+    "idnnode",
+    "instruments",
+    "locations",
+    "MimeType",
+    "platforms",
+    "projects",
+    "providers",
+    "rucontenttype",
+    "sciencekeywords",
+    "temporalresolutionrange",
+    "verticalresolutionrange",
+]
+
 SCHEMAS = {
     "json": [
         "checks",
@@ -24,16 +41,7 @@ SCHEMAS = {
         "rules_override",
         UMM_JSON
     ],
-    "csv": [
-        "granuledataformat",
-        "instruments",
-        "locations",
-        "projects",
-        "providers",
-        "platforms",
-        "sciencekeywords",
-        "rucontenttype"
-    ],
+    "csv": GCMD_KEYWORDS,
     "xsd": [ f"{DIF}_xml", f"{ECHO10}_xml" ],
     "xml": [ "catalog" ]
 }
@@ -56,17 +64,6 @@ COLOR = {
 }
 
 GCMD_BASIC_URL = "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/"
-
-GCMD_KEYWORDS = [
-    "granuledataformat",
-    "instruments",
-    "locations",
-    "platforms",
-    "projects",
-    "providers",
-    "rucontenttype",
-    "sciencekeywords"
-]
 
 GCMD_LINKS = {
     keyword: f"{GCMD_BASIC_URL}{keyword}?format=csv" for keyword in GCMD_KEYWORDS

@@ -90,12 +90,33 @@ class StringValidator(BaseValidator):
 
     @staticmethod
     @if_arg
-    def data_center_short_name_gcmd_check(value):
+    def organization_short_name_gcmd_check(value):
         return {
             "valid": StringValidator.gcmdValidator.validate_provider_short_name(
                 value.upper()
             ),
             "value": value,
+        }
+
+    @staticmethod
+    @if_arg
+    def organization_long_name_gcmd_check(value):
+        return {
+            "valid": StringValidator.gcmdValidator.validate_provider_long_name(
+                value.upper()
+            ),
+            "value": value,
+        }
+
+    @staticmethod
+    @if_arg
+    def organization_short_long_name_consistency_check(*args):
+        received_keyword = [arg.upper().strip() for arg in args if arg]
+        return {
+            "valid": StringValidator.gcmdValidator.validate_provider_short_long_name_consistency(
+                received_keyword
+            ),
+            "value": (args[0], args[1]),
         }
 
     @staticmethod
@@ -161,6 +182,17 @@ class StringValidator(BaseValidator):
 
     @staticmethod
     @if_arg
+    def platform_short_long_name_consistency_check(*args):
+        received_keyword = [arg.upper().strip() for arg in args if arg]
+        return {
+            "valid": StringValidator.gcmdValidator.validate_platform_short_long_name_consistency(
+                received_keyword
+            ),
+            "value": (args[0], args[1]),
+        }
+
+    @staticmethod
+    @if_arg
     def spatial_keyword_gcmd_check(value):
         return {
             "valid": StringValidator.gcmdValidator.validate_spatial_keyword(
@@ -215,6 +247,100 @@ class StringValidator(BaseValidator):
     def online_resource_type_gcmd_check(resource_type):
         return {
             "valid": StringValidator.gcmdValidator.validate_online_resource_type(
+                resource_type.upper()
+            ),
+            "value": resource_type,
+        }
+
+    @staticmethod
+    @if_arg
+    def location_gcmd_check(*args):
+        """
+        Checks if the GCMD location keyword hierarchy is correct
+
+        Args:
+            args (list): List of the keyword in order of hierarchy
+                example: ['CONTINENT', "AFRICA", "CENTRAL AFRICA", "ANGOLA", None]
+
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
+        value = None
+        received_keyword = [arg.upper().strip() for arg in args if arg]
+        validity, invalid_value = StringValidator.gcmdValidator.validate_location_hierarchy(
+            received_keyword
+        )
+        if not validity:
+            value = f"'{invalid_value}' in the hierarchy '{'/'.join(received_keyword)}'"
+        return {"valid": validity, "value": value if value else received_keyword}
+
+    @staticmethod
+    @if_arg
+    def chrono_gcmd_check(*args):
+        """
+        Checks if the Chrono Units keyword hierarchy is correct
+
+        Args:
+            args (list): List of the keyword in order of hierarchy
+                example: ['PHANEROZOIC','CENOZOIC','QUATERNARY','PLEISTOCENE','CALABRIAN']
+
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
+        value = None
+        received_keyword = [arg.upper().strip() for arg in args if arg]
+        validity, invalid_value = StringValidator.gcmdValidator.validate_chrono_unit_hierarchy(
+            received_keyword
+        )
+        if not validity:
+            value = f"'{invalid_value}' in the hierarchy '{'/'.join(received_keyword)}'"
+        return {"valid": validity, "value": value if value else received_keyword}
+
+    @staticmethod
+    @if_arg
+    def horizontal_range_res_gcmd_check(resource_type):
+        return {
+            "valid": StringValidator.gcmdValidator.validate_horizontal_resolution_range(
+                resource_type.upper()
+            ),
+            "value": resource_type,
+        }
+
+    @staticmethod
+    @if_arg
+    def vertical_range_res_gcmd_check(resource_type):
+        return {
+            "valid": StringValidator.gcmdValidator.validate_vertical_resolution_range(
+                resource_type.upper()
+            ),
+            "value": resource_type,
+        }
+
+    @staticmethod
+    @if_arg
+    def temporal_range_res_gcmd_check(resource_type):
+        return {
+            "valid": StringValidator.gcmdValidator.validate_temporal_resolution_range(
+                resource_type.upper()
+            ),
+            "value": resource_type,
+        }
+
+    @staticmethod
+    @if_arg
+    def mime_type_gcmd_check(resource_type):
+        return {
+            "valid": StringValidator.gcmdValidator.validate_mime_type(
+                resource_type.upper()
+            ),
+            "value": resource_type,
+        }
+
+    @staticmethod
+    @if_arg
+    def idnnode_shortname_gcmd_check(resource_type):
+        return {
+            "valid": StringValidator.gcmdValidator.validate_idnnode_shortname(
                 resource_type.upper()
             ),
             "value": resource_type,

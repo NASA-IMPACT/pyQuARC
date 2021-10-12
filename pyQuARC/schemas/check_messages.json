@@ -24,12 +24,12 @@
         "remediation": "Update the RevisionDate so that it comes chronologically after the InsertTime."
     },
     "url_check": {
-        "failure": "Invalid URL/s: `{}`.",
+        "failure": "Incorrect/subpar URL/s: `{}`.",
         "help": {
             "message": "",
             "url": ""
         },
-        "remediation": "Please provide valid URL/s."
+        "remediation": "Please provide valid/correct URL/s."
     },
     "shortname_uniqueness": {
         "failure": "The DataSetId `{}` is identical to the ShortName `{}`.",
@@ -95,6 +95,14 @@
         },
         "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
     },
+    "location_gcmd_check": {
+        "failure": "`{}` is not a valid GCMD keyword.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+    },
     "eosdis_doi_authority_check": {
         "failure": "`{}` may be an invalid value.",
         "help": {
@@ -111,7 +119,7 @@
         },
         "remediation": "Consider updating the delete date to a future date or remove it from the metadata if it is no longer valid."
     },
-    "data_center_short_name_gcmd_check": {
+    "organization_short_name_gcmd_check": {
         "failure": "The provided data center short name `{}` does not comply with the GCMD. ",
         "help": {
             "message": "",
@@ -656,7 +664,7 @@
         "remediation": "Consider updating the review date to a future date or remove it from the metadata if it is no longer valid."
     },
     "iso_topic_category_check": {
-        "failure": "Invalid ISO Topic Category.",
+        "failure": "Invalid ISO Topic Category `{}`.",
         "help": {
             "message": "",
             "url": ""
@@ -718,5 +726,53 @@
             "url": ""
         },
         "remediation": "Please provide a data access URL. This link should point as directly to the described data as possible. "
+    },
+    "horizontal_resolution_range_check": {
+        "failure": "The provided Horizontal Resolution Range does not comply with the GCMD.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+    },
+    "vertical_resolution_range_check": {
+        "failure": "The provided Vertical Resolution Range `{}` does not comply with the GCMD.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+    },
+    "temporal_resolution_range_check": {
+        "failure": "The provided Temporal Resolution Range `{}` does not comply with the GCMD.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+    },
+    "mime_type_gcmd_check": {
+        "failure": "The provided Mime Type `{}` does not comply with the GCMD.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+    },
+    "chrono_unit_gcmd_check": {
+        "failure": "The provided Chronostratigraphic Unit `{}` does not comply with the GCMD hierarchy.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+    },
+    "idnnode_shortname_gcmd_check": {
+        "failure": "The provided IDN_Node `{}` does not comply with the GCMD.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
     }
 }
