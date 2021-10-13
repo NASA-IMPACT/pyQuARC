@@ -39,10 +39,11 @@ SCHEMAS = {
         "checks_override",
         "rule_mapping",
         "rules_override",
-        UMM_JSON
+        f"{UMM_JSON}_schema",
+        "umm-cmn-json-schema"
     ],
     "csv": GCMD_KEYWORDS,
-    "xsd": [ f"{DIF}_xml", f"{ECHO10}_xml" ],
+    "xsd": [ f"{DIF}_schema", f"{ECHO10}_schema" ],
     "xml": [ "catalog" ]
 }
 

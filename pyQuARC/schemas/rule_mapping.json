@@ -317,6 +317,13 @@
                         "DIF/Temporal_Coverage/Paleo_DateTime/Paleo_Start_Date"
                     ]
                 }
+            ],
+            "umm-json": [
+                {
+                    "fields": [
+                        "CollectionCitations/ReleaseDate"
+                    ]
+                }
             ]
         },
         "severity": "error"

@@ -219,7 +219,10 @@ class Checker:
         Returns:
             (dict): The results of the jsonschema check and all custom checks
         """
-        json_metadata = parse(metadata_content)
+        if self.metadata_format == UMM_JSON:
+            json_metadata = json.loads(metadata_content)
+        else:
+            json_metadata = parse(metadata_content)
         result_schema = self.perform_schema_check(
             metadata_content
         )
