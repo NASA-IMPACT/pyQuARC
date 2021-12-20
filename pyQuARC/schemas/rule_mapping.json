@@ -809,7 +809,7 @@
                     ]
                 }
             ],
-            "umm": [
+            "umm-json": [
                 {
                     "fields": [
                         "DataDate/Date"
@@ -1567,7 +1567,7 @@
                     ]
                 }
             ],
-            "umm": [
+            "umm-json": [
                 {
                     "fields": [
                         "Platform/Instrument/Characteristics/Description"
@@ -2208,7 +2208,7 @@
                     ]
                 }
             ],
-            "umm": [
+            "umm-json": [
                 {
                     "fields": [
                         "LocationKeywords/Category"
@@ -2253,7 +2253,7 @@
                     ]
                 }
             ],
-            "umm": [
+            "umm-json": [
                 {
                     "fields": [
                         "LocationKeywords/Category",
@@ -2335,7 +2335,7 @@
                     ]
                 }
             ],
-            "umm": [
+            "umm-json": [
                 {
                     "fields": [
                         "Project/ShortName",
@@ -2492,7 +2492,7 @@
                     ]
                 }
             ],
-            "umm": [
+            "umm-json": [
                 {
                     "fields": [
                         "DataCenters/ShortName"
@@ -2632,7 +2632,7 @@
                     ]
                 }
             ],
-            "umm": [
+            "umm-json": [
                 {
                     "fields": [
                         "SpatialExtent/VerticalSpatialDomain/Unit"
@@ -2669,7 +2669,7 @@
                     ]
                 }
             ],
-            "umm": [
+            "umm-json": [
                 {
                     "fields": [
                         "SpatialExtent/VerticalSpatialDomain/Unit"
