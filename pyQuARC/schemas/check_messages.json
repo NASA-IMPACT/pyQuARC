@@ -727,6 +727,14 @@
         },
         "remediation": "Please provide a data access URL. This link should point as directly to the described data as possible. "
     },
+    "get_data_url_check_umm": {
+        "failure": "No 'GET DATA' link detected.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a data access URL. This link should point as directly to the described data as possible. "
+    },
     "horizontal_resolution_range_check": {
         "failure": "The provided Horizontal Resolution Range does not comply with the GCMD.",
         "help": {

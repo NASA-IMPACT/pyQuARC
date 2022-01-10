@@ -3097,15 +3097,15 @@
                 {
                     "fields": [
                         "CollectionProgress",
-                        "TemporalExtent/EndsAtPresentFlag",
-                        "TemporalExtent/RangeDateTime/EndingDateTime"
+                        "TemporalExtents/EndsAtPresentFlag",
+                        "TemporalExtents/RangeDateTimes/EndingDateTime"
                     ]
                 },
                 {
                     "fields": [
                         "CollectionProgress",
-                        "TemporalExtent/EndsAtPresentFlag",
-                        "TemporalExtent/PeriodicDateTime/EndDate"
+                        "TemporalExtents/EndsAtPresentFlag",
+                        "TemporalExtents/PeriodicDateTimes/EndDate"
                     ]
                 }
             ]
@@ -3623,18 +3623,24 @@
                         "DIF"
                     ]
                 }
-            ],
+            ]
+        },
+        "severity": "error",
+        "check_id": "get_data_url_check"
+    },
+    "get_data_url_check_umm": {
+        "rule_name": "GET DATA URL check for UMM JSON",
+        "fields_to_apply": {
             "umm-json": [
                 {
                     "fields": [
-                        "RelatedUrl/GetData",
-                        "RelatedURL/URL"
+                        "RelatedUrls"
                     ]
                 }
             ]
         },
         "severity": "error",
-        "check_id": "get_data_url_check"
+        "check_id": "get_data_url_check_umm"
     },
     "horizontal_resolution_range_check": {
         "rule_name": "Horizontal resolution Range GCMD Check",

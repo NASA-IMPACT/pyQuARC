@@ -1,3 +1,5 @@
+import json
+
 from .base_validator import BaseValidator
 from .string_validator import StringValidator
 
@@ -158,9 +160,9 @@ class CustomValidator(BaseValidator):
         # Logic: https://github.com/NASA-IMPACT/pyQuARC/issues/61
         validity = True
         if collection_state.upper() in ["ACTIVE", "IN WORK"]:
-            validity = (not bool(ending_date_time)) and ends_at_present_flag.lower() == "true"
+            validity = (not bool(ending_date_time)) and str(ends_at_present_flag).lower() == "true"
         elif collection_state.upper() == "COMPLETE":
-            validity = bool(ending_date_time) and (not bool(ends_at_present_flag) or ends_at_present_flag.lower() == "false")
+            validity = bool(ending_date_time) and (not bool(str(ends_at_present_flag)) or ends_at_present_flag.lower() == "false")
         else:
             validity = False
         return {
@@ -200,4 +202,17 @@ class CustomValidator(BaseValidator):
         return {
             "valid": validity,
             "value": value
+        }
+
+    @staticmethod
+    def get_data_url_check_umm(related_urls):
+        for url_obj in related_urls:
+            if url_obj.get("Type") == "GET DATA" and (url := url_obj.get("URL")):
+                return {
+                    "valid": True,
+                    "value": url
+                }
+        return {
+            "valid": False,
+            "value": "N/A"
         }
