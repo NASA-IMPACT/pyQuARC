@@ -35,13 +35,16 @@ class CustomChecker:
         if isinstance(root_content, str) or isinstance(root_content, int):
             container.append(root_content)
         elif isinstance(root_content, list):
-            for each in root_content:
-                try:
-                    CustomChecker._get_path_value_recursively(
-                        each, new_path, container)
-                except KeyError:
-                    container.append(None)
-                    continue
+            if not new_path:
+                container.append(root_content)
+            else:
+                for each in root_content:
+                    try:
+                        CustomChecker._get_path_value_recursively(
+                            each, new_path, container)
+                    except KeyError:
+                        container.append(None)
+                        continue
         elif isinstance(root_content, dict):
             CustomChecker._get_path_value_recursively(
                 root_content, new_path, container)
