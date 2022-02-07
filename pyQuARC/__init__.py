@@ -1,3 +1,5 @@
+import os
+
 from pyQuARC.main import ARC
 
 from pyQuARC.code.checker import Checker
@@ -9,8 +11,8 @@ from pyQuARC.code.schema_validator import SchemaValidator
 from pyQuARC.code.string_validator import StringValidator
 from pyQuARC.code.url_validator import UrlValidator
 
-
-with open("pyQuARC/version.txt") as version_file:
+ABS_PATH = os.path.abspath(os.path.dirname(__file__))
+with open(f"{ABS_PATH}/version.txt") as version_file:
     __version__ = version_file.read().strip()
 
 def get_version():
