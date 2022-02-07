@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v1.1.1
+
+- Included addition of `version.txt` in the package build
+
 ## v1.1.0
 
 - Support for [DIF10](https://earthdata.nasa.gov/esdis/eso/standards-and-references/directory-interchange-format-dif-standard) collection level metadata
