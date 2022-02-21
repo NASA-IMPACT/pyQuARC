@@ -1,7 +1,6 @@
 import csv
-import io
 import os
-import urllib.request
+import requests
 
 from .constants import SCHEMA_PATHS, GCMD_LINKS, VERSION_FILE
 from datetime import datetime
@@ -84,9 +83,9 @@ class GcmdValidator:
             try:
                 for keyword, link in GCMD_LINKS.items():
                     # Downloading updated gcmd keyword files
-                    response = urllib.request.urlopen(link)
-                    data = response.read()
-                    with open(SCHEMA_PATHS[keyword], 'wb') as download_file:
+                    response = requests.get(link)
+                    data = response.text
+                    with open(SCHEMA_PATHS[keyword], 'w') as download_file:
                         download_file.write(data)
                 with open(VERSION_FILE, 'w') as version_file:
                     version_file.write(current_datetime.strftime(DATE_FORMAT))
