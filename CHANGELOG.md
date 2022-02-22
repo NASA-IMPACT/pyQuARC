@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v1.1.2
+
+- Removed stdout when importing pyQuARC package
+
 ## v1.1.1
 
 - Included addition of `version.txt` in the package build
