@@ -8,6 +8,11 @@ from .schema_validator import SchemaValidator
 from .scheduler import Scheduler
 from .tracker import Tracker
 
+from .custom_validator import CustomValidator
+from .datetime_validator import DatetimeValidator
+from .string_validator import StringValidator
+from .url_validator import UrlValidator
+
 from .constants import ECHO10, SCHEMA_PATHS, UMM_JSON
 
 
@@ -50,7 +55,7 @@ class Checker:
             self.checks_override,
             metadata_format=metadata_format
         )
-        self.schema_validator = SchemaValidator(metadata_format, self.messages_override or self.messages)
+        self.schema_validator = SchemaValidator(self.messages_override or self.messages, metadata_format)
         self.tracker = Tracker(
             self.rule_mapping,
             self.rules_override,
