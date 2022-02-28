@@ -157,13 +157,21 @@ class CustomValidator(BaseValidator):
     @if_arg
     def collection_progress_consistency_check(collection_state, ends_at_present_flag, ending_date_time):
         # Logic: https://github.com/NASA-IMPACT/pyQuARC/issues/61
-        validity = True
-        if collection_state.upper() in ["ACTIVE", "IN WORK"]:
-            validity = (not bool(ending_date_time)) and ends_at_present_flag.lower() == "true"
-        elif collection_state.upper() == "COMPLETE":
-            validity = bool(ending_date_time) and (not bool(ends_at_present_flag) or ends_at_present_flag.lower() == "false")
-        else:
-            validity = False
+        validity = False
+        collection_state = collection_state.upper()
+        ending_date_time_exists = bool(ending_date_time)
+        ends_at_present_flag_exists = bool(ends_at_present_flag)
+        ends_at_present_flag = ends_at_present_flag_exists.lower() if ends_at_present_flag_exists else None
+
+        if collection_state in ["ACTIVE", "IN WORK"]:
+            validity = (not ending_date_time_exists) and (ends_at_present_flag == "true")
+        elif collection_state == "COMPLETE":
+            validity = ending_date_time_exists and (
+                not ends_at_present_flag_exists or (
+                    ends_at_present_flag == "false"
+                )
+            )
+        
         return {
             "valid": validity,
             "value": collection_state
