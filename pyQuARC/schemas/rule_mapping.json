@@ -378,7 +378,12 @@
             "umm-json": [
                 {
                     "fields": [
-                        "MetadataDate/Date"
+                        "MetadataDates/Date?Type=DELETE"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataDates/Date"
                     ]
                 },
                 {
@@ -812,22 +817,12 @@
             "umm-json": [
                 {
                     "fields": [
-                        "DataDate/Date"
+                        "DataDates/Date?Type=DELETE"
                     ]
                 },
                 {
                     "fields": [
-                        "DataDate/Type=DELETE"
-                    ]
-                },
-                {
-                    "fields": [
-                        "MetadataDate/Date"
-                    ]
-                },
-                {
-                    "fields": [
-                        "MetadataDate/Type=DELETE"
+                        "MetadataDates/Date?Type=DELETE"
                     ]
                 }
             ]
@@ -2529,10 +2524,10 @@
             "umm-json": [
                 {
                     "fields": [
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/BoundingRectangles/WestBoundingCoordinate",
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/BoundingRectangles/NorthBoundingCoordinate",
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/BoundingRectangles/EastBoundingCoordinate",
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/BoundingRectangles/SouthBoundingCoordinate"
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles/WestBoundingCoordinate",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles/NorthBoundingCoordinate",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles/EastBoundingCoordinate",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles/SouthBoundingCoordinate"
                     ]
                 }
             ]
