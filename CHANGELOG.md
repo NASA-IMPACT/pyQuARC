@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## v2.0.0
+
+- Support for [UMM-JSON](https://earthdata.nasa.gov/esdis/esco/standards-and-references/eso-umm-information) collection level metadata
+- Added support for some UMM fields that look like the following:
+
+```json
+"ContactMechanisms": [
+    {
+        "Type": "Telephone",
+        "Value": "605-594-6116"
+    },
+    {
+        "Type": "U.S. toll free",
+        "Value": "866-573-3222"
+    },
+    {
+        "Type": "Email",
+        "Value": "lpdaac@usgs.gov"
+    }
+]
+```
+
+To specify the "Email" field, in the `rule_mapping`, a user would put in `ContactMechanisms/Value?Type=Email` as the field.
+
+- All the field specified in a datetime check that involves comparison should have a corresponding `datetime_format_check` entry, otherwise the check won't run
+
 ## v1.1.3
 
 - Fixed null pointer exception in the check `collection_progress_consistency_check`
