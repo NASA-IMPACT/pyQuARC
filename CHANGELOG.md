@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v1.1.3
+
+- Fixed null pointer exception in the check `collection_progress_consistency_check`
+
 ## v1.1.2
 
 - Removed stdout when importing pyQuARC package
