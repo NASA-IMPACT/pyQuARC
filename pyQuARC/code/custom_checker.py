@@ -42,9 +42,12 @@ class CustomChecker:
                 container.append(root_content)
                 return
             if len(new_path) == 1 and query_params:
-                root_content = next((x for x in root_content if x[query_params[0]] == query_params[1]))
-                root_content = root_content[new_path[0]]
-                container.append(root_content)
+                try:
+                    root_content = next((x for x in root_content if x[query_params[0]] == query_params[1]))
+                    root_content = root_content[new_path[0]]
+                    container.append(root_content)
+                except:
+                    container.append(None)
                 return
             for each in root_content:
                 try:
