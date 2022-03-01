@@ -168,6 +168,7 @@ class Checker:
         external_data = rule_mapping.get("data", [])
         list_of_fields_to_apply = \
             rule_mapping.get("fields_to_apply").get(self.metadata_format, {})
+        
         for field_dict in list_of_fields_to_apply:
             dependencies = self.scheduler.get_all_dependencies(rule_id, check, field_dict)
             main_field = field_dict["fields"][0]
@@ -180,6 +181,7 @@ class Checker:
                 field_dict,
                 external_data
             )
+
             self.tracker.update_data(rule_id, main_field, result["valid"])
 
             # this is to avoid "valid" = null in the result, for rules that are not applied
