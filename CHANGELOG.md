@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v1.1.4
+
+- Added error handling for errored checks
+- Fixed minor bugs
+
 ## v1.1.3
 
 - Fixed null pointer exception in the check `collection_progress_consistency_check`
