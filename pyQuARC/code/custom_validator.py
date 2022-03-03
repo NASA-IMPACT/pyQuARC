@@ -161,7 +161,7 @@ class CustomValidator(BaseValidator):
         collection_state = collection_state.upper()
         ending_date_time_exists = bool(ending_date_time)
         ends_at_present_flag_exists = bool(ends_at_present_flag)
-        ends_at_present_flag = ends_at_present_flag_exists.lower() if ends_at_present_flag_exists else None
+        ends_at_present_flag = str(ends_at_present_flag).lower() if ends_at_present_flag_exists else None
 
         if collection_state in ["ACTIVE", "IN WORK"]:
             validity = (not ending_date_time_exists) and (ends_at_present_flag == "true")
@@ -197,6 +197,8 @@ class CustomValidator(BaseValidator):
     def get_data_url_check(metadata_json):
         REQUIRED_TYPE = 'GET DATA'
         related_urls = metadata_json.get('Related_URL', [])
+        if not isinstance(related_urls, list):
+            related_urls = [related_urls]
         validity = False
         value = None
         for url in related_urls:
