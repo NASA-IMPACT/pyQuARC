@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v1.1.5
+- Added reader for specific columns from GCMD csvs
+- Fixed bug to handle cases when there are multiple entries for same shortname but the first entry has missing long name
+
 ## v1.1.4
 
 - Added error handling for errored checks
