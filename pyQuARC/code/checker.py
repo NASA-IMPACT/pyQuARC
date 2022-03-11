@@ -8,12 +8,12 @@ from .schema_validator import SchemaValidator
 from .scheduler import Scheduler
 from .tracker import Tracker
 
-from .custom_validator import CustomValidator
-from .datetime_validator import DatetimeValidator
-from .string_validator import StringValidator
-from .url_validator import UrlValidator
+from .custom_validator import CustomValidator  # noqa
+from .datetime_validator import DatetimeValidator  # noqa
+from .string_validator import StringValidator  # noqa
+from .url_validator import UrlValidator  # noqa
 
-from .constants import COLOR, DIF, ECHO10, SCHEMA_PATHS, UMM_JSON
+from .constants import ECHO10, SCHEMA_PATHS
 
 
 class Checker:
