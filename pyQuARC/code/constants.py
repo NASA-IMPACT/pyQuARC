@@ -1,5 +1,3 @@
-import os
-
 from colorama import Fore, Style
 from pathlib import Path
 
