@@ -8,19 +8,22 @@ from datetime import datetime
 LEAF = "this_is_the_leaf_node"
 DATE_FORMAT = "%Y-%m-%d"
 
+
 class GcmdValidator:
     """
     Validator class for all the GCMD keywords (science, instruments, providers)
     """
-    downloaded = { keyword: False for keyword in GCMD_LINKS }
+
+    downloaded = {keyword: False for keyword in GCMD_LINKS}
 
     def __init__(self):
         GcmdValidator._download_files()
+        self.file_content = GcmdValidator._load_csvs()
         self.keywords = {
             "science": GcmdValidator._create_hierarchy_dict(
-                GcmdValidator._read_from_csv("sciencekeywords")
+                self._read_from_csv("sciencekeywords")
             ),
-            "spatial_keyword": GcmdValidator._read_from_csv(
+            "spatial_keyword": self._read_from_csv(
                 "locations",
                 columns=[
                     "Location_Category",
@@ -30,42 +33,42 @@ class GcmdValidator:
                     "Location_Subregion3",
                 ],
             ),
-            "provider_short_name": GcmdValidator._read_from_csv(
+            "provider_short_name": self._read_from_csv(
                 "providers", columns=["Short_Name"]
             ),
             "instrument": GcmdValidator._create_hierarchy_dict(
-                GcmdValidator._read_from_csv("instruments")
+                self._read_from_csv(
+                    "instruments", columns=["Short_Name", "Long_Name"], hierarchy=True
+                )
             ),
-            "instrument_short_name": GcmdValidator._read_from_csv(
+            "instrument_short_name": self._read_from_csv(
                 "instruments", columns=["Short_Name"]
             ),
-            "instrument_long_name": GcmdValidator._read_from_csv(
+            "instrument_long_name": self._read_from_csv(
                 "instruments", columns=["Long_Name"]
             ),
             "campaign": GcmdValidator._create_hierarchy_dict(
-                GcmdValidator._read_from_csv("projects")
+                self._read_from_csv("projects")
             ),
-            "campaign_short_name": GcmdValidator._read_from_csv(
+            "campaign_short_name": self._read_from_csv(
                 "projects", columns=["Short_Name"]
             ),
-            "campaign_long_name": GcmdValidator._read_from_csv(
+            "campaign_long_name": self._read_from_csv(
                 "projects", columns=["Long_Name"]
             ),
-            "granule_data_format": GcmdValidator._read_from_csv(
+            "granule_data_format": self._read_from_csv(
                 "granuledataformat", columns=["Short_Name", "Long_Name"]
             ),
-            "platform_short_name": GcmdValidator._read_from_csv(
+            "platform_short_name": self._read_from_csv(
                 "platforms", columns=["Short_Name"]
             ),
-            "platform_long_name": GcmdValidator._read_from_csv(
+            "platform_long_name": self._read_from_csv(
                 "platforms", columns=["Long_Name"]
             ),
-            "platform_type": GcmdValidator._read_from_csv(
-                "platforms", columns=["Category"]
-            ),
-            "rucontenttype": GcmdValidator._read_from_csv(
+            "platform_type": self._read_from_csv("platforms", columns=["Category"]),
+            "rucontenttype": self._read_from_csv(
                 "rucontenttype", columns=["Type", "Subtype"]
-            )
+            ),
         }
 
     @staticmethod
@@ -77,7 +80,7 @@ class GcmdValidator:
         date_str = current_datetime.strftime(DATE_FORMAT)
         if os.path.exists(VERSION_FILE):
             with open(VERSION_FILE) as file:
-                date_str = file.readline().replace('\n', '')
+                date_str = file.readline().replace("\n", "")
         gcmd_date = datetime.strptime(date_str, DATE_FORMAT)
         if gcmd_date.date() < current_datetime.date() or force:
             try:
@@ -85,27 +88,27 @@ class GcmdValidator:
                     # Downloading updated gcmd keyword files
                     response = requests.get(link)
                     data = response.text
-                    with open(SCHEMA_PATHS[keyword], 'w') as download_file:
+                    with open(SCHEMA_PATHS[keyword], "w") as download_file:
                         download_file.write(data)
-                with open(VERSION_FILE, 'w') as version_file:
+                with open(VERSION_FILE, "w") as version_file:
                     version_file.write(current_datetime.strftime(DATE_FORMAT))
             except:
                 # Download of files failed. Using local copies, which are already there
                 pass
 
     @staticmethod
-    def _create_hierarchy_dict(keywords):
+    def _create_hierarchy_dict(rows):
         """
         Creates the hierarchy dictionary from the values from the csv
 
         Args:
-            keywords (list): List of list of row values from the csv file
+            rows (list): List of list of row values from the csv file
 
         Returns:
             (dict): The lookup dictionary for GCMD hierarchy
         """
         all_keywords = [
-            [each.upper() for each in kw if each.strip()] for kw in keywords if kw
+            [keyword.upper() for keyword in row if keyword.strip()] for row in rows if row
         ]
         hierarchy_dict = {}
         for row in all_keywords:
@@ -114,7 +117,19 @@ class GcmdValidator:
         return hierarchy_dict
 
     @staticmethod
-    def _read_from_csv(keyword_kind, columns=None):
+    def _load_csvs():
+        content = {}
+        for key, _ in GCMD_LINKS.items():
+            csvfile = open(SCHEMA_PATHS[key])
+            reader = csv.reader(csvfile)
+            next(reader)  # Remove the metadata (1st column)
+            headers = next(reader)  # Get the headers (2nd column)
+            list_of_rows = list(reader)
+            csvfile.close()
+            content[key] = headers, list_of_rows
+        return content
+
+    def _read_from_csv(self, keyword_kind, columns=None, hierarchy=False):
         """
         Reads keywords from the corresponding csv based on the kind of keyword
 
@@ -128,12 +143,8 @@ class GcmdValidator:
         Returns:
             (list): list of keywords or list of list of rows from the csv
         """
-        csvfile = open(SCHEMA_PATHS[keyword_kind])
-        reader = csv.reader(csvfile)
-        next(reader) # Remove the metadata (1st column)
-        headers = next(reader) # Get the headers (2nd column)
-        list_of_rows = list(reader)
-        if columns:
+        headers, list_of_rows = self.file_content[keyword_kind]
+        if (not hierarchy) and columns:
             return_value = []
             for column in columns:
                 return_value.extend(
@@ -143,12 +154,16 @@ class GcmdValidator:
                 )
         else:
             start = 1 if keyword_kind == "projects" else 0
+            start = headers.index(columns[0]) if columns else 0
+            end = (headers.index(columns[-1]) + 1) if columns else None
+            # handling cases when there are multiple entries for same shortname but the first entry has missing long name
             return_value = [
-                [kw for keyword in useful_data if (kw := keyword.strip())]
+                [clean_keyword for keyword in useful_data if (clean_keyword := keyword.strip() or 'N/A')]
                 for row in list_of_rows
-                if (useful_data := row[start : len(row) - 1]) # remove UUID (last column)
+                if (
+                    useful_data := row[start : end if end else (len(row) - 1)] # remove UUID (last column)
+                )
             ]
-        csvfile.close()
         return return_value
 
     @staticmethod
@@ -166,6 +181,7 @@ class GcmdValidator:
         """
         Merges child dict to the parent dict avoiding repetitions
         """
+
         if child == LEAF:
             return parent, child
         else:
