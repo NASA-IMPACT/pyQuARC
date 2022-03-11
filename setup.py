@@ -1,7 +1,7 @@
 import setuptools
 from distutils.util import convert_path
 
-version_path = convert_path('pyQuARC/version.txt')
+version_path = convert_path("pyQuARC/version.txt")
 with open(version_path) as version_file:
     __version__ = version_file.read().strip()
 
@@ -28,9 +28,9 @@ setuptools.setup(
         "License :: OSI Approved :: Apache License, Version 2.0",
         "Operating System :: OS Independent",
     ],
-    keywords='validation metadata cmr quality',
-    python_requires='>=3.8',
+    keywords="validation metadata cmr quality",
+    python_requires=">=3.8",
     install_requires=requirements,
-    package_data={'pyQuARC': ['schemas/*', '*.txt'], 'tests': ['fixtures/*']},
+    package_data={"pyQuARC": ["schemas/*", "*.txt"], "tests": ["fixtures/*"]},
     include_package_data=True,
 )

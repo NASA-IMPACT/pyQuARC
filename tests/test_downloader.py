@@ -34,22 +34,17 @@ class TestDownloader:
 
     def test_concept_id_type_collection(self):
         assert (
-            Downloader._concept_id_type(
-                self.concept_ids["collection"]["dummy"])
+            Downloader._concept_id_type(self.concept_ids["collection"]["dummy"])
             == Downloader.COLLECTION
         )
 
     def test_concept_id_type_granule(self):
         assert (
-            Downloader._concept_id_type(self.concept_ids["granule"]["dummy"])
-            == Downloader.GRANULE
+            Downloader._concept_id_type(self.concept_ids["granule"]["dummy"]) == Downloader.GRANULE
         )
 
     def test_concept_id_type_invalid(self):
-        assert (
-            Downloader._concept_id_type(self.concept_ids["invalid"])
-            == Downloader.INVALID
-        )
+        assert Downloader._concept_id_type(self.concept_ids["invalid"]) == Downloader.INVALID
 
     def test_construct_url_collection(self):
         real_collection = self.concept_ids["collection"]["real"]
@@ -73,8 +68,7 @@ class TestDownloader:
         dummy_granule = self.concept_ids["granule"]["dummy"]
         downloader = Downloader(dummy_granule, "echo10")
 
-        downloader.log_error("invalid_concept_id", {
-                             "concept_id": dummy_granule})
+        downloader.log_error("invalid_concept_id", {"concept_id": dummy_granule})
 
         downloader.log_error(
             "request_failed",

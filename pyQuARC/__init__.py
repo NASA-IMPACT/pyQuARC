@@ -15,5 +15,6 @@ ABS_PATH = os.path.abspath(os.path.dirname(__file__))
 with open(f"{ABS_PATH}/version.txt") as version_file:
     __version__ = version_file.read().strip()
 
+
 def get_version():
     return __version__

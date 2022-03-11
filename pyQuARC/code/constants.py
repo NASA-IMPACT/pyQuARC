@@ -9,7 +9,9 @@ UMM_JSON = "umm-json"
 
 ROOT_DIR = (
     # go up one directory
-    Path(__file__).resolve().parents[1]
+    Path(__file__)
+    .resolve()
+    .parents[1]
 )
 
 SCHEMAS_BASE_PATH = f"{ROOT_DIR}/schemas"
@@ -22,7 +24,7 @@ SCHEMAS = {
         "checks_override",
         "rule_mapping",
         "rules_override",
-        UMM_JSON
+        UMM_JSON,
     ],
     "csv": [
         "granuledataformat",
@@ -32,16 +34,16 @@ SCHEMAS = {
         "providers",
         "platforms",
         "sciencekeywords",
-        "rucontenttype"
+        "rucontenttype",
     ],
-    "xsd": [ f"{DIF}_xml", f"{ECHO10}_xml" ],
-    "xml": [ "catalog" ]
+    "xsd": [f"{DIF}_xml", f"{ECHO10}_xml"],
+    "xml": ["catalog"],
 }
 
 SCHEMA_PATHS = {
-    schema:  f"{SCHEMAS_BASE_PATH}/{schema}.{filetype}"
-        for filetype, schemas in SCHEMAS.items()
-            for schema in schemas
+    schema: f"{SCHEMAS_BASE_PATH}/{schema}.{filetype}"
+    for filetype, schemas in SCHEMAS.items()
+    for schema in schemas
 }
 
 VERSION_FILE = f"{SCHEMAS_BASE_PATH}/version.txt"
@@ -52,7 +54,7 @@ COLOR = {
     "error": Fore.RED,
     "warning": Fore.YELLOW,
     "reset": Style.RESET_ALL,
-    "bright": Style.BRIGHT
+    "bright": Style.BRIGHT,
 }
 
 GCMD_BASIC_URL = "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/"
@@ -65,11 +67,9 @@ GCMD_KEYWORDS = [
     "projects",
     "providers",
     "rucontenttype",
-    "sciencekeywords"
+    "sciencekeywords",
 ]
 
-GCMD_LINKS = {
-    keyword: f"{GCMD_BASIC_URL}{keyword}?format=csv" for keyword in GCMD_KEYWORDS
-}
+GCMD_LINKS = {keyword: f"{GCMD_BASIC_URL}{keyword}?format=csv" for keyword in GCMD_KEYWORDS}
 
 CMR_URL = "https://cmr.earthdata.nasa.gov"

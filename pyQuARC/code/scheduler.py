@@ -46,19 +46,13 @@ class Scheduler:
         Adds `rule` to `rules_list` based on the dependency order
         """
         check_id = rule.get("check_id") or rule_id
-        if check := self.checks_override.get(
-            check_id
-        ) or self.check_list.get(check_id):
+        if check := self.checks_override.get(check_id) or self.check_list.get(check_id):
             dependencies = self.get_all_dependencies(rule_id, check)
             for dependency in dependencies:
-                check = self.rules_override.get(
+                check = self.rules_override.get(dependency[0]) or self.rule_mapping.get(
                     dependency[0]
-                ) or self.rule_mapping.get(dependency[0])
-                self._add_to_list(
-                    dependency[0],
-                    check,
-                    rules_list
                 )
+                self._add_to_list(dependency[0], check, rules_list)
             Scheduler.append_if_not_exist(rule_id, rules_list)
         else:
             print(f"Missing entry for {check_id} in `checks.json`")
@@ -74,9 +68,7 @@ class Scheduler:
         keys = list(self.rule_mapping.keys())
         keys += list(self.rules_override.keys())
         for rule_id in set(keys):
-            rule = self.rules_override.get(
-                rule_id
-            ) or self.rule_mapping.get(rule_id)
+            rule = self.rules_override.get(rule_id) or self.rule_mapping.get(rule_id)
             self._add_to_list(rule_id, rule, ordered_check_list)
 
         return ordered_check_list

@@ -26,7 +26,7 @@ class Checker:
         metadata_format=ECHO10,
         messages_override=None,
         checks_override=None,
-        rules_override=None
+        rules_override=None,
     ):
         """
         Args:
@@ -53,13 +53,11 @@ class Checker:
             self.rules_override,
             self.checks,
             self.checks_override,
-            metadata_format=metadata_format
+            metadata_format=metadata_format,
         )
         self.schema_validator = SchemaValidator(metadata_format)
         self.tracker = Tracker(
-            self.rule_mapping,
-            self.rules_override,
-            metadata_format=metadata_format
+            self.rule_mapping, self.rules_override, metadata_format=metadata_format
         )
 
     @staticmethod
@@ -76,15 +74,9 @@ class Checker:
         self.checks = Checker._json_load_schema("checks")
         self.rule_mapping = Checker._json_load_schema("rule_mapping")
         self.messages = Checker._json_load_schema("check_messages")
-        self.messages_override = Checker._json_load_schema(
-            self.msgs_override_file
-        )
-        self.rules_override = Checker._json_load_schema(
-            self.rules_override_file
-        )
-        self.checks_override = Checker._json_load_schema(
-            self.checks_override_file
-        )
+        self.messages_override = Checker._json_load_schema(self.msgs_override_file)
+        self.rules_override = Checker._json_load_schema(self.rules_override_file)
+        self.checks_override = Checker._json_load_schema(self.checks_override_file)
 
     @staticmethod
     def map_to_function(data_type, function):
@@ -119,12 +111,10 @@ class Checker:
         Formats the message for `rule_id` based on the result
         """
         failure_message = self.message(rule_id, "failure")
-        rule_mapping = self.rules_override.get(
-            rule_id
-        ) or self.rule_mapping.get(rule_id)
+        rule_mapping = self.rules_override.get(rule_id) or self.rule_mapping.get(rule_id)
         severity = rule_mapping.get("severity", "error")
         messages = []
-        if not(result["valid"]) and result.get("value"):
+        if not (result["valid"]) and result.get("value"):
             for value in result["value"]:
                 formatted_message = failure_message
                 value = value if isinstance(value, tuple) else (value,)
@@ -162,24 +152,16 @@ class Checker:
         """
         Run the check function for `rule_id` and update `result_dict`
         """
-        rule_mapping = self.rules_override.get(
-            rule_id
-        ) or self.rule_mapping.get(rule_id)
+        rule_mapping = self.rules_override.get(rule_id) or self.rule_mapping.get(rule_id)
         external_data = rule_mapping.get("data", [])
-        list_of_fields_to_apply = \
-            rule_mapping.get("fields_to_apply").get(self.metadata_format, {})
+        list_of_fields_to_apply = rule_mapping.get("fields_to_apply").get(self.metadata_format, {})
         for field_dict in list_of_fields_to_apply:
             dependencies = self.scheduler.get_all_dependencies(rule_id, check, field_dict)
             main_field = field_dict["fields"][0]
             result_dict.setdefault(main_field, {})
             if not self._check_dependencies_validity(dependencies, field_dict):
                 continue
-            result = self.custom_checker.run(
-                func,
-                metadata_content,
-                field_dict,
-                external_data
-            )
+            result = self.custom_checker.run(func, metadata_content, field_dict, external_data)
             self.tracker.update_data(rule_id, main_field, result["valid"])
 
             # this is to avoid "valid" = null in the result, for rules that are not applied
@@ -200,16 +182,16 @@ class Checker:
         result_dict = {}
         for rule_id in ordered_rule:
             try:
-                rule_mapping = self.rules_override.get(
-                    rule_id
-                ) or self.rule_mapping.get(rule_id)
+                rule_mapping = self.rules_override.get(rule_id) or self.rule_mapping.get(rule_id)
                 check_id = rule_mapping.get("check_id", rule_id)
                 check = self.checks_override.get(check_id) or self.checks.get(check_id)
                 func = Checker.map_to_function(check["data_type"], check["check_function"])
                 if func:
                     self._run_func(func, check, rule_id, metadata_content, result_dict)
             except Exception as e:
-                print(f"Running check for the rule: '{rule_id}' failed.\nPlease report the issue to https://github.com/NASA-IMPACT/pyquarc along with the metadata file and the following error message:")
+                print(
+                    f"Running check for the rule: '{rule_id}' failed.\nPlease report the issue to https://github.com/NASA-IMPACT/pyquarc along with the metadata file and the following error message:"
+                )
                 print(f"ERROR: {e}")
         return result_dict
 
@@ -224,11 +206,7 @@ class Checker:
             (dict): The results of the jsonschema check and all custom checks
         """
         json_metadata = parse(metadata_content)
-        result_schema = self.perform_schema_check(
-            metadata_content
-        )
+        result_schema = self.perform_schema_check(metadata_content)
         result_custom = self.perform_custom_checks(json_metadata)
-        result = {
-            **result_schema, **result_custom
-        }
+        result = {**result_schema, **result_custom}
         return result

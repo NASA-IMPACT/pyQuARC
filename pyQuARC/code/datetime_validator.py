@@ -68,13 +68,12 @@ class DatetimeValidator(BaseValidator):
         """
         first = DatetimeValidator._iso_datetime(first)
         second = DatetimeValidator._iso_datetime(second)
-        if not(second):
-            second = datetime.now().replace(tzinfo=pytz.UTC) # Making it UTC for comparison with other UTC times
+        if not (second):
+            second = datetime.now().replace(
+                tzinfo=pytz.UTC
+            )  # Making it UTC for comparison with other UTC times
         result = BaseValidator.compare(first, second, relation)
-        return {
-            "valid": result,
-            "value": (str(first), str(second))
-        }
+        return {"valid": result, "value": (str(first), str(second))}
 
     @staticmethod
     def validate_datetime_against_granules(datetime, collection_shortname, sort_key, time_key):
@@ -89,7 +88,9 @@ class DatetimeValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        granules = requests.get(f'{CMR_URL}/search/granules.json?short_name={collection_shortname}&sort_key[]=-{sort_key}').json()
+        granules = requests.get(
+            f'{CMR_URL}/search/granules.json?short_name={collection_shortname}&sort_key[]=-{sort_key}'
+        ).json()
 
         if len(granules['feed']['entry']) > 0:
             last_granule = granules['feed']['entry'][0]
@@ -97,7 +98,7 @@ class DatetimeValidator(BaseValidator):
 
         return {
             "valid": datetime == last_granule_datetime,
-            "value": (datetime, last_granule_datetime)
+            "value": (datetime, last_granule_datetime),
         }
 
     @staticmethod
@@ -114,10 +115,7 @@ class DatetimeValidator(BaseValidator):
             (dict) An object with the validity of the check and the instance
         """
         return DatetimeValidator.validate_datetime_against_granules(
-            ending_datetime,
-            collection_shortname,
-            'end_date',
-            'time_end'
+            ending_datetime, collection_shortname, 'end_date', 'time_end'
         )
 
     @staticmethod
@@ -134,8 +132,5 @@ class DatetimeValidator(BaseValidator):
             (dict) An object with the validity of the check and the instance
         """
         return DatetimeValidator.validate_datetime_against_granules(
-            beginning_datetime,
-            collection_shortname,
-            'start_date',
-            'time_start'
+            beginning_datetime, collection_shortname, 'start_date', 'time_start'
         )

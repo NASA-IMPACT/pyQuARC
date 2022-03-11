@@ -10,11 +10,7 @@ class Tracker:
             rules_override (dict): The override of mapping from rule to fields
             metadata_format (str): The format of the metadata file (eg. echo10, dif10)
         """
-        self.data = Tracker.create_initial_track(
-            rule_mapping,
-            rules_override,
-            metadata_format
-        )
+        self.data = Tracker.create_initial_track(rule_mapping, rules_override, metadata_format)
 
     @staticmethod
     def create_initial_track(rule_mapping, rules_override, metadata_format):
@@ -48,13 +44,7 @@ class Tracker:
             data[rule_id] = []
             rule = rules_override.get(rule_id) or rule_mapping.get(rule_id)
             for field in rule["fields_to_apply"].get(metadata_format, {}):
-                data[rule_id].append(
-                    {
-                        "field": field["fields"][0],
-                        "applied": False,
-                        "valid": None
-                    }
-                )
+                data[rule_id].append({"field": field["fields"][0], "applied": False, "valid": None})
         return data
 
     def update_data(self, rule_id, field, validity):

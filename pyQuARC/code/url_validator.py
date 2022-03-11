@@ -17,7 +17,7 @@ class UrlValidator(StringValidator):
     @staticmethod
     def _extract_http_texts(text_with_urls):
         """
-        Extracts anything that starts with 'http' from `text_with_urls`. 
+        Extracts anything that starts with 'http' from `text_with_urls`.
         This is required for catching "wrong" urls that aren't extracted by `URLExtract.find_urls()` because they are not urls at all
         An example: https://randomurl
         Args:
@@ -51,9 +51,7 @@ class UrlValidator(StringValidator):
         # extract URLs from text
         extractor = URLExtract()
         urls = extractor.find_urls(text_with_urls)
-        urls.extend(
-            UrlValidator._extract_http_texts(text_with_urls)
-        )
+        urls.extend(UrlValidator._extract_http_texts(text_with_urls))
 
         # remove dots at the end (The URLExtract library catches URLs, but sometimes appends a '.' at the end)
         # remove duplicated urls
@@ -94,14 +92,9 @@ class UrlValidator(StringValidator):
 
     @staticmethod
     @if_arg
-    def doi_link_update(
-        value, bad_urls
-    ):
+    def doi_link_update(value, bad_urls):
         validity = True
         if value in bad_urls:
             validity = False
 
-        return {
-            "valid": validity,
-            "Value": value
-        }
+        return {"valid": validity, "Value": value}

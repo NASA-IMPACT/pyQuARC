@@ -37,7 +37,7 @@ class ARC:
         metadata_format=ECHO10,
         checks_override=None,
         rules_override=None,
-        messages_override=None
+        messages_override=None,
     ):
         """
         Args:
@@ -59,10 +59,9 @@ class ARC:
         self.errors = []
 
         self.file_path = (
-            file_path if file_path else os.path.join(
-                    ABS_PATH,
-                    f"../tests/fixtures/test_cmr_metadata.{metadata_format}"
-                )
+            file_path
+            if file_path
+            else os.path.join(ABS_PATH, f"../tests/fixtures/test_cmr_metadata.{metadata_format}")
         )
         self.metadata_format = metadata_format
         self.checks_override = checks_override
@@ -111,10 +110,7 @@ class ARC:
 
             collected += len(collections)
 
-            concept_ids.extend([
-                collection["id"]
-                for collection in collections
-            ])
+            concept_ids.extend([collection["id"] for collection in collections])
 
             if collected >= hits or already_selected:
                 break
@@ -135,7 +131,7 @@ class ARC:
             metadata_format=self.metadata_format,
             checks_override=self.checks_override,
             rules_override=self.rules_override,
-            messages_override=self.messages_override
+            messages_override=self.messages_override,
         )
 
         if self.concept_ids:
@@ -171,14 +167,11 @@ class ARC:
         result_string = ""
         for message in messages:
             colored_message = [
-                message.replace(
-                    text,
-                    f"{COLOR[severity]}{text}{END}"
-                )
+                message.replace(text, f"{COLOR[severity]}{text}{END}")
                 for severity in severities
                 if (text := severity.title()) and message.startswith(text)
             ][0]
-            result_string += (f"\t\t{colored_message}{END}\n")
+            result_string += f"\t\t{colored_message}{END}\n"
         return result_string
 
     def display_results(self):
@@ -189,15 +182,17 @@ class ARC:
         error_prompt = ""
         for error in self.errors:
             title = error.get("concept_id") or error.get("file")
-            error_prompt += (f"\n\tMETADATA: {COLOR['title']}{COLOR['bright']}{title}{END}\n")
+            error_prompt += f"\n\tMETADATA: {COLOR['title']}{COLOR['bright']}{title}{END}\n"
             validity = True
             for field, result in error["errors"].items():
                 for rule_type, value in result.items():
                     if not value.get("valid"):
                         messages = value.get("message")
-                        error_prompt += (f"\n\t>> {field}: {END}\n")
+                        error_prompt += f"\n\t>> {field}: {END}\n"
                         error_prompt += self._error_message(messages)
-                        error_prompt += (f"\t\t{remedy}\n") if (remedy := value.get('remediation')) else ""
+                        error_prompt += (
+                            (f"\t\t{remedy}\n") if (remedy := value.get('remediation')) else ""
+                        )
                         validity = False
             if validity:
                 error_prompt += "\n\tNo validation errors\n"
@@ -207,17 +202,15 @@ class ARC:
 
 if __name__ == "__main__":
     """
-        parse command line arguments (argparse)
-        --query
-        --concept_ids
-        --file
-        --fake
+    parse command line arguments (argparse)
+    --query
+    --concept_ids
+    --file
+    --fake
     """
     parser = argparse.ArgumentParser()
     download_group = parser.add_mutually_exclusive_group()
-    download_group.add_argument(
-        "--query", action="store", type=str, help="CMR query URL."
-    )
+    download_group.add_argument("--query", action="store", type=str, help="CMR query URL.")
     download_group.add_argument(
         "--concept_ids",
         nargs="+",
@@ -250,9 +243,7 @@ if __name__ == "__main__":
     parser.usage = parser.format_help().replace("optional ", "")
 
     if not (args.query or args.concept_ids or args.file or args.fake):
-        parser.error(
-            "No metadata given, add --query or --concept_ids or --file or --fake"
-        )
+        parser.error("No metadata given, add --query or --concept_ids or --file or --fake")
         exit()
 
     arc = ARC(

@@ -61,8 +61,7 @@ class StringValidator(BaseValidator):
             (dict) An object with the validity of the check and the instance
         """
         return {
-            "valid": str(value).upper()
-            in [keyword.upper() for keyword in keywords_list],
+            "valid": str(value).upper() in [keyword.upper() for keyword in keywords_list],
             "value": value,
         }
 
@@ -92,9 +91,7 @@ class StringValidator(BaseValidator):
     @if_arg
     def data_center_short_name_gcmd_check(value):
         return {
-            "valid": StringValidator.gcmdValidator.validate_provider_short_name(
-                value.upper()
-            ),
+            "valid": StringValidator.gcmdValidator.validate_provider_short_name(value.upper()),
             "value": value,
         }
 
@@ -113,9 +110,7 @@ class StringValidator(BaseValidator):
     @if_arg
     def instrument_short_name_gcmd_check(value):
         return {
-            "valid": StringValidator.gcmdValidator.validate_instrument_short_name(
-                value.upper()
-            ),
+            "valid": StringValidator.gcmdValidator.validate_instrument_short_name(value.upper()),
             "value": value,
         }
 
@@ -123,9 +118,7 @@ class StringValidator(BaseValidator):
     @if_arg
     def instrument_long_name_gcmd_check(value):
         return {
-            "valid": StringValidator.gcmdValidator.validate_instrument_long_name(
-                value.upper()
-            ),
+            "valid": StringValidator.gcmdValidator.validate_instrument_long_name(value.upper()),
             "value": value,
         }
 
@@ -133,9 +126,7 @@ class StringValidator(BaseValidator):
     @if_arg
     def platform_short_name_gcmd_check(value):
         return {
-            "valid": StringValidator.gcmdValidator.validate_platform_short_name(
-                value.upper()
-            ),
+            "valid": StringValidator.gcmdValidator.validate_platform_short_name(value.upper()),
             "value": value,
         }
 
@@ -143,9 +134,7 @@ class StringValidator(BaseValidator):
     @if_arg
     def platform_long_name_gcmd_check(value):
         return {
-            "valid": StringValidator.gcmdValidator.validate_platform_long_name(
-                value.upper()
-            ),
+            "valid": StringValidator.gcmdValidator.validate_platform_long_name(value.upper()),
             "value": value,
         }
 
@@ -153,9 +142,7 @@ class StringValidator(BaseValidator):
     @if_arg
     def platform_type_gcmd_check(value):
         return {
-            "valid": StringValidator.gcmdValidator.validate_platform_type(
-                value.upper()
-            ),
+            "valid": StringValidator.gcmdValidator.validate_platform_type(value.upper()),
             "value": value,
         }
 
@@ -163,9 +150,7 @@ class StringValidator(BaseValidator):
     @if_arg
     def spatial_keyword_gcmd_check(value):
         return {
-            "valid": StringValidator.gcmdValidator.validate_spatial_keyword(
-                value.upper()
-            ),
+            "valid": StringValidator.gcmdValidator.validate_spatial_keyword(value.upper()),
             "value": value,
         }
 
@@ -184,9 +169,7 @@ class StringValidator(BaseValidator):
     @if_arg
     def campaign_short_name_gcmd_check(value):
         return {
-            "valid": StringValidator.gcmdValidator.validate_campaign_short_name(
-                value.upper()
-            ),
+            "valid": StringValidator.gcmdValidator.validate_campaign_short_name(value.upper()),
             "value": value,
         }
 
@@ -194,9 +177,7 @@ class StringValidator(BaseValidator):
     @if_arg
     def campaign_long_name_gcmd_check(value):
         return {
-            "valid": StringValidator.gcmdValidator.validate_campaign_long_name(
-                value.upper()
-            ),
+            "valid": StringValidator.gcmdValidator.validate_campaign_long_name(value.upper()),
             "value": value,
         }
 
@@ -204,9 +185,7 @@ class StringValidator(BaseValidator):
     @if_arg
     def data_format_gcmd_check(value):
         return {
-            "valid": StringValidator.gcmdValidator.validate_data_format(
-                value.upper()
-            ),
+            "valid": StringValidator.gcmdValidator.validate_data_format(value.upper()),
             "value": value,
         }
 

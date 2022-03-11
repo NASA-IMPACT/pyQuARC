@@ -18,7 +18,4 @@ class TestCustomChecker:
     def test_get_path_value(self):
         in_out = INPUT_OUTPUT["get_path_value"]
         for _in, _out in zip(in_out["input"], in_out["output"]):
-            assert CustomChecker._get_path_value(
-                self.dummy_metadata,
-                _in
-            ) == _out
+            assert CustomChecker._get_path_value(self.dummy_metadata, _in) == _out

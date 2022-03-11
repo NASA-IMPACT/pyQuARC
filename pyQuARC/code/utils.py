@@ -7,8 +7,6 @@ def if_arg(func):
         if args[0]:
             return func(*args)
         else:
-            return {
-                "valid": None,
-                "value": None
-            }
+            return {"valid": None, "value": None}
+
     return run_function_only_if_arg

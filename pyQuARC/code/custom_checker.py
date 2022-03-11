@@ -37,14 +37,12 @@ class CustomChecker:
         elif isinstance(root_content, list):
             for each in root_content:
                 try:
-                    CustomChecker._get_path_value_recursively(
-                        each, new_path, container)
+                    CustomChecker._get_path_value_recursively(each, new_path, container)
                 except KeyError:
                     container.append(None)
                     continue
         elif isinstance(root_content, dict):
-            CustomChecker._get_path_value_recursively(
-                root_content, new_path, container)
+            CustomChecker._get_path_value_recursively(root_content, new_path, container)
 
     @staticmethod
     def _get_path_value(content_to_validate, path_string):
@@ -61,8 +59,7 @@ class CustomChecker:
 
         container = list()
         path = path_string.split('/')
-        CustomChecker._get_path_value_recursively(
-            content_to_validate, path, container)
+        CustomChecker._get_path_value_recursively(content_to_validate, path, container)
         return container
 
     def run(self, func, content_to_validate, field_dict, external_data):
@@ -89,12 +86,9 @@ class CustomChecker:
         fields = field_dict["fields"]
         field_values = []
         relation = field_dict.get("relation")
-        result = {
-            "valid": None
-        }
+        result = {"valid": None}
         for _field in fields:
-            value = CustomChecker._get_path_value(
-                content_to_validate, _field)
+            value = CustomChecker._get_path_value(content_to_validate, _field)
             field_values.append(value)
         args = zip(*field_values)
 
@@ -102,9 +96,11 @@ class CustomChecker:
         validity = None
         for arg in args:
             function_args = [*arg]
-            function_args.extend([extra_arg for extra_arg in [relation, *external_data] if extra_arg])
+            function_args.extend(
+                [extra_arg for extra_arg in [relation, *external_data] if extra_arg]
+            )
             func_return = func(*function_args)
-            valid = func_return["valid"] # can be True, False or None
+            valid = func_return["valid"]  # can be True, False or None
             if valid is not None:
                 if valid:
                     validity = validity or (validity is None)

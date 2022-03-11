@@ -17,7 +17,8 @@ class SchemaValidator:
     PATH_SEPARATOR = "/"
 
     def __init__(
-        self, metadata_format=ECHO10,
+        self,
+        metadata_format=ECHO10,
     ):
         """
         Args:
@@ -71,14 +72,12 @@ class SchemaValidator:
             for namespace in namespaces:
                 line = line.replace(namespace, '')
             field_name = re.search("Element\s\'(.*)\':", line)[1]
-            field_paths = [
-                abs_path for abs_path in paths if field_name in abs_path
-            ]
+            field_paths = [abs_path for abs_path in paths if field_name in abs_path]
             field_name = field_paths[0] if len(field_paths) == 1 else field_name
             message = re.search("Element\s\'.+\':\s(\[.*\])?(.*)", line)[2].strip()
             errors.setdefault(field_name, {})["xml_schema"] = {
                 "message": [f"Error: {message}"],
-                "valid": False
+                "valid": False,
             }
         return errors
 

@@ -9,12 +9,10 @@ from .constants import DIF, ECHO10, UMM_JSON
 
 class Downloader:
     """
-        Downloads data given a concept ID
+    Downloads data given a concept ID
     """
 
-    BASE_URL = (
-        "https://cmr.earthdata.nasa.gov/search/concepts/{concept_id}.{metadata_format}"
-    )
+    BASE_URL = "https://cmr.earthdata.nasa.gov/search/concepts/{concept_id}.{metadata_format}"
 
     COLLECTION = "collection"
     GRANULE = "granule"
@@ -83,10 +81,7 @@ class Downloader:
 
         # is the concept id valid? if not, log error
         if not self._valid_concept_id():
-            self.log_error(
-                "invalid_concept_id",
-                {"concept_id": self.concept_id}
-            )
+            self.log_error("invalid_concept_id", {"concept_id": self.concept_id})
             return
 
         # constructs url based on concept id
