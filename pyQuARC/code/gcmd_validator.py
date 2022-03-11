@@ -97,18 +97,18 @@ class GcmdValidator:
                 pass
 
     @staticmethod
-    def _create_hierarchy_dict(keywords):
+    def _create_hierarchy_dict(rows):
         """
         Creates the hierarchy dictionary from the values from the csv
 
         Args:
-            keywords (list): List of list of row values from the csv file
+            rows (list): List of list of row values from the csv file
 
         Returns:
             (dict): The lookup dictionary for GCMD hierarchy
         """
         all_keywords = [
-            [each.upper() for each in kw if each.strip()] for kw in keywords if kw
+            [keyword.upper() for keyword in row if keyword.strip()] for row in rows if row
         ]
         hierarchy_dict = {}
         for row in all_keywords:
@@ -156,12 +156,13 @@ class GcmdValidator:
             start = 1 if keyword_kind == "projects" else 0
             start = headers.index(columns[0]) if columns else 0
             end = (headers.index(columns[-1]) + 1) if columns else None
+            # handling cases when there are multiple entries for same shortname but the first entry has missing long name
             return_value = [
-                [kw for keyword in useful_data if (kw := keyword.strip())]
+                [clean_keyword for keyword in useful_data if (clean_keyword := keyword.strip() or 'N/A')]
                 for row in list_of_rows
                 if (
-                    useful_data := row[start : end if end else (len(row) - 1)]
-                )  # remove UUID (last column)
+                    useful_data := row[start : end if end else (len(row) - 1)] # remove UUID (last column)
+                )
             ]
         return return_value
 
@@ -180,9 +181,8 @@ class GcmdValidator:
         """
         Merges child dict to the parent dict avoiding repetitions
         """
+
         if child == LEAF:
-            return parent, child
-        elif parent == LEAF:
             return parent, child
         else:
             for key in child:
