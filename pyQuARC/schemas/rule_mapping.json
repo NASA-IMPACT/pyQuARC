@@ -73,8 +73,8 @@
             "umm-json": [
                 {
                     "fields": [
-                        "TemporalExtent/RangeDateTime/BeginningDateTime",
-                        "TemporalExtent/RangeDateTime/EndingDateTime"
+                        "TemporalExtents/RangeDateTimes/BeginningDateTime",
+                        "TemporalExtents/RangeDateTimes/EndingDateTime"
                     ],
                     "relation": "lte"
                 }
@@ -107,8 +107,8 @@
             "umm-json": [
                 {
                     "fields": [
-                        "TemporalExtent/RangeDateTime/BeginningDateTime",
-                        "TemporalExtent/RangeDateTime/EndingDateTime"
+                        "TemporalExtents/RangeDateTimes/BeginningDateTime",
+                        "TemporalExtents/RangeDateTimes/EndingDateTime"
                     ],
                     "relation": "neq"
                 }
@@ -141,8 +141,8 @@
             "umm-json": [
                 {
                     "fields": [
-                        "Project/StartDate",
-                        "Project/EndDate"
+                        "Projects/StartDate",
+                        "Projects/EndDate"
                     ],
                     "relation": "lte"
                 }
@@ -175,8 +175,8 @@
             "umm-json": [
                 {
                     "fields": [
-                        "Project/StartDate",
-                        "Project/EndDate"
+                        "Projects/StartDate",
+                        "Projects/EndDate"
                     ],
                     "relation": "neq"
                 }
@@ -216,8 +216,8 @@
             "umm-json": [
                 {
                     "fields": [
-                        "TemporalExtent/PeriodicDateTime/StartDate",
-                        "TemporalExtent/PeriodicDateTime/EndDate"
+                        "TemporalExtents/PeriodicDateTimes/StartDate",
+                        "TemporalExtents/PeriodicDateTimes/EndDate"
                     ],
                     "relation": "lt"
                 },
@@ -378,7 +378,12 @@
             "umm-json": [
                 {
                     "fields": [
-                        "MetadataDates/Date?Type=DELETE"
+                        "DataDates/Date?Type=CREATE"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataDates/Date?Type=UPDATE"
                     ]
                 },
                 {
@@ -388,57 +393,95 @@
                 },
                 {
                     "fields": [
+                        "DataDates/Date?Type=REVIEW"
+                    ]
+                },
+
+                {
+                    "fields": [
+                        "MetadataDates/Date?Type=CREATE"
+                    ]
+                },
+                {
+                    "fields": [
+                        "MetadataDates/Date"
+                    ]
+                },
+                {
+                    "fields": [
                         "DataDates/Date"
                     ]
                 },
+
                 {
                     "fields": [
-                        "AdditionalAttribute/UpdateDate"
+                        "MetadataDates/Date?Type=UPDATE"
                     ]
                 },
                 {
                     "fields": [
-                        "TemporalExtent/RangeDateTime/BeginningDateTime"
+                        "MetadataDates/Date?Type=DELETE"
                     ]
                 },
                 {
                     "fields": [
-                        "TemporalExtent/RangeDateTime/EndingDateTime"
+                        "MetadataDates/Date?Type=REVIEW"
                     ]
                 },
                 {
                     "fields": [
-                        "TemporalExtent/SingleDateTime"
+                        "AdditionalAttributes/UpdateDate"
                     ]
                 },
                 {
                     "fields": [
-                        "TemporalExtent/PeriodicDateTime"
+                        "TemporalExtents/RangeDateTimes/BeginningDateTime"
                     ]
                 },
                 {
                     "fields": [
-                        "TemporalExtent/PeriodicDateTime/StartDate"
+                        "TemporalExtents/RangeDateTimes/EndingDateTime"
                     ]
                 },
                 {
                     "fields": [
-                        "TemporalExtent/PeriodicDateTime/EndDate"
+                        "TemporalExtents/SingleDateTimes"
                     ]
                 },
                 {
                     "fields": [
-                        "PaleoTemporalCoverage/PaleoStartDate"
+                        "TemporalExtents/PeriodicDateTimes/StartDate"
                     ]
                 },
                 {
                     "fields": [
-                        "PaleoTemporalCoverage/PaleoEndDate"
+                        "TemporalExtents/PeriodicDateTimes/EndDate"
+                    ]
+                },
+                {
+                    "fields": [
+                        "PaleoTemporalCoverages/StartDate"
+                    ]
+                },
+                {
+                    "fields": [
+                        "PaleoTemporalCoverages/EndDate"
+                    ]
+                },
+                {
+                    "fields":[
+                        "Projects/StartDate"
+                    ]
+                },
+                {
+                    "fields":[
+                        "Projects/EndDate"
                     ]
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "datetime_format_check"
     },
     "url_check": {
         "rule_name": "URL Health and Status Check",
@@ -500,32 +543,32 @@
             "umm-json": [
                 {
                     "fields": [
-                        "DataCenters/ContactInformation/RelatedURLs/Url"
+                        "DataCenters/ContactInformation/RelatedUrls/URL"
                     ]
                 },
                 {
                     "fields": [
-                        "DataCenters/ContactPerson/ContactInformation/RelatedURLs/Url"
+                        "DataCenters/ContactPersons/ContactInformation/RelatedUrls/URL"
                     ]
                 },
                 {
                     "fields": [
-                        "DataCenters/ContactGroup/ContactInformation/RelatedURLs/Url"
+                        "DataCenters/ContactGroups/ContactInformation/RelatedUrls/URL"
                     ]
                 },
                 {
                     "fields": [
-                        "ContactPerson/ContactInformation/RelatedURLs/Url"
+                        "ContactPersons/ContactInformation/RelatedUrls/URL"
                     ]
                 },
                 {
                     "fields": [
-                        "ContactGroup/ContactInformation/RelatedURLs/Url"
+                        "ContactGroups/ContactInformation/RelatedUrls/URL"
                     ]
                 },
                 {
                     "fields": [
-                        "RelatedUrl/URL"
+                        "RelatedUrls/URL"
                     ]
                 }
             ]
