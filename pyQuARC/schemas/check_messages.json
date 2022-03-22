@@ -152,7 +152,7 @@
         "remediation": "Because the description reads \"Not provided\", it can be removed from the metadata. Otherwise, please describe the version in more detail."
     },
     "ends_at_present_flag_logic_check": {
-        "failure": "Potential issue with:\n - EndsAtPresentFlag: value = \"true\" but EndingDateTime is provided. \n - EndsAtPresentFlag: value = \"true\" but CollectionState = COMPLETE. \n - EndsAtPresentFlag: value = \"false\" but EndingDateTime is missing.\n - EndsAtPresentFlag: value = \"false\" but CollectionState = ACTIVE.",
+        "failure": "Potential issue with:\n - EndsAtPresentFlag: value = \"true\" but EndingDateTime is provided. \n - EndsAtPresentFlag: value = \"true\" but CollectionState is not \"ACTIVE\". \n - EndsAtPresentFlag: value = \"false\" but EndingDateTime is missing.\n - EndsAtPresentFlag: value = \"false\" but CollectionState is not \"COMPLETE\".",
         "help": {
             "message": "",
             "url": ""
@@ -160,7 +160,7 @@
         "remediation": "If data collection is ongoing, provide an EndsAtPresentFlag of \"true\""
     },
     "ends_at_present_flag_presence_check": {
-        "failure": "Potential issue with:\n - No EndingDateTime provided; no EndsAtPresentFlag provided for a potentially active collection. \n - CollectionState = ACTIVE; no EndsAtPresentFlag provided for a potentially active collection.",
+        "failure": "Potential issue with:\n - No EndingDateTime provided; no EndsAtPresentFlag provided for a potentially active collection. \n - CollectionState is not \"COMPLETE\"; no EndsAtPresentFlag provided for a potentially active collection.",
         "help": {
             "message": "",
             "url": ""

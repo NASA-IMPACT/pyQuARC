@@ -987,8 +987,8 @@
             "umm-json": [
                 {
                     "fields": [
-                        "TemporalExtent/EndsAtPresentFlag",
-                        "TemporalExtent/RangeDateTime/EndingDateTime",
+                        "TemporalExtents/EndsAtPresentFlag",
+                        "TemporalExtents/RangeDateTimes/EndingDateTime",
                         "CollectionProgress"
                     ]
                 }
@@ -1021,8 +1021,8 @@
             "umm-json": [
                 {
                     "fields": [
-                        "TemporalExtent/EndsAtPresentFlag",
-                        "TemporalExtent/RangeDateTime/EndingDateTime",
+                        "TemporalExtents/EndsAtPresentFlag",
+                        "TemporalExtents/RangeDateTimes/EndingDateTime",
                         "CollectionProgress"
                     ]
                 }
