@@ -3429,9 +3429,9 @@
             "umm-json": [
                 {
                     "fields": [
-                        "TemporalExtent/SingleDateTime",
-                        "TemporalExtent/RangeDateTime",
-                        "TemporalExtent/PeriodicDateTime"
+                        "TemporalExtents/SingleDateTimes",
+                        "TemporalExtents/RangeDateTimes",
+                        "TemporalExtents/PeriodicDateTimes"
                     ]
                 }
             ]
@@ -3969,7 +3969,27 @@
             "umm-json": [
                 {
                     "fields": [
-                        "SpatialRepresentationInfo/HorizontalCoordinateSystem/GeographicCoordinateSystem/GeographicCoordinateUnits"
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedResolutions/Unit"
+                    ]
+                },
+                {
+                    "fields": [
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedRangeResolutions/Unit"
+                    ]
+                },
+                {
+                    "fields": [
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedResolutions/Unit"
+                    ]
+                },
+                {
+                    "fields": [
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedRangeResolutions/Unit"
+                    ]
+                },
+                {
+                    "fields": [
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GenericResolutions/Unit"
                     ]
                 }
             ]
