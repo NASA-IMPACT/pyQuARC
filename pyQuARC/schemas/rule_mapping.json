@@ -2074,12 +2074,12 @@
             "umm-json": [
                 {
                     "fields": [
-                        "Platform/Instrument/ShortName"
+                        "Platforms/Instruments/ShortName"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/ShortName"
+                        "Platforms/Instruments/ComposedOf/ShortName"
                     ]
                 }
             ]
