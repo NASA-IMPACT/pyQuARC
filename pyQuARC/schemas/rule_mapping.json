@@ -2938,10 +2938,10 @@
             "umm-json": [
                 {
                     "fields": [
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/Point",
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/BoundingRectangles",
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/Lines",
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/Gpolygons"
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/Point",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/Lines",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/Gpolygons"
                     ]
                 }
             ]
