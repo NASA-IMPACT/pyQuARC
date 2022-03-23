@@ -2381,17 +2381,17 @@
             "umm-json": [
                 {
                     "fields": [
-                        "Project/ShortName",
-                        "Project/LongName"
+                        "Projects/ShortName",
+                        "Projects/LongName"
                     ],
                     "dependencies": [
                         [
                             "campaign_short_name_gcmd_check",
-                            "Project/ShortName"
+                            "Projects/ShortName"
                         ],
                         [
                             "campaign_long_name_gcmd_check",
-                            "Project/LongName"
+                            "Projects/LongName"
                         ]
                     ]
                 }
