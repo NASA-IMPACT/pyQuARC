@@ -2331,7 +2331,7 @@
             "umm-json": [
                 {
                     "fields": [
-                        "Platform/Type"
+                        "Platforms/Type"
                     ]
                 }
             ]
