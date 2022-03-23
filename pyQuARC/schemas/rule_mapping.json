@@ -2448,7 +2448,7 @@
             "umm-json": [
                 {
                     "fields": [
-                        "Project/LongName"
+                        "Projects/LongName"
                     ]
                 }
             ]
