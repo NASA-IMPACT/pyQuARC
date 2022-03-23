@@ -64,9 +64,9 @@
         "check_function": "mime_type_check",
         "available": true
     },
-    "organization_short_name_gcmd_check": {
+    "organization_long_name_gcmd_check": {
         "data_type": "string",
-        "check_function": "organization_short_name_gcmd_check",
+        "check_function": "organization_long_name_gcmd_check",
         "available": true
     },
     "instrument_short_long_name_consistency_check": {
