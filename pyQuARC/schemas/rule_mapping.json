@@ -921,7 +921,7 @@
             "umm-json": [
                 {
                     "fields": [
-                        "ProcessingLevel/Description"
+                        "ProcessingLevel/ProcessingLevelDescription"
                     ]
                 }
             ]
