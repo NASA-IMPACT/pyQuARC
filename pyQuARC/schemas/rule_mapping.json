@@ -3648,8 +3648,8 @@
             "umm-json": [
                 {
                     "fields": [
-                        "RelatedURL/Description",
-                        "RelatedURL/URL"
+                        "RelatedUrls/Description",
+                        "RelatedUrls/URL"
                     ]
                 }
             ]
