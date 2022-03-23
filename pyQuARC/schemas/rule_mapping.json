@@ -3169,7 +3169,7 @@
             "umm-json": [
                 {
                     "fields": [
-                        "RelatedUrl/Type"
+                        "RelatedUrls/Type"
                     ]
                 }
             ]
