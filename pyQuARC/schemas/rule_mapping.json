@@ -2178,7 +2178,7 @@
             "umm-json": [
                 {
                     "fields": [
-                        "Distribution/Format"
+                        "ArchiveAndDistributionInformation/FileDistributionInformation/Format"
                     ]
                 }
             ]
