@@ -903,7 +903,7 @@
         "severity": "error",
         "data": [
             [
-                "Not Applicable"
+                "Not Applicable", "Unknown"
             ]
         ],
         "check_id": "controlled_keywords_check"
