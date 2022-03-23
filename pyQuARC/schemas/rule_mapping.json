@@ -2150,7 +2150,7 @@
             "umm-json": [
                 {
                     "fields": [
-                        "Platform/ShortName"
+                        "Platforms/ShortName"
                     ]
                 }
             ]
