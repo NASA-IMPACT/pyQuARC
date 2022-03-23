@@ -1101,7 +1101,7 @@
             "umm-json": [
                 {
                     "fields": [
-                        "ContactPerson/Roles"
+                        "ContactPersons/Roles"
                     ]
                 }
             ]
@@ -1140,7 +1140,7 @@
             "umm-json": [
                 {
                     "fields": [
-                        "DataCenters/Roles"
+                        "DataCenters/ContactGroups/Roles"
                     ]
                 }
             ]
