@@ -2117,12 +2117,12 @@
             "umm-json": [
                 {
                     "fields": [
-                        "Platform/Instrument/LongName"
+                        "Platforms/Instruments/LongName"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/LongName"
+                        "Platforms/Instruments/ComposedOf/LongName"
                     ]
                 }
             ]
