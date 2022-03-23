@@ -1613,17 +1613,17 @@
             "umm-json": [
                 {
                     "fields": [
-                        "Platform/Instrument/Characteristics/Description"
+                        "Platforms/Instruments/Characteristics/Description"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/Characteristics/Description"
+                        "Platforms/Instruments/ComposedOf/Characteristics/Description"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Characteristics/Description"
+                        "Platforms/Characteristics/Description"
                     ]
                 }
             ]
