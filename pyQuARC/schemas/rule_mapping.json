@@ -2420,7 +2420,7 @@
             "umm-json": [
                 {
                     "fields": [
-                        "Project/ShortName"
+                        "Projects/ShortName"
                     ]
                 }
             ]
