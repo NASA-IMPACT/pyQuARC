@@ -2206,7 +2206,7 @@
             "umm-json": [
                 {
                     "fields": [
-                        "Platform/LongName"
+                        "Platforms/LongName"
                     ]
                 }
             ]
