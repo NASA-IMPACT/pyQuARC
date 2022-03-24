@@ -3729,7 +3729,7 @@
             "umm-json": [
                 {
                     "fields": [
-                        "DirectoryName/ShortName"
+                        "DirectoryNames"
                     ]
                 }
             ]
