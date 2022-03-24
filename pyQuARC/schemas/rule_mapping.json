@@ -3457,17 +3457,17 @@
             "umm-json": [
                 {
                     "fields": [
-                        "PublicationReference/OnlineResource/Protocol"
+                        "UseConstraints/LicenseURL/Protocol"
                     ]
                 },
                 {
                     "fields": [
-                        "RelatedUrl/GetService/Protocol"
+                        "RelatedUrls/GetService/Protocol"
                     ]
                 },
                 {
                     "fields": [
-                        "ResourceCitation/OnlineResource/Protocol"
+                        "CollectionCitations/OnlineResource/Protocol"
                     ]
                 }
             ]
