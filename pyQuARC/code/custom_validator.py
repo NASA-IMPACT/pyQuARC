@@ -174,7 +174,7 @@ class CustomValidator(BaseValidator):
     @if_arg
     def characteristic_name_uniqueness_check(characteristics):
         seen, duplicates = set(), set()
-        for characteristic in characteristics['Characteristic']:
+        for characteristic in characteristics:
             name = characteristic['Name']
             if name in seen:
                 duplicates.add(name)

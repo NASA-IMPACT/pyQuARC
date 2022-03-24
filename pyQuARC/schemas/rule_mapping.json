@@ -3213,7 +3213,7 @@
             "umm-json": [
                 {
                     "fields": [
-                        "Platform/Characteristics"
+                        "Platforms/Characteristics"
                     ]
                 }
             ]
