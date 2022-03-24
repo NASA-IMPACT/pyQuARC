@@ -3494,9 +3494,10 @@
             "umm-json": [
                 {
                     "fields": [
-                        "ResourceCitation/Version",
+                        "CollectionCitations/Version",
                         "Version"
-                    ]
+                    ],
+                    "relation": "eq"
                 }
             ]
         },
