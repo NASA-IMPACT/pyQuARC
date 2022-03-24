@@ -3754,11 +3754,11 @@
             "umm-json": [
                 {
                     "fields": [
-                        "PaleoTemporalCoverage/ChronostratigraphicUnit/Eon",
-                        "PaleoTemporalCoverage/ChronostratigraphicUnit/Era",
-                        "PaleoTemporalCoverage/ChronostratigraphicUnit/Period",
-                        "PaleoTemporalCoverage/ChronostratigraphicUnit/Epoch",
-                        "PaleoTemporalCoverage/ChronostratigraphicUnit/Stage"
+                        "PaleoTemporalCoverages/ChronostratigraphicUnits/Eon",
+                        "PaleoTemporalCoverages/ChronostratigraphicUnits/Era",
+                        "PaleoTemporalCoverages/ChronostratigraphicUnits/Period",
+                        "PaleoTemporalCoverages/ChronostratigraphicUnits/Epoch",
+                        "PaleoTemporalCoverages/ChronostratigraphicUnits/Stage"
                     ]
                 }
             ]
