@@ -396,7 +396,6 @@
                         "DataDates/Date?Type=REVIEW"
                     ]
                 },
-
                 {
                     "fields": [
                         "MetadataDates/Date?Type=CREATE"
@@ -412,7 +411,6 @@
                         "DataDates/Date"
                     ]
                 },
-
                 {
                     "fields": [
                         "MetadataDates/Date?Type=UPDATE"
@@ -3295,6 +3293,18 @@
                 {
                     "fields": [
                         "DIF/Metadata_Dates/Data_Future_Review"
+                    ]
+                }
+            ],
+            "umm-json":[
+                {
+                    "fields": [
+                        "DataDates/Date?Type=REVIEW"
+                    ]
+                },
+                {
+                    "fields": [
+                        "MetadataDates/Date?Type=REVIEW"
                     ]
                 }
             ]
