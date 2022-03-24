@@ -3552,52 +3552,12 @@
             "umm-json": [
                 {
                     "fields": [
-                        "MetadataDate/Date"
+                        "MetadataDates/Date"
                     ]
                 },
                 {
                     "fields": [
-                        "AdditionalAttribute/UpdateDate"
-                    ]
-                },
-                {
-                    "fields": [
-                        "TemporalExtent/RangeDateTime/BeginningDateTime"
-                    ]
-                },
-                {
-                    "fields": [
-                        "TemporalExtent/RangeDateTime/EndingDateTime"
-                    ]
-                },
-                {
-                    "fields": [
-                        "TemporalExtent/SingleDateTime"
-                    ]
-                },
-                {
-                    "fields": [
-                        "TemporalExtent/PeriodicDateTime"
-                    ]
-                },
-                {
-                    "fields": [
-                        "TemporalExtent/PeriodicDateTime/StartDate"
-                    ]
-                },
-                {
-                    "fields": [
-                        "TemporalExtent/PeriodicDateTime/EndDate"
-                    ]
-                },
-                {
-                    "fields": [
-                        "PaleoTemporalCoverage/PaleoStartDate"
-                    ]
-                },
-                {
-                    "fields": [
-                        "PaleoTemporalCoverage/PaleoEndDate"
+                        "DataDates/Date"
                     ]
                 }
             ]
