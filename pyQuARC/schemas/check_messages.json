@@ -838,5 +838,13 @@
             "url": ""
         },
         "remediation": "Please supply the corresponding long name for the short name."
-    }
+    },
+    "metadata_update_time_logic_check": {
+        "failure": "Note: the UPDATE Metadata Date comes before the provided CREATE Metadata Date.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Metadata+Dates"
+        },
+        "remediation": "Update the UPDATE Metadata Date time so that it is identical to the CREATE Metadata Date (in the event that the metadata has never been updated) or so that it comes chronologically after the UPDATE Metadata Date."
+    }  
 }

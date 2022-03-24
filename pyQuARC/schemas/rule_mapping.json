@@ -3967,5 +3967,21 @@
         ],
         "severity": "warning",
         "check_id": "controlled_keywords_check"
-    }
+    },
+    "metadata_update_time_logic_check": {
+        "rule_name": "Metadata Update Time Logic Check",
+        "fields_to_apply": {
+            "umm-json": [
+                {
+                    "fields": [
+                        "MetadataDates/Date?Type=UPDATE",
+                        "MetadataDates/Date?Type=CREATE"
+                    ],
+                    "relation": "gte"
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "date_compare"
+    }   
 }
