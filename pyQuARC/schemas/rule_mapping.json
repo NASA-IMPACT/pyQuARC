@@ -3978,6 +3978,27 @@
         "severity": "warning",
         "check_id": "controlled_keywords_check"
     },
+    "periodic_duration_unit_check": {
+        "rule_name": "Periodic Duration Unit Check",
+        "fields_to_apply": {
+            "umm-json": [
+                {
+                    "fields": [
+                        "TemporalExtents/PeriodicDateTimes/DurationUnit"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "DAY", 
+                "MONTH", 
+                "YEAR"
+            ]
+        ],
+        "severity": "warning",
+        "check_id": "controlled_keywords_check"
+    },
     "url_description_uniqueness_check": {
         "rule_name": "URL Description Uniqueness Check",
         "fields_to_apply": {

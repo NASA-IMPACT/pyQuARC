@@ -854,5 +854,13 @@
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Metadata+Dates"
         },
         "remediation": "Update the UPDATE Metadata Date time so that it is identical to the CREATE Metadata Date (in the event that the metadata has never been updated) or so that it comes chronologically after the UPDATE Metadata Date."
-    }  
+    },
+    "periodic_duration_unit_check": {
+        "failure": "The provided Periodic Duration Unit `{}` does not comply with the GCMD hierarchy.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+    }
 }
