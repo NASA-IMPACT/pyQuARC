@@ -243,5 +243,10 @@
         "data_type": "custom",
         "check_function": "get_data_url_check_umm",
         "available": true
+    },
+    "url_description_uniqueness_check": {
+        "data_type": "custom",
+        "check_function": "url_description_uniqueness_check",
+        "available": true
     }
 }

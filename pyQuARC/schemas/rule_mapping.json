@@ -3978,6 +3978,25 @@
         "severity": "warning",
         "check_id": "controlled_keywords_check"
     },
+    "url_description_uniqueness_check": {
+        "rule_name": "URL Description Uniqueness Check",
+        "fields_to_apply": {
+            "umm-json": [
+                {
+                    "fields": [
+                        "RelatedUrls"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataCenters/ContactInformation/RelatedUrls"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "url_description_uniqueness_check"
+    },
     "metadata_update_time_logic_check": {
         "rule_name": "Metadata Update Time Logic Check",
         "fields_to_apply": {

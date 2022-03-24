@@ -216,3 +216,19 @@ class CustomValidator(BaseValidator):
             "valid": False,
             "value": "N/A"
         }
+
+    @staticmethod
+    @if_arg
+    def url_description_uniqueness_check(related_urls):
+        seen, duplicates = set(), set()
+        for url_obj in related_urls:
+            description = url_obj.get('Description')
+            if description in seen:
+                duplicates.add(description)
+            else:
+                seen.add(description)
+
+        return {
+            "valid": not bool(duplicates),
+            "value": ', '.join(duplicates)
+        }
