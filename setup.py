@@ -31,6 +31,6 @@ setuptools.setup(
     keywords='validation metadata cmr quality',
     python_requires='>=3.8',
     install_requires=requirements,
-    package_data={'pyQuARC': ['schemas/*'], 'tests': ['fixtures/*']},
+    package_data={'pyQuARC': ['schemas/*', '*.txt'], 'tests': ['fixtures/*']},
     include_package_data=True,
 )
