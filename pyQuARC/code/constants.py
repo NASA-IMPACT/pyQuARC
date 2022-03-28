@@ -1,11 +1,10 @@
-import os
-
 from colorama import Fore, Style
 from pathlib import Path
 
 DIF = "dif10"
 ECHO10 = "echo10"
-UMM_JSON = "umm-json"
+UMM_C = "umm-c"
+UMM_G = "umm-g"
 
 ROOT_DIR = (
     # go up one directory
@@ -39,8 +38,9 @@ SCHEMAS = {
         "checks_override",
         "rule_mapping",
         "rules_override",
-        f"{UMM_JSON}_schema",
-        "umm-cmn-json-schema"
+        f"{UMM_C}-json-schema",
+        "umm-cmn-json-schema",
+        f"{UMM_G}-json-schema"
     ],
     "csv": GCMD_KEYWORDS,
     "xsd": [ f"{DIF}_schema", f"{ECHO10}_schema" ],

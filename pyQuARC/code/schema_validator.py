@@ -7,7 +7,7 @@ from jsonschema import Draft7Validator, draft7_format_checker, RefResolver
 from lxml import etree
 from urllib.request import pathname2url
 
-from .constants import DIF, ECHO10, UMM_JSON, SCHEMA_PATHS
+from .constants import ECHO10, SCHEMA_PATHS, UMM_C
 
 
 class SchemaValidator:
@@ -29,7 +29,7 @@ class SchemaValidator:
                 ['Collection/StartDate', ...].
         """
         self.metadata_format = metadata_format
-        if metadata_format == UMM_JSON:
+        if metadata_format.startswith("umm-"):
             self.validator_func = self.run_json_validator
         else:
             self.validator_func = self.run_xml_validator
@@ -56,7 +56,7 @@ class SchemaValidator:
         """
         Reads the json schema file
         """
-        schema = json.load(open(SCHEMA_PATHS[f"{self.metadata_format}_schema"], "r"))
+        schema = json.load(open(SCHEMA_PATHS[f"{self.metadata_format}-json-schema"], "r"))
         return schema
 
     def run_json_validator(self, content_to_validate):
@@ -68,13 +68,16 @@ class SchemaValidator:
             (dict) A dictionary that gives the validity of the schema and errors if they exist
         """
         schema = self.read_json_schema()
-        schema_base = json.load(open(SCHEMA_PATHS["umm-cmn-json-schema"], "r"))
+        schema_store = {}
 
-        # workaround to read local referenced schema file (only supports uri)
-        schema_store = {
-            schema_base.get('$id','/umm-cmn-json-schema.json') : schema_base,
-            schema_base.get('$id','umm-cmn-json-schema.json') : schema_base,
-        }
+        if self.metadata_format == UMM_C:
+            schema_base = json.load(open(SCHEMA_PATHS["umm-cmn-json-schema"], "r"))
+
+            # workaround to read local referenced schema file (only supports uri)
+            schema_store = {
+                schema_base.get('$id','/umm-cmn-json-schema.json') : schema_base,
+                schema_base.get('$id','umm-cmn-json-schema.json') : schema_base,
+            }
 
         errors = {}
 
