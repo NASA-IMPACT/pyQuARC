@@ -214,6 +214,11 @@
         "check_function": "characteristic_name_uniqueness_check",
         "available": true
     },
+    "characteristic_name_uniqueness_check_umm": {
+        "data_type": "custom",
+        "check_function": "characteristic_name_uniqueness_check_umm",
+        "available": true
+    },
     "validate_ending_datetime_against_granules": {
         "data_type": "datetime",
         "check_function": "validate_ending_datetime_against_granules",

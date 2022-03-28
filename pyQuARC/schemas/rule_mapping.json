@@ -3207,7 +3207,14 @@
                         "Collection/Platforms/Platform/Characteristics"
                     ]
                 }
-            ],
+            ]
+        },
+        "severity": "warning",
+        "check_id": "characteristic_name_uniqueness_check"
+    },
+    "characteristic_name_uniqueness_check_umm": {
+        "rule_name": "Characteristic Name Uniqueness Check for UMM JSON",
+        "fields_to_apply": {
             "umm-json": [
                 {
                     "fields": [
@@ -3217,7 +3224,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "characteristic_name_uniqueness_check"
+        "check_id": "characteristic_name_uniqueness_check_umm"
     },
     "validate_ending_datetime_against_granules": {
         "rule_name": "Ending Datetime validation against granules",

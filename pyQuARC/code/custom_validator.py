@@ -174,6 +174,22 @@ class CustomValidator(BaseValidator):
     @if_arg
     def characteristic_name_uniqueness_check(characteristics):
         seen, duplicates = set(), set()
+        for characteristic in characteristics['Characteristic']:
+            name = characteristic['Name']
+            if name in seen:
+                duplicates.add(name)
+            else:
+                seen.add(name)
+
+        return {
+            "valid": not bool(duplicates),
+            "value": ', '.join(duplicates)
+        }
+
+    @staticmethod
+    @if_arg
+    def characteristic_name_uniqueness_check_umm(characteristics):
+        seen, duplicates = set(), set()
         for characteristic in characteristics:
             name = characteristic['Name']
             if name in seen:

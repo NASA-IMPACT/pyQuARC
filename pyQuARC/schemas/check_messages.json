@@ -647,6 +647,14 @@
         },
         "remediation": "Please provide a unique name for each characteristic."
     },
+    "characteristic_name_uniqueness_check_umm": {
+        "failure": "Duplicate characteristic name/s `{}`.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a unique name for each characteristic."
+    },
     "validate_beginning_datetime_against_granules": {
         "failure": "The collection beginning datetime `{}` isn't consistent with the first granule's beginning datetime `{}`.",
         "help": {
