@@ -79,7 +79,7 @@ arguments:
                         List of concept IDs.
   --file FILE           Path to the test file, either absolute or relative to the root dir.
   --fake FAKE           Use a fake content for testing.
---format [FORMAT]     	The metadata format (currently supported: 'echo10' and 'dif10')
+  --format [FORMAT]     The metadata format (currently supported: 'echo10' and 'dif10')
 
 ```
 To test a local file, use the `--file` argument. Give it either an absolute file path or a file path relative to the project root directory.

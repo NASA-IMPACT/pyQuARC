@@ -13,7 +13,7 @@ from .datetime_validator import DatetimeValidator
 from .string_validator import StringValidator
 from .url_validator import UrlValidator
 
-from .constants import COLOR, DIF, ECHO10, SCHEMA_PATHS, UMM_JSON
+from .constants import COLOR, DIF, ECHO10, SCHEMA_PATHS
 
 
 class Checker:
@@ -223,7 +223,7 @@ class Checker:
         Returns:
             (dict): The results of the jsonschema check and all custom checks
         """
-        if self.metadata_format == UMM_JSON:
+        if self.metadata_format.startswith("umm-"):
             json_metadata = json.loads(metadata_content)
         else:
             json_metadata = parse(metadata_content)

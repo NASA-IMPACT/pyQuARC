@@ -1,17 +1,12 @@
-import json
 import re
 import requests
-
-from xmltodict import parse
-
-from .constants import DIF, ECHO10, UMM_JSON
 
 
 class Downloader:
     """
         Downloads data given a concept ID
     """
-
+    
     BASE_URL = (
         "https://cmr.earthdata.nasa.gov/search/concepts/{concept_id}.{metadata_format}"
     )
@@ -55,9 +50,9 @@ class Downloader:
             (str) The URL constructed based on the concept ID
         """
 
-        concept_id_type = Downloader._concept_id_type(self.concept_id)
         constructed_url = Downloader.BASE_URL.format(
-            concept_id=self.concept_id, metadata_format=self.metadata_format
+            concept_id=self.concept_id,
+            metadata_format=self.metadata_format if not self.metadata_format.startswith("umm-") else "umm-json"
         )
 
         return constructed_url

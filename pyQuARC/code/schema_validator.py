@@ -23,7 +23,7 @@ class SchemaValidator:
         """
         Args:
             metadata_format (str): The format of the metadata that needs
-                to be validated. Can be either of { ECHO10, UMM_JSON, DIF }.
+                to be validated. Can be any of { DIF, ECHO10, UMM_C, UMM_G }.
             validation_paths (list of str): The path of the fields in the
                 metadata that need to be validated. In the form
                 ['Collection/StartDate', ...].
