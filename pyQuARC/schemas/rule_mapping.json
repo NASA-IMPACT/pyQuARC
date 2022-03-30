@@ -2822,6 +2822,13 @@
                         "Collection/OnlineResources/OnlineResource/Description"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields":[
+                        "RelatedUrls/Description"
+                    ]
+                }
             ]
         },
         "severity": "info",
@@ -3150,6 +3157,14 @@
                     "fields": [
                         "RelatedUrl/Type",
                         "RelatedUrl/Url"
+                    ]
+                }
+            ],
+            "umm-g":[
+                {
+                    "fields":[
+                        "RelatedUrls/Type",
+                        "RelatedUrls/URL"
                     ]
                 }
             ]
