@@ -830,5 +830,13 @@
             "url": ""
         },
         "remediation": "Please supply the corresponding long name for the short name."
-    }
+    },
+    "url_description_uniqueness_check": {
+        "failure": "Duplicate URL description name/s `{}`.",
+        "help": {
+              "message": "",
+              "url": ""
+        },
+        "remediation": "Please provide a unique name for each URL description."
+    }  
 }
