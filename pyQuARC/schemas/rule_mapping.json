@@ -3652,6 +3652,13 @@
                         "RelatedUrls"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields":[
+                        "RelatedUrls"
+                    ]
+                }
             ]
         },
         "severity": "error",
