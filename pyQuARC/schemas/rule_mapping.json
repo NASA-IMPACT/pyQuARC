@@ -2822,6 +2822,13 @@
                         "Collection/OnlineResources/OnlineResource/Description"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields":[
+                        "RelatedUrls/Description"
+                    ]
+                }
             ]
         },
         "severity": "info",
@@ -3150,6 +3157,14 @@
                     "fields": [
                         "RelatedUrl/Type",
                         "RelatedUrl/Url"
+                    ]
+                }
+            ],
+            "umm-g":[
+                {
+                    "fields":[
+                        "RelatedUrls/Type",
+                        "RelatedUrls/URL"
                     ]
                 }
             ]
@@ -3637,6 +3652,13 @@
                         "RelatedUrls"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields":[
+                        "RelatedUrls"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -3943,5 +3965,31 @@
         ],
         "severity": "warning",
         "check_id": "controlled_keywords_check"
+    },
+    "url_description_uniqueness_check": {
+        "rule_name": "URL Description Uniqueness Check",
+        "fields_to_apply": {
+            "umm-json": [
+                {
+                    "fields": [
+                        "RelatedUrls"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataCenters/ContactInformation/RelatedUrls"
+                    ]
+                }
+            ],
+            "umm-g":[
+                {
+                    "fields":[
+                        "RelatedUrls"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "url_description_uniqueness_check"
     }
 }

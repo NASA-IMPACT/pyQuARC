@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## v2.0.1
+- Modified online_resource_type_presence_check in rule_mapping.json for ummg support
+
+- Modified online_resource_url_description_check in rule_mapping.json for ummg support 
+
+- Modified get_data_url_check_umm  in rule_mapping.json for ummg support 
+
+- Added URL Description Uniqueness Check:
+rule_mapping.json
+  - Added rule using ""check_id"": 
+  ""url_description_uniqueness_check""
+  
+  checks.json
+  - Added url_description_uniqueness_check 
+  
+  check_messages.json
+  - Added error message for url_description_uniqueness_check
+  
+  custom_validator.py
+  - Added url_description_uniqueness_check
+
 ## v1.1.5
 - Added reader for specific columns from GCMD csvs
 - Fixed bug to handle cases when there are multiple entries for same shortname but the first entry has missing long name
