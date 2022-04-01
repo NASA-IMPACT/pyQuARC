@@ -2980,10 +2980,10 @@
             "umm-g": [
                 {
                     "fields": [
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/Points",
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/BoundingRectangles",
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/Lines",
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/Gpolygons"
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/Points",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/Lines",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/Gpolygons"
                     ]
                 }
             ]
