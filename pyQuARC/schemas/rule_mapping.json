@@ -1463,6 +1463,26 @@
                         "Platform/Instrument/ComposedOf/Characteristics"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platforms/Characteristics/Value",
+                        "Platforms/Characteristics"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Platforms/Instruments/Characteristics/Value",
+                        "Platforms/Instruments/Characteristics"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Platforms/Instruments/ComposedOf/Characteristics/Value",
+                        "Platforms/Instruments/ComposedOf/Characteristics"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -1722,6 +1742,14 @@
                     "fields": [
                         "DIF/Related_URL/Mime_Type",
                         "DIF/Related_URL/URL_Content_Type/Type"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "RelatedUrls/MimeType",
+                        "RelatedUrls/Type"
                     ]
                 }
             ]
@@ -2039,6 +2067,18 @@
                         "Platform/Instrument/ComposedOf/ShortName"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platforms/Instruments/ShortName"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Platforms/Instruments/ComposedOf/ShortName"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -2110,6 +2150,13 @@
                         "Platform/ShortName"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platforms/ShortName"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -2136,6 +2183,13 @@
                 {
                     "fields": [
                         "Distribution/Format"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "DataGranule/ArchiveAndDistributionInformation/Format"
                     ]
                 }
             ]
@@ -2378,6 +2432,13 @@
                 {
                     "fields": [
                         "Project/ShortName"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Projects/ShortName"
                     ]
                 }
             ]
@@ -2710,6 +2771,13 @@
                         "Project/ShortName"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Projects/ShortName"
+                    ]
+                }
             ]
         },
         "severity": "info",
@@ -2822,6 +2890,13 @@
                         "Collection/OnlineResources/OnlineResource/Description"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "RelatedUrls/Description"
+                    ]
+                }
             ]
         },
         "severity": "info",
@@ -2896,6 +2971,16 @@
                 {
                     "fields": [
                         "SpatialExtent/HorizontaSpatialDomain/Geometry/Point",
+                        "SpatialExtent/HorizontaSpatialDomain/Geometry/BoundingRectangles",
+                        "SpatialExtent/HorizontaSpatialDomain/Geometry/Lines",
+                        "SpatialExtent/HorizontaSpatialDomain/Geometry/Gpolygons"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "SpatialExtent/HorizontaSpatialDomain/Geometry/Points",
                         "SpatialExtent/HorizontaSpatialDomain/Geometry/BoundingRectangles",
                         "SpatialExtent/HorizontaSpatialDomain/Geometry/Lines",
                         "SpatialExtent/HorizontaSpatialDomain/Geometry/Gpolygons"
@@ -3129,6 +3214,13 @@
                         "RelatedUrl/Type"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "RelatedUrls/Type"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -3171,6 +3263,13 @@
                 {
                     "fields": [
                         "Platform/Characteristics"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platforms/Characteristics"
                     ]
                 }
             ]
@@ -3631,7 +3730,7 @@
     "get_data_url_check_umm": {
         "rule_name": "GET DATA URL check for UMM JSON",
         "fields_to_apply": {
-            "umm-json": [
+            "umm-g": [
                 {
                     "fields": [
                         "RelatedUrls"
