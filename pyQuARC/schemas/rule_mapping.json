@@ -78,6 +78,15 @@
                     ],
                     "relation": "lte"
                 }
+            ],
+            "umm-g":  [
+                {
+                    "fields":  [
+                        "TemporalExtent/RangeDateTime/BeginningDateTime",
+                        "TemporalExtent/RangeDateTime/EndingDateTime"
+                    ],
+                    "relation": "lte"
+                }
             ]
         },
         "severity": "error",
@@ -107,6 +116,15 @@
             "umm-json": [
                 {
                     "fields": [
+                        "TemporalExtent/RangeDateTime/BeginningDateTime",
+                        "TemporalExtent/RangeDateTime/EndingDateTime"
+                    ],
+                    "relation": "neq"
+                }
+            ],
+            "umm-g":  [
+                {
+                    "fields":  [
                         "TemporalExtent/RangeDateTime/BeginningDateTime",
                         "TemporalExtent/RangeDateTime/EndingDateTime"
                     ],
