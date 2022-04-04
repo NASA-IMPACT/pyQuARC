@@ -1321,6 +1321,20 @@
                         "Platform/Instrument/ComposedOf/Characteristics"
                     ]
                 }
+            ],
+            "umm-g":  [
+                {
+                    "fields":  [
+                        "Platform/Instrument/Characteristics/Name",
+                        "Platform/Instrument/Characteristics"
+                    ]
+                },
+                {
+                    "fields":  [
+                        "Platform/Instrument/ComposedOf/Characteristics/Name",
+                        "Platform/Instrument/ComposedOf/Characteristics"
+                    ]
+                }
             ]
         },
         "severity": "error",
