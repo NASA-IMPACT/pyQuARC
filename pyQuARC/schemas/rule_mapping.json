@@ -444,6 +444,33 @@
                         "PaleoTemporalCoverage/PaleoEndDate"
                     ]
                 }
+            ],
+            "umm-g":  [
+                {
+                    "fields":  [
+                        "TemporalExtent/RangeDateTime/BeginningDateTime"
+                    ]
+                },
+                {
+                    "fields":  [
+                        "TemporalExtent/RangeDateTime/EndingDateTime"
+                    ]
+                },
+                {
+                    "fields":  [
+                        "TemporalExtent/SingleDateTime"
+                    ]
+                },
+                {
+                    "fields":  [
+                        "ProviderDates/Date?Type=DELETE"
+                    ]
+                },
+                {
+                    "fields":  [
+                        "DataGranule/ProductionDateTime"
+                    ]
+                }
             ]
         },
         "severity": "error"
