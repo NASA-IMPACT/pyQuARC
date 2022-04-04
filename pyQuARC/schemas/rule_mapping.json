@@ -560,7 +560,14 @@
                 },
                 {
                     "fields": [
-                        "RelatedUrl/URL"
+                        "RelatedUrls/URL"
+                    ]
+                }
+            ],
+            "umm-g":  [
+                {
+                    "fields":  [
+                        "RelatedUrls/URL"
                     ]
                 }
             ]
