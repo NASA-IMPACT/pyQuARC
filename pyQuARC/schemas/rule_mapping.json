@@ -882,6 +882,13 @@
                         "MetadataDate/Type=DELETE"
                     ]
                 }
+            ],
+            "umm-g":  [
+                {
+                    "fields":  [
+                        "ProviderDates/Date?Type=DELETE"
+                    ]
+                }
             ]
         },
         "data": [
