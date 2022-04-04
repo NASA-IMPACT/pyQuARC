@@ -465,7 +465,32 @@
             "umm-json": [
                 {
                     "fields": [
-                        "RelatedUrls/URL"
+                        "DataCenters/ContactInformation/RelatedURLs/Url"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataCenters/ContactPerson/ContactInformation/RelatedURLs/Url"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataCenters/ContactGroup/ContactInformation/RelatedURLs/Url"
+                    ]
+                },
+                {
+                    "fields": [
+                        "ContactPerson/ContactInformation/RelatedURLs/Url"
+                    ]
+                },
+                {
+                    "fields": [
+                        "ContactGroup/ContactInformation/RelatedURLs/Url"
+                    ]
+                },
+                {
+                    "fields": [
+                        "RelatedUrl/URL"
                     ]
                 }
             ]
