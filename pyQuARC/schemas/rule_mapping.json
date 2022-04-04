@@ -378,16 +378,6 @@
             "umm-json": [
                 {
                     "fields": [
-                        "MetadataDate/Date"
-                    ]
-                },
-                {
-                    "fields": [
-                        "AdditionalAttribute/UpdateDate"
-                    ]
-                },
-                {
-                    "fields": [
                         "TemporalExtent/RangeDateTime/BeginningDateTime"
                     ]
                 },
@@ -402,28 +392,13 @@
                     ]
                 },
                 {
-                    "fields": [
-                        "TemporalExtent/PeriodicDateTime"
+                    "fields":  [
+                        "ProviderDates/Date?Type=DELETE"
                     ]
                 },
                 {
-                    "fields": [
-                        "TemporalExtent/PeriodicDateTime/StartDate"
-                    ]
-                },
-                {
-                    "fields": [
-                        "TemporalExtent/PeriodicDateTime/EndDate"
-                    ]
-                },
-                {
-                    "fields": [
-                        "PaleoTemporalCoverage/PaleoStartDate"
-                    ]
-                },
-                {
-                    "fields": [
-                        "PaleoTemporalCoverage/PaleoEndDate"
+                    "fields":  [
+                        "DataGranule/ProductionDateTime"
                     ]
                 }
             ]
