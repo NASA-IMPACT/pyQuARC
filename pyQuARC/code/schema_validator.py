@@ -8,7 +8,7 @@ from jsonschema import Draft7Validator, draft7_format_checker, RefResolver
 from lxml import etree
 from urllib.request import pathname2url
 
-from .constants import ECHO10, UMM_JSON, SCHEMA_PATHS
+from .constants import ECHO10, UMM_JSON, SCHEMA_PATHS, SCHEMAS
 
 
 class SchemaValidator:
@@ -19,7 +19,7 @@ class SchemaValidator:
     PATH_SEPARATOR = "/"
 
     def __init__(
-        self, check_messages, metadata_format=ECHO10,
+        self, check_messages=SCHEMAS["json"][2], metadata_format=ECHO10,
     ):
         """
         Args:
