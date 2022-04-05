@@ -11,20 +11,20 @@ class CustomValidator(BaseValidator):
         super().__init__()
 
     @staticmethod
-    @if_arg
     def ends_at_present_flag_logic_check(
         ends_at_present_flag, ending_date_time, collection_state
     ):
-        value = ends_at_present_flag.lower()
         collection_state = collection_state.upper()
-
-        valid = (
-            value == "true"
-            and not (ending_date_time) or collection_state == "ACTIVE"
-        ) or (
-            value == "false"
-            and ending_date_time or collection_state == "COMPLETE"
-        )
+        if ends_at_present_flag == None:
+            valid = True
+        else:
+            valid = (
+                ends_at_present_flag == True
+                and not (ending_date_time) and collection_state == "ACTIVE"
+            ) or (
+                ends_at_present_flag == False
+                and not not (ending_date_time) and collection_state == "COMPLETE"
+            )
 
         return {"valid": valid, "value": ends_at_present_flag}
 
@@ -33,8 +33,8 @@ class CustomValidator(BaseValidator):
         ends_at_present_flag, ending_date_time, collection_state
     ):
         valid = True
-        if not ends_at_present_flag:
-            valid = ending_date_time or collection_state == "COMPLETE"
+        if ends_at_present_flag == None:
+            valid = not not (ending_date_time) and collection_state == "COMPLETE"
 
         return {"valid": valid, "value": ends_at_present_flag}
 
@@ -159,9 +159,9 @@ class CustomValidator(BaseValidator):
     def collection_progress_consistency_check(collection_state, ends_at_present_flag, ending_date_time):
         # Logic: https://github.com/NASA-IMPACT/pyQuARC/issues/61
         validity = True
-        if collection_state.upper() in ["ACTIVE", "IN WORK"]:
+        if collection_state in ["ACTIVE", "IN WORK"]:
             validity = (not bool(ending_date_time)) and str(ends_at_present_flag).lower() == "true"
-        elif collection_state.upper() == "COMPLETE":
+        elif collection_state == "COMPLETE":
             validity = bool(ending_date_time) and (not bool(str(ends_at_present_flag)) or ends_at_present_flag.lower() == "false")
         else:
             validity = False
@@ -175,6 +175,22 @@ class CustomValidator(BaseValidator):
     def characteristic_name_uniqueness_check(characteristics):
         seen, duplicates = set(), set()
         for characteristic in characteristics['Characteristic']:
+            name = characteristic['Name']
+            if name in seen:
+                duplicates.add(name)
+            else:
+                seen.add(name)
+
+        return {
+            "valid": not bool(duplicates),
+            "value": ', '.join(duplicates)
+        }
+
+    @staticmethod
+    @if_arg
+    def characteristic_name_uniqueness_check_umm(characteristics):
+        seen, duplicates = set(), set()
+        for characteristic in characteristics:
             name = characteristic['Name']
             if name in seen:
                 duplicates.add(name)
@@ -215,4 +231,20 @@ class CustomValidator(BaseValidator):
         return {
             "valid": False,
             "value": "N/A"
+        }
+
+    @staticmethod
+    @if_arg
+    def url_description_uniqueness_check(related_urls):
+        seen, duplicates = set(), set()
+        for url_obj in related_urls:
+            description = url_obj.get('Description')
+            if description in seen:
+                duplicates.add(description)
+            else:
+                seen.add(description)
+
+        return {
+            "valid": not bool(duplicates),
+            "value": ', '.join(duplicates)
         }
