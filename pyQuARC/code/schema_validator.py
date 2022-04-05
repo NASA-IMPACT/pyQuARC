@@ -18,7 +18,7 @@ class SchemaValidator:
     PATH_SEPARATOR = "/"
 
     def __init__(
-        self, metadata_format=ECHO10,
+        self, check_messages, metadata_format=ECHO10,
     ):
         """
         Args:
@@ -33,6 +33,7 @@ class SchemaValidator:
             self.validator_func = self.run_json_validator
         else:
             self.validator_func = self.run_xml_validator
+        self.check_messages = check_messages
 
     def read_xml_schema(self):
         """
@@ -92,10 +93,10 @@ class SchemaValidator:
             message = error.message
             remediation = None
             if error.validator == "oneOf":
-                check_message = self.check_messages[error.validator]
-                fields = [f'{field}/{obj["required"][0]}' for obj in error.validator_value]
-                message = check_message["failure"].format(fields)
-                remediation = check_message["remediation"]
+                if check_message := self.check_messages.get(error.validator):
+                    fields = [f'{field}/{obj["required"][0]}' for obj in error.validator_value]
+                    message = check_message["failure"].format(fields)
+                    remediation = check_message["remediation"]
             errors.setdefault(field, {})["schema"] = {
                 "message": [f"Error: {message}"],
                 "remediation": remediation,

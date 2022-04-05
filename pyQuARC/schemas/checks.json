@@ -64,9 +64,9 @@
         "check_function": "mime_type_check",
         "available": true
     },
-    "organization_short_name_gcmd_check": {
+    "organization_long_name_gcmd_check": {
         "data_type": "string",
-        "check_function": "organization_short_name_gcmd_check",
+        "check_function": "organization_long_name_gcmd_check",
         "available": true
     },
     "instrument_short_long_name_consistency_check": {
@@ -212,6 +212,11 @@
     "characteristic_name_uniqueness_check": {
         "data_type": "custom",
         "check_function": "characteristic_name_uniqueness_check",
+        "available": true
+    },
+    "characteristic_name_uniqueness_check_umm": {
+        "data_type": "custom",
+        "check_function": "characteristic_name_uniqueness_check_umm",
         "available": true
     },
     "validate_ending_datetime_against_granules": {
