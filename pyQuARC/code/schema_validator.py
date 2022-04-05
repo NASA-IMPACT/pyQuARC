@@ -1,4 +1,3 @@
-from email import message_from_string
 import json
 import os
 import re
@@ -19,7 +18,7 @@ class SchemaValidator:
     PATH_SEPARATOR = "/"
 
     def __init__(
-        self, check_messages=SCHEMAS["json"][2], metadata_format=ECHO10,
+        self, check_messages, metadata_format=ECHO10,
     ):
         """
         Args:
