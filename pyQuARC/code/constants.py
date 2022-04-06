@@ -6,6 +6,8 @@ ECHO10 = "echo10"
 UMM_C = "umm-c"
 UMM_G = "umm-g"
 
+SUPPORTED_FORMATS = [DIF, ECHO10, UMM_C, UMM_G]
+
 ROOT_DIR = (
     # go up one directory
     Path(__file__).resolve().parents[1]

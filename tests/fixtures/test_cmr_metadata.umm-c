@@ -29,8 +29,8 @@
             "Date": "2021-09-15T15:54:00.000Z"
         },
         {
-            "Type": "DELETE",
-            "Date": "2010-01-01T00:00:00.000Z"
+            "Date": "2000-08-30T10:47:59.761Z",
+            "Type": "DELETE"
         }
     ],
     "VersionDescription": "Collection Version 6.1 Processing and Reprocessing",
@@ -138,6 +138,10 @@
         {
             "Date": "2015-09-30T10:47:59.761Z",
             "Type": "UPDATE"
+        },
+        {
+            "Date": "2000-08-30T10:47:59.761Z",
+            "Type": "DELETE"
         }
     ],
     "AccessConstraints": {
