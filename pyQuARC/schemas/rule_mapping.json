@@ -518,7 +518,7 @@
                 },
                 {
                     "fields":  [
-                        "ProviderDates/Date?Type=DELETE"
+                        "ProviderDates/Date?Type=Delete"
                     ]
                 },
                 {
@@ -932,7 +932,7 @@
             "umm-g":  [
                 {
                     "fields":  [
-                        "ProviderDates/Date?Type=DELETE"
+                        "ProviderDates/Date?Type=Delete"
                     ]
                 }   
             ]
