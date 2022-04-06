@@ -393,10 +393,10 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "MetadataDate/Date"
+                        "MetadataDates/Date"
                     ]
                 },
                 {
@@ -459,6 +459,11 @@
                 {
                     "fields":  [
                         "TemporalExtent/SingleDateTime"
+                    ]
+                },
+                {
+                    "fields":  [
+                        "ProviderDates/Date"
                     ]
                 },
                 {
@@ -861,7 +866,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "DataDate/Date"
@@ -874,12 +879,12 @@
                 },
                 {
                     "fields": [
-                        "MetadataDate/Date"
+                        "MetadataDates/Date"
                     ]
                 },
                 {
                     "fields": [
-                        "MetadataDate/Type=DELETE"
+                        "MetadataDates/Type=DELETE"
                     ]
                 }
             ],
@@ -888,7 +893,7 @@
                     "fields":  [
                         "ProviderDates/Date?Type=DELETE"
                     ]
-                }
+                }   
             ]
         },
         "data": [

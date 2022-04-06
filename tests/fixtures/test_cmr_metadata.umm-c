@@ -27,6 +27,10 @@
         {
             "Type": "UPDATE",
             "Date": "2021-09-15T15:54:00.000Z"
+        },
+        {
+            "Type": "DELETE",
+            "Date": "2010-01-01T00:00:00.000Z"
         }
     ],
     "VersionDescription": "Collection Version 6.1 Processing and Reprocessing",
