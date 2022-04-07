@@ -60,9 +60,19 @@ class StringValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
+        if type(value) == str:
+            value = [value]
+        else:
+            value = value
+
+        validity = True
+        for i in value:
+            if i not in keywords_list:
+                validity = False
+                break
+
         return {
-            "valid": str(value).upper()
-            in [keyword.upper() for keyword in keywords_list],
+            "valid": validity,
             "value": value,
         }
 

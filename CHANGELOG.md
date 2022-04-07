@@ -1,6 +1,96 @@
 # CHANGELOG
 
+## v2.0.1
+
+### List of added checks
+
+- GET DATA URL Check UMM
+- Metadata Update Time Logic Check
+- Future Date Check
+- Data Center Long Name Check
+- URL Description Uniqueness Check
+- Periodic Duration Unit Check
+- Characteristic Name Uniqueness Check UMM
+
+## Check Updates for UMM-C
+
+- Range Date Time Logic Check
+- Range Date Time Logic Check
+- Project Date Time Logic Check
+- Project Date Time Logic Check
+- Periodic Date Time Logic Check
+- Datetime ISO Format Check
+- URL Health and Status Check
+- Delete Time Check
+- DOI Missing Reason Enumeration Check
+- Processing Level Description Length Check
+- UMM Controlled Collection State List
+- Ends at present flag logic check
+- Ends at present flag presence check
+- Data Contact Role Enumeration Check
+- Controlled Contact Role Check
+- Characteristic Description Length Check
+- Organization Longname GCMD Check
+- Instrument Short/Longname Consistency Check
+- Instrument Shortname GCMD Check
+- Instrument Long Name Check
+- Platform Shortname GCMD Check
+- Data Format GCMD Check
+- Platform Longname GCMD Check
+- Platform Type GCMD Check
+- Campaign Short/Long name consistency Check
+- Campaign Short Name GCMD Check
+- Campaign Long Name GCMD Check
+- Collection Data Type Enumeration Check
+- Bounding Coordinates Logic Check
+- Vertical Spatial Domain Type Check
+- Spatial Coverage Type Check
+- Campaign Name Presence Check
+- Spatial Extent Requirement Fulfillment Check
+- Collection Progress Related Fields Consistency Check
+- Online Resource Type GCMD Check
+- Characteristic Name Uniqueness Check
+- Ending Datetime validation against granules
+- Beginning Datetime validation against granules
+- ISO Topic Category Vocabulary Check
+- Temporal Extent Requirement Check
+- FTP Protocol Check
+- Citation Version Check
+- Default Date Check
+- Online Description Presence Check
+- IDN Node Shortname GCMD Check
+- Chrono Unit GCMD Check
+- Platform Type Presence Check
+- Horizontal Data Resolution Unit Controlled Vocabulary Check
+
+## v2.0.0
+
+- Support for [UMM-JSON](https://earthdata.nasa.gov/esdis/esco/standards-and-references/eso-umm-information) collection level metadata
+- Added support for some UMM fields that look like the following:
+
+```json
+"ContactMechanisms": [
+    {
+        "Type": "Telephone",
+        "Value": "605-594-6116"
+    },
+    {
+        "Type": "U.S. toll free",
+        "Value": "866-573-3222"
+    },
+    {
+        "Type": "Email",
+        "Value": "lpdaac@usgs.gov"
+    }
+]
+```
+
+To specify the "Email" field, in the `rule_mapping`, a user would put in `ContactMechanisms/Value?Type=Email` as the field.
+
+- All the field specified in a datetime check that involves comparison should have a corresponding `datetime_format_check` entry, otherwise the check won't run
+
 ## v1.1.5
+
 - Added reader for specific columns from GCMD csvs
 - Fixed bug to handle cases when there are multiple entries for same shortname but the first entry has missing long name
 

@@ -70,11 +70,11 @@
                     "relation": "lte"
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "TemporalExtent/RangeDateTime/BeginningDateTime",
-                        "TemporalExtent/RangeDateTime/EndingDateTime"
+                        "TemporalExtents/RangeDateTimes/BeginningDateTime",
+                        "TemporalExtents/RangeDateTimes/EndingDateTime"
                     ],
                     "relation": "lte"
                 }
@@ -104,11 +104,11 @@
                     "relation": "neq"
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "TemporalExtent/RangeDateTime/BeginningDateTime",
-                        "TemporalExtent/RangeDateTime/EndingDateTime"
+                        "TemporalExtents/RangeDateTimes/BeginningDateTime",
+                        "TemporalExtents/RangeDateTimes/EndingDateTime"
                     ],
                     "relation": "neq"
                 }
@@ -138,11 +138,11 @@
                     "relation": "lte"
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "Project/StartDate",
-                        "Project/EndDate"
+                        "Projects/StartDate",
+                        "Projects/EndDate"
                     ],
                     "relation": "lte"
                 }
@@ -172,11 +172,11 @@
                     "relation": "neq"
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "Project/StartDate",
-                        "Project/EndDate"
+                        "Projects/StartDate",
+                        "Projects/EndDate"
                     ],
                     "relation": "neq"
                 }
@@ -213,11 +213,11 @@
                     "relation": "lt"
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "TemporalExtent/PeriodicDateTime/StartDate",
-                        "TemporalExtent/PeriodicDateTime/EndDate"
+                        "TemporalExtents/PeriodicDateTimes/StartDate",
+                        "TemporalExtents/PeriodicDateTimes/EndDate"
                     ],
                     "relation": "lt"
                 },
@@ -375,60 +375,111 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "MetadataDate/Date"
+                        "DataDates/Date?Type=CREATE"
                     ]
                 },
                 {
                     "fields": [
-                        "AdditionalAttribute/UpdateDate"
+                        "DataDates/Date?Type=UPDATE"
                     ]
                 },
                 {
                     "fields": [
-                        "TemporalExtent/RangeDateTime/BeginningDateTime"
+                        "DataDates/Date?Type=DELETE"
                     ]
                 },
                 {
                     "fields": [
-                        "TemporalExtent/RangeDateTime/EndingDateTime"
+                        "DataDates/Date?Type=REVIEW"
                     ]
                 },
                 {
                     "fields": [
-                        "TemporalExtent/SingleDateTime"
+                        "MetadataDates/Date?Type=CREATE"
                     ]
                 },
                 {
                     "fields": [
-                        "TemporalExtent/PeriodicDateTime"
+                        "MetadataDates/Date"
                     ]
                 },
                 {
                     "fields": [
-                        "TemporalExtent/PeriodicDateTime/StartDate"
+                        "DataDates/Date"
                     ]
                 },
                 {
                     "fields": [
-                        "TemporalExtent/PeriodicDateTime/EndDate"
+                        "MetadataDates/Date?Type=UPDATE"
                     ]
                 },
                 {
                     "fields": [
-                        "PaleoTemporalCoverage/PaleoStartDate"
+                        "MetadataDates/Date?Type=DELETE"
                     ]
                 },
                 {
                     "fields": [
-                        "PaleoTemporalCoverage/PaleoEndDate"
+                        "MetadataDates/Date?Type=REVIEW"
+                    ]
+                },
+                {
+                    "fields": [
+                        "AdditionalAttributes/UpdateDate"
+                    ]
+                },
+                {
+                    "fields": [
+                        "TemporalExtents/RangeDateTimes/BeginningDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "TemporalExtents/RangeDateTimes/EndingDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "TemporalExtents/SingleDateTimes"
+                    ]
+                },
+                {
+                    "fields": [
+                        "TemporalExtents/PeriodicDateTimes/StartDate"
+                    ]
+                },
+                {
+                    "fields": [
+                        "TemporalExtents/PeriodicDateTimes/EndDate"
+                    ]
+                },
+                {
+                    "fields": [
+                        "PaleoTemporalCoverages/StartDate"
+                    ]
+                },
+                {
+                    "fields": [
+                        "PaleoTemporalCoverages/EndDate"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Projects/StartDate"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Projects/EndDate"
                     ]
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "datetime_format_check"
     },
     "url_check": {
         "rule_name": "URL Health and Status Check",
@@ -487,35 +538,35 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "DataCenters/ContactInformation/RelatedURLs/Url"
+                        "DataCenters/ContactInformation/RelatedUrls/URL"
                     ]
                 },
                 {
                     "fields": [
-                        "DataCenters/ContactPerson/ContactInformation/RelatedURLs/Url"
+                        "DataCenters/ContactPersons/ContactInformation/RelatedUrls/URL"
                     ]
                 },
                 {
                     "fields": [
-                        "DataCenters/ContactGroup/ContactInformation/RelatedURLs/Url"
+                        "DataCenters/ContactGroups/ContactInformation/RelatedUrls/URL"
                     ]
                 },
                 {
                     "fields": [
-                        "ContactPerson/ContactInformation/RelatedURLs/Url"
+                        "ContactPersons/ContactInformation/RelatedUrls/URL"
                     ]
                 },
                 {
                     "fields": [
-                        "ContactGroup/ContactInformation/RelatedURLs/Url"
+                        "ContactGroups/ContactInformation/RelatedUrls/URL"
                     ]
                 },
                 {
                     "fields": [
-                        "RelatedUrl/URL"
+                        "RelatedUrls/URL"
                     ]
                 }
             ]
@@ -544,7 +595,7 @@
                     "relation": "neq"
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "EntryTitle",
@@ -574,7 +625,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "Abstract"
@@ -616,7 +667,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "DOI/DOI"
@@ -649,7 +700,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "AdditionalAttribute/Value"
@@ -684,7 +735,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "ProcessingLevel/Id"
@@ -732,7 +783,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "ScienceKeywords/Category",
@@ -770,7 +821,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "DOI/Authority"
@@ -809,25 +860,15 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "DataDate/Date"
+                        "DataDates/Date?Type=DELETE"
                     ]
                 },
                 {
                     "fields": [
-                        "DataDate/Type=DELETE"
-                    ]
-                },
-                {
-                    "fields": [
-                        "MetadataDate/Date"
-                    ]
-                },
-                {
-                    "fields": [
-                        "MetadataDate/Type=DELETE"
+                        "MetadataDates/Date?Type=DELETE"
                     ]
                 }
             ]
@@ -849,7 +890,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "DOI/MissingReason"
@@ -860,7 +901,8 @@
         "severity": "error",
         "data": [
             [
-                "Not Applicable"
+                "Not Applicable",
+                "Unknown"
             ]
         ],
         "check_id": "controlled_keywords_check"
@@ -875,10 +917,10 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "ProcessingLevel/Description"
+                        "ProcessingLevel/ProcessingLevelDescription"
                     ]
                 }
             ]
@@ -900,7 +942,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "CollectionProgress"
@@ -941,11 +983,11 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "TemporalExtent/EndsAtPresentFlag",
-                        "TemporalExtent/RangeDateTime/EndingDateTime",
+                        "TemporalExtents/EndsAtPresentFlag",
+                        "TemporalExtents/RangeDateTimes/EndingDateTime",
                         "CollectionProgress"
                     ]
                 }
@@ -975,11 +1017,11 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "TemporalExtent/EndsAtPresentFlag",
-                        "TemporalExtent/RangeDateTime/EndingDateTime",
+                        "TemporalExtents/EndsAtPresentFlag",
+                        "TemporalExtents/RangeDateTimes/EndingDateTime",
                         "CollectionProgress"
                     ]
                 }
@@ -998,7 +1040,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "ContactPersons/ContactInformation/ContactMechanisms/Type"
@@ -1055,10 +1097,10 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "ContactPerson/Roles"
+                        "ContactPersons/Roles"
                     ]
                 }
             ]
@@ -1094,10 +1136,10 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "DataCenters/Roles"
+                        "DataCenters/ContactGroups/Roles"
                     ]
                 }
             ]
@@ -1155,7 +1197,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "AdditionalAttribute/DataType"
@@ -1243,7 +1285,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "Platform/Characteristics/Name",
@@ -1310,7 +1352,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "Platform/Characteristics/Description",
@@ -1377,7 +1419,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "Platform/Characteristics/Unit",
@@ -1444,7 +1486,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "Platform/Characteristics/Value",
@@ -1525,7 +1567,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "Platform/Characteristics/Name"
@@ -1587,20 +1629,20 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "Platform/Instrument/Characteristics/Description"
+                        "Platforms/Instruments/Characteristics/Description"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/Characteristics/Description"
+                        "Platforms/Instruments/ComposedOf/Characteristics/Description"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Characteristics/Description"
+                        "Platforms/Characteristics/Description"
                     ]
                 }
             ]
@@ -1649,7 +1691,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "Platform/Characteristics/Unit"
@@ -1701,7 +1743,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "Platform/Characteristics/Value"
@@ -1799,7 +1841,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "SpatialExtent/HorizontaSpatialDomain/Geometry/CoordinateSystem"
@@ -1855,7 +1897,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "SpatialExtent/GranuleSpatialRepresentation"
@@ -1889,7 +1931,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "DataCenters/ShortName"
@@ -1910,7 +1952,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "DataCenters/LongName"
@@ -1992,36 +2034,36 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "Platform/Instrument/ShortName",
-                        "Platform/Instrument/LongName"
+                        "Platforms/Instruments/ShortName",
+                        "Platforms/Instruments/LongName"
                     ],
                     "dependencies": [
                         [
                             "instrument_short_name_gcmd_check",
-                            "Platform/Instrument/ShortName"
+                            "Platforms/Instruments/ShortName"
                         ],
                         [
                             "instrument_long_name_gcmd_check",
-                            "Platform/Instrument/LongName"
+                            "Platforms/Instruments/LongName"
                         ]
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/ShortName",
-                        "Platform/Instrument/ComposedOf/LongName"
+                        "Platforms/Instruments/ComposedOf/ShortName",
+                        "Platforms/Instruments/ComposedOf/LongName"
                     ],
                     "dependencies": [
                         [
                             "instrument_short_name_gcmd_check",
-                            "Platform/Instrument/ComposedOf/ShortName"
+                            "Platforms/Instruments/ComposedOf/ShortName"
                         ],
                         [
                             "instrument_long_name_gcmd_check",
-                            "Platform/Instrument/ComposedOf/LongName"
+                            "Platforms/Instruments/ComposedOf/LongName"
                         ]
                     ]
                 }
@@ -2056,15 +2098,15 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "Platform/Instrument/ShortName"
+                        "Platforms/Instruments/ShortName"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/ShortName"
+                        "Platforms/Instruments/ComposedOf/ShortName"
                     ]
                 }
             ],
@@ -2111,15 +2153,15 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "Platform/Instrument/LongName"
+                        "Platforms/Instruments/LongName"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/LongName"
+                        "Platforms/Instruments/ComposedOf/LongName"
                     ]
                 }
             ]
@@ -2144,10 +2186,10 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "Platform/ShortName"
+                        "Platforms/ShortName"
                     ]
                 }
             ],
@@ -2179,10 +2221,10 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "Distribution/Format"
+                        "ArchiveAndDistributionInformation/FileDistributionInformation/Format"
                     ]
                 }
             ],
@@ -2214,10 +2256,10 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "Platform/LongName"
+                        "Platforms/LongName"
                     ]
                 }
             ]
@@ -2262,7 +2304,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "LocationKeywords/Category"
@@ -2307,7 +2349,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "LocationKeywords/Category",
@@ -2339,10 +2381,10 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "Platform/Type"
+                        "Platforms/Type"
                     ]
                 }
             ]
@@ -2389,20 +2431,20 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "Project/ShortName",
-                        "Project/LongName"
+                        "Projects/ShortName",
+                        "Projects/LongName"
                     ],
                     "dependencies": [
                         [
                             "campaign_short_name_gcmd_check",
-                            "Project/ShortName"
+                            "Projects/ShortName"
                         ],
                         [
                             "campaign_long_name_gcmd_check",
-                            "Project/LongName"
+                            "Projects/LongName"
                         ]
                     ]
                 }
@@ -2428,10 +2470,10 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "Project/ShortName"
+                        "Projects/ShortName"
                     ]
                 }
             ],
@@ -2463,10 +2505,10 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "Project/LongName"
+                        "Projects/LongName"
                     ]
                 }
             ]
@@ -2491,7 +2533,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "VersionDescription"
@@ -2523,7 +2565,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "CollectionDataType"
@@ -2553,7 +2595,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "DataCenters/ShortName"
@@ -2587,13 +2629,13 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/BoundingRectangles/WestBoundingCoordinate",
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/BoundingRectangles/NorthBoundingCoordinate",
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/BoundingRectangles/EastBoundingCoordinate",
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/BoundingRectangles/SouthBoundingCoordinate"
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles/WestBoundingCoordinate",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles/NorthBoundingCoordinate",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles/EastBoundingCoordinate",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles/SouthBoundingCoordinate"
                     ]
                 }
             ]
@@ -2617,7 +2659,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "SpatialExtent/VerticalSpatialDomain/Type"
@@ -2654,7 +2696,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "SpatialExtent/SpatialCoverageType"
@@ -2693,7 +2735,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "SpatialExtent/VerticalSpatialDomain/Unit"
@@ -2730,7 +2772,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "SpatialExtent/VerticalSpatialDomain/Unit"
@@ -2765,10 +2807,10 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "Project/ShortName"
+                        "Projects/ShortName"
                     ]
                 }
             ],
@@ -2800,7 +2842,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "SpatialExtent/SpatialCoverageType"
@@ -2828,7 +2870,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "SpatialRepresentationInfo/HorizontalCoordinateSystem/GeodeticModel/HorizontalDatumName"
@@ -2933,7 +2975,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "LocationKeywords/Category"
@@ -2967,13 +3009,13 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/Point",
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/BoundingRectangles",
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/Lines",
-                        "SpatialExtent/HorizontaSpatialDomain/Geometry/Gpolygons"
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/Point",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/Lines",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/Gpolygons"
                     ]
                 }
             ],
@@ -3009,7 +3051,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "UseConstraints/LicenseURL/Linkage",
@@ -3038,7 +3080,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "ResourceCitation/OtherCitationDetails"
@@ -3077,7 +3119,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "ContactPerson/FirstName",
@@ -3118,7 +3160,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "DOI/Explanation",
@@ -3178,7 +3220,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "CollectionProgress",
@@ -3208,10 +3250,10 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "RelatedUrl/Type"
+                        "RelatedUrls/Type"
                     ]
                 }
             ],
@@ -3237,7 +3279,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "RelatedUrl/Type",
@@ -3258,11 +3300,18 @@
                         "Collection/Platforms/Platform/Characteristics"
                     ]
                 }
-            ],
-            "umm-json": [
+            ]
+        },
+        "severity": "warning",
+        "check_id": "characteristic_name_uniqueness_check"
+    },
+    "characteristic_name_uniqueness_check_umm": {
+        "rule_name": "Characteristic Name Uniqueness Check for UMM JSON",
+        "fields_to_apply": {
+            "umm-c": [
                 {
                     "fields": [
-                        "Platform/Characteristics"
+                        "Platforms/Characteristics"
                     ]
                 }
             ],
@@ -3275,7 +3324,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "characteristic_name_uniqueness_check"
+        "check_id": "characteristic_name_uniqueness_check_umm"
     },
     "validate_ending_datetime_against_granules": {
         "rule_name": "Ending Datetime validation against granules",
@@ -3296,7 +3345,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "TemporalExtent/RangeDateTime/EndingDateTime",
@@ -3327,7 +3376,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "TemporalExtent/RangeDateTime/BeginningDateTime",
@@ -3353,6 +3402,18 @@
                         "DIF/Metadata_Dates/Data_Future_Review"
                     ]
                 }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "DataDates/Date?Type=REVIEW"
+                    ]
+                },
+                {
+                    "fields": [
+                        "MetadataDates/Date?Type=REVIEW"
+                    ]
+                }
             ]
         },
         "data": [
@@ -3372,7 +3433,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "ISOTopicCategory"
@@ -3482,12 +3543,12 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "TemporalExtent/SingleDateTime",
-                        "TemporalExtent/RangeDateTime",
-                        "TemporalExtent/PeriodicDateTime"
+                        "TemporalExtents/SingleDateTimes",
+                        "TemporalExtents/RangeDateTimes",
+                        "TemporalExtents/PeriodicDateTimes"
                     ]
                 }
             ]
@@ -3510,20 +3571,20 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "PublicationReference/OnlineResource/Protocol"
+                        "UseConstraints/LicenseURL/Protocol"
                     ]
                 },
                 {
                     "fields": [
-                        "RelatedUrl/GetService/Protocol"
+                        "RelatedUrls/GetService/Protocol"
                     ]
                 },
                 {
                     "fields": [
-                        "ResourceCitation/OnlineResource/Protocol"
+                        "CollectionCitations/OnlineResource/Protocol"
                     ]
                 }
             ]
@@ -3547,12 +3608,13 @@
                     "relation": "eq"
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "ResourceCitation/Version",
+                        "CollectionCitations/Version",
                         "Version"
-                    ]
+                    ],
+                    "relation": "eq"
                 }
             ]
         },
@@ -3604,55 +3666,15 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "MetadataDate/Date"
+                        "MetadataDates/Date"
                     ]
                 },
                 {
                     "fields": [
-                        "AdditionalAttribute/UpdateDate"
-                    ]
-                },
-                {
-                    "fields": [
-                        "TemporalExtent/RangeDateTime/BeginningDateTime"
-                    ]
-                },
-                {
-                    "fields": [
-                        "TemporalExtent/RangeDateTime/EndingDateTime"
-                    ]
-                },
-                {
-                    "fields": [
-                        "TemporalExtent/SingleDateTime"
-                    ]
-                },
-                {
-                    "fields": [
-                        "TemporalExtent/PeriodicDateTime"
-                    ]
-                },
-                {
-                    "fields": [
-                        "TemporalExtent/PeriodicDateTime/StartDate"
-                    ]
-                },
-                {
-                    "fields": [
-                        "TemporalExtent/PeriodicDateTime/EndDate"
-                    ]
-                },
-                {
-                    "fields": [
-                        "PaleoTemporalCoverage/PaleoStartDate"
-                    ]
-                },
-                {
-                    "fields": [
-                        "PaleoTemporalCoverage/PaleoEndDate"
+                        "DataDates/Date"
                     ]
                 }
             ]
@@ -3701,11 +3723,11 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "RelatedURL/Description",
-                        "RelatedURL/URL"
+                        "RelatedUrls/Description",
+                        "RelatedUrls/URL"
                     ]
                 }
             ]
@@ -3730,7 +3752,7 @@
     "get_data_url_check_umm": {
         "rule_name": "GET DATA URL check for UMM JSON",
         "fields_to_apply": {
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "RelatedUrls"
@@ -3758,7 +3780,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "SpatialRepresentationInfo/Horizontal_Resolution_Range"
@@ -3779,7 +3801,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "SpatialRepresentationInfo/Vertical_Resolution_Range"
@@ -3828,10 +3850,10 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "DirectoryName/ShortName"
+                        "DirectoryNames"
                     ]
                 }
             ]
@@ -3853,14 +3875,14 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "PaleoTemporalCoverage/ChronostratigraphicUnit/Eon",
-                        "PaleoTemporalCoverage/ChronostratigraphicUnit/Era",
-                        "PaleoTemporalCoverage/ChronostratigraphicUnit/Period",
-                        "PaleoTemporalCoverage/ChronostratigraphicUnit/Epoch",
-                        "PaleoTemporalCoverage/ChronostratigraphicUnit/Stage"
+                        "PaleoTemporalCoverages/ChronostratigraphicUnits/Eon",
+                        "PaleoTemporalCoverages/ChronostratigraphicUnits/Era",
+                        "PaleoTemporalCoverages/ChronostratigraphicUnits/Period",
+                        "PaleoTemporalCoverages/ChronostratigraphicUnits/Epoch",
+                        "PaleoTemporalCoverages/ChronostratigraphicUnits/Stage"
                     ]
                 }
             ]
@@ -3879,7 +3901,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "Platform/Instrument/NumberOfInstruments",
@@ -3913,7 +3935,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "DataCenters/ShortName"
@@ -3967,7 +3989,7 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
                         "Platform/Characteristics/DataType",
@@ -4008,10 +4030,10 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "Platform/Type"
+                        "Platforms/Type"
                     ]
                 }
             ]
@@ -4029,10 +4051,30 @@
                     ]
                 }
             ],
-            "umm-json": [
+            "umm-c": [
                 {
                     "fields": [
-                        "SpatialRepresentationInfo/HorizontalCoordinateSystem/GeographicCoordinateSystem/GeographicCoordinateUnits"
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedResolutions/Unit"
+                    ]
+                },
+                {
+                    "fields": [
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedRangeResolutions/Unit"
+                    ]
+                },
+                {
+                    "fields": [
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedResolutions/Unit"
+                    ]
+                },
+                {
+                    "fields": [
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedRangeResolutions/Unit"
+                    ]
+                },
+                {
+                    "fields": [
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GenericResolutions/Unit"
                     ]
                 }
             ]
@@ -4049,5 +4091,61 @@
         ],
         "severity": "warning",
         "check_id": "controlled_keywords_check"
+    },
+    "periodic_duration_unit_check": {
+        "rule_name": "Periodic Duration Unit Check",
+        "fields_to_apply": {
+            "umm-c": [
+                {
+                    "fields": [
+                        "TemporalExtents/PeriodicDateTimes/DurationUnit"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "DAY",
+                "MONTH",
+                "YEAR"
+            ]
+        ],
+        "severity": "warning",
+        "check_id": "controlled_keywords_check"
+    },
+    "url_description_uniqueness_check": {
+        "rule_name": "URL Description Uniqueness Check",
+        "fields_to_apply": {
+            "umm-c": [
+                {
+                    "fields": [
+                        "RelatedUrls"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataCenters/ContactInformation/RelatedUrls"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "url_description_uniqueness_check"
+    },
+    "metadata_update_time_logic_check": {
+        "rule_name": "Metadata Update Time Logic Check",
+        "fields_to_apply": {
+            "umm-c": [
+                {
+                    "fields": [
+                        "MetadataDates/Date?Type=UPDATE",
+                        "MetadataDates/Date?Type=CREATE"
+                    ],
+                    "relation": "gte"
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "date_compare"
     }
 }
