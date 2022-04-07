@@ -3730,6 +3730,13 @@
     "get_data_url_check_umm": {
         "rule_name": "GET DATA URL check for UMM JSON",
         "fields_to_apply": {
+            "umm-json": [
+                {
+                    "fields": [
+                        "RelatedUrls"
+                    ]
+                }
+            ],
             "umm-g": [
                 {
                     "fields": [
