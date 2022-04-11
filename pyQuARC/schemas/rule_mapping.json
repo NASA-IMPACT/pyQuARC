@@ -467,12 +467,12 @@
                     ]
                 },
                 {
-                    "fields":[
+                    "fields": [
                         "Projects/StartDate"
                     ]
                 },
                 {
-                    "fields":[
+                    "fields": [
                         "Projects/EndDate"
                     ]
                 }
@@ -901,7 +901,8 @@
         "severity": "error",
         "data": [
             [
-                "Not Applicable", "Unknown"
+                "Not Applicable",
+                "Unknown"
             ]
         ],
         "check_id": "controlled_keywords_check"
@@ -3050,7 +3051,7 @@
                 }
             ]
         },
-        "severity": "error",
+        "severity": "warning",
         "check_id": "user_services_check"
     },
     "doi_missing_reason_explanation": {
@@ -3303,7 +3304,7 @@
                     ]
                 }
             ],
-            "umm-c":[
+            "umm-c": [
                 {
                     "fields": [
                         "DataDates/Date?Type=REVIEW"
@@ -3998,8 +3999,8 @@
         },
         "data": [
             [
-                "DAY", 
-                "MONTH", 
+                "DAY",
+                "MONTH",
                 "YEAR"
             ]
         ],
@@ -4040,5 +4041,5 @@
         },
         "severity": "info",
         "check_id": "date_compare"
-    }   
+    }
 }
