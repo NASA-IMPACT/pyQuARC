@@ -536,6 +536,11 @@
                     "fields": [
                         "DIF/Related_URL/URL"
                     ]
+                },
+                {
+                    "fields": [
+                        "DIF/Extended_Metadata/Metadata/Value"
+                    ]
                 }
             ],
             "umm-c": [
