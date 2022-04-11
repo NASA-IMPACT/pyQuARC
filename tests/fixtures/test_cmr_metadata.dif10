@@ -87,14 +87,13 @@
       <Short_Name>MODIS</Short_Name>
       <Long_Name>Moderate-Resolution Imaging Spectroradiometer</Long_Name>
       <Technique>Imaging Spectroradiometry</Technique>
-      <Sensor>
-        <Characteristics>
-          <Description>Local time of the equator crossing and direction (ascending or descending)</Description>
-          <DataType>Time/direction (ascending)</DataType>
-          <Unit>Local Mean Time</Unit>
-          <Value>3:30, ascending</Value>
-      </Characteristics>
-    </Sensor>
+      <Characteristics>
+        <Name>EquatorCrossingTime</Name>
+        <Description>Local time of the equator crossing and direction (ascending or descending)</Description>
+        <DataType>Time/direction (ascending)</DataType>
+        <Unit>Local Mean Time</Unit>
+        <Value>3:30, ascending</Value>
+    </Characteristics>
     </Instrument>
   </Platform>
   <Temporal_Coverage>
