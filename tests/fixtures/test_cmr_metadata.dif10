@@ -133,8 +133,8 @@
   <Organization>
     <Organization_Type>ORIGINATOR</Organization_Type>
     <Organization_Name>
-      <Short_Name>NASA/GSFC/SED/ESD/HBSL/BISB/MODAPS</Short_Name>
-      <Long_Name>MODIS Adaptive Processing System, Biospheric Information Systems Branch, Hydrospheric and Biospheric Sciences Laboratory, Earth Sciences Division, Science and Exploration Directorate, Goddard Space Flight Center, NASA</Long_Name>
+      <Short_Name>dale</Short_Name>
+      <Long_Name>bob</Long_Name>
     </Organization_Name>
     <Organization_URL>https://modaps.modaps.eosdis.nasa.gov/</Organization_URL>
     <Personnel>

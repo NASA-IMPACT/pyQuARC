@@ -64,6 +64,11 @@
         "check_function": "mime_type_check",
         "available": true
     },
+    "organization_short_name_gcmd_check": {
+        "data_type": "string",
+        "check_function": "organization_short_name_gcmd_check",
+        "available": true
+    },
     "organization_long_name_gcmd_check": {
         "data_type": "string",
         "check_function": "organization_long_name_gcmd_check",
