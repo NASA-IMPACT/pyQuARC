@@ -525,6 +525,11 @@
                     "fields":  [
                         "DataGranule/ProductionDateTime"
                     ]
+                },
+                {
+                    "fields": [
+                        "OrbitCalculatedSpatialDomains/EquatorCrossingDateTime"
+                    ]
                 }
             ]
         },
