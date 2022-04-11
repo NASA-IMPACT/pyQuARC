@@ -467,13 +467,50 @@
                     ]
                 },
                 {
-                    "fields":[
+                    "fields": [
                         "Projects/StartDate"
                     ]
                 },
                 {
-                    "fields":[
+                    "fields": [
                         "Projects/EndDate"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "TemporalExtent/RangeDateTime/BeginningDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "TemporalExtent/RangeDateTime/EndingDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "TemporalExtent/SingleDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "ProviderDates/Date"
+                    ]
+                },
+                {
+                    "fields": [
+                        "ProviderDates/Date?Type=Delete"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataGranule/ProductionDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "OrbitCalculatedSpatialDomains/EquatorCrossingDateTime"
                     ]
                 }
             ]
@@ -901,7 +938,8 @@
         "severity": "error",
         "data": [
             [
-                "Not Applicable", "Unknown"
+                "Not Applicable",
+                "Unknown"
             ]
         ],
         "check_id": "controlled_keywords_check"
@@ -2576,6 +2614,16 @@
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles/SouthBoundingCoordinate"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles/WestBoundingCoordinate",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles/NorthBoundingCoordinate",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles/EastBoundingCoordinate",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles/SouthBoundingCoordinate"
+                    ]
+                }
             ]
         },
         "severity": "error"
@@ -2603,15 +2651,21 @@
                         "SpatialExtent/VerticalSpatialDomain/Type"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "SpatialExtent/VerticalSpatialDomains/Type"
+                    ]
+                }
             ]
         },
         "data": [
             [
                 "Atmosphere Layer",
-                "Maximum Altitude",
-                "Maximum Depth",
-                "Minimum Altitude",
-                "Minimum Depth"
+                "Pressure",
+                "Altitude",
+                "Depth"
             ]
         ],
         "severity": "error",
@@ -2679,6 +2733,13 @@
                         "SpatialExtent/VerticalSpatialDomain/Unit"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "SpatialExtent/VerticalSpatialDomains/Unit?Type=Depth"
+                    ]
+                }
             ]
         },
         "data": [
@@ -2686,8 +2747,13 @@
                 "Fathoms",
                 "Feet",
                 "HectoPascals",
+                "Kilometers",
                 "Meters",
-                "Millibars"
+                "Millibars",
+                "PoundsPerSquareInch",
+                "Atmosphere",
+                "InchesOfMercury",
+                "InchesOfWater"
             ]
         ],
         "severity": "warning",
@@ -2716,13 +2782,27 @@
                         "SpatialExtent/VerticalSpatialDomain/Unit"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "SpatialExtent/VerticalSpatialDomains/Unit?Type=Altitude"
+                    ]
+                }
             ]
         },
         "data": [
             [
+                "Fathoms",
+                "Feet",
                 "HectoPascals",
                 "Kilometers",
-                "Millibars"
+                "Meters",
+                "Millibars",
+                "PoundsPerSquareInch",
+                "Atmosphere",
+                "InchesOfMercury",
+                "InchesOfWater"
             ]
         ],
         "severity": "warning",
@@ -3303,7 +3383,7 @@
                     ]
                 }
             ],
-            "umm-c":[
+            "umm-c": [
                 {
                     "fields": [
                         "DataDates/Date?Type=REVIEW"
@@ -3451,6 +3531,14 @@
                         "TemporalExtents/PeriodicDateTimes"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "TemporalExtent/SingleDateTime",
+                        "TemporalExtent/RangeDateTime"
+                    ]
+                }
             ]
         },
         "severity": "info",
@@ -3575,6 +3663,38 @@
                 {
                     "fields": [
                         "DataDates/Date"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "ProviderDates/Date"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataGranule/ProductionDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "TemporalExtent/RangeDateTime/BeginningDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "TemporalExtent/RangeDateTime/EndingDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "TemporalExtent/SingleDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "OrbitCalculatedSpatialDomains/EquatorCrossingDateTime"
                     ]
                 }
             ]
@@ -3998,8 +4118,8 @@
         },
         "data": [
             [
-                "DAY", 
-                "MONTH", 
+                "DAY",
+                "MONTH",
                 "YEAR"
             ]
         ],
@@ -4040,5 +4160,5 @@
         },
         "severity": "info",
         "check_id": "date_compare"
-    }   
+    }
 }
