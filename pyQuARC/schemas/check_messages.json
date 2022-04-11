@@ -135,6 +135,14 @@
         },
         "remediation": "Please submit a request to support@earthdata.nasa.gov to have this long name added to the GCMD KMS."
     },
+    "organization_short_long_name_consistency_check":{
+        "failure": "The provided data center short name `{}` and long name `{}` aren't consistent.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please supply the corresponding long name for the short name."
+    },
     "umm_controlled_collection_state_list_check": {
         "failure": "The provided Collection State `{}` is invalid.",
         "help": {
