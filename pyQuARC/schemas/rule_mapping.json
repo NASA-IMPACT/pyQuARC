@@ -3877,8 +3877,8 @@
                 },
                 {
                     "fields": [
-                        "DIF/Platform/Characteristics/DataType",
-                        "DIF/Platform/Characteristics"
+                        "DIF/Platform/Instrument/Characteristics/DataType",
+                        "DIF/Platform/Instrument/Characteristics"
                     ]
                 }
             ],
