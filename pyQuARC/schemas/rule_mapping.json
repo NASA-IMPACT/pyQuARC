@@ -1903,6 +1903,13 @@
                     ]
                 }
             ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Organization/Organization_Name/Short_Name"
+                    ]
+                }
+            ],
             "umm-c": [
                 {
                     "fields": [
