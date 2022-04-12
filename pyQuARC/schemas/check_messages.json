@@ -397,7 +397,7 @@
             "message": "",
             "url": ""
         },
-        "remediation": "Please modify the unit to be less than 80 characters."
+        "remediation": "Please modify the unit to be less than 20 characters."
     },
     "characteristic_value_length_check": {
         "failure": "The value has more characters than the maximum number allowed.",
