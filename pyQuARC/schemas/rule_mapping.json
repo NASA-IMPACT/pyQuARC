@@ -2711,13 +2711,6 @@
                     ]
                 }
             ],
-            "dif10": [
-                {
-                    "fields": [
-                        "DIF/Spatial_Coverage/Geometry/Bounding_Rectangle/Altitude_Unit"
-                    ]
-                }
-            ],
             "umm-c": [
                 {
                     "fields": [
