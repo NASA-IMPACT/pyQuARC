@@ -1,3 +1,6 @@
+from urllib.parse import urlparse
+
+
 class CustomChecker:
     """
     Class to implement custom checks
@@ -20,8 +23,8 @@ class CustomChecker:
                          Example: 'Collection/RangeDateTime/StartDate' ->
                                   ['Collection', 'RangeDateTime', 'StartDate']
             container (set): The container that holds all the path values
-            query_params (dict): The key:value pair to distinguish a field in umm-c
-                                eg: "Type": "DELETE"
+            query_params (list): The [key, value] pair to distinguish a field in umm-c
+                                eg: ["Type", "DELETE"]
         """
         try:
             root_content = subset_of_metadata_content[path_list[0]]
@@ -74,14 +77,12 @@ class CustomChecker:
         """
 
         container = list()
-        path = path_string.split('/')
-
         query_params = None
 
-        if ("?" in path[-1]):
-            split = path[-1].split('?')
-            path[-1], query = split[0], split[-1].split("=")
-            query_params = (query[0], query[1])
+        parsed = urlparse(path_string)
+        path = parsed.path.split('/')
+        if q := parsed.query:
+            query_params = q.split('=')
 
         CustomChecker._get_path_value_recursively(
             content_to_validate, path, container, query_params)
