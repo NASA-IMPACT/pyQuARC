@@ -248,7 +248,7 @@
       <Type>VIEW RELATED INFORMATION</Type>
       <Subtype>GENERAL DOCUMENTATION</Subtype>
     </URL_Content_Type>
-    <URL>https://modis-atmos.gsfc.nasa.gov/products/water-vapor</URL>
+    <URL>http://modis-atmos.gsfc.nasa.gov/products/water-vapor</URL>
     <Description>Overview of MODIS Water Vapor products.</Description>
     <Mime_Type>text/html</Mime_Type>
   </Related_URL>
