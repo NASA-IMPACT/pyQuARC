@@ -373,6 +373,16 @@
                     "fields": [
                         "DIF/Dataset_Citation/Dataset_Release_Date"
                     ]
+                },
+                {
+                    "fields": [
+                        "DIF/Project/Start_Date"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Project/End_Date"
+                    ]
                 }
             ],
             "umm-c": [
