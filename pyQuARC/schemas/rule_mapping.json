@@ -4030,6 +4030,18 @@
                         "DataCenters/ContactInformation/RelatedUrls"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Multimedia_Sample/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Related_URL"
+                    ]
+                }
             ]
         },
         "severity": "info",
