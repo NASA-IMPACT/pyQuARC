@@ -3742,6 +3742,11 @@
                     "fields": [
                         "DIF/Use_Constraints/License_URL/Mime_Type"
                     ]
+                },
+                {
+                    "fields": [
+                        "DIF/Related_URL/Mime_Type"
+                    ]
                 }
             ]
         },
