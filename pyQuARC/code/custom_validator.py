@@ -180,7 +180,7 @@ class CustomValidator(BaseValidator):
 
     @staticmethod
     @if_arg
-    def characteristic_name_uniqueness_check_echo10(characteristics):
+    def characteristic_name_uniqueness_check(characteristics):
         seen, duplicates = set(), set()
         for characteristic in characteristics['Characteristic']:
             name = characteristic['Name']
@@ -196,7 +196,7 @@ class CustomValidator(BaseValidator):
 
     @staticmethod
     @if_arg
-    def characteristic_name_uniqueness_check(characteristics):
+    def characteristic_name_uniqueness_check_umm(characteristics):
         seen, duplicates = set(), set()
         for characteristic in characteristics:
             name = characteristic['Name']

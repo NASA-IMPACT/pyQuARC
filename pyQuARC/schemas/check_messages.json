@@ -639,7 +639,7 @@
         },
         "remediation": "Please provide a corresponding GCMD compliant Online Resource Type for each Online Resource URL."
     },
-    "characteristic_name_uniqueness_check_echo10": {
+    "characteristic_name_uniqueness_check": {
         "failure": "Duplicate characteristic name/s `{}`.",
         "help": {
             "message": "",
@@ -647,7 +647,7 @@
         },
         "remediation": "Please provide a unique name for each characteristic."
     },
-    "characteristic_name_uniqueness_check": {
+    "characteristic_name_uniqueness_check_umm": {
         "failure": "Duplicate characteristic name/s `{}`.",
         "help": {
             "message": "",
