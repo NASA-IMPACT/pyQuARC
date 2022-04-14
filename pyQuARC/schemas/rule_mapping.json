@@ -3218,7 +3218,7 @@
         "severity": "warning",
         "check_id": "availability_check"
     },
-    "characteristic_name_uniqueness_check": {
+    "characteristic_name_uniqueness_check_echo10": {
         "rule_name": "Characteristic Name Uniqueness Check",
         "fields_to_apply": {
             "echo10": [
@@ -3230,9 +3230,9 @@
             ]
         },
         "severity": "warning",
-        "check_id": "characteristic_name_uniqueness_check"
+        "check_id": "characteristic_name_uniqueness_check_echo10"
     },
-    "characteristic_name_uniqueness_check_umm": {
+    "characteristic_name_uniqueness_check": {
         "rule_name": "Characteristic Name Uniqueness Check for UMM JSON",
         "fields_to_apply": {
             "umm-c": [
@@ -3241,10 +3241,17 @@
                         "Platforms/Characteristics"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics"
+                    ]
+                }
             ]
         },
         "severity": "warning",
-        "check_id": "characteristic_name_uniqueness_check_umm"
+        "check_id": "characteristic_name_uniqueness_check"
     },
     "validate_ending_datetime_against_granules": {
         "rule_name": "Ending Datetime validation against granules",

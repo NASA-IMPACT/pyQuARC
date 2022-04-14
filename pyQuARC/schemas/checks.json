@@ -209,14 +209,14 @@
         "check_function": "online_resource_type_gcmd_check",
         "available": true
     },
+    "characteristic_name_uniqueness_check_echo10": {
+        "data_type": "custom",
+        "check_function": "characteristic_name_uniqueness_check_echo10",
+        "available": true
+    },
     "characteristic_name_uniqueness_check": {
         "data_type": "custom",
         "check_function": "characteristic_name_uniqueness_check",
-        "available": true
-    },
-    "characteristic_name_uniqueness_check_umm": {
-        "data_type": "custom",
-        "check_function": "characteristic_name_uniqueness_check_umm",
         "available": true
     },
     "validate_ending_datetime_against_granules": {
