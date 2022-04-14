@@ -680,11 +680,6 @@
                     "fields": [
                         "DIF/Associated_DOIs/DOI"
                     ]
-                },
-                {
-                    "fields": [
-                        "DIF/Extended_Metadata/Metadata/Value"
-                    ]
                 }
             ],
             "umm-c": [
