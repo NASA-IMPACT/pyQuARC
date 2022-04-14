@@ -630,6 +630,11 @@
                     "fields":  [
                         "RelatedUrls/URL"
                     ]
+                },
+                {
+                    "fields": [
+                        "MetadataSpecification/URL"
+                    ]
                 }
             ]
         },
