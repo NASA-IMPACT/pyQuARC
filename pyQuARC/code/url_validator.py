@@ -97,9 +97,12 @@ class UrlValidator(StringValidator):
         """
         if "doi.org/" in doi:
             url = doi
-        else:
+            return UrlValidator.health_and_status_check(url)
+        elif "10." in doi:
             url = f"https://www.doi.org/{doi}"
-        return UrlValidator.health_and_status_check(url)
+            return UrlValidator.health_and_status_check(url)
+        else:
+            return None
 
     @staticmethod
     @if_arg
