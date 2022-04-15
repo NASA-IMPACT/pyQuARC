@@ -214,9 +214,9 @@
         "check_function": "characteristic_name_uniqueness_check_echo10",
         "available": true
     },
-    "characteristic_name_uniqueness_check_umm": {
+    "characteristic_name_uniqueness_check": {
         "data_type": "custom",
-        "check_function": "characteristic_name_uniqueness_check_umm",
+        "check_function": "characteristic_name_uniqueness_check",
         "available": true
     },
     "validate_ending_datetime_against_granules": {

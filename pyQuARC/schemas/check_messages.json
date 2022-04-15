@@ -647,7 +647,7 @@
         },
         "remediation": "Please provide a unique name for each characteristic."
     },
-    "characteristic_name_uniqueness_check_umm": {
+    "characteristic_name_uniqueness_check": {
         "failure": "Duplicate characteristic name/s `{}`.",
         "help": {
             "message": "",

@@ -196,7 +196,7 @@ class CustomValidator(BaseValidator):
 
     @staticmethod
     @if_arg
-    def characteristic_name_uniqueness_check_umm(characteristics):
+    def characteristic_name_uniqueness_check(characteristics):
         seen, duplicates = set(), set()
         for characteristic in characteristics:
             name = characteristic['Name']
