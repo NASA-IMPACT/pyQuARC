@@ -3213,8 +3213,8 @@
         "severity": "warning",
         "check_id": "availability_check"
     },
-    "characteristic_name_uniqueness_check": {
-        "rule_name": "Characteristic Name Uniqueness Check",
+    "characteristic_name_uniqueness_check_echo10": {
+        "rule_name": "Characteristic Name Uniqueness Check for ECHO10",
         "fields_to_apply": {
             "echo10": [
                 {
@@ -3225,7 +3225,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "characteristic_name_uniqueness_check"
+        "check_id": "characteristic_name_uniqueness_check_echo10"
     },
     "characteristic_name_uniqueness_check_umm": {
         "rule_name": "Characteristic Name Uniqueness Check for UMM JSON",

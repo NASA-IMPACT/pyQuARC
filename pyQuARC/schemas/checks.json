@@ -209,9 +209,9 @@
         "check_function": "online_resource_type_gcmd_check",
         "available": true
     },
-    "characteristic_name_uniqueness_check": {
+    "characteristic_name_uniqueness_check_echo10": {
         "data_type": "custom",
-        "check_function": "characteristic_name_uniqueness_check",
+        "check_function": "characteristic_name_uniqueness_check_echo10",
         "available": true
     },
     "characteristic_name_uniqueness_check_umm": {
