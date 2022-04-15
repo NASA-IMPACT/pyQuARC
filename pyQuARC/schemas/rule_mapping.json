@@ -3014,7 +3014,7 @@
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Point",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Lines",
-                        "SpatialExtent/HorizontalSpatialDomain/Geometry/Gpolygons"
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/GPolygons"
                     ]
                 }
             ],
@@ -3024,7 +3024,7 @@
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Points",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Lines",
-                        "SpatialExtent/HorizontalSpatialDomain/Geometry/Gpolygons"
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/GPolygons"
                     ]
                 }
             ]
