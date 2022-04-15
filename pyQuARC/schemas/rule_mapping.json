@@ -2227,6 +2227,11 @@
                     "fields": [
                         "DataGranule/ArchiveAndDistributionInformation/Format"
                     ]
+                },
+                {
+                    "fields": [
+                        "DataGranule/ArchiveAndDistributionInformation/Files/Format"
+                    ]
                 }
             ]
         },
