@@ -823,6 +823,14 @@
         },
         "remediation": "Recommend adding a platform type for the corresponding platform."
     },
+    "platform_long_name_presence_check": {
+        "failure": "The platform long name is not provided.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Recommend providing the platform long name."
+    },
     "horizontal_data_resolution_unit_check": {
         "failure": "The Horizontal Data Resolution Unit provided `{}` is invalid.",
         "help": {
