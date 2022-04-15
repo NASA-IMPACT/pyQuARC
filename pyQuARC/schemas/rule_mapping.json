@@ -3236,6 +3236,13 @@
                         "Platforms/Characteristics"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics"
+                    ]
+                }
             ]
         },
         "severity": "warning",
