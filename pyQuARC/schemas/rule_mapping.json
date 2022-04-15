@@ -2143,6 +2143,20 @@
         "severity": "error",
         "check_id": "instrument_long_name_gcmd_check"
     },
+    "instrument_long_name_presence_check": {
+        "rule_name": "Instrument Longname Presence Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Instrument/Long_Name"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "presence_check"
+    },
     "platform_short_name_gcmd_check": {
         "rule_name": "Platform Shortname GCMD Check",
         "fields_to_apply": {

@@ -279,6 +279,14 @@
         },
         "remediation": "Please submit a request to support@earthdata.nasa.gov to have this instrument added to the GCMD Instrument KMS."
     },
+    "instrument_long_name_presence_check": {
+        "failure": "The instrument long name is missing.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please add the associated instrument long name."
+    },
     "platform_short_name_gcmd_check": {
         "failure": "The provided platform short name `{}` does not comply with the GCMD.",
         "help": {
