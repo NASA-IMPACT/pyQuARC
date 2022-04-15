@@ -3319,6 +3319,11 @@
                     "fields": [
                         "Platforms/Instruments/Characteristics"
                     ]
+                },
+                {
+                    "fields": [
+                        "Platforms/Instruments/ComposedOf/Characteristics"
+                    ]
                 }
             ]
         },
