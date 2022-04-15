@@ -2483,6 +2483,20 @@
         "severity": "error",
         "check_id": "campaign_long_name_gcmd_check"
     },
+    "campaign_long_name_presence_check": {
+        "rule_name": "Campaign Long Name Presence Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Project/Long_Name"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "presence_check"
+    },
     "version_description_not_provided": {
         "rule_name": "Version Description Not Provided",
         "fields_to_apply": {

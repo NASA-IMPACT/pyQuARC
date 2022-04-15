@@ -351,6 +351,14 @@
         },
         "remediation": "Please submit a request to support@earthdata.nasa.gov to have this campaign long name added to the GCMD Projects KMS."
     },
+    "campaign_long_name_presence_check": {
+        "failure": "The project long name is missing.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please add the associated project long name"
+    },
     "characteristic_name_check": {
         "failure": "A characteristic name is missing for the provided characteristic. ",
         "help": {
