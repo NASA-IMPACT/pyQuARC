@@ -2217,6 +2217,18 @@
                         "ArchiveAndDistributionInformation/FileDistributionInformation/Format"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "DataGranule/ArchiveAndDistributionInformation/Format"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataGranule/ArchiveAndDistributionInformation/Files/Format"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -2651,7 +2663,23 @@
                         "SpatialExtent/VerticalSpatialDomain/Type"
                     ]
                 }
-            ],
+            ]
+        },
+        "data": [
+            [
+                "Atmosphere Layer",
+                "Maximum Altitude",
+                "Maximum Depth",
+                "Minimum Altitude",
+                "Minimum Depth"
+            ]
+        ],
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
+    },
+    "vertical_spatial_domain_type_check_ummg": {
+        "rule_name": "Vertical Spatial Domain Type Check UMM-G",
+        "fields_to_apply": {
             "umm-g": [
                 {
                     "fields": [
@@ -2730,14 +2758,7 @@
             "umm-c": [
                 {
                     "fields": [
-                        "SpatialExtent/VerticalSpatialDomain/Unit"
-                    ]
-                }
-            ],
-            "umm-g": [
-                {
-                    "fields": [
-                        "SpatialExtent/VerticalSpatialDomains/Unit?Type=Depth"
+                        "SpatialInformation/VerticalCoordinateSystem/DepthSystemDefinition/DistanceUnits"
                     ]
                 }
             ]
@@ -2747,13 +2768,8 @@
                 "Fathoms",
                 "Feet",
                 "HectoPascals",
-                "Kilometers",
                 "Meters",
-                "Millibars",
-                "PoundsPerSquareInch",
-                "Atmosphere",
-                "InchesOfMercury",
-                "InchesOfWater"
+                "Millibars"
             ]
         ],
         "severity": "warning",
@@ -2779,14 +2795,28 @@
             "umm-c": [
                 {
                     "fields": [
-                        "SpatialExtent/VerticalSpatialDomain/Unit"
+                        "SpatialInformation/VerticalCoordinateSystem/AltitudeSystemDefinition/DistanceUnits"
                     ]
                 }
-            ],
+            ]
+        },
+        "data": [
+            [
+                "HectoPascals",
+                "Kilometers",
+                "Millibars"
+            ]
+        ],
+        "severity": "warning",
+        "check_id": "controlled_keywords_check"
+    },
+    "vertical_spatial_domain_unit_check_ummg": {
+        "rule_name": "Vertical Spatial Domain Unit Check UMM-G",
+        "fields_to_apply": {
             "umm-g": [
                 {
                     "fields": [
-                        "SpatialExtent/VerticalSpatialDomains/Unit?Type=Altitude"
+                        "SpatialExtent/VerticalSpatialDomains/Unit"
                     ]
                 }
             ]
@@ -2805,7 +2835,7 @@
                 "InchesOfWater"
             ]
         ],
-        "severity": "warning",
+        "severity": "error",
         "check_id": "controlled_keywords_check"
     },
     "campaign_name_presence_check": {
@@ -3020,6 +3050,16 @@
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Lines",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Gpolygons"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/Points",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/Lines",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/GPolygons"
                     ]
                 }
             ]
@@ -3299,6 +3339,18 @@
                 {
                     "fields": [
                         "Platforms/Characteristics"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platforms/Instruments/Characteristics"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Platforms/Instruments/ComposedOf/Characteristics"
                     ]
                 }
             ]
