@@ -3891,7 +3891,7 @@
         "check_id": "data_center_short_name_gcmd_check"
     },
     "characteristic_data_type": {
-        "rule_name": "Platform/Instrument Characteristics Data Type Presence Check",
+        "rule_name": "Characteristics Data Type Presence Check",
         "fields_to_apply": {
             "echo10": [
                 {
