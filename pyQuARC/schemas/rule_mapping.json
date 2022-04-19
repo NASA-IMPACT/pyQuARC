@@ -3285,6 +3285,12 @@
                     "fields": [
                         "Collection/Temporal/RangeDateTime/EndingDateTime",
                         "Collection/ShortName"
+                    ],
+                    "dependencies": [
+                        [
+                            "datetime_format_check",
+                            "Collection/Temporal/RangeDateTime/EndingDateTime"
+                        ]                    
                     ]
                 }
             ],
@@ -3293,14 +3299,26 @@
                     "fields": [
                         "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time",
                         "DIF/Entry_ID/Short_Name"
+                    ],
+                    "dependencies": [
+                        [
+                            "datetime_format_check",
+                            "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time"
+                        ]                    
                     ]
                 }
             ],
             "umm-c": [
                 {
                     "fields": [
-                        "TemporalExtent/RangeDateTime/EndingDateTime",
+                        "TemporalExtents/RangeDateTimes/EndingDateTime",
                         "ShortName"
+                    ],
+                    "dependencies": [
+                        [
+                            "datetime_format_check",
+                            "TemporalExtents/RangeDateTimes/EndingDateTime"
+                        ]                    
                     ]
                 }
             ]
@@ -3316,6 +3334,12 @@
                     "fields": [
                         "Collection/Temporal/RangeDateTime/BeginningDateTime",
                         "Collection/ShortName"
+                    ],
+                    "dependencies": [
+                        [
+                            "datetime_format_check",
+                            "Collection/Temporal/RangeDateTime/BeginningDateTime"
+                        ]                    
                     ]
                 }
             ],
@@ -3324,14 +3348,26 @@
                     "fields": [
                         "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time",
                         "DIF/Entry_ID/Short_Name"
+                    ],
+                    "dependencies": [
+                        [
+                            "datetime_format_check",
+                            "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time"
+                        ]                    
                     ]
                 }
             ],
             "umm-c": [
                 {
                     "fields": [
-                        "TemporalExtent/RangeDateTime/BeginningDateTime",
+                        "TemporalExtents/RangeDateTimes/BeginningDateTime",
                         "ShortName"
+                    ],
+                    "dependencies": [
+                        [
+                            "datetime_format_check",
+                            "TemporalExtents/RangeDateTimes/BeginningDateTime"
+                        ]                    
                     ]
                 }
             ]
