@@ -15,7 +15,7 @@ class CustomValidator(BaseValidator):
         ends_at_present_flag, ending_date_time, collection_state
     ):
         collection_state = collection_state.upper()
-        if not ends_at_present_flag:
+        if ends_at_present_flag == None:
             valid = True
         else:
             valid = (
