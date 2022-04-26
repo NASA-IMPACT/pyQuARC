@@ -1593,6 +1593,20 @@
                         "Platform/Instrument/ComposedOf/Characteristics"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platforms/Instruments/Characteristics/Value",
+                        "Platforms/Instruments/Characteristics"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Platforms/Instruments/ComposedOf/Characteristics/Value",
+                        "Platforms/Instruments/ComposedOf/Characteristics"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -1852,6 +1866,14 @@
                     "fields": [
                         "DIF/Related_URL/Mime_Type",
                         "DIF/Related_URL/URL_Content_Type/Type"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "RelatedUrls/MimeType",
+                        "RelatedUrls/Type"
                     ]
                 }
             ]
@@ -2220,6 +2242,18 @@
                         "Platforms/Instruments/ComposedOf/ShortName"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platforms/Instruments/ShortName"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Platforms/Instruments/ComposedOf/ShortName"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -2286,6 +2320,13 @@
                 }
             ],
             "umm-c": [
+                {
+                    "fields": [
+                        "Platforms/ShortName"
+                    ]
+                }
+            ],
+            "umm-g": [
                 {
                     "fields": [
                         "Platforms/ShortName"
@@ -2628,6 +2669,13 @@
                 }
             ],
             "umm-c": [
+                {
+                    "fields": [
+                        "Projects/ShortName"
+                    ]
+                }
+            ],
+            "umm-g": [
                 {
                     "fields": [
                         "Projects/ShortName"
@@ -3016,6 +3064,13 @@
                         "Projects/ShortName"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Projects/ShortName"
+                    ]
+                }
             ]
         },
         "severity": "info",
@@ -3131,7 +3186,7 @@
             ],
             "umm-g": [
                 {
-                    "fields":[
+                    "fields": [
                         "RelatedUrls/Description"
                     ]
                 }
@@ -3211,7 +3266,7 @@
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Point",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Lines",
-                        "SpatialExtent/HorizontalSpatialDomain/Geometry/Gpolygons"
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/GPolygons"
                     ]
                 }
             ],
@@ -3447,6 +3502,13 @@
                 }
             ],
             "umm-c": [
+                {
+                    "fields": [
+                        "RelatedUrls/Type"
+                    ]
+                }
+            ],
+            "umm-g": [
                 {
                     "fields": [
                         "RelatedUrls/Type"
@@ -4039,7 +4101,7 @@
             ],
             "umm-g": [
                 {
-                    "fields":[
+                    "fields": [
                         "RelatedUrls"
                     ]
                 }
