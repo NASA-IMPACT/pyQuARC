@@ -3204,27 +3204,28 @@
             "echo10": [
                 {
                     "fields": [
-                        "Collection/Platforms/Platform/Characteristics"
+                        "Collection/Platforms/Platform/Characteristics/Characteristic"
                     ]
                 }
-            ]
-        },
-        "severity": "warning",
-        "check_id": "characteristic_name_uniqueness_check"
-    },
-    "characteristic_name_uniqueness_check_umm": {
-        "rule_name": "Characteristic Name Uniqueness Check for UMM JSON",
-        "fields_to_apply": {
+            ],
             "umm-json": [
                 {
                     "fields": [
                         "Platforms/Characteristics"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics"
+                    ]
+                }
             ]
         },
+        "data": ["Name"],
         "severity": "warning",
-        "check_id": "characteristic_name_uniqueness_check_umm"
+        "check_id": "uniqueness_check"
     },
     "validate_ending_datetime_against_granules": {
         "rule_name": "Ending Datetime validation against granules",
@@ -4022,8 +4023,9 @@
                 }
             ]
         },
+        "data": ["Description"],
         "severity": "info",
-        "check_id": "url_description_uniqueness_check"
+        "check_id": "uniqueness_check"
     },
     "metadata_update_time_logic_check": {
         "rule_name": "Metadata Update Time Logic Check",

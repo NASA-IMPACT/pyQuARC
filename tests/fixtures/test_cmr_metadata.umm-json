@@ -291,6 +291,13 @@
                     "Name": "EquatorCrossingTime",
                     "Unit": "Local Mean Time",
                     "Value": "10:30, descending"
+                },
+                {
+                    "DataType": "STRING",
+                    "Description": "Local time of the equator crossing and direction (ascending or descending)",
+                    "Name": "EquatorCrossingTime",
+                    "Unit": "Local Mean Time",
+                    "Value": "10:30, descending"
                 }
             ],
             "Instruments": [
@@ -370,6 +377,12 @@
                                 "Type": "HOME PAGE",
                                 "URL": "https://lpdaac.usgs.gov/",
                                 "URLContentType": "DataContactURL"
+                            },
+                            {
+                                "Description": "The LP DAAC website provides detailed information on discovery, distribution, access, and support of land data products.",
+                                "Type": "HOME PAGE",
+                                "URL": "https://lpdaac.usgs.gov/",
+                                "URLContentType": "DataContactURL"
                             }
                         ],
                         "ServiceHours": "M-F, 8 a.m. to 4 p.m. Central Time"
@@ -408,6 +421,12 @@
                     }
                 ],
                 "RelatedUrls": [
+                    {
+                        "Description": "The LP DAAC website provides detailed information on discovery, distribution, access, and support of land data products.",
+                        "Type": "HOME PAGE",
+                        "URL": "https://lpdaac.usgs.gov/",
+                        "URLContentType": "DataCenterURL"
+                    },
                     {
                         "Description": "The LP DAAC website provides detailed information on discovery, distribution, access, and support of land data products.",
                         "Type": "HOME PAGE",

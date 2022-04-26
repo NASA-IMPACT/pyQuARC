@@ -167,33 +167,17 @@ class CustomValidator(BaseValidator):
             "valid": validity,
             "value": collection_state
         }
-
+    
     @staticmethod
     @if_arg
-    def characteristic_name_uniqueness_check(characteristics):
+    def uniqueness_check(list_of_objects, key):
         seen, duplicates = set(), set()
-        for characteristic in characteristics['Characteristic']:
-            name = characteristic['Name']
-            if name in seen:
-                duplicates.add(name)
+        for url_obj in list_of_objects:
+            description = url_obj.get(key)
+            if description in seen:
+                duplicates.add(description)
             else:
-                seen.add(name)
-
-        return {
-            "valid": not bool(duplicates),
-            "value": ', '.join(duplicates)
-        }
-
-    @staticmethod
-    @if_arg
-    def characteristic_name_uniqueness_check_umm(characteristics):
-        seen, duplicates = set(), set()
-        for characteristic in characteristics:
-            name = characteristic['Name']
-            if name in seen:
-                duplicates.add(name)
-            else:
-                seen.add(name)
+                seen.add(description)
 
         return {
             "valid": not bool(duplicates),
@@ -231,18 +215,3 @@ class CustomValidator(BaseValidator):
             "value": "N/A"
         }
 
-    @staticmethod
-    @if_arg
-    def url_description_uniqueness_check(related_urls):
-        seen, duplicates = set(), set()
-        for url_obj in related_urls:
-            description = url_obj.get('Description')
-            if description in seen:
-                duplicates.add(description)
-            else:
-                seen.add(description)
-
-        return {
-            "valid": not bool(duplicates),
-            "value": ', '.join(duplicates)
-        }
