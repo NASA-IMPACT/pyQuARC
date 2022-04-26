@@ -21,7 +21,7 @@ class CustomValidator(BaseValidator):
                 and not (ending_date_time) and collection_state == "ACTIVE"
             ) or (
                 ends_at_present_flag == False
-                and not not (ending_date_time) and collection_state == "COMPLETE"
+                and bool(ending_date_time) and collection_state == "COMPLETE"
             )
 
         return {"valid": valid, "value": ends_at_present_flag}
@@ -32,7 +32,7 @@ class CustomValidator(BaseValidator):
     ):
         valid = True
         if ends_at_present_flag == None:
-            valid = not not (ending_date_time) and collection_state == "COMPLETE"
+            valid = bool(ending_date_time) and collection_state == "COMPLETE"
 
         return {"valid": valid, "value": ends_at_present_flag}
 
