@@ -98,7 +98,7 @@ class UrlValidator(StringValidator):
         if "doi.org/" in doi:
             url = doi
             return UrlValidator.health_and_status_check(url)
-        elif "10." in doi:
+        elif doi.strip().startswith("10."): # doi always starts with "10."
             url = f"https://www.doi.org/{doi}"
             return UrlValidator.health_and_status_check(url)
         else:
