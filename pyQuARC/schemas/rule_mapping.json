@@ -78,6 +78,15 @@
                     ],
                     "relation": "lte"
                 }
+            ],
+            "umm-g":  [
+                {
+                    "fields":  [
+                        "TemporalExtent/RangeDateTime/BeginningDateTime",
+                        "TemporalExtent/RangeDateTime/EndingDateTime"
+                    ],
+                    "relation": "lte"
+                }
             ]
         },
         "severity": "error",
@@ -109,6 +118,15 @@
                     "fields": [
                         "TemporalExtents/RangeDateTimes/BeginningDateTime",
                         "TemporalExtents/RangeDateTimes/EndingDateTime"
+                    ],
+                    "relation": "neq"
+                }
+            ],
+            "umm-g":  [
+                {
+                    "fields":  [
+                        "TemporalExtent/RangeDateTime/BeginningDateTime",
+                        "TemporalExtent/RangeDateTime/EndingDateTime"
                     ],
                     "relation": "neq"
                 }
@@ -606,6 +624,18 @@
                         "RelatedUrls/URL"
                     ]
                 }
+            ],
+            "umm-g":  [
+                {
+                    "fields":  [
+                        "RelatedUrls/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "MetadataSpecification/URL"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -908,6 +938,13 @@
                         "MetadataDates/Date?Type=DELETE"
                     ]
                 }
+            ],
+            "umm-g":  [
+                {
+                    "fields":  [
+                        "ProviderDates/Date?Type=Delete"
+                    ]
+                }   
             ]
         },
         "data": [
@@ -1339,6 +1376,20 @@
                     "fields": [
                         "Platform/Instrument/ComposedOf/Characteristics/Name",
                         "Platform/Instrument/ComposedOf/Characteristics"
+                    ]
+                }
+            ],
+            "umm-g":  [
+                {
+                    "fields":  [
+                        "Platforms/Instruments/Characteristics/Name",
+                        "Platforms/Instruments/Characteristics"
+                    ]
+                },
+                {
+                    "fields":  [
+                        "Platforms/Instruments/ComposedOf/Characteristics/Name",
+                        "Platforms/Instruments/ComposedOf/Characteristics"
                     ]
                 }
             ]
