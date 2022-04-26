@@ -2030,6 +2030,50 @@
         "severity": "error",
         "check_id": "organization_long_name_gcmd_check"
     },
+    "organization_short_long_name_consistency_check": {
+        "rule_name": "Organization Short/Longname Consistency Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Organization/Organization_Name/Short_Name",
+                        "DIF/Organization/Organization_Name/Long_Name"
+                    ],
+                    "dependencies": [
+                        [
+                            "organization_short_name_gcmd_check",
+                            "DIF/Organization/Organization_Name/Short_Name"
+                        ],
+                        [
+                            "organization_long_name_gcmd_check",
+                            "DIF/Organization/Organization_Name/Long_Name"
+                        ]
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "DataCenters/ShortName",
+                        "DataCenters/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "organization_short_name_gcmd_check",
+                            "DataCenters/ShortName"
+                        ],
+                        [
+                            "organization_long_name_gcmd_check",
+                            "DataCenters/LongName"
+                        ]
+                    ]
+                }
+            ]
+
+        },
+        "severity": "error",
+        "check_id": "organization_short_long_name_consistency_check"
+    },
     "instrument_short_long_name_consistency_check": {
         "rule_name": "Instrument Short/Longname Consistency Check",
         "fields_to_apply": {
@@ -3492,6 +3536,12 @@
                     "fields": [
                         "Collection/Temporal/RangeDateTime/EndingDateTime",
                         "Collection/ShortName"
+                    ],
+                    "dependencies": [
+                        [
+                            "datetime_format_check",
+                            "Collection/Temporal/RangeDateTime/EndingDateTime"
+                        ]                    
                     ]
                 }
             ],
@@ -3500,14 +3550,26 @@
                     "fields": [
                         "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time",
                         "DIF/Entry_ID/Short_Name"
+                    ],
+                    "dependencies": [
+                        [
+                            "datetime_format_check",
+                            "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time"
+                        ]                    
                     ]
                 }
             ],
             "umm-c": [
                 {
                     "fields": [
-                        "TemporalExtent/RangeDateTime/EndingDateTime",
+                        "TemporalExtents/RangeDateTimes/EndingDateTime",
                         "ShortName"
+                    ],
+                    "dependencies": [
+                        [
+                            "datetime_format_check",
+                            "TemporalExtents/RangeDateTimes/EndingDateTime"
+                        ]                    
                     ]
                 }
             ]
@@ -3523,6 +3585,12 @@
                     "fields": [
                         "Collection/Temporal/RangeDateTime/BeginningDateTime",
                         "Collection/ShortName"
+                    ],
+                    "dependencies": [
+                        [
+                            "datetime_format_check",
+                            "Collection/Temporal/RangeDateTime/BeginningDateTime"
+                        ]                    
                     ]
                 }
             ],
@@ -3531,14 +3599,26 @@
                     "fields": [
                         "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time",
                         "DIF/Entry_ID/Short_Name"
+                    ],
+                    "dependencies": [
+                        [
+                            "datetime_format_check",
+                            "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time"
+                        ]                    
                     ]
                 }
             ],
             "umm-c": [
                 {
                     "fields": [
-                        "TemporalExtent/RangeDateTime/BeginningDateTime",
+                        "TemporalExtents/RangeDateTimes/BeginningDateTime",
                         "ShortName"
+                    ],
+                    "dependencies": [
+                        [
+                            "datetime_format_check",
+                            "TemporalExtents/RangeDateTimes/BeginningDateTime"
+                        ]                    
                     ]
                 }
             ]
@@ -4145,7 +4225,7 @@
         "check_id": "data_center_short_name_gcmd_check"
     },
     "characteristic_data_type": {
-        "rule_name": "Instrument Characteristics Data Type Presence Check",
+        "rule_name": "Characteristics Data Type Presence Check",
         "fields_to_apply": {
             "echo10": [
                 {

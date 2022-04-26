@@ -89,7 +89,7 @@ class DatetimeValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        granules = requests.get(f'{CMR_URL}/search/granules.json?short_name={collection_shortname}&sort_key[]=-{sort_key}').json()
+        granules = requests.get(f'{CMR_URL}/search/granules.json?short_name={collection_shortname}&sort_key[]={sort_key}').json()
 
         if len(granules['feed']['entry']) > 0:
             last_granule = granules['feed']['entry'][0]
@@ -116,7 +116,7 @@ class DatetimeValidator(BaseValidator):
         return DatetimeValidator.validate_datetime_against_granules(
             ending_datetime,
             collection_shortname,
-            'end_date',
+            '-end_date',
             'time_end'
         )
 
