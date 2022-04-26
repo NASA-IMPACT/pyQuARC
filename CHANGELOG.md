@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## v1.1.5
+- Added reader for specific columns from GCMD csvs
+- Fixed bug to handle cases when there are multiple entries for same shortname but the first entry has missing long name
+
+## v1.1.4
+
+- Added error handling for errored checks
+- Fixed minor bugs
+
+## v1.1.3
+
+- Fixed null pointer exception in the check `collection_progress_consistency_check`
+
+## v1.1.2
+
+- Removed stdout when importing pyQuARC package
+
+## v1.1.1
+
+- Included addition of `version.txt` in the package build
+
 ## v1.1.0
 
 - Support for [DIF10](https://earthdata.nasa.gov/esdis/eso/standards-and-references/directory-interchange-format-dif-standard) collection level metadata
