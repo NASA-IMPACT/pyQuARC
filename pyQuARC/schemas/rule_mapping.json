@@ -1778,7 +1778,7 @@
             ]
         },
         "data": [
-            80,
+            20,
             "lte"
         ],
         "severity": "error",
@@ -1988,6 +1988,13 @@
                 {
                     "fields": [
                         "Collection/ArchiveCenter"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Organization/Organization_Name/Short_Name"
                     ]
                 }
             ],
@@ -2244,6 +2251,66 @@
         },
         "severity": "error",
         "check_id": "platform_short_name_gcmd_check"
+    },
+    "platform_short_long_name_consistency_check": {
+        "rule_name": "Platform Short/Longname Consistency Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/ShortName",
+                        "Collection/Platforms/Platform/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "platform_short_name_gcmd_check",
+                            "Collection/Platforms/Platform/ShortName"
+                        ],
+                        [
+                            "platform_long_name_gcmd_check",
+                            "Collection/Platforms/Platform/LongName"
+                        ]
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Short_Name",
+                        "DIF/Platform/Long_Name"
+                    ],
+                    "dependencies": [
+                        [
+                            "platform_short_name_gcmd_check",
+                            "DIF/Platform/Short_Name"
+                        ],
+                        [
+                            "platform_long_name_gcmd_check",
+                            "DIF/Platform/Long_Name"
+                        ]
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "Platforms/ShortName",
+                        "Platforms/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "platform_short_name_gcmd_check",
+                            "Platforms/ShortName"
+                        ],
+                        [
+                            "platform_long_name_gcmd_check",
+                            "Platforms/LongName"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "severity": "error"
     },
     "data_format_gcmd_check": {
         "rule_name": "Data Format GCMD Check",
@@ -2836,13 +2903,6 @@
                     ]
                 }
             ],
-            "dif10": [
-                {
-                    "fields": [
-                        "DIF/Spatial_Coverage/Geometry/Bounding_Rectangle/Altitude_Unit"
-                    ]
-                }
-            ],
             "umm-c": [
                 {
                     "fields": [
@@ -3228,7 +3288,7 @@
                 }
             ]
         },
-        "severity": "error",
+        "severity": "warning",
         "check_id": "user_services_check"
     },
     "doi_missing_reason_explanation": {

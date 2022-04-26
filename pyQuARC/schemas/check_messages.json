@@ -287,6 +287,14 @@
         },
         "remediation": "Please submit a request to support@earthdata.nasa.gov to have this platform added to the GCMD platform KMS."
     },
+    "platform_short_long_name_consistency_check": {
+        "failure": "The provided platform short name `{}` and long name `{}` aren't consistent.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please supply the corresponding long name for the short name."
+    },
     "data_format_gcmd_check": {
         "failure": "The provided data format `{}` does not comply with the GCMD.",
         "help": {
@@ -397,7 +405,7 @@
             "message": "",
             "url": ""
         },
-        "remediation": "Please modify the unit to be less than 80 characters."
+        "remediation": "Please modify the unit to be less than 20 characters."
     },
     "characteristic_value_length_check": {
         "failure": "The value has more characters than the maximum number allowed.",
