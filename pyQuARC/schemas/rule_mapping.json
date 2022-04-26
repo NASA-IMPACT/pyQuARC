@@ -476,6 +476,43 @@
                         "Projects/EndDate"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "TemporalExtent/RangeDateTime/BeginningDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "TemporalExtent/RangeDateTime/EndingDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "TemporalExtent/SingleDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "ProviderDates/Date"
+                    ]
+                },
+                {
+                    "fields": [
+                        "ProviderDates/Date?Type=Delete"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataGranule/ProductionDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "OrbitCalculatedSpatialDomains/EquatorCrossingDateTime"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -2247,6 +2284,18 @@
                         "ArchiveAndDistributionInformation/FileDistributionInformation/Format"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "DataGranule/ArchiveAndDistributionInformation/Format"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataGranule/ArchiveAndDistributionInformation/Files/Format"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -2644,6 +2693,16 @@
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles/SouthBoundingCoordinate"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles/WestBoundingCoordinate",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles/NorthBoundingCoordinate",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles/EastBoundingCoordinate",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles/SouthBoundingCoordinate"
+                    ]
+                }
             ]
         },
         "severity": "error"
@@ -2680,6 +2739,28 @@
                 "Maximum Depth",
                 "Minimum Altitude",
                 "Minimum Depth"
+            ]
+        ],
+        "severity": "error",
+        "check_id": "controlled_keywords_check"
+    },
+    "vertical_spatial_domain_type_check_ummg": {
+        "rule_name": "Vertical Spatial Domain Type Check UMM-G",
+        "fields_to_apply": {
+            "umm-g": [
+                {
+                    "fields": [
+                        "SpatialExtent/VerticalSpatialDomains/Type"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "Atmosphere Layer",
+                "Pressure",
+                "Altitude",
+                "Depth"
             ]
         ],
         "severity": "error",
@@ -2744,7 +2825,7 @@
             "umm-c": [
                 {
                     "fields": [
-                        "SpatialExtent/VerticalSpatialDomain/Unit"
+                        "SpatialInformation/VerticalCoordinateSystem/DepthSystemDefinition/DistanceUnits"
                     ]
                 }
             ]
@@ -2774,7 +2855,7 @@
             "umm-c": [
                 {
                     "fields": [
-                        "SpatialExtent/VerticalSpatialDomain/Unit"
+                        "SpatialInformation/VerticalCoordinateSystem/AltitudeSystemDefinition/DistanceUnits"
                     ]
                 }
             ]
@@ -2787,6 +2868,34 @@
             ]
         ],
         "severity": "warning",
+        "check_id": "controlled_keywords_check"
+    },
+    "vertical_spatial_domain_unit_check_ummg": {
+        "rule_name": "Vertical Spatial Domain Unit Check UMM-G",
+        "fields_to_apply": {
+            "umm-g": [
+                {
+                    "fields": [
+                        "SpatialExtent/VerticalSpatialDomains/Unit"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "Fathoms",
+                "Feet",
+                "HectoPascals",
+                "Kilometers",
+                "Meters",
+                "Millibars",
+                "PoundsPerSquareInch",
+                "Atmosphere",
+                "InchesOfMercury",
+                "InchesOfWater"
+            ]
+        ],
+        "severity": "error",
         "check_id": "controlled_keywords_check"
     },
     "campaign_name_presence_check": {
@@ -2924,6 +3033,13 @@
                         "Collection/OnlineResources/OnlineResource/Description"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields":[
+                        "RelatedUrls/Description"
+                    ]
+                }
             ]
         },
         "severity": "info",
@@ -3001,6 +3117,16 @@
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Lines",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Gpolygons"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/Points",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/Lines",
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/GPolygons"
                     ]
                 }
             ]
@@ -3254,6 +3380,14 @@
                         "RelatedUrl/Url"
                     ]
                 }
+            ],
+            "umm-g":[
+                {
+                    "fields":[
+                        "RelatedUrls/Type",
+                        "RelatedUrls/URL"
+                    ]
+                }
             ]
         },
         "severity": "warning",
@@ -3280,6 +3414,18 @@
                 {
                     "fields": [
                         "Platforms/Characteristics"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platforms/Instruments/Characteristics"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Platforms/Instruments/ComposedOf/Characteristics"
                     ]
                 }
             ]
@@ -3512,6 +3658,14 @@
                         "TemporalExtents/PeriodicDateTimes"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "TemporalExtent/SingleDateTime",
+                        "TemporalExtent/RangeDateTime"
+                    ]
+                }
             ]
         },
         "severity": "info",
@@ -3638,6 +3792,38 @@
                         "DataDates/Date"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "ProviderDates/Date"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataGranule/ProductionDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "TemporalExtent/RangeDateTime/BeginningDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "TemporalExtent/RangeDateTime/EndingDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "TemporalExtent/SingleDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "OrbitCalculatedSpatialDomains/EquatorCrossingDateTime"
+                    ]
+                }
             ]
         },
         "data": [
@@ -3716,6 +3902,13 @@
             "umm-c": [
                 {
                     "fields": [
+                        "RelatedUrls"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields":[
                         "RelatedUrls"
                     ]
                 }
@@ -4079,6 +4272,13 @@
                 {
                     "fields": [
                         "DataCenters/ContactInformation/RelatedUrls"
+                    ]
+                }
+            ],
+            "umm-g":[
+                {
+                    "fields":[
+                        "RelatedUrls"
                     ]
                 }
             ]

@@ -471,6 +471,14 @@
         },
         "remediation": "Please provide a Vertical Spatial Domain Type from the following options to align with the UMM: ['Atmosphere Layer', 'Maximum Altitude', 'Maximum Depth', 'Minimum Altitude', 'Minimum Depth']"
     },
+    "vertical_spatial_domain_type_check_ummg": {
+        "failure": "The Vertical Spatial Domain Type `{}` does not align with the values used in the UMM-G schema.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a Vertical Spatial Domain Type from the following options to align with the UMM: ['Atmosphere Layer', 'Pressure', 'Altitude', 'Depth']"
+    },
     "oneOf": {
         "failure": "One of `{}` should be populated.",
         "help": {
@@ -502,6 +510,14 @@
             "url": ""
         },
         "remediation": "Please provide a altitude unit from the following list: ['HectoPascals', 'Kilometers', 'Millibars']"
+    },
+    "vertical_spatial_domain_unit_check_ummg": {
+        "failure": "The Unit provided `{}` is invalid.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a unit from the following list: ['Fathoms', 'Feet', 'HectoPascals', 'Kilometers', 'Meters', 'Millibars','PoundsPerSquareInch', 'Atmosphere', 'InchesOfMercury', 'InchesOfWater']"
     },
     "campaign_name_presence_check": {
         "failure": "Campaign/Project name is missing.",
@@ -709,7 +725,7 @@
             "message": "",
             "url": ""
         },
-        "remediation": "Please provide at least one of SingleDateTime, RangeDateTime, PeriodicDateTime"
+        "remediation": "Please provide at least one of SingleDateTime or RangeDateTime"
     },
     "ftp_protocol_check": {
         "failure": "FTP links should no longer be used due to US Government security requirements. This check only applies to NASA/EOSDIS records.",
