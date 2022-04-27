@@ -157,10 +157,11 @@ class CustomValidator(BaseValidator):
     def collection_progress_consistency_check(collection_state, ends_at_present_flag, ending_date_time):
         # Logic: https://github.com/NASA-IMPACT/pyQuARC/issues/61
         validity = True
+        ending_date_time = bool(ending_date_time)
         if collection_state in ["ACTIVE", "IN WORK"]:
-            validity = (not bool(ending_date_time)) and str(ends_at_present_flag).lower() == "true"
+            validity = (not ending_date_time) and str(ends_at_present_flag).lower() == "true"
         elif collection_state == "COMPLETE":
-            validity = bool(ending_date_time) and (not bool(str(ends_at_present_flag)) or ends_at_present_flag.lower() == "false")
+            validity = ending_date_time and (not bool(str(ends_at_present_flag)) or ends_at_present_flag.lower() == "false")
         else:
             validity = False
         return {
@@ -173,8 +174,7 @@ class CustomValidator(BaseValidator):
     def uniqueness_check(list_of_objects, key):
         seen, duplicates = set(), set()
         for url_obj in list_of_objects:
-            description = url_obj.get(key)
-            if description in seen:
+            if description := url_obj.get(key) in seen:
                 duplicates.add(description)
             else:
                 seen.add(description)
@@ -204,14 +204,10 @@ class CustomValidator(BaseValidator):
 
     @staticmethod
     def get_data_url_check_umm(related_urls):
+        return_obj = { 'valid': False, 'value': 'N/A'}
         for url_obj in related_urls:
-            if url_obj.get("Type") == "GET DATA" and (url := url_obj.get("URL")):
-                return {
-                    "valid": True,
-                    "value": url
-                }
-        return {
-            "valid": False,
-            "value": "N/A"
-        }
-
+            if validity := url_obj.get("Type") == "GET DATA" and (url := url_obj.get("URL")):
+                return_obj['valid'] = validity
+                return_obj['value'] = url
+                break
+        return return_obj
