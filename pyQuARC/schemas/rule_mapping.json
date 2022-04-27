@@ -3642,17 +3642,13 @@
             "dif10": [
                 {
                     "fields": [
-                        "DIF"
+                        "DIF/Related_URL"
+                    ],
+                    "data": [
+                        ["URL_Content_Type", "Type"]
                     ]
                 }
-            ]
-        },
-        "severity": "error",
-        "check_id": "get_data_url_check"
-    },
-    "get_data_url_check_umm": {
-        "rule_name": "GET DATA URL check for UMM JSON",
-        "fields_to_apply": {
+            ],
             "umm-json": [
                 {
                     "fields": [
@@ -3661,8 +3657,11 @@
                 }
             ]
         },
+        "data": [
+            ["Type"]
+        ],
         "severity": "error",
-        "check_id": "get_data_url_check_umm"
+        "check_id": "get_data_url_check"
     },
     "horizontal_resolution_range_check": {
         "rule_name": "Horizontal resolution Range GCMD Check",

@@ -238,10 +238,5 @@
         "data_type": "custom",
         "check_function": "get_data_url_check",
         "available": true
-    },
-    "get_data_url_check_umm": {
-        "data_type": "custom",
-        "check_function": "get_data_url_check_umm",
-        "available": true
     }
 }
