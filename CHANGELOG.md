@@ -1,19 +1,69 @@
 # CHANGELOG
 
-## v2.0.1
+## v2.0.0
 
-### List of added checks
+- Added support for [UMM-JSON](https://earthdata.nasa.gov/esdis/esco/standards-and-references/eso-umm-information) collection level metadata
+- Added support for some UMM fields that look like the following:
 
-- GET DATA URL Check UMM
-- Metadata Update Time Logic Check
-- Future Date Check
+```json
+"ContactMechanisms": [
+    {
+        "Type": "Telephone",
+        "Value": "605-594-6116"
+    },
+    {
+        "Type": "U.S. toll free",
+        "Value": "866-573-3222"
+    },
+    {
+        "Type": "Email",
+        "Value": "lpdaac@usgs.gov"
+    }
+]
+```
+
+To specify the "Email" field, in the `rule_mapping`, a user would put in `ContactMechanisms/Value?Type=Email` as the field.
+
+- All the field specified in a datetime check that involves comparison should have a corresponding `datetime_format_check` entry, otherwise the check won't run
+- Added support for `data` specific to format type. This will take precedence over the generic `data`. Example:
+
+```json
+"get_data_url_check": {
+    "rule_name": "GET DATA URL check",
+    "fields_to_apply": {
+        "dif10": [
+            {
+                "fields": [
+                    "DIF/Related_URL"
+                ],
+                "data": [
+                    ["URL_Content_Type", "Type"]
+                ]
+            }
+        ],
+        "umm-json": [
+            {
+                "fields": [
+                    "RelatedUrls"
+                ]
+            }
+        ]
+    },
+    "data": [
+        ["Type"]
+    ],
+    "severity": "error",
+    "check_id": "get_data_url_check"
+},
+```
+
+### List of added  and updated checks
+
+- GET DATA URL Check UMM (check name: )
 - Data Center Long Name Check
 - URL Description Uniqueness Check
 - Periodic Duration Unit Check
 - Characteristic Name Uniqueness Check UMM
-
-## Check Updates for UMM-C
-
 - Range Date Time Logic Check
 - Range Date Time Logic Check
 - Project Date Time Logic Check
@@ -63,31 +113,15 @@
 - Platform Type Presence Check
 - Horizontal Data Resolution Unit Controlled Vocabulary Check
 
-## v2.0.0
+## v1.1.5
 
-- Support for [UMM-JSON](https://earthdata.nasa.gov/esdis/esco/standards-and-references/eso-umm-information) collection level metadata
-- Added support for some UMM fields that look like the following:
+- Added reader for specific columns from GCMD csvs
+- Fixed bug to handle cases when there are multiple entries for same shortname but the first entry has missing long name
 
-```json
-"ContactMechanisms": [
-    {
-        "Type": "Telephone",
-        "Value": "605-594-6116"
-    },
-    {
-        "Type": "U.S. toll free",
-        "Value": "866-573-3222"
-    },
-    {
-        "Type": "Email",
-        "Value": "lpdaac@usgs.gov"
-    }
-]
-```
+## v1.1.4
 
-To specify the "Email" field, in the `rule_mapping`, a user would put in `ContactMechanisms/Value?Type=Email` as the field.
-
-- All the field specified in a datetime check that involves comparison should have a corresponding `datetime_format_check` entry, otherwise the check won't run
+- Added error handling for errored checks
+- Fixed minor bugs
 
 ## v1.1.3
 

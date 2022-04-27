@@ -8,14 +8,16 @@ from datetime import datetime
 LEAF = "this_is_the_leaf_node"
 DATE_FORMAT = "%Y-%m-%d"
 
+
 class GcmdValidator:
     """
     Validator class for all the GCMD keywords (science, instruments, providers)
     """
-    downloaded = { keyword: False for keyword in GCMD_LINKS }
+
+    downloaded = {keyword: False for keyword in GCMD_LINKS}
 
     def __init__(self):
-        # GcmdValidator._download_files()
+        GcmdValidator._download_files()
         self.file_content = GcmdValidator._load_csvs()
         self.keywords = {
             "science": GcmdValidator._create_hierarchy_dict(
@@ -124,7 +126,7 @@ class GcmdValidator:
         date_str = current_datetime.strftime(DATE_FORMAT)
         if os.path.exists(VERSION_FILE):
             with open(VERSION_FILE) as file:
-                date_str = file.readline().replace('\n', '')
+                date_str = file.readline().replace("\n", "")
         gcmd_date = datetime.strptime(date_str, DATE_FORMAT)
         if gcmd_date.date() < current_datetime.date() or force:
             try:
@@ -132,27 +134,27 @@ class GcmdValidator:
                     # Downloading updated gcmd keyword files
                     response = requests.get(link)
                     data = response.text
-                    with open(SCHEMA_PATHS[keyword], 'w') as download_file:
+                    with open(SCHEMA_PATHS[keyword], "w") as download_file:
                         download_file.write(data)
-                with open(VERSION_FILE, 'w') as version_file:
+                with open(VERSION_FILE, "w") as version_file:
                     version_file.write(current_datetime.strftime(DATE_FORMAT))
             except:
                 # Download of files failed. Using local copies, which are already there
                 pass
 
     @staticmethod
-    def _create_hierarchy_dict(keywords):
+    def _create_hierarchy_dict(rows):
         """
         Creates the hierarchy dictionary from the values from the csv
 
         Args:
-            keywords (list): List of list of row values from the csv file
+            rows (list): List of list of row values from the csv file
 
         Returns:
             (dict): The lookup dictionary for GCMD hierarchy
         """
         all_keywords = [
-            [each.upper() for each in kw if each.strip()] for kw in keywords if kw
+            [keyword.upper() for keyword in row if keyword.strip()] for row in rows if row
         ]
         hierarchy_dict = {}
         for row in all_keywords:
@@ -200,10 +202,13 @@ class GcmdValidator:
             start = 1 if keyword_kind == "projects" else 0
             start = headers.index(columns[0]) if columns else 0
             end = (headers.index(columns[-1]) + 1) if columns else None
+            # handling cases when there are multiple entries for same shortname but the first entry has missing long name
             return_value = [
-                [kw for keyword in useful_data if (kw := keyword.strip())]
+                [clean_keyword for keyword in useful_data if (clean_keyword := keyword.strip() or 'N/A')]
                 for row in list_of_rows
-                if (useful_data := row[start : end if end else (len(row) - 1)]) # remove UUID (last column)
+                if (
+                    useful_data := row[start : end if end else (len(row) - 1)] # remove UUID (last column)
+                )
             ]
         return return_value
 
@@ -222,6 +227,7 @@ class GcmdValidator:
         """
         Merges child dict to the parent dict avoiding repetitions
         """
+
         if child == LEAF:
             return parent, child
         else:

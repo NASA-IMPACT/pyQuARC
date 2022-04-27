@@ -156,14 +156,21 @@ class CustomValidator(BaseValidator):
     @if_arg
     def collection_progress_consistency_check(collection_state, ends_at_present_flag, ending_date_time):
         # Logic: https://github.com/NASA-IMPACT/pyQuARC/issues/61
-        validity = True
-        ending_date_time = bool(ending_date_time)
+        validity = False
+        collection_state = collection_state.upper()
+        ending_date_time_exists = bool(ending_date_time)
+        ends_at_present_flag_exists = bool(ends_at_present_flag)
+        ends_at_present_flag = str(ends_at_present_flag).lower() if ends_at_present_flag_exists else None
+
         if collection_state in ["ACTIVE", "IN WORK"]:
-            validity = (not ending_date_time) and str(ends_at_present_flag).lower() == "true"
+            validity = (not ending_date_time_exists) and (ends_at_present_flag == "true")
         elif collection_state == "COMPLETE":
-            validity = ending_date_time and (not bool(str(ends_at_present_flag)) or ends_at_present_flag.lower() == "false")
-        else:
-            validity = False
+            validity = ending_date_time_exists and (
+                not ends_at_present_flag_exists or (
+                    ends_at_present_flag == "false"
+                )
+            )
+        
         return {
             "valid": validity,
             "value": collection_state
@@ -185,28 +192,14 @@ class CustomValidator(BaseValidator):
         }
 
     @staticmethod
-    def get_data_url_check(metadata_json):
-        REQUIRED_TYPE = 'GET DATA'
-        related_urls = metadata_json.get('Related_URL', [])
-        validity = False
-        value = None
-        for url in related_urls:
-            if (url_type := url.get('URL_Content_Type', {}).get('Type')) and \
-                url_type.upper() == REQUIRED_TYPE:
-                validity = True
-                value = url_type
-                break
-
-        return {
-            "valid": validity,
-            "value": value
-        }
-
-    @staticmethod
-    def get_data_url_check_umm(related_urls):
+    def get_data_url_check(related_urls, key):
         return_obj = { 'valid': False, 'value': 'N/A'}
         for url_obj in related_urls:
-            if validity := url_obj.get("Type") == "GET DATA" and (url := url_obj.get("URL")):
+            if len(key) == 2:
+                type = url_obj.get(key[0], {}).get(key[1])
+            else:
+                type = url_obj.get(key[0])
+            if validity := type == "GET DATA" and (url := url_obj.get("URL")):
                 return_obj['valid'] = validity
                 return_obj['value'] = url
                 break
