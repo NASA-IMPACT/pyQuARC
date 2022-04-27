@@ -59,7 +59,7 @@ To specify the "Email" field, in the `rule_mapping`, a user would put in `Contac
 
 ### List of added  and updated checks
 
-- GET DATA URL Check UMM (check name: )
+- GET DATA URL Check
 - Data Center Long Name Check
 - URL Description Uniqueness Check
 - Periodic Duration Unit Check
