@@ -391,6 +391,16 @@
                     "fields": [
                         "DIF/Dataset_Citation/Dataset_Release_Date"
                     ]
+                },
+                {
+                    "fields": [
+                        "DIF/Project/Start_Date"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Project/End_Date"
+                    ]
                 }
             ],
             "umm-c": [
@@ -591,6 +601,11 @@
                     "fields": [
                         "DIF/Related_URL/URL"
                     ]
+                },
+                {
+                    "fields": [
+                        "DIF/Extended_Metadata/Metadata/Value"
+                    ]
                 }
             ],
             "umm-c": [
@@ -715,6 +730,11 @@
                     "fields": [
                         "Collection/DOI/DOI"
                     ]
+                },
+                {
+                    "fields": [
+                        "Collection/AssociatedDOIs/AssociatedDOI/DOI"
+                    ]
                 }
             ],
             "dif10": [
@@ -732,6 +752,11 @@
                     "fields": [
                         "DIF/Associated_DOIs/DOI"
                     ]
+                },
+                {
+                    "fields": [
+                        "DIF/Extended_Metadata/Metadata/Value"
+                    ]
                 }
             ],
             "umm-c": [
@@ -743,6 +768,11 @@
                 {
                     "fields": [
                         "PublicationReferences/DOI/DOI"
+                    ]
+                },
+                {
+                    "fields": [
+                        "AssociatedDOIs/DOI"
                     ]
                 }
             ]
@@ -2302,6 +2332,20 @@
         "severity": "error",
         "check_id": "instrument_long_name_gcmd_check"
     },
+    "instrument_long_name_presence_check": {
+        "rule_name": "Instrument Longname Presence Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Instrument/Long_Name"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "presence_check"
+    },
     "platform_short_name_gcmd_check": {
         "rule_name": "Platform Shortname GCMD Check",
         "fields_to_apply": {
@@ -2713,6 +2757,20 @@
         },
         "severity": "error",
         "check_id": "campaign_long_name_gcmd_check"
+    },
+    "campaign_long_name_presence_check": {
+        "rule_name": "Campaign Long Name Presence Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Project/Long_Name"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "presence_check"
     },
     "version_description_not_provided": {
         "rule_name": "Version Description Not Provided",
@@ -3550,8 +3608,8 @@
         "severity": "warning",
         "check_id": "availability_check"
     },
-    "characteristic_name_uniqueness_check": {
-        "rule_name": "Characteristic Name Uniqueness Check",
+    "characteristic_name_uniqueness_check_echo10": {
+        "rule_name": "Characteristic Name Uniqueness Check for ECHO10",
         "fields_to_apply": {
             "echo10": [
                 {
@@ -3562,10 +3620,10 @@
             ]
         },
         "severity": "warning",
-        "check_id": "characteristic_name_uniqueness_check"
+        "check_id": "characteristic_name_uniqueness_check_echo10"
     },
-    "characteristic_name_uniqueness_check_umm": {
-        "rule_name": "Characteristic Name Uniqueness Check for UMM JSON",
+    "characteristic_name_uniqueness_check": {
+        "rule_name": "Characteristic Name Uniqueness Check",
         "fields_to_apply": {
             "umm-c": [
                 {
@@ -3588,7 +3646,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "characteristic_name_uniqueness_check_umm"
+        "check_id": "characteristic_name_uniqueness_check"
     },
     "validate_ending_datetime_against_granules": {
         "rule_name": "Ending Datetime validation against granules",
@@ -4174,6 +4232,11 @@
                     "fields": [
                         "DIF/Use_Constraints/License_URL/Mime_Type"
                     ]
+                },
+                {
+                    "fields": [
+                        "DIF/Related_URL/Mime_Type"
+                    ]
                 }
             ]
         },
@@ -4324,8 +4387,8 @@
                 },
                 {
                     "fields": [
-                        "DIF/Platform/Characteristics/DataType",
-                        "DIF/Platform/Characteristics"
+                        "DIF/Platform/Instrument/Characteristics/DataType",
+                        "DIF/Platform/Instrument/Characteristics"
                     ]
                 }
             ],
@@ -4379,6 +4442,20 @@
             ]
         },
         "severity": "error",
+        "check_id": "presence_check"
+    },
+    "platform_long_name_presence_check": {
+        "rule_name": "Platform Longname Presence Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Long_Name"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
         "check_id": "presence_check"
     },
     "horizontal_data_resolution_unit_check": {
@@ -4465,6 +4542,18 @@
                 {
                     "fields": [
                         "DataCenters/ContactInformation/RelatedUrls"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Multimedia_Sample"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Related_URL"
                     ]
                 }
             ],
