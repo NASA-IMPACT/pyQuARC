@@ -95,11 +95,11 @@ class UrlValidator(StringValidator):
         Returns:
             (dict) An object with the validity of the check and the instance/results
         """
+        valid = False
         if doi.strip().startswith("10."): # doi always starts with "10."
             url = f"https://www.doi.org/{doi}"
-            return UrlValidator.health_and_status_check(url)
-        else:
-            return {"valid": False, "value": doi}
+            valid =  UrlValidator.health_and_status_check(url).get("valid")
+        return {"valid": valid, "value": doi}
 
     @staticmethod
     @if_arg
