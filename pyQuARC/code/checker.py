@@ -172,6 +172,8 @@ class Checker:
         for field_dict in list_of_fields_to_apply:
             dependencies = self.scheduler.get_all_dependencies(rule_id, check, field_dict)
             main_field = field_dict["fields"][0]
+            if data := field_dict.get("data"):
+                external_data = data
             result_dict.setdefault(main_field, {})
             if not self._check_dependencies_validity(dependencies, field_dict):
                 continue
