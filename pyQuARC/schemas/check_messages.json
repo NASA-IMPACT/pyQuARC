@@ -53,7 +53,7 @@
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI"
         },
-        "remediation": "Provide a valid DOI."
+        "remediation": "Provide a valid DOI. Make sure the field contains only the DOI string (eg. 10.1109/5.771073), not the URL."
     },
     "doi_missing_reason_presence_check": {
         "failure": "No DOI or MissingReason provided.",

@@ -700,6 +700,11 @@
                     "fields": [
                         "Collection/DOI/DOI"
                     ]
+                },
+                {
+                    "fields": [
+                        "Collection/AssociatedDOIs/AssociatedDOI/DOI"
+                    ]
                 }
             ],
             "dif10": [
@@ -733,6 +738,11 @@
                 {
                     "fields": [
                         "PublicationReferences/DOI/DOI"
+                    ]
+                },
+                {
+                    "fields": [
+                        "AssociatedDOIs/DOI"
                     ]
                 }
             ]
