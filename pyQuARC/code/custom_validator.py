@@ -15,15 +15,13 @@ class CustomValidator(BaseValidator):
         ends_at_present_flag, ending_date_time, collection_state
     ):
         collection_state = collection_state.upper()
-        if ends_at_present_flag == None:
-            valid = True
-        else:
+        if not (valid := ends_at_present_flag == None):
             valid = (
                 ends_at_present_flag == True
                 and not (ending_date_time) and collection_state == "ACTIVE"
             ) or (
                 ends_at_present_flag == False
-                and not not (ending_date_time) and collection_state == "COMPLETE"
+                and bool(ending_date_time) and collection_state == "COMPLETE"
             )
 
         return {"valid": valid, "value": ends_at_present_flag}
@@ -34,7 +32,7 @@ class CustomValidator(BaseValidator):
     ):
         valid = True
         if ends_at_present_flag == None:
-            valid = not not (ending_date_time) and collection_state == "COMPLETE"
+            valid = bool(ending_date_time) and collection_state == "COMPLETE"
 
         return {"valid": valid, "value": ends_at_present_flag}
 
@@ -177,79 +175,13 @@ class CustomValidator(BaseValidator):
             "valid": validity,
             "value": collection_state
         }
-
+    
     @staticmethod
     @if_arg
-    def characteristic_name_uniqueness_check(characteristics):
+    def uniqueness_check(list_of_objects, key):
         seen, duplicates = set(), set()
-        for characteristic in characteristics['Characteristic']:
-            name = characteristic['Name']
-            if name in seen:
-                duplicates.add(name)
-            else:
-                seen.add(name)
-
-        return {
-            "valid": not bool(duplicates),
-            "value": ', '.join(duplicates)
-        }
-
-    @staticmethod
-    @if_arg
-    def characteristic_name_uniqueness_check_umm(characteristics):
-        seen, duplicates = set(), set()
-        for characteristic in characteristics:
-            name = characteristic['Name']
-            if name in seen:
-                duplicates.add(name)
-            else:
-                seen.add(name)
-
-        return {
-            "valid": not bool(duplicates),
-            "value": ', '.join(duplicates)
-        }
-
-    @staticmethod
-    def get_data_url_check(metadata_json):
-        REQUIRED_TYPE = 'GET DATA'
-        related_urls = metadata_json.get('Related_URL', [])
-        if not isinstance(related_urls, list):
-            related_urls = [related_urls]
-        validity = False
-        value = None
-        for url in related_urls:
-            if (url_type := url.get('URL_Content_Type', {}).get('Type')) and \
-                url_type.upper() == REQUIRED_TYPE:
-                validity = True
-                value = url_type
-                break
-
-        return {
-            "valid": validity,
-            "value": value
-        }
-
-    @staticmethod
-    def get_data_url_check_umm(related_urls):
-        for url_obj in related_urls:
-            if url_obj.get("Type") == "GET DATA" and (url := url_obj.get("URL")):
-                return {
-                    "valid": True,
-                    "value": url
-                }
-        return {
-            "valid": False,
-            "value": "N/A"
-        }
-
-    @staticmethod
-    @if_arg
-    def url_description_uniqueness_check(related_urls):
-        seen, duplicates = set(), set()
-        for url_obj in related_urls:
-            description = url_obj.get('Description')
-            if description in seen:
+        for url_obj in list_of_objects:
+            if description := url_obj.get(key) in seen:
                 duplicates.add(description)
             else:
                 seen.add(description)
@@ -258,3 +190,17 @@ class CustomValidator(BaseValidator):
             "valid": not bool(duplicates),
             "value": ', '.join(duplicates)
         }
+
+    @staticmethod
+    def get_data_url_check(related_urls, key):
+        return_obj = { 'valid': False, 'value': 'N/A'}
+        for url_obj in related_urls:
+            if len(key) == 2:
+                type = url_obj.get(key[0], {}).get(key[1])
+            else:
+                type = url_obj.get(key[0])
+            if validity := type == "GET DATA" and (url := url_obj.get("URL")):
+                return_obj['valid'] = validity
+                return_obj['value'] = url
+                break
+        return return_obj

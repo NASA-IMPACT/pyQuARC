@@ -3339,17 +3339,10 @@
             "echo10": [
                 {
                     "fields": [
-                        "Collection/Platforms/Platform/Characteristics"
+                        "Collection/Platforms/Platform/Characteristics/Characteristic"
                     ]
                 }
-            ]
-        },
-        "severity": "warning",
-        "check_id": "characteristic_name_uniqueness_check"
-    },
-    "characteristic_name_uniqueness_check_umm": {
-        "rule_name": "Characteristic Name Uniqueness Check for UMM JSON",
-        "fields_to_apply": {
+            ],
             "umm-c": [
                 {
                     "fields": [
@@ -3368,10 +3361,18 @@
                         "Platforms/Instruments/ComposedOf/Characteristics"
                     ]
                 }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Characteristics"
+                    ]
+                }
             ]
         },
+        "data": ["Name"],
         "severity": "warning",
-        "check_id": "characteristic_name_uniqueness_check_umm"
+        "check_id": "uniqueness_check"
     },
     "validate_ending_datetime_against_granules": {
         "rule_name": "Ending Datetime validation against granules",
@@ -3828,17 +3829,13 @@
             "dif10": [
                 {
                     "fields": [
-                        "DIF"
+                        "DIF/Related_URL"
+                    ],
+                    "data": [
+                        ["URL_Content_Type", "Type"]
                     ]
                 }
-            ]
-        },
-        "severity": "error",
-        "check_id": "get_data_url_check"
-    },
-    "get_data_url_check_umm": {
-        "rule_name": "GET DATA URL check for UMM JSON",
-        "fields_to_apply": {
+            ],
             "umm-c": [
                 {
                     "fields": [
@@ -3854,8 +3851,11 @@
                 }
             ]
         },
+        "data": [
+            ["Type"]
+        ],
         "severity": "error",
-        "check_id": "get_data_url_check_umm"
+        "check_id": "get_data_url_check"
     },
     "horizontal_resolution_range_check": {
         "rule_name": "Horizontal resolution Range GCMD Check",
@@ -4223,8 +4223,9 @@
                 }
             ]
         },
+        "data": ["Description"],
         "severity": "info",
-        "check_id": "url_description_uniqueness_check"
+        "check_id": "uniqueness_check"
     },
     "metadata_update_time_logic_check": {
         "rule_name": "Metadata Update Time Logic Check",

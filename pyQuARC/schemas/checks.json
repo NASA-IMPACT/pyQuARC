@@ -209,14 +209,9 @@
         "check_function": "online_resource_type_gcmd_check",
         "available": true
     },
-    "characteristic_name_uniqueness_check": {
+    "uniqueness_check": {
         "data_type": "custom",
-        "check_function": "characteristic_name_uniqueness_check",
-        "available": true
-    },
-    "characteristic_name_uniqueness_check_umm": {
-        "data_type": "custom",
-        "check_function": "characteristic_name_uniqueness_check_umm",
+        "check_function": "uniqueness_check",
         "available": true
     },
     "validate_ending_datetime_against_granules": {
@@ -242,16 +237,6 @@
     "get_data_url_check": {
         "data_type": "custom",
         "check_function": "get_data_url_check",
-        "available": true
-    },
-    "get_data_url_check_umm": {
-        "data_type": "custom",
-        "check_function": "get_data_url_check_umm",
-        "available": true
-    },
-    "url_description_uniqueness_check": {
-        "data_type": "custom",
-        "check_function": "url_description_uniqueness_check",
         "available": true
     }
 }

@@ -172,6 +172,8 @@ class Checker:
         for field_dict in list_of_fields_to_apply:
             dependencies = self.scheduler.get_all_dependencies(rule_id, check, field_dict)
             main_field = field_dict["fields"][0]
+            if data := field_dict.get("data"):
+                external_data = data
             result_dict.setdefault(main_field, {})
             if not self._check_dependencies_validity(dependencies, field_dict):
                 continue
@@ -225,10 +227,10 @@ class Checker:
         Returns:
             (dict): The results of the jsonschema check and all custom checks
         """
+        parser = parse
         if self.metadata_format.startswith("umm-"):
-            json_metadata = json.loads(metadata_content)
-        else:
-            json_metadata = parse(metadata_content)
+            parser = json.loads
+        json_metadata = parser(metadata_content)
         result_schema = self.perform_schema_check(
             metadata_content
         )

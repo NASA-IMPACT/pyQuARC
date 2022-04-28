@@ -62,8 +62,6 @@ class StringValidator(BaseValidator):
         """
         if type(value) == str:
             value = [value]
-        else:
-            value = value
 
         validity = True
         for i in value:

@@ -83,6 +83,13 @@
       <Unit>Local Mean Time</Unit>
       <Value>3:30, ascending</Value>
     </Characteristics>
+    <Characteristics>
+        <Name>EquatorCrossingTime</Name>
+        <Description>Local time of the equator crossing and direction (ascending or descending)</Description>
+        <DataType>Time/direction (ascending)</DataType>
+        <Unit>Local Mean Time</Unit>
+        <Value>3:30, ascending</Value>
+      </Characteristics>
     <Instrument>
       <Short_Name>MODIS</Short_Name>
       <Long_Name>Moderate-Resolution Imaging Spectroradiometer</Long_Name>
