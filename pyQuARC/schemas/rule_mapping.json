@@ -78,6 +78,15 @@
                     ],
                     "relation": "lte"
                 }
+            ],
+            "umm-g":  [
+                {
+                    "fields":  [
+                        "TemporalExtent/RangeDateTime/BeginningDateTime",
+                        "TemporalExtent/RangeDateTime/EndingDateTime"
+                    ],
+                    "relation": "lte"
+                }
             ]
         },
         "severity": "error",
@@ -109,6 +118,15 @@
                     "fields": [
                         "TemporalExtents/RangeDateTimes/BeginningDateTime",
                         "TemporalExtents/RangeDateTimes/EndingDateTime"
+                    ],
+                    "relation": "neq"
+                }
+            ],
+            "umm-g":  [
+                {
+                    "fields":  [
+                        "TemporalExtent/RangeDateTime/BeginningDateTime",
+                        "TemporalExtent/RangeDateTime/EndingDateTime"
                     ],
                     "relation": "neq"
                 }
@@ -373,6 +391,16 @@
                     "fields": [
                         "DIF/Dataset_Citation/Dataset_Release_Date"
                     ]
+                },
+                {
+                    "fields": [
+                        "DIF/Project/Start_Date"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Project/End_Date"
+                    ]
                 }
             ],
             "umm-c": [
@@ -573,6 +601,11 @@
                     "fields": [
                         "DIF/Related_URL/URL"
                     ]
+                },
+                {
+                    "fields": [
+                        "DIF/Extended_Metadata/Metadata/Value"
+                    ]
                 }
             ],
             "umm-c": [
@@ -604,6 +637,18 @@
                 {
                     "fields": [
                         "RelatedUrls/URL"
+                    ]
+                }
+            ],
+            "umm-g":  [
+                {
+                    "fields":  [
+                        "RelatedUrls/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "MetadataSpecification/URL"
                     ]
                 }
             ]
@@ -685,6 +730,11 @@
                     "fields": [
                         "Collection/DOI/DOI"
                     ]
+                },
+                {
+                    "fields": [
+                        "Collection/AssociatedDOIs/AssociatedDOI/DOI"
+                    ]
                 }
             ],
             "dif10": [
@@ -702,6 +752,11 @@
                     "fields": [
                         "DIF/Associated_DOIs/DOI"
                     ]
+                },
+                {
+                    "fields": [
+                        "DIF/Extended_Metadata/Metadata/Value"
+                    ]
                 }
             ],
             "umm-c": [
@@ -713,6 +768,11 @@
                 {
                     "fields": [
                         "PublicationReferences/DOI/DOI"
+                    ]
+                },
+                {
+                    "fields": [
+                        "AssociatedDOIs/DOI"
                     ]
                 }
             ]
@@ -908,6 +968,13 @@
                         "MetadataDates/Date?Type=DELETE"
                     ]
                 }
+            ],
+            "umm-g":  [
+                {
+                    "fields":  [
+                        "ProviderDates/Date?Type=Delete"
+                    ]
+                }   
             ]
         },
         "data": [
@@ -1341,6 +1408,20 @@
                         "Platform/Instrument/ComposedOf/Characteristics"
                     ]
                 }
+            ],
+            "umm-g":  [
+                {
+                    "fields":  [
+                        "Platforms/Instruments/Characteristics/Name",
+                        "Platforms/Instruments/Characteristics"
+                    ]
+                },
+                {
+                    "fields":  [
+                        "Platforms/Instruments/ComposedOf/Characteristics/Name",
+                        "Platforms/Instruments/ComposedOf/Characteristics"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -1542,6 +1623,20 @@
                         "Platform/Instrument/ComposedOf/Characteristics"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platforms/Instruments/Characteristics/Value",
+                        "Platforms/Instruments/Characteristics"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Platforms/Instruments/ComposedOf/Characteristics/Value",
+                        "Platforms/Instruments/ComposedOf/Characteristics"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -1727,7 +1822,7 @@
             ]
         },
         "data": [
-            80,
+            20,
             "lte"
         ],
         "severity": "error",
@@ -1801,6 +1896,14 @@
                     "fields": [
                         "DIF/Related_URL/Mime_Type",
                         "DIF/Related_URL/URL_Content_Type/Type"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "RelatedUrls/MimeType",
+                        "RelatedUrls/Type"
                     ]
                 }
             ]
@@ -1940,6 +2043,13 @@
                     ]
                 }
             ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Organization/Organization_Name/Short_Name"
+                    ]
+                }
+            ],
             "umm-c": [
                 {
                     "fields": [
@@ -1971,6 +2081,50 @@
         },
         "severity": "error",
         "check_id": "organization_long_name_gcmd_check"
+    },
+    "organization_short_long_name_consistency_check": {
+        "rule_name": "Organization Short/Longname Consistency Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Organization/Organization_Name/Short_Name",
+                        "DIF/Organization/Organization_Name/Long_Name"
+                    ],
+                    "dependencies": [
+                        [
+                            "organization_short_name_gcmd_check",
+                            "DIF/Organization/Organization_Name/Short_Name"
+                        ],
+                        [
+                            "organization_long_name_gcmd_check",
+                            "DIF/Organization/Organization_Name/Long_Name"
+                        ]
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "DataCenters/ShortName",
+                        "DataCenters/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "organization_short_name_gcmd_check",
+                            "DataCenters/ShortName"
+                        ],
+                        [
+                            "organization_long_name_gcmd_check",
+                            "DataCenters/LongName"
+                        ]
+                    ]
+                }
+            ]
+
+        },
+        "severity": "error",
+        "check_id": "organization_short_long_name_consistency_check"
     },
     "instrument_short_long_name_consistency_check": {
         "rule_name": "Instrument Short/Longname Consistency Check",
@@ -2118,6 +2272,18 @@
                         "Platforms/Instruments/ComposedOf/ShortName"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platforms/Instruments/ShortName"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Platforms/Instruments/ComposedOf/ShortName"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -2166,6 +2332,20 @@
         "severity": "error",
         "check_id": "instrument_long_name_gcmd_check"
     },
+    "instrument_long_name_presence_check": {
+        "rule_name": "Instrument Longname Presence Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Instrument/Long_Name"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "presence_check"
+    },
     "platform_short_name_gcmd_check": {
         "rule_name": "Platform Shortname GCMD Check",
         "fields_to_apply": {
@@ -2189,10 +2369,77 @@
                         "Platforms/ShortName"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platforms/ShortName"
+                    ]
+                }
             ]
         },
         "severity": "error",
         "check_id": "platform_short_name_gcmd_check"
+    },
+    "platform_short_long_name_consistency_check": {
+        "rule_name": "Platform Short/Longname Consistency Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/ShortName",
+                        "Collection/Platforms/Platform/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "platform_short_name_gcmd_check",
+                            "Collection/Platforms/Platform/ShortName"
+                        ],
+                        [
+                            "platform_long_name_gcmd_check",
+                            "Collection/Platforms/Platform/LongName"
+                        ]
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Short_Name",
+                        "DIF/Platform/Long_Name"
+                    ],
+                    "dependencies": [
+                        [
+                            "platform_short_name_gcmd_check",
+                            "DIF/Platform/Short_Name"
+                        ],
+                        [
+                            "platform_long_name_gcmd_check",
+                            "DIF/Platform/Long_Name"
+                        ]
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "Platforms/ShortName",
+                        "Platforms/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "platform_short_name_gcmd_check",
+                            "Platforms/ShortName"
+                        ],
+                        [
+                            "platform_long_name_gcmd_check",
+                            "Platforms/LongName"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "severity": "error"
     },
     "data_format_gcmd_check": {
         "rule_name": "Data Format GCMD Check",
@@ -2471,6 +2718,13 @@
                         "Projects/ShortName"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Projects/ShortName"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -2503,6 +2757,20 @@
         },
         "severity": "error",
         "check_id": "campaign_long_name_gcmd_check"
+    },
+    "campaign_long_name_presence_check": {
+        "rule_name": "Campaign Long Name Presence Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Project/Long_Name"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "presence_check"
     },
     "version_description_not_provided": {
         "rule_name": "Version Description Not Provided",
@@ -2785,13 +3053,6 @@
                     ]
                 }
             ],
-            "dif10": [
-                {
-                    "fields": [
-                        "DIF/Spatial_Coverage/Geometry/Bounding_Rectangle/Altitude_Unit"
-                    ]
-                }
-            ],
             "umm-c": [
                 {
                     "fields": [
@@ -2856,6 +3117,13 @@
                 }
             ],
             "umm-c": [
+                {
+                    "fields": [
+                        "Projects/ShortName"
+                    ]
+                }
+            ],
+            "umm-g": [
                 {
                     "fields": [
                         "Projects/ShortName"
@@ -2976,7 +3244,7 @@
             ],
             "umm-g": [
                 {
-                    "fields":[
+                    "fields": [
                         "RelatedUrls/Description"
                     ]
                 }
@@ -3056,7 +3324,7 @@
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Point",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Lines",
-                        "SpatialExtent/HorizontalSpatialDomain/Geometry/Gpolygons"
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/GPolygons"
                     ]
                 }
             ],
@@ -3177,7 +3445,7 @@
                 }
             ]
         },
-        "severity": "error",
+        "severity": "warning",
         "check_id": "user_services_check"
     },
     "doi_missing_reason_explanation": {
@@ -3297,6 +3565,13 @@
                         "RelatedUrls/Type"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "RelatedUrls/Type"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -3382,6 +3657,12 @@
                     "fields": [
                         "Collection/Temporal/RangeDateTime/EndingDateTime",
                         "Collection/ShortName"
+                    ],
+                    "dependencies": [
+                        [
+                            "datetime_format_check",
+                            "Collection/Temporal/RangeDateTime/EndingDateTime"
+                        ]                    
                     ]
                 }
             ],
@@ -3390,14 +3671,26 @@
                     "fields": [
                         "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time",
                         "DIF/Entry_ID/Short_Name"
+                    ],
+                    "dependencies": [
+                        [
+                            "datetime_format_check",
+                            "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time"
+                        ]                    
                     ]
                 }
             ],
             "umm-c": [
                 {
                     "fields": [
-                        "TemporalExtent/RangeDateTime/EndingDateTime",
+                        "TemporalExtents/RangeDateTimes/EndingDateTime",
                         "ShortName"
+                    ],
+                    "dependencies": [
+                        [
+                            "datetime_format_check",
+                            "TemporalExtents/RangeDateTimes/EndingDateTime"
+                        ]                    
                     ]
                 }
             ]
@@ -3413,6 +3706,12 @@
                     "fields": [
                         "Collection/Temporal/RangeDateTime/BeginningDateTime",
                         "Collection/ShortName"
+                    ],
+                    "dependencies": [
+                        [
+                            "datetime_format_check",
+                            "Collection/Temporal/RangeDateTime/BeginningDateTime"
+                        ]                    
                     ]
                 }
             ],
@@ -3421,14 +3720,26 @@
                     "fields": [
                         "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time",
                         "DIF/Entry_ID/Short_Name"
+                    ],
+                    "dependencies": [
+                        [
+                            "datetime_format_check",
+                            "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time"
+                        ]                    
                     ]
                 }
             ],
             "umm-c": [
                 {
                     "fields": [
-                        "TemporalExtent/RangeDateTime/BeginningDateTime",
+                        "TemporalExtents/RangeDateTimes/BeginningDateTime",
                         "ShortName"
+                    ],
+                    "dependencies": [
+                        [
+                            "datetime_format_check",
+                            "TemporalExtents/RangeDateTimes/BeginningDateTime"
+                        ]                    
                     ]
                 }
             ]
@@ -3845,7 +4156,7 @@
             ],
             "umm-g": [
                 {
-                    "fields":[
+                    "fields": [
                         "RelatedUrls"
                     ]
                 }
@@ -3920,6 +4231,11 @@
                 {
                     "fields": [
                         "DIF/Use_Constraints/License_URL/Mime_Type"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Related_URL/Mime_Type"
                     ]
                 }
             ]
@@ -4034,7 +4350,7 @@
         "check_id": "data_center_short_name_gcmd_check"
     },
     "characteristic_data_type": {
-        "rule_name": "Instrument Characteristics Data Type Presence Check",
+        "rule_name": "Characteristics Data Type Presence Check",
         "fields_to_apply": {
             "echo10": [
                 {
@@ -4071,8 +4387,8 @@
                 },
                 {
                     "fields": [
-                        "DIF/Platform/Characteristics/DataType",
-                        "DIF/Platform/Characteristics"
+                        "DIF/Platform/Instrument/Characteristics/DataType",
+                        "DIF/Platform/Instrument/Characteristics"
                     ]
                 }
             ],
@@ -4126,6 +4442,20 @@
             ]
         },
         "severity": "error",
+        "check_id": "presence_check"
+    },
+    "platform_long_name_presence_check": {
+        "rule_name": "Platform Longname Presence Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Platform/Long_Name"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
         "check_id": "presence_check"
     },
     "horizontal_data_resolution_unit_check": {
@@ -4212,6 +4542,18 @@
                 {
                     "fields": [
                         "DataCenters/ContactInformation/RelatedUrls"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Multimedia_Sample"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Related_URL"
                     ]
                 }
             ],
