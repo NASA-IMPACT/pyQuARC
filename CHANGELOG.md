@@ -1,6 +1,14 @@
 # CHANGELOG
 
+## v1.1.6
+
+- Prioritized field dependencies to check dependencies
+- Added collection `version` to collection datetime validation with granules for accuracy
+- Allowed DIF10 datetime fields to support ISO Date (not just ISO Datetime)
+- Generalized and renamed `datetime_compare` check to `date_compare`
+
 ## v1.1.5
+
 - Added reader for specific columns from GCMD csvs
 - Fixed bug to handle cases when there are multiple entries for same shortname but the first entry has missing long name
 
