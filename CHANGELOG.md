@@ -6,6 +6,8 @@
 - Added collection `version` to collection datetime validation with granules for accuracy
 - Allowed DIF10 datetime fields to support ISO Date (not just ISO Datetime)
 - Generalized and renamed `datetime_compare` check to `date_compare`
+- Updated auto GCMD keywords downloader to use the new GCMD url
+- Added sensor number check
 
 ## v1.1.5
 
