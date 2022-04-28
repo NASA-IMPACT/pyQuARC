@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## v2.0.0
+## v1.2.0
 
 - Added support for [UMM-JSON](https://earthdata.nasa.gov/esdis/esco/standards-and-references/eso-umm-information) collection level metadata
 - Added support for some UMM fields that look like the following:
