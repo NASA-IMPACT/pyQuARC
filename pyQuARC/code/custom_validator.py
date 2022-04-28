@@ -211,3 +211,15 @@ class CustomValidator(BaseValidator):
             "valid": validity,
             "value": value
         }
+
+    @staticmethod
+    @if_arg
+    def count_check(count, values, key):
+        sensors = values.get(key, [])
+        if not isinstance(sensors, list):
+            sensors = [sensors]
+        num_sensors = len(sensors)
+        return {
+            "valid": int(count) == num_sensors,
+            "value": (count, num_sensors)
+        } 

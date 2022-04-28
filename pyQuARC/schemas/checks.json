@@ -243,5 +243,10 @@
         "data_type": "custom",
         "check_function": "get_data_url_check",
         "available": true
+    },
+    "count_check": {
+        "data_type": "custom",
+        "check_function": "count_check",
+        "available": true
     }
 }

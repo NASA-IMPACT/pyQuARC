@@ -2439,11 +2439,14 @@
                 {
                     "fields": [
                         "DIF/Platform/Instrument/NumberOfSensors",
-                        "DIF/Platform/Instrument/Sensor/Short_Name"
+                        "DIF/Platform/Instrument"
                     ]
                 }
             ]
         },
+        "data": [
+            "Sensor"
+        ],
         "severity": "error",
         "check_id": "count_check"
     }
