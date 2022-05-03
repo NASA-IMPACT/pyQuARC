@@ -2738,6 +2738,13 @@
                     ]
                 }
             ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Campaigns/Campaign/ShortName"
+                    ]
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
