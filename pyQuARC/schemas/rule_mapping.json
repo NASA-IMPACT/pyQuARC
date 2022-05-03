@@ -2477,6 +2477,13 @@
                     ]
                 }
             ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/DataFormat"
+                    ]
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
