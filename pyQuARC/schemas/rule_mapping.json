@@ -2968,6 +2968,13 @@
                     ]
                 }
             ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Spatial/VerticalSpatialDomains/VerticalSpatialDomain/Type"
+                    ]
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
