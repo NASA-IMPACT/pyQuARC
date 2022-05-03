@@ -2375,6 +2375,13 @@
                     ]
                 }
             ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/ShortName"
+                    ]
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
