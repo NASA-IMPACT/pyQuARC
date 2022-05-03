@@ -2256,6 +2256,18 @@
                     ]
                 }
             ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/Instruments/Instrument/ShortName"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/ShortName"
+                    ]
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
