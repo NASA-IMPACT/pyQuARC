@@ -3347,6 +3347,13 @@
                         "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
                     ]
                 }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                }
             ]
         },
         "severity": "error",
