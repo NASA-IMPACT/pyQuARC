@@ -3277,6 +3277,13 @@
                         "Collection/OnlineResources/OnlineResource/URL"
                     ]
                 }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/URL"
+                    ]
+                }
             ]
         },
         "severity": "error",
