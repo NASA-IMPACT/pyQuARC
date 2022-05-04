@@ -3298,6 +3298,13 @@
                         "Collection/OnlineAccessURLs/OnlineAccessURL/URLDescription"
                     ]
                 }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URLDescription"
+                    ]
+                }
             ]
         },
         "severity": "info",
