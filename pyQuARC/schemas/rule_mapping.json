@@ -3320,6 +3320,13 @@
                     ]
                 }
             ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/Description"
+                    ]
+                }
+            ],
             "umm-g": [
                 {
                     "fields": [
