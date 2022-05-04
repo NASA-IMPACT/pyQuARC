@@ -3400,6 +3400,16 @@
                     ]
                 }
             ],
+            "echo-g": [
+                {
+                "fields": [
+                        "Granule/Spatial/HorizontalSpatialDomain/Geometry/Point",
+                        "Granule/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle",
+                        "Granule/Spatial/HorizontalSpatialDomain/Geometry/GPolygon",
+                        "Granule/Spatial/HorizontalSpatialDomain/Geometry/Line"
+                    ]
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
