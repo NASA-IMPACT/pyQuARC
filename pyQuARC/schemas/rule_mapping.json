@@ -87,6 +87,15 @@
                     ],
                     "relation": "lte"
                 }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Temporal/RangeDateTime/BeginningDateTime",
+                        "Granule/Temporal/RangeDateTime/EndingDateTime"
+                    ],
+                    "relation": "lte"
+                }
             ]
         },
         "severity": "error",
