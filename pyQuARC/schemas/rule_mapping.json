@@ -1052,6 +1052,13 @@
                         "ProviderDates/Date?Type=Delete"
                     ]
                 }   
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/DeleteTime"
+                    ]
+                }
             ]
         },
         "data": [
