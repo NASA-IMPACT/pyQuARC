@@ -3598,6 +3598,18 @@
                         "Collection/Visible"
                     ]
                 }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Orderable"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/Visible"
+                    ]
+                }
             ]
         },
         "severity": "error",
