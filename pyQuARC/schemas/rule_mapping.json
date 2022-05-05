@@ -711,6 +711,23 @@
                         "MetadataSpecification/URL"
                     ]
                 }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/AssociatedBrowseImageUrls/ProviderBrowseUrl/URL"
+                    ]
+                }
             ]
         },
         "severity": "error",
