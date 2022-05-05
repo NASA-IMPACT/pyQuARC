@@ -3709,6 +3709,14 @@
                     ]
                 }
             ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/Type",
+                        "Granule/OnlineResources/OnlineResource/URL"
+                    ]
+                }
+            ],
             "umm-c": [
                 {
                     "fields": [
