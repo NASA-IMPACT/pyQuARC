@@ -1528,6 +1528,26 @@
                         "Platforms/Instruments/ComposedOf/Characteristics"
                     ]
                 }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/Characteristics/Characteristic/Name",
+                        "Granule/Platforms/Platform/Characteristics/Characteristic"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Name",
+                        "Granule/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/Characteristics/Characteristic/Name",
+                        "Granule/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/Characteristics/Characteristic"
+                    ]
+                }
             ]
         },
         "severity": "error",
