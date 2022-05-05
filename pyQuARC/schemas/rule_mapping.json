@@ -4377,6 +4377,29 @@
     "mime_type_gcmd_check": {
         "rule_name": "Mime Type GCMD Check",
         "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/DataGranule/AdditionalFile/MimeType"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/AssociatedBrowseImageUrls/ProviderBrowseUrl/MimeType"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/MimeType"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/MimeType"
+                    ]
+                }
+
+            ],
             "dif10": [
                 {
                     "fields": [
