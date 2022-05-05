@@ -547,6 +547,41 @@
                     "fields": [
                         "Granule/InsertTime"
                     ]
+                },
+                {
+                    "fields": [
+                        "Granule/Temporal/RangeDateTime/BeginningDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/Temporal/RangeDateTime/EndingDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/Temporal/SingleDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/LastUpdate"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/DeleteTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/DataGranule/ProductionDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/OrbitCalculatedSpatialDomains/OrbitCalculatedSpatialDomain/EquatorCrossingDateTime"
+                    ]
                 }
             ]
         },
