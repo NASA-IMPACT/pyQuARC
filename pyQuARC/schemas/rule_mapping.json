@@ -139,6 +139,15 @@
                     ],
                     "relation": "neq"
                 }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Temporal/RangeDateTime/BeginningDateTime",
+                        "Granule/Temporal/RangeDateTime/EndingDateTime"
+                    ],
+                    "relation": "neq"
+                }
             ]
         },
         "severity": "warning",
