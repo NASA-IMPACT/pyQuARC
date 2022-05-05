@@ -1417,21 +1417,6 @@
                     "fields": [
                         "Granule/AdditionalAttributes/AdditionalAttribute/DataType"
                     ]
-                },
-                {
-                    "fields": [
-                        "Granule/Platforms/Platform/Characteristics/Characteristic/DataType"
-                    ]
-                },
-                {
-                    "fields": [
-                        "Granule/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/DataType"
-                    ]
-                },
-                {
-                    "fields": [
-                        "Granule/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/Characteristics/Characteristic/DataType"
-                    ]
                 }
             ]
         },
