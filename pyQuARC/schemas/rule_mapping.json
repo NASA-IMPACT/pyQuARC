@@ -2968,13 +2968,6 @@
                     ]
                 }
             ],
-            "echo-g": [
-                {
-                    "fields": [
-                        "Granule/Spatial/VerticalSpatialDomains/VerticalSpatialDomain/Type"
-                    ]
-                }
-            ],
             "dif10": [
                 {
                     "fields": [
@@ -3002,9 +2995,16 @@
         "severity": "error",
         "check_id": "controlled_keywords_check"
     },
-    "vertical_spatial_domain_type_check_ummg": {
-        "rule_name": "Vertical Spatial Domain Type Check UMM-G",
+    "vertical_spatial_domain_type_check_granule": {
+        "rule_name": "Vertical Spatial Domain Type Check Granule",
         "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Spatial/VerticalSpatialDomains/VerticalSpatialDomain/Type"
+                    ]
+                }
+            ],
             "umm-g": [
                 {
                     "fields": [

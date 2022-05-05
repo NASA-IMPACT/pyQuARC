@@ -495,7 +495,7 @@
         },
         "remediation": "Please provide a Vertical Spatial Domain Type from the following options to align with the UMM: ['Atmosphere Layer', 'Maximum Altitude', 'Maximum Depth', 'Minimum Altitude', 'Minimum Depth']"
     },
-    "vertical_spatial_domain_type_check_ummg": {
+    "vertical_spatial_domain_type_check_granule": {
         "failure": "The Vertical Spatial Domain Type `{}` does not align with the values used in the UMM-G schema.",
         "help": {
             "message": "",
