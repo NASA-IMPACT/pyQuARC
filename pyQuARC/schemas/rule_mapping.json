@@ -4238,6 +4238,20 @@
                     ]
                 }
             ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URLDescription",
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/Description",
+                        "Granule/OnlineResources/OnlineResource/URL"
+                    ]
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
