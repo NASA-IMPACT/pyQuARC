@@ -4022,6 +4022,13 @@
                     ]
                 }
             ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Temporal/SingleDateTime",
+                        "Granule/Temporal/RangeDateTime"                    ]
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
