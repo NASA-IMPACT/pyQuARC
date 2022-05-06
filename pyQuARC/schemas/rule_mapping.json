@@ -4222,6 +4222,18 @@
                         "OrbitCalculatedSpatialDomains/EquatorCrossingDateTime"
                     ]
                 }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/InsertTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/LastUpdate"
+                    ]
+                }
             ]
         },
         "data": [
