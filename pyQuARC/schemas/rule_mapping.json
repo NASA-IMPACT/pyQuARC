@@ -2037,6 +2037,14 @@
                         "RelatedUrls/Type"
                     ]
                 }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/MimeType",
+                        "Granule/OnlineResources/OnlineResource/Type"
+                    ] 
+                }
             ]
         },
         "data": [
