@@ -926,5 +926,13 @@
             "url": ""
         },
         "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+    },
+    "granule_single_date_time_check": {
+        "failure": "The Beginning Date Time and the Ending Date Time are the same.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Recommend providing a Single Date Time instead of a Range Date Time."        
     }
 }

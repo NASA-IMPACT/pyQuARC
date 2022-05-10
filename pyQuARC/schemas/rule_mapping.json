@@ -547,6 +547,16 @@
                     "fields": [
                         "Granule/InsertTime"
                     ]
+                },
+                {
+                    "fields": [
+                        "Granule/Temporal/RangeDateTime/BeginningDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/Temporal/RangeDateTime/EndingDateTime"
+                    ]
                 }
             ]
         },
@@ -4756,6 +4766,22 @@
             ]
         },
         "severity": "info",
+        "check_id": "date_compare"
+    },
+    "granule_single_date_time_check": {
+        "rule_name": "Granule Single Date Time Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Temporal/RangeDateTime/BeginningDateTime",
+                        "Granule/Temporal/RangeDateTime/EndingDateTime"
+                    ],
+                    "relation":"neq"
+                }
+            ]
+        },
+        "severity": "warning",
         "check_id": "date_compare"
     }
 }
