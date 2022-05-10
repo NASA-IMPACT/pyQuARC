@@ -8,11 +8,11 @@ from tqdm import tqdm
 
 if __name__ == '__main__':
     from code.checker import Checker
-    from code.constants import COLOR, ECHO10
+    from code.constants import COLOR, ECHO10, CMR_URL
     from code.downloader import Downloader
 else:
     from .code.checker import Checker
-    from .code.constants import COLOR, ECHO10
+    from .code.constants import COLOR, ECHO10, CMR_URL
     from .code.downloader import Downloader
 
 
@@ -37,7 +37,8 @@ class ARC:
         metadata_format=ECHO10,
         checks_override=None,
         rules_override=None,
-        messages_override=None
+        messages_override=None,
+        cmr_host=CMR_URL,
     ):
         """
         Args:
@@ -68,6 +69,7 @@ class ARC:
         self.checks_override = checks_override
         self.rules_override = rules_override
         self.messages_override = messages_override
+        self.cmr_host = cmr_host
 
     def _cmr_query(self):
         """
@@ -140,7 +142,7 @@ class ARC:
 
         if self.concept_ids:
             for concept_id in tqdm(self.concept_ids):
-                downloader = Downloader(concept_id, self.metadata_format)
+                downloader = Downloader(concept_id, self.metadata_format, self.cmr_host)
                 content = downloader.download().encode()
 
                 validation_errors = checker.run(content)
@@ -212,6 +214,7 @@ if __name__ == "__main__":
         --concept_ids
         --file
         --fake
+        --cmr_url
     """
     parser = argparse.ArgumentParser()
     download_group = parser.add_mutually_exclusive_group()
@@ -245,6 +248,13 @@ if __name__ == "__main__":
         type=str,
         help="The metadata format (currently supported: 'echo10' and 'dif10')",
     )
+    parser.add_argument(
+        "--cmr_host",
+        action="store",
+        nargs="?",
+        type=str,
+        help="The cmr host to use. Default is: https://cmr.earthdata.nasa.gov",
+    )
 
     args = parser.parse_args()
     parser.usage = parser.format_help().replace("optional ", "")
@@ -261,6 +271,7 @@ if __name__ == "__main__":
         fake=args.fake,
         file_path=args.file,
         metadata_format=args.format or ECHO10,
+        cmr_host=args.cmr_host or CMR_URL,
     )
     results = arc.validate()
     arc.display_results()
