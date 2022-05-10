@@ -11,6 +11,15 @@
                     "relation": "gte"
                 }
             ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/LastUpdate",
+                        "Granule/InsertTime"
+                    ],
+                    "relation": "gte"
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
@@ -79,9 +88,9 @@
                     "relation": "lte"
                 }
             ],
-            "umm-g":  [
+            "umm-g": [
                 {
-                    "fields":  [
+                    "fields": [
                         "TemporalExtent/RangeDateTime/BeginningDateTime",
                         "TemporalExtent/RangeDateTime/EndingDateTime"
                     ],
@@ -122,9 +131,9 @@
                     "relation": "neq"
                 }
             ],
-            "umm-g":  [
+            "umm-g": [
                 {
-                    "fields":  [
+                    "fields": [
                         "TemporalExtent/RangeDateTime/BeginningDateTime",
                         "TemporalExtent/RangeDateTime/EndingDateTime"
                     ],
@@ -547,6 +556,11 @@
                     "fields": [
                         "Granule/InsertTime"
                     ]
+                },
+                {
+                    "fields": [
+                        "Granule/LastUpdate"
+                    ]
                 }
             ]
         },
@@ -647,9 +661,9 @@
                     ]
                 }
             ],
-            "umm-g":  [
+            "umm-g": [
                 {
-                    "fields":  [
+                    "fields": [
                         "RelatedUrls/URL"
                     ]
                 },
@@ -976,12 +990,12 @@
                     ]
                 }
             ],
-            "umm-g":  [
+            "umm-g": [
                 {
-                    "fields":  [
+                    "fields": [
                         "ProviderDates/Date?Type=Delete"
                     ]
-                }   
+                }
             ]
         },
         "data": [
@@ -1416,15 +1430,15 @@
                     ]
                 }
             ],
-            "umm-g":  [
+            "umm-g": [
                 {
-                    "fields":  [
+                    "fields": [
                         "Platforms/Instruments/Characteristics/Name",
                         "Platforms/Instruments/Characteristics"
                     ]
                 },
                 {
-                    "fields":  [
+                    "fields": [
                         "Platforms/Instruments/ComposedOf/Characteristics/Name",
                         "Platforms/Instruments/ComposedOf/Characteristics"
                     ]
@@ -2128,7 +2142,6 @@
                     ]
                 }
             ]
-
         },
         "severity": "error",
         "check_id": "organization_short_long_name_consistency_check"
@@ -3603,9 +3616,9 @@
                     ]
                 }
             ],
-            "umm-g":[
+            "umm-g": [
                 {
-                    "fields":[
+                    "fields": [
                         "RelatedUrls/Type",
                         "RelatedUrls/URL"
                     ]
@@ -3652,7 +3665,9 @@
                 }
             ]
         },
-        "data": ["Name"],
+        "data": [
+            "Name"
+        ],
         "severity": "warning",
         "check_id": "uniqueness_check"
     },
@@ -3669,7 +3684,7 @@
                         [
                             "datetime_format_check",
                             "Collection/Temporal/RangeDateTime/EndingDateTime"
-                        ]                    
+                        ]
                     ]
                 }
             ],
@@ -3683,7 +3698,7 @@
                         [
                             "datetime_format_check",
                             "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time"
-                        ]                    
+                        ]
                     ]
                 }
             ],
@@ -3697,7 +3712,7 @@
                         [
                             "datetime_format_check",
                             "TemporalExtents/RangeDateTimes/EndingDateTime"
-                        ]                    
+                        ]
                     ]
                 }
             ]
@@ -3718,7 +3733,7 @@
                         [
                             "datetime_format_check",
                             "Collection/Temporal/RangeDateTime/BeginningDateTime"
-                        ]                    
+                        ]
                     ]
                 }
             ],
@@ -3732,7 +3747,7 @@
                         [
                             "datetime_format_check",
                             "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time"
-                        ]                    
+                        ]
                     ]
                 }
             ],
@@ -3746,7 +3761,7 @@
                         [
                             "datetime_format_check",
                             "TemporalExtents/RangeDateTimes/BeginningDateTime"
-                        ]                    
+                        ]
                     ]
                 }
             ]
@@ -4150,7 +4165,10 @@
                         "DIF/Related_URL"
                     ],
                     "data": [
-                        ["URL_Content_Type", "Type"]
+                        [
+                            "URL_Content_Type",
+                            "Type"
+                        ]
                     ]
                 }
             ],
@@ -4170,7 +4188,9 @@
             ]
         },
         "data": [
-            ["Type"]
+            [
+                "Type"
+            ]
         ],
         "severity": "error",
         "check_id": "get_data_url_check"
@@ -4564,15 +4584,17 @@
                     ]
                 }
             ],
-            "umm-g":[
+            "umm-g": [
                 {
-                    "fields":[
+                    "fields": [
                         "RelatedUrls"
                     ]
                 }
             ]
         },
-        "data": ["Description"],
+        "data": [
+            "Description"
+        ],
         "severity": "info",
         "check_id": "uniqueness_check"
     },
