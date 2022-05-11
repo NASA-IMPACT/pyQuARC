@@ -4752,7 +4752,37 @@
         "severity": "info",
         "check_id": "uniqueness_check"
     },
-    "metadata_update_time_logic_check": {
+    "online_resource_description_uniqueness_check": {
+        "rule_name": "Online Resource Description Uniqueness Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource"
+                    ]
+                }
+            ]
+        },
+        "data": ["Description"],
+        "severity": "info",
+        "check_id": "uniqueness_check_echog"
+    },
+    "online_access_description_uniqueness_check": {
+        "rule_name": "Online Access Description Uniqueness Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineAccessURLs/OnlineAccessURL"
+                    ]
+                }
+            ]
+        },
+        "data": ["URLDescription"],
+        "severity": "info",
+        "check_id": "uniqueness_check_echog"
+    },
+        "metadata_update_time_logic_check": {
         "rule_name": "Metadata Update Time Logic Check",
         "fields_to_apply": {
             "umm-c": [

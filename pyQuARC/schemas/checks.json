@@ -224,6 +224,11 @@
         "check_function": "uniqueness_check",
         "available": true
     },
+    "uniqueness_check_echog":{
+        "data_type": "custom",
+        "check_function": "uniqueness_check_echog",
+        "available": true 
+    },
     "validate_ending_datetime_against_granules": {
         "data_type": "datetime",
         "check_function": "validate_ending_datetime_against_granules",

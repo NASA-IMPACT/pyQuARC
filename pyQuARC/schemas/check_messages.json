@@ -911,6 +911,22 @@
         },
         "remediation": "Please provide a unique name for each URL description."
     },
+    "online_resource_description_uniqueness_check": {
+        "failure": "Duplicate URL description name/s `{}`.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a unique name for each URL description."
+    },
+    "online_access_description_uniqueness_check": {
+        "failure": "Duplicate URL description name/s `{}`.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a unique name for each URL description."
+    },
     "metadata_update_time_logic_check": {
         "failure": "Note: the UPDATE Metadata Date comes before the provided CREATE Metadata Date.",
         "help": {
