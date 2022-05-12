@@ -311,6 +311,14 @@
         },
         "remediation": "Please supply the corresponding long name for the short name."
     },
+    "validate_granule_platform_against_collection": {
+        "failure": "The platform short name listed in the granule metadata, `{}`, does not match the platform short name listed in the collection metadata.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Recommend providing the correct platform short name in the granule metadata."
+    },
     "data_format_gcmd_check": {
         "failure": "The provided data format `{}` does not comply with the GCMD.",
         "help": {

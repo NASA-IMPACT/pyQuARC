@@ -2515,6 +2515,13 @@
                         "Platforms/ShortName"
                     ]
                 }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/ShortName"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -4615,6 +4622,21 @@
         },
         "severity": "warning",
         "check_id": "presence_check"
+    },
+    "validate_granule_platform_against_collection": {
+        "rule_name": "Granule Platform Short Name Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/ShortName",
+                        "Granule/Collection/ShortName"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "validate_granule_platform_against_collection"
     },
     "horizontal_data_resolution_unit_check": {
         "rule_name": "Horizontal Data Resolution Unit Controlled Vocabulary Check",

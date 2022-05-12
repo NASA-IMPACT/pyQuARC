@@ -114,6 +114,11 @@
         "check_function": "platform_short_long_name_consistency_check",
         "available": true
     },
+    "validate_granule_platform_against_collection": {
+        "data_type": "string",
+        "check_function": "validate_granule_platform_against_collection",
+        "available": true
+    },
     "spatial_keyword_gcmd_check": {
         "data_type": "string",
         "check_function": "spatial_keyword_gcmd_check",

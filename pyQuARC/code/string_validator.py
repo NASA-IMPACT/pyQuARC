@@ -1,6 +1,9 @@
+import requests
+
 from .base_validator import BaseValidator
 from .gcmd_validator import GcmdValidator
 from .utils import if_arg
+from .constants import CMR_URL
 
 
 class StringValidator(BaseValidator):
@@ -197,6 +200,30 @@ class StringValidator(BaseValidator):
                 received_keyword
             ),
             "value": (args[0], args[1]),
+        }
+
+    @staticmethod
+    @if_arg
+    def validate_granule_platform_against_collection(platform_shortname, collection_shortname):
+        """
+        Validates the platform shortname provided in the granule metadata
+        against the platform shortname provided at the collection level.
+
+        Args:
+            platform_shortname (str): shortname of the platform
+            collection_shortname (str): Shortname of the parent collection
+
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
+        collection  = requests.get(f'{CMR_URL}/search/collections.json?short_name={collection_shortname}&sort_key[]=platform').json()
+        
+        if len(collection['feed']['entry']) > 0:
+            coll_data = collection['feed']['entry'][0]
+            coll_platform_list = coll_data['platforms']
+        return {
+            "valid": platform_shortname in coll_platform_list,
+            "value": platform_shortname
         }
 
     @staticmethod
