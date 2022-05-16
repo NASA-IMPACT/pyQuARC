@@ -172,6 +172,8 @@ class StringValidator(BaseValidator):
         Args:
             instrument_shortname (str): shortname of the instrument
             collection_shortname (str): Shortname of the parent collection
+            version (str):              version of the collection
+            dataset_id (str):           Entry title of the parent collection
 
         Returns:
             (dict) An object with the validity of the check and the instance
@@ -195,6 +197,43 @@ class StringValidator(BaseValidator):
         return {
             "valid": False,
             "value": instrument_shortname
+        }
+
+    @staticmethod
+    @if_arg
+    def validate_granule_sensor_against_collection(sensor_shortname, collection_shortname=None, version=None, dataset_id=None):
+        """
+        Validates the sensor shortname provided in the granule metadata
+        against the sensor shortname provided at the collection level.
+
+        Args:
+            sensor_shortname (str): shortname of the sensor
+            collection_shortname (str): Shortname of the parent collection
+            version (str):              version of the collection
+            dataset_id (str):           Entry title of the parent collection
+
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
+        if sensor_shortname == None:
+            return {
+                "valid": False,
+                "value": None
+            }
+        
+        if collection_shortname or version == None:
+            collection  = requests.get(f'{CMR_URL}/search/collections.json?DatasetId={dataset_id}&sensor={sensor_shortname}').json()
+        else: 
+            collection  = requests.get(f'{CMR_URL}/search/collections.json?short_name={collection_shortname}&version={version}&sensor={sensor_shortname}').json()
+        
+        if collection['feed']['entry']:
+            return {
+                "valid": True,
+                "value": sensor_shortname
+            }
+        return {
+            "valid": False,
+            "value": sensor_shortname
         }
 
     @staticmethod
@@ -248,6 +287,8 @@ class StringValidator(BaseValidator):
         Args:
             platform_shortname (str): shortname of the platform
             collection_shortname (str): Shortname of the parent collection
+            version (str):              version of the collection
+            dataset_id (str):           Entry title of the parent collection
 
         Returns:
             (dict) An object with the validity of the check and the instance

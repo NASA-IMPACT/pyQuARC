@@ -99,6 +99,11 @@
         "check_function": "validate_granule_instrument_against_collection",
         "available": true
     },
+    "validate_granule_sensor_against_collection": {
+        "data_type": "string",
+        "check_function": "validate_granule_sensor_against_collection",
+        "available": true
+    },
     "platform_short_name_gcmd_check": {
         "data_type": "string",
         "check_function": "platform_short_name_gcmd_check",

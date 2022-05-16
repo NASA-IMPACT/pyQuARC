@@ -4657,6 +4657,23 @@
         "severity": "error",
         "check_id": "validate_granule_platform_against_collection"
     },
+    "validate_granule_sensor_against_collection": {
+        "rule_name": "Granule Sensor Short Name Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/ShortName",
+                        "Granule/Collection/ShortName",
+                        "Granule/Collection/VersionId",
+                        "Granule/Collection/DataSetId"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "validate_granule_sensor_against_collection"
+    },
     "horizontal_data_resolution_unit_check": {
         "rule_name": "Horizontal Data Resolution Unit Controlled Vocabulary Check",
         "fields_to_apply": {

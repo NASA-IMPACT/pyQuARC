@@ -303,6 +303,14 @@
         },
         "remediation": "Recommend providing the correct instrument short name in the granule metadata."
     },
+    "validate_granule_sensor_against_collection": {
+        "failure": "The sensor short name listed in the granule metadata is missing or does not match the sensor short name listed in the collection metadata.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Recommend providing the correct sensor short name in the granule metadata."
+    },
     "platform_short_name_gcmd_check": {
         "failure": "The provided platform short name `{}` does not comply with the GCMD.",
         "help": {
