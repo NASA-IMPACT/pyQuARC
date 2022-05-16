@@ -176,6 +176,12 @@ class StringValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
+        if instrument_shortname == None:
+            return {
+                "valid": False,
+                "value": None
+            }
+
         if collection_shortname or version == None:
             collections = requests.get(f'{CMR_URL}/search/collections.json?DatasetId={dataset_id}&instrument={instrument_shortname}').json()
         else:
@@ -246,6 +252,12 @@ class StringValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
+        if platform_shortname == None:
+            return {
+                "valid": False,
+                "value": None
+            }
+        
         if collection_shortname or version == None:
             collection  = requests.get(f'{CMR_URL}/search/collections.json?DatasetId={dataset_id}&platform={platform_shortname}').json()
         else: 
