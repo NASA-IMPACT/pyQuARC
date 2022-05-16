@@ -295,6 +295,14 @@
         },
         "remediation": "Please add the associated instrument long name."
     },
+    "validate_granule_instrument_against_collection": {
+        "failure": "The instrument short name listed in the granule metadata, `{}`, does not match the instrument short name listed in the collection metadata.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Recommend providing the correct instrument short name in the granule metadata."
+    },
     "platform_short_name_gcmd_check": {
         "failure": "The provided platform short name `{}` does not comply with the GCMD.",
         "help": {

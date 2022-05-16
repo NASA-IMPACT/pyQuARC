@@ -1,3 +1,4 @@
+from platform import platform
 import requests
 
 from .base_validator import BaseValidator
@@ -163,6 +164,35 @@ class StringValidator(BaseValidator):
 
     @staticmethod
     @if_arg
+    def validate_granule_instrument_against_collection(instrument_shortname, collection_shortname=None, version=None, dataset_id=None):
+        """
+        Validates the instrument shortname provided in the granule metadata
+        against the instrument shortname provided at the collection level.
+
+        Args:
+            instrument_shortname (str): shortname of the instrument
+            collection_shortname (str): Shortname of the parent collection
+
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
+        if collection_shortname or version == None:
+            collections = requests.get(f'{CMR_URL}/search/collections.json?DatasetId={dataset_id}&instrument={instrument_shortname}').json()
+        else:
+            collections  = requests.get(f'{CMR_URL}/search/collections.json?short_name={collection_shortname}&version={version}&instrument={instrument_shortname}').json()
+        
+        if collections['feed']['entry']:
+            return {
+                "valid": True,
+                "value": instrument_shortname
+            }
+        return {
+            "valid": False,
+            "value": instrument_shortname
+        }
+
+    @staticmethod
+    @if_arg
     def platform_short_name_gcmd_check(value):
         return {
             "valid": StringValidator.gcmdValidator.validate_platform_short_name(
@@ -204,7 +234,7 @@ class StringValidator(BaseValidator):
 
     @staticmethod
     @if_arg
-    def validate_granule_platform_against_collection(platform_shortname, collection_shortname):
+    def validate_granule_platform_against_collection(platform_shortname, collection_shortname=None, version=None, dataset_id=None):
         """
         Validates the platform shortname provided in the granule metadata
         against the platform shortname provided at the collection level.
@@ -216,13 +246,18 @@ class StringValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        collection  = requests.get(f'{CMR_URL}/search/collections.json?short_name={collection_shortname}&sort_key[]=platform').json()
+        if collection_shortname or version == None:
+            collection  = requests.get(f'{CMR_URL}/search/collections.json?DatasetId={dataset_id}&platform={platform_shortname}').json()
+        else: 
+            collection  = requests.get(f'{CMR_URL}/search/collections.json?short_name={collection_shortname}&version={version}&platform={platform_shortname}').json()
         
-        if len(collection['feed']['entry']) > 0:
-            coll_data = collection['feed']['entry'][0]
-            coll_platform_list = coll_data['platforms']
+        if collection['feed']['entry']:
+            return {
+                "valid": True,
+                "value": platform_shortname
+            }
         return {
-            "valid": platform_shortname in coll_platform_list,
+            "valid": False,
             "value": platform_shortname
         }
 
