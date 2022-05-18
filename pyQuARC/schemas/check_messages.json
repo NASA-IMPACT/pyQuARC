@@ -903,6 +903,14 @@
         },
         "remediation": "Recommend providing the platform long name."
     },
+    "granule_platform_presence_check": {
+        "failure": "The platform short name is missing.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Recommend providing the platform short name."
+    },
     "horizontal_data_resolution_unit_check": {
         "failure": "The Horizontal Data Resolution Unit provided `{}` is invalid.",
         "help": {

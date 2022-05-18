@@ -4640,6 +4640,20 @@
         "severity": "warning",
         "check_id": "presence_check"
     },
+    "granule_platform_presence_check": {
+        "rule name": "Granule Platform Presence Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/ShortName"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "presence_check"
+    },
     "validate_granule_platform_against_collection": {
         "rule_name": "Granule Platform Short Name Check",
         "fields_to_apply": {
