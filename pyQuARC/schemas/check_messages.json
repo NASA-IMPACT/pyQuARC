@@ -295,6 +295,14 @@
         },
         "remediation": "Please add the associated instrument long name."
     },
+    "granule_instrument_presence_check": {
+        "failure": "The instrument short name is missing.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Recommend providing the instrument short name."
+    },
     "validate_granule_instrument_against_collection": {
         "failure": "The instrument short name listed in the granule metadata does not match the instrument short name listed in the collection metadata.",
         "help": {

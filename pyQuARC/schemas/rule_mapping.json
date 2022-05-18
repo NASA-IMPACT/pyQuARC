@@ -2485,6 +2485,20 @@
         "severity": "warning",
         "check_id": "presence_check"
     },
+    "granule_instrument_presence_check": {
+        "rule_name": "Granule Instrument Presence Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/Instruments/Instrument/ShortName"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "presence_check"
+    },
     "validate_granule_instrument_against_collection": {
         "rule_name": "Granule Instrument Short Name Check",
         "fields_to_apply": {
