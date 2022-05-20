@@ -79,9 +79,9 @@
                     "relation": "lte"
                 }
             ],
-            "umm-g":  [
+            "umm-g": [
                 {
-                    "fields":  [
+                    "fields": [
                         "TemporalExtent/RangeDateTime/BeginningDateTime",
                         "TemporalExtent/RangeDateTime/EndingDateTime"
                     ],
@@ -122,9 +122,9 @@
                     "relation": "neq"
                 }
             ],
-            "umm-g":  [
+            "umm-g": [
                 {
-                    "fields":  [
+                    "fields": [
                         "TemporalExtent/RangeDateTime/BeginningDateTime",
                         "TemporalExtent/RangeDateTime/EndingDateTime"
                     ],
@@ -647,9 +647,9 @@
                     ]
                 }
             ],
-            "umm-g":  [
+            "umm-g": [
                 {
-                    "fields":  [
+                    "fields": [
                         "RelatedUrls/URL"
                     ]
                 },
@@ -976,12 +976,12 @@
                     ]
                 }
             ],
-            "umm-g":  [
+            "umm-g": [
                 {
-                    "fields":  [
+                    "fields": [
                         "ProviderDates/Date?Type=Delete"
                     ]
-                }   
+                }
             ]
         },
         "data": [
@@ -1416,15 +1416,15 @@
                     ]
                 }
             ],
-            "umm-g":  [
+            "umm-g": [
                 {
-                    "fields":  [
+                    "fields": [
                         "Platforms/Instruments/Characteristics/Name",
                         "Platforms/Instruments/Characteristics"
                     ]
                 },
                 {
-                    "fields":  [
+                    "fields": [
                         "Platforms/Instruments/ComposedOf/Characteristics/Name",
                         "Platforms/Instruments/ComposedOf/Characteristics"
                     ]
@@ -2128,7 +2128,6 @@
                     ]
                 }
             ]
-
         },
         "severity": "error",
         "check_id": "organization_short_long_name_consistency_check"
@@ -3603,9 +3602,9 @@
                     ]
                 }
             ],
-            "umm-g":[
+            "umm-g": [
                 {
-                    "fields":[
+                    "fields": [
                         "RelatedUrls/Type",
                         "RelatedUrls/URL"
                     ]
@@ -3652,7 +3651,9 @@
                 }
             ]
         },
-        "data": ["Name"],
+        "data": [
+            "Name"
+        ],
         "severity": "warning",
         "check_id": "uniqueness_check"
     },
@@ -3669,7 +3670,7 @@
                         [
                             "datetime_format_check",
                             "Collection/Temporal/RangeDateTime/EndingDateTime"
-                        ]                    
+                        ]
                     ]
                 }
             ],
@@ -3683,7 +3684,7 @@
                         [
                             "datetime_format_check",
                             "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time"
-                        ]                    
+                        ]
                     ]
                 }
             ],
@@ -3697,7 +3698,7 @@
                         [
                             "datetime_format_check",
                             "TemporalExtents/RangeDateTimes/EndingDateTime"
-                        ]                    
+                        ]
                     ]
                 }
             ]
@@ -3718,7 +3719,7 @@
                         [
                             "datetime_format_check",
                             "Collection/Temporal/RangeDateTime/BeginningDateTime"
-                        ]                    
+                        ]
                     ]
                 }
             ],
@@ -3732,7 +3733,7 @@
                         [
                             "datetime_format_check",
                             "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time"
-                        ]                    
+                        ]
                     ]
                 }
             ],
@@ -3746,7 +3747,7 @@
                         [
                             "datetime_format_check",
                             "TemporalExtents/RangeDateTimes/BeginningDateTime"
-                        ]                    
+                        ]
                     ]
                 }
             ]
@@ -4150,7 +4151,10 @@
                         "DIF/Related_URL"
                     ],
                     "data": [
-                        ["URL_Content_Type", "Type"]
+                        [
+                            "URL_Content_Type",
+                            "Type"
+                        ]
                     ]
                 }
             ],
@@ -4170,7 +4174,9 @@
             ]
         },
         "data": [
-            ["Type"]
+            [
+                "Type"
+            ]
         ],
         "severity": "error",
         "check_id": "get_data_url_check"
@@ -4564,15 +4570,17 @@
                     ]
                 }
             ],
-            "umm-g":[
+            "umm-g": [
                 {
-                    "fields":[
+                    "fields": [
                         "RelatedUrls"
                     ]
                 }
             ]
         },
-        "data": ["Description"],
+        "data": [
+            "Description"
+        ],
         "severity": "info",
         "check_id": "uniqueness_check"
     },
@@ -4591,5 +4599,53 @@
         },
         "severity": "info",
         "check_id": "date_compare"
+    },
+    "validate_granule_data_format_against_collection_check": {
+        "rule_name": "Validate Granule Data Format Against Collection Check",
+        "fields_to_apply": {
+            "umm-g": [
+                {
+                    "fields": [
+                        "DataGranule/ArchiveAndDistributionInformation/Format",
+                        "CollectionReference/ShortName",
+                        "CollectionReference/Version",
+                        "CollectionReference/EntryTitle"
+                    ]
+                }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/DataFormat",
+                        "Granule/ShortName",
+                        "Granule/Version",
+                        "Granule/Collection/DataSetId"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "validate_granule_data_format_against_collection_check"
+    },
+    "granule_data_format_presence_check": {
+        "rule_name": "Granule Data Format Presence Check",
+        "fields_to_apply": {
+            "umm-g": [
+                {
+                    "fields": [
+                        "DataGranule/ArchiveAndDistributionInformation/Format"
+                    ]
+                }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/DataFormat"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "granule_data_format_presence_check"
     }
 }

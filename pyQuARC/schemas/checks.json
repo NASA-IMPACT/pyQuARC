@@ -234,9 +234,19 @@
         "check_function": "validate_beginning_datetime_against_granules",
         "available": true
     },
+    "validate_granule_data_format_against_collection_check": {
+        "data_type": "string",
+        "check_function": "validate_granule_data_format_against_collection",
+        "available": true
+    },
     "get_data_url_check": {
         "data_type": "custom",
         "check_function": "get_data_url_check",
+        "available": true
+    },
+    "granule_data_format_presence_check": {
+        "data_type": "custom",
+        "check_function": "presence_check",
         "available": true
     }
 }
