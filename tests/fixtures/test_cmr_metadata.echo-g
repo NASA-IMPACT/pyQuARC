@@ -35,9 +35,22 @@
             <EquatorCrossingDateTime>2022-02-10T21:09:27.619Z</EquatorCrossingDateTime>
         </OrbitCalculatedSpatialDomain>
     </OrbitCalculatedSpatialDomains>
+    <Platforms>
+        <Platform>
+            <Instruments>
+                <Instrument>
+                    <Sensors>
+                        <Sensor>
+                            <ShortName>SWIR</ShortName>
+                        </Sensor>
+                    </Sensors>
+                </Instrument>
+            </Instruments>
+        </Platform>
+    </Platforms>
     <Campaigns>
         <Campaign>
-            <ShortName>Terra</ShortName>
+            <ShortName>Tarra</ShortName>
         </Campaign>
     </Campaigns>
     <OnlineAccessURLs>
