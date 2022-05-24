@@ -14,8 +14,7 @@
     "Type": "Delete"
   }],
   "CollectionReference": {
-      "ShortName": "CollectionShortName",
-      "Version": "1.6"
+      "EntryTitle": "ASTER Digital Elevation Model V003"
   },
   "AccessConstraints": {
     "Description" : "Public Access",
@@ -193,6 +192,9 @@
       "ScienceQualityFlagExplanation": "Science Quality Flag Explanation"
     }
   }],
+  "Projects": [{
+    "ShortName": "Terra"
+  }],
   "Platforms": [{
     "ShortName": "Aqua",
     "Instruments": [{
@@ -205,7 +207,7 @@
         "Value": "22F"
       }],
       "ComposedOf": [{
-        "ShortName": "AMSR-E_ChildInstrument",
+        "ShortName": "SWIR",
         "Characteristics": [{
           "Name": "ChildInstrumentCharacteristicName3",
           "Value": "250"
@@ -214,11 +216,6 @@
       }],
       "OperationalModes": ["Mode1", "Mode2"]
     }]
-  }],
-  "Projects": [{
-    "ShortName": "Project1"
-  }, {
-    "ShortName": "Project2"
   }],
   "AdditionalAttributes": [{
     "Name": "AdditionalAttribute1 Name1",

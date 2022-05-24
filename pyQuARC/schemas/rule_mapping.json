@@ -4813,5 +4813,32 @@
         },
         "severity": "warning",
         "check_id": "date_compare"
+    },
+    "granule_project_short_name_check": {
+        "rule_name": "Granule Project Short Name Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Campaigns/Campaign/ShortName",
+                        "Granule/Collection/DataSetId",
+                        "Granule/Collection/ShortName",
+                        "Granule/Collection/VersionId"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Projects/ShortName",
+                        "CollectionReference/EntryTitle",
+                        "CollectionReference/ShortName",
+                        "CollectionReference/Version"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "granule_project_short_name_check"    
     }
 }
