@@ -356,7 +356,6 @@ class StringValidator(BaseValidator):
 
     @staticmethod
     def set_cmr_prms(collection_entry_title, collection_shortname, collection_version):
-        #name = ''
         if collection_entry_title == None:
             cmr_prms = f'collections.umm_json?shortName={collection_shortname}&version={collection_version}'
         else:
@@ -403,11 +402,8 @@ class StringValidator(BaseValidator):
     @staticmethod
     @if_arg
     def granule_sensor_short_name_check(sensor_shortname, collection_entry_title=None, collection_shortname=None, collection_version=None):
-        print('test')
         cmr_prms = StringValidator.set_cmr_prms(collection_entry_title, collection_shortname, collection_version)
-        print(cmr_prms)
         validity = StringValidator.granule_sensor_validate_against_collection(cmr_prms, sensor_shortname)
-        print(validity)
         return {
             "valid": validity,
             "value": sensor_shortname
