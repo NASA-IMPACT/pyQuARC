@@ -47,3 +47,4 @@ class BaseValidator:
     @staticmethod
     def cmr_request(cmr_prms):
         return requests.get(f'{CMR_URL}/search/{cmr_prms}')
+    
