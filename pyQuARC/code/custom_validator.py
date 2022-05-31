@@ -1,7 +1,9 @@
 import json
+import requests
 
 from .base_validator import BaseValidator
 from .string_validator import StringValidator
+from .constants import CMR_URL
 
 from .utils import if_arg
 
@@ -97,6 +99,25 @@ class CustomValidator(BaseValidator):
                 validity = True
 
         return {"valid": validity, "value": value}
+
+    @staticmethod
+    def granule_sensor_presence_check(sensor_values, collection_shortname=None, version=None, dataset_id=None):
+        """
+        Checks if sensor is provided at the granule level if provided at
+        collection level
+        """
+        if dataset_id == None:
+            collection  = requests.get(f'{CMR_URL}/search/collections.umm_json?short_name={collection_shortname}&version={version}').json()
+        else: 
+            collection  = requests.get(f'{CMR_URL}/search/collections.umm_json?DatasetId={dataset_id}').json()
+
+        instruments = collection['items'][0]['umm']['Platforms'][0]['Instruments'][0]
+    
+        if 'ComposedOf' in instruments.keys():
+            response = CustomValidator.presence_check(sensor_values)
+            return response
+        else:
+            return None
 
     @staticmethod
     @if_arg

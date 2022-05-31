@@ -194,6 +194,11 @@
         "check_function": "presence_check",
         "available": true
     },
+    "granule_sensor_presence_check": {
+        "data_type": "custom",
+        "check_function": "granule_sensor_presence_check",
+        "available": true
+    },
     "doi_link_update": {
         "data_type": "url",
         "check_function": "doi_link_update",
