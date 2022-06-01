@@ -2492,6 +2492,11 @@
                     "fields": [
                         "Granule/DataFormat"
                     ]
+                },
+                {
+                    "fields": [
+                        "Granule/DataGranule/AdditionalFile/Format"
+                    ]
                 }
             ],
             "dif10": [
@@ -4408,7 +4413,6 @@
                         "Granule/OnlineResources/OnlineResource/MimeType"
                     ]
                 }
-
             ],
             "dif10": [
                 {
