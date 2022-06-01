@@ -957,14 +957,14 @@
             "message": "",
             "url": ""
         },
-        "remediation": "Recommend providing the correct campaign/project in the granule metadata."
+        "remediation": "Recommend providing the correct campaign/project short name in the granule metadata."
     },
     "granule_sensor_short_name_check": {
-        "failure": "The sensor short name listed in the granule metadata is missing or does not match the sensor short name listed in the collection metadata.",
+        "failure": "The sensor short name listed in the granule metadata does not match the sensor short name listed in the collection metadata.",
         "help": {
             "message": "",
             "url": ""
         },
-        "remediation": "Recommend providing [sensor short name listed in collection metadata] as the sensor short name in the granule metadata."
+        "remediation": "Recommend providing the correct sensor short name in the granule metadata."
     }
 }
