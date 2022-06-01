@@ -952,12 +952,12 @@
         "remediation": "Recommend providing a Single Date Time instead of a Range Date Time."        
     },
     "granule_project_short_name_check": {
-        "failure": "The campaign short name listed in the granule metadata is missing or does not match the campaign short name listed in the collection metadata.",
+        "failure": "The campaign/project short name listed in the granule metadata does not match the campaign/project short name listed in the collection metadata.",
         "help": {
             "message": "",
             "url": ""
         },
-        "remediation": "Recommend providing [campaign short name listed in collection metadata] as the campaign short name in the granule metadata."
+        "remediation": "Recommend providing the correct campaign/project in the granule metadata."
     },
     "granule_sensor_short_name_check": {
         "failure": "The sensor short name listed in the granule metadata is missing or does not match the sensor short name listed in the collection metadata.",
