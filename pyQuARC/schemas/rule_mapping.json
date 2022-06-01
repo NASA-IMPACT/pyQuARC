@@ -1411,13 +1411,6 @@
                         "Platform/Instrument/ComposedOf/Characteristics/DataType"
                     ]
                 }
-            ],
-            "echo-g": [
-                {
-                    "fields": [
-                        "Granule/AdditionalAttributes/AdditionalAttribute/DataType"
-                    ]
-                }
             ]
         },
         "data": [
@@ -1515,12 +1508,6 @@
                 }
             ],
             "echo-g": [
-                {
-                    "fields": [
-                        "Granule/Platforms/Platform/Characteristics/Characteristic/Name",
-                        "Granule/Platforms/Platform/Characteristics/Characteristic"
-                    ]
-                },
                 {
                     "fields": [
                         "Granule/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Name",
@@ -1750,12 +1737,6 @@
                 }
             ],
             "echo-g": [
-                {
-                    "fields": [
-                        "Granule/Platforms/Platform/Characteristics/Characteristic/Value",
-                        "Granule/Platforms/Platform/Characteristics/Characteristic"
-                    ]
-                },
                 {
                     "fields": [
                         "Granule/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Value",
@@ -4287,6 +4268,36 @@
                 {
                     "fields": [
                         "Granule/LastUpdate"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/Temporal/RangeDateTime/BeginningDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/Temporal/RangeDateTime/EndingDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/Temporal/SingleDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/DeleteTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/DataGranule/ProductionDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/OrbitCalculatedSpatialDomains/OrbitCalculatedSpatialDomain/EquatorCrossingDateTime"
                     ]
                 }
             ]
