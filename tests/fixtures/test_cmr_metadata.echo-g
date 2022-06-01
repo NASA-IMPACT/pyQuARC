@@ -3,7 +3,7 @@
     <InsertTime>2022-04-15</InsertTime>
     <LastUpdate>2022-04-15T10:27:27.492Z</LastUpdate>
     <Collection>
-        <DataSetId>ASTER Digital Elevation Model V003</DataSetId>
+        <DataSetId>ATLAS/ICESat-2 L3A Land and Vegetation Height V005</DataSetId>
     </Collection>
     <DataGranule>
         <SizeMBDataGranule>44.2424182892</SizeMBDataGranule>
@@ -35,24 +35,6 @@
             <EquatorCrossingDateTime>2022-02-10T21:09:27.619Z</EquatorCrossingDateTime>
         </OrbitCalculatedSpatialDomain>
     </OrbitCalculatedSpatialDomains>
-    <Platforms>
-        <Platform>
-            <Instruments>
-                <Instrument>
-                    <Sensors>
-                        <Sensor>
-                            <ShortName>SWIR</ShortName>
-                        </Sensor>
-                    </Sensors>
-                </Instrument>
-            </Instruments>
-        </Platform>
-    </Platforms>
-    <Campaigns>
-        <Campaign>
-            <ShortName>Tarra</ShortName>
-        </Campaign>
-    </Campaigns>
     <OnlineAccessURLs>
         <OnlineAccessURL>
             <URL>https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.h5</URL>
