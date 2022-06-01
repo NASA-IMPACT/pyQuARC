@@ -2494,6 +2494,13 @@
                         "Granule/Platforms/Platform/Instruments/Instrument/ShortName"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platform/Instrument/ShortName"
+                    ]
+                }
             ]
         },
         "severity": "info",
@@ -2509,6 +2516,16 @@
                         "Granule/Collection/ShortName",
                         "Granule/Collection/VersionId",
                         "Granule/Collection/DataSetId"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platform/Instrument/ShortName",
+                        "CollectionReference/ShortName",
+                        "CollectionReference/Version",
+                        "CollectionReference/EntryTitle"
                     ]
                 }
             ]
@@ -4663,6 +4680,13 @@
                         "Granule/Platforms/Platform/ShortName"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platforms/ShortName"
+                    ]
+                }
             ]
         },
         "severity": "info",
@@ -4678,6 +4702,16 @@
                         "Granule/Collection/ShortName",
                         "Granule/Collection/VersionId",
                         "Granule/Collection/DataSetId"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platforms/ShortName",
+                        "CollectionReference/ShortName",
+                        "CollectionReference/Version",
+                        "CollectionReference/EntryTitle"
                     ]
                 }
             ]
@@ -4697,6 +4731,16 @@
                         "Granule/Collection/DataSetId"
                     ]
                 }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platform/Instrument/ComposedOf/ShortName",
+                        "CollectionReference/ShortName",
+                        "CollectionReference/Version",
+                        "CollectionReference/EntryTitle"
+                    ]
+                }
             ]
         },
         "severity": "info",
@@ -4712,6 +4756,16 @@
                         "Granule/Collection/ShortName",
                         "Granule/Collection/VersionId",
                         "Granule/Collection/DataSetId"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platform/Instrument/ComposedOf/ShortName",
+                        "CollectionReference/ShortName",
+                        "CollectionReference/Version",
+                        "CollectionReference/EntryTitle"
                     ]
                 }
             ]
