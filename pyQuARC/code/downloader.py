@@ -1,8 +1,7 @@
-import json
 import re
 import requests
 
-from xmltodict import parse
+from urllib.parse import urlparse
 
 from .constants import CMR_URL
 
@@ -32,7 +31,9 @@ class Downloader:
 
         # big XML string or dict is stored here
         self.downloaded_content = None
-        self.cmr_host = cmr_host
+
+        parsed_url = urlparse(cmr_host)
+        self.cmr_host = f'{parsed_url.scheme}://{parsed_url.netloc}'
 
     def _valid_concept_id(self):
         """
@@ -57,7 +58,6 @@ class Downloader:
         base_url = Downloader.BASE_URL.format(cmr_host=self.cmr_host)
         version = f'/{self.version}' if self.version else ''
         constructed_url = f"{base_url}{self.concept_id}{version}.{self.metadata_format}"
-
         return constructed_url
 
     def log_error(self, error_message_code, kwargs):
@@ -100,7 +100,7 @@ class Downloader:
                     "status_code": response.status_code,
                 },
             )
-            return
+            raise Exception(f"CMR request failed: {url}")
 
         # stores the data in the downloaded_content variable
         self.downloaded_content = response.text

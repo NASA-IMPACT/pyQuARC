@@ -38,6 +38,7 @@ class ARC:
         checks_override=None,
         rules_override=None,
         messages_override=None,
+        version=None,
         cmr_host=CMR_URL,
     ):
         """
@@ -70,6 +71,7 @@ class ARC:
         self.rules_override = rules_override
         self.messages_override = messages_override
         self.cmr_host = cmr_host
+        self.version = version
 
     def _cmr_query(self):
         """
@@ -142,7 +144,7 @@ class ARC:
 
         if self.concept_ids:
             for concept_id in tqdm(self.concept_ids):
-                downloader = Downloader(concept_id, self.metadata_format, self.cmr_host)
+                downloader = Downloader(concept_id, self.metadata_format, self.version, self.cmr_host)
                 content = downloader.download().encode()
 
                 validation_errors = checker.run(content)
@@ -214,7 +216,8 @@ if __name__ == "__main__":
         --concept_ids
         --file
         --fake
-        --cmr_url
+        --cmr_host
+        --version
     """
     parser = argparse.ArgumentParser()
     download_group = parser.add_mutually_exclusive_group()
@@ -255,6 +258,13 @@ if __name__ == "__main__":
         type=str,
         help="The cmr host to use. Default is: https://cmr.earthdata.nasa.gov",
     )
+    parser.add_argument(
+        "--version",
+        action="store",
+        nargs="?",
+        type=str,
+        help="The revision version of the collection. Default is the latest version.",
+    )
 
     args = parser.parse_args()
     parser.usage = parser.format_help().replace("optional ", "")
@@ -272,6 +282,7 @@ if __name__ == "__main__":
         file_path=args.file,
         metadata_format=args.format or ECHO10,
         cmr_host=args.cmr_host or CMR_URL,
+        version=args.version or None,
     )
     results = arc.validate()
     arc.display_results()
