@@ -11,18 +11,18 @@ class CustomValidator(BaseValidator):
         super().__init__()
 
     @staticmethod
+    @if_arg
     def ends_at_present_flag_logic_check(
         ends_at_present_flag, ending_date_time, collection_state
     ):
         collection_state = collection_state.upper()
-        if not (valid := ends_at_present_flag == None):
-            valid = (
-                ends_at_present_flag == True
-                and not (ending_date_time) and collection_state == "ACTIVE"
-            ) or (
-                ends_at_present_flag == False
-                and bool(ending_date_time) and collection_state == "COMPLETE"
-            )
+        valid = (
+            ends_at_present_flag == True
+            and not (ending_date_time) and collection_state == "ACTIVE"
+        ) or (
+            ends_at_present_flag == False
+            and bool(ending_date_time) and collection_state == "COMPLETE"
+        )
 
         return {"valid": valid, "value": ends_at_present_flag}
 
