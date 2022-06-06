@@ -130,7 +130,7 @@ class CustomValidator(BaseValidator):
     @staticmethod
     def doi_missing_reason_explanation(explanation, missing_reason, doi):
         return {
-            "valid": not((not doi) and (missing_reason) and (not explanation)),
+            "valid": doi or not missing_reason or explanation,
             "value": explanation
         }
 
