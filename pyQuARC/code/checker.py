@@ -166,6 +166,7 @@ class Checker:
             rule_id
         ) or self.rule_mapping.get(rule_id)
         external_data = rule_mapping.get("data", [])
+        relation = rule_mapping.get("relation")
         list_of_fields_to_apply = \
             rule_mapping.get("fields_to_apply").get(self.metadata_format, {})
         
@@ -180,7 +181,8 @@ class Checker:
                 func,
                 metadata_content,
                 field_dict,
-                external_data
+                external_data,
+                relation
             )
 
             self.tracker.update_data(rule_id, main_field, result["valid"])
