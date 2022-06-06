@@ -149,15 +149,13 @@ class CustomValidator(BaseValidator):
         # Logic: https://github.com/NASA-IMPACT/pyQuARC/issues/61
         validity = False
         collection_state = collection_state.upper()
-        ending_date_time_exists = bool(ending_date_time)
-        ends_at_present_flag_exists = bool(ends_at_present_flag)
-        ends_at_present_flag = str(ends_at_present_flag).lower() if ends_at_present_flag_exists else None
+        ends_at_present_flag = str(ends_at_present_flag).lower() if ends_at_present_flag else None
 
         if collection_state in ["ACTIVE", "IN WORK"]:
-            validity = (not ending_date_time_exists) and (ends_at_present_flag == "true")
+            validity = (not ending_date_time) and (ends_at_present_flag == "true")
         elif collection_state == "COMPLETE":
-            validity = ending_date_time_exists and (
-                not ends_at_present_flag_exists or (
+            validity = ending_date_time and (
+                not ends_at_present_flag or (
                     ends_at_present_flag == "false"
                 )
             )
