@@ -20,7 +20,7 @@
                     "relation": "gte",
                     "dependencies": [
                         [
-                            "date_datetime_format_check"
+                            "date_or_datetime_format_check"
                         ]
                     ]
                 }
@@ -50,7 +50,7 @@
                     "relation": "gte",
                     "dependencies": [
                         [
-                            "date_datetime_format_check"
+                            "date_or_datetime_format_check"
                         ]
                     ]
                 }
@@ -80,7 +80,7 @@
                     "relation": "lte",
                     "dependencies": [
                         [
-                            "date_datetime_format_check"
+                            "date_or_datetime_format_check"
                         ]
                     ]
                 }
@@ -110,7 +110,7 @@
                     "relation": "neq",
                     "dependencies": [
                         [
-                            "date_datetime_format_check"
+                            "date_or_datetime_format_check"
                         ]
                     ]
                 }
@@ -140,7 +140,7 @@
                     "relation": "lte",
                     "dependencies": [
                         [
-                            "date_datetime_format_check"
+                            "date_or_datetime_format_check"
                         ]
                     ]
                 }
@@ -170,7 +170,7 @@
                     "relation": "neq",
                     "dependencies": [
                         [
-                            "date_datetime_format_check"
+                            "date_or_datetime_format_check"
                         ]
                     ]
                 }
@@ -200,7 +200,7 @@
                     "relation": "lt",
                     "dependencies": [
                         [
-                            "date_datetime_format_check"
+                            "date_or_datetime_format_check"
                         ]
                     ]
                 },
@@ -212,7 +212,7 @@
                     "relation": "lt",
                     "dependencies": [
                         [
-                            "date_datetime_format_check"
+                            "date_or_datetime_format_check"
                         ]
                     ]
                 }
@@ -284,7 +284,7 @@
         },
         "severity": "error"
     },
-    "date_datetime_format_check": {
+    "date_or_datetime_format_check": {
         "rule_name": "Date or Datetime ISO Format Check",
         "fields_to_apply": {
             "dif10": [
@@ -366,7 +366,7 @@
             ]
         },
         "severity": "error",
-        "check_id": "date_datetime_format_check"
+        "check_id": "date_or_datetime_format_check"
     },
     "url_check": {
         "rule_name": "URL Health and Status Check",
@@ -2014,7 +2014,7 @@
             ],
             "dependencies": [
                 [
-                    "date_datetime_format_check"
+                    "date_or_datetime_format_check"
                 ]
             ]
         },
@@ -2041,7 +2041,7 @@
                     ],
                     "dependencies": [
                         [
-                            "date_datetime_format_check"
+                            "date_or_datetime_format_check"
                         ]
                     ]
                 }
@@ -2059,7 +2059,7 @@
                     ],
                     "dependencies": [
                         [
-                            "date_datetime_format_check"
+                            "date_or_datetime_format_check"
                         ]
                     ]
                 },
@@ -2069,7 +2069,7 @@
                     ],
                     "dependencies": [
                         [
-                            "date_datetime_format_check"
+                            "date_or_datetime_format_check"
                         ]
                     ]
                 }

@@ -78,7 +78,7 @@ class DatetimeValidator(BaseValidator):
 
     @staticmethod
     @if_arg
-    def date_datetime_format_check(datetime_string):
+    def date_or_datetime_format_check(datetime_string):
         """
         Performs the Date/DateTime Format Check
         Checks if the datetime_string is a valid ISO date or ISO datetime string

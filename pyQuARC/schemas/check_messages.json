@@ -7,7 +7,7 @@
         },
         "remediation": "Make sure the datetime complies with ISO 1601 standard."
     },
-    "date_datetime_format_check": {
+    "date_or_datetime_format_check": {
         "failure": "`{}` does not adhere to the ISO 1601 standard for date or datetime.",
         "help": {
             "message": "",
