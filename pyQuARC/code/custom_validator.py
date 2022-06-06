@@ -96,7 +96,7 @@ class CustomValidator(BaseValidator):
         return result
 
     @staticmethod
-    def presence_check(*field_values):
+    def one_item_presence_check(*field_values):
         """
             Checks if one of the field has a value
         """
