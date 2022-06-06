@@ -166,14 +166,14 @@ class Checker:
             rule_id
         ) or self.rule_mapping.get(rule_id)
         external_data = rule_mapping.get("data", [])
+        relation = rule_mapping.get("relation")
         list_of_fields_to_apply = \
             rule_mapping.get("fields_to_apply").get(self.metadata_format, {})
         
         for field_dict in list_of_fields_to_apply:
             dependencies = self.scheduler.get_all_dependencies(rule_id, check, field_dict)
             main_field = field_dict["fields"][0]
-            if data := field_dict.get("data"):
-                external_data = data
+            external_data = field_dict.get("data") or external_data
             result_dict.setdefault(main_field, {})
             if not self._check_dependencies_validity(dependencies, field_dict):
                 continue
@@ -181,7 +181,8 @@ class Checker:
                 func,
                 metadata_content,
                 field_dict,
-                external_data
+                external_data,
+                relation
             )
 
             self.tracker.update_data(rule_id, main_field, result["valid"])

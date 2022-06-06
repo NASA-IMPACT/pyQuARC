@@ -2860,7 +2860,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "bounding_coordinate_logic_check": {
         "rule_name": "Bounding Coordinates Logic Check",
@@ -3132,7 +3132,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "spatial_coverage_type_presence_check": {
         "rule_name": "Spatial Coverage Type Presence Check",
@@ -3160,7 +3160,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "horizontal_datum_name_check": {
         "rule_name": "Horizontal Datum Name Check",
@@ -3188,7 +3188,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "online_access_url_presence_check": {
         "rule_name": "Online Access URL Presence Check",
@@ -3202,7 +3202,7 @@
             ]
         },
         "severity": "error",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "online_resource_url_presence_check": {
         "rule_name": "Online Resource URL Presence Check",
@@ -3216,7 +3216,7 @@
             ]
         },
         "severity": "error",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "online_access_url_description_check": {
         "rule_name": "Online Access URL Description Check",
@@ -3230,7 +3230,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "online_resource_url_description_check": {
         "rule_name": "Online Resource URL Description Check",
@@ -3251,7 +3251,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "opendap_url_location_check": {
         "rule_name": "ECHO10 OPeNDAP URL Location Check",
@@ -3264,8 +3264,12 @@
                 }
             ]
         },
+        "data": [
+            "opendap"
+        ],
+        "relation": "not_contains",
         "severity": "error",
-        "check_id": "opendap_url_location_check"
+        "check_id": "string_compare"
     },
     "location_keyword_presence_check": {
         "rule_name": "Location Keyword Presence Check",
@@ -3293,7 +3297,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "spatial_extent_requirement_fulfillment_check": {
         "rule_name": "Spatial Extent Requirement Fulfillment Check",
@@ -3340,7 +3344,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "license_information_check": {
         "rule_name": "License Information Check",
@@ -3370,7 +3374,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "collection_citation_presence_check": {
         "rule_name": "Collection Citation Presence Check",
@@ -3398,7 +3402,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "user_services_check": {
         "rule_name": "User Services Check",
@@ -3921,7 +3925,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "ftp_protocol_check": {
         "rule_name": "FTP Protocol Check",
@@ -4442,7 +4446,7 @@
             ]
         },
         "severity": "error",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "platform_long_name_presence_check": {
         "rule_name": "Platform Longname Presence Check",

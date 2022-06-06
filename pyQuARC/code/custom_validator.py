@@ -82,7 +82,7 @@ class CustomValidator(BaseValidator):
         return result
 
     @staticmethod
-    def presence_check(*field_values):
+    def one_item_presence_check(*field_values):
         """
         Checks if one of the field has a value
         """
@@ -100,18 +100,12 @@ class CustomValidator(BaseValidator):
 
     @staticmethod
     @if_arg
-    def opendap_url_location_check(field_value):
-        # The field shouldn't have a opendap url
-        return {"valid": "opendap" not in field_value.lower(), "value": field_value}
-
-    @staticmethod
-    @if_arg
     def user_services_check(first_name, middle_name, last_name):
         return {
-            "valid": not (
-                first_name.lower() == "user"
-                and last_name.lower() == "services"
-                and (not middle_name or (middle_name.lower() == "null"))
+            "valid": (
+                first_name.lower() != 'user' or
+                last_name.lower() != 'services' or 
+                (middle_name and (middle_name.lower() != 'null'))
             ),
             "value": f"{first_name} {middle_name} {last_name}",
         }
@@ -119,8 +113,8 @@ class CustomValidator(BaseValidator):
     @staticmethod
     def doi_missing_reason_explanation(explanation, missing_reason, doi):
         return {
-            "valid": not ((not doi) and (missing_reason) and (not explanation)),
-            "value": explanation,
+            "valid": doi or not missing_reason or explanation,
+            "value": explanation
         }
 
     @staticmethod
@@ -137,19 +131,15 @@ class CustomValidator(BaseValidator):
         # Logic: https://github.com/NASA-IMPACT/pyQuARC/issues/61
         validity = False
         collection_state = collection_state.upper()
-        ending_date_time_exists = bool(ending_date_time)
-        ends_at_present_flag_exists = bool(ends_at_present_flag)
-        ends_at_present_flag = (
-            str(ends_at_present_flag).lower() if ends_at_present_flag_exists else None
-        )
+        ends_at_present_flag = str(ends_at_present_flag).lower() if ends_at_present_flag else None
 
         if collection_state in ["ACTIVE", "IN WORK"]:
-            validity = (not ending_date_time_exists) and (
-                ends_at_present_flag == "true"
-            )
+            validity = (not ending_date_time) and (ends_at_present_flag == "true")
         elif collection_state == "COMPLETE":
-            validity = ending_date_time_exists and (
-                not ends_at_present_flag_exists or (ends_at_present_flag == "false")
+            validity = ending_date_time and (
+                not ends_at_present_flag or (
+                    ends_at_present_flag == "false"
+                )
             )
         
         return {

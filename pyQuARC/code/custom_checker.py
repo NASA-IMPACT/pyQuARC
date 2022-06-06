@@ -88,7 +88,7 @@ class CustomChecker:
             content_to_validate, path, container, query_params)
         return container
 
-    def run(self, func, content_to_validate, field_dict, external_data):
+    def run(self, func, content_to_validate, field_dict, external_data, external_relation):
         """
         Runs the custom check based on `func` to the `content_to_validate`'s `field_dict` path
 
@@ -125,7 +125,7 @@ class CustomChecker:
         validity = None
         for arg in args:
             function_args = [*arg]
-            function_args.extend([extra_arg for extra_arg in [relation, *external_data] if extra_arg])
+            function_args.extend([extra_arg for extra_arg in [relation, *external_data, external_relation] if extra_arg])
             func_return = func(*function_args)
             valid = func_return["valid"] # can be True, False or None
             if valid is not None:

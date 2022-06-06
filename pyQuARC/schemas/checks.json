@@ -174,9 +174,9 @@
         "check_function": "chrono_gcmd_check",
         "available": true
     },
-    "presence_check": {
+    "one_item_presence_check": {
         "data_type": "custom",
-        "check_function": "presence_check",
+        "check_function": "one_item_presence_check",
         "available": true
     },
     "doi_link_update": {
@@ -187,11 +187,6 @@
     "bounding_coordinate_logic_check": {
         "data_type": "custom",
         "check_function": "bounding_coordinate_logic_check",
-        "available": true
-    },
-    "opendap_url_location_check": {
-        "data_type": "custom",
-        "check_function": "opendap_url_location_check",
         "available": true
     },
     "user_services_check": {
