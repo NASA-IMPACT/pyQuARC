@@ -27,7 +27,7 @@ class Scheduler:
         dependencies_from_fields = []
 
         if field_dict:
-            return dependencies_from_fields
+            return field_dict.get("dependencies", [])
 
         rule = self.rule_mapping.get(rule_id)
         if field_objects := rule.get("fields_to_apply").get(self.metadata_format):
