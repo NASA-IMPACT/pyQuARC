@@ -119,10 +119,10 @@ class CustomValidator(BaseValidator):
     @if_arg
     def user_services_check(first_name, middle_name, last_name):
         return {
-            "valid": not (
-                first_name.lower() == 'user' and 
-                last_name.lower() == 'services' and 
-                (not middle_name or (middle_name.lower() == 'null'))
+            "valid": (
+                first_name.lower() != 'user' or
+                last_name.lower() != 'services' or 
+                (middle_name and (middle_name.lower() != 'null'))
             ),
             "value": f'{first_name} {middle_name} {last_name}'
         }
