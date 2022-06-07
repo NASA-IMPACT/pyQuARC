@@ -100,7 +100,7 @@ class Downloader:
                     "status_code": response.status_code,
                 },
             )
-            raise Exception(f"CMR request failed: {url}")
+            return
 
         # stores the data in the downloaded_content variable
         self.downloaded_content = response.text
