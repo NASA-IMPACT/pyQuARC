@@ -145,13 +145,28 @@ class ARC:
         if self.concept_ids:
             for concept_id in tqdm(self.concept_ids):
                 downloader = Downloader(concept_id, self.metadata_format, self.version, self.cmr_host)
-                content = downloader.download().encode()
+                if not (content := downloader.download()):
+                    self.errors.append(
+                        {
+                            "concept_id": concept_id,
+                            "errors": [],
+                            "pyquarc_errors": [
+                                {
+                                    "message": "No metadata content found. Please make sure the concept id is correct.",
+                                    "details": f"The request to CMR {self.cmr_host} failed for concept id {concept_id}",
+                                }
+                            ]
+                        }
+                    )
+                    continue
+                content = content.encode()
 
-                validation_errors = checker.run(content)
+                validation_errors, pyquarc_errors = checker.run(content)
                 self.errors.append(
                     {
                         "concept_id": concept_id,
                         "errors": validation_errors,
+                        "pyquarc_errors": pyquarc_errors
                     }
                 )
 
@@ -159,14 +174,14 @@ class ARC:
             with open(os.path.abspath(self.file_path), "r") as myfile:
                 content = myfile.read().encode()
 
-                validation_errors = checker.run(content)
+                validation_errors, pyquarc_errors = checker.run(content)
                 self.errors.append(
                     {
                         "file": self.file_path,
                         "errors": validation_errors,
+                        "pyquarc_errors": pyquarc_errors
                     }
                 )
-
         return self.errors
 
     @staticmethod
@@ -193,7 +208,7 @@ class ARC:
         error_prompt = ""
         for error in self.errors:
             title = error.get("concept_id") or error.get("file")
-            error_prompt += (f"\n\tMETADATA: {COLOR['title']}{COLOR['bright']}{title}{END}\n")
+            error_prompt += (f"\n\t{COLOR['title']}{COLOR['bright']}METADATA: {title}{END}\n")
             validity = True
             for field, result in error["errors"].items():
                 for rule_type, value in result.items():
@@ -205,6 +220,12 @@ class ARC:
                         validity = False
             if validity:
                 error_prompt += "\n\tNo validation errors\n"
+
+            if (pyquarc_errors := error["pyquarc_errors"]):
+                error_prompt += (f"\n\t {COLOR['title']}{COLOR['bright']} pyQuARC ERRORS: {END}\n")
+                for error in pyquarc_errors:
+                    error_prompt += (f"\t\t  ERROR: {error['message']}. Details: {error['details']} \n")
+
         result_string += error_prompt
         print(result_string)
 
