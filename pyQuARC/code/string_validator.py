@@ -1,6 +1,9 @@
+import requests
+
 from .base_validator import BaseValidator
 from .gcmd_validator import GcmdValidator
 from .utils import if_arg
+from .constants import CMR_URL
 
 
 class StringValidator(BaseValidator):
@@ -89,9 +92,10 @@ class StringValidator(BaseValidator):
         """
         value = None
         received_keyword = [arg.upper().strip() for arg in args if arg]
-        validity, invalid_value = StringValidator.gcmdValidator.validate_science_keyword(
-            received_keyword
-        )
+        (
+            validity,
+            invalid_value,
+        ) = StringValidator.gcmdValidator.validate_science_keyword(received_keyword)
         if not validity:
             value = f"'{invalid_value}' in the hierarchy '{'/'.join(received_keyword)}'"
         return {"valid": validity, "value": value if value else received_keyword}
@@ -244,9 +248,7 @@ class StringValidator(BaseValidator):
     @if_arg
     def data_format_gcmd_check(value):
         return {
-            "valid": StringValidator.gcmdValidator.validate_data_format(
-                value.upper()
-            ),
+            "valid": StringValidator.gcmdValidator.validate_data_format(value.upper()),
             "value": value,
         }
 
@@ -275,9 +277,10 @@ class StringValidator(BaseValidator):
         """
         value = None
         received_keyword = [arg.upper().strip() for arg in args if arg]
-        validity, invalid_value = StringValidator.gcmdValidator.validate_location_hierarchy(
-            received_keyword
-        )
+        (
+            validity,
+            invalid_value,
+        ) = StringValidator.gcmdValidator.validate_location_hierarchy(received_keyword)
         if not validity:
             value = f"'{invalid_value}' in the hierarchy '{'/'.join(received_keyword)}'"
         return {"valid": validity, "value": value if value else received_keyword}
@@ -297,7 +300,10 @@ class StringValidator(BaseValidator):
         """
         value = None
         received_keyword = [arg.upper().strip() for arg in args if arg]
-        validity, invalid_value = StringValidator.gcmdValidator.validate_chrono_unit_hierarchy(
+        (
+            validity,
+            invalid_value,
+        ) = StringValidator.gcmdValidator.validate_chrono_unit_hierarchy(
             received_keyword
         )
         if not validity:
@@ -353,3 +359,35 @@ class StringValidator(BaseValidator):
             ),
             "value": resource_type,
         }
+
+    @staticmethod
+    @if_arg
+    def validate_granule_data_format_against_collection(
+        granule_data_format, collection_shortname=None, version=None, dataset_id=None
+    ):
+        """
+        Validates the data format provided in the granule metadata
+        against the data format provided at the collection level.
+
+        Args:
+            granule_data_format (str): data format in the collection
+            collection_shortname (str): Shortname of the parent collection
+            version (str):              version of the collection
+            dataset_id (str):           Entry title of the parent collection
+
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
+
+        if collection_shortname and version:
+            collection = requests.get(
+                f"{CMR_URL}/search/collections.json?short_name={collection_shortname}&version={version}&granule_data_format={granule_data_format}"
+            ).json()
+        else:
+            collection = requests.get(
+                f"{CMR_URL}/search/collections.json?DatasetId={dataset_id}&granule_data_format={granule_data_format}"
+            ).json()
+
+        if collection["feed"]["entry"]:
+            return {"valid": True, "value": granule_data_format}
+        return {"valid": False, "value": granule_data_format}

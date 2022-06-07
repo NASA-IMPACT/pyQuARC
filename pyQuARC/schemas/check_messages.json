@@ -135,7 +135,7 @@
         },
         "remediation": "Please submit a request to support@earthdata.nasa.gov to have this long name added to the GCMD KMS."
     },
-    "organization_short_long_name_consistency_check":{
+    "organization_short_long_name_consistency_check": {
         "failure": "The provided data center short name `{}` and long name `{}` aren't consistent.",
         "help": {
             "message": "",
@@ -926,5 +926,21 @@
             "url": ""
         },
         "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+    },
+    "validate_granule_data_format_against_collection_check": {
+        "failure": "The data format listed in the granule metadata does not match the data format listed in the collection metadata",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Recommend providing the data format listed in the collection metadata."
+    },
+    "granule_data_format_presence_check": {
+        "failure": "The granule data format is missing.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Recommend providing the granule data format."
     }
 }
