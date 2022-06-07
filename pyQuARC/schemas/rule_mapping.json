@@ -11,6 +11,15 @@
                     "relation": "gte"
                 }
             ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/LastUpdate",
+                        "Granule/InsertTime"
+                    ],
+                    "relation": "gte"
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
@@ -546,6 +555,11 @@
                 {
                     "fields": [
                         "Granule/InsertTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/LastUpdate"
                     ]
                 }
             ]
