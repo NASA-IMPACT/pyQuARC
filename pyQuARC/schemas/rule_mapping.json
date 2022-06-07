@@ -4617,8 +4617,8 @@
                 {
                     "fields": [
                         "Granule/DataFormat",
-                        "Granule/ShortName",
-                        "Granule/Version",
+                        "Granule/Collection/ShortName",
+                        "Granule/Collection/VersionId",
                         "Granule/Collection/DataSetId"
                     ]
                 }
