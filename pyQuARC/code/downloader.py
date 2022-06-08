@@ -6,7 +6,7 @@ class Downloader:
     """
         Downloads data given a concept ID
     """
-    
+
     BASE_URL = (
         "https://cmr.earthdata.nasa.gov/search/concepts/{concept_id}.{metadata_format}"
     )
