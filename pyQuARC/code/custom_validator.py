@@ -11,18 +11,18 @@ class CustomValidator(BaseValidator):
         super().__init__()
 
     @staticmethod
+    @if_arg
     def ends_at_present_flag_logic_check(
         ends_at_present_flag, ending_date_time, collection_state
     ):
         collection_state = collection_state.upper()
-        if not (valid := ends_at_present_flag == None):
-            valid = (
-                ends_at_present_flag == True
-                and not (ending_date_time) and collection_state == "ACTIVE"
-            ) or (
-                ends_at_present_flag == False
-                and bool(ending_date_time) and collection_state == "COMPLETE"
-            )
+        valid = (
+            ends_at_present_flag == True
+            and not (ending_date_time) and collection_state == "ACTIVE"
+        ) or (
+            ends_at_present_flag == False
+            and bool(ending_date_time) and collection_state == "COMPLETE"
+        )
 
         return {"valid": valid, "value": ends_at_present_flag}
 
@@ -38,10 +38,12 @@ class CustomValidator(BaseValidator):
 
     @staticmethod
     def mime_type_check(mime_type, url_type, controlled_list):
+        """
+            Checks that if the value for url_type is "USE SERVICE API",
+            the mime_type should be one of the values from a controlled list
+            For all other cases, the check should be valid
+        """
         result = {"valid": True, "value": mime_type}
-        # The check checks that if the value for url_type is "USE SERVICE API",
-        # the mime_type should be one of the values from a controlled list
-        # For all other cases, the check should be valid
         if url_type:
             if "USE SERVICE API" in url_type:
                 if mime_type:
@@ -80,10 +82,10 @@ class CustomValidator(BaseValidator):
     @staticmethod
     def one_item_presence_check(*field_values):
         """
-        Checks if one of the field has a value
+            Checks if one of the specified fields is populated
+            At least one of the `field_values` should not be null
+            It is basically a OneOf check
         """
-        # At least one of all the fields should have a value
-        # It is basically a OneOf check
         validity = False
         value = None
 
@@ -91,6 +93,7 @@ class CustomValidator(BaseValidator):
             if field_value:
                 value = field_value
                 validity = True
+                break
 
         return {"valid": validity, "value": value}
 
@@ -160,13 +163,40 @@ class CustomValidator(BaseValidator):
 
     @staticmethod
     def get_data_url_check(related_urls, key):
-        return_obj = { 'valid': False, 'value': 'N/A'}
+        """Checks if the related_urls contains a "GET DATA" url
+
+        Args:
+            related_urls (dict): The related_urls field of the object
+                Example: [
+                    {
+                        "Description": "The LP DAAC product page provides information on Science Data Set layers and links for user guides, ATBDs, data access, tools, customer support, etc.",
+                        "URLContentType": "CollectionURL",
+                        "Type": "DATA SET LANDING PAGE",
+                        "URL": "https://doi.org/10.5067/MODIS/MOD13Q1.061"
+                    }, ...
+                ] or
+                [
+                    {
+                        "Description": "The LP DAAC product page provides information on Science Data Set layers and links for user guides, ATBDs, data access, tools, customer support, etc.",
+                        "URL_Content_Type": {
+                            "Type": "GET DATA",
+                            "Subtype>: "LAADS"  
+                        },
+                        "URL": "https://doi.org/10.5067/MODIS/MOD13Q1.061",
+                        ...
+                    }, ...
+                ]
+            key (list): The hierarchical list of keys
+                Example: ["Type"]
+                or
+                ["URL_Content_Type", "Type"]
+        """
+        return_obj = { 'valid': False, 'value': 'N/A' }
         for url_obj in related_urls:
+            type = url_obj.get(key[0])
             if len(key) == 2:
-                type = url_obj.get(key[0], {}).get(key[1])
-            else:
-                type = url_obj.get(key[0])
-            if validity := type == "GET DATA" and (url := url_obj.get("URL")):
+                type = (type or {}).get(key[1])
+            if (validity := type == "GET DATA") and (url := url_obj.get("URL")):
                 return_obj['valid'] = validity
                 return_obj['value'] = url
                 break
