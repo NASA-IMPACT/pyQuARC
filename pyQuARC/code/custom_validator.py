@@ -55,11 +55,7 @@ class CustomValidator(BaseValidator):
     @staticmethod
     def availability_check(field_value, parent_value):
         # If the parent is available, the child should be available too, else it is invalid
-        validity = True
-        if parent_value:
-            if not field_value:
-                validity = False
-        return {"valid": validity, "value": parent_value}
+        return {"valid": bool(field_value) if parent_value else True, "value": parent_value}
 
     @staticmethod
     @if_arg
