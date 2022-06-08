@@ -294,7 +294,7 @@ if __name__ == "__main__":
         parser.error(
             "No metadata given, add --query or --concept_ids or --file or --fake"
         )
-        exit()
+    
 
     arc = ARC(
         query=args.query,
@@ -303,7 +303,7 @@ if __name__ == "__main__":
         file_path=args.file,
         metadata_format=args.format or ECHO10,
         cmr_host=args.cmr_host or CMR_URL,
-        version=args.version or None,
+        version=args.version,
     )
     results = arc.validate()
     arc.display_results()
