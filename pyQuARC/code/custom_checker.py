@@ -81,8 +81,8 @@ class CustomChecker:
 
         parsed = urlparse(path_string)
         path = parsed.path.split('/')
-        if q := parsed.query:
-            query_params = q.split('=')
+        if key_value := parsed.query:
+            query_params = key_value.split('=')
 
         CustomChecker._get_path_value_recursively(
             content_to_validate, path, container, query_params)

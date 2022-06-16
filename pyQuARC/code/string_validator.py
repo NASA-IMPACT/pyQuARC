@@ -64,8 +64,8 @@ class StringValidator(BaseValidator):
             value = [value]
 
         validity = True
-        for i in value:
-            if i not in keywords_list:
+        for keyword in value:
+            if keyword not in keywords_list:
                 validity = False
                 break
 

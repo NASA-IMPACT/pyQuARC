@@ -89,11 +89,10 @@ class SchemaValidator:
             field = SchemaValidator.PATH_SEPARATOR.join([str(x) for x in list(error.path)])
             message = error.message
             remediation = None
-            if error.validator == "oneOf":
-                if check_message := self.check_messages.get(error.validator):
-                    fields = [f'{field}/{obj["required"][0]}' for obj in error.validator_value]
-                    message = check_message["failure"].format(fields)
-                    remediation = check_message["remediation"]
+            if error.validator == "oneOf" and (check_message := self.check_messages.get(error.validator)):
+                fields = [f'{field}/{obj["required"][0]}' for obj in error.validator_value]
+                message = check_message["failure"].format(fields)
+                remediation = check_message["remediation"]
             errors.setdefault(field, {})["schema"] = {
                 "message": [f"Error: {message}"],
                 "remediation": remediation,

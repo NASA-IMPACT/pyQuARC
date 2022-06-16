@@ -41,6 +41,6 @@ class BaseValidator:
     @staticmethod
     def compare(first, second, relation):
         if relation.startswith('not_'):
-            return not BaseValidator.compare(first, second, relation[4:])
+            return not (BaseValidator.compare(first, second, relation[4:]))
         func = getattr(BaseValidator, relation)
         return func(first, second)
