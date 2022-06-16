@@ -254,13 +254,12 @@ if __name__ == "__main__":
         parser.error(
             "No metadata given, add --query or --concept_ids or --file or --fake"
         )
-        exit()
 
-    if args.format and (args.format not in SUPPORTED_FORMATS):
+    format = args.format or ECHO10
+    if (format not in SUPPORTED_FORMATS):
         parser.error(
             f"The given format is not supported. Only {', '.join(SUPPORTED_FORMATS)} are supported."
         )
-        exit()
 
     arc = ARC(
         query=args.query,

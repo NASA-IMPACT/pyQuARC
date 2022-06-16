@@ -49,10 +49,13 @@ class Downloader:
         Returns:
             (str) The URL constructed based on the concept ID
         """
+        extension = self.metadata_format
+        if extension.startswith("umm-"):
+            extension = "umm-json"
 
         constructed_url = Downloader.BASE_URL.format(
             concept_id=self.concept_id,
-            metadata_format=self.metadata_format if not self.metadata_format.startswith("umm-") else "umm-json"
+            metadata_format=extension
         )
 
         return constructed_url

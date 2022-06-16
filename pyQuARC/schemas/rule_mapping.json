@@ -2344,7 +2344,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "platform_short_name_gcmd_check": {
         "rule_name": "Platform Shortname GCMD Check",
@@ -2770,7 +2770,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "version_description_not_provided": {
         "rule_name": "Version Description Not Provided",
@@ -4460,7 +4460,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "horizontal_data_resolution_unit_check": {
         "rule_name": "Horizontal Data Resolution Unit Controlled Vocabulary Check",
