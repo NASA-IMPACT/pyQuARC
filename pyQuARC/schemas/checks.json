@@ -1,5 +1,5 @@
 {
-    "date_compare": {
+    "datetime_compare": {
         "data_type": "datetime",
         "check_function": "compare",
         "dependencies": [
@@ -12,6 +12,11 @@
     "datetime_format_check": {
         "data_type": "datetime",
         "check_function": "iso_format_check",
+        "available": true
+    },
+    "date_or_datetime_format_check": {
+        "data_type": "datetime",
+        "check_function": "date_or_datetime_format_check",
         "available": true
     },
     "url_check": {
@@ -237,6 +242,11 @@
     "get_data_url_check": {
         "data_type": "custom",
         "check_function": "get_data_url_check",
+        "available": true
+    },
+    "count_check": {
+        "data_type": "custom",
+        "check_function": "count_check",
         "available": true
     }
 }

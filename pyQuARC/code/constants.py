@@ -63,7 +63,7 @@ COLOR = {
     "bright": Style.BRIGHT
 }
 
-GCMD_BASIC_URL = "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/"
+GCMD_BASIC_URL = "https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/"
 
 GCMD_LINKS = {
     keyword: f"{GCMD_BASIC_URL}{keyword}?format=csv" for keyword in GCMD_KEYWORDS

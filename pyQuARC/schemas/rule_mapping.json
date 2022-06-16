@@ -17,12 +17,17 @@
                         "DIF/Metadata_Dates/Data_Last_Revision",
                         "DIF/Metadata_Dates/Data_Creation"
                     ],
-                    "relation": "gte"
+                    "relation": "gte",
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
+                    ]
                 }
             ]
         },
         "severity": "info",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "data_revision_date_logic_check": {
         "rule_name": "Data Revision Date Logic Check",
@@ -42,12 +47,17 @@
                         "DIF/Metadata_Dates/Metadata_Last_Revision",
                         "DIF/Metadata_Dates/Metadata_Creation"
                     ],
-                    "relation": "gte"
+                    "relation": "gte",
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
+                    ]
                 }
             ]
         },
         "severity": "info",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "range_date_time_logic_check_1": {
         "rule_name": "Range Date Time Logic Check",
@@ -67,12 +77,17 @@
                         "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time",
                         "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time"
                     ],
-                    "relation": "lte"
+                    "relation": "lte",
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
+                    ]
                 }
             ]
         },
         "severity": "error",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "range_date_time_logic_check_2": {
         "rule_name": "Range Date Time Logic Check",
@@ -92,12 +107,17 @@
                         "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time",
                         "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time"
                     ],
-                    "relation": "neq"
+                    "relation": "neq",
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
+                    ]
                 }
             ]
         },
         "severity": "warning",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "project_date_time_logic_check_1": {
         "rule_name": "Project Date Time Logic Check",
@@ -117,12 +137,17 @@
                         "DIF/Project/Start_Date",
                         "DIF/Project/End_Date"
                     ],
-                    "relation": "lte"
+                    "relation": "lte",
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
+                    ]
                 }
             ]
         },
         "severity": "error",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "project_date_time_logic_check_2": {
         "rule_name": "Project Date Time Logic Check",
@@ -142,12 +167,17 @@
                         "DIF/Project/Start_Date",
                         "DIF/Project/End_Date"
                     ],
-                    "relation": "neq"
+                    "relation": "neq",
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
+                    ]
                 }
             ]
         },
         "severity": "warning",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "periodic_date_time_logic_check": {
         "rule_name": "Periodic Date Time Logic Check",
@@ -167,19 +197,29 @@
                         "DIF/Temporal_Coverage/Periodic_DateTime/Start_Date",
                         "DIF/Temporal_Coverage/Periodic_DateTime/End_Date"
                     ],
-                    "relation": "lt"
+                    "relation": "lt",
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
+                    ]
                 },
                 {
                     "fields": [
                         "DIF/Temporal_Coverage/Paleo_DateTime/Paleo_Start_Date",
                         "DIF/Temporal_Coverage/Paleo_DateTime/Paleo_Stop_Date"
                     ],
-                    "relation": "lt"
+                    "relation": "lt",
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
+                    ]
                 }
             ]
         },
         "severity": "error",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "datetime_format_check": {
         "rule_name": "Datetime ISO Format Check",
@@ -240,7 +280,13 @@
                         "Collection/Campaigns/Campaign/EndDate"
                     ]
                 }
-            ],
+            ]
+        },
+        "severity": "error"
+    },
+    "date_or_datetime_format_check": {
+        "rule_name": "Date or Datetime ISO Format Check",
+        "fields_to_apply": {
             "dif10": [
                 {
                     "fields": [
@@ -319,7 +365,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "date_or_datetime_format_check"
     },
     "url_check": {
         "rule_name": "URL Health and Status Check",
@@ -579,7 +626,7 @@
             "gte"
         ],
         "severity": "info",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "doi_missing_reason_enumeration_check": {
         "rule_name": "DOI Missing Reason Enumeration Check",
@@ -1951,7 +1998,8 @@
                 {
                     "fields": [
                         "Collection/Temporal/RangeDateTime/EndingDateTime",
-                        "Collection/ShortName"
+                        "Collection/ShortName",
+                        "Collection/VersionId"
                     ]
                 }
             ],
@@ -1959,9 +2007,15 @@
                 {
                     "fields": [
                         "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time",
-                        "DIF/Entry_ID/Short_Name"
+                        "DIF/Entry_ID/Short_Name",
+                        "DIF/Entry_ID/Version"
                     ]
                 }
+            ],
+            "dependencies": [
+                [
+                    "date_or_datetime_format_check"
+                ]
             ]
         },
         "severity": "warning"
@@ -1973,7 +2027,8 @@
                 {
                     "fields": [
                         "Collection/Temporal/RangeDateTime/BeginningDateTime",
-                        "Collection/ShortName"
+                        "Collection/ShortName",
+                        "Collection/VersionId"
                     ]
                 }
             ],
@@ -1981,7 +2036,13 @@
                 {
                     "fields": [
                         "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time",
-                        "DIF/Entry_ID/Short_Name"
+                        "DIF/Entry_ID/Short_Name",
+                        "DIF/Entry_ID/Version"
+                    ],
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
                     ]
                 }
             ]
@@ -1995,11 +2056,21 @@
                 {
                     "fields": [
                         "DIF/Metadata_Dates/Metadata_Future_Review"
+                    ],
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
                     ]
                 },
                 {
                     "fields": [
                         "DIF/Metadata_Dates/Data_Future_Review"
+                    ],
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
                     ]
                 }
             ]
@@ -2009,7 +2080,7 @@
             "gte"
         ],
         "severity": "info",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "iso_topic_category_check": {
         "rule_name": "ISO Topic Category Vocabulary Check",
@@ -2217,7 +2288,7 @@
             "neq"
         ],
         "severity": "info",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "url_desc_presence_check": {
         "rule_name": "Online Description Presence Check",
@@ -2368,11 +2439,14 @@
                 {
                     "fields": [
                         "DIF/Platform/Instrument/NumberOfSensors",
-                        "DIF/Platform/Instrument/Sensor/Short_Name"
+                        "DIF/Platform/Instrument"
                     ]
                 }
             ]
         },
+        "data": [
+            "Sensor"
+        ],
         "severity": "error",
         "check_id": "count_check"
     }
