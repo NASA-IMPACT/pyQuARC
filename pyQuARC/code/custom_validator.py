@@ -55,45 +55,27 @@ class CustomValidator(BaseValidator):
         return result
 
     @staticmethod
-    def availability_check(
-        field_value,
-        parent_value
-    ):
+    def availability_check(field_value, parent_value):
         # If the parent is available, the child should be available too, else it is invalid
-        validity = True
-        if parent_value:
-            if not field_value:
-                validity = False
-        return {
-            "valid": validity,
-            "value": parent_value
-        }
+        return {"valid": bool(field_value) if parent_value else True, "value": parent_value}
 
     @staticmethod
     @if_arg
     def bounding_coordinate_logic_check(west, north, east, south):
         # Checks if the logic for coordinate values make sense
-        result = {
-            "valid": False,
-            "value": ""
-        }
+        result = {"valid": False, "value": ""}
         west = float(west)
         east = float(east)
         south = float(south)
         north = float(north)
 
         result["valid"] = (
-            (south >= -90 and south <=90)
-            and
-            (north >= -90 and north <=90)
-            and
-            (east >= -180 and east <=180)
-            and
-            (west >= -180 and west <=180)
-            and
-            (north > south)
-            and
-            (east > west)
+            (south >= -90 and south <= 90)
+            and (north >= -90 and north <= 90)
+            and (east >= -180 and east <= 180)
+            and (west >= -180 and west <= 180)
+            and (north > south)
+            and (east > west)
         )
         return result
 
@@ -113,10 +95,7 @@ class CustomValidator(BaseValidator):
                 validity = True
                 break
 
-        return {
-            "valid": validity,
-            "value": value
-        }
+        return {"valid": validity, "value": value}
 
     @staticmethod
     @if_arg
@@ -127,7 +106,7 @@ class CustomValidator(BaseValidator):
                 last_name.lower() != 'services' or 
                 (middle_name and (middle_name.lower() != 'null'))
             ),
-            "value": f'{first_name} {middle_name} {last_name}'
+            "value": f"{first_name} {middle_name} {last_name}",
         }
 
     @staticmethod
@@ -141,14 +120,13 @@ class CustomValidator(BaseValidator):
     @if_arg
     def boolean_check(field_value):
         # Checks if the value is a boolean, basically 'true' or 'false' or their case variants
-        return {
-            "valid": field_value.lower() in ["true", "false"],
-            "value": field_value
-        }
+        return {"valid": field_value.lower() in ["true", "false"], "value": field_value}
 
     @staticmethod
     @if_arg
-    def collection_progress_consistency_check(collection_state, ends_at_present_flag, ending_date_time):
+    def collection_progress_consistency_check(
+        collection_state, ends_at_present_flag, ending_date_time
+    ):
         # Logic: https://github.com/NASA-IMPACT/pyQuARC/issues/61
         validity = False
         collection_state = collection_state.upper()

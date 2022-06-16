@@ -8,11 +8,11 @@ from tqdm import tqdm
 
 if __name__ == '__main__':
     from code.checker import Checker
-    from code.constants import COLOR, ECHO10
+    from code.constants import COLOR, ECHO10, SUPPORTED_FORMATS
     from code.downloader import Downloader
 else:
     from .code.checker import Checker
-    from .code.constants import COLOR, ECHO10
+    from .code.constants import COLOR, ECHO10, SUPPORTED_FORMATS
     from .code.downloader import Downloader
 
 
@@ -212,6 +212,7 @@ if __name__ == "__main__":
         --concept_ids
         --file
         --fake
+        --format
     """
     parser = argparse.ArgumentParser()
     download_group = parser.add_mutually_exclusive_group()
@@ -243,7 +244,7 @@ if __name__ == "__main__":
         action="store",
         nargs="?",
         type=str,
-        help="The metadata format (currently supported: 'echo10' and 'dif10')",
+        help=f"The metadata format (currently supported: {', '.join(SUPPORTED_FORMATS)})",
     )
 
     args = parser.parse_args()
@@ -253,7 +254,12 @@ if __name__ == "__main__":
         parser.error(
             "No metadata given, add --query or --concept_ids or --file or --fake"
         )
-        exit()
+
+    format = args.format or ECHO10
+    if (format not in SUPPORTED_FORMATS):
+        parser.error(
+            f"The given format is not supported. Only {', '.join(SUPPORTED_FORMATS)} are supported."
+        )
 
     arc = ARC(
         query=args.query,

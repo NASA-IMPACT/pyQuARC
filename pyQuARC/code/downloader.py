@@ -1,10 +1,5 @@
-import json
 import re
 import requests
-
-from xmltodict import parse
-
-from .constants import DIF, ECHO10, UMM_JSON
 
 
 class Downloader:
@@ -54,10 +49,13 @@ class Downloader:
         Returns:
             (str) The URL constructed based on the concept ID
         """
+        extension = self.metadata_format
+        if extension.startswith("umm-"):
+            extension = "umm-json"
 
-        concept_id_type = Downloader._concept_id_type(self.concept_id)
         constructed_url = Downloader.BASE_URL.format(
-            concept_id=self.concept_id, metadata_format=self.metadata_format
+            concept_id=self.concept_id,
+            metadata_format=extension
         )
 
         return constructed_url

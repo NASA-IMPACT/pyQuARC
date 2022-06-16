@@ -7,7 +7,7 @@ from jsonschema import Draft7Validator, draft7_format_checker, RefResolver
 from lxml import etree
 from urllib.request import pathname2url
 
-from .constants import ECHO10, UMM_JSON, SCHEMA_PATHS, SCHEMAS
+from .constants import ECHO10, SCHEMA_PATHS, UMM_C
 
 
 class SchemaValidator:
@@ -23,13 +23,13 @@ class SchemaValidator:
         """
         Args:
             metadata_format (str): The format of the metadata that needs
-                to be validated. Can be either of { ECHO10, UMM_JSON, DIF }.
+                to be validated. Can be any of { DIF, ECHO10, UMM_C, UMM_G }.
             validation_paths (list of str): The path of the fields in the
                 metadata that need to be validated. In the form
                 ['Collection/StartDate', ...].
         """
         self.metadata_format = metadata_format
-        if metadata_format == UMM_JSON:
+        if metadata_format.startswith("umm-"):
             self.validator_func = self.run_json_validator
         else:
             self.validator_func = self.run_xml_validator
@@ -47,7 +47,7 @@ class SchemaValidator:
         # Temporarily set the environment variable
         os.environ['XML_CATALOG_FILES'] = os.environ.get('XML_CATALOG_FILES', catalog_path)
 
-        with open(SCHEMA_PATHS[f"{self.metadata_format}_schema"], "r") as schema_file:
+        with open(SCHEMA_PATHS[f"{self.metadata_format}_schema"]) as schema_file:
             file_content = schema_file.read().encode()
         xmlschema_doc = etree.parse(BytesIO(file_content))
         schema = etree.XMLSchema(xmlschema_doc)
@@ -57,7 +57,8 @@ class SchemaValidator:
         """
         Reads the json schema file
         """
-        schema = json.load(open(SCHEMA_PATHS[f"{self.metadata_format}_schema"], "r"))
+        with open(SCHEMA_PATHS[f"{self.metadata_format}-json-schema"]) as schema_file:
+            schema = json.load(schema_file)
         return schema
 
     def run_json_validator(self, content_to_validate):
@@ -69,13 +70,17 @@ class SchemaValidator:
             (dict) A dictionary that gives the validity of the schema and errors if they exist
         """
         schema = self.read_json_schema()
-        schema_base = json.load(open(SCHEMA_PATHS["umm-cmn-json-schema"], "r"))
+        schema_store = {}
 
-        # workaround to read local referenced schema file (only supports uri)
-        schema_store = {
-            schema_base.get('$id','/umm-cmn-json-schema.json') : schema_base,
-            schema_base.get('$id','umm-cmn-json-schema.json') : schema_base,
-        }
+        if self.metadata_format == UMM_C:
+            with open(SCHEMA_PATHS["umm-cmn-json-schema"]) as schema_file:
+                schema_base = json.load(schema_file)
+
+            # workaround to read local referenced schema file (only supports uri)
+            schema_store = {
+                schema_base.get('$id','/umm-cmn-json-schema.json') : schema_base,
+                schema_base.get('$id','umm-cmn-json-schema.json') : schema_base,
+            }
 
         errors = {}
 

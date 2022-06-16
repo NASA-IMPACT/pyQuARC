@@ -27,7 +27,7 @@ The CMR is designed around its own metadata standard called the [Unified Metadat
 	* UMM-S (Service metadata)
 	* UMM-T (Tool metadata)
 
-**Currently, pyQuARC supports DIF 10, ECHO 10, and UMM-C collection-level metadata. Support for additional metadata standards will continue to be added in the coming months.** When completed, pyQuARC will support the DIF 10 (collection only), ECHO 10 (collection and granule), UMM-C and UMM-G standards. At this time, there are no plans to add ISO 19115 or UMM-S specific checks.
+**Currently, pyQuARC only supports DIF 10 (collection only), ECHO 10 (collection only), and UMM-G metadata. Support for additional metadata standards will continue to be added in the coming months.** When completed, pyQuARC will support the DIF 10 (collection only), ECHO 10 (collection and granule), UMM-C and UMM-G standards. At this time, there are no plans to add ISO 19115 or UMM-S specific checks.
 
 ## Architecture
 
@@ -79,7 +79,7 @@ arguments:
                         List of concept IDs.
   --file FILE           Path to the test file, either absolute or relative to the root dir.
   --fake FAKE           Use a fake content for testing.
---format [FORMAT]     	The metadata format (currently supported: 'echo10' and 'dif10')
+  --format [FORMAT]     The metadata format (currently supported: 'echo10' and 'dif10')
 
 ```
 To test a local file, use the `--file` argument. Give it either an absolute file path or a file path relative to the project root directory.
