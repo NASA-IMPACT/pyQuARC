@@ -8,11 +8,11 @@ from tqdm import tqdm
 
 if __name__ == '__main__':
     from code.checker import Checker
-    from code.constants import COLOR, ECHO10, SUPPORTED_FORMATS
+    from code.constants import CMR_URL, COLOR, ECHO10, SUPPORTED_FORMATS
     from code.downloader import Downloader
 else:
     from .code.checker import Checker
-    from .code.constants import COLOR, ECHO10, SUPPORTED_FORMATS
+    from .code.constants import CMR_URL, COLOR, ECHO10, SUPPORTED_FORMATS
     from .code.downloader import Downloader
 
 
