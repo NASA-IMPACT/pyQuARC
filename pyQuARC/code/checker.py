@@ -203,6 +203,7 @@ class Checker:
         """
         ordered_rule = self.scheduler.order_rules()
         result_dict = {}
+        pyquarc_errors = []
         for rule_id in ordered_rule:
             try:
                 rule_mapping = self.rules_override.get(
@@ -214,9 +215,13 @@ class Checker:
                 if func:
                     self._run_func(func, check, rule_id, metadata_content, result_dict)
             except Exception as e:
-                print(f"Running check for the rule: '{rule_id}' failed.\nPlease report the issue to https://github.com/NASA-IMPACT/pyquarc along with the metadata file and the following error message:")
-                print(f"ERROR: {e}")
-        return result_dict
+                pyquarc_errors.append(
+                    {
+                        "message": f"Running check for the rule: '{rule_id}' failed.",
+                        "details": str(e)
+                    }
+                )
+        return result_dict, pyquarc_errors
 
     def run(self, metadata_content):
         """
@@ -235,8 +240,8 @@ class Checker:
         result_schema = self.perform_schema_check(
             metadata_content
         )
-        result_custom = self.perform_custom_checks(json_metadata)
+        result_custom, pyquarc_errors = self.perform_custom_checks(json_metadata)
         result = {
             **result_schema, **result_custom
         }
-        return result
+        return result, pyquarc_errors

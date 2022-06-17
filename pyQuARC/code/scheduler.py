@@ -27,13 +27,13 @@ class Scheduler:
         dependencies_from_fields = []
 
         if field_dict:
-            dependencies_from_fields = field_dict.get("dependencies", [])
-        else:
-            rule = self.rule_mapping.get(rule_id)
-            if field_objects := rule.get("fields_to_apply").get(self.metadata_format):
-                for field_object in field_objects:
-                    if field_dependencies := field_object.get("dependencies"):
-                        dependencies_from_fields.extend(field_dependencies)
+            return field_dict.get("dependencies", [])
+
+        rule = self.rule_mapping.get(rule_id)
+        if field_objects := rule.get("fields_to_apply").get(self.metadata_format):
+            for field_object in field_objects:
+                if field_dependencies := field_object.get("dependencies"):
+                    dependencies_from_fields.extend(field_dependencies)
 
         dependencies.extend(dependencies_from_fields)
 

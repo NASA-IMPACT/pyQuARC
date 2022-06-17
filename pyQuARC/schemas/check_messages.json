@@ -7,6 +7,14 @@
         },
         "remediation": "Make sure the datetime complies with ISO 1601 standard."
     },
+    "date_or_datetime_format_check": {
+        "failure": "`{}` does not adhere to the ISO 1601 standard for date or datetime.",
+        "help": {
+            "message": "",
+            "url": "https://www.w3.org/TR/NOTE-datetime"
+        },
+        "remediation": "Make sure the date or datetime complies with ISO 1601 standard."
+    },
     "data_update_time_logic_check": {
         "failure": "The UpdateTime `{}` comes before the provided InsertTime `{}`.",
         "help": {
@@ -926,5 +934,13 @@
             "url": ""
         },
         "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+    },
+    "sensor_number_check": {
+        "failure": "The NumberOfSensors value `{}` does not match with the number of sensors provided `{}`.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Make sure they match."
     }
 }
