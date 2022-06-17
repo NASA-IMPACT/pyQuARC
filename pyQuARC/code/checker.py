@@ -13,7 +13,7 @@ from .datetime_validator import DatetimeValidator
 from .string_validator import StringValidator
 from .url_validator import UrlValidator
 
-from .constants import COLOR, DIF, ECHO10, SCHEMA_PATHS, UMM_JSON
+from .constants import ECHO10, SCHEMA_PATHS
 
 
 class Checker:
@@ -55,7 +55,7 @@ class Checker:
             self.checks_override,
             metadata_format=metadata_format
         )
-        self.schema_validator = SchemaValidator(metadata_format)
+        self.schema_validator = SchemaValidator(self.messages_override or self.messages, metadata_format)
         self.tracker = Tracker(
             self.rule_mapping,
             self.rules_override,
@@ -166,11 +166,14 @@ class Checker:
             rule_id
         ) or self.rule_mapping.get(rule_id)
         external_data = rule_mapping.get("data", [])
+        relation = rule_mapping.get("relation")
         list_of_fields_to_apply = \
             rule_mapping.get("fields_to_apply").get(self.metadata_format, {})
+        
         for field_dict in list_of_fields_to_apply:
             dependencies = self.scheduler.get_all_dependencies(rule_id, check, field_dict)
             main_field = field_dict["fields"][0]
+            external_data = field_dict.get("data", external_data)
             result_dict.setdefault(main_field, {})
             if not self._check_dependencies_validity(dependencies, field_dict):
                 continue
@@ -178,8 +181,10 @@ class Checker:
                 func,
                 metadata_content,
                 field_dict,
-                external_data
+                external_data,
+                relation
             )
+
             self.tracker.update_data(rule_id, main_field, result["valid"])
 
             # this is to avoid "valid" = null in the result, for rules that are not applied
@@ -228,7 +233,10 @@ class Checker:
         Returns:
             (dict): The results of the jsonschema check and all custom checks
         """
-        json_metadata = parse(metadata_content)
+        parser = parse
+        if self.metadata_format.startswith("umm-"):
+            parser = json.loads
+        json_metadata = parser(metadata_content)
         result_schema = self.perform_schema_check(
             metadata_content
         )

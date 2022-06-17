@@ -74,6 +74,16 @@
         "check_function": "organization_short_name_gcmd_check",
         "available": true
     },
+    "organization_long_name_gcmd_check": {
+        "data_type": "string",
+        "check_function": "organization_long_name_gcmd_check",
+        "available": true
+    },
+    "organization_short_long_name_consistency_check": {
+        "data_type": "string",
+        "check_function": "organization_short_long_name_consistency_check",
+        "available": true
+    },
     "instrument_short_long_name_consistency_check": {
         "data_type": "string",
         "check_function": "instrument_short_long_name_consistency_check",
@@ -169,9 +179,9 @@
         "check_function": "chrono_gcmd_check",
         "available": true
     },
-    "presence_check": {
+    "one_item_presence_check": {
         "data_type": "custom",
-        "check_function": "presence_check",
+        "check_function": "one_item_presence_check",
         "available": true
     },
     "doi_link_update": {
@@ -182,11 +192,6 @@
     "bounding_coordinate_logic_check": {
         "data_type": "custom",
         "check_function": "bounding_coordinate_logic_check",
-        "available": true
-    },
-    "opendap_url_location_check": {
-        "data_type": "custom",
-        "check_function": "opendap_url_location_check",
         "available": true
     },
     "user_services_check": {
@@ -214,29 +219,19 @@
         "check_function": "online_resource_type_gcmd_check",
         "available": true
     },
-    "characteristic_name_uniqueness_check": {
+    "uniqueness_check": {
         "data_type": "custom",
-        "check_function": "characteristic_name_uniqueness_check",
+        "check_function": "uniqueness_check",
         "available": true
     },
     "validate_ending_datetime_against_granules": {
         "data_type": "datetime",
         "check_function": "validate_ending_datetime_against_granules",
-        "dependencies": [
-            [
-                "datetime_format_check"
-            ]
-        ],
         "available": true
     },
     "validate_beginning_datetime_against_granules": {
         "data_type": "datetime",
         "check_function": "validate_beginning_datetime_against_granules",
-        "dependencies": [
-            [
-                "datetime_format_check"
-            ]
-        ],
         "available": true
     },
     "get_data_url_check": {

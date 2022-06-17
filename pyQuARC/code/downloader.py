@@ -53,11 +53,14 @@ class Downloader:
         Returns:
             (str) The URL constructed based on the concept ID
         """
+        extension = self.metadata_format
+        if extension.startswith("umm-"):
+            extension = "umm-json"
 
         concept_id_type = Downloader._concept_id_type(self.concept_id)
         base_url = Downloader.BASE_URL.format(cmr_host=self.cmr_host)
         version = f'/{self.version}' if self.version else ''
-        constructed_url = f"{base_url}{self.concept_id}{version}.{self.metadata_format}"
+        constructed_url = f"{base_url}{self.concept_id}{version}.{extension}"
         return constructed_url
 
     def log_error(self, error_message_code, kwargs):
