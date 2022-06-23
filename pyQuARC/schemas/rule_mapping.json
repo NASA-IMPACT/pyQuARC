@@ -4426,7 +4426,7 @@
             ]
         },
         "severity": "error",
-        "check_id": "data_center_short_name_gcmd_check"
+        "check_id": "organization_short_name_gcmd_check"
     },
     "characteristic_data_type": {
         "rule_name": "Characteristics Data Type Presence Check",
@@ -4662,6 +4662,6 @@
             ]
         },
         "severity": "info",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     }
 }
