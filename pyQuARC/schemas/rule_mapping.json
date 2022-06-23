@@ -2,7 +2,7 @@
     "data_update_time_logic_check": {
         "rule_name": "Data Update Time Logic Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/LastUpdate",
@@ -36,7 +36,7 @@
     "data_revision_date_logic_check": {
         "rule_name": "Data Revision Date Logic Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/RevisionDate",
@@ -61,7 +61,7 @@
     "range_date_time_logic_check_1": {
         "rule_name": "Range Date Time Logic Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Temporal/RangeDateTime/BeginningDateTime",
@@ -104,7 +104,7 @@
     "range_date_time_logic_check_2": {
         "rule_name": "Range Date Time Logic Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Temporal/RangeDateTime/BeginningDateTime",
@@ -147,7 +147,7 @@
     "project_date_time_logic_check_1": {
         "rule_name": "Project Date Time Logic Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Campaigns/Campaign/StartDate",
@@ -181,7 +181,7 @@
     "project_date_time_logic_check_2": {
         "rule_name": "Project Date Time Logic Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Campaigns/Campaign/StartDate",
@@ -215,7 +215,7 @@
     "periodic_date_time_logic_check": {
         "rule_name": "Periodic Date Time Logic Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Temporal/PeriodicDateTime/StartDate",
@@ -263,7 +263,7 @@
     "datetime_format_check": {
         "rule_name": "Datetime ISO Format Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/InsertTime"
@@ -570,7 +570,7 @@
     "url_check": {
         "rule_name": "URL Health and Status Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Description"
@@ -680,7 +680,7 @@
     "shortname_uniqueness": {
         "rule_name": "Short Name uniqueness check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/DataSetId",
@@ -714,7 +714,7 @@
     "abstract_length_check": {
         "rule_name": "Abstract length check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Description"
@@ -746,7 +746,7 @@
     "doi_validity_check": {
         "rule_name": "DOI Validity Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/DOI/DOI"
@@ -804,7 +804,7 @@
     "doi_link_update": {
         "rule_name": "DOI Link Update",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/AdditionalAttributes/AdditionalAttribute/Value"
@@ -839,7 +839,7 @@
     "processing_level_id_check": {
         "rule_name": "EOSDIS Standard Processing Level ID Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/ProcessingLevelId"
@@ -877,7 +877,7 @@
     "science_keywords_gcmd_check": {
         "rule_name": "GCMD Science keywords check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/ScienceKeywords/ScienceKeyword/CategoryKeyword",
@@ -920,7 +920,7 @@
     "eosdis_doi_authority_check": {
         "rule_name": "EOSDIS DOI Authority Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/DOI/Authority"
@@ -959,7 +959,7 @@
     "delete_time_check": {
         "rule_name": "Delete Time Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/DeleteTime"
@@ -1008,7 +1008,7 @@
     "doi_missing_reason_enumeration_check": {
         "rule_name": "DOI Missing Reason Enumeration Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/DOI/MissingReason"
@@ -1035,7 +1035,7 @@
     "processing_level_description_length_check": {
         "rule_name": "Processing Level Description Length Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/ProcessingLevelDescription"
@@ -1060,7 +1060,7 @@
     "umm_controlled_collection_state_list_check": {
         "rule_name": "UMM Controlled Collection State List",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/CollectionState"
@@ -1090,7 +1090,7 @@
     "ends_at_present_flag_logic_check": {
         "rule_name": "Ends at present flag logic check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Temporal/EndsAtPresentFlag",
@@ -1124,7 +1124,7 @@
     "ends_at_present_flag_presence_check": {
         "rule_name": "Ends at present flag presence check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Temporal/EndsAtPresentFlag",
@@ -1158,7 +1158,7 @@
     "contact_mechanism_enum_check": {
         "rule_name": "Contact Mechanism Enumeration Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Contacts/Contact/OrganizationPhones/Phone/Type"
@@ -1215,7 +1215,7 @@
     "data_contact_role_enum_check": {
         "rule_name": "Data Contact Role Enumeration Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Contacts/Contact/ContactPersons/ContactPerson/JobPosition"
@@ -1247,7 +1247,7 @@
     "controlled_contact_role_check": {
         "rule_name": "Controlled Contact Role Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Contacts/Contact/Role"
@@ -1283,7 +1283,7 @@
     "data_type_control_check": {
         "rule_name": "Data type control Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/AdditionalAttributes/AdditionalAttribute/DataType"
@@ -1370,7 +1370,7 @@
     "characteristic_name_check": {
         "rule_name": "Characteristic Name Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/Characteristics/Characteristic/Name",
@@ -1451,7 +1451,7 @@
     "characteristic_desc_check": {
         "rule_name": "Characteristic Description Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/Characteristics/Characteristic/Description",
@@ -1518,7 +1518,7 @@
     "characteristic_unit_check": {
         "rule_name": "Characteristic Unit Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/Characteristics/Characteristic/Unit",
@@ -1585,7 +1585,7 @@
     "characteristic_value_check": {
         "rule_name": "Characteristic Value Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/Characteristics/Characteristic/Value",
@@ -1666,7 +1666,7 @@
     "characteristic_name_length_check": {
         "rule_name": "Characteristic Name Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/Characteristics/Characteristic/Name"
@@ -1728,7 +1728,7 @@
     "characteristic_desc_length_check": {
         "rule_name": "Characteristic Description Length Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/Characteristics/Characteristic/Description"
@@ -1790,7 +1790,7 @@
     "characteristic_unit_length_check": {
         "rule_name": "Characteristic Unit Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/Characteristics/Characteristic/Unit"
@@ -1852,7 +1852,7 @@
     "characteristic_value_length_check": {
         "rule_name": "Characteristic Value Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Value"
@@ -1904,7 +1904,7 @@
     "mime_type_check": {
         "rule_name": "MIME type Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/OnlineResources/OnlineResource/MimeType",
@@ -1960,7 +1960,7 @@
     "coordinate_system_check": {
         "rule_name": "Coordinate System Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Spatial/HorizontalSpatialDomain/Geometry/Coordinate System"
@@ -1994,7 +1994,7 @@
     "product_flag_check": {
         "rule_name": "Product Flag Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/ProductFlag"
@@ -2016,7 +2016,7 @@
     "granule_spatial_representation_check": {
         "rule_name": "Granule Spatial Representation Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Spatial/GranuleSpatialRepresentation"
@@ -2052,7 +2052,7 @@
     "organization_short_name_gcmd_check": {
         "rule_name": "Organization Shortname GCMD Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/ProcessingCenter"
@@ -2149,7 +2149,7 @@
     "instrument_short_long_name_consistency_check": {
         "rule_name": "Instrument Short/Longname Consistency Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/Instruments/Instrument/ShortName",
@@ -2257,7 +2257,7 @@
     "instrument_short_name_gcmd_check": {
         "rule_name": "Instrument Shortname GCMD Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/Instruments/Instrument/ShortName"
@@ -2312,7 +2312,7 @@
     "instrument_long_name_gcmd_check": {
         "rule_name": "Instrument Longname GCMD Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/Instruments/Instrument/LongName"
@@ -2369,7 +2369,7 @@
     "platform_short_name_gcmd_check": {
         "rule_name": "Platform Shortname GCMD Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/ShortName"
@@ -2404,7 +2404,7 @@
     "platform_short_long_name_consistency_check": {
         "rule_name": "Platform Short/Longname Consistency Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/ShortName",
@@ -2464,7 +2464,7 @@
     "data_format_gcmd_check": {
         "rule_name": "Data Format GCMD Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/DataFormat"
@@ -2504,7 +2504,7 @@
     "platform_long_name_gcmd_check": {
         "rule_name": "Platform Longname GCMD Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/LongName"
@@ -2532,7 +2532,7 @@
     "spatial_keyword_gcmd_check": {
         "rule_name": "Spatial Keyword GCMD Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/SpatialKeywords/Keyword"
@@ -2629,7 +2629,7 @@
     "platform_type_gcmd_check": {
         "rule_name": "Platform Type GCMD Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/Type"
@@ -2657,7 +2657,7 @@
     "campaign_short_long_name_consistency_check": {
         "rule_name": "Campaign Short/Long name consistency Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Campaigns/Campaign/ShortName",
@@ -2718,7 +2718,7 @@
     "campaign_short_name_gcmd_check": {
         "rule_name": "Campaign Short Name GCMD Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Campaigns/Campaign/ShortName"
@@ -2753,7 +2753,7 @@
     "campaign_long_name_gcmd_check": {
         "rule_name": "Campaign Long Name GCMD Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Campaigns/Campaign/LongName"
@@ -2795,7 +2795,7 @@
     "version_description_not_provided": {
         "rule_name": "Version Description Not Provided",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/VersionDescription"
@@ -2827,7 +2827,7 @@
     "collection_data_type_enumeration_check": {
         "rule_name": "Collection Data Type Enumeration Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/CollectionDataType"
@@ -2862,7 +2862,7 @@
     "data_center_name_presence_check": {
         "rule_name": "Data Center Name Presence Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/ArchiveCenter",
@@ -2885,7 +2885,7 @@
     "bounding_coordinate_logic_check": {
         "rule_name": "Bounding Coordinates Logic Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle/WestBoundingCoordinate",
@@ -2931,7 +2931,7 @@
     "vertical_spatial_domain_type_check": {
         "rule_name": "Vertical Spatial Domain Type Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Spatial/VerticalSpatialDomain/Type"
@@ -2990,7 +2990,7 @@
     "spatial_coverage_type_check": {
         "rule_name": "Spatial Coverage Type Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Spatial/SpatialCoverageType"
@@ -3029,7 +3029,7 @@
     "depth_unit_check": {
         "rule_name": "Depth Unit Controlled Vocabulary Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/SpatialInfo/VerticalCoordinateSystem/DepthSystemDefinition/DistanceUnits"
@@ -3066,7 +3066,7 @@
     "altitude_unit_check": {
         "rule_name": "Altitude Unit Controlled Vocabulary Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/SpatialInfo/VerticalCoordinateSystem/AltitudeSystemDefinition/DistanceUnits"
@@ -3122,7 +3122,7 @@
     "campaign_name_presence_check": {
         "rule_name": "Campaign Name Presence Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Campaigns/Campaign/ShortName"
@@ -3157,7 +3157,7 @@
     "spatial_coverage_type_presence_check": {
         "rule_name": "Spatial Coverage Type Presence Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Spatial/SpatialCoverageType"
@@ -3185,7 +3185,7 @@
     "horizontal_datum_name_check": {
         "rule_name": "Horizontal Datum Name Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/SpatialInfo/HorizontalCoordinateSystem/GeodeticModel/HorizontalDatumName"
@@ -3213,7 +3213,7 @@
     "online_access_url_presence_check": {
         "rule_name": "Online Access URL Presence Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
@@ -3227,7 +3227,7 @@
     "online_resource_url_presence_check": {
         "rule_name": "Online Resource URL Presence Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/OnlineResources/OnlineResource/URL"
@@ -3241,7 +3241,7 @@
     "online_access_url_description_check": {
         "rule_name": "Online Access URL Description Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/OnlineAccessURLs/OnlineAccessURL/URLDescription"
@@ -3255,7 +3255,7 @@
     "online_resource_url_description_check": {
         "rule_name": "Online Resource URL Description Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/OnlineResources/OnlineResource/Description"
@@ -3276,7 +3276,7 @@
     "opendap_url_location_check": {
         "rule_name": "ECHO10 OPeNDAP URL Location Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
@@ -3290,7 +3290,7 @@
     "location_keyword_presence_check": {
         "rule_name": "Location Keyword Presence Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/SpatialKeywords/Keyword"
@@ -3318,7 +3318,7 @@
     "spatial_extent_requirement_fulfillment_check": {
         "rule_name": "Spatial Extent Requirement Fulfillment Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Spatial/HorizontalSpatialDomain/Geometry/Point",
@@ -3365,7 +3365,7 @@
     "license_information_check": {
         "rule_name": "License Information Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/UseConstraints"
@@ -3395,7 +3395,7 @@
     "collection_citation_presence_check": {
         "rule_name": "Collection Citation Presence Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/CitationforExternalPublication"
@@ -3423,7 +3423,7 @@
     "user_services_check": {
         "rule_name": "User Services Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Contacts/Contact/ContactPersons/ContactPerson/FirstName",
@@ -3471,7 +3471,7 @@
     "doi_missing_reason_explanation": {
         "rule_name": "DOI Missing Reason Explanation",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/DOI/Explanation",
@@ -3505,7 +3505,7 @@
     "boolean_check": {
         "rule_name": "Boolean check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Orderable"
@@ -3524,7 +3524,7 @@
     "collection_progress_consistency_check": {
         "rule_name": "Collection Progress Related Fields Consistency Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/CollectionState",
@@ -3572,7 +3572,7 @@
     "online_resource_type_gcmd_check": {
         "rule_name": "Online Resource Type GCMD Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/OnlineResources/OnlineResource/Type"
@@ -3600,7 +3600,7 @@
     "online_resource_type_presence_check": {
         "rule_name": "Online Resource Type Presence Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/OnlineResources/OnlineResource/Type",
@@ -3631,7 +3631,7 @@
     "characteristic_name_uniqueness_check": {
         "rule_name": "Characteristic Name Uniqueness Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/Characteristics/Characteristic"
@@ -3674,7 +3674,7 @@
     "validate_ending_datetime_against_granules": {
         "rule_name": "Ending Datetime validation against granules",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Temporal/RangeDateTime/EndingDateTime",
@@ -3723,7 +3723,7 @@
     "validate_beginning_datetime_against_granules": {
         "rule_name": "Beginning Datetime validation against granules",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Temporal/RangeDateTime/BeginningDateTime",
@@ -3906,7 +3906,7 @@
     "temporal_extent_requirement_check": {
         "rule_name": "Temporal Extent Requirement Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Temporal/SingleDateTime",
@@ -4110,7 +4110,7 @@
     "url_desc_presence_check": {
         "rule_name": "Online Description Presence Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/OnlineAccessURLs/OnlineAccessURL/URLDescription",
@@ -4346,7 +4346,7 @@
     "data_center_short_name_gcmd_check": {
         "rule_name": "Data Center Shortname GCMD Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/ProcessingCenter"
@@ -4379,7 +4379,7 @@
     "characteristic_data_type": {
         "rule_name": "Characteristics Data Type Presence Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/Characteristics/Characteristic/DataType",
@@ -4446,7 +4446,7 @@
     "platform_type_presence_check": {
         "rule_name": "Platform Type Presence Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/Type"

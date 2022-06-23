@@ -15,6 +15,14 @@ class Downloader:
     GRANULE = "granule"
     INVALID = "invalid"
 
+    FORMAT_MAP = {
+        "echo-c": "echo10",
+        "echo-g": "echo10",
+        "umm-c": "umm-json",
+        "umm-g": "umm-json",
+        "dif10": "dif10",
+    }
+
     def __init__(self, concept_id, metadata_format, version=None):
         """
         Args:
@@ -52,7 +60,7 @@ class Downloader:
 
         constructed_url = Downloader.BASE_URL.format(
             concept_id=self.concept_id,
-            metadata_format=self.metadata_format if not self.metadata_format.startswith("umm-") else "umm-json"
+            metadata_format=Downloader.FORMAT_MAP.get(self.metadata_format, "echo10")
         )
 
         return constructed_url

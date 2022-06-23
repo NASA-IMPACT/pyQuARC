@@ -8,11 +8,11 @@ from tqdm import tqdm
 
 if __name__ == '__main__':
     from code.checker import Checker
-    from code.constants import COLOR, ECHO10, SUPPORTED_FORMATS
+    from code.constants import COLOR, ECHO10_C, SUPPORTED_FORMATS
     from code.downloader import Downloader
 else:
     from .code.checker import Checker
-    from .code.constants import COLOR, ECHO10, SUPPORTED_FORMATS
+    from .code.constants import COLOR, ECHO10_C, SUPPORTED_FORMATS
     from .code.downloader import Downloader
 
 
@@ -34,7 +34,7 @@ class ARC:
         input_concept_ids=[],
         fake=None,
         file_path=None,
-        metadata_format=ECHO10,
+        metadata_format=ECHO10_C,
         checks_override=None,
         rules_override=None,
         messages_override=None
@@ -45,7 +45,7 @@ class ARC:
             input_concept_ids (list of str): The list of concept ids to download
             fake (bool): If set to true, used a fake data to perform the validation
             file_path (str): The absolute path to the sample/test metadata file
-            metadata_format (str): The format of the metadata file (echo10, dif10, etc)
+            metadata_format (str): The format of the metadata file (echo-c, dif10, echo-g etc)
             checks_override (str): The filepath of the checks_override file
             rules_override (str): The filepath of the rules_override file
             messages_override (str): The filepath of the checks_override file
@@ -267,7 +267,7 @@ if __name__ == "__main__":
         input_concept_ids=args.concept_ids or [],
         fake=args.fake,
         file_path=args.file,
-        metadata_format=args.format or ECHO10,
+        metadata_format=args.format or ECHO10_C,
     )
     results = arc.validate()
     arc.display_results()

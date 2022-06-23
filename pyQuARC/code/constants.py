@@ -2,12 +2,12 @@ from colorama import Fore, Style
 from pathlib import Path
 
 DIF = "dif10"
-ECHO10 = "echo10"
+ECHO10_C = "echo-c"
 UMM_C = "umm-c"
 UMM_G = "umm-g"
-ECHO10G = "echo-g"
+ECHO10_G = "echo-g"
 
-SUPPORTED_FORMATS = [DIF, ECHO10, UMM_C, UMM_G, ECHO10G]
+SUPPORTED_FORMATS = [DIF, ECHO10_C, UMM_C, UMM_G, ECHO10_G]
 
 ROOT_DIR = (
     # go up one directory
@@ -46,7 +46,7 @@ SCHEMAS = {
         f"{UMM_G}-json-schema"
     ],
     "csv": GCMD_KEYWORDS,
-    "xsd": [ f"{DIF}_schema", f"{ECHO10}_schema", f"{ECHO10G}_schema" ],
+    "xsd": [ f"{DIF}_schema", f"{ECHO10_C}_schema", f"{ECHO10_G}_schema" ],
     "xml": [ "catalog" ]
 }
 
