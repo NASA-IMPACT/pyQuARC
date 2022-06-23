@@ -587,6 +587,13 @@
                         "OrbitCalculatedSpatialDomains/EquatorCrossingDateTime"
                     ]
                 }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/InsertTime"
+                    ]
+                }
             ]
         },
         "severity": "error",
