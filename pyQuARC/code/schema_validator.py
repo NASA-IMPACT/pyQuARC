@@ -47,7 +47,7 @@ class SchemaValidator:
         # Temporarily set the environment variable
         os.environ['XML_CATALOG_FILES'] = os.environ.get('XML_CATALOG_FILES', catalog_path)
 
-        with open(SCHEMA_PATHS[f"{self.metadata_format}_schema"], "r") as schema_file:
+        with open(SCHEMA_PATHS[f"{self.metadata_format}_schema"]) as schema_file:
             file_content = schema_file.read().encode()
         xmlschema_doc = etree.parse(BytesIO(file_content))
         schema = etree.XMLSchema(xmlschema_doc)
@@ -57,7 +57,8 @@ class SchemaValidator:
         """
         Reads the json schema file
         """
-        schema = json.load(open(SCHEMA_PATHS[f"{self.metadata_format}-json-schema"], "r"))
+        with open(SCHEMA_PATHS[f"{self.metadata_format}-json-schema"]) as schema_file:
+            schema = json.load(schema_file)
         return schema
 
     def run_json_validator(self, content_to_validate):
@@ -72,7 +73,8 @@ class SchemaValidator:
         schema_store = {}
 
         if self.metadata_format == UMM_C:
-            schema_base = json.load(open(SCHEMA_PATHS["umm-cmn-json-schema"], "r"))
+            with open(SCHEMA_PATHS["umm-cmn-json-schema"]) as schema_file:
+                schema_base = json.load(schema_file)
 
             # workaround to read local referenced schema file (only supports uri)
             schema_store = {
@@ -92,11 +94,10 @@ class SchemaValidator:
             field = SchemaValidator.PATH_SEPARATOR.join([str(x) for x in list(error.path)])
             message = error.message
             remediation = None
-            if error.validator == "oneOf":
-                if check_message := self.check_messages.get(error.validator):
-                    fields = [f'{field}/{obj["required"][0]}' for obj in error.validator_value]
-                    message = check_message["failure"].format(fields)
-                    remediation = check_message["remediation"]
+            if error.validator == "oneOf" and (check_message := self.check_messages.get(error.validator)):
+                fields = [f'{field}/{obj["required"][0]}' for obj in error.validator_value]
+                message = check_message["failure"].format(fields)
+                remediation = check_message["remediation"]
             errors.setdefault(field, {})["schema"] = {
                 "message": [f"Error: {message}"],
                 "remediation": remediation,

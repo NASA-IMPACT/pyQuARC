@@ -127,6 +127,10 @@ Lastly, users should continue to carefully observe and weigh information from th
                   <URL>https://search.earthdata.nasa.gov/search?q=ACOS_L2S+7.3</URL>
                   <URLDescription>Use the Earthdata Search to find and retrieve data sets across multiple data centers.</URLDescription>
             </OnlineAccessURL>
+            <OnlineAccessURL>
+                  <URL>https://opendap/search?q=ACOS_L2S+7.3</URL>
+                  <URLDescription>Use the Earthdata Search to find and retrieve data sets across multiple data centers.</URLDescription>
+            </OnlineAccessURL>
       </OnlineAccessURLs>
       <OnlineResources>
             <OnlineResource>

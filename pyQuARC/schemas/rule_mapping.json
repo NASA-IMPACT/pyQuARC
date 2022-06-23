@@ -26,12 +26,17 @@
                         "DIF/Metadata_Dates/Data_Last_Revision",
                         "DIF/Metadata_Dates/Data_Creation"
                     ],
-                    "relation": "gte"
+                    "relation": "gte",
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
+                    ]
                 }
             ]
         },
         "severity": "info",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "data_revision_date_logic_check": {
         "rule_name": "Data Revision Date Logic Check",
@@ -51,12 +56,17 @@
                         "DIF/Metadata_Dates/Metadata_Last_Revision",
                         "DIF/Metadata_Dates/Metadata_Creation"
                     ],
-                    "relation": "gte"
+                    "relation": "gte",
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
+                    ]
                 }
             ]
         },
         "severity": "info",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "range_date_time_logic_check_1": {
         "rule_name": "Range Date Time Logic Check",
@@ -76,7 +86,12 @@
                         "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time",
                         "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time"
                     ],
-                    "relation": "lte"
+                    "relation": "lte",
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
+                    ]
                 }
             ],
             "umm-c": [
@@ -99,7 +114,7 @@
             ]
         },
         "severity": "error",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "range_date_time_logic_check_2": {
         "rule_name": "Range Date Time Logic Check",
@@ -119,7 +134,12 @@
                         "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time",
                         "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time"
                     ],
-                    "relation": "neq"
+                    "relation": "neq",
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
+                    ]
                 }
             ],
             "umm-c": [
@@ -142,7 +162,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "project_date_time_logic_check_1": {
         "rule_name": "Project Date Time Logic Check",
@@ -162,7 +182,12 @@
                         "DIF/Project/Start_Date",
                         "DIF/Project/End_Date"
                     ],
-                    "relation": "lte"
+                    "relation": "lte",
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
+                    ]
                 }
             ],
             "umm-c": [
@@ -176,7 +201,7 @@
             ]
         },
         "severity": "error",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "project_date_time_logic_check_2": {
         "rule_name": "Project Date Time Logic Check",
@@ -196,7 +221,12 @@
                         "DIF/Project/Start_Date",
                         "DIF/Project/End_Date"
                     ],
-                    "relation": "neq"
+                    "relation": "neq",
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
+                    ]
                 }
             ],
             "umm-c": [
@@ -210,7 +240,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "periodic_date_time_logic_check": {
         "rule_name": "Periodic Date Time Logic Check",
@@ -230,14 +260,24 @@
                         "DIF/Temporal_Coverage/Periodic_DateTime/Start_Date",
                         "DIF/Temporal_Coverage/Periodic_DateTime/End_Date"
                     ],
-                    "relation": "lt"
+                    "relation": "lt",
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
+                    ]
                 },
                 {
                     "fields": [
                         "DIF/Temporal_Coverage/Paleo_DateTime/Paleo_Start_Date",
                         "DIF/Temporal_Coverage/Paleo_DateTime/Paleo_Stop_Date"
                     ],
-                    "relation": "lt"
+                    "relation": "lt",
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
+                    ]
                 }
             ],
             "umm-c": [
@@ -258,7 +298,7 @@
             ]
         },
         "severity": "error",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "datetime_format_check": {
         "rule_name": "Datetime ISO Format Check",
@@ -319,7 +359,13 @@
                         "Collection/Campaigns/Campaign/EndDate"
                     ]
                 }
-            ],
+            ]
+        },
+        "severity": "error"
+    },
+    "date_or_datetime_format_check": {
+        "rule_name": "Date or Datetime ISO Format Check",
+        "fields_to_apply": {
             "dif10": [
                 {
                     "fields": [
@@ -565,7 +611,7 @@
             ]
         },
         "severity": "error",
-        "check_id": "datetime_format_check"
+        "check_id": "date_or_datetime_format_check"
     },
     "url_check": {
         "rule_name": "URL Health and Status Check",
@@ -1003,7 +1049,7 @@
             "gte"
         ],
         "severity": "info",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "doi_missing_reason_enumeration_check": {
         "rule_name": "DOI Missing Reason Enumeration Check",
@@ -2364,7 +2410,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "platform_short_name_gcmd_check": {
         "rule_name": "Platform Shortname GCMD Check",
@@ -2790,7 +2836,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "version_description_not_provided": {
         "rule_name": "Version Description Not Provided",
@@ -2880,7 +2926,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "bounding_coordinate_logic_check": {
         "rule_name": "Bounding Coordinates Logic Check",
@@ -3152,7 +3198,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "spatial_coverage_type_presence_check": {
         "rule_name": "Spatial Coverage Type Presence Check",
@@ -3180,7 +3226,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "horizontal_datum_name_check": {
         "rule_name": "Horizontal Datum Name Check",
@@ -3208,7 +3254,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "online_access_url_presence_check": {
         "rule_name": "Online Access URL Presence Check",
@@ -3222,7 +3268,7 @@
             ]
         },
         "severity": "error",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "online_resource_url_presence_check": {
         "rule_name": "Online Resource URL Presence Check",
@@ -3236,7 +3282,7 @@
             ]
         },
         "severity": "error",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "online_access_url_description_check": {
         "rule_name": "Online Access URL Description Check",
@@ -3250,7 +3296,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "online_resource_url_description_check": {
         "rule_name": "Online Resource URL Description Check",
@@ -3271,7 +3317,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "opendap_url_location_check": {
         "rule_name": "ECHO10 OPeNDAP URL Location Check",
@@ -3284,8 +3330,12 @@
                 }
             ]
         },
+        "data": [
+            "opendap"
+        ],
+        "relation": "not_contains",
         "severity": "error",
-        "check_id": "opendap_url_location_check"
+        "check_id": "string_compare"
     },
     "location_keyword_presence_check": {
         "rule_name": "Location Keyword Presence Check",
@@ -3313,7 +3363,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "spatial_extent_requirement_fulfillment_check": {
         "rule_name": "Spatial Extent Requirement Fulfillment Check",
@@ -3360,7 +3410,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "license_information_check": {
         "rule_name": "License Information Check",
@@ -3390,7 +3440,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "collection_citation_presence_check": {
         "rule_name": "Collection Citation Presence Check",
@@ -3418,7 +3468,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "user_services_check": {
         "rule_name": "User Services Check",
@@ -3678,7 +3728,8 @@
                 {
                     "fields": [
                         "Collection/Temporal/RangeDateTime/EndingDateTime",
-                        "Collection/ShortName"
+                        "Collection/ShortName",
+                        "Collection/VersionId"
                     ],
                     "dependencies": [
                         [
@@ -3692,7 +3743,8 @@
                 {
                     "fields": [
                         "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time",
-                        "DIF/Entry_ID/Short_Name"
+                        "DIF/Entry_ID/Short_Name",
+                        "DIF/Entry_ID/Version"
                     ],
                     "dependencies": [
                         [
@@ -3715,6 +3767,11 @@
                         ]
                     ]
                 }
+            ],
+            "dependencies": [
+                [
+                    "date_or_datetime_format_check"
+                ]
             ]
         },
         "severity": "warning",
@@ -3727,7 +3784,8 @@
                 {
                     "fields": [
                         "Collection/Temporal/RangeDateTime/BeginningDateTime",
-                        "Collection/ShortName"
+                        "Collection/ShortName",
+                        "Collection/VersionId"
                     ],
                     "dependencies": [
                         [
@@ -3741,12 +3799,12 @@
                 {
                     "fields": [
                         "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time",
-                        "DIF/Entry_ID/Short_Name"
+                        "DIF/Entry_ID/Short_Name",
+                        "DIF/Entry_ID/Version"
                     ],
                     "dependencies": [
                         [
-                            "datetime_format_check",
-                            "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time"
+                            "date_or_datetime_format_check"
                         ]
                     ]
                 }
@@ -3755,7 +3813,8 @@
                 {
                     "fields": [
                         "TemporalExtents/RangeDateTimes/BeginningDateTime",
-                        "ShortName"
+                        "ShortName",
+                        "Version"
                     ],
                     "dependencies": [
                         [
@@ -3776,11 +3835,21 @@
                 {
                     "fields": [
                         "DIF/Metadata_Dates/Metadata_Future_Review"
+                    ],
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
                     ]
                 },
                 {
                     "fields": [
                         "DIF/Metadata_Dates/Data_Future_Review"
+                    ],
+                    "dependencies": [
+                        [
+                            "date_or_datetime_format_check"
+                        ]
                     ]
                 }
             ],
@@ -3802,7 +3871,7 @@
             "gte"
         ],
         "severity": "info",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "iso_topic_category_check": {
         "rule_name": "ISO Topic Category Vocabulary Check",
@@ -3943,7 +4012,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "ftp_protocol_check": {
         "rule_name": "FTP Protocol Check",
@@ -4105,7 +4174,7 @@
             "neq"
         ],
         "severity": "info",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "url_desc_presence_check": {
         "rule_name": "Online Description Presence Check",
@@ -4327,7 +4396,7 @@
                 {
                     "fields": [
                         "DIF/Platform/Instrument/NumberOfSensors",
-                        "DIF/Platform/Instrument/Sensor/Short_Name"
+                        "DIF/Platform/Instrument"
                     ]
                 }
             ],
@@ -4340,6 +4409,9 @@
                 }
             ]
         },
+        "data": [
+            "Sensor"
+        ],
         "severity": "error",
         "check_id": "count_check"
     },
@@ -4374,7 +4446,7 @@
             ]
         },
         "severity": "error",
-        "check_id": "data_center_short_name_gcmd_check"
+        "check_id": "organization_short_name_gcmd_check"
     },
     "characteristic_data_type": {
         "rule_name": "Characteristics Data Type Presence Check",
@@ -4469,7 +4541,7 @@
             ]
         },
         "severity": "error",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "platform_long_name_presence_check": {
         "rule_name": "Platform Longname Presence Check",
@@ -4483,7 +4555,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "horizontal_data_resolution_unit_check": {
         "rule_name": "Horizontal Data Resolution Unit Controlled Vocabulary Check",
@@ -4612,7 +4684,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "date_compare"
+        "check_id": "datetime_compare"
     },
     "validate_granule_data_format_against_collection_check": {
         "rule_name": "Validate Granule Data Format Against Collection Check",
