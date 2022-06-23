@@ -1,28 +1,37 @@
 import re
 import requests
 
+from urllib.parse import urlparse
+
+from .constants import CMR_URL
+
 
 class Downloader:
     """
         Downloads data given a concept ID
     """
-    
-    BASE_URL = (
-        "https://cmr.earthdata.nasa.gov/search/concepts/{concept_id}.{metadata_format}"
-    )
+
+    BASE_URL = "{cmr_host}/search/concepts/"
 
     COLLECTION = "collection"
     GRANULE = "granule"
     INVALID = "invalid"
 
-    def __init__(self, concept_id, metadata_format, version=None):
+    FORMAT_MAP = {
+        "echo-c": "echo10",
+        "echo-g": "echo10",
+        "umm-c": "umm-json",
+        "umm-g": "umm-json",
+        "dif10": "dif10",
+    }
+
+    def __init__(self, concept_id, metadata_format, version=None, cmr_host=CMR_URL):
         """
         Args:
             concept_id (str): The concept id of the metadata to download
             metadata_format (str): The file format of the metadata to download
             version (str): The version of the metadata to download
         """
-        # TODO: Handle versions here
         self.concept_id = concept_id
         self.version = version
         self.metadata_format = metadata_format
@@ -30,6 +39,9 @@ class Downloader:
 
         # big XML string or dict is stored here
         self.downloaded_content = None
+
+        parsed_url = urlparse(cmr_host)
+        self.cmr_host = f'{parsed_url.scheme}://{parsed_url.netloc}'
 
     def _valid_concept_id(self):
         """
@@ -49,12 +61,12 @@ class Downloader:
         Returns:
             (str) The URL constructed based on the concept ID
         """
+        extension = Downloader.FORMAT_MAP.get(self.metadata_format, "echo10")
 
-        constructed_url = Downloader.BASE_URL.format(
-            concept_id=self.concept_id,
-            metadata_format=self.metadata_format if not self.metadata_format.startswith("umm-") else "umm-json"
-        )
-
+        concept_id_type = Downloader._concept_id_type(self.concept_id)
+        base_url = Downloader.BASE_URL.format(cmr_host=self.cmr_host)
+        version = f'/{self.version}' if self.version else ''
+        constructed_url = f"{base_url}{self.concept_id}{version}.{extension}"
         return constructed_url
 
     def log_error(self, error_message_code, kwargs):

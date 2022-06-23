@@ -21,7 +21,7 @@ class TestSchemaValidator:
             with open(
                 os.path.join(
                     os.getcwd(),
-                    f"tests/fixtures/{data_key}.echo10"
+                    f"tests/fixtures/{data_key}.echo-c"
                 ),
                 "r"
             ) as myfile:

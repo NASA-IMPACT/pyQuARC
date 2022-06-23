@@ -73,7 +73,7 @@ Checks if the field value is one of the controlled keywords; provide the control
 
 Checks if the doi provided resolves to a valid document.
 
-#### `presence_check`
+#### `one_item_presence_check`
 
 Checks if one of the given fields is populated.
 
