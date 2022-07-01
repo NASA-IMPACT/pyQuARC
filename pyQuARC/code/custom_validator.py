@@ -194,6 +194,23 @@ class CustomValidator(BaseValidator):
         }
 
     @staticmethod
+    @if_arg
+    def uniqueness_check_echog(list_of_objects, key):
+        seen, duplicates = set(), set()
+        if isinstance(list_of_objects, list):
+            for url_obj in list_of_objects:
+                description = url_obj[key]
+                if description in seen:
+                    duplicates.add(description)
+                else:
+                    seen.add(description)
+                    
+        return {
+            "valid": not bool(duplicates),
+            "value": ', '.join(duplicates)
+        }
+
+    @staticmethod
     def get_data_url_check(related_urls, key):
         return_obj = { 'valid': False, 'value': 'N/A'}
         for url_obj in related_urls:

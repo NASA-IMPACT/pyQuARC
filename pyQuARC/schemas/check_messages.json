@@ -535,7 +535,7 @@
         },
         "remediation": "Please provide a Vertical Spatial Domain Type from the following options to align with the UMM: ['Atmosphere Layer', 'Maximum Altitude', 'Maximum Depth', 'Minimum Altitude', 'Minimum Depth']"
     },
-    "vertical_spatial_domain_type_check_ummg": {
+    "vertical_spatial_domain_type_check_granule": {
         "failure": "The Vertical Spatial Domain Type `{}` does not align with the values used in the UMM-G schema.",
         "help": {
             "message": "",
@@ -959,6 +959,22 @@
         },
         "remediation": "Please provide a unique name for each URL description."
     },
+    "online_resource_description_uniqueness_check": {
+        "failure": "Duplicate URL description name/s `{}`.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a unique name for each URL description."
+    },
+    "online_access_description_uniqueness_check": {
+        "failure": "Duplicate URL description name/s `{}`.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Please provide a unique name for each URL description."
+    },
     "metadata_update_time_logic_check": {
         "failure": "Note: the UPDATE Metadata Date comes before the provided CREATE Metadata Date.",
         "help": {
@@ -974,5 +990,29 @@
             "url": ""
         },
         "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+    },
+    "granule_single_date_time_check": {
+        "failure": "The Beginning Date Time and the Ending Date Time are the same.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Recommend providing a Single Date Time instead of a Range Date Time."        
+    },
+    "granule_project_short_name_check": {
+        "failure": "The campaign short name listed in the granule metadata is missing or does not match the campaign short name listed in the collection metadata.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Recommend providing [campaign short name listed in collection metadata] as the campaign short name in the granule metadata."
+    },
+    "granule_sensor_short_name_check": {
+        "failure": "The sensor short name listed in the granule metadata is missing or does not match the sensor short name listed in the collection metadata.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Recommend providing [sensor short name listed in collection metadata] as the sensor short name in the granule metadata."
     }
 }

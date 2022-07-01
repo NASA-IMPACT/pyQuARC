@@ -2369,6 +2369,18 @@
                     ]
                 }
             ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/Instruments/Instrument/ShortName"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/ShortName"
+                    ]
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
@@ -2524,6 +2536,13 @@
                     ]
                 }
             ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/ShortName"
+                    ]
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
@@ -2623,6 +2642,13 @@
                 {
                     "fields": [
                         "Collection/DataFormat"
+                    ]
+                }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/DataFormat"
                     ]
                 }
             ],
@@ -2880,6 +2906,13 @@
                     ]
                 }
             ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Campaigns/Campaign/ShortName"
+                    ]
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
@@ -3050,6 +3083,16 @@
                     ]
                 }
             ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle/WestBoundingCoordinate",
+                        "Granule/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle/NorthBoundingCoordinate",
+                        "Granule/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle/EastBoundingCoordinate",
+                        "Granule/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle/SouthBoundingCoordinate"
+                    ]
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
@@ -3120,9 +3163,16 @@
         "severity": "error",
         "check_id": "controlled_keywords_check"
     },
-    "vertical_spatial_domain_type_check_ummg": {
-        "rule_name": "Vertical Spatial Domain Type Check UMM-G",
+    "vertical_spatial_domain_type_check_granule": {
+        "rule_name": "Vertical Spatial Domain Type Check Granule",
         "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Spatial/VerticalSpatialDomains/VerticalSpatialDomain/Type"
+                    ]
+                }
+            ],
             "umm-g": [
                 {
                     "fields": [
@@ -3284,6 +3334,13 @@
                     ]
                 }
             ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Campaigns/Campaign/ShortName"
+                    ]
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
@@ -3395,6 +3452,13 @@
                         "Collection/OnlineResources/OnlineResource/URL"
                     ]
                 }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/URL"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -3409,6 +3473,13 @@
                         "Collection/OnlineAccessURLs/OnlineAccessURL/URLDescription"
                     ]
                 }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URLDescription"
+                    ]
+                }
             ]
         },
         "severity": "info",
@@ -3421,6 +3492,13 @@
                 {
                     "fields": [
                         "Collection/OnlineResources/OnlineResource/Description"
+                    ]
+                }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/Description"
                     ]
                 }
             ],
@@ -3442,6 +3520,13 @@
                 {
                     "fields": [
                         "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URL"
                     ]
                 }
             ]
@@ -3487,6 +3572,16 @@
                         "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle",
                         "Collection/Spatial/HorizontalSpatialDomain/Geometry/GPolygon",
                         "Collection/Spatial/HorizontalSpatialDomain/Geometry/Line"
+                    ]
+                }
+            ],
+            "echo-g": [
+                {
+                "fields": [
+                        "Granule/Spatial/HorizontalSpatialDomain/Geometry/Point",
+                        "Granule/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle",
+                        "Granule/Spatial/HorizontalSpatialDomain/Geometry/GPolygon",
+                        "Granule/Spatial/HorizontalSpatialDomain/Geometry/Line"
                     ]
                 }
             ],
@@ -3678,6 +3773,18 @@
                         "Collection/Visible"
                     ]
                 }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Orderable"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/Visible"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -3741,6 +3848,13 @@
                     ]
                 }
             ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/Type"
+                    ]
+                }
+            ],
             "umm-c": [
                 {
                     "fields": [
@@ -3767,6 +3881,14 @@
                     "fields": [
                         "Collection/OnlineResources/OnlineResource/Type",
                         "Collection/OnlineResources/OnlineResource/URL"
+                    ]
+                }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/Type",
+                        "Granule/OnlineResources/OnlineResource/URL"
                     ]
                 }
             ],
@@ -4075,6 +4197,13 @@
                     ]
                 }
             ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Temporal/SingleDateTime",
+                        "Granule/Temporal/RangeDateTime"                    ]
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
@@ -4326,6 +4455,20 @@
                     ]
                 }
             ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URLDescription",
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/Description",
+                        "Granule/OnlineResources/OnlineResource/URL"
+                    ]
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
@@ -4451,6 +4594,29 @@
     "mime_type_gcmd_check": {
         "rule_name": "Mime Type GCMD Check",
         "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/DataGranule/AdditionalFile/MimeType"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/AssociatedBrowseImageUrls/ProviderBrowseUrl/MimeType"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/MimeType"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/MimeType"
+                    ]
+                }
+
+            ],
             "dif10": [
                 {
                     "fields": [
@@ -4895,7 +5061,37 @@
         "severity": "info",
         "check_id": "uniqueness_check"
     },
-    "metadata_update_time_logic_check": {
+    "online_resource_description_uniqueness_check": {
+        "rule_name": "Online Resource Description Uniqueness Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource"
+                    ]
+                }
+            ]
+        },
+        "data": ["Description"],
+        "severity": "info",
+        "check_id": "uniqueness_check_echog"
+    },
+    "online_access_description_uniqueness_check": {
+        "rule_name": "Online Access Description Uniqueness Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineAccessURLs/OnlineAccessURL"
+                    ]
+                }
+            ]
+        },
+        "data": ["URLDescription"],
+        "severity": "info",
+        "check_id": "uniqueness_check_echog"
+    },
+        "metadata_update_time_logic_check": {
         "rule_name": "Metadata Update Time Logic Check",
         "fields_to_apply": {
             "umm-c": [
@@ -4910,5 +5106,75 @@
         },
         "severity": "info",
         "check_id": "date_compare"
+    },
+    "granule_single_date_time_check": {
+        "rule_name": "Granule Single Date Time Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Temporal/RangeDateTime/BeginningDateTime",
+                        "Granule/Temporal/RangeDateTime/EndingDateTime"
+                    ],
+                    "relation":"neq"
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "date_compare"
+    },
+    "granule_project_short_name_check": {
+        "rule_name": "Granule Project Short Name Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Campaigns/Campaign/ShortName",
+                        "Granule/Collection/DataSetId",
+                        "Granule/Collection/ShortName",
+                        "Granule/Collection/VersionId"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Projects/ShortName",
+                        "CollectionReference/EntryTitle",
+                        "CollectionReference/ShortName",
+                        "CollectionReference/Version"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "granule_project_short_name_check"    
+    },
+    "granule_sensor_short_name_check": {
+        "rule_name": "Granule Sensor Short Name Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/ShortName",
+                        "Granule/Collection/DataSetId",
+                        "Granule/Collection/ShortName",
+                        "Granule/Collection/VersionId"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platforms/Instruments/ComposedOf/ShortName",
+                        "CollectionReference/EntryTitle",
+                        "CollectionReference/ShortName",
+                        "CollectionReference/Version"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "granule_sensor_short_name_check"    
     }
 }

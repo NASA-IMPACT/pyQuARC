@@ -1,3 +1,8 @@
+import requests
+
+from .constants import CMR_URL
+
+
 class BaseValidator:
     """
     Base class for all the validators
@@ -38,3 +43,7 @@ class BaseValidator:
     def compare(first, second, relation):
         func = getattr(BaseValidator, relation)
         return func(first, second)
+
+    @staticmethod
+    def cmr_request(cmr_prms):
+        return requests.get(f'{CMR_URL}/search/{cmr_prms}')

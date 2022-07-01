@@ -244,6 +244,11 @@
         "check_function": "uniqueness_check",
         "available": true
     },
+    "uniqueness_check_echog":{
+        "data_type": "custom",
+        "check_function": "uniqueness_check_echog",
+        "available": true 
+    },
     "validate_ending_datetime_against_granules": {
         "data_type": "datetime",
         "check_function": "validate_ending_datetime_against_granules",
@@ -257,6 +262,16 @@
     "get_data_url_check": {
         "data_type": "custom",
         "check_function": "get_data_url_check",
+        "available": true
+    },
+    "granule_project_short_name_check": {
+        "data_type": "string",
+        "check_function": "granule_project_short_name_check",
+        "available": true
+    },
+    "granule_sensor_short_name_check": {
+        "data_type": "string",
+        "check_function": "granule_sensor_short_name_check",
         "available": true
     }
 }
