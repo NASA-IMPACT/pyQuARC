@@ -2536,13 +2536,6 @@
                     ]
                 }
             ],
-            "echo-g": [
-                {
-                    "fields": [
-                        "Granule/Platforms/Platform/ShortName"
-                    ]
-                }
-            ],
             "dif10": [
                 {
                     "fields": [
@@ -4895,60 +4888,6 @@
         },
         "severity": "error",
         "check_id": "validate_granule_platform_against_collection"
-    },
-    "granule_sensor_presence_check": {
-        "rule_name": "Granule Sensor Presence Check",
-        "fields_to_apply": {
-            "echo-g" : [
-                {
-                    "fields": [
-                        "Granule/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/ShortName",
-                        "Granule/Collection/ShortName",
-                        "Granule/Collection/VersionId",
-                        "Granule/Collection/DataSetId"
-                    ]
-                }
-            ],
-            "umm-g": [
-                {
-                    "fields": [
-                        "Platforms/Instruments/ComposedOf/ShortName",
-                        "CollectionReference/ShortName",
-                        "CollectionReference/Version",
-                        "CollectionReference/EntryTitle"
-                    ]
-                }
-            ]
-        },
-        "severity": "info",
-        "check_id": "granule_sensor_presence_check"
-    },
-    "validate_granule_sensor_against_collection": {
-        "rule_name": "Granule Sensor Short Name Check",
-        "fields_to_apply": {
-            "echo-g": [
-                {
-                    "fields": [
-                        "Granule/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/ShortName",
-                        "Granule/Collection/ShortName",
-                        "Granule/Collection/VersionId",
-                        "Granule/Collection/DataSetId"
-                    ]
-                }
-            ],
-            "umm-g": [
-                {
-                    "fields": [
-                        "Platforms/Instruments/ComposedOf/ShortName",
-                        "CollectionReference/ShortName",
-                        "CollectionReference/Version",
-                        "CollectionReference/EntryTitle"
-                    ]
-                }
-            ]
-        },
-        "severity": "error",
-        "check_id": "validate_granule_sensor_against_collection"
     },
     "horizontal_data_resolution_unit_check": {
         "rule_name": "Horizontal Data Resolution Unit Controlled Vocabulary Check",
