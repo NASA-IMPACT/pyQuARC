@@ -1,4 +1,5 @@
 import requests
+import urllib
 
 from .base_validator import BaseValidator
 from .gcmd_validator import GcmdValidator
@@ -361,12 +362,10 @@ class StringValidator(BaseValidator):
         }
 
     @staticmethod
-    def set_cmr_prms(collection_entry_title, collection_shortname, collection_version):
-        if collection_entry_title == None:
-            cmr_prms = f'collections.umm_json?shortName={collection_shortname}&version={collection_version}'
-        else:
-            cmr_prms = f'collections.umm_json?entry_title={collection_entry_title}'
-        return cmr_prms
+    def set_cmr_prms(params):
+        base_url = "collections.umm_json?"
+        params = {key:value for key, value in params.items() if value}
+        return f"{base_url}{urllib.parse.urlencode(params)}"
 
     @staticmethod
     def granule_project_validate_against_collection(cmr_prms, project_shortname):
@@ -389,8 +388,11 @@ class StringValidator(BaseValidator):
 
     @staticmethod
     @if_arg
-    def granule_project_short_name_check(project_shortname, collection_entry_title=None, collection_shortname=None, collection_version=None):
-        cmr_prms = StringValidator.set_cmr_prms(collection_entry_title, collection_shortname, collection_version)
+    def granule_project_short_name_check(project_shortname, entry_title=None, short_name=None, version=None):
+        cmr_prms = StringValidator.set_cmr_prms({
+        "entry_title": entry_title,
+        "short_name": short_name,
+        "version": version})
         validity = StringValidator.granule_project_validate_against_collection(cmr_prms, project_shortname)
         return {
             "valid": validity,
@@ -402,13 +404,16 @@ class StringValidator(BaseValidator):
         if not(StringValidator.collection_in_cmr(cmr_prms)):
             validity = True
         else:
-            validity = StringValidator.validate_against_collection(cmr_prms, 'sensor', sensor_shortname)
+            validity = StringValidator.validate_against_collection(cmr_prms, 'instrument', sensor_shortname)
         return validity
 
     @staticmethod
     @if_arg
-    def granule_sensor_short_name_check(sensor_shortname, collection_entry_title=None, collection_shortname=None, collection_version=None):
-        cmr_prms = StringValidator.set_cmr_prms(collection_entry_title, collection_shortname, collection_version)
+    def granule_sensor_short_name_check(sensor_shortname, entry_title=None, short_name=None, version=None):
+        cmr_prms = StringValidator.set_cmr_prms({
+        "entry_title": entry_title,
+        "short_name": short_name,
+        "version": version})
         validity = StringValidator.granule_sensor_validate_against_collection(cmr_prms, sensor_shortname)
         return {
             "valid": validity,
