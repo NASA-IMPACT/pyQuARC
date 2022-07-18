@@ -49,8 +49,3 @@ class BaseValidator:
             return not (BaseValidator.compare(first, second, relation[4:]))
         func = getattr(BaseValidator, relation)
         return func(first, second)
-
-    @staticmethod
-    def cmr_request(cmr_prms):
-        return requests.get(f'{CMR_URL}/search/{cmr_prms}')
-    
