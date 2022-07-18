@@ -77,4 +77,7 @@ GCMD_LINKS = {
 CMR_URL = "https://cmr.earthdata.nasa.gov"
 
 def get_cmr_url():
-    return os.environ.get("CMR_URL", CMR_URL)
+    cmr_url = os.environ.get("CMR_URL", CMR_URL)
+    if not cmr_url.startswith("http"):
+        cmr_url = f"https://{cmr_url}"
+    return cmr_url
