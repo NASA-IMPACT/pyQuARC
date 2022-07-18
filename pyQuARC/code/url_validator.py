@@ -67,8 +67,8 @@ class UrlValidator(StringValidator):
                 response_code = requests.get(url).status_code
                 if response_code == 200:
                     if url.startswith("http://"):
-                        url = url.replace("http://", "https://")
-                        if requests.get(url).status_code == 200:
+                        secure_url = url.replace("http://", "https://")
+                        if requests.get(secure_url).status_code == 200:
                             result = {"url": url, "error": "The URL is secure. Please use 'https' instead of 'http'."}
                     else:
                         continue
