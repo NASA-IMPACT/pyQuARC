@@ -3,7 +3,7 @@ import requests
 
 from urllib.parse import urlparse
 
-from .constants import get_cmr_url
+from .utils import get_cmr_url
 
 
 class Downloader:

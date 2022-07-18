@@ -8,12 +8,14 @@ from tqdm import tqdm
 
 if __name__ == '__main__':
     from code.checker import Checker
-    from code.constants import get_cmr_url, COLOR, ECHO10, SUPPORTED_FORMATS
+    from code.constants import COLOR, ECHO10, SUPPORTED_FORMATS
     from code.downloader import Downloader
+    from code.utils import get_cmr_url, is_valid_cmr_url
 else:
     from .code.checker import Checker
-    from .code.constants import get_cmr_url, COLOR, ECHO10, SUPPORTED_FORMATS
+    from .code.constants import COLOR, ECHO10, SUPPORTED_FORMATS
     from .code.downloader import Downloader
+    from .code.utils import get_cmr_url, is_valid_cmr_url
 
 
 ABS_PATH = os.path.abspath(os.path.dirname(__file__))
@@ -301,8 +303,11 @@ if __name__ == "__main__":
             f"The given format is not supported. Only {', '.join(SUPPORTED_FORMATS)} are supported."
         )
 
-    if args.cmr_host:
-        os.environ["CMR_URL"] = args.cmr_host
+    if cmr_host := args.cmr_host:
+        if is_valid_cmr_url(cmr_host):
+            os.environ["CMR_URL"] = cmr_host
+        else:
+            raise Exception(f"The given CMR host is not valid: {cmr_host}")
     
     arc = ARC(
         query=args.query,

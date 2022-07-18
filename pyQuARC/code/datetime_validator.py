@@ -5,8 +5,7 @@ import requests
 from datetime import datetime
 
 from .base_validator import BaseValidator
-from .constants import get_cmr_url
-from .utils import if_arg
+from .utils import get_cmr_url, if_arg
 
 
 class DatetimeValidator(BaseValidator):
