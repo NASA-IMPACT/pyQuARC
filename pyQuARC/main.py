@@ -8,11 +8,11 @@ from tqdm import tqdm
 
 if __name__ == '__main__':
     from code.checker import Checker
-    from code.constants import CMR_URL, COLOR, ECHO10, SUPPORTED_FORMATS
+    from code.constants import get_cmr_url, COLOR, ECHO10, SUPPORTED_FORMATS
     from code.downloader import Downloader
 else:
     from .code.checker import Checker
-    from .code.constants import CMR_URL, COLOR, ECHO10, SUPPORTED_FORMATS
+    from .code.constants import get_cmr_url, COLOR, ECHO10, SUPPORTED_FORMATS
     from .code.downloader import Downloader
 
 
@@ -39,7 +39,7 @@ class ARC:
         rules_override=None,
         messages_override=None,
         version=None,
-        cmr_host=CMR_URL,
+        cmr_host=get_cmr_url(),
     ):
         """
         Args:
@@ -300,6 +300,9 @@ if __name__ == "__main__":
         parser.error(
             f"The given format is not supported. Only {', '.join(SUPPORTED_FORMATS)} are supported."
         )
+
+    if args.cmr_host:
+        os.environ["CMR_URL"] = args.cmr_host
     
     arc = ARC(
         query=args.query,
@@ -307,7 +310,7 @@ if __name__ == "__main__":
         fake=args.fake,
         file_path=args.file,
         metadata_format=args.format or ECHO10,
-        cmr_host=args.cmr_host or CMR_URL,
+        cmr_host=get_cmr_url(),
         version=args.version,
     )
     results = arc.validate()

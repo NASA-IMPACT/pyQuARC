@@ -5,7 +5,7 @@ import requests
 from datetime import datetime
 
 from .base_validator import BaseValidator
-from .constants import CMR_URL
+from .constants import get_cmr_url
 from .utils import if_arg
 
 
@@ -125,7 +125,7 @@ class DatetimeValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        granules = requests.get(f'{CMR_URL}/search/granules.json?short_name={collection_shortname}&version={version}&sort_key[]={sort_key}').json()
+        granules = requests.get(f'{get_cmr_url()}/search/granules.json?short_name={collection_shortname}&version={version}&sort_key[]={sort_key}').json()
 
         if len(granules['feed']['entry']) > 0:
             last_granule = granules['feed']['entry'][0]
