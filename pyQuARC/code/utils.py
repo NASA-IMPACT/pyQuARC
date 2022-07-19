@@ -28,10 +28,7 @@ def is_valid_cmr_url(url):
     valid = False
     try: # some invalid url throw an exception
         response = requests.get(url, timeout=5) # some invalid urls freeze
-        if response.status_code == 200 and response.headers.get("CMR-Request-Id"):
-            valid = True
-        else:
-            valid = False
+        valid = response.status_code == 200 and response.headers.get("CMR-Request-Id")
     except:
         valid = False
     return valid

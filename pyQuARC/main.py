@@ -304,10 +304,9 @@ if __name__ == "__main__":
         )
 
     if cmr_host := args.cmr_host:
-        if is_valid_cmr_url(cmr_host):
-            os.environ["CMR_URL"] = cmr_host
-        else:
+        if not is_valid_cmr_url(cmr_host):
             raise Exception(f"The given CMR host is not valid: {cmr_host}")
+        os.environ["CMR_URL"] = cmr_host
     
     arc = ARC(
         query=args.query,
