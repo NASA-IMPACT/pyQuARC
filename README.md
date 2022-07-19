@@ -22,13 +22,13 @@ The CMR is designed around its own metadata standard called the [Unified Metadat
 * [DIF10](https://earthdata.nasa.gov/esdis/eso/standards-and-references/directory-interchange-format-dif-standard) (Collection/Data Product-level only)
 * [ECHO10](https://earthdata.nasa.gov/esdis/eso/standards-and-references/echo-metadata-standard) (Collection/Data Product and Granule/File-level metadata)
 * [ISO19115-1 and ISO19115-2](https://earthdata.nasa.gov/esdis/eso/standards-and-references/iso-19115) (Collection/Data Product and Granule/File-level metadata)
-* [UMM-JSON](https://wiki.earthdata.nasa.gov/display/CMR/CMR+Documents) (UMM)
+* [UMM-JSON](https://wiki.earthdata.nasa.gov/display/CMR/UMM+Documents) (UMM)
 	* UMM-C (Collection/Data Product-level metadata)
 	* UMM-G (Granule/File-level metadata)
 	* UMM-S (Service metadata)
 	* UMM-T (Tool metadata)
 
-**Currently, pyQuARC only supports ECHO 10 and DIF10 collection-level metadata. Support for additional metadata standards will continue to be added in the coming months.** When completed, pyQuARC will support the DIF10 (collection only), ECHO10 (collection and granule), UMM-C and UMM-G standards. At this time, there are no plans to add ISO 19115 or UMM-S/T specific checks. **Additionally, the output messages pyQuARC currently displays should be taken with a grain of salt. There is still testing and clean-up work to be done.**  
+**Currently, pyQuARC only supports ECHO10 and DIF10 collection-level metadata. Support for additional metadata standards will continue to be added in the coming months.** When completed, pyQuARC will support the DIF10 (collection only), ECHO10 (collection and granule), UMM-C and UMM-G standards. At this time, there are no plans to add ISO 19115 or UMM-S/T specific checks. **Additionally, the output messages pyQuARC currently displays should be taken with a grain of salt. There is still testing and clean-up work to be done.**  
 
 **For inquiries, please email: jeanne.leroux@nsstc.uah.edu**
 
