@@ -1,9 +1,22 @@
 import requests
+import urllib
 
 from .base_validator import BaseValidator
 from .gcmd_validator import GcmdValidator
 from .utils import if_arg
 from .constants import CMR_URL
+
+
+def set_cmr_prms(params, format='json'):
+    base_url = f"collections.{format}?"
+    params = { key:value for key, value in params.items() if value }
+    return f"{base_url}{urllib.parse.urlencode(params)}"
+
+def cmr_request(cmr_prms):
+    return requests.get(f'{CMR_URL}/search/{cmr_prms}').json()
+
+def collection_in_cmr(cmr_prms):
+    return cmr_request(cmr_prms).get('hits', 0) > 0
 
 
 class StringValidator(BaseValidator):
@@ -361,6 +374,59 @@ class StringValidator(BaseValidator):
         }
 
     @staticmethod
+    def _validate_against_collection(cmr_prms, prm, prm_value):
+        cmr_request_prms = f'{cmr_prms}&{prm}={prm_value}'
+        hits = cmr_request(cmr_request_prms).get('hits', 0)
+        validity = hits > 0
+        return validity
+
+    @staticmethod
+    @if_arg
+    def granule_project_short_name_check(project_shortname, entry_title=None, short_name=None, version=None):
+        def granule_project_validate_against_collection(cmr_prms, project_shortname):
+            # If the collection can't be found, skip the check
+            if not (collection_in_cmr(cmr_prms)):
+                validity = True
+            else:
+                validity = StringValidator._validate_against_collection(cmr_prms, 'project', project_shortname)
+            return validity
+
+        cmr_prms = set_cmr_prms({
+            "entry_title": entry_title,
+            "short_name": short_name,
+            "version": version
+        }, "umm_json")
+
+        validity = granule_project_validate_against_collection(cmr_prms, project_shortname)
+        return {
+            "valid": validity,
+            "value": project_shortname
+        }
+
+    @staticmethod
+    @if_arg
+    def granule_sensor_short_name_check(sensor_shortname, entry_title=None, short_name=None, version=None):
+
+        def granule_sensor_validate_against_collection(cmr_prms, sensor_shortname):
+            # If the collection can't be found, skip the check
+            if not(collection_in_cmr(cmr_prms)):
+                validity = True
+            else:
+                validity = StringValidator._validate_against_collection(cmr_prms, 'instrument', sensor_shortname)
+            return validity
+
+        cmr_prms = set_cmr_prms({
+            "entry_title": entry_title,
+            "short_name": short_name,
+            "version": version
+        }, "umm_json")
+
+        validity = granule_sensor_validate_against_collection(cmr_prms, sensor_shortname)
+        return {
+            "valid": validity,
+            "value": sensor_shortname
+        }
+        
     @if_arg
     def validate_granule_data_format_against_collection(
         granule_data_format, collection_shortname=None, version=None, dataset_id=None
@@ -380,14 +446,20 @@ class StringValidator(BaseValidator):
         """
 
         if collection_shortname and version:
-            collection = requests.get(
-                f"{CMR_URL}/search/collections.json?short_name={collection_shortname}&version={version}&granule_data_format={granule_data_format}"
-            ).json()
+            params = {
+                "short_name": collection_shortname,
+                "version": version,
+            }
         else:
-            collection = requests.get(
-                f"{CMR_URL}/search/collections.json?DatasetId={dataset_id}&granule_data_format={granule_data_format}"
-            ).json()
+            params = {
+                "DatasetId": dataset_id,
+            }
 
+        params["granule_data_format"] = granule_data_format
+
+        query_string = set_cmr_prms(params, "json")
+        collection = cmr_request(query_string)
+            
         if collection["feed"]["entry"]:
             return {"valid": True, "value": granule_data_format}
         return {"valid": False, "value": granule_data_format}
