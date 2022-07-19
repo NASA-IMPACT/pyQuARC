@@ -1,4 +1,4 @@
-"Keyword Version: 13.2","Revision: 2022-03-18 16:23:43","Timestamp: 2022-03-28 12:29:53","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=xml","Case native"
+"Keyword Version: 13.8","Revision: 2022-06-03 10:19:12","Timestamp: 2022-06-28 04:58:39","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=xml","Case native"
 Category,Topic,Term,Variable_Level_1,Variable_Level_2,Variable_Level_3,Detailed_Variable,UUID
 "EARTH SCIENCE SERVICES","DATA ANALYSIS AND VISUALIZATION","CALIBRATION/VALIDATION","CALIBRATION","","","","ecf29317-bd5e-447b-b911-f8bfb153c83b"
 "EARTH SCIENCE SERVICES","DATA ANALYSIS AND VISUALIZATION","CALIBRATION/VALIDATION","VALIDATION","","","","b283a59c-0e9a-469c-baf4-591b64cd4671"
@@ -1669,6 +1669,7 @@ Category,Topic,Term,Variable_Level_1,Variable_Level_2,Variable_Level_3,Detailed_
 "EARTH SCIENCE","CRYOSPHERE","SEA ICE","HEAT FLUX","","","","5569b7a3-3a4b-4799-8c68-98126757074b"
 "EARTH SCIENCE","CRYOSPHERE","SEA ICE","ICE DEFORMATION","","","","1009557b-0d4b-4c13-81a0-fd95c15bf158"
 "EARTH SCIENCE","CRYOSPHERE","SEA ICE","ICE DEPTH/THICKNESS","","","","c7708bb6-a0fa-4905-b99d-c468da7d951a"
+"EARTH SCIENCE","CRYOSPHERE","SEA ICE","ICE DRAFT","","","","3bacb194-cf25-42ae-95af-54a6a53898ef"
 "EARTH SCIENCE","CRYOSPHERE","SEA ICE","ICE EDGES","","","","5fa04fa9-06c7-41c7-98f9-f92756f080ea"
 "EARTH SCIENCE","CRYOSPHERE","SEA ICE","ICE EXTENT","","","","63b37017-9d57-4247-af4e-2df36ee3ed03"
 "EARTH SCIENCE","CRYOSPHERE","SEA ICE","ICE FLOES","","","","af0d756e-784e-4747-97d0-3425baf5d09b"
@@ -2536,6 +2537,7 @@ Category,Topic,Term,Variable_Level_1,Variable_Level_2,Variable_Level_3,Detailed_
 "EARTH SCIENCE","OCEANS","SEA ICE","HEAT FLUX","","","","ae1c9b54-caf2-4726-b180-5c6544f09111"
 "EARTH SCIENCE","OCEANS","SEA ICE","ICE DEFORMATION","","","","3cdebef6-902d-4c1a-9d7e-7609f8ee6ef6"
 "EARTH SCIENCE","OCEANS","SEA ICE","ICE DEPTH/THICKNESS","","","","a735d8ca-182c-4307-9305-186a065e84a4"
+"EARTH SCIENCE","OCEANS","SEA ICE","ICE DRAFT","","","","ae4869cc-65f4-4f24-a77b-b77637f8818c"
 "EARTH SCIENCE","OCEANS","SEA ICE","ICE EDGES","","","","f0cd20bd-41e8-4ca0-9ae3-7c602c251858"
 "EARTH SCIENCE","OCEANS","SEA ICE","ICE EXTENT","","","","87feb47e-aee3-42f1-8c39-5109d9d5422e"
 "EARTH SCIENCE","OCEANS","SEA ICE","ICE FLOES","","","","aa15804c-5f7f-40cc-b949-aa3e4418fc27"

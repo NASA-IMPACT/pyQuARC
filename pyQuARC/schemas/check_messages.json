@@ -7,6 +7,14 @@
         },
         "remediation": "Make sure the datetime complies with ISO 1601 standard."
     },
+    "date_or_datetime_format_check": {
+        "failure": "`{}` does not adhere to the ISO 1601 standard for date or datetime.",
+        "help": {
+            "message": "",
+            "url": "https://www.w3.org/TR/NOTE-datetime"
+        },
+        "remediation": "Make sure the date or datetime complies with ISO 1601 standard."
+    },
     "data_update_time_logic_check": {
         "failure": "The UpdateTime `{}` comes before the provided InsertTime `{}`.",
         "help": {
@@ -135,7 +143,7 @@
         },
         "remediation": "Please submit a request to support@earthdata.nasa.gov to have this long name added to the GCMD KMS."
     },
-    "organization_short_long_name_consistency_check":{
+    "organization_short_long_name_consistency_check": {
         "failure": "The provided data center short name `{}` and long name `{}` aren't consistent.",
         "help": {
             "message": "",
@@ -984,19 +992,39 @@
         "remediation": "Recommend providing a Single Date Time instead of a Range Date Time."        
     },
     "granule_project_short_name_check": {
-        "failure": "The campaign short name listed in the granule metadata is missing or does not match the campaign short name listed in the collection metadata.",
+        "failure": "The campaign/project short name `{}` listed in the granule metadata does not match the campaign/project short name listed in the collection metadata.",
         "help": {
             "message": "",
             "url": ""
         },
-        "remediation": "Recommend providing [campaign short name listed in collection metadata] as the campaign short name in the granule metadata."
+        "remediation": "Recommend providing the correct campaign/project short name in the granule metadata."
     },
     "granule_sensor_short_name_check": {
-        "failure": "The sensor short name listed in the granule metadata is missing or does not match the sensor short name listed in the collection metadata.",
+        "failure": "The sensor short name `{}` listed in the granule metadata does not match the sensor short name listed in the collection metadata.",
         "help": {
             "message": "",
             "url": ""
         },
-        "remediation": "Recommend providing [sensor short name listed in collection metadata] as the sensor short name in the granule metadata."
+        "remediation": "Recommend providing the correct sensor short name in the granule metadata."
+    },
+    "validate_granule_data_format_against_collection_check": {
+    "failure": "The data format listed in the granule metadata does not match the data format listed in the collection metadata",
+    "help": {
+        "message": "",
+        "url": ""
+    },
+    "remediation": "Recommend providing the data format listed in the collection metadata."
+    },
+    "granule_data_format_presence_check": {
+        "failure": "The granule data format is missing.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Recommend providing the granule data format."
+    },
+    "sensor_number_check": {
+        "failure": "The NumberOfSensors value `{}` does not match with the number of sensors provided `{}`.",
+        "remediation": "Make sure they match."
     }
 }

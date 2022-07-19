@@ -1,8 +1,3 @@
-import requests
-
-from .constants import CMR_URL
-
-
 class BaseValidator:
     """
     Base class for all the validators
@@ -40,10 +35,12 @@ class BaseValidator:
         return value in list_of_values
 
     @staticmethod
-    def compare(first, second, relation):
-        func = getattr(BaseValidator, relation)
-        return func(first, second)
+    def contains(list_of_values, value):
+        return value in list_of_values
 
     @staticmethod
-    def cmr_request(cmr_prms):
-        return requests.get(f'{CMR_URL}/search/{cmr_prms}')
+    def compare(first, second, relation):
+        if relation.startswith('not_'):
+            return not (BaseValidator.compare(first, second, relation[4:]))
+        func = getattr(BaseValidator, relation)
+        return func(first, second)
