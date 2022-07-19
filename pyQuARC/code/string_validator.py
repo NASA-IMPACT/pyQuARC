@@ -384,7 +384,8 @@ class StringValidator(BaseValidator):
     @if_arg
     def granule_project_short_name_check(project_shortname, entry_title=None, short_name=None, version=None):
         def granule_project_validate_against_collection(cmr_prms, project_shortname):
-            if not(collection_in_cmr(cmr_prms)):
+            # If the collection can't be found, skip the check
+            if not (collection_in_cmr(cmr_prms)):
                 validity = True
             else:
                 validity = StringValidator._validate_against_collection(cmr_prms, 'project', project_shortname)
@@ -407,6 +408,7 @@ class StringValidator(BaseValidator):
     def granule_sensor_short_name_check(sensor_shortname, entry_title=None, short_name=None, version=None):
 
         def granule_sensor_validate_against_collection(cmr_prms, sensor_shortname):
+            # If the collection can't be found, skip the check
             if not(collection_in_cmr(cmr_prms)):
                 validity = True
             else:
