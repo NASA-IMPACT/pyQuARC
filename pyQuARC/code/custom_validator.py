@@ -1,9 +1,5 @@
-import json
-import requests
-
 from .base_validator import BaseValidator
-from .string_validator import StringValidator
-from .constants import CMR_URL
+from .string_validator import StringValidator, cmr_request, set_cmr_prms
 
 from .utils import if_arg
 
@@ -105,18 +101,27 @@ class CustomValidator(BaseValidator):
         Checks if sensor is provided at the granule level if provided at
         collection level
         """
-        if dataset_id == None:
-            collection  = requests.get(f'{CMR_URL}/search/collections.umm_json?short_name={collection_shortname}&version={version}').json()
-        else: 
-            collection  = requests.get(f'{CMR_URL}/search/collections.umm_json?DatasetId={dataset_id}').json()
-
-        instruments = collection['items'][0]['umm']['Platforms'][0]['Instruments'][0]
-    
-        if 'ComposedOf' in instruments.keys():
-            response = CustomValidator.presence_check(sensor_values)
-            return response
+        if dataset_id:
+            params = {"DatasetId": dataset_id}
         else:
-            return None
+            params = {
+                "collection_shortname": collection_shortname,
+                "version": version,
+            }
+        prms = set_cmr_prms(params, format="umm_json")
+        collections = cmr_request(prms)
+        if collections := collections.get('items'):
+            collection = collections[0]
+            for platform in collection['umm'].get('Platforms', []):
+                instruments = platform.get('Instruments', [])
+                for instrument in instruments:
+                    if 'ComposedOf' in instrument.keys():
+                        return CustomValidator.presence_check(sensor_values)
+                    
+        return {
+            "valid": True,
+            "value": sensor_values,
+        }
 
     @staticmethod
     @if_arg
@@ -171,29 +176,13 @@ class CustomValidator(BaseValidator):
     @if_arg
     def uniqueness_check(list_of_objects, key):
         seen, duplicates = set(), set()
-        for url_obj in list_of_objects:
-            if description := url_obj.get(key) in seen:
-                duplicates.add(description)
-            else:
-                seen.add(description)
-
-        return {
-            "valid": not bool(duplicates),
-            "value": ', '.join(duplicates)
-        }
-
-    @staticmethod
-    @if_arg
-    def uniqueness_check_echog(list_of_objects, key):
-        seen, duplicates = set(), set()
         if isinstance(list_of_objects, list):
             for url_obj in list_of_objects:
-                description = url_obj[key]
-                if description in seen:
+                if description := url_obj.get(key) in seen:
                     duplicates.add(description)
                 else:
                     seen.add(description)
-                    
+
         return {
             "valid": not bool(duplicates),
             "value": ', '.join(duplicates)
