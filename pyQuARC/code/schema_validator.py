@@ -7,7 +7,7 @@ from jsonschema import Draft7Validator, draft7_format_checker, RefResolver
 from lxml import etree
 from urllib.request import pathname2url
 
-from .constants import ECHO10, SCHEMA_PATHS, UMM_C
+from .constants import ECHO10_C, SCHEMA_PATHS, UMM_C
 
 
 class SchemaValidator:
@@ -18,12 +18,12 @@ class SchemaValidator:
     PATH_SEPARATOR = "/"
 
     def __init__(
-        self, check_messages, metadata_format=ECHO10,
+        self, check_messages, metadata_format=ECHO10_C,
     ):
         """
         Args:
             metadata_format (str): The format of the metadata that needs
-                to be validated. Can be any of { DIF, ECHO10, UMM_C, UMM_G }.
+                to be validated. Can be any of { DIF, ECHO10_C, UMM_C, UMM_G }.
             validation_paths (list of str): The path of the fields in the
                 metadata that need to be validated. In the form
                 ['Collection/StartDate', ...].

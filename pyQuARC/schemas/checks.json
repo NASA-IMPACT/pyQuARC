@@ -99,6 +99,11 @@
         "check_function": "instrument_long_name_gcmd_check",
         "available": true
     },
+    "validate_granule_instrument_against_collection": {
+        "data_type": "string",
+        "check_function": "validate_granule_instrument_against_collection",
+        "available": true
+    },
     "platform_short_name_gcmd_check": {
         "data_type": "string",
         "check_function": "platform_short_name_gcmd_check",
@@ -117,6 +122,11 @@
     "platform_short_long_name_consistency_check": {
         "data_type": "string",
         "check_function": "platform_short_long_name_consistency_check",
+        "available": true
+    },
+    "validate_granule_platform_against_collection": {
+        "data_type": "string",
+        "check_function": "validate_granule_platform_against_collection",
         "available": true
     },
     "spatial_keyword_gcmd_check": {
@@ -234,9 +244,29 @@
         "check_function": "validate_beginning_datetime_against_granules",
         "available": true
     },
+    "validate_granule_data_format_against_collection_check": {
+        "data_type": "string",
+        "check_function": "validate_granule_data_format_against_collection",
+        "available": true
+    },
     "get_data_url_check": {
         "data_type": "custom",
         "check_function": "get_data_url_check",
+        "available": true
+    },
+    "granule_project_short_name_check": {
+        "data_type": "string",
+        "check_function": "granule_project_short_name_check",
+        "available": true
+    },
+    "granule_sensor_short_name_check": {
+        "data_type": "string",
+        "check_function": "granule_sensor_short_name_check",
+        "available": true
+    },
+    "granule_data_format_presence_check": {
+        "data_type": "custom",
+        "check_function": "presence_check",
         "available": true
     },
     "count_check": {

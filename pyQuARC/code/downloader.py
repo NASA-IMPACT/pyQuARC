@@ -17,6 +17,14 @@ class Downloader:
     GRANULE = "granule"
     INVALID = "invalid"
 
+    FORMAT_MAP = {
+        "echo-c": "echo10",
+        "echo-g": "echo10",
+        "umm-c": "umm-json",
+        "umm-g": "umm-json",
+        "dif10": "dif10",
+    }
+
     def __init__(self, concept_id, metadata_format, version=None, cmr_host=get_cmr_url()):
         """
         Args:
@@ -53,9 +61,7 @@ class Downloader:
         Returns:
             (str) The URL constructed based on the concept ID
         """
-        extension = self.metadata_format
-        if extension.startswith("umm-"):
-            extension = "umm-json"
+        extension = Downloader.FORMAT_MAP.get(self.metadata_format, "echo10")
 
         concept_id_type = Downloader._concept_id_type(self.concept_id)
         base_url = Downloader.BASE_URL.format(cmr_host=self.cmr_host)

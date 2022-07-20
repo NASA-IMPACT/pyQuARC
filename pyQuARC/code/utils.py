@@ -1,5 +1,6 @@
 import os
 import requests
+import urllib
 
 from functools import wraps
 
@@ -36,3 +37,14 @@ def is_valid_cmr_url(url):
 def get_cmr_url():
     cmr_url = os.environ.get("CMR_URL", CMR_URL)
     return _add_protocol(cmr_url)
+
+def set_cmr_prms(params, format='json', type="collections"):
+    base_url = f"{type}.{format}?"
+    params = { key:value for key, value in params.items() if value }
+    return f"{base_url}{urllib.parse.urlencode(params)}"
+
+def cmr_request(cmr_prms):
+    return requests.get(f'{get_cmr_url()}/search/{cmr_prms}').json()
+
+def collection_in_cmr(cmr_prms):
+    return cmr_request(cmr_prms).get('hits', 0) > 0

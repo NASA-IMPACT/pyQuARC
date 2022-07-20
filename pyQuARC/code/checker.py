@@ -13,7 +13,7 @@ from .datetime_validator import DatetimeValidator
 from .string_validator import StringValidator
 from .url_validator import UrlValidator
 
-from .constants import ECHO10, SCHEMA_PATHS
+from .constants import ECHO10_C, SCHEMA_PATHS
 
 
 class Checker:
@@ -23,7 +23,7 @@ class Checker:
 
     def __init__(
         self,
-        metadata_format=ECHO10,
+        metadata_format=ECHO10_C,
         messages_override=None,
         checks_override=None,
         rules_override=None
