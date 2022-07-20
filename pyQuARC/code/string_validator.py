@@ -374,24 +374,24 @@ class StringValidator(BaseValidator):
         }
 
     @staticmethod
-    def _validate_against_collection(cmr_prms, prm, prm_value):
-        if not (collection_in_cmr(cmr_prms)):
-            return True
-
-        cmr_request_prms = f'{cmr_prms}&{prm}={prm_value}'
-        hits = cmr_request(cmr_request_prms).get('hits', 0)
-        return hits > 0
-
-    @staticmethod
-    @if_arg
-    def granule_project_short_name_check(project_shortname, entry_title=None, short_name=None, version=None):
+    def _validate_against_collection(prm_value, entry_title, short_name, version, key):
         cmr_prms = set_cmr_prms({
             "entry_title": entry_title,
             "short_name": short_name,
             "version": version
         }, "umm_json")
 
-        validity = StringValidator._validate_against_collection(cmr_prms, 'project', project_shortname)
+        if not (collection_in_cmr(cmr_prms)):
+            return True
+
+        cmr_request_prms = f'{cmr_prms}&{key}={prm_value}'
+        hits = cmr_request(cmr_request_prms).get('hits', 0)
+        return hits > 0
+
+    @staticmethod
+    @if_arg
+    def granule_project_short_name_check(project_shortname, entry_title=None, short_name=None, version=None):
+        validity = StringValidator._validate_against_collection(project_shortname, entry_title, short_name, version, 'project')
         return {
             "valid": validity,
             "value": project_shortname
@@ -400,13 +400,7 @@ class StringValidator(BaseValidator):
     @staticmethod
     @if_arg
     def granule_sensor_short_name_check(sensor_shortname, entry_title=None, short_name=None, version=None):
-        cmr_prms = set_cmr_prms({
-            "entry_title": entry_title,
-            "short_name": short_name,
-            "version": version
-        }, "umm_json")
-
-        validity = StringValidator._validate_against_collection(cmr_prms, 'instrument', sensor_shortname)
+        validity = StringValidator._validate_against_collection(sensor_shortname, entry_title, short_name, version, 'instrument')
         return {
             "valid": validity,
             "value": sensor_shortname
@@ -428,12 +422,7 @@ class StringValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        cmr_prms = set_cmr_prms({
-            "entry_title": dataset_id,
-            "shortName": collection_shortname, 
-            "version": version
-        }, "umm_json")
-        validity = StringValidator._validate_against_collection(cmr_prms, "instrument", instrument_shortname)
+        validity = StringValidator._validate_against_collection(instrument_shortname, dataset_id, collection_shortname, version, "instrument")
         return {
             "valid": validity,
             "value": instrument_shortname
@@ -455,12 +444,7 @@ class StringValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        cmr_prms = StringValidator.set_cmr_prms({
-            "entry_title": dataset_id,
-            "shortName": collection_shortname, 
-            "version": version
-        }, "umm_json")
-        validity = StringValidator._validate_against_collection(cmr_prms, "platform", platform_shortname)
+        validity = StringValidator._validate_against_collection(platform_shortname, dataset_id, collection_shortname, version, "platform")
         return {
             "valid": validity,
             "value": platform_shortname
