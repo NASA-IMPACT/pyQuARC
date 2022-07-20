@@ -1,22 +1,6 @@
-import requests
-import urllib
-
 from .base_validator import BaseValidator
 from .gcmd_validator import GcmdValidator
-from .utils import if_arg
-from .constants import CMR_URL
-
-
-def set_cmr_prms(params, format='json'):
-    base_url = f"collections.{format}?"
-    params = { key:value for key, value in params.items() if value }
-    return f"{base_url}{urllib.parse.urlencode(params)}"
-
-def cmr_request(cmr_prms):
-    return requests.get(f'{CMR_URL}/search/{cmr_prms}').json()
-
-def collection_in_cmr(cmr_prms):
-    return cmr_request(cmr_prms).get('hits', 0) > 0
+from .utils import cmr_request, collection_in_cmr, if_arg, set_cmr_prms
 
 
 class StringValidator(BaseValidator):

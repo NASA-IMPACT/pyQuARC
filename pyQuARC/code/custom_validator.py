@@ -1,7 +1,8 @@
 from .base_validator import BaseValidator
-from .string_validator import StringValidator, cmr_request, set_cmr_prms
+from .string_validator import StringValidator
 
-from .utils import if_arg
+from .utils import cmr_request, if_arg, set_cmr_prms
+
 
 
 class CustomValidator(BaseValidator):

@@ -3,7 +3,7 @@ import requests
 
 from urllib.parse import urlparse
 
-from .constants import CMR_URL
+from .utils import get_cmr_url
 
 
 class Downloader:
@@ -25,7 +25,7 @@ class Downloader:
         "dif10": "dif10",
     }
 
-    def __init__(self, concept_id, metadata_format, version=None, cmr_host=CMR_URL):
+    def __init__(self, concept_id, metadata_format, version=None, cmr_host=get_cmr_url()):
         """
         Args:
             concept_id (str): The concept id of the metadata to download
