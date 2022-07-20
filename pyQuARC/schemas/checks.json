@@ -266,7 +266,7 @@
     },
     "granule_data_format_presence_check": {
         "data_type": "custom",
-        "check_function": "presence_check",
+        "check_function": "one_item_presence_check",
         "available": true
     },
     "count_check": {

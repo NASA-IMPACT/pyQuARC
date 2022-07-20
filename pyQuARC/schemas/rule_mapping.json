@@ -2556,7 +2556,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "validate_granule_instrument_against_collection": {
         "rule_name": "Granule Instrument Short Name Check",
@@ -4956,7 +4956,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "presence_check"
+        "check_id": "one_item_presence_check"
     },
     "validate_granule_platform_against_collection": {
         "rule_name": "Granule Platform Short Name Check",
