@@ -101,10 +101,11 @@ class DatetimeValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        first = DatetimeValidator._iso_datetime(first) or DatetimeValidator._iso_date(first)
+        first = (DatetimeValidator._iso_datetime(first) or DatetimeValidator._iso_date(first)).replace(tzinfo=pytz.utc)
         second = DatetimeValidator._iso_datetime(second) or DatetimeValidator._iso_date(second)
         if not(second):
-            second = datetime.now().replace(tzinfo=pytz.UTC) # Making it UTC for comparison with other UTC times
+            second = datetime.now()
+        second = second.replace(tzinfo=pytz.UTC) # Making it UTC for comparison with other UTC times
         result = BaseValidator.compare(first, second, relation)
         return {
             "valid": result,
