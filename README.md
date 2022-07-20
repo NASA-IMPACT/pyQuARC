@@ -4,30 +4,41 @@
 
 ## Introduction
 
-The pyQuARC library was designed to read and evaluate descriptive metadata used to catalog Earth observation data products and files. This type of metadata focuses and limits attention to important aspects of data, such as the spatial and temporal extent, in a structured manner that can be leveraged by data catalogs and other applications designed to connect users to data. Therefore, poor quality metadata (e.g. inaccurate, incomplete, improperly formatted, inconsistent) can yield subpar results when users search for data. Metadata that inaccurately represents the data it describes risks matching users with data that does not reflect their search criteria and, in the worst-case scenario, can make data difficult or impossible to find.
+The pyQuARC (*pronounced "pie-quark"*) library was designed to read and evaluate descriptive metadata used to catalog Earth observation data products and files. This type of metadata focuses and limits attention to important aspects of data, such as the spatial and temporal extent, in a structured manner that can be leveraged by data catalogs and other applications designed to connect users to data. Therefore, poor quality metadata (e.g. inaccurate, incomplete, improperly formatted, inconsistent) can yield subpar results when users search for data. Metadata that inaccurately represents the data it describes risks matching users with data that does not reflect their search criteria and, in the worst-case scenario, can make data impossible to find.
 
-Given the importance of high quality metadata, it is necessary that metadata be regularly assessed and updated as needed. pyQuARC is a tool that can help streamline the process of assessing metadata quality by automating it as much as possible, freeing human evaluators to make more sophisticated assessments. In addition to basic validation checks (e.g. adherence to the metadata schema, controlled vocabularies, and link checking), pyQuARC flags opportunities to improve or add contextual metadata information to help the user connect to, access, and better understand relevant data products. pyQuARC also ensures that information common to both data product (i.e. collection) and the file-level (i.e. granule) metadata are consistent and compatible. As open source software, pyQuARC can be adapted and customized to allow for quality checks unique to different needs.
+Given the importance of high quality metadata, it is necessary that metadata be regularly assessed and updated as needed. pyQuARC is a tool that can help streamline the process of assessing metadata quality by automating it as much as possible. In addition to basic validation checks (e.g. adherence to the metadata schema, controlled vocabularies, and link checking), pyQuARC flags opportunities to improve or add contextual metadata information to help the user connect to, access, and better understand the data product. pyQuARC also ensures that information common to both data product (i.e. collection) and the file-level (i.e. granule) metadata are consistent and compatible. As open source software, pyQuARC can be adapted and customized to allow for quality checks unique to different needs.
 
 ## pyQuARC Base Package
 
-pyQuARC was specifically designed to assess metadata in NASA’s [Common Metadata Repository (CMR)](https://earthdata.nasa.gov/eosdis/science-system-description/eosdis-components), which is a centralized metadata repository for all of NASA’s Earth observation data products. In addition to NASA’s ~9,000 data products, the CMR also holds metadata for over 20,000 additional Earth observation data products submitted by external data partners. The CMR serves as the backend for NASA’s Earthdata Search (search.earthdata.nasa.gov) and is also the authoritative metadata source for NASA’s [Earth Observing System Data and Information System (EOSDIS).](https://earthdata.nasa.gov/eosdis)
+pyQuARC was specifically designed to assess metadata in NASA’s [Common Metadata Repository (CMR)](https://earthdata.nasa.gov/eosdis/science-system-description/eosdis-components), which is a centralized metadata repository for all of NASA’s Earth observation data products. In addition to NASA’s ~9,000 data products, the CMR also holds metadata for over 40,000 additional Earth observation data products submitted by external data partners. The CMR serves as the backend for NASA’s Earthdata Search (search.earthdata.nasa.gov) and is also the authoritative metadata source for NASA’s [Earth Observing System Data and Information System (EOSDIS).](https://earthdata.nasa.gov/eosdis)
 
-pyQuARC was developed by a group called the [Analysis and Review of the CMR (ARC)](https://earthdata.nasa.gov/esds/impact/arc) team. The ARC team conducts quality assessments of NASA’s metadata records in CMR, identifies opportunities for improvement in the metadata records, and collaborates with the data archive centers to resolve any identified issues. ARC has developed a metadata quality assessment framework which specifies a common set of assessment criteria. These criteria focus on correctness, completeness, and consistency with the goal of making data more discoverable, accessible, and usable. The ARC metadata quality assessment framework is the basis for the metadata checks that have been incorporated into pyQuARC base package. Specific quality criteria for each CMR metadata element is documented in the following wiki:
+pyQuARC was developed by a group called the [Analysis and Review of the CMR (ARC)](https://earthdata.nasa.gov/esds/impact/arc) team. The ARC team conducts quality assessments of NASA’s metadata records in the CMR, identifies opportunities for improvement in the metadata records, and collaborates with the data archive centers to resolve any identified issues. ARC has developed a [metadata quality assessment framework](http://doi.org/10.5334/dsj-2021-017) which specifies a common set of assessment criteria. These criteria focus on correctness, completeness, and consistency with the goal of making data more discoverable, accessible, and usable. The ARC metadata quality assessment framework is the basis for the metadata checks that have been incorporated into pyQuARC base package. Specific quality criteria for each CMR metadata element is documented in the following wiki:
 [https://wiki.earthdata.nasa.gov/display/CMR/CMR+Metadata+Best+Practices%3A+Landing+Page](https://wiki.earthdata.nasa.gov/display/CMR/CMR+Metadata+Best+Practices%3A+Landing+Page)
 
 There is an “ARC Metadata QA/QC” section on the wiki page for each metadata element that lists quality criteria categorized by level of [priority. Priority categories](https://wiki.earthdata.nasa.gov/display/CMR/ARC+Priority+Matrix) are designated as high (red), medium (yellow), or low (blue), and are intended to communicate the importance of meeting the specified criteria.
 
 The CMR is designed around its own metadata standard called the [Unified Metadata Model (UMM).](https://earthdata.nasa.gov/eosdis/science-system-description/eosdis-components/cmr/umm) In addition to being an extensible metadata model, the UMM also provides a cross-walk for mapping between the various CMR-supported metadata standards. CMR-supported metadata standards currently include:
 * [DIF10](https://earthdata.nasa.gov/esdis/eso/standards-and-references/directory-interchange-format-dif-standard) (Collection/Data Product-level only)
-* [ECHO 10](https://earthdata.nasa.gov/esdis/eso/standards-and-references/echo-metadata-standard) (Collection/Data Product and Granule/File-level metadata)
+* [ECHO10](https://earthdata.nasa.gov/esdis/eso/standards-and-references/echo-metadata-standard) (Collection/Data Product and Granule/File-level metadata)
 * [ISO19115-1 and ISO19115-2](https://earthdata.nasa.gov/esdis/eso/standards-and-references/iso-19115) (Collection/Data Product and Granule/File-level metadata)
-* [UMM-JSON](https://wiki.earthdata.nasa.gov/display/CMR/CMR+Documents) (UMM)
+* [UMM-JSON](https://wiki.earthdata.nasa.gov/display/CMR/UMM+Documents) (UMM)
 	* UMM-C (Collection/Data Product-level metadata)
 	* UMM-G (Granule/File-level metadata)
 	* UMM-S (Service metadata)
 	* UMM-T (Tool metadata)
 
-**Currently, pyQuARC only supports DIF 10 (collection only), ECHO 10 (collection only), and UMM-G metadata. Support for additional metadata standards will continue to be added in the coming months.** When completed, pyQuARC will support the DIF 10 (collection only), ECHO 10 (collection and granule), UMM-C and UMM-G standards. At this time, there are no plans to add ISO 19115 or UMM-S specific checks.
+
+**Currently, pyQuARC only supports ECHO10 and DIF10 collection-level metadata. Support for additional metadata standards will continue to be added in the coming months.** When completed, pyQuARC will support the DIF10 (collection only), ECHO10 (collection and granule), UMM-C, and UMM-G standards. At this time, there are no plans to add ISO 19115 or UMM-S/T specific checks. **Additionally, the output messages pyQuARC currently displays should be taken with a grain of salt. There is still testing and clean-up work to be done.**  
+
+**For inquiries, please email: jeanne.leroux@nsstc.uah.edu**
+
+## pyQuARC as a Service (QuARC)
+
+QuARC is pyQuARC deployed as a service and can be found here: https://quarc.nasa-impact.net/docs/
+
+QuARC is still in beta but is regularly synced with the latest version of pyQuARC on GitHub.
+
+![QuARC](https://user-images.githubusercontent.com/17416300/179866276-7c025699-01a1-4d3e-93cd-50e12c5a5ec2.png)
 
 ## Architecture
 
@@ -36,13 +47,13 @@ The CMR is designed around its own metadata standard called the [Unified Metadat
 The Downloader is used to obtain a copy of a metadata record of interest from the CMR. This is accomplished using a [CMR API query,](https://cmr.earthdata.nasa.gov/search/site/docs/search/api.html) where the metadata record of interest is identified by its unique identifier in the CMR (concept_id). CMR API documentation can be found here:
 [https://cmr.earthdata.nasa.gov/search/site/docs/search/api.html](https://cmr.earthdata.nasa.gov/search/site/docs/search/api.html)
 
-There is also the option to select a metadata record already downloaded to your local desktop.
+There is also the option to select and run pyQuARC on a metadata record already downloaded to your local desktop.
 
 The `checks.json` file includes a comprehensive list of rules. Each rule is specified by its `rule_id,` associated function, and any dependencies on specific metadata elements. 
 
 The `rule_mapping.json` file specifies which metadata element(s) each rule applies to. The `rule_mapping.json` also references the `messages.json` file which includes messages that can be displayed when a check passes or fails.
 
-Furthermore, the `rule_mapping.json` file specifies the level of severity associated with a failure. If a check fails, it will be assigned a severity category of “<span style="color:red">error</span>,” “<span style="color:orange">warning</span>,” or <span style="color:blue">info</span>.” These categories correspond to priority categorizations in [ARC’s priority matrix](https://wiki.earthdata.nasa.gov/display/CMR/ARC+Priority+Matrix) and attempt to communicate the importance of the failed check, with “error” being the most critical category, “warning” indicating a failure of medium priority, and “info” indicating a minor issue or inconsistency. Default severity values are assigned based on ARC’s metadata quality assessment framework, but can be customized to meet individual needs.
+Furthermore, the `rule_mapping.json` file specifies the level of severity associated with a failure. If a check fails, it will be assigned a severity category of “<span style="color:red">error</span>,” “<span style="color:orange">warning</span>,” or <span style="color:blue">info</span>.” These categories correspond to priority categorizations in [ARC’s priority matrix](https://wiki.earthdata.nasa.gov/display/CMR/ARC+Priority+Matrix) and communicate the importance of the failed check, with “error” being the most critical category, “warning” indicating a failure of medium priority, and “info” indicating a minor issue or inconsistency. Default severity values are assigned based on ARC’s metadata quality assessment framework, but can be customized to meet individual needs.
 
 ## Customization
 pyQuARC is designed to be customizable. Output messages can be modified using the `messages_override.json` file - any messages added to `messages_override.json` will display over the default messages in the `message.json` file. Similarly, there is a `rule_mapping_override.json` file which can be used to override the default settings for which rules/checks are applied to which metadata elements.  
