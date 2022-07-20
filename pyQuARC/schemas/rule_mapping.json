@@ -5111,7 +5111,7 @@
         },
         "data": ["Description"],
         "severity": "info",
-        "check_id": "uniqueness_check_echog"
+        "check_id": "uniqueness_check"
     },
     "online_access_description_uniqueness_check": {
         "rule_name": "Online Access Description Uniqueness Check",
@@ -5126,7 +5126,7 @@
         },
         "data": ["URLDescription"],
         "severity": "info",
-        "check_id": "uniqueness_check_echog"
+        "check_id": "uniqueness_check"
     },
         "metadata_update_time_logic_check": {
         "rule_name": "Metadata Update Time Logic Check",
