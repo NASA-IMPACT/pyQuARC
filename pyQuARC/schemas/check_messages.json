@@ -303,6 +303,22 @@
         },
         "remediation": "Please add the associated instrument long name."
     },
+    "granule_instrument_presence_check": {
+        "failure": "The instrument short name is missing.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Recommend providing the instrument short name."
+    },
+    "validate_granule_instrument_against_collection": {
+        "failure": "The instrument short name listed in the granule metadata does not match the instrument short name listed in the collection metadata.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Recommend providing the correct instrument short name in the granule metadata."
+    },
     "platform_short_name_gcmd_check": {
         "failure": "The provided platform short name `{}` does not comply with the GCMD.",
         "help": {
@@ -318,6 +334,14 @@
             "url": ""
         },
         "remediation": "Please supply the corresponding long name for the short name."
+    },
+    "validate_granule_platform_against_collection": {
+        "failure": "The platform short name listed in the granule metadata does not match the platform short name listed in the collection metadata.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Recommend providing the correct platform short name in the granule metadata."
     },
     "data_format_gcmd_check": {
         "failure": "The provided data format `{}` does not comply with the GCMD.",
@@ -695,14 +719,6 @@
         },
         "remediation": "Please provide a corresponding GCMD compliant Online Resource Type for each Online Resource URL."
     },
-    "characteristic_name_uniqueness_check_echo10": {
-        "failure": "Duplicate characteristic name/s `{}`.",
-        "help": {
-            "message": "",
-            "url": ""
-        },
-        "remediation": "Please provide a unique name for each characteristic."
-    },
     "characteristic_name_uniqueness_check": {
         "failure": "Duplicate characteristic name/s `{}`.",
         "help": {
@@ -886,6 +902,14 @@
             "url": ""
         },
         "remediation": "Recommend providing the platform long name."
+    },
+    "granule_platform_presence_check": {
+        "failure": "The platform short name is missing.",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Recommend providing the platform short name."
     },
     "horizontal_data_resolution_unit_check": {
         "failure": "The Horizontal Data Resolution Unit provided `{}` is invalid.",

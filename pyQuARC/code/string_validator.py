@@ -374,30 +374,24 @@ class StringValidator(BaseValidator):
         }
 
     @staticmethod
-    def _validate_against_collection(cmr_prms, prm, prm_value):
-        cmr_request_prms = f'{cmr_prms}&{prm}={prm_value}'
-        hits = cmr_request(cmr_request_prms).get('hits', 0)
-        validity = hits > 0
-        return validity
-
-    @staticmethod
-    @if_arg
-    def granule_project_short_name_check(project_shortname, entry_title=None, short_name=None, version=None):
-        def granule_project_validate_against_collection(cmr_prms, project_shortname):
-            # If the collection can't be found, skip the check
-            if not (collection_in_cmr(cmr_prms)):
-                validity = True
-            else:
-                validity = StringValidator._validate_against_collection(cmr_prms, 'project', project_shortname)
-            return validity
-
+    def _validate_against_collection(prm_value, entry_title, short_name, version, key):
         cmr_prms = set_cmr_prms({
             "entry_title": entry_title,
             "short_name": short_name,
             "version": version
         }, "umm_json")
 
-        validity = granule_project_validate_against_collection(cmr_prms, project_shortname)
+        if not (collection_in_cmr(cmr_prms)):
+            return True
+
+        cmr_request_prms = f'{cmr_prms}&{key}={prm_value}'
+        hits = cmr_request(cmr_request_prms).get('hits', 0)
+        return hits > 0
+
+    @staticmethod
+    @if_arg
+    def granule_project_short_name_check(project_shortname, entry_title=None, short_name=None, version=None):
+        validity = StringValidator._validate_against_collection(project_shortname, entry_title, short_name, version, 'project')
         return {
             "valid": validity,
             "value": project_shortname
@@ -406,25 +400,54 @@ class StringValidator(BaseValidator):
     @staticmethod
     @if_arg
     def granule_sensor_short_name_check(sensor_shortname, entry_title=None, short_name=None, version=None):
-
-        def granule_sensor_validate_against_collection(cmr_prms, sensor_shortname):
-            # If the collection can't be found, skip the check
-            if not(collection_in_cmr(cmr_prms)):
-                validity = True
-            else:
-                validity = StringValidator._validate_against_collection(cmr_prms, 'instrument', sensor_shortname)
-            return validity
-
-        cmr_prms = set_cmr_prms({
-            "entry_title": entry_title,
-            "short_name": short_name,
-            "version": version
-        }, "umm_json")
-
-        validity = granule_sensor_validate_against_collection(cmr_prms, sensor_shortname)
+        validity = StringValidator._validate_against_collection(sensor_shortname, entry_title, short_name, version, 'instrument')
         return {
             "valid": validity,
             "value": sensor_shortname
+        }
+    
+    @staticmethod
+    @if_arg
+    def validate_granule_instrument_against_collection(instrument_shortname, collection_shortname=None, version=None, dataset_id=None):
+        """
+        Validates the instrument shortname provided in the granule metadata
+        against the instrument shortname provided at the collection level.
+
+        Args:
+            instrument_shortname (str): shortname of the instrument
+            collection_shortname (str): Shortname of the parent collection
+            version (str):              version of the collection
+            dataset_id (str):           Entry title of the parent collection
+
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
+        validity = StringValidator._validate_against_collection(instrument_shortname, dataset_id, collection_shortname, version, "instrument")
+        return {
+            "valid": validity,
+            "value": instrument_shortname
+        }
+
+    @staticmethod
+    @if_arg
+    def validate_granule_platform_against_collection(platform_shortname, collection_shortname=None, version=None, dataset_id=None):
+        """
+        Validates the platform shortname provided in the granule metadata
+        against the platform shortname provided at the collection level.
+
+        Args:
+            platform_shortname (str): shortname of the platform
+            collection_shortname (str): Shortname of the parent collection
+            version (str):              version of the collection
+            dataset_id (str):           Entry title of the parent collection
+
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
+        validity = StringValidator._validate_against_collection(platform_shortname, dataset_id, collection_shortname, version, "platform")
+        return {
+            "valid": validity,
+            "value": platform_shortname
         }
         
     @if_arg

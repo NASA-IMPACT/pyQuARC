@@ -111,6 +111,15 @@
                     ],
                     "relation": "lte"
                 }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Temporal/RangeDateTime/BeginningDateTime",
+                        "Granule/Temporal/RangeDateTime/EndingDateTime"
+                    ],
+                    "relation": "lte"
+                }
             ]
         },
         "severity": "error",
@@ -156,6 +165,15 @@
                     "fields": [
                         "TemporalExtent/RangeDateTime/BeginningDateTime",
                         "TemporalExtent/RangeDateTime/EndingDateTime"
+                    ],
+                    "relation": "neq"
+                }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Temporal/RangeDateTime/BeginningDateTime",
+                        "Granule/Temporal/RangeDateTime/EndingDateTime"
                     ],
                     "relation": "neq"
                 }
@@ -617,6 +635,31 @@
                     "fields": [
                         "Granule/Temporal/RangeDateTime/EndingDateTime"
                     ]
+                },
+                {
+                    "fields": [
+                        "Granule/Temporal/SingleDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/LastUpdate"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/DeleteTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/DataGranule/ProductionDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/OrbitCalculatedSpatialDomains/OrbitCalculatedSpatialDomain/EquatorCrossingDateTime"
+                    ]
                 }
             ]
         },
@@ -726,6 +769,23 @@
                 {
                     "fields": [
                         "MetadataSpecification/URL"
+                    ]
+                }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/AssociatedBrowseImageUrls/ProviderBrowseUrl/URL"
                     ]
                 }
             ]
@@ -1050,6 +1110,13 @@
                 {
                     "fields": [
                         "ProviderDates/Date?Type=Delete"
+                    ]
+                }   
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/DeleteTime"
                     ]
                 }
             ]
@@ -1499,6 +1566,20 @@
                         "Platforms/Instruments/ComposedOf/Characteristics"
                     ]
                 }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Name",
+                        "Granule/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/Characteristics/Characteristic/Name",
+                        "Granule/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/Characteristics/Characteristic"
+                    ]
+                }
             ]
         },
         "severity": "error",
@@ -1712,6 +1793,20 @@
                     "fields": [
                         "Platforms/Instruments/ComposedOf/Characteristics/Value",
                         "Platforms/Instruments/ComposedOf/Characteristics"
+                    ]
+                }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic/Value",
+                        "Granule/Platforms/Platform/Instruments/Instrument/Characteristics/Characteristic"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/Characteristics/Characteristic/Value",
+                        "Granule/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/Characteristics/Characteristic"
                     ]
                 }
             ]
@@ -1982,6 +2077,14 @@
                         "RelatedUrls/MimeType",
                         "RelatedUrls/Type"
                     ]
+                }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/MimeType",
+                        "Granule/OnlineResources/OnlineResource/Type"
+                    ] 
                 }
             ]
         },
@@ -2434,20 +2537,61 @@
         "severity": "warning",
         "check_id": "one_item_presence_check"
     },
-    "platform_short_name_gcmd_check": {
-        "rule_name": "Platform Shortname GCMD Check",
+    "granule_instrument_presence_check": {
+        "rule_name": "Granule Instrument Presence Check",
         "fields_to_apply": {
-            "echo-c": [
-                {
-                    "fields": [
-                        "Collection/Platforms/Platform/ShortName"
-                    ]
-                }
-            ],
             "echo-g": [
                 {
                     "fields": [
-                        "Granule/Platforms/Platform/ShortName"
+                        "Granule/Platforms/Platform/Instruments/Instrument/ShortName"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platforms/Instruments/ShortName"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "presence_check"
+    },
+    "validate_granule_instrument_against_collection": {
+        "rule_name": "Granule Instrument Short Name Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/Instruments/Instrument/ShortName",
+                        "Granule/Collection/ShortName",
+                        "Granule/Collection/VersionId",
+                        "Granule/Collection/DataSetId"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platforms/Instruments/ShortName",
+                        "CollectionReference/ShortName",
+                        "CollectionReference/Version",
+                        "CollectionReference/EntryTitle"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "validate_granule_instrument_against_collection"
+    },
+    "platform_short_name_gcmd_check": {
+        "rule_name": "Platform Shortname GCMD Check",
+        "fields_to_apply": {
+            "echo10": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/ShortName"
                     ]
                 }
             ],
@@ -2469,6 +2613,13 @@
                 {
                     "fields": [
                         "Platforms/ShortName"
+                    ]
+                }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/ShortName"
                     ]
                 }
             ]
@@ -3335,6 +3486,13 @@
                 {
                     "fields": [
                         "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URL"
                     ]
                 }
             ]
@@ -4311,6 +4469,48 @@
                         "OrbitCalculatedSpatialDomains/EquatorCrossingDateTime"
                     ]
                 }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/InsertTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/LastUpdate"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/Temporal/RangeDateTime/BeginningDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/Temporal/RangeDateTime/EndingDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/Temporal/SingleDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/DeleteTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/DataGranule/ProductionDateTime"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/OrbitCalculatedSpatialDomains/OrbitCalculatedSpatialDomain/EquatorCrossingDateTime"
+                    ]
+                }
             ]
         },
         "data": [
@@ -4737,6 +4937,54 @@
         "severity": "warning",
         "check_id": "one_item_presence_check"
     },
+    "granule_platform_presence_check": {
+        "rule name": "Granule Platform Presence Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/ShortName"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platforms/ShortName"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "presence_check"
+    },
+    "validate_granule_platform_against_collection": {
+        "rule_name": "Granule Platform Short Name Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Platforms/Platform/ShortName",
+                        "Granule/Collection/ShortName",
+                        "Granule/Collection/VersionId",
+                        "Granule/Collection/DataSetId"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Platforms/ShortName",
+                        "CollectionReference/ShortName",
+                        "CollectionReference/Version",
+                        "CollectionReference/EntryTitle"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "validate_granule_platform_against_collection"
+    },
     "horizontal_data_resolution_unit_check": {
         "rule_name": "Horizontal Data Resolution Unit Controlled Vocabulary Check",
         "fields_to_apply": {
@@ -4863,7 +5111,7 @@
         },
         "data": ["Description"],
         "severity": "info",
-        "check_id": "uniqueness_check_echog"
+        "check_id": "uniqueness_check"
     },
     "online_access_description_uniqueness_check": {
         "rule_name": "Online Access Description Uniqueness Check",
@@ -4878,7 +5126,7 @@
         },
         "data": ["URLDescription"],
         "severity": "info",
-        "check_id": "uniqueness_check_echog"
+        "check_id": "uniqueness_check"
     },
         "metadata_update_time_logic_check": {
         "rule_name": "Metadata Update Time Logic Check",

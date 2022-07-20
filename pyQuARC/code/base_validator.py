@@ -1,8 +1,3 @@
-import requests
-
-from .constants import CMR_URL
-
-
 class BaseValidator:
     """
     Base class for all the validators

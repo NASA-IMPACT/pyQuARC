@@ -99,6 +99,11 @@
         "check_function": "instrument_long_name_gcmd_check",
         "available": true
     },
+    "validate_granule_instrument_against_collection": {
+        "data_type": "string",
+        "check_function": "validate_granule_instrument_against_collection",
+        "available": true
+    },
     "platform_short_name_gcmd_check": {
         "data_type": "string",
         "check_function": "platform_short_name_gcmd_check",
@@ -117,6 +122,11 @@
     "platform_short_long_name_consistency_check": {
         "data_type": "string",
         "check_function": "platform_short_long_name_consistency_check",
+        "available": true
+    },
+    "validate_granule_platform_against_collection": {
+        "data_type": "string",
+        "check_function": "validate_granule_platform_against_collection",
         "available": true
     },
     "spatial_keyword_gcmd_check": {
@@ -223,11 +233,6 @@
         "data_type": "custom",
         "check_function": "uniqueness_check",
         "available": true
-    },
-    "uniqueness_check_echog":{
-        "data_type": "custom",
-        "check_function": "uniqueness_check_echog",
-        "available": true 
     },
     "validate_ending_datetime_against_granules": {
         "data_type": "datetime",
