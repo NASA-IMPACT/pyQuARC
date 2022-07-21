@@ -4,10 +4,8 @@ class Scheduler:
     """
 
     def __init__(self, rule_mapping, rules_override, checks, checks_override, metadata_format):
-        self.check_list = checks
-        self.checks_override = checks_override
-        self.rule_mapping = rule_mapping
-        self.rules_override = rules_override
+        self.check_list = {**checks, **checks_override}
+        self.rule_mapping = {**rule_mapping, **rules_override}
         self.metadata_format = metadata_format
 
     @staticmethod
@@ -19,17 +17,21 @@ class Scheduler:
         if value not in list_of_values:
             list_of_values.append(value)
 
-    def get_all_dependencies(self, rule_id, check, field_dict=None):
+    def get_all_dependencies(self, rule, check, field_dict=None):
         """
-        Gets combined dependencies from rule_mapping and checks
+        Gets all the dependencies for a rule
+
+        If field_dict is provided, get the dependencies only for that field
         """
         dependencies = []
         dependencies_from_fields = []
 
         if field_dict:
-            return field_dict.get("dependencies", [])
+            if dependencies_from_fields := field_dict.get("dependencies"):
+                return dependencies_from_fields
+            else:
+                return check.get("dependencies", [])
 
-        rule = self.rule_mapping.get(rule_id)
         if field_objects := rule.get("fields_to_apply").get(self.metadata_format):
             for field_object in field_objects:
                 if field_dependencies := field_object.get("dependencies"):
@@ -41,27 +43,33 @@ class Scheduler:
         dependencies.extend(dependencies_from_checks)
         return dependencies
 
-    def _add_to_list(self, rule_id, rule, rules_list):
+    def dependencies_ordering(self, dependencies, list):
         """
-        Adds `rule` to `rules_list` based on the dependency order
+        Creates a dependency ordering; basically independent checks are added first
         """
-        check_id = rule.get("check_id") or rule_id
-        if check := self.checks_override.get(
-            check_id
-        ) or self.check_list.get(check_id):
-            dependencies = self.get_all_dependencies(rule_id, check)
-            for dependency in dependencies:
-                check = self.rules_override.get(
-                    dependency[0]
-                ) or self.rule_mapping.get(dependency[0])
-                self._add_to_list(
-                    dependency[0],
-                    check,
-                    rules_list
+        for dependency in dependencies:
+            dependency_check = self.check_list.get(dependency[0])
+            if dependency_check.get("dependencies"):
+                self.dependencies_ordering(
+                    dependency_check.get("dependencies"), list
                 )
-            Scheduler.append_if_not_exist(rule_id, rules_list)
-        else:
-            print(f"Missing entry for {check_id} in `checks.json`")
+            Scheduler.append_if_not_exist(dependency[0], list)
+            
+    def _find_rule_ids_based_on_check_id(self, check_id):
+        """
+        Returns all the rule_ids that are based on a check_id
+
+        Args:
+            check_id (str): The check id to find the rules based on
+
+        Returns:
+            list: list of all the rule_ids that are based on the check_id
+        """
+        rules = []
+        for rule_id, rule in self.rule_mapping.items():
+            if (rule.get("check_id") == check_id) or (rule_id == check_id):
+                rules.append(rule_id)
+        return rules
 
     def order_rules(self):
         """
@@ -70,13 +78,23 @@ class Scheduler:
         Returns:
             (list): ordered list of rules
         """
+        ordered_rules = []
         ordered_check_list = []
-        keys = list(self.rule_mapping.keys())
-        keys += list(self.rules_override.keys())
-        for rule_id in set(keys):
-            rule = self.rules_override.get(
-                rule_id
-            ) or self.rule_mapping.get(rule_id)
-            self._add_to_list(rule_id, rule, ordered_check_list)
 
-        return ordered_check_list
+        for rule_id, rule in self.rule_mapping.items():
+            check_id = rule.get("check_id") or rule_id
+            if check := self.check_list.get(check_id):
+                dependencies = self.get_all_dependencies(rule, check)
+                # First add dependencies and their dependencies and so on
+                self.dependencies_ordering(dependencies, ordered_check_list)
+                # Then add self
+                Scheduler.append_if_not_exist(check_id, ordered_check_list)
+            else:
+                print(f"Missing entry for {check_id} in `checks.json`")
+
+        for dependency in ordered_check_list:
+            ordered_rules.extend(
+                self._find_rule_ids_based_on_check_id(dependency)
+            )
+
+        return ordered_rules

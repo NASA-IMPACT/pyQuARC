@@ -43,6 +43,10 @@ class UrlValidator(StringValidator):
         Returns:
             (dict) An object with the validity of the check and the instance/results
         """
+
+        def status_code_from_request(url):
+            return requests.get(url, timeout=10).status_code
+        
         results = []
 
         validity = True
@@ -64,11 +68,11 @@ class UrlValidator(StringValidator):
             if not url.startswith("http"):
                 url = f"http://{url}"
             try:
-                response_code = requests.get(url).status_code
+                response_code = status_code_from_request(url)
                 if response_code == 200:
                     if url.startswith("http://"):
                         secure_url = url.replace("http://", "https://")
-                        if requests.get(secure_url).status_code == 200:
+                        if status_code_from_request(secure_url) == 200:
                             result = {"url": url, "error": "The URL is secure. Please use 'https' instead of 'http'."}
                     else:
                         continue
