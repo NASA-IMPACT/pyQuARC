@@ -77,6 +77,14 @@ Checks if the doi provided resolves to a valid document.
 
 Checks if one of the given fields is populated.
 
+#### `uniqueness_check`
+
+Checks if the field values are unique.
+
+#### `count_check`
+
+Checks if the field value that is a count of fields matches the actual count of the fields.
+
 ### Miscellaneous Checks
 
 #### `bounding_coordinate_logic_check`
@@ -144,7 +152,7 @@ Check to make sure that an OPeNDAP access URL is not provided in the `Online Acc
 
 Check to make sure the fields aren't populated like this:
 
-```
+```plaintext
 Collection/Contacts/Contact/ContactPersons/ContactPerson/FirstName: "User"
 Collection/Contacts/Contact/ContactPersons/ContactPerson/MiddleName: "null"
 Collection/Contacts/Contact/ContactPersons/ContactPerson/LastName: "Services"
