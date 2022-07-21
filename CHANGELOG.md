@@ -2,60 +2,69 @@
 
 ## v1.2.0
 
-- Added support for [UMM-JSON](https://earthdata.nasa.gov/esdis/esco/standards-and-references/eso-umm-information) collection level metadata
+- Added support for ECHO10 Granule, UMM-G (UMM-JSON Granule) and UMM-C (UMM-JSON Collection) metadata
+- Added support for custom CMR host
 - Added support for some UMM fields that look like the following:
 
-```json
-"ContactMechanisms": [
-    {
-        "Type": "Telephone",
-        "Value": "605-594-6116"
-    },
-    {
-        "Type": "U.S. toll free",
-        "Value": "866-573-3222"
-    },
-    {
-        "Type": "Email",
-        "Value": "lpdaac@usgs.gov"
-    }
-]
-```
+    ```json
+    "ContactMechanisms": [
+        {
+            "Type": "Telephone",
+            "Value": "605-594-6116"
+        },
+        {
+            "Type": "U.S. toll free",
+            "Value": "866-573-3222"
+        },
+        {
+            "Type": "Email",
+            "Value": "lpdaac@usgs.gov"
+        }
+    ]
+    ```
 
-To specify the "Email" field, in the `rule_mapping`, a user would put in `ContactMechanisms/Value?Type=Email` as the field.
-
+    To specify the "Email" field, in the `rule_mapping`, a user would put in `ContactMechanisms/Value?Type=Email` as the field.
 - All the field specified in a datetime check that involves comparison should have a corresponding `datetime_format_check` entry, otherwise the check won't run
 - Added support for `data` specific to format type. This will take precedence over the generic `data`. Example:
 
-```json
-"get_data_url_check": {
-    "rule_name": "GET DATA URL check",
-    "fields_to_apply": {
-        "dif10": [
-            {
-                "fields": [
-                    "DIF/Related_URL"
-                ],
-                "data": [
-                    ["URL_Content_Type", "Type"]
-                ]
-            }
+    ```json
+    "get_data_url_check": {
+        "rule_name": "GET DATA URL check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Related_URL"
+                    ],
+                    "data": [
+                        ["URL_Content_Type", "Type"]
+                    ]
+                }
+            ],
+            "umm-json": [
+                {
+                    "fields": [
+                        "RelatedUrls"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            ["Type"]
         ],
-        "umm-json": [
-            {
-                "fields": [
-                    "RelatedUrls"
-                ]
-            }
-        ]
+        "severity": "error",
+        "check_id": "get_data_url_check"
     },
-    "data": [
-        ["Type"]
-    ],
-    "severity": "error",
-    "check_id": "get_data_url_check"
-},
-```
+    ```
+
+- Prioritized field dependencies to check dependencies (dependencies from fields take precedence over dependencies from data)
+- Added collection `version` to collection datetime validation with granules for accuracy
+- Allowed DIF10 datetime fields to support ISO Date (not just ISO Datetime)
+- Generalized and renamed `datetime_compare` check to `date_compare`
+- Updated auto GCMD keywords downloader to use the new GCMD url
+- Addded `pyquarc_errors` to the response, which will contain any errors that were thrown as exceptions during validation
+- Added checks that validate granule fields against the corresponding collection fields
+
 
 ### List of added  and updated checks
 
@@ -112,15 +121,24 @@ To specify the "Email" field, in the `rule_mapping`, a user would put in `Contac
 - Chrono Unit GCMD Check
 - Platform Type Presence Check
 - Horizontal Data Resolution Unit Controlled Vocabulary Check
+- Sensor number check
+- Data Center Shortname GCMD Check
+- Characteristics Data Type Presence Check
+- Platform Type Presence Check
+- Platform Longname Presence Check
+- Granule Platform Short Name Check
+- Horizontal Data Resolution Unit Controlled Vocabulary Check
+- Periodic Duration Unit Check
+- URL Description Uniqueness Check
+- Online Resource Description Uniqueness Check
+- Online Access Description Uniqueness Check
+- Metadata Update Time Logic Check
+- Granule Single Date Time Check
+- Granule Project Short Name Check
+- Granule Sensor Short Name Check
+- Validate Granule Data Format Against Collection Check
+- Granule Data Format Presence Check
 
-## v1.1.6
-
-- Prioritized field dependencies to check dependencies
-- Added collection `version` to collection datetime validation with granules for accuracy
-- Allowed DIF10 datetime fields to support ISO Date (not just ISO Datetime)
-- Generalized and renamed `datetime_compare` check to `date_compare`
-- Updated auto GCMD keywords downloader to use the new GCMD url
-- Added sensor number check
 
 ## v1.1.5
 
