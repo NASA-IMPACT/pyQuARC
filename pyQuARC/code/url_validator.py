@@ -45,6 +45,7 @@ class UrlValidator(StringValidator):
         """
 
         def status_code_from_request(url):
+            # timeout = 10 seconds, to allow for slow but not invalid connections
             return requests.get(url, timeout=10).status_code
         
         results = []
