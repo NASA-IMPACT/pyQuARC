@@ -504,16 +504,6 @@
                 },
                 {
                     "fields": [
-                        "MetadataDates/Date"
-                    ]
-                },
-                {
-                    "fields": [
-                        "DataDates/Date"
-                    ]
-                },
-                {
-                    "fields": [
                         "MetadataDates/Date?Type=UPDATE"
                     ]
                 },
@@ -4043,7 +4033,7 @@
                     ],
                     "dependencies": [
                         [
-                            "datetime_format_check",
+                            "date_or_datetime_format_check",
                             "DIF/Temporal_Coverage/Range_DateTime/Ending_Date_Time"
                         ]
                     ]
@@ -4057,16 +4047,11 @@
                     ],
                     "dependencies": [
                         [
-                            "datetime_format_check",
+                            "date_or_datetime_format_check",
                             "TemporalExtents/RangeDateTimes/EndingDateTime"
                         ]
                     ]
                 }
-            ],
-            "dependencies": [
-                [
-                    "date_or_datetime_format_check"
-                ]
             ]
         },
         "severity": "warning",
@@ -4429,12 +4414,37 @@
             "umm-c": [
                 {
                     "fields": [
-                        "MetadataDates/Date"
+                        "MetadataDates/Date?Type=CREATE"
                     ]
                 },
                 {
                     "fields": [
-                        "DataDates/Date"
+                        "MetadataDates/Date?Type=UPDATE"
+                    ]
+                },
+                {
+                    "fields": [
+                        "MetadataDates/Date?Type=DELETE"
+                    ]
+                },
+                {
+                    "fields": [
+                        "MetadataDates/Date?Type=REVIEW"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataDates/Date?Type=CREATE"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataDates/Date?Type=UPDATE"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataDates/Date?Type=DELETE"
                     ]
                 }
             ],
