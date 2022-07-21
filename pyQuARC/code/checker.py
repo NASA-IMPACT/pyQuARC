@@ -13,7 +13,7 @@ from .datetime_validator import DatetimeValidator
 from .string_validator import StringValidator
 from .url_validator import UrlValidator
 
-from .constants import COLOR, DIF, ECHO10, SCHEMA_PATHS, UMM_JSON
+from .constants import ECHO10_C, SCHEMA_PATHS
 
 
 class Checker:
@@ -23,7 +23,7 @@ class Checker:
 
     def __init__(
         self,
-        metadata_format=ECHO10,
+        metadata_format=ECHO10_C,
         messages_override=None,
         checks_override=None,
         rules_override=None
@@ -55,7 +55,7 @@ class Checker:
             self.checks_override,
             metadata_format=metadata_format
         )
-        self.schema_validator = SchemaValidator(metadata_format)
+        self.schema_validator = SchemaValidator(self.messages_override or self.messages, metadata_format)
         self.tracker = Tracker(
             self.rule_mapping,
             self.rules_override,
@@ -166,11 +166,14 @@ class Checker:
             rule_id
         ) or self.rule_mapping.get(rule_id)
         external_data = rule_mapping.get("data", [])
+        relation = rule_mapping.get("relation")
         list_of_fields_to_apply = \
             rule_mapping.get("fields_to_apply").get(self.metadata_format, {})
+        
         for field_dict in list_of_fields_to_apply:
-            dependencies = self.scheduler.get_all_dependencies(rule_id, check, field_dict)
+            dependencies = self.scheduler.get_all_dependencies(rule_mapping, check, field_dict)
             main_field = field_dict["fields"][0]
+            external_data = field_dict.get("data", external_data)
             result_dict.setdefault(main_field, {})
             if not self._check_dependencies_validity(dependencies, field_dict):
                 continue
@@ -178,8 +181,10 @@ class Checker:
                 func,
                 metadata_content,
                 field_dict,
-                external_data
+                external_data,
+                relation
             )
+
             self.tracker.update_data(rule_id, main_field, result["valid"])
 
             # this is to avoid "valid" = null in the result, for rules that are not applied
@@ -198,6 +203,7 @@ class Checker:
         """
         ordered_rule = self.scheduler.order_rules()
         result_dict = {}
+        pyquarc_errors = []
         for rule_id in ordered_rule:
             try:
                 rule_mapping = self.rules_override.get(
@@ -209,9 +215,13 @@ class Checker:
                 if func:
                     self._run_func(func, check, rule_id, metadata_content, result_dict)
             except Exception as e:
-                print(f"Running check for the rule: '{rule_id}' failed.\nPlease report the issue to https://github.com/NASA-IMPACT/pyquarc along with the metadata file and the following error message:")
-                print(f"ERROR: {e}")
-        return result_dict
+                pyquarc_errors.append(
+                    {
+                        "message": f"Running check for the rule: '{rule_id}' failed.",
+                        "details": str(e)
+                    }
+                )
+        return result_dict, pyquarc_errors
 
     def run(self, metadata_content):
         """
@@ -223,12 +233,15 @@ class Checker:
         Returns:
             (dict): The results of the jsonschema check and all custom checks
         """
-        json_metadata = parse(metadata_content)
+        parser = parse
+        if self.metadata_format.startswith("umm-"):
+            parser = json.loads
+        json_metadata = parser(metadata_content)
         result_schema = self.perform_schema_check(
             metadata_content
         )
-        result_custom = self.perform_custom_checks(json_metadata)
+        result_custom, pyquarc_errors = self.perform_custom_checks(json_metadata)
         result = {
             **result_schema, **result_custom
         }
-        return result
+        return result, pyquarc_errors

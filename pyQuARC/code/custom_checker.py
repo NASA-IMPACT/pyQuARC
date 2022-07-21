@@ -1,3 +1,6 @@
+from urllib.parse import urlparse
+
+
 class CustomChecker:
     """
     Class to implement custom checks
@@ -7,7 +10,7 @@ class CustomChecker:
         pass
 
     @staticmethod
-    def _get_path_value_recursively(subset_of_metadata_content, path_list, container):
+    def _get_path_value_recursively(subset_of_metadata_content, path_list, container, query_params=None):
         """
         Gets the path values recursively while handling list or dictionary in `subset_of_metadata_content`
         Adds the values to `container`
@@ -20,6 +23,8 @@ class CustomChecker:
                          Example: 'Collection/RangeDateTime/StartDate' ->
                                   ['Collection', 'RangeDateTime', 'StartDate']
             container (set): The container that holds all the path values
+            query_params (list): The [key, value] pair to distinguish a field in umm-c
+                                eg: ["Type", "DELETE"]
         """
         try:
             root_content = subset_of_metadata_content[path_list[0]]
@@ -32,19 +37,31 @@ class CustomChecker:
             container.append(subset_of_metadata_content)
             return
         new_path = path_list[1:]
-        if isinstance(root_content, str) or isinstance(root_content, int):
+        if isinstance(root_content, str) or isinstance(root_content, int) or isinstance(root_content, float):
             container.append(root_content)
+            return
         elif isinstance(root_content, list):
+            if not new_path:
+                container.append(root_content)
+                return
+            if len(new_path) == 1 and query_params:
+                try:
+                    root_content = next((x for x in root_content if x[query_params[0]] == query_params[1]))
+                    root_content = root_content[new_path[0]]
+                    container.append(root_content)
+                except:
+                    container.append(None)
+                return
             for each in root_content:
                 try:
                     CustomChecker._get_path_value_recursively(
-                        each, new_path, container)
+                        each, new_path, container, query_params)
                 except KeyError:
                     container.append(None)
                     continue
         elif isinstance(root_content, dict):
             CustomChecker._get_path_value_recursively(
-                root_content, new_path, container)
+                root_content, new_path, container, query_params)
 
     @staticmethod
     def _get_path_value(content_to_validate, path_string):
@@ -60,12 +77,18 @@ class CustomChecker:
         """
 
         container = list()
-        path = path_string.split('/')
+        query_params = None
+
+        parsed = urlparse(path_string)
+        path = parsed.path.split('/')
+        if key_value := parsed.query:
+            query_params = key_value.split('=')
+
         CustomChecker._get_path_value_recursively(
-            content_to_validate, path, container)
+            content_to_validate, path, container, query_params)
         return container
 
-    def run(self, func, content_to_validate, field_dict, external_data):
+    def run(self, func, content_to_validate, field_dict, external_data, external_relation):
         """
         Runs the custom check based on `func` to the `content_to_validate`'s `field_dict` path
 
@@ -102,7 +125,7 @@ class CustomChecker:
         validity = None
         for arg in args:
             function_args = [*arg]
-            function_args.extend([extra_arg for extra_arg in [relation, *external_data] if extra_arg])
+            function_args.extend([extra_arg for extra_arg in [relation, *external_data, external_relation] if extra_arg])
             func_return = func(*function_args)
             valid = func_return["valid"] # can be True, False or None
             if valid is not None:

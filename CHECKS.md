@@ -73,9 +73,17 @@ Checks if the field value is one of the controlled keywords; provide the control
 
 Checks if the doi provided resolves to a valid document.
 
-#### `presence_check`
+#### `one_item_presence_check`
 
 Checks if one of the given fields is populated.
+
+#### `uniqueness_check`
+
+Checks if the field values are unique.
+
+#### `count_check`
+
+Checks if the field value that is a count of fields matches the actual count of the fields.
 
 ### Miscellaneous Checks
 
@@ -144,7 +152,7 @@ Check to make sure that an OPeNDAP access URL is not provided in the `Online Acc
 
 Check to make sure the fields aren't populated like this:
 
-```
+```plaintext
 Collection/Contacts/Contact/ContactPersons/ContactPerson/FirstName: "User"
 Collection/Contacts/Contact/ContactPersons/ContactPerson/MiddleName: "null"
 Collection/Contacts/Contact/ContactPersons/ContactPerson/LastName: "Services"
@@ -204,7 +212,7 @@ Checks whether the value adheres to GCMD, specifically the project list short na
 
 Checks whether the campaign  (project) short name and long name GCMD keywords are consistent: basically that they belong to the same row.
 
-#### `data_center_short_name_gcmd_check`
+#### `organization_short_name_gcmd_check`
 
 Checks whether the value adheres to GCMD, specifically the provider list short name column.
 

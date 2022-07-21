@@ -1,0 +1,9 @@
+"Hits: 8","page_num: 1","page_size: 2000","Keyword Version: 13.8","Revision: 2022-06-03 10:17:38","Timestamp: 2022-06-28 09:06:02","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/verticalresolutionrange/?format=xml","Case native"
+Vertical_Resolution_Range,UUID
+"1 meter - < 10 meters","201337ea-fa14-4e58-a538-e92c5ff734a4"
+"10 meters - < 30 meters","20505a5b-4df8-4430-83a3-ad7b212c9bfc"
+"100 meters - < 1 km","eccf8700-c503-46a3-b6f7-86cf7e48465a"
+"30 meters - < 100 meters","a66aa809-5320-408d-9cbe-86ed7940b8ec"
+"< 1 meter","cf1f085e-4948-4874-9640-e236fff7bc8d"
+"> 1 km","3f0aa4fc-802c-4804-9f9f-8b666f3a2776"
+"Point Resolution","0893353d-4e8c-4b31-bcc5-fce552ccfff3"

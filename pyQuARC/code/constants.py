@@ -1,11 +1,13 @@
-import os
-
 from colorama import Fore, Style
 from pathlib import Path
 
 DIF = "dif10"
-ECHO10 = "echo10"
-UMM_JSON = "umm-json"
+ECHO10_C = "echo-c"
+UMM_C = "umm-c"
+UMM_G = "umm-g"
+ECHO10_G = "echo-g"
+
+SUPPORTED_FORMATS = [DIF, ECHO10_C, UMM_C, UMM_G, ECHO10_G]
 
 ROOT_DIR = (
     # go up one directory
@@ -13,6 +15,23 @@ ROOT_DIR = (
 )
 
 SCHEMAS_BASE_PATH = f"{ROOT_DIR}/schemas"
+
+GCMD_KEYWORDS = [
+    "chronounits",
+    "granuledataformat",
+    "horizontalresolutionrange",
+    "idnnode",
+    "instruments",
+    "locations",
+    "MimeType",
+    "platforms",
+    "projects",
+    "providers",
+    "rucontenttype",
+    "sciencekeywords",
+    "temporalresolutionrange",
+    "verticalresolutionrange",
+]
 
 SCHEMAS = {
     "json": [
@@ -22,19 +41,12 @@ SCHEMAS = {
         "checks_override",
         "rule_mapping",
         "rules_override",
-        UMM_JSON
+        f"{UMM_C}-json-schema",
+        "umm-cmn-json-schema",
+        f"{UMM_G}-json-schema"
     ],
-    "csv": [
-        "granuledataformat",
-        "instruments",
-        "locations",
-        "projects",
-        "providers",
-        "platforms",
-        "sciencekeywords",
-        "rucontenttype"
-    ],
-    "xsd": [ f"{DIF}_xml", f"{ECHO10}_xml" ],
+    "csv": GCMD_KEYWORDS,
+    "xsd": [ f"{DIF}_schema", f"{ECHO10_C}_schema", f"{ECHO10_G}_schema" ],
     "xml": [ "catalog" ]
 }
 
@@ -55,18 +67,7 @@ COLOR = {
     "bright": Style.BRIGHT
 }
 
-GCMD_BASIC_URL = "https://gcmdservices.gsfc.nasa.gov/kms/concepts/concept_scheme/"
-
-GCMD_KEYWORDS = [
-    "granuledataformat",
-    "instruments",
-    "locations",
-    "platforms",
-    "projects",
-    "providers",
-    "rucontenttype",
-    "sciencekeywords"
-]
+GCMD_BASIC_URL = "https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/"
 
 GCMD_LINKS = {
     keyword: f"{GCMD_BASIC_URL}{keyword}?format=csv" for keyword in GCMD_KEYWORDS

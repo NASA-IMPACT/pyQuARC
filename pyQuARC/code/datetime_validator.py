@@ -1,12 +1,11 @@
 import pytz
 import re
-import requests
 
 from datetime import datetime
 
 from .base_validator import BaseValidator
-from .constants import CMR_URL
-from .utils import if_arg
+from .utils import cmr_request, if_arg, set_cmr_prms
+
 
 
 class DatetimeValidator(BaseValidator):
@@ -41,6 +40,24 @@ class DatetimeValidator(BaseValidator):
         return False
 
     @staticmethod
+    def _iso_date(date_string):
+        """
+        Converts the input date string to iso datetime object
+
+        Args:
+            date_string (str): the datestring
+
+        Returns:
+            (datetime.datetime) If the string is valid iso string, False otherwise
+        """
+        
+        try:
+            value = datetime.strptime(date_string, "%Y-%m-%d")
+            return value
+        except:
+            return False
+
+    @staticmethod
     @if_arg
     def iso_format_check(datetime_string):
         """
@@ -60,16 +77,35 @@ class DatetimeValidator(BaseValidator):
 
     @staticmethod
     @if_arg
+    def date_or_datetime_format_check(datetime_string):
+        """
+        Performs the Date/DateTime Format Check
+        Checks if the datetime_string is a valid ISO date or ISO datetime string
+
+        Args:
+            datetime_string (str): The date or datetime string
+
+        Returns:
+            (dict) An object with the validity of the check and the instance
+        """
+        return {
+            "valid": bool(DatetimeValidator._iso_datetime(datetime_string)) or bool(DatetimeValidator._iso_date(datetime_string)),
+            "value": datetime_string,
+        }
+
+    @staticmethod
+    @if_arg
     def compare(first, second, relation):
         """
         Compares two datetime values based on the argument relation
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        first = DatetimeValidator._iso_datetime(first)
-        second = DatetimeValidator._iso_datetime(second)
+        first = (DatetimeValidator._iso_datetime(first) or DatetimeValidator._iso_date(first)).replace(tzinfo=pytz.utc)
+        second = DatetimeValidator._iso_datetime(second) or DatetimeValidator._iso_date(second)
         if not(second):
-            second = datetime.now().replace(tzinfo=pytz.UTC) # Making it UTC for comparison with other UTC times
+            second = datetime.now()
+        second = second.replace(tzinfo=pytz.UTC) # Making it UTC for comparison with other UTC times
         result = BaseValidator.compare(first, second, relation)
         return {
             "valid": result,
@@ -77,7 +113,7 @@ class DatetimeValidator(BaseValidator):
         }
 
     @staticmethod
-    def validate_datetime_against_granules(datetime, collection_shortname, sort_key, time_key):
+    def validate_datetime_against_granules(datetime, collection_shortname, version, sort_key, time_key):
         """
         Validates the collection datetime against the datetime of the last granule in the collection
 
@@ -89,20 +125,29 @@ class DatetimeValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
-        granules = requests.get(f'{CMR_URL}/search/granules.json?short_name={collection_shortname}&sort_key[]=-{sort_key}').json()
+        cmr_prms = set_cmr_prms({
+            "short_name": collection_shortname,
+            "version": version,
+            "sort_key[]": sort_key,
+        }, "json", "granules")
+        granules = cmr_request(cmr_prms)
+
+        validity = True
+        last_granule_datetime = None
 
         if len(granules['feed']['entry']) > 0:
             last_granule = granules['feed']['entry'][0]
-            last_granule_datetime = last_granule[time_key]
+            last_granule_datetime = last_granule.get(time_key)
+            validity = datetime == last_granule_datetime
 
         return {
-            "valid": datetime == last_granule_datetime,
+            "valid": validity,
             "value": (datetime, last_granule_datetime)
         }
 
     @staticmethod
     @if_arg
-    def validate_ending_datetime_against_granules(ending_datetime, collection_shortname):
+    def validate_ending_datetime_against_granules(ending_datetime, collection_shortname, version):
         """
         Validates the collection EndingDatetime against the datetime of the last granule in the collection
 
@@ -116,13 +161,14 @@ class DatetimeValidator(BaseValidator):
         return DatetimeValidator.validate_datetime_against_granules(
             ending_datetime,
             collection_shortname,
-            'end_date',
+            version,
+            '-end_date',
             'time_end'
         )
 
     @staticmethod
     @if_arg
-    def validate_beginning_datetime_against_granules(beginning_datetime, collection_shortname):
+    def validate_beginning_datetime_against_granules(beginning_datetime, collection_shortname, version):
         """
         Validates the collection BeginningDateTime against the datetime of the last granule in the collection
 
@@ -136,6 +182,7 @@ class DatetimeValidator(BaseValidator):
         return DatetimeValidator.validate_datetime_against_granules(
             beginning_datetime,
             collection_shortname,
+            version,
             'start_date',
             'time_start'
         )

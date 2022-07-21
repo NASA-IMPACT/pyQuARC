@@ -12,7 +12,7 @@ KEYS = [
 class TestSchemaValidator:
     def setup_method(self):
         self.data = self.read_data()
-        self.schema_validator = SchemaValidator()
+        self.schema_validator = SchemaValidator(None)
 
     def read_data(self):
         result = {}
@@ -21,7 +21,7 @@ class TestSchemaValidator:
             with open(
                 os.path.join(
                     os.getcwd(),
-                    f"tests/fixtures/{data_key}.echo10"
+                    f"tests/fixtures/{data_key}.echo-c"
                 ),
                 "r"
             ) as myfile:

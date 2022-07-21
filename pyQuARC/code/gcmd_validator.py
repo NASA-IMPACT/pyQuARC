@@ -33,12 +33,27 @@ class GcmdValidator:
                     "Location_Subregion3",
                 ],
             ),
+            "locations": GcmdValidator._create_hierarchy_dict(
+                self._read_from_csv("locations")
+            ),
+            "provider": GcmdValidator._create_hierarchy_dict(
+                self._read_from_csv(
+                    "providers",
+                    columns=["Short_Name", "Long_Name"],
+                    hierarchy=True
+                )
+            ),
             "provider_short_name": self._read_from_csv(
                 "providers", columns=["Short_Name"]
             ),
+            "provider_long_name": self._read_from_csv(
+                "providers", columns=["Long_Name"]
+            ),
             "instrument": GcmdValidator._create_hierarchy_dict(
                 self._read_from_csv(
-                    "instruments", columns=["Short_Name", "Long_Name"], hierarchy=True
+                    "instruments",
+                    columns=["Short_Name", "Long_Name"],
+                    hierarchy=True
                 )
             ),
             "instrument_short_name": self._read_from_csv(
@@ -48,7 +63,11 @@ class GcmdValidator:
                 "instruments", columns=["Long_Name"]
             ),
             "campaign": GcmdValidator._create_hierarchy_dict(
-                self._read_from_csv("projects")
+                self._read_from_csv(
+                    "projects",
+                    columns=["Short_Name", "Long_Name"],
+                    hierarchy=True
+                )
             ),
             "campaign_short_name": self._read_from_csv(
                 "projects", columns=["Short_Name"]
@@ -59,16 +78,43 @@ class GcmdValidator:
             "granule_data_format": self._read_from_csv(
                 "granuledataformat", columns=["Short_Name", "Long_Name"]
             ),
+            "platform": GcmdValidator._create_hierarchy_dict(
+                self._read_from_csv(
+                    "platforms",
+                    columns=["Short_Name", "Long_Name"],
+                    hierarchy=True
+                )
+            ),
             "platform_short_name": self._read_from_csv(
                 "platforms", columns=["Short_Name"]
             ),
             "platform_long_name": self._read_from_csv(
                 "platforms", columns=["Long_Name"]
             ),
-            "platform_type": self._read_from_csv("platforms", columns=["Category"]),
+            "platform_type": self._read_from_csv(
+                "platforms", columns=["Category"]
+            ),
             "rucontenttype": self._read_from_csv(
                 "rucontenttype", columns=["Type", "Subtype"]
             ),
+            "chronounits": GcmdValidator._create_hierarchy_dict(
+                self._read_from_csv("chronounits")
+            ),
+            "horizontalresolutionrange": self._read_from_csv(
+                "horizontalresolutionrange", columns=["Horizontal_Resolution_Range"]
+            ),
+            "verticalresolutionrange": self._read_from_csv(
+                "verticalresolutionrange", columns=["Vertical_Resolution_Range"]
+            ),
+            "temporalresolutionrange": self._read_from_csv(
+                "temporalresolutionrange", columns=["Temporal_Resolution_Range"]
+            ),
+            "mimetype": self._read_from_csv(
+                "MimeType", columns=["MimeType"]
+            ),
+            "idnnode_shortname": self._read_from_csv(
+                "idnnode", columns=["Short_Name"]
+            )
         }
 
     @staticmethod
@@ -122,8 +168,8 @@ class GcmdValidator:
         for key, _ in GCMD_LINKS.items():
             csvfile = open(SCHEMA_PATHS[key])
             reader = csv.reader(csvfile)
-            next(reader)  # Remove the metadata (1st column)
-            headers = next(reader)  # Get the headers (2nd column)
+            next(reader) # Remove the metadata (1st column)
+            headers = next(reader) # Get the headers (2nd column)
             list_of_rows = list(reader)
             csvfile.close()
             content[key] = headers, list_of_rows
@@ -186,7 +232,7 @@ class GcmdValidator:
             return parent, child
         else:
             for key in child:
-                if parent.get(key):
+                if (parent.get(key) and not(parent.get(key) == LEAF)):
                     parent[key], _ = GcmdValidator.merge_dicts(parent[key], child[key])
                 else:
                     parent[key] = child[key]
@@ -258,17 +304,47 @@ class GcmdValidator:
         """
         return input_keyword in self.keywords["platform_type"]
 
+    def validate_platform_short_long_name_consistency(self, input_keyword):
+        """
+        Validates GCMD platform short name and long name consistency
+        """
+        return GcmdValidator.validate_recursively(
+            self.keywords["platform"], input_keyword
+        )[0]
+
     def validate_provider_short_name(self, input_keyword):
         """
         Validates GCMD provider short name
         """
         return input_keyword in self.keywords["provider_short_name"]
 
+    def validate_provider_long_name(self, input_keyword):
+        """
+        Validates GCMD provider long name
+        """
+        return input_keyword in self.keywords["provider_long_name"]
+
+    def validate_provider_short_long_name_consistency(self, input_keyword):
+        """
+        Validates GCMD provider short name and long name consistency
+        """
+        return GcmdValidator.validate_recursively(
+            self.keywords["provider"], input_keyword
+        )[0]
+
     def validate_spatial_keyword(self, input_keyword):
         """
         Validates GCMD spatial keyword
         """
         return input_keyword in self.keywords["spatial_keyword"]
+
+    def validate_location_hierarchy(self, input_keyword):
+        """
+        Validates the Location hierarchy against GCMD 'locations' list
+        """
+        return GcmdValidator.validate_recursively(
+            self.keywords["locations"], input_keyword
+        )
 
     def validate_campaign_short_long_name_consistency(self, input_keyword):
         """
@@ -298,6 +374,44 @@ class GcmdValidator:
 
     def validate_online_resource_type(self, input_keyword):
         """
-        Validates the Online Resource Type agains GCMD 'rucontent' list
+        Validates the Online Resource Type against GCMD 'rucontent' list
         """
         return input_keyword in self.keywords["rucontenttype"]
+
+    def validate_mime_type(self, input_keyword):
+        """
+        Validates the Mime Type against GCMD 'MimeType' list
+        """
+        return input_keyword in self.keywords["mimetype"]
+
+    def validate_horizontal_resolution_range(self, input_keyword):
+        """
+        Validates the Horizontal Resolution Range against GCMD 'horizontalresolutionrange' list
+        """
+        return input_keyword in self.keywords["horizontalresolutionrange"]
+    
+    def validate_vertical_resolution_range(self, input_keyword):
+        """
+        Validates the vertical Resolution Range against GCMD 'verticalresolutionrange' list
+        """
+        return input_keyword in self.keywords["verticalresolutionrange"]
+    
+    def validate_temporal_resolution_range(self, input_keyword):
+        """
+        Validates the temporal Resolution Range against GCMD 'temporalresolutionrange' list
+        """
+        return input_keyword in self.keywords["temporalresolutionrange"]
+
+    def validate_chrono_unit_hierarchy(self, input_keyword):
+        """
+        Validates GCMD science keywords
+        """
+        return GcmdValidator.validate_recursively(
+            self.keywords["chronounits"], input_keyword
+        )
+
+    def validate_idnnode_shortname(self, input_keyword):
+        """
+        Validates GCMD science keywords
+        """
+        return input_keyword in self.keywords["idnnode_shortname"]

@@ -43,10 +43,14 @@ class UrlValidator(StringValidator):
         Returns:
             (dict) An object with the validity of the check and the instance/results
         """
+
+        def status_code_from_request(url):
+            # timeout = 10 seconds, to allow for slow but not invalid connections
+            return requests.get(url, timeout=10).status_code
+        
         results = []
 
         validity = True
-        value = text_with_urls
 
         # extract URLs from text
         extractor = URLExtract()
@@ -58,16 +62,23 @@ class UrlValidator(StringValidator):
         # remove dots at the end (The URLExtract library catches URLs, but sometimes appends a '.' at the end)
         # remove duplicated urls
         urls = set(url[:-1] if url.endswith(".") else url for url in urls)
+        value = ", ".join(urls)
 
         # check that URL returns a valid response
         for url in urls:
             if not url.startswith("http"):
                 url = f"http://{url}"
             try:
-                response_code = requests.get(url).status_code
+                response_code = status_code_from_request(url)
                 if response_code == 200:
-                    continue
-                result = {"url": url, "status_code": response_code}
+                    if url.startswith("http://"):
+                        secure_url = url.replace("http://", "https://")
+                        if status_code_from_request(secure_url) == 200:
+                            result = {"url": url, "error": "The URL is secure. Please use 'https' instead of 'http'."}
+                    else:
+                        continue
+                else:
+                    result = {"url": url, "error": f'Status code {response_code}'}
             except requests.ConnectionError:
                 result = {"url": url, "error": "The URL does not exist on Internet."}
             except:
@@ -78,7 +89,7 @@ class UrlValidator(StringValidator):
             validity = False
             value = results
 
-        return {"valid": validity, "value": ", ".join(urls)}
+        return {"valid": validity, "value": value}
 
     @staticmethod
     @if_arg
@@ -89,8 +100,11 @@ class UrlValidator(StringValidator):
         Returns:
             (dict) An object with the validity of the check and the instance/results
         """
-        url = f"https://www.doi.org/{doi}"
-        return UrlValidator.health_and_status_check(url)
+        valid = False
+        if doi.strip().startswith("10."): # doi always starts with "10."
+            url = f"https://www.doi.org/{doi}"
+            valid =  UrlValidator.health_and_status_check(url).get("valid")
+        return {"valid": valid, "value": doi}
 
     @staticmethod
     @if_arg
