@@ -273,14 +273,14 @@ if __name__ == "__main__":
         action="store",
         nargs="?",
         type=str,
-        help=f"The metadata format (currently supported: {', '.join(SUPPORTED_FORMATS)})",
+        help=f"The metadata format. Choices are: echo-c (echo10 collection), echo-g (echo10 granule), dif10 (dif10 collection), umm-c (umm-json collection), umm-g (umm-json granules)",
     )
     parser.add_argument(
         "--cmr_host",
         action="store",
         nargs="?",
         type=str,
-        help="The cmr host to use. Default is: https://cmr.earthdata.nasa.gov",
+        help="The cmr host base url. Default is: https://cmr.earthdata.nasa.gov",
     )
     parser.add_argument(
         "--version",
