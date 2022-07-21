@@ -28,15 +28,15 @@ The CMR is designed around its own metadata standard called the [Unified Metadat
 	* UMM-T (Tool metadata)
 
 
-**Currently, pyQuARC only supports ECHO10 and DIF10 collection-level metadata. Support for additional metadata standards will continue to be added in the coming months.** When completed, pyQuARC will support the DIF10 (collection only), ECHO10 (collection and granule), UMM-C, and UMM-G standards. At this time, there are no plans to add ISO 19115 or UMM-S/T specific checks. **Additionally, the output messages pyQuARC currently displays should be taken with a grain of salt. There is still testing and clean-up work to be done.**  
+pyQuARC supports DIF10 (collection only), ECHO10 (collection and granule), UMM-C, and UMM-G standards. At this time, there are no plans to add ISO 19115 or UMM-S/T specific checks. **Additionally, the output messages pyQuARC currently displays should be taken with a grain of salt. There is still testing and clean-up work to be done.**
 
 **For inquiries, please email: jeanne.leroux@nsstc.uah.edu**
 
 ## pyQuARC as a Service (QuARC)
 
-QuARC is pyQuARC deployed as a service and can be found here: https://quarc.nasa-impact.net/docs/
+QuARC is pyQuARC deployed as a service and can be found here: https://quarc.nasa-impact.net/docs/.
 
-QuARC is still in beta but is regularly synced with the latest version of pyQuARC on GitHub.
+QuARC is still in beta but is regularly synced with the latest version of pyQuARC on GitHub. Fully cloud-native, the architecture diagram of QuARC is shown below:
 
 ![QuARC](https://user-images.githubusercontent.com/17416300/179866276-7c025699-01a1-4d3e-93cd-50e12c5a5ec2.png)
 
@@ -79,120 +79,135 @@ While the pyQuARC base package is currently managed by the ARC team, the long te
 
 **Run `main.py`:**
 
-```
+```plaintext
 ▶ python pyQuARC/main.py -h  
-usage: main.py [-h] [--query QUERY | --concept_ids CONCEPT_IDS [CONCEPT_IDS ...]] [--file FILE | --fake FAKE] [--format [FORMAT]]
+usage: main.py [-h] [--query QUERY | --concept_ids CONCEPT_IDS [CONCEPT_IDS ...]] [--file FILE | --fake FAKE] [--format [FORMAT]] [--cmr_host [CMR_HOST]]
+               [--version [VERSION]]
 
-arguments:
-  -h, --help            show this help message and exit
-  --query QUERY         CMR query URL.
+optional arguments:
+  -h, --help                Show this help message and exit
+  --query QUERY             CMR query URL.
   --concept_ids CONCEPT_IDS [CONCEPT_IDS ...]
-                        List of concept IDs.
-  --file FILE           Path to the test file, either absolute or relative to the root dir.
-  --fake FAKE           Use a fake content for testing.
-  --format [FORMAT]     The metadata format (currently supported: 'echo10' and 'dif10')
+                            List of concept IDs.
+  --file FILE               Path to the test file, either absolute or relative to the root dir.
+  --fake FAKE               Use a fake content for testing.
+  --format [FORMAT]         The metadata format. Choices are: echo-c (echo10 collection), echo-g (echo10 granule), dif10 (dif10 collection), umm-c (umm-json collection),
+                        umm-g (umm-json granules)
+  --cmr_host [CMR_HOST]     The cmr host base url. Default is: https://cmr.earthdata.nasa.gov
+  --version [VERSION]       The revision version of the collection. Default is the latest version.
 
 ```
 To test a local file, use the `--file` argument. Give it either an absolute file path or a file path relative to the project root directory.
 
 Example:
-`▶ python pyQuARC/main.py --file "tests/fixtures/test_cmr_metadata.echo10"`
+```
+▶ python pyQuARC/main.py --file "tests/fixtures/test_cmr_metadata.echo10"
+```
 or
-`▶ python pyQuARC/main.py --file "/Users/batman/projects/pyQuARC/tests/fixtures/test_cmr_metadata.echo10"`
+```
+▶ python pyQuARC/main.py --file "/Users/batman/projects/pyQuARC/tests/fixtures/test_cmr_metadata.echo10"
+```
 
 ### Adding a custom rule
 
 To add a custom rule, follow the following steps:
 
-
-
 **Add an entry to the `schemas/rule_mapping.json` file in the form:**
-```
-{  
-	"rule_id": "<An id for the rule in snake case>",  
-	"rule_name": "<Name of the Rule>",  
-	"fields_to_apply": [  
-		{  
-			"fields": [  
-				"<The primary field1 to apply to (full path separated by /)>",
-				"<Related field 11>",
-				"<Related field 12>",
-				"<Related field ...>",
-				"<Related field 1n>",  
-			],
-			"relation": "relation_between_the_fields_if_any",
-                        "dependencies": [
-                            [
-                                "<any dependent check that needs to be run before this check (if any)>",
-                                "<field to apply this dependent check to (if any)>"
-                            ]
-                        ]
-		},
 
-		{  
-			"fields": [  
-				"<The primary field2 to apply to (full path separated by /)>",
-				"<Related field 21>",
-				"<Related field 22>",
-				"<Related field ...>",
-				"<Related field 2n>",  
-			],
-			"relation": "relation_between_the_fields_if_any"  
-		}  
-	],
-        "data" : [ <any external data that you want to send to the rule> ],
-        "check_id": "< one of the available checks, see CHECKS.md, or custom check if you are a developer>"
-}
+```json
+"rule_id": "<An id for the rule in snake case>": {
+    "rule_name": "<Name of the Rule>",  
+    "fields_to_apply": {
+        "<metadata format (eg. echo-c)>": {  
+            "fields": [  
+                "<The primary field1 to apply to (full path separated by /)>",
+                "<Related field 11>",
+                "<Related field 12>",
+                "<Related field ...>",
+                "<Related field 1n>",  
+            ],
+            "relation": "relation_between_the_fields_if_any",
+            "dependencies": [
+                [
+                    "<any dependent check that needs to be run before this check (if any), for this specific metadata format>",
+                    "<field to apply this dependent check to (if any)>"
+                ]
+            ]
+        },
+        "echo-g": {  
+            "fields": [  
+                "<The primary field2 to apply to (full path separated by /)>",
+                "<Related field 21>",
+                "<Related field 22>",
+                "<Related field ...>",
+                "<Related field 2n>",  
+            ],
+            "relation": "relation_between_the_fields_if_any",
+            "data": [ "<any external data that you want to send to the rule for this specific metadata format>" ]
+        }  
+    },
+    "data" : [ "<any external data that you want to send to the rule>" ],
+    "check_id": "< one of the available checks, see CHECKS.md, or custom check if you are a developer>"
+}  
 ```
 
 An example:
 
-```
-{  
-	"rule_id": "date_compare",  
-	"rule_name": "Data Update Time Logic Check",  
-	"fields_to_apply": [  
-		{  
-			"fields": [  
-				"Collection/InsertTime",  
-				"Collection/LastUpdate"  
-			],  
-			"relation": "lte",
-                        "dependencies": [
-                            [
-                                "datetime_format_check",
-                                "Collection/InsertTime"
-                            ],
-                            [
-                                "datetime_format_check",
-                                "Collection/LastUpdate"
-                            ]
-                        ]
-		},
-		{  
-			"fields": [  
-				"Collection/Temporal/RangeDateTime/BeginningDateTime",  
-				"Collection/Temporal/RangeDateTime/EndingDateTime"  
-			],  
-			"relation": "lte"  
-		}  
-	],
-    "data": [],
-    "check_id": "date_compare"
+```json
+"data_update_time_logic_check": {
+    "rule_name": "Data Update Time Logic Check",
+    "fields_to_apply": {
+        "echo-c": [
+            {
+                "fields": [
+                    "Collection/LastUpdate",
+                    "Collection/InsertTime"
+                ],
+                "relation": "gte"
+            }
+        ],
+        "echo-g": [
+            {
+                "fields": [
+                    "Granule/LastUpdate",
+                    "Granule/InsertTime"
+                ],
+                "relation": "gte"
+            }
+        ],
+        "dif10": [
+            {
+                "fields": [
+                    "DIF/Metadata_Dates/Data_Last_Revision",
+                    "DIF/Metadata_Dates/Data_Creation"
+                ],
+                "relation": "gte",
+                "dependencies": [
+                    [
+                        "date_or_datetime_format_check"
+                    ]
+                ]
+            }
+        ]
+    },
+    "severity": "info",
+    "check_id": "datetime_compare"
 },
 ```
+
 `data` is any external data that you want to pass to the check. For example, for a `controlled_keywords_check`, it would be the controlled keywords list:
 
-```
-
+```json
 "data": [ ["keyword1", "keyword2"] ]
 ```
+
 `check_id` is the id of the corresponding check from `checks.json`. It'll usually be one of the available checks. An exhaustive list of all the available checks can be found in [CHECKS.md](./CHECKS.md).
 
 **If you're writing your own custom check to `schemas/checks.json`:**
 
 Add an entry in the format:
-```
+
+```json
 "<a check id>": {  
 	"data_type": "<the data type of the value>",  
 	"check_function": "<the function that implements the check>",  
@@ -211,7 +226,7 @@ The `check_function` should be either one of the available functions, or your ow
 
 An example:
 
-```
+```json
 "date_compare": {  
 	"data_type": "datetime",  
 	"check_function": "compare",  
@@ -227,20 +242,22 @@ An example:
 
 Locate the validator file based on the `data_type` of the check in `code/` directory. It is in the form: `<data_type>_validator.py`. Example: `string_validator.py`, `url_validator.py`, etc.
 
-Write a `@staticmethod` member method in the class for that particular check. See examples in the file itself. The return value should be in the format:  
-```
+Write a `@staticmethod` member method in the class for that particular check. See examples in the file itself. The return value should be in the format:
+
+```json
 {  
 	"valid": <the_validity_based_on_the_check>,  
 	"value": <the_value_of_the_field_in_user_friendly_format>  
 }
 ```
+
 You can re-use any functions that are already there to reduce redundancy.
 
 **Adding output messages to checks**:
 
 Add an entry to the `schemas/check_messages_override.json` file like this:
 
-```
+```json
 {  
 	"check_id": "<The id of the check/rule>",  
 	"message": {  
@@ -255,8 +272,10 @@ Add an entry to the `schemas/check_messages_override.json` file like this:
 	"remediation": "<The remediation step to make the check valid.>"  
 }
 ```
+
 An example:
-```
+
+```json
 {  
 	"check_id": "abstract_length_check",  
 	"message": {  
@@ -275,7 +294,8 @@ An example:
 
 An example:
 Suppose you have a check function:
-```
+
+```python
 @staticfunction
 def is_true(value1, value2):
 	return {
@@ -283,14 +303,17 @@ def is_true(value1, value2):
 		"value": [value1, value2]
 	}
 ```
+
 And a message:
-```
+
+```json
 ...
 	"failure": "The values `{}` and `{}` do not amount to a true value",
 ...
 ```
 Then, if the check function receives input `value1=0` and `value2=1`, the output message will be:
-```
+
+```plaintext
 The values 0 and 1 do not amount to a true value
 ```
 
@@ -304,7 +327,8 @@ The values 0 and 1 do not amount to a true value
 **Install package:** `python setup.py install`
 
 **To check if the package was installed correctly:**
-```
+
+```python
 ▶ python
 >>> from pyQuARC import ARC
 >>> validator = ARC(fake=True)
@@ -313,7 +337,8 @@ The values 0 and 1 do not amount to a true value
 ```
 
 **To provide locally installed file:**
-```
+
+```python
 ▶ python
 >>> from pyQuARC import ARC
 >>> validator = ARC(file_path="<path to metadata file>")
@@ -322,7 +347,8 @@ The values 0 and 1 do not amount to a true value
 ```
 
 **To provide rules for new fields or override:**
-```
+
+```python
 ▶ cat rule_override.json
 {
     "data_update_time_logic_check": {
@@ -363,7 +389,8 @@ The values 0 and 1 do not amount to a true value
 
 
 **To provide custom messages for new or old fields:**
-```
+
+```python
 ▶ cat messages_override.json
 {
     "data_update_time_logic_check": {
