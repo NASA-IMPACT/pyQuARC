@@ -65,11 +65,9 @@ class Scheduler:
         Returns:
             list: list of all the rule_ids that are based on the check_id
         """
-        rules = []
-        for rule_id, rule in self.rule_mapping.items():
-            if (rule.get("check_id") == check_id) or (rule_id == check_id):
-                rules.append(rule_id)
-        return rules
+        return [
+            rule_id for rule_id, rule in self.rule_mapping.items() if (rule.get("check_id") == check_id) or (rule_id == check_id)
+        ]
 
     def order_rules(self):
         """
