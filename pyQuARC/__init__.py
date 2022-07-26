@@ -2,6 +2,8 @@ import os
 
 from pyQuARC.main import ARC
 
+from pyQuARC.code.constants import SUPPORTED_FORMATS
+
 from pyQuARC.code.checker import Checker
 from pyQuARC.code.downloader import Downloader
 
@@ -15,5 +17,8 @@ ABS_PATH = os.path.abspath(os.path.dirname(__file__))
 with open(f"{ABS_PATH}/version.txt") as version_file:
     __version__ = version_file.read().strip()
 
-def get_version():
+def version():
     return __version__
+
+def supported_formats():
+    return SUPPORTED_FORMATS
