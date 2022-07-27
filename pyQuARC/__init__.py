@@ -18,7 +18,23 @@ with open(f"{ABS_PATH}/version.txt") as version_file:
     __version__ = version_file.read().strip()
 
 def version():
+    """Returns the current version of pyQuARC.
+    """
     return __version__
 
 def supported_formats():
+    """Returns a list of metadata formats supported by pyQuARC.
+       One of the formats in the list can be passed to ARC.validate()
+       Default is `echo-c`.
+
+       "dif10": Dif10 collectioin metadata format
+       "echo-c": Echo10 collection metadata format
+       "umm-c": UMM json collection metadata format
+       "umm-g": UMM json granule metadata format
+       "echo-g": Echo10 granule metadata format
+
+    Returns:
+        list:   list of supported metadata formats
+                eg: ["dif10", "echo-c", "umm-c", "umm-g", "echo-g"]
+    """
     return SUPPORTED_FORMATS
