@@ -99,7 +99,7 @@ class Downloader:
 
         # constructs url based on concept id
         url = self._construct_url()
-        token = os.environ.get["AUTH_TOKEN"]
+        token = os.environ.get("AUTH_TOKEN")
         headers = None
         if token:
             headers = {"Authorization": f"Bearer {token}"}

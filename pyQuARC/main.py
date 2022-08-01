@@ -105,7 +105,7 @@ class ARC:
         orig_query = f"{self.query}&page_size={page_size}" if not already_selected else self.query
         query = orig_query
         headers = None
-        token = os.environ.get["AUTH_TOKEN"]
+        token = os.environ.get("AUTH_TOKEN")
         if token:
             headers = {"Authorization": f"Bearer {token}"}
 
