@@ -104,9 +104,14 @@ class ARC:
 
         orig_query = f"{self.query}&page_size={page_size}" if not already_selected else self.query
         query = orig_query
+        headers = None
+        token = os.environ.get["AUTH_TOKEN"]
+        if token:
+            headers = {"Authorization": f"Bearer {token}"}
+
 
         while True:
-            response = requests.get(query)
+            response = requests.get(query, headers=headers)
 
             if response.status_code != 200:
                 return {"error": "CMR Query failed"}
