@@ -48,3 +48,11 @@ def cmr_request(cmr_prms):
 
 def collection_in_cmr(cmr_prms):
     return cmr_request(cmr_prms).get('hits', 0) > 0
+
+def get_headers():
+    token = os.environ.get("AUTH_TOKEN")
+    headers = None
+    if token:
+        headers = {"Authorization": f"Bearer {token}"}
+    return headers
+    
