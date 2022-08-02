@@ -3,7 +3,7 @@ import requests
 from urlextract import URLExtract
 
 from .string_validator import StringValidator
-from .utils import if_arg
+from .utils import get_headers, if_arg
 
 
 class UrlValidator(StringValidator):
@@ -45,8 +45,9 @@ class UrlValidator(StringValidator):
         """
 
         def status_code_from_request(url):
+            headers = get_headers()
             # timeout = 10 seconds, to allow for slow but not invalid connections
-            return requests.get(url, timeout=10).status_code
+            return requests.get(url, headers = headers, timeout=10).status_code
         
         results = []
 
