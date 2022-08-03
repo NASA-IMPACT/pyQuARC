@@ -6,6 +6,8 @@ import xmltodict
 
 from tqdm import tqdm
 
+from pyQuARC.code.utils import get_headers
+
 if __name__ == '__main__':
     from code.checker import Checker
     from code.constants import COLOR, ECHO10_C, SUPPORTED_FORMATS
@@ -104,9 +106,10 @@ class ARC:
 
         orig_query = f"{self.query}&page_size={page_size}" if not already_selected else self.query
         query = orig_query
-
+        headers = get_headers()
+        
         while True:
-            response = requests.get(query)
+            response = requests.get(query, headers=headers)
 
             if response.status_code != 200:
                 return {"error": "CMR Query failed"}
