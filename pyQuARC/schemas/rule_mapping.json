@@ -972,8 +972,12 @@
                 "0",
                 "1A",
                 "1B",
+                "1C",
                 "2",
+                "2A",
+                "2B",
                 "3",
+                "3A",
                 "4"
             ]
         ],
@@ -1193,6 +1197,7 @@
                 "ACTIVE",
                 "PLANNED",
                 "COMPLETE",
+                "DEPRECATED",
                 "NOT APPLICABLE",
                 "NOT PROVIDED"
             ]
@@ -3086,6 +3091,8 @@
         },
         "data": [
             [
+                "LOW_LATENCY",
+                "EXPEDITED",
                 "SCIENCE_QUALITY",
                 "NEAR_REAL_TIME",
                 "OTHER"
