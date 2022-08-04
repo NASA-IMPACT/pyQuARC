@@ -1,11 +1,11 @@
 {
     "datetime_format_check": {
-        "failure": "`{}` does not adhere to the ISO 1601 standard",
+        "failure": "`{}` does not adhere to the ISO 1601 standard.",
         "help": {
             "message": "",
             "url": "https://www.w3.org/TR/NOTE-datetime"
         },
-        "remediation": "Make sure the datetime complies with ISO 1601 standard."
+        "remediation": "Make sure the datetime complies with the ISO 1601 standard."
     },
     "date_or_datetime_format_check": {
         "failure": "`{}` does not adhere to the ISO 1601 standard for date or datetime.",
@@ -13,39 +13,39 @@
             "message": "",
             "url": "https://www.w3.org/TR/NOTE-datetime"
         },
-        "remediation": "Make sure the date or datetime complies with ISO 1601 standard."
+        "remediation": "Make sure the date or datetime complies with the ISO 1601 standard."
     },
     "data_update_time_logic_check": {
-        "failure": "The UpdateTime `{}` comes before the provided InsertTime `{}`.",
+        "failure": "The Update/Revision date `{}` comes before the provided Insert/Creation time `{}`.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Dates"
         },
-        "remediation": "Update the LastUpdate time so that it is identical to the InsertTime (in the event that the data has never been updated) or so that it comes chronologically after the InsertTime."
+        "remediation": "Recommend updating the Update/Revision date so that it is identical to the Insert/Creation time (in the event that the data/metadata has never been updated) or so that it comes chronologically after the Insert/Creation time."
     },
     "data_revision_date_logic_check": {
-        "failure": "The RevisionDate `{}` comes before the provided InsertTime `{}`.",
+        "failure": "The Revision date `{}` comes before the provided Insert/Creation time `{}`.",
         "help": {
             "message": "",
-            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Dates"
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Dates, https://wiki.earthdata.nasa.gov/display/CMR/Metadata+Dates"
         },
-        "remediation": "Update the RevisionDate so that it comes chronologically after the InsertTime."
+        "remediation": "Recommend updating the Revision date so that it comes chronologically after the Insert/Creation time."
     },
     "url_check": {
         "failure": "Invalid URL/s: `{}`.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
         },
         "remediation": "Please provide valid URL/s."
     },
     "shortname_uniqueness": {
-        "failure": "The DataSetId `{}` is identical to the ShortName `{}`.",
+        "failure": "The EntryTitle/DataSetId `{}` is identical to the ShortName `{}`.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Entry+Title"
         },
-        "remediation": "Since DataSetId maps to Entry Title in the CMR, provide a more descriptive, formal title for the dataset. "
+        "remediation": "The EntryTitle/DataSetId should not be identical to the ShortName. Recommend providing a descriptive, formal title for the dataset. "
     },
     "abstract_length_check": {
         "failure": "The abstract provided may be inadequate based on length.",
@@ -53,7 +53,7 @@
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Abstract"
         },
-        "remediation": "Provide a more comprehensive description, mimicking a journal abstract that is useful to the science community but also approachable for a first time user of the data."
+        "remediation": "Recommend providing a more comprehensive description, mimicking a journal abstract that is useful to the science community but also approachable for a first time user of the data."
     },
     "doi_validity_check": {
         "failure": "`{}` is invalid.",
@@ -61,7 +61,7 @@
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI"
         },
-        "remediation": "Provide a valid DOI. Make sure the field contains only the DOI string (eg. 10.1109/5.771073), not the URL."
+        "remediation": "Provide a valid DOI. Make sure the field contains only the DOI string (eg. 10.1109/5.771073), not the DOI URL."
     },
     "doi_missing_reason_presence_check": {
         "failure": "No DOI or MissingReason provided.",
@@ -69,7 +69,7 @@
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI"
         },
-        "remediation": "DOIs are required for NASA datasets. Provide the DOI if one is available. Otherwise, specify that a DOI is not applicable for the dataset."
+        "remediation": "DOIs are required for NASA datasets. Provide the DOI if one is available. Otherwise, specify that a DOI is not applicable for the dataset by populating the 'MissingReason' metadata element."
     },
     "doi_missing_reason_enumeration_check": {
         "failure": "`{}` is not a valid value.",
@@ -77,39 +77,39 @@
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI"
         },
-        "remediation": "The Missing Reason should read \"Not Applicable\"."
+        "remediation": "MissingReason is controlled by an enumeration and should read \"Not Applicable\"."
     },
     "processing_level_id_check": {
-        "failure": "`{}` is not an EOSDIS recognized processing level ID.",
+        "failure": "`{}` is not an EOSDIS recognized Processing Level Id.",
         "help": {
             "message": "",
-            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Processing+Level"
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Processing+Level, https://www.earthdata.nasa.gov/engage/open-data-services-and-software/data-information-policy/data-levels"
         },
-        "remediation": "Change the ID to match one of the EOSDIS standard processing levels: [0, 1A, 1B, 2, 3, 4]"
+        "remediation": "Recommend changing the Id to match one of the EOSDIS Data Processing Levels, if applicable: [0, 1A, 1B, 1C, 2, 2A, 2B, 3, 3A, 4]"
     },
     "processing_level_description_length_check": {
         "failure": "The provided description is less than 50 characters and therefore may be lacking in contextual information.",
         "help": {
-            "message": "Use the EOSDIS processing level descriptions as guidance",
-            "url": "https://science.nasa.gov/earth-science/earth-science-data/data-processing-levels-for-eosdis-data-products/"
+            "message": "Use the EOSDIS Data Processing Level descriptions as guidance.",
+            "url": "https://www.earthdata.nasa.gov/engage/open-data-services-and-software/data-information-policy/data-levels"
         },
-        "remediation": "Provide a more detailed processing level description."
+        "remediation": "Consider providing a more detailed processing level description."
     },
     "science_keywords_gcmd_check": {
-        "failure": "`{}` is not a valid GCMD keyword.",
+        "failure": "`{}` is not a valid GCMD science keyword.",
         "help": {
             "message": "",
             "url": ""
         },
-        "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+        "remediation": "Provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
     },
     "location_gcmd_check": {
-        "failure": "`{}` is not a valid GCMD keyword.",
+        "failure": "`{}` is not a valid GCMD location keyword.",
         "help": {
             "message": "",
             "url": ""
         },
-        "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+        "remediation": "Provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
     },
     "eosdis_doi_authority_check": {
         "failure": "`{}` may be an invalid value.",
@@ -123,41 +123,41 @@
         "failure": "The delete date `{}` is in the past.",
         "help": {
             "message": "",
-            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Metadata+Dates"
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Dates, https://wiki.earthdata.nasa.gov/display/CMR/Metadata+Dates"
         },
         "remediation": "Consider updating the delete date to a future date or remove it from the metadata if it is no longer valid."
     },
     "organization_short_name_gcmd_check": {
-        "failure": "The provided data center short name `{}` does not comply with the GCMD. ",
+        "failure": "The provided data center short name `{}` does not comply with GCMD. ",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Center"
         },
-        "remediation": "Please submit a request to support@earthdata.nasa.gov to have this instrument added to the GCMD Instrument KMS."
+        "remediation": "Provide a valid short name name from the GCMD Providers keyword list or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
     },
     "organization_long_name_gcmd_check": {
         "failure": "The provided data center long name `{}` does not comply with the GCMD. ",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Center"
         },
-        "remediation": "Please submit a request to support@earthdata.nasa.gov to have this long name added to the GCMD KMS."
+        "remediation": "Provide a valid long name name from the GCMD Providers keyword list or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
     },
     "organization_short_long_name_consistency_check": {
         "failure": "The provided data center short name `{}` and long name `{}` aren't consistent.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Center"
         },
-        "remediation": "Please supply the corresponding long name for the short name."
+        "remediation": "Please provide the corresponding data center short name and long name pair as appears in the GCMD Providers keyword list."
     },
     "umm_controlled_collection_state_list_check": {
-        "failure": "The provided Collection State `{}` is invalid.",
+        "failure": "The provided Collection Progress `{}` is invalid.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Collection+Progress"
         },
-        "remediation": "Choose a Collection State from the following list: [ACTIVE, PLANNED, COMPLETE, NOT APPLICABLE, NOT PROVIDED]."
+        "remediation": "Choose a Collection Progress value from the following list: [ACTIVE, PLANNED, COMPLETE, DEPRECATED, NOT APPLICABLE, NOT PROVIDED]."
     },
     "collection_data_type_enumeration_check": {
         "failure": "`{}` is not a valid value.",
@@ -165,7 +165,7 @@
             "message": "",
             "url": ""
         },
-        "remediation": "The Collection Data Type should match one of the following values: [SCIENCE_QUALITY, NEAR_REAL_TIME, OTHER]"
+        "remediation": "The Collection Data Type should match one of the following values: [NEAR_REAL_TIME, LOW_LATENCY, EXPEDITED, SCIENCE_QUALITY, OTHER]"
     },
     "version_description_not_provided": {
         "failure": "The provided description reads only `{}`",
