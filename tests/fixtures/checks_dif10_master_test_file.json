@@ -1,0 +1,441 @@
+{
+    "data_update_time_logic_check": {
+        "valid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"],
+        "invalid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"]
+    },
+    "data_revision_date_logic_check": {
+        "valid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"],
+        "invalid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"]
+    },
+    "range_date_time_logic_check_1": {
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
+        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"]
+    },
+    "range_date_time_logic_check_2": {
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
+        "invalid": ["2020-01-01T00:00:00Z", "2020-01-01T00:00:00Z"]
+    },
+    "project_date_time_logic_check_1": {
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
+        "invalid": ["2020-01-01T00:00:00Z", "2015-01-01T00:00:00Z"]
+    },
+    "project_date_time_logic_check_2": {
+        "valid": ["2020-01-01T00:00:00Z", "2020-01-01T12:00:00Z"],
+        "invalid": ["2020-01-01T00:00:00Z, 2020-01-01T00:00:00Z"]
+    },
+    "periodic_date_time_logic_check": {
+        "valid": ["1990-01-31T00:00:00Z", "1999-12-31T23:23:59Z"],
+        "invalid": ["1990-01-31T00:00:00Z", "1990-01-01T00:00:00Z"]
+    },
+    "date_or_datetime_format_check": {
+        "valid": ["2007-07-04T00:00:00Z"],
+        "invalid": ["0704T00:00:00.000Z"]
+    },
+    "url_check": {
+        "valid": ["https://www.udemy.com/topic/real-estate-investing/free/"],
+        "invalid": ["http://www.fakefakestillfaketotallyfake.com/"]
+    },
+    "shortname_uniqueness": {
+        "valid": ["Aquarius Official Release Level 3 Ancillary Reynolds Sea Surface Temperature Standard Mapped Image 7-Day Data V5.0","AQUARIUS_L3_ANCILLARY_SST_SMI_7DAY_V5"],
+        "invalid": ["AQUARIUS_L3_ANCILLARY_SST_SMI_7DAY_V5","AQUARIUS_L3_ANCILLARY_SST_SMI_7DAY_V5"]
+    },
+    "abstract_length_check": {
+        "valid": ["The Harmonized Landsat Sentinel-2 (HLS) project provides consistent surface reflectance (SR) and top of atmosphere (TOA) brightness data from a virtual constellation of satellite sensors. The Operational Land Imager (OLI) is housed aboard the joint NASA/USGS Landsat 8 and Landsat 9 satellites, while the Multi-Spectral Instrument (MSI) is mounted aboard Europe's Copernicus Sentinel-2A and Sentinel-2B satellites. The combined measurement enables global observations of the land every 2-3 days at 30-meter (m) spatial resolution. The HLS project uses a set of algorithms to obtain seamless products from OLI and MSI that include atmospheric correction, cloud and cloud-shadow masking, spatial co-registration and common gridding, illumination and view angle normalization, and spectral bandpass adjustment. The HLSL30 product provides 30-m Nadir Bidirectional Reflectance Distribution Function (BRDF)-Adjusted Reflectance (NBAR) and is derived from Landsat 8/9 OLI data products. The HLSS30 and HLSL30 products are gridded to the same resolution and Military Grid Reference System (MGRS)(https://hls.gsfc.nasa.gov/products-description/tiling-system/) tiling system, and thus are 'stackable' for time series analysis. The HLSL30 product is provided in Cloud Optimized GeoTIFF (COG) format, and each band is distributed as a separate file. There are 11 bands included in the HLSL30 product along with one quality assessment (QA) band and four angle bands. See the User Guide for a more detailed description of the individual bands provided in the HLSL30 product."],
+        "invalid": ["Yes."]
+    },
+    "doi_validity_check": {
+        "valid": ["10.5067/AQR50-3R7CS"],
+        "invalid": ["https://www.doi.org/10.5067/FAKE/FAKE_L2.061"]
+    },
+    "doi_link_update": {
+        "valid": ["https://doi.org/10.5067/AQR50-3R7CS"],
+        "invalid": ["http://dx.doi.org/10.5067/AQR50-3R7CS"]
+    },
+    "processing_level_id_check": {
+        "valid": [["0"], ["1A"], ["1B"], ["2"], ["3"], ["4"]],
+        "invalid": [["-1"], ["one"], ["1H"], ["5"], ["5G"], ["undefined"]]
+    },
+    "science_keywords_gcmd_check": {
+        "valid": [
+            ["EARTH SCIENCE","ATMOSPHERE","PRECIPITATION","HYDROMETEORS","",""], 
+            ["EARTH SCIENCE","BIOLOGICAL CLASSIFICATION","ANIMALS/VERTEBRATES","BIRDS","DUCKS/GEESE/SWANS",""],
+            ["EARTH SCIENCE","BIOSPHERE","ECOSYSTEMS","MARINE ECOSYSTEMS","COASTAL","KELP FOREST"]
+        ],
+        "invalid": [
+            ["EARTH SCIENCE","SOLID EARTH","ROCKS/MINERALS/CRYSTALS","HYDROMETEORS","",""],
+            ["EARTH SCIENCE","BIOLOGICAL CLASSIFICATION","ANIMALS/VERTEBRATES","BIRDS","DUCKS/GEESE/SWANS","pyQuAC"],
+            ["EARTH SCIENCE","AGRICULTURE","FOREST SCIENCE","FOREST FIRE SCIENCE","COASTAL","KELP FOREST"]
+        ]
+    },
+    "eosdis_doi_authority_check": {
+        "valid": [["https://doi.org/"], ["https://doi.org"]],
+        "invalid": [["https://www.doi.gov"], ["http://www.ronniejamesdio.com/"]]
+    },
+    "delete_time_check": {
+        "valid": ["2049-01-01T00:00:00Z"],
+        "invalid": ["2000-01-01T00:00:00Z"]
+    },
+    "ends_at_present_flag_logic_check": {
+        "valid": [["true","","ACTIVE"],["false","2007-07-04T00:00:00Z","COMPLETE"]],
+        "invalid": [["true","2007-07-04T00:00:00Z","COMPLETE"],["false","","ACTIVE"]]
+    },
+    "ends_at_present_flag_presence_check": {
+        "valid": ["", "2007-07-04T00:00:00Z", "COMPLETE"],
+        "invalid": ["", "", "ACTIVE"]
+    },
+    "controlled_contact_role_check": {
+        "valid": [["ARCHIVER"], ["DISTRIBUTOR"], ["PROCESSOR"], ["ORIGINATOR"]],
+        "invalid": [["DISPOSER"], ["HOLDER"], ["UNPROCESSABLE ENTITY"], ["END USER"]]
+    },
+    "data_type_control_check": {
+        "valid": [["STRING"], ["FLOAT"], ["INT"], ["BOOLEAN"], ["DATE"], ["TIME"], ["DATETIME"], ["DATE_STRING"], ["TIME_STRING"], ["DATETIME_STRING"]],
+        "invalid": [["THREAD"], ["SINK"], ["ESF"], ["LOGIC"], ["3D"], ["SPACE"], ["3DSPACE"], ["3D_THREAD"], ["SPACE_THREAD"], ["3DSPACE_THREAD"]]
+    },
+    "characteristic_name_check": {
+        "valid": [
+            "AircraftID",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ],
+        "invalid": [
+            "",
+            {
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ]
+    },
+    "characteristic_desc_check": {
+        "valid": [
+            "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ],
+        "invalid": [
+            "",
+            {
+                "Name": "AircraftID",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }            
+        ]
+    },
+    "characteristic_unit_check": {
+        "valid": [
+            "Not Applicable",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ],
+        "invalid": [
+            "",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Value": "N529NA"
+            }            
+        ]
+    },
+    "characteristic_value_check": {
+        "valid": [
+            "N529NA",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ],
+        "invalid": [
+            "",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable"
+            }            
+        ]
+    },
+    "characteristic_name_length_check": {
+        "valid": ["AircraftID"],
+        "invalid": ["Adolph Blaine Charles David Earl Frederick Gerald Hubert Irvin John Kenneth Lloyd Martin Nero Oliver Paul Quincy Randolph Sherman Thomas Uncas Victor William Xerxes Yancy Zeus Wolfeschlegelsteinhausenbergerdorffwelchevoralternwarengewissenhaftschaferswessenschafewarenwohlgepflegeundsorgfaltigkeitbeschutzenvonangreifendurchihrraubgierigfeindewelchevoralternzwolftausendjahresvorandieerscheinenvanderersteerdemenschderraumschiffgebrauchlichtalsseinursprungvonkraftgestartseinlangefahrthinzwischensternartigraumaufdersuchenachdiesternwelchegehabtbewohnbarplanetenkreisedrehensichundwohinderneurassevonverstandigmenschlichkeitkonntefortpflanzenundsicherfreuenanlebenslanglichfreudeundruhemitnichteinfurchtvorangreifenvonandererintelligentgeschopfsvonhinzwischensternartigraum"]    },
+    "characteristic_desc_length_check": {
+        "valid": [["test description"], ["another test description"], ["third time is the charm"]],
+        "invalid": [["that description"], ["is long"], ["123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789"]]
+    },
+    "characteristic_unit_length_check": {
+        "valid": [["38"], ["1,000,000"], ["0"]],
+        "invalid": [["98"], ["10000000000000000000000"], ["1234567891011121314151617181920"]]
+    },
+    "characteristic_value_length_check": {
+        "valid": ["this is a value"],
+        "invalid": ["Did you ever hear the tragedy of Darth Plagueis The Wise? I thought not. It's not a story the Jedi would tell you. It's a Sith legend. Darth Plagueis was a Dark Lord of the Sith, so powerful and so wise he could use the Force to influence the midichlorians to create life... He had such a knowledge of the dark side that he could even keep the ones he cared about from dying. The dark side of the Force is a pathway to many abilities some consider to be unnatural. He became so powerful... the only thing he was afraid of was losing his power, which eventually, of course, he did. Unfortunately, he taught his apprentice everything he knew, then his apprentice killed him in his sleep. Ironic. He could save others from death, but not himself."]
+    },
+    "mime_type_check": {
+        "valid": ["text/xml", "USE SERVICE API"],
+        "invalid": ["", "USE SERVICE API"]
+    },
+    "coordinate_system_check": {
+        "valid": ["GEODETIC"],
+        "invalid": ["sphere"]
+    },
+    "granule_spatial_representation_check": {
+        "valid": ["ORBIT"],
+        "invalid": ["Not Applicable"]
+    },
+    "organization_short_name_gcmd_check": {
+        "valid": [["NASA/LARC/SD/ASDC"], ["NASA/MSFC/GHRC"]],
+        "invalid": [["ASDC"], ["GHRC"]]
+    },
+    "organization_long_name_gcmd_check": {
+        "valid": ["Global Hydrology Resource Center, Marshall Space Flight Center, NASA"],
+        "invalid": ["NASA/MSFC/GHRC"]
+    },
+    "organization_short_long_name_consistency_check": {
+        "valid": ["NASA/MSFC/GHRC", "Global Hydrology Resource Center, Marshall Space Flight Center, NASA"],
+        "invalid": ["NASA/LARC/SD/ASDC", "Global Hydrology Resource Center, Marshall Space Flight Center, NASA"]
+    },
+    "instrument_short_long_name_consistency_check": {
+        "valid": ["EXRAD", "ER-2 Doppler Radar"],
+        "invalid": ["SNOW RADAR", "ER-2 Doppler Radar"]
+    },
+    "instrument_short_name_gcmd_check": {
+        "valid": [["RADAR ECHO SOUNDERS"],["TSI-3563 Neph"]],
+        "invalid": [["Nephelometers"],["sensors"]]
+    },
+    "instrument_long_name_gcmd_check": {
+        "valid": [["Multi-Angle Absorption Photometer"],["Whole-Sky Imager"]],
+        "invalid": [["radar"],["gfihgifbnvbn"]]
+    },
+    "instrument_long_name_presence_check": {
+        "valid": ["AIRBORNE LASER SCANNER"],
+        "invalid": [""]
+    },
+    "platform_short_name_gcmd_check": {
+        "valid": ["G-III"],
+        "invalid": ["gulfstream"]
+    },
+    "platform_short_long_name_consistency_check": {
+        "valid": ["NASA DC-8", "NASA Douglas DC-8"],
+        "invalid": ["NASA DC-8", "Lockheed P-3A Orion"]
+    },
+    "data_format_gcmd_check": {
+        "valid": ["Binary"],
+        "invalid": ["Native"]
+    },
+    "platform_long_name_gcmd_check": {
+        "valid": ["Lockheed P-3A Orion"],
+        "invalid": ["ER-2"]
+    },
+    "spatial_keyword_gcmd_check": {
+        "valid": ["ALABAMA"],
+        "invalid": ["huntsville"]
+    },
+    "location_gcmd_check": {
+        "valid": ["CONTINENT", "NORTH AMERICA", "UNITED STATES", "ALABAMA", "THE UNIVERSITY OF ALABAMA IN HUNTSVILLE"],
+        "invalid": ["AFRICA", "OCEAN", "ARCTIC", "SOUTHERN OCEAN", "SAHEL"]
+    },
+    "platform_type_gcmd_check": {
+        "valid": ["Propeller"],
+        "invalid": ["the plane"]
+    },
+    "campaign_short_long_name_consistency_check": {
+        "valid": ["OLYMPEX", "Olympic Mountain Experiment"],
+        "invalid": ["OLYMPEX", "Oceans Melting Greenland"]
+    },
+    "campaign_short_name_gcmd_check": {
+        "valid": ["OTTER"],
+        "invalid": ["JASON"]
+    },
+    "campaign_long_name_gcmd_check": {
+        "valid": ["Oregon Transect Ecosystem Research Project"],
+        "invalid": ["SubMesoscale Ocean Dynamics Experiment"]
+    },
+    "campaign_long_name_presence_check": {
+        "valid": ["Oregon Transect Ecosystem Research Project"],
+        "invalid": [""]
+    },
+    "version_description_not_provided": {
+        "valid": ["Version 8"],
+        "invalid": ["Not provided"]
+    },
+    "collection_data_type_enumeration_check": {
+        "valid": ["OTHER"],
+        "invalid": ["real time data"]
+    },
+    "bounding_coordinate_logic_check": {
+        "valid": ["-180", "90", "180", "-90"],
+        "invalid": ["-180", "30", "180", "35"]
+    },
+    "vertical_spatial_domain_type_check": {
+        "valid": ["Atmosphere Layer"],
+        "invalid": ["Stratosphere"]
+    },
+    "spatial_coverage_type_check": {
+        "valid": ["VERTICAL"],
+        "invalid": ["diagonal"]
+    },
+    "depth_unit_check": {
+        "valid": ["diagonal"],
+        "invalid": ["ft"]
+    },
+    "campaign_name_presence_check": {
+        "valid": ["AAOE"],
+        "invalid": [""]
+    },
+    "spatial_coverage_type_presence_check": {
+        "valid": ["VERTICAL"],
+        "invalid": [""]
+    },
+    "horizontal_datum_name_check": {
+        "valid": ["datum name"],
+        "invalid": [""]
+    },
+    "location_keyword_presence_check": {
+        "valid": ["UNITED STATES OF AMERICA"],
+        "invalid": [""]
+    },
+    "spatial_extent_requirement_fulfillment_check": {
+        "valid": ["13.149, -59.625", "", "", ""],
+        "invalid": ["", "", "", ""]
+    },
+    "license_information_check": {
+        "valid": ["https://www.earthdata.nasa.gov/learn/use-data/data-use-policy"],
+        "invalid": [""]
+    },
+    "collection_citation_presence_check": {
+        "valid": ["2018-09-26T00:00:00.000Z"],
+        "invalid": [""]
+    },
+    "user_services_check": {
+        "valid": ["John", "Felix Anthony", "Cena"],
+        "invalid": ["User", "null", "Services"]
+    },
+    "doi_missing_reason_explanation": {
+        "valid": ["DOI missing reason", "Not Applicable", ""],
+        "invalid": ["", "", ""]
+    },
+    "collection_progress_consistency_check": {
+        "valid": ["IN PROGRESS", "true", ""],
+        "invalid": ["IN PROGRESS", "", "2015-02-09T:00:00:00Z"]
+    },
+    "characteristic_name_uniqueness_check": {
+        "valid": ["NASA DC-8", "NASA ER-2"],
+        "invalid": ["NASA DC-8", "NASA DC-8"]
+    },
+    "validate_ending_datetime_against_granules": {
+        "valid": ["2017-07-17T20:41:47.000Z","ABOLVIS1A","1"],
+        "invalid": ["2016-07-17T20:41:47.000Z","ABOLVIS1A","1"]
+    },
+    "validate_beginning_datetime_against_granules": {
+        "valid": ["2017-06-29T14:39:12.000Z","ABOLVIS1A","1"],
+        "invalid": ["2016-06-29T00:00:00.000Z","ABOLVIS1A","1"]
+    },
+    "future_date_check": {
+        "valid": ["REVIEW", "REVIEW"],
+        "invalid": ["idk", "idk"]
+    },
+    "iso_topic_category_check": {
+        "valid": ["DISASTER"],
+        "invalid": ["idk"]
+    },
+    "dif10_date_not_provided_check": {
+        "valid": ["2017-06-29T14:39:12.000Z"],
+        "invalid": ["Not provided"]
+    },
+    "temporal_extent_requirement_check": {
+        "valid": ["2020-01-01T00:00:00Z", "", ""],
+        "invalid": ["", "", ""]
+    },
+    "ftp_protocol_check": {
+        "valid": ["https://asdc.larc.nasa.gov/data/ARESE/ER2_MAS/"],
+        "invalid": ["ftp://heasarc.gsfc.nasa.gov/rosat/data"]
+    },
+    "citation_version_check": {
+        "valid": ["2.0", "1"],
+        "invalid": ["", ""]
+    },
+    "default_date_check": {
+        "valid": ["2021-11-05T13:15:30Z", "2021-11-05T13:15:30Z"],
+        "invalid": ["202111-05T13:15:30Z", "202111-05T13:15:30Z"]
+    },
+    "url_desc_presence_check": {
+        "valid": [["the google search engine", "www.google.com"], ["https//doi.org", "doi home page"]],
+        "invalid": [["https://github.com", ""], ["https://duckduckgo.com", ""]]
+    },
+    "get_data_url_check": {
+        "valid": ["https://daac.ornl.gov/cgi-bin/download.pl?ds_id=465&source=dsviewer&_ga=2.140140659.1165149285.1658168134-969487745.1655392216"],
+        "invalid": ["https://daac.ornl.gov/cgi-bin/download.FAKE"]
+    },
+    "horizontal_resolution_range_check": {
+        "valid": ["1 meter - < 30 meters"],
+        "invalid": ["1m - 30m"]
+    },
+    "vertical_resolution_range_check": {
+        "valid": ["1 meter - < 10 meters"],
+        "invalid": ["1m - 10m"]
+    },
+    "temporal_resolution_range_check": {
+        "valid": ["Climate Normal (30-year climatology)"],
+        "invalid": ["Climate Abnormal (30-year climatology)"]
+    },
+    "mime_type_gcmd_check": {
+        "valid": ["text/csv"],
+        "invalid": ["text/cvs"]
+    },
+    "idnnode_shortname_gcmd_check": {
+        "valid": ["SOOS"],
+        "invalid": ["idk"]
+    },
+    "chrono_unit_gcmd_check": {
+        "valid": ["ARCHAEAN", "EOARCHEAN", "NEOGENE", "MIOCENE", "AQUITANIAN"],
+        "invalid": ["", "", "", "", ""]
+    },
+    "sensor_number_check": {
+        "valid": ["2", "GLAS"],
+        "invalid": ["GLAS", "..."]
+    },
+    "data_center_short_name_gcmd_check": {
+       "valid": [["NSIDC"], ["NASA/GSFC/SED/ESD/GCDC/OB.DAAC"]],
+        "invalid": [["facebook"], ["ASDC"]]
+     },
+    "characteristic_data_type": {
+        "valid": [["INT", {"Name": "...", "Description": "...", "DataType": "...", "Unit": "...", "Value": "..."}], ["FLOAT", {"Name": "...", "Description": "...", "DataType": "...", "Unit": "...", "Value": "..."}], ["STRING", {"Name": "...", "Description": "...", "DataType": "...", "Unit": "...", "Value": "..."}]],
+        "invalid": [["", {"Name": "...", "Description": "...", "Unit": "...", "Value": "..."}], ["", {"Name": "...", "Description": "...", "Unit": "...", "Value": "..."}], ["", {"Name": "...", "Description": "...", "Unit": "...", "Value": "..."}]]
+    },
+    "platform_type_presence_check": {
+        "valid": ["Propeller"],
+        "invalid": [""]
+    },
+    "platform_long_name_presence_check": {
+        "valid": ["Gulfstream III"],
+        "invalid": ["gulfstream 3"]
+    },
+    "horizontal_data_resolution_unit_check": {
+        "valid": [["Decimal Degrees"], ["Kilometers"], ["Meters"], ["Statute Miles"], ["Nautical Miles"], ["Not provided"]],
+        "invalid": [["Degrees"], ["Miles"], ["Feet"], ["Arabic Mile"], ["Pyramid inch"], ["Provided"]]
+    },
+    "url_description_uniqueness_check": {
+        "valid": ["The guide document contains detailed information about the dataset."],
+        "invalid": [""]
+    }
+}

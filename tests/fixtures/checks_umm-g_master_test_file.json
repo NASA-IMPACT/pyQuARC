@@ -1,0 +1,168 @@
+{
+    "range_date_time_logic_check_1": {
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
+        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"]
+    },
+    "range_date_time_logic_check_2": {
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
+        "invalid": ["2020-01-01T00:00:00Z", "2020-01-01T00:00:00Z"]
+    },
+    "date_or_datetime_format_check": {
+        "valid": ["2007-07-04T00:00:00Z"],
+        "invalid": ["0704T00:00:00.000Z"]
+    },
+    "url_check": {
+        "valid": ["https://www.udemy.com/topic/real-estate-investing/free/"],
+        "invalid": ["http://www.fakefakestillfaketotallyfake.com/"]
+    },
+    "delete_time_check": {
+        "valid": ["2049-01-01T00:00:00Z"],
+        "invalid": ["2000-01-01T00:00:00Z"]
+    },
+    "characteristic_name_check": {
+        "valid": [
+            "AircraftID",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ],
+        "invalid": [
+            "",
+            {
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ]
+    },
+    "characteristic_value_check": {
+        "valid": [
+            "N529NA",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ],
+        "invalid": [
+            "",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable"
+            }
+        ]
+    },
+    "mime_type_check": {
+        "valid": ["text/xml", "USE SERVICE API"],
+        "invalid": ["", "USE SERVICE API"]
+    },
+    "instrument_short_name_gcmd_check": {
+        "valid": [["RADAR ECHO SOUNDERS"],["TSI-3563 Neph"]],
+        "invalid": [["Nephelometers"],["sensors"]]
+    },
+    "granule_instrument_presence_check": {
+        "valid": ["EXRAD"],
+        "invalid": [""]
+    },
+    "validate_granule_instrument_against_collection": {
+        "valid": ["ERBE WFOV Nonscanner", "ERBE_S10N_WFOV_SF_ERBS_Regional", "Edition4", "Earth Radiation Budget through Earth Radiation Budget Satellite Wide-field-of-view Nonscanner Observations Edition"],
+        "invalid": ["ERBE", "ERBE_S10N_WFOV_SF_ERBS_Regional", "Edition4", "Earth Radiation Budget through Earth Radiation Budget Satellite Wide-field-of-view Nonscanner Observations Edition"]
+    },
+    "platform_short_name_gcmd_check": {
+        "valid": ["G-III"],
+        "invalid": ["gulfstream"]
+    },
+    "data_format_gcmd_check": {
+        "valid": ["Binary"],
+        "invalid": ["Native"]
+    },
+    "campaign_short_name_gcmd_check": {
+        "valid": ["OTTER"],
+        "invalid": ["JASON"]
+    },
+    "bounding_coordinate_logic_check": {
+        "valid": ["-180", "90", "180", "-90"],
+        "invalid": ["-180", "30", "180", "35"]
+    },
+    "vertical_spatial_domain_type_check_granule": {
+        "valid": ["Depth"],
+        "invalid": ["Deep"]
+    },
+    "vertical_spatial_domain_unit_check_ummg": {
+        "valid": ["Kilometers"],
+        "invalid": ["km"]
+    },
+    "campaign_name_presence_check": {
+        "valid": ["ACTIVATE"],
+        "invalid": [""]
+    },
+    "online_resource_url_description_check": {
+        "valid": ["This should be a description of the URL."],
+        "invalid": [""]
+    },
+    "spatial_extent_requirement_fulfillment_check": {
+        "valid": ["13.149, -59.625", "", "", ""],
+        "invalid": ["", "", "", ""]
+    },
+    "online_resource_type_gcmd_check": {
+        "valid": ["GET DATA"],
+        "invalid": ["url data access please"]
+    },
+    "online_resource_type_presence_check": {
+        "valid": ["USE SERVICE API"],
+        "invalid": ["google dot com"]
+    },
+    "characteristic_name_uniqueness_check": {
+        "valid": ["NASA DC-8", "NASA ER-2"],
+        "invalid": ["NASA DC-8", "NASA DC-8"]
+    },
+    "temporal_extent_requirement_check": {
+        "valid": ["2020-01-01T00:00:00Z", "", ""],
+        "invalid": ["", "", ""]
+    },
+    "default_date_check": {
+        "valid": ["2007-07-04T00:00:00Z","2007-07-04T00:00:00Z","2007-07-04T00:00:00Z","2007-07-04T00:00:00Z","2007-07-04T00:00:00Z","2007-07-04T00:00:00Z"],
+        "invalid": ["0704T00:00:00.000Z","0704T00:00:00.000Z","0704T00:00:00.000Z","0704T00:00:00.000Z","0704T00:00:00.000Z","0704T00:00:00.000Z"]
+    },
+    "get_data_url_check": {
+        "valid": ["https://daac.ornl.gov/cgi-bin/download.pl?ds_id=465&source=dsviewer&_ga=2.140140659.1165149285.1658168134-969487745.1655392216"],
+        "invalid": ["https://daac.ornl.gov/cgi-bin/download.FAKE"]
+    },
+    "granule_platform_presence_check": {
+        "valid": ["G-III"],
+        "invalid": [""]
+    },
+    "validate_granule_platform_against_collection": {
+        "valid": ["NASA WB-57F", "MACPEX_TraceGas_AircraftInSitu_WB57_Data", "1", ""],
+        "invalid": ["GOES-16", "MACPEX_TraceGas_AircraftInSitu_WB57_Data", "1", ""]
+    },
+    "url_description_uniqueness_check": {
+        "valid": ["The guide document contains detailed information about the dataset."],
+        "invalid": [""]
+    },
+    "granule_project_short_name_check": {
+        "valid": ["MACPEX", "", "MACPEX_TraceGas_AircraftInSitu_WB57_Data", "1"],
+        "invalid": ["GOES", "", "MACPEX_TraceGas_AircraftInSitu_WB57_Data", "1"]
+    },
+    "granule_sensor_short_name_check": {
+        "valid": ["ATLAS", "ATLAS/ICESat-2 L3A Land Ice Height V005", "ATL06", "005"],
+        "invalid": ["EXRAD", "ATLAS/ICESat-2 L3A Land Ice Height V005", "ATL06", "005"]
+    },
+    "validate_granule_data_format_against_collection_check": {
+        "valid": ["ICARTT", "MACPEX_TraceGas_AircraftInSitu_WB57_Data", "1", ""],
+        "invalid": ["ASCII", "MACPEX_TraceGas_AircraftInSitu_WB57_Data", "1", ""]
+    },
+    "granule_data_format_presence_check": {
+        "valid": ["Binary"],
+        "invalid": [""]
+    }
+}
