@@ -6,7 +6,7 @@ import xmltodict
 
 from tqdm import tqdm
 
-from pyQuARC.code.utils import get_headers
+from code.utils import get_headers
 
 if __name__ == '__main__':
     from code.checker import Checker

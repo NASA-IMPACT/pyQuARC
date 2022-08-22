@@ -2,7 +2,7 @@ import csv
 import os
 import requests
 
-from pyQuARC.code.utils import get_headers
+from .utils import get_headers
 
 from .constants import SCHEMA_PATHS, GCMD_LINKS, VERSION_FILE
 from datetime import datetime
