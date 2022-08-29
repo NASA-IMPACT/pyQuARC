@@ -137,7 +137,7 @@ class GcmdValidator:
                     # Downloading updated gcmd keyword files
                     response = requests.get(link, headers=headers)
                     data = response.text
-                    with open(SCHEMA_PATHS[keyword], "w") as download_file:
+                    with open(SCHEMA_PATHS[keyword], "w", encoding="utf-8") as download_file:
                         download_file.write(data)
                 with open(VERSION_FILE, "w") as version_file:
                     version_file.write(current_datetime.strftime(DATE_FORMAT))
