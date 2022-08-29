@@ -2583,7 +2583,7 @@
     "platform_short_name_gcmd_check": {
         "rule_name": "Platform Shortname GCMD Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/ShortName"
