@@ -1,4 +1,4 @@
-"Keyword Version: 13.8","Revision: 2022-06-03 10:15:10","Timestamp: 2022-06-28 08:58:39","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/instruments/?format=xml","Case native"
+"Keyword Version: 14.2","Revision: 2022-08-23 13:50:12","Timestamp: 2022-08-30 10:58:39","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/instruments/?format=xml","Case native"
 Category,Class,Type,Subtype,Short_Name,Long_Name,UUID
 "Earth Remote Sensing Instruments","Active Remote Sensing","Altimeters","Lidar/Laser Altimeters","AIRBORNE LASER SCANNER","AIRBORNE LASER SCANNER","ff309a1a-606d-456b-82b6-5b3c182f66ff"
 "Earth Remote Sensing Instruments","Active Remote Sensing","Altimeters","Lidar/Laser Altimeters","ATLAS","Advanced Topographic Laser Altimeter System","b3684b4b-4f0b-48aa-8997-e3758fd04155"
@@ -864,6 +864,7 @@ Category,Class,Type,Subtype,Short_Name,Long_Name,UUID
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Spectrometers/Radiometers","Radiometers","CERES-FM5","Clouds and the Earth's Radiant Energy System - Flight Model 5","858856b1-d6a9-4135-b9ac-bec7d70de8d2"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Spectrometers/Radiometers","Radiometers","CERES-FM6","Clouds and the Earth's Radiant Energy System - Flight Model 6","b6bcacb0-f88c-440e-9401-61dfb8aa2e0d"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Spectrometers/Radiometers","Radiometers","CERES-PFM","Clouds and the Earth's Radiant Energy System - Prototype Flight Model","a23f09aa-48e0-42a4-b7e1-9f25ada6ba47"
+"Earth Remote Sensing Instruments","Passive Remote Sensing","Spectrometers/Radiometers","Radiometers","COWVR","Compact Ocean Wind Vector Radiometer","a7fb25e1-2cf6-4191-960d-45d84bcc99e0"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Spectrometers/Radiometers","Radiometers","ERB-SCANNER","","7ee2c846-ce0d-48a4-8117-d805acd2bd7a"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Spectrometers/Radiometers","Radiometers","ERBE WFOV Nonscanner","Earth Radiation Budget Experiment Wide Field of View Nonscanner","d583f653-7a8d-414a-aff7-7d9006a138cc"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Spectrometers/Radiometers","Radiometers","ERBE","Earth Radiation Budget Experiment","e432d8db-ec9c-44fa-9942-d6b1eb993126"
@@ -920,6 +921,7 @@ Category,Class,Type,Subtype,Short_Name,Long_Name,UUID
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Spectrometers/Radiometers","Radiometers","STEP FREQUENCY RADIOMETERS","","90b33fac-349c-4c13-9819-d295833a97a7"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Spectrometers/Radiometers","Radiometers","SWIR","Short Wavelength Infrared Radiometer","b10f1d54-aa57-4e9d-8876-a1c5c3785660"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Spectrometers/Radiometers","Radiometers","TDDR","Total-Direct-Diffuse Multichannel Radiometer","770216a2-85bc-4f52-9a5b-120a0c1f5796"
+"Earth Remote Sensing Instruments","Passive Remote Sensing","Spectrometers/Radiometers","Radiometers","TEMPEST","Temporal Experiment for Storms and Tropical Systems","373ed910-4022-4d08-b6b9-d3e44de61fd5"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Spectrometers/Radiometers","Radiometers","THIR","Temperature-Humidity Infrared Radiometer","5995cecc-a5da-4dd7-b78b-228454239292"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Spectrometers/Radiometers","Radiometers","TMRS2","Tower Mounted Radiometer System 2","18b3f136-732e-4e1b-92fd-ca2a7f560330"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Spectrometers/Radiometers","Radiometers","TMR","TOPEX Microwave Radiometer","c1a69b2c-52ff-4eb3-8e29-f1aaf5c0733c"

@@ -6,19 +6,21 @@ import xmltodict
 
 from tqdm import tqdm
 
-from code.utils import get_headers
+# from code.utils import get_headers  # test
 
 if __name__ == '__main__':
+    from code.utils import get_headers
     from code.checker import Checker
     from code.constants import COLOR, ECHO10_C, SUPPORTED_FORMATS
     from code.downloader import Downloader
     from code.utils import get_cmr_url, is_valid_cmr_url
 else:
+    from .code.utils import get_headers
     from .code.checker import Checker
     from .code.constants import COLOR, ECHO10_C, SUPPORTED_FORMATS
     from .code.downloader import Downloader
     from .code.utils import get_cmr_url, is_valid_cmr_url
-
+    
 
 ABS_PATH = os.path.abspath(os.path.dirname(__file__))
 END = COLOR["reset"]

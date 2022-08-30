@@ -1,4 +1,4 @@
-"Hits: 15","page_num: 1","page_size: 2000","Keyword Version: 13.8","Revision: 2022-06-03 10:17:38","Timestamp: 2022-06-28 09:06:03","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/horizontalresolutionrange/?format=xml","Case native"
+"Hits: 15","page_num: 1","page_size: 2000","Keyword Version: 14.2","Revision: 2022-08-12 14:35:28","Timestamp: 2022-08-30 09:57:41","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/horizontalresolutionrange/?format=xml","Case native"
 Horizontal_Resolution_Range,UUID
 "1 km - < 10 km or approximately .01 degree - < .09 degree","6dd8224f-944e-4798-ac48-44c23a567eeb"
 "1 meter - < 30 meters","abf43d91-a65d-4b3b-a6dd-593e211b2c7b"
