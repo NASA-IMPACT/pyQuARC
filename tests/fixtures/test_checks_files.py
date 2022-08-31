@@ -59,8 +59,11 @@ for i in format_choice:
             val_function = code_checker.map_to_function(data_type, check_function) # try, except
             print(f'Validator function: {data_type.title()}Validator.{check_function}')
             if (isinstance(format_choice[i]['valid'][0], str)):
-                relation = rule_mapping[i]["fields_to_apply"]["dif10"][0]["relation"]
-                print(val_function(format_choice[i]['valid'][0],format_choice[i]['valid'][1], relation))
+                if "relation" in rule_mapping[i]["fields_to_apply"]["dif10"][0].keys(): # checks that relation exists for rule
+                    relation = rule_mapping[i]["fields_to_apply"]["dif10"][0]["relation"]
+                    print(val_function(format_choice[i]['valid'][0],format_choice[i]['valid'][1], relation))
+                else:
+                    pass
             else:
                 print('skip (2)')
             # type(format_choice[i]['invalid'][0] / [1] / ... --> string or list
