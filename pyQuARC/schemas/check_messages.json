@@ -512,28 +512,28 @@
         "remediation": "Provide a DataCenter/ShortName value from the GCMD Providers keyword list. For ECHO10 records: Please populate the ArchiveCenter field in order to meet the UMM requirement."
     },
     "bounding_coordinate_logic_check": {
-        "failure": "North bounding coordinate should always be larger than South bounding coordinate and East bounding coordinate should always be larger than West bounding coordinate.",
+        "failure": "The North bounding coordinate should always be larger than the South bounding coordinate, and the East bounding coordinate should always be larger than the West bounding coordinate.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Extent"
         },
-        "remediation": "Please make sure the coordinate values are correct."
+        "remediation": "Please ensure the coordinate values are correct."
     },
     "vertical_spatial_domain_type_check": {
-        "failure": "The Vertical Spatial Domain Type `{}` does not align with the values used in the UMM-C schema.",
+        "failure": "The Vertical Spatial Domain Type provided `{}` does not align with the controlled vocabulary.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Extent"
         },
-        "remediation": "Please provide a Vertical Spatial Domain Type from the following options to align with the UMM: ['Atmosphere Layer', 'Maximum Altitude', 'Maximum Depth', 'Minimum Altitude', 'Minimum Depth']"
+        "remediation": "Please provide a Vertical Spatial Domain Type from the following list: ['Atmosphere Layer', 'Maximum Altitude', 'Maximum Depth', 'Minimum Altitude', 'Minimum Depth']"
     },
     "vertical_spatial_domain_type_check_granule": {
-        "failure": "The Vertical Spatial Domain Type `{}` does not align with the values used in the UMM-G schema.",
+        "failure": "The Vertical Spatial Domain Type provided `{}` does not align with the controlled vocabulary.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Extent"
         },
-        "remediation": "Please provide a Vertical Spatial Domain Type from the following options to align with the UMM: ['Atmosphere Layer', 'Pressure', 'Altitude', 'Depth']"
+        "remediation": "Please provide a Vertical Spatial Domain Type from the following list: ['Atmosphere Layer', 'Pressure', 'Altitude', 'Depth']"
     },
     "oneOf": {
         "failure": "One of `{}` should be populated.",
@@ -544,28 +544,28 @@
         "remediation": "Make sure one of the fields is populated."
     },
     "spatial_coverage_type_check": {
-        "failure": "The Spatial Coverage Type provided `{}` is invalid.",
+        "failure": "The Spatial Coverage Type provided `{}` does not align with the controlled vocabulary.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Information"
         },
         "remediation": "Please provide a Spatial Coverage Type from the following list: ['HORIZONTAL', 'VERTICAL', 'ORBITAL', 'HORIZONTAL_VERTICAL', ORBITAL_VERTICAL', 'HORIZONTAL_ORBITAL', 'HORIZONTAL_VERTICAL_ORBITAL']"
     },
     "depth_unit_check": {
-        "failure": "The Depth Unit provided `{}` is invalid.",
+        "failure": "The Depth Unit provided `{}` does not align with the controlled vocabulary.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Information"
         },
         "remediation": "Please provide a depth unit from the following list: ['Fathoms', 'Feet', 'HectoPascals', 'Meters', 'Millibars']"
     },
     "altitude_unit_check": {
-        "failure": "The Altitude Unit provided `{}` is invalid.",
+        "failure": "The Altitude Unit provided `{}` does not align with the controlled vocabulary.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Information"
         },
-        "remediation": "Please provide a altitude unit from the following list: ['HectoPascals', 'Kilometers', 'Millibars']"
+        "remediation": "Please provide an altitude unit from the following list: ['HectoPascals', 'Kilometers', 'Millibars']"
     },
     "vertical_spatial_domain_unit_check_ummg": {
         "failure": "The Unit provided `{}` is invalid.",
