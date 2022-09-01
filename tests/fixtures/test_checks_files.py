@@ -62,8 +62,11 @@ for i in format_choice:
                 if "relation" in rule_mapping[i]["fields_to_apply"]["dif10"][0].keys(): # checks that relation exists for rule
                     relation = rule_mapping[i]["fields_to_apply"]["dif10"][0]["relation"]
                     print(val_function(format_choice[i]['valid'][0],format_choice[i]['valid'][1], relation))
+                elif "data" in rule_mapping[i]["fields_to_apply"]["dif10"][0].keys(): # checks that data exists for rule
+                    data = rule_mapping[i]["fields_to_apply"]["dif10"][0]["data"]
+                    print(val_function(format_choice[i]['valid'][0],format_choice[i]['valid'][1], data[0], data[1]))
                 else:
-                    pass
+                    print(val_function(format_choice[i]['valid'][0]))
             else:
                 print('skip (2)')
             # type(format_choice[i]['invalid'][0] / [1] / ... --> string or list
