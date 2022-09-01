@@ -1,31 +1,31 @@
 {
     "data_update_time_logic_check": {
-        "valid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"],
-        "invalid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"]
+        "valid": [["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z", "gte"], ["2020-01-01T00:00:00Z", "2011-01-01T10:00:00Z", "gte"]],
+        "invalid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "gte"]
     },
     "data_revision_date_logic_check": {
-        "valid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"],
-        "invalid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"]
+        "valid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z", "gte"],
+        "invalid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "gte"]
     },
     "range_date_time_logic_check_1": {
-        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
-        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"]
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "lte"],
+        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z", "lte"]
     },
     "range_date_time_logic_check_2": {
-        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
-        "invalid": ["2020-01-01T00:00:00Z", "2020-01-01T00:00:00Z"]
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"],
+        "invalid": ["2020-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"]
     },
     "project_date_time_logic_check_1": {
-        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
-        "invalid": ["2020-01-01T00:00:00Z", "2015-01-01T00:00:00Z"]
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "lte"],
+        "invalid": ["2020-01-01T00:00:00Z", "2015-01-01T00:00:00Z", "lte"]
     },
     "project_date_time_logic_check_2": {
-        "valid": ["2020-01-01T00:00:00Z", "2020-01-01T12:00:00Z"],
-        "invalid": ["2020-01-01T00:00:00Z, 2020-01-01T00:00:00Z"]
+        "valid": ["2020-01-01T00:00:00Z", "2020-01-01T12:00:00Z", "neq"],
+        "invalid": ["2020-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"]
     },
     "periodic_date_time_logic_check": {
-        "valid": ["1990-01-31T00:00:00Z", "1999-12-31T23:23:59Z"],
-        "invalid": ["1990-01-31T00:00:00Z", "1990-01-01T00:00:00Z"]
+        "valid": ["1990-01-31T00:00:00Z", "1999-12-31T23:23:59Z", "lt"],
+        "invalid": ["1990-01-31T00:00:00Z", "1990-01-01T00:00:00Z", "lt"]
     },
     "date_or_datetime_format_check": {
         "valid": ["2007-07-04T00:00:00Z"],
@@ -33,7 +33,7 @@
     },
     "url_check": {
         "valid": ["https://www.udemy.com/topic/real-estate-investing/free/"],
-        "invalid": ["http://www.fakefakestillfaketotallyfake.com/"]
+        "invalid": [["http://www.fakefakestillfaketotallyfake.com/"],["http://blahblahblahblahhh.org/"]]
     },
     "shortname_uniqueness": {
         "valid": ["Aquarius Official Release Level 3 Ancillary Reynolds Sea Surface Temperature Standard Mapped Image 7-Day Data V5.0","AQUARIUS_L3_ANCILLARY_SST_SMI_7DAY_V5"],
@@ -72,8 +72,8 @@
         "invalid": [["https://www.doi.gov"], ["http://www.ronniejamesdio.com/"]]
     },
     "delete_time_check": {
-        "valid": ["2049-01-01T00:00:00Z"],
-        "invalid": ["2000-01-01T00:00:00Z"]
+        "valid": ["2049-01-01T00:00:00Z", "now", "gte"],
+        "invalid": ["2000-01-01T00:00:00Z", "now", "gte"]
     },
     "ends_at_present_flag_logic_check": {
         "valid": [["true","","ACTIVE"],["false","2007-07-04T00:00:00Z","COMPLETE"]],
