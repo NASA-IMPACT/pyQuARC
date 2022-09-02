@@ -568,42 +568,42 @@
         "remediation": "Please provide an altitude unit from the following list: ['HectoPascals', 'Kilometers', 'Millibars']"
     },
     "vertical_spatial_domain_unit_check_ummg": {
-        "failure": "The Unit provided `{}` is invalid.",
+        "failure": "The Unit provided `{}` does not align with the controlled vocabulary.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Extent"
         },
         "remediation": "Please provide a unit from the following list: ['Fathoms', 'Feet', 'HectoPascals', 'Kilometers', 'Meters', 'Millibars','PoundsPerSquareInch', 'Atmosphere', 'InchesOfMercury', 'InchesOfWater']"
     },
     "campaign_name_presence_check": {
-        "failure": "Campaign/Project name is missing.",
+        "failure": "The campaign/project name is missing.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Project"
         },
-        "remediation": "Please add a GCMD compliant Campaign name if applicable to the dataset."
+        "remediation": "Please add a GCMD compliant campaign/project name if applicable to the dataset."
     },
     "spatial_coverage_type_presence_check": {
-        "failure": "Spatial Coverage Type is missing.",
+        "failure": "The Spatial Coverage Type is missing.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Information"
         },
         "remediation": "Please provide a spatial coverage type from the following list: ['HORIZONTAL', 'VERTICAL', 'ORBITAL', 'HORIZONTAL_VERTICAL', 'ORBITAL_VERTICAL', 'HORIZONTAL_ORBITAL', 'HORIZONTAL_VERTICAL_ORBITAL']"
     },
     "horizontal_datum_name_check": {
-        "failure": "Horizontal Datum Name is missing.",
+        "failure": "The Horizontal Datum Name is missing.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Extent"
         },
-        "remediation": "Please provide a Horizontal Datum Name."
+        "remediation": "If appropriate for the dataset, recommend providing information about the horizontal datum."
     },
     "online_access_url_presence_check": {
         "failure": "No Online Access URLs provided. A link to access the data is required by the UMM/CMR.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
         },
         "remediation": "Please provide at least one Online Access URL."
     },
