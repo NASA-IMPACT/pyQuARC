@@ -52,7 +52,7 @@
         "invalid": ["http://dx.doi.org/10.5067/AQR50-3R7CS"]
     },
     "processing_level_id_check": {
-        "valid": [["0"], ["1A"], ["1B"], ["2"], ["3"], ["4"]],
+        "valid": [["0"], ["1A"], ["1B"], ["1C"], ["2"], ["2A"], ["2B"], ["3"], ["3A"], ["4"]],
         "invalid": [["-1"], ["one"], ["1H"], ["5"], ["5G"], ["undefined"]]
     },
     "science_keywords_gcmd_check": {
