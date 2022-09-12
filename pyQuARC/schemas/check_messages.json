@@ -704,60 +704,60 @@
         "remediation": "Recommend updating the Collection State/Progress based on the Ending Date Time and Ends At Present Flag values."
     },
     "online_resource_type_gcmd_check": {
-        "failure": "Online Resource Type `{}` is not consistent with GCMD 'rucontenttype' list.",
+        "failure": "The provided Online Resource/Related URLs Type `{}` is not consistent with GCMD.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
         },
-        "remediation": "Please provide a GCMD compliant Online Resource Type."
+        "remediation": "Recommend providing an Online Resource/Related URLs Type from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/rucontenttype?format=csv."
     },
     "online_resource_type_presence_check": {
-        "failure": "Online Resource Type missing.",
+        "failure": "The Online Resource/Related URLs Type is missing.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
         },
-        "remediation": "Please provide a corresponding GCMD compliant Online Resource Type for each Online Resource URL."
+        "remediation": "Recommend providing an Online Resource/Related URLs Type from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/rucontenttype?format=csv."
     },
     "characteristic_name_uniqueness_check": {
-        "failure": "Duplicate characteristic name/s `{}`.",
+        "failure": "The following characteristic name is duplicated: `{}`.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Characteristics"
         },
-        "remediation": "Please provide a unique name for each characteristic."
+        "remediation": "Recommend providing a unique name for each characteristic."
     },
     "validate_beginning_datetime_against_granules": {
-        "failure": "The collection beginning datetime `{}` isn't consistent with the first granule's beginning datetime `{}`.",
+        "failure": "The collection beginning date time `{}` is not consistent with the first granule's beginning date time `{}`.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Temporal+Extent"
         },
-        "remediation": "Please update to make these consistent."
+        "remediation": "Recommend updating the beginning date time to match the granule extent."
     },
     "validate_ending_datetime_against_granules": {
-        "failure": "The collection ending datetime `{}` isn't consistent with the last granule's ending datetime `{}`.",
+        "failure": "The collection ending date time `{}` is not consistent with the last granule's ending date time `{}`.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Temporal+Extent"
         },
-        "remediation": "Please update to make these consistent."
+        "remediation": "Recommend updating the ending date time to match the granule extent."
     },
     "future_date_check": {
-        "failure": "The metadata review date `{}` is in the past.",
+        "failure": "The metadata's future review date `{}` is in the past.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Metadata+Dates"
         },
-        "remediation": "Consider updating the review date to a future date or remove it from the metadata if it is no longer valid."
+        "remediation": "Consider updating to a future date or removing from the metadata if it is no longer valid."
     },
     "iso_topic_category_check": {
-        "failure": "Invalid ISO Topic Category.",
+        "failure": "The provided ISO Topic Category does not align with the controlled vocabulary.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/ISO+Topic+Category"
         },
-        "remediation": "Provide a valid ISO Topic Category value from the following list:  ['BIOTA', 'BOUNDARIES', 'CLIMATOLOGY/METEOROLOGY/ATMOSPHERE', 'DISASTER', 'ECONOMY', 'ELEVATION', 'ENVIRONMENT', 'EXTRA TERRESTRIAL', 'FARMING', 'GEOSCIENTIFIC INFORMATION', 'HEALTH', 'IMAGERY/BASE MAPS/EARTH COVER', 'INLAND WATERS', 'INTELLIGENCE/MILITARY', 'LOCATION', 'OCEANS', 'PLANNING CADASTRE', 'SOCIETY', 'STRUCTURE', 'TRANSPORTATION', 'UTILITIES/COMMUNICATIONS']."
+        "remediation": "Recommend providing an ISO Topic Category value from the following list:  ['BIOTA', 'BOUNDARIES', 'CLIMATOLOGY/METEOROLOGY/ATMOSPHERE', 'DISASTER', 'ECONOMY', 'ELEVATION', 'ENVIRONMENT', 'EXTRA TERRESTRIAL', 'FARMING', 'GEOSCIENTIFIC INFORMATION', 'HEALTH', 'IMAGERY/BASE MAPS/EARTH COVER', 'INLAND WATERS', 'INTELLIGENCE/MILITARY', 'LOCATION', 'OCEANS', 'PLANNING CADASTRE', 'SOCIETY', 'STRUCTURE', 'TRANSPORTATION', 'UTILITIES/COMMUNICATIONS']."
     },
     "dif10_date_not_provided_check": {
         "failure": "Date listed as `{}`",
