@@ -3529,7 +3529,7 @@
                 }
             ]
         },
-        "severity": "info",
+        "severity": "warning",
         "check_id": "one_item_presence_check"
     },
     "online_resource_url_description_check": {
@@ -3557,7 +3557,7 @@
                 }
             ]
         },
-        "severity": "info",
+        "severity": "warning",
         "check_id": "one_item_presence_check"
     },
     "opendap_url_location_check": {
