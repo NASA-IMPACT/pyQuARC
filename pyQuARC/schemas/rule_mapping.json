@@ -3720,7 +3720,7 @@
             "umm-c": [
                 {
                     "fields": [
-                        "ResourceCitation/OtherCitationDetails"
+                        "CollectionCitation/Title"
                     ]
                 }
             ]
