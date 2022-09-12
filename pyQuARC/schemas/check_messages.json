@@ -760,36 +760,36 @@
         "remediation": "Recommend providing an ISO Topic Category value from the following list:  ['BIOTA', 'BOUNDARIES', 'CLIMATOLOGY/METEOROLOGY/ATMOSPHERE', 'DISASTER', 'ECONOMY', 'ELEVATION', 'ENVIRONMENT', 'EXTRA TERRESTRIAL', 'FARMING', 'GEOSCIENTIFIC INFORMATION', 'HEALTH', 'IMAGERY/BASE MAPS/EARTH COVER', 'INLAND WATERS', 'INTELLIGENCE/MILITARY', 'LOCATION', 'OCEANS', 'PLANNING CADASTRE', 'SOCIETY', 'STRUCTURE', 'TRANSPORTATION', 'UTILITIES/COMMUNICATIONS']."
     },
     "dif10_date_not_provided_check": {
-        "failure": "Date listed as `{}`",
+        "failure": "The date is listed as `{}`",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Metadata+Dates"
         },
-        "remediation": "Please provide a date, if known."
+        "remediation": "If known, recommend providing a date."
     },
     "temporal_extent_requirement_check": {
-        "failure": "The Temporal requirements aren't met.",
+        "failure": "The temporal requirements are not met.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Temporal+Extent"
         },
-        "remediation": "Please provide at least one of SingleDateTime or RangeDateTime"
+        "remediation": "Recommend providing a Range Date Time or a Single Date Time to fulfill the temporal requirements."
     },
     "ftp_protocol_check": {
-        "failure": "FTP links should no longer be used due to US Government security requirements. This check only applies to NASA/EOSDIS records.",
+        "failure": "FTP links should no longer be used.",
         "help": {
             "message": "",
             "url": ""
         },
-        "remediation": "Please remove the FTP link."
+        "remediation": "Recommend updating to 'HTTPS'."
     },
     "citation_version_check": {
         "failure": "The version listed in the citation `{}` does not match the version of the collection `{}`.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Collection+Citations"
         },
-        "remediation": "Please revise the version listed in the citation to match the version of the collection."
+        "remediation": "Recommend revising the version listed in the citation to match the version of the collection."
     },
     "default_date_check": {
         "failure": "A default value of '1970-01-01T00:00:00.000Z' is provided.",
@@ -797,23 +797,23 @@
             "message": "",
             "url": ""
         },
-        "remediation": "Please provide a more specific date if possible."
+        "remediation": "Recommend providing a more specific date, if possible."
     },
     "url_desc_presence_check": {
-        "failure": "URL Description is not provided for URL `{}`.",
+        "failure": "A URL Description appears to be missing for the following URL: `{}`.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
         },
-        "remediation": "Please provide a suitable description for the URL."
+        "remediation": "Recommend providing a description for each URL that is provided."
     },
     "get_data_url_check": {
-        "failure": "No 'GET DATA' link detected.",
+        "failure": "No 'GET DATA' link is provided.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
         },
-        "remediation": "Please provide a data access URL. This link should point as directly to the described data as possible. "
+        "remediation": "Recommend providing a URL to access the data with a Type of 'GET DATA'. This link should point as directly to the described data as possible. "
     },
     "get_data_url_check_umm": {
         "failure": "No 'GET DATA' link detected.",
