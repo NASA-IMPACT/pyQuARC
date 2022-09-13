@@ -816,12 +816,12 @@
         "remediation": "Recommend providing a URL to access the data with a Type of 'GET DATA'. This link should point as directly to the described data as possible. "
     },
     "get_data_url_check_umm": {
-        "failure": "No 'GET DATA' link detected.",
+        "failure": "No 'GET DATA' link is provided.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
         },
-        "remediation": "Please provide a data access URL. This link should point as directly to the described data as possible. "
+        "remediation": "PRecommend providing a URL to access the data with a Type of 'GET DATA'. This link should point as directly to the described data as possible. "
     },
     "horizontal_resolution_range_check": {
         "failure": "The provided Horizontal Resolution Range does not comply with the GCMD.",
