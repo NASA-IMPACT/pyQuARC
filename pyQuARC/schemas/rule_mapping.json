@@ -3683,7 +3683,8 @@
             "echo-c": [
                 {
                     "fields": [
-                        "Collection/UseConstraints"
+                        "Collection/UseConstraints/LicenseURL/URL",
+                        "Collection/UseConstraints/LicenseURL/Description"
                     ]
                 }
             ],
