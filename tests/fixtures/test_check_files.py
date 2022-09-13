@@ -31,7 +31,7 @@ rule_mapping = json.load(f6)
 checks = json.load(f7)
 # note: adding relation / data values to test files in valid / invalid lists
 code_checker = Checker()
-format_dict = {'dif10': dif10_checks, 'echo-c': echo_c_checks, 'echo-g': echo_c_checks, 'umm-c': umm_g_checks, 'umm-g': umm_g_checks}
+format_dict = {'dif10': dif10_checks, 'echo-c': echo_c_checks, 'echo-g': echo_g_checks, 'umm-c': umm_c_checks, 'umm-g': umm_g_checks}
 format_in = ''
 rule = ''
 check_id = ''
@@ -185,7 +185,7 @@ for i in format_choice:
             check_id = rule_mapping[i]['check_id']
             print(f'check_id: {check_id}')
         except KeyError:
-            print(f"'check_id' key does not exist for {rule_mapping[i]['rule_name']} rule in rule_mapping.json")
+            print(f"'check_id' key does not exist for this rule in rule_mapping.json")
         if check_id in checks:
             data_type = checks[check_id]['data_type']
             check_function = checks[check_id]['check_function']
