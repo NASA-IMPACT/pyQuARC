@@ -3312,7 +3312,7 @@
                 "Millibars"
             ]
         ],
-        "severity": "warning",
+        "severity": "error",
         "check_id": "controlled_keywords_check"
     },
     "altitude_unit_check": {
@@ -3340,7 +3340,7 @@
                 "Millibars"
             ]
         ],
-        "severity": "warning",
+        "severity": "error",
         "check_id": "controlled_keywords_check"
     },
     "vertical_spatial_domain_unit_check_ummg": {
@@ -3410,7 +3410,7 @@
                 }
             ]
         },
-        "severity": "info",
+        "severity": "warning",
         "check_id": "one_item_presence_check"
     },
     "spatial_coverage_type_presence_check": {
@@ -3667,7 +3667,7 @@
                 }
             ]
         },
-        "severity": "info",
+        "severity": "error",
         "check_id": "one_item_presence_check"
     },
     "license_information_check": {
@@ -3697,7 +3697,7 @@
                 }
             ]
         },
-        "severity": "warning",
+        "severity": "error",
         "check_id": "one_item_presence_check"
     },
     "collection_citation_presence_check": {
@@ -3807,7 +3807,7 @@
                 }
             ]
         },
-        "severity": "info",
+        "severity": "error",
         "check_id": "doi_missing_reason_explanation"
     },
     "boolean_check": {
@@ -3886,7 +3886,7 @@
                 }
             ]
         },
-        "severity": "warning",
+        "severity": "error",
         "check_id": "collection_progress_consistency_check"
     },
     "online_resource_type_gcmd_check": {
@@ -4298,7 +4298,7 @@
                 }
             ]
         },
-        "severity": "info",
+        "severity": "error",
         "check_id": "one_item_presence_check"
     },
     "ftp_protocol_check": {
@@ -4338,7 +4338,7 @@
             "FTP",
             "neq"
         ],
-        "severity": "error",
+        "severity": "info",
         "check_id": "string_compare"
     },
     "citation_version_check": {
@@ -4590,7 +4590,7 @@
                 }
             ]
         },
-        "severity": "info",
+        "severity": "warning",
         "check_id": "availability_check"
     },
     "get_data_url_check": {
@@ -4747,7 +4747,7 @@
                 }
             ]
         },
-        "severity": "warning",
+        "severity": "error",
         "check_id": "idnnode_shortname_gcmd_check"
     },
     "chrono_unit_gcmd_check": {
@@ -4930,7 +4930,7 @@
                 }
             ]
         },
-        "severity": "error",
+        "severity": "warning",
         "check_id": "one_item_presence_check"
     },
     "platform_long_name_presence_check": {
@@ -5043,7 +5043,7 @@
                 "Not provided"
             ]
         ],
-        "severity": "warning",
+        "severity": "error",
         "check_id": "controlled_keywords_check"
     },
     "periodic_duration_unit_check": {
@@ -5064,7 +5064,7 @@
                 "YEAR"
             ]
         ],
-        "severity": "warning",
+        "severity": "error",
         "check_id": "controlled_keywords_check"
     },
     "url_description_uniqueness_check": {
