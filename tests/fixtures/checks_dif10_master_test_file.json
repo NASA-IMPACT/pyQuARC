@@ -48,8 +48,8 @@
         "invalid": ["https://www.doi.org/10.5067/FAKE/FAKE_L2.061"]
     },
     "doi_link_update": {
-        "valid": ["https://doi.org/10.5067/AQR50-3R7CS"],
-        "invalid": ["http://dx.doi.org/10.5067/AQR50-3R7CS"]
+        "valid": [["https://doi.org/10.5067/AQR50-3R7CS", ["dx.doi.org", "http://dx.doi.org", "https://dx.doi.org"]]],
+        "invalid": [["http://dx.doi.org/10.5067/AQR50-3R7CS",["dx.doi.org", "http://dx.doi.org", "https://dx.doi.org"]]]
     },
     "processing_level_id_check": {
         "valid": [["0"], ["1A"], ["1B"], ["2"], ["3"], ["4"]],

@@ -77,6 +77,21 @@ def UrlValidator_health_and_status_check_test(val_function, value):
             return val_function(value[0])
     except:
         return 'error'
+
+def DOI_update_check(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+                i = 0
+                return_list = []
+                for x in value:
+                    return_list.append(val_function(value[i][0], value[i][1]))
+                    i = i +1
+                return return_list
+        elif (isinstance(value[0],str)):
+                return val_function(value[0])
+    except:
+        return 'error'
+
 # def StringValidator_compare_test(val_function, value): and so on... for validator functions --> could move these functions to another file
 # input format
 while format_in not in format_dict.keys():
@@ -113,6 +128,9 @@ for i in format_choice:
             if val_function_name == 'UrlValidator.health_and_status_check':
                 print(f"with valid test input: {UrlValidator_health_and_status_check_test(val_function, valid)}")
                 print(f"with invalid test input: {UrlValidator_health_and_status_check_test(val_function, invalid)}")
+            if val_function_name == 'UrlValidator.doi_link_update':
+                print(f"with valid test input: {DOI_update_check(val_function, valid)}")
+                print(f"with invalid test input: {DOI_update_check(val_function, invalid)}")
             # if val_function_name == 'StringValidator.compare':
                 # print()  and so on ... for validator functions
             #
