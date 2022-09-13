@@ -3288,13 +3288,6 @@
     "depth_unit_check": {
         "rule_name": "Depth Unit Controlled Vocabulary Check",
         "fields_to_apply": {
-            "echo-c": [
-                {
-                    "fields": [
-                        "Collection/SpatialInfo/VerticalCoordinateSystem/DepthSystemDefinition/DistanceUnits"
-                    ]
-                }
-            ],
             "dif10": [
                 {
                     "fields": [
@@ -3325,13 +3318,6 @@
     "altitude_unit_check": {
         "rule_name": "Altitude Unit Controlled Vocabulary Check",
         "fields_to_apply": {
-            "echo-c": [
-                {
-                    "fields": [
-                        "Collection/SpatialInfo/VerticalCoordinateSystem/AltitudeSystemDefinition/DistanceUnits"
-                    ]
-                }
-            ],
             "umm-c": [
                 {
                     "fields": [
