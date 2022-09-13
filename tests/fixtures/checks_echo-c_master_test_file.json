@@ -368,8 +368,8 @@
         "invalid": [["not a boolean"], ["this will fail"]]
     },
     "collection_progress_consistency_check": {
-        "valid": ["IN PROGRESS", "true", ""],
-        "invalid": ["IN PROGRESS", "", "2015-02-09T:00:00:00Z"]
+        "valid": ["IN WORK", "true", ""],
+        "invalid": ["IN WORK", "", "2015-02-09T:00:00:00Z"]
     },
     "online_resource_type_gcmd_check": {
         "valid": ["GET DATA"],
@@ -397,7 +397,7 @@
     },
     "url_desc_presence_check": {
         "valid": [["the google search engine", "www.google.com"], ["doi home page", "https//doi.org"]],
-        "invalid": [["https://github.com", ""], ["https://duckduckgo.com", ""]]
+        "invalid": [["", "www.google.com"], ["", "https://doi.org"]]
     },
     "data_center_short_name_gcmd_check": {
         "valid": [["NSIDC"], ["NASA/GSFC/SED/ESD/GCDC/OB.DAAC"]],
