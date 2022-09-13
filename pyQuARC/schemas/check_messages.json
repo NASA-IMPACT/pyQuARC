@@ -928,58 +928,58 @@
         "remediation": "Please supply the corresponding long name for the provided short name."
     },
     "dif_campaign_short_long_name_consistency_check": {
-        "failure": "The provided campaign short name `{}` and long name `{}` are not consistent.",
+        "failure": "The provided campaign/project short name `{}` and long name `{}` are not consistent.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Project"
         },
         "remediation": "Please supply the corresponding long name for the provided short name."
     },
     "url_description_uniqueness_check": {
-        "failure": "Duplicate URL description name/s `{}`.",
+        "failure": "A URL description is duplicated: `{}`.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
         },
-        "remediation": "Please provide a unique name for each URL description."
+        "remediation": "Descriptions should be unique to each URL. At least one of the descriptions are repeated in this record. Recommend changing the descriptions to more accurately and uniquely describe each link."
     },
     "online_resource_description_uniqueness_check": {
-        "failure": "Duplicate URL description name/s `{}`.",
+        "failure": "A URL description is duplicated: `{}`.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
         },
-        "remediation": "Please provide a unique name for each URL description."
+        "remediation": "Descriptions should be unique to each URL. At least one of the descriptions are repeated in this record. Recommend changing the descriptions to more accurately and uniquely describe each link."
     },
     "online_access_description_uniqueness_check": {
-        "failure": "Duplicate URL description name/s `{}`.",
+        "failure": "A URL description is duplicated: `{}`.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
         },
-        "remediation": "Please provide a unique name for each URL description."
+        "remediation": "Descriptions should be unique to each URL. At least one of the descriptions are repeated in this record. Recommend changing the descriptions to more accurately and uniquely describe each link."
     },
     "metadata_update_time_logic_check": {
-        "failure": "Note: the UPDATE Metadata Date comes before the provided CREATE Metadata Date.",
+        "failure": "Note: the 'UPDATE' Metadata Date is chronologically before the 'CREATE' Metadata Date.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Metadata+Dates"
         },
-        "remediation": "Update the UPDATE Metadata Date time so that it is identical to the CREATE Metadata Date (in the event that the metadata has never been updated) or so that it comes chronologically after the UPDATE Metadata Date."
+        "remediation": "Recommend modifying the 'UPDATE' Metadata Date so that it is identical to or chronologically after the 'CREATE' Metadata Date."
     },
     "periodic_duration_unit_check": {
-        "failure": "The provided Periodic Duration Unit `{}` does not comply with the GCMD hierarchy.",
+        "failure": "The provided Periodic Duration Unit `{}` does not align with the controlled vocabulary.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Temporal+Extent"
         },
-        "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+        "remediation": "Recommend providing a Periodic Duration Unit from the following list: ['DAY', 'MONTH', 'YEAR']."
     },
     "granule_single_date_time_check": {
-        "failure": "The Beginning Date Time and the Ending Date Time are the same.",
+        "failure": "The Beginning Date Time and the Ending Date Time are identical.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Temporal+Extent"
         },
         "remediation": "Recommend providing a Single Date Time instead of a Range Date Time."        
     },
@@ -987,9 +987,9 @@
         "failure": "The campaign/project short name `{}` listed in the granule metadata does not match the campaign/project short name listed in the collection metadata.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Project"
         },
-        "remediation": "Recommend providing the correct campaign/project short name in the granule metadata."
+        "remediation": "Recommend providing the same campaign/project short name in the collection and granule metadata."
     },
     "granule_sensor_short_name_check": {
         "failure": "The sensor short name `{}` listed in the granule metadata does not match the sensor short name listed in the collection metadata.",
@@ -997,7 +997,7 @@
             "message": "",
             "url": ""
         },
-        "remediation": "Recommend providing the correct sensor short name in the granule metadata."
+        "remediation": "Recommend providing the same sensor short name in the collection and granule metadata."
     },
     "validate_granule_data_format_against_collection_check": {
     "failure": "The data format listed in the granule metadata does not match the data format listed in the collection metadata",
@@ -1005,7 +1005,7 @@
         "message": "",
         "url": ""
     },
-    "remediation": "Recommend providing the data format listed in the collection metadata."
+    "remediation": "Recommend providing the same data format in the collection and granule metadata, if appropriate."
     },
     "granule_data_format_presence_check": {
         "failure": "The granule data format is missing.",
@@ -1013,10 +1013,14 @@
             "message": "",
             "url": ""
         },
-        "remediation": "Recommend providing the granule data format."
+        "remediation": "Recommend providing the associated data format from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/GranuleDataFormat/?format=csv."
     },
     "sensor_number_check": {
-        "failure": "The NumberOfSensors value `{}` does not match with the number of sensors provided `{}`.",
-        "remediation": "Make sure they match."
+        "failure": "The Number Of Instruments/Sensors value `{}` does not match the number of instruments/sensors provided `{}`.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Instrument"
+        },
+        "remediation": "Recommend updating the Number Of Instruments/Sensors value to match the numerical amount of instruments/sensors provided."
     }
 }
