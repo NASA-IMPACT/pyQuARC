@@ -827,33 +827,33 @@
         "failure": "The provided Horizontal Resolution Range does not comply with the GCMD.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Extent"
         },
-        "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+        "remediation": "Recommend providing a Horizontal Resolution Range from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/horizontalresolutionrange?format=csv."
     },
     "vertical_resolution_range_check": {
         "failure": "The provided Vertical Resolution Range `{}` does not comply with the GCMD.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Information"
         },
-        "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+        "remediation": "Recommend providing a Vertical Resolution Range from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/verticalresolutionrange?format=csv."
     },
     "temporal_resolution_range_check": {
         "failure": "The provided Temporal Resolution Range `{}` does not comply with the GCMD.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Information"
         },
-        "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+        "remediation": "Recommend providing a Temporal Resolution Range from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/temporalresolutionrange?format=csv."
     },
     "mime_type_gcmd_check": {
         "failure": "The provided Mime Type `{}` does not comply with the GCMD.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
         },
-        "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+        "remediation": "Recommend providing a Temporal Resolution Range from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/MimeType?format=csv."
     },
     "chrono_unit_gcmd_check": {
         "failure": "The provided Chronostratigraphic Unit `{}` does not comply with the GCMD hierarchy.",
