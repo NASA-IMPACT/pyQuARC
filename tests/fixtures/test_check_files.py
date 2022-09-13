@@ -77,6 +77,97 @@ def UrlValidator_health_and_status_check_test(val_function, value):
             return val_function(value[0])
     except:
         return 'error'
+def UrlValidator_Url_check(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0],str)):
+                return val_function(value[0])
+    except:
+        return 'error'
+def UrlValidator_Doi_validity_check(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0]),str):
+                return val_function(value[0])
+    except:
+            return 'error'
+def UrlValidator_get_data_url_check(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0],str)):
+                return val_function(value[0])
+    except:
+        return 'error'
+def CustomValidator_shortname_uniqueness(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0], str)):
+                return val_function(value[0])
+    except:
+        return 'error'
+def CustomValidator_Characteristic_name_uniqueness_check(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0], str)):
+                return val_function(value[0])
+    except:
+        return 'error'
+def CustomValidator_url_description_uniqueness_check(val_function, value):
+    try:
+        if(isinstance(value[0]),list):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0], str)):
+                return val_function(value[0])
+    except:
+        return 'error'
+def StringValidator_abstract_length_check(val_function, value):
+    try:
+        if(isinstance(value[0]),list):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0], str)):
+                return val_function(value[0])
+    except:
+        return 'warning'
 # def StringValidator_compare_test(val_function, value): and so on... for validator functions --> could move these functions to another file
 # input format
 while format_in not in format_dict.keys():
