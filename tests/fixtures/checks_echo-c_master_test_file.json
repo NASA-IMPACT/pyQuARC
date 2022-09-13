@@ -376,8 +376,8 @@
         "invalid": ["url data access please"]
     },
     "online_resource_type_presence_check": {
-        "valid": ["USE SERVICE API"],
-        "invalid": ["google dot com"]
+        "valid": ["USE SERVICE API", "https://opendap.larc.nasa.gov/opendap/hyrax/ACEPOL/AircraftRemoteSensing_AirHARP_Data_1/ACEPOL-AIRHARP-L1B_ER2_20171023180751_R2.h5"],
+        "invalid": ["", "https://opendap.larc.nasa.gov/opendap/hyrax/ACEPOL/AircraftRemoteSensing_AirHARP_Data_1/ACEPOL-AIRHARP-L1B_ER2_20171023180751_R2.h5"]
     },
     "characteristic_name_uniqueness_check": {
         "valid": ["NASA DC-8", "NASA ER-2"],
