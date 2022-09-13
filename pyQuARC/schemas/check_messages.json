@@ -824,7 +824,7 @@
         "remediation": "PRecommend providing a URL to access the data with a Type of 'GET DATA'. This link should point as directly to the described data as possible. "
     },
     "horizontal_resolution_range_check": {
-        "failure": "The provided Horizontal Resolution Range does not comply with the GCMD.",
+        "failure": "The provided Horizontal Resolution Range does not comply with GCMD.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Extent"
@@ -832,7 +832,7 @@
         "remediation": "Recommend providing a Horizontal Resolution Range from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/horizontalresolutionrange?format=csv."
     },
     "vertical_resolution_range_check": {
-        "failure": "The provided Vertical Resolution Range `{}` does not comply with the GCMD.",
+        "failure": "The provided Vertical Resolution Range `{}` does not comply with GCMD.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Information"
@@ -840,7 +840,7 @@
         "remediation": "Recommend providing a Vertical Resolution Range from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/verticalresolutionrange?format=csv."
     },
     "temporal_resolution_range_check": {
-        "failure": "The provided Temporal Resolution Range `{}` does not comply with the GCMD.",
+        "failure": "The provided Temporal Resolution Range `{}` does not comply with GCMD.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Information"
@@ -848,7 +848,7 @@
         "remediation": "Recommend providing a Temporal Resolution Range from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/temporalresolutionrange?format=csv."
     },
     "mime_type_gcmd_check": {
-        "failure": "The provided Mime Type `{}` does not comply with the GCMD.",
+        "failure": "The provided Mime Type `{}` does not comply with GCMD.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
@@ -856,84 +856,84 @@
         "remediation": "Recommend providing a Temporal Resolution Range from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/MimeType?format=csv."
     },
     "chrono_unit_gcmd_check": {
-        "failure": "The provided Chronostratigraphic Unit `{}` does not comply with the GCMD hierarchy.",
+        "failure": "The provided Chronostratigraphic Unit `{}` does not comply with GCMD.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Paleo+Temporal+Coverage"
         },
-        "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+        "remediation": "Recommend providing a Chronostratigraphic Unit from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/chronounits?format=csv."
     },
     "idnnode_shortname_gcmd_check": {
-        "failure": "The provided IDN_Node `{}` does not comply with the GCMD.",
+        "failure": "The provided Directory Name/IDN Node `{}` does not comply with GCMD.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Directory+Name"
         },
-        "remediation": "Either provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+        "remediation": "Recommend providing a Directory Name/IDN Node from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/idnnode?format=csv."
     },
     "data_center_short_name_gcmd_check": {
-        "failure": "The provided data center short name `{}` does not comply with the GCMD. ",
+        "failure": "The provided short name `{}` does not comply with GCMD. ",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Center"
         },
-        "remediation": "Please submit a request to support@earthdata.nasa.gov to have this provider added to the GCMD Providers KMS."
+        "remediation": "Recommend providing a short name from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers?format=csv."
     },
     "characteristic_data_type": {
-        "failure": "A data type name is missing for the provided characteristic. ",
+        "failure": "The provided characteristic is missing a data type. ",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Characteristics"
         },
-        "remediation": "Please provide a data type for the provided characteristic."
+        "remediation": "Recommend providing a data type for the provided characteristic."
     },
     "platform_type_presence_check": {
         "failure": "A platform type is not provided.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Platform"
         },
         "remediation": "Recommend adding a platform type for the corresponding platform."
     },
     "platform_long_name_presence_check": {
-        "failure": "The platform long name is not provided.",
+        "failure": "A platform long name is not provided.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Platform"
         },
-        "remediation": "Recommend providing the platform long name."
+        "remediation": "Recommend providing the corresponding platform long name."
     },
     "granule_platform_presence_check": {
-        "failure": "The platform short name is missing.",
+        "failure": "A platform short name is not provided.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Platform"
         },
         "remediation": "Recommend providing the platform short name."
     },
     "horizontal_data_resolution_unit_check": {
-        "failure": "The Horizontal Data Resolution Unit provided `{}` is invalid.",
+        "failure": "The Horizontal Data Resolution Unit provided `{}` does not align with the controlled vocabulary.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Extent"
         },
-        "remediation": "Please provide a Horizontal Data Resolution Unit from the following list: ['Decimal Degrees', 'Kilometers', 'Meters', 'Statute Miles', 'Nautical Miles', 'Not provided']"
+        "remediation": "Recommend providing a Horizontal Data Resolution Unit from the following list: ['Decimal Degrees', 'Kilometers', 'Meters', 'Statute Miles', 'Nautical Miles', 'Not provided']"
     },
     "dif_instrument_short_long_name_consistency_check": {
-        "failure": "The provided instrument short name `{}` and long name `{}` aren't consistent.",
+        "failure": "The provided instrument short name `{}` and long name `{}` are not consistent.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Instrument"
         },
-        "remediation": "Please supply the corresponding long name for the short name."
+        "remediation": "Please supply the corresponding long name for the provided short name."
     },
     "dif_campaign_short_long_name_consistency_check": {
-        "failure": "The provided campaign short name `{}` and long name `{}` aren't consistent.",
+        "failure": "The provided campaign short name `{}` and long name `{}` are not consistent.",
         "help": {
             "message": "",
             "url": ""
         },
-        "remediation": "Please supply the corresponding long name for the short name."
+        "remediation": "Please supply the corresponding long name for the provided short name."
     },
     "url_description_uniqueness_check": {
         "failure": "Duplicate URL description name/s `{}`.",
