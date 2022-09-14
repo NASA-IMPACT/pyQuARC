@@ -168,6 +168,58 @@ def StringValidator_abstract_length_check(val_function, value):
                 return val_function(value[0])
     except:
         return 'warning'
+def StringValidator_characteristic_name_length_check(val_function, value):
+    try:
+        if(isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0], str)):
+                return val_function(value[0])
+    except:
+        return 'error'
+def StringValidator_characteristic_desc_length_check(val_function, value):
+    try:
+        if(isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0], value[i][1], value[i][2]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0],str)):
+                return val_function(value[0], value[1], value[2])
+    except:
+        return 'error'
+def StringValidator_characteristic_unit_length_check(val_function, value):
+    try:
+        if(isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0], value[i][1], value[i][2]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0], str)):
+                return val_function(value[0], value[1], value[2])
+    except:
+        return 'error'
+def StringValidator_characteristic_value_length_check(val_function, value):
+    try:
+        if(isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0], str)):
+                return val_function(value[0])
+    except:
+        return 'error'    
 # def StringValidator_compare_test(val_function, value): and so on... for validator functions --> could move these functions to another file
 # input format
 while format_in not in format_dict.keys():
@@ -185,7 +237,7 @@ for i in format_choice:
             check_id = rule_mapping[i]['check_id']
             print(f'check_id: {check_id}')
         except KeyError:
-            print(f"'check_id' key does not exist for this rule in rule_mapping.json")
+            print(f"'check_id' key does not exist for {rule_mapping[i]['rule_name']} rule in rule_mapping.json")
         if check_id in checks:
             data_type = checks[check_id]['data_type']
             check_function = checks[check_id]['check_function']
