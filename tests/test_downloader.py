@@ -1,6 +1,7 @@
+import sys
+import os
+sys.path.append(os.getcwd())
 from pyQuARC.code.downloader import Downloader
-
-
 class TestDownloader:
     """
     Test cases for the methods in Downloader class in downloder.py

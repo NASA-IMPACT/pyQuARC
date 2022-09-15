@@ -1,6 +1,7 @@
+import sys
+import os
+sys.path.append(os.getcwd())
 from pyQuARC.code.string_validator import StringValidator
-
-
 class TestValidator:
     """
         Test cases for the validator script in validator.py
