@@ -1,3 +1,6 @@
+import sys
+import os
+sys.path.append(os.getcwd())
 from pyQuARC.code.string_validator import StringValidator
 
 

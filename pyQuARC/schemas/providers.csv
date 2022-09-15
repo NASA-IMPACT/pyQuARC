@@ -1,4 +1,4 @@
-"Keyword Version: 14.2","Revision: 2022-08-12 14:32:50","Timestamp: 2022-08-31 09:54:13","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers/?format=xml","Case native"
+"Keyword Version: 14.3","Revision: 2022-08-26 10:32:56","Timestamp: 2022-09-15 13:10:19","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers/?format=xml","Case native"
 Bucket_Level0,Bucket_Level1,Bucket_Level2,Bucket_Level3,Short_Name,Long_Name,Data_Center_URL,UUID
 "ACADEMIC","GERMANY","","","DE/DLR","German Aerospace Center (DLR)","","2f9d7c12-c02d-41fb-a168-4d91794187f7"
 "ACADEMIC","GERMANY","","","","","","d780c4ea-4b39-4fda-a0d3-4f5bee42530d"

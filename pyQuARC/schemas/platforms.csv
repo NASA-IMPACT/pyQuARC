@@ -1,4 +1,4 @@
-"Keyword Version: 14.2","Revision: 2022-08-16 12:26:58","Timestamp: 2022-08-31 09:56:29","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms/?format=xml","Case native"
+"Keyword Version: 14.3","Revision: 2022-08-26 10:33:29","Timestamp: 2022-09-15 13:11:27","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms/?format=xml","Case native"
 Basis,Category,Sub_Category,Short_Name,Long_Name,UUID
 "Air-based Platforms","Balloons","","BALLOONS","","a1586112-38f5-461c-9e88-0a95cf62062c"
 "Air-based Platforms","Balloons","","EOLE","","95707b1d-4451-4958-af57-0fdf70444cac"

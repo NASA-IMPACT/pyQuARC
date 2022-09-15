@@ -1,7 +1,7 @@
+import sys
 import os
-
+sys.path.append(os.getcwd())
 from xmltodict import parse
-
 from pyQuARC.code.schema_validator import SchemaValidator
 
 KEYS = [

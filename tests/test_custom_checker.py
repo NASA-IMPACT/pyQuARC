@@ -1,9 +1,10 @@
 from xmltodict import parse
-
+import sys
+import os
+sys.path.append(os.getcwd())
 from pyQuARC.code.custom_checker import CustomChecker
-
-from .fixtures.custom_checker import INPUT_OUTPUT
-from .common import read_test_metadata
+from tests.fixtures.custom_checker import INPUT_OUTPUT
+from tests.common import read_test_metadata
 
 
 class TestCustomChecker:

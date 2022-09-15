@@ -1,4 +1,4 @@
-"Keyword Version: 14.2","Revision: 2022-08-12 14:32:45","Timestamp: 2022-08-31 11:53:10","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/locations/?format=xml","Case native"
+"Keyword Version: 14.3","Revision: 2022-08-26 10:32:51","Timestamp: 2022-09-15 13:11:17","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/locations/?format=xml","Case native"
 Location_Category,Location_Type,Location_Subregion1,Location_Subregion2,Location_Subregion3,Location_Subregion4,UUID
 "CONTINENT","AFRICA","CENTRAL AFRICA","ANGOLA","","","9b0a194d-d617-4fed-9625-df176319892d"
 "CONTINENT","AFRICA","CENTRAL AFRICA","CAMEROON","","","a028edce-a3d9-4a16-a8c7-d2cb12d3a318"
