@@ -36,8 +36,8 @@
         "invalid": [["http://www.fakefakestillfaketotallyfake.com/"],["http://blahblahblahblahhh.org/"]]
     },
     "shortname_uniqueness": {
-        "valid": ["Aquarius Official Release Level 3 Ancillary Reynolds Sea Surface Temperature Standard Mapped Image 7-Day Data V5.0","AQUARIUS_L3_ANCILLARY_SST_SMI_7DAY_V5"],
-        "invalid": ["AQUARIUS_L3_ANCILLARY_SST_SMI_7DAY_V5","AQUARIUS_L3_ANCILLARY_SST_SMI_7DAY_V5"]
+        "valid": ["Aquarius Official Release Level 3 Ancillary Reynolds Sea Surface Temperature Standard Mapped Image 7-Day Data V5.0","AQUARIUS_L3_ANCILLARY_SST_SMI_7DAY_V5", "neq"],
+        "invalid": ["AQUARIUS_L3_ANCILLARY_SST_SMI_7DAY_V5","AQUARIUS_L3_ANCILLARY_SST_SMI_7DAY_V5", "neq"]
     },
     "abstract_length_check": {
         "valid": ["The Harmonized Landsat Sentinel-2 (HLS) project provides consistent surface reflectance (SR) and top of atmosphere (TOA) brightness data from a virtual constellation of satellite sensors. The Operational Land Imager (OLI) is housed aboard the joint NASA/USGS Landsat 8 and Landsat 9 satellites, while the Multi-Spectral Instrument (MSI) is mounted aboard Europe's Copernicus Sentinel-2A and Sentinel-2B satellites. The combined measurement enables global observations of the land every 2-3 days at 30-meter (m) spatial resolution. The HLS project uses a set of algorithms to obtain seamless products from OLI and MSI that include atmospheric correction, cloud and cloud-shadow masking, spatial co-registration and common gridding, illumination and view angle normalization, and spectral bandpass adjustment. The HLSL30 product provides 30-m Nadir Bidirectional Reflectance Distribution Function (BRDF)-Adjusted Reflectance (NBAR) and is derived from Landsat 8/9 OLI data products. The HLSS30 and HLSL30 products are gridded to the same resolution and Military Grid Reference System (MGRS)(https://hls.gsfc.nasa.gov/products-description/tiling-system/) tiling system, and thus are 'stackable' for time series analysis. The HLSL30 product is provided in Cloud Optimized GeoTIFF (COG) format, and each band is distributed as a separate file. There are 11 bands included in the HLSL30 product along with one quality assessment (QA) band and four angle bands. See the User Guide for a more detailed description of the individual bands provided in the HLSL30 product."],
@@ -76,8 +76,8 @@
         "invalid": ["2000-01-01T00:00:00Z", "now", "gte"]
     },
     "ends_at_present_flag_logic_check": {
-        "valid": [["true","","ACTIVE"],["false","2007-07-04T00:00:00Z","COMPLETE"]],
-        "invalid": [["true","2007-07-04T00:00:00Z","COMPLETE"],["false","","ACTIVE"]]
+        "valid": [["True","","ACTIVE"],["False","2007-07-04T00:00:00Z","COMPLETE"]],
+        "invalid": [["True","2007-07-04T00:00:00Z","COMPLETE"],["False","","ACTIVE"]]
     },
     "ends_at_present_flag_presence_check": {
         "valid": ["", "2007-07-04T00:00:00Z", "COMPLETE"],
@@ -92,25 +92,8 @@
         "invalid": [["THREAD"], ["SINK"], ["ESF"], ["LOGIC"], ["3D"], ["SPACE"], ["3DSPACE"], ["3D_THREAD"], ["SPACE_THREAD"], ["3DSPACE_THREAD"]]
     },
     "characteristic_name_check": {
-        "valid": [
-            "AircraftID",
-            {
-                "Name": "AircraftID",
-                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
-                "DataType": "STRING",
-                "Unit": "Not Applicable",
-                "Value": "N529NA"
-            }
-        ],
-        "invalid": [
-            "",
-            {
-                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
-                "DataType": "STRING",
-                "Unit": "Not Applicable",
-                "Value": "N529NA"
-            }
-        ]
+        "valid": ["AircraftID", {"Name": "AircraftID", "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft", "DataType": "STRING", "Unit": "Not Applicable", "Value": "N529NA"}],
+        "invalid": ["",{"Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft", "DataType": "STRING", "Unit": "Not Applicable", "Value": "N529NA"}]
     },
     "characteristic_desc_check": {
         "valid": [
@@ -191,8 +174,60 @@
         "invalid": ["Did you ever hear the tragedy of Darth Plagueis The Wise? I thought not. It's not a story the Jedi would tell you. It's a Sith legend. Darth Plagueis was a Dark Lord of the Sith, so powerful and so wise he could use the Force to influence the midichlorians to create life... He had such a knowledge of the dark side that he could even keep the ones he cared about from dying. The dark side of the Force is a pathway to many abilities some consider to be unnatural. He became so powerful... the only thing he was afraid of was losing his power, which eventually, of course, he did. Unfortunately, he taught his apprentice everything he knew, then his apprentice killed him in his sleep. Ironic. He could save others from death, but not himself."]
     },
     "mime_type_check": {
-        "valid": ["text/xml", "USE SERVICE API"],
-        "invalid": ["", "USE SERVICE API"]
+        "valid": [
+            "text/xml",
+            "USE SERVICE API", 
+            [
+                "application/json",
+                "application/xml",
+                "application/x-netcdf",
+                "application/gml+xml",
+                "application/vnd.google-earth.kml+xml",
+                "image/gif",
+                "image/tiff",
+                "image/bmp",
+                "text/csv",
+                "text/xml",
+                "application/pdf",
+                "application/x-hdf",
+                "application/xhdf5",
+                "application/octet-stream",
+                "application/vnd.google-earth.kmz",
+                "image/jpeg",
+                "image/png",
+                "image/vnd.collada+xml",
+                "text/html",
+                "text/plain",
+                "Not provided"
+            ]
+        ],
+        "invalid": [
+            "",
+            "USE SERVICE API",
+            [
+                "application/json",
+                "application/xml",
+                "application/x-netcdf",
+                "application/gml+xml",
+                "application/vnd.google-earth.kml+xml",
+                "image/gif",
+                "image/tiff",
+                "image/bmp",
+                "text/csv",
+                "text/xml",
+                "application/pdf",
+                "application/x-hdf",
+                "application/xhdf5",
+                "application/octet-stream",
+                "application/vnd.google-earth.kmz",
+                "image/jpeg",
+                "image/png",
+                "image/vnd.collada+xml",
+                "text/html",
+                "text/plain",
+                "Not provided"
+            ]
+        ]
     },
     "coordinate_system_check": {
         "valid": ["GEODETIC"],
@@ -251,7 +286,7 @@
         "invalid": ["huntsville"]
     },
     "location_gcmd_check": {
-        "valid": ["CONTINENT", "NORTH AMERICA", "UNITED STATES", "ALABAMA", "THE UNIVERSITY OF ALABAMA IN HUNTSVILLE"],
+        "valid": ["CONTINENT", "NORTH AMERICA", "UNITED STATES OF AMERICA", "ALABAMA", ""],
         "invalid": ["AFRICA", "OCEAN", "ARCTIC", "SOUTHERN OCEAN", "SAHEL"]
     },
     "platform_type_gcmd_check": {
@@ -332,7 +367,7 @@
     },
     "doi_missing_reason_explanation": {
         "valid": ["DOI missing reason", "Not Applicable", ""],
-        "invalid": ["", "", ""]
+        "invalid": ["", "Not Applicable", ""]
     },
     "collection_progress_consistency_check": {
         "valid": ["IN PROGRESS", "true", ""],
@@ -351,32 +386,82 @@
         "invalid": ["2016-06-29T00:00:00.000Z","ABOLVIS1A","1"]
     },
     "future_date_check": {
-        "valid": ["REVIEW", "REVIEW"],
-        "invalid": ["idk", "idk"]
+        "valid": ["2050-06-29T14:39:12.000Z", "now", "gte"],
+        "invalid": ["2017-06-29T14:39:12.000Z", "now", "gte"]
     },
     "iso_topic_category_check": {
-        "valid": ["DISASTER"],
-        "invalid": ["idk"]
+        "valid": [
+            "DISASTER",
+            [
+                "BIOTA",
+                "BOUNDARIES",
+                "CLIMATOLOGY/METEOROLOGY/ATMOSPHERE",
+                "DISASTER",
+                "ECONOMY",
+                "ELEVATION",
+                "ENVIRONMENT",
+                "EXTRA TERRESTRIAL",
+                "FARMING",
+                "GEOSCIENTIFIC INFORMATION",
+                "HEALTH",
+                "IMAGERY/BASE MAPS/EARTH COVER",
+                "INLAND WATERS",
+                "INTELLIGENCE/MILITARY",
+                "LOCATION",
+                "OCEANS",
+                "PLANNING CADASTRE",
+                "SOCIETY",
+                "STRUCTURE",
+                "TRANSPORTATION",
+                "UTILITIES/COMMUNICATIONS"
+            ]
+        ],
+        "invalid": [
+            "idk",
+            [
+                "BIOTA",
+                "BOUNDARIES",
+                "CLIMATOLOGY/METEOROLOGY/ATMOSPHERE",
+                "DISASTER",
+                "ECONOMY",
+                "ELEVATION",
+                "ENVIRONMENT",
+                "EXTRA TERRESTRIAL",
+                "FARMING",
+                "GEOSCIENTIFIC INFORMATION",
+                "HEALTH",
+                "IMAGERY/BASE MAPS/EARTH COVER",
+                "INLAND WATERS",
+                "INTELLIGENCE/MILITARY",
+                "LOCATION",
+                "OCEANS",
+                "PLANNING CADASTRE",
+                "SOCIETY",
+                "STRUCTURE",
+                "TRANSPORTATION",
+                "UTILITIES/COMMUNICATIONS"
+            ]
+        ]
     },
     "dif10_date_not_provided_check": {
-        "valid": ["2017-06-29T14:39:12.000Z"],
-        "invalid": ["Not provided"]
+        "valid": ["2017-06-29T14:39:12.000Z", "NOT PROVIDED", "neq"],
+        "invalid": ["Not provided", "NOT PROVIDED", "neq"]
     },
     "temporal_extent_requirement_check": {
         "valid": ["2020-01-01T00:00:00Z", "", ""],
         "invalid": ["", "", ""]
     },
     "ftp_protocol_check": {
-        "valid": ["https://asdc.larc.nasa.gov/data/ARESE/ER2_MAS/"],
-        "invalid": ["ftp://heasarc.gsfc.nasa.gov/rosat/data"]
+        "valid": ["https://asdc.larc.nasa.gov/data/ARESE/ER2_MAS/", "FTP", "neq"],
+        "invalid": ["ftp://heasarc.gsfc.nasa.gov/rosat/data", "FTP", "neq"]
     },
     "citation_version_check": {
-        "valid": ["2.0", "1"],
-        "invalid": ["", ""]
+        "valid": ["2.0", "1", "eq"],
+        "invalid": ["", "", "eq"]
     },
     "default_date_check": {
-        "valid": ["2021-11-05T13:15:30Z", "2021-11-05T13:15:30Z"],
-        "invalid": ["202111-05T13:15:30Z", "202111-05T13:15:30Z"]
+        "valid": ["2021-11-05T13:15:30Z", "1970-01-01T00:00:00Z", "neq"],
+        "invalid": ["202111-05T13:15:30Z", "1970-01-01T00:00:00Z", "neq"]
     },
     "url_desc_presence_check": {
         "valid": [["the google search engine", "www.google.com"], ["https//doi.org", "doi home page"]],
@@ -411,8 +496,24 @@
         "invalid": ["", "", "", "", ""]
     },
     "sensor_number_check": {
-        "valid": ["2", "GLAS"],
-        "invalid": ["GLAS", "..."]
+        "valid": [
+            "1",
+            {
+                "Short_Name": "MODIS",
+                "Long_Name": "Moderate-Resolution Imaging Spectroradiometer",
+                "Technique": "Imaging Spectroradiometry",
+                "Sensor": "Example"
+            },
+            "Sensor"],
+        "invalid": [
+            "2",
+            {
+                "Short_Name": "MODIS",
+                "Long_Name": "Moderate-Resolution Imaging Spectroradiometer",
+                "Technique": "Imaging Spectroradiometry",
+                "Sensor": "Example"
+            },
+            "Sensor"]
     },
     "data_center_short_name_gcmd_check": {
        "valid": [["NSIDC"], ["NASA/GSFC/SED/ESD/GCDC/OB.DAAC"]],
@@ -431,8 +532,28 @@
         "invalid": ["gulfstream 3"]
     },
     "horizontal_data_resolution_unit_check": {
-        "valid": [["Decimal Degrees"], ["Kilometers"], ["Meters"], ["Statute Miles"], ["Nautical Miles"], ["Not provided"]],
-        "invalid": [["Degrees"], ["Miles"], ["Feet"], ["Arabic Mile"], ["Pyramid inch"], ["Provided"]]
+        "valid": [
+            "Decimal Degrees",
+            [
+                "Decimal Degrees",
+                "Kilometers",
+                "Meters",
+                "Statute Miles",
+                "Nautical Miles",
+                "Not provided"
+            ]
+        ],
+        "invalid": [
+            "Try a new food each week.",
+            [
+                "Decimal Degrees",
+                "Kilometers",
+                "Meters",
+                "Statute Miles",
+                "Nautical Miles",
+                "Not provided"
+            ]
+        ]
     },
     "url_description_uniqueness_check": {
         "valid": ["The guide document contains detailed information about the dataset."],
