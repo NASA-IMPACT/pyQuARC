@@ -1,9 +1,9 @@
+import sys
+import os
+sys.path.append(os.getcwd())
+from tests.fixtures.checker import FUNCTION_MAPPING
 from pyQuARC.code.checker import Checker
-
-from .fixtures.checker import FUNCTION_MAPPING
-from .common import read_test_metadata
-
-
+from tests.common import read_test_metadata
 class TestChecker:
     """
     Test cases for the Checker script in checker.py
