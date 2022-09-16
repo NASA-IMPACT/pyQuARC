@@ -31,7 +31,7 @@ rule_mapping = json.load(f6)
 checks = json.load(f7)
 # note: adding relation / data values to test files in valid / invalid lists
 code_checker = Checker()
-format_dict = {'dif10': dif10_checks, 'echo-c': echo_c_checks, 'echo-g': echo_c_checks, 'umm-c': umm_g_checks, 'umm-g': umm_g_checks}
+format_dict = {'dif10': dif10_checks, 'echo-c': echo_c_checks, 'echo-g': echo_g_checks, 'umm-c': umm_c_checks, 'umm-g': umm_g_checks}
 format_in = ''
 rule = ''
 check_id = ''
@@ -103,6 +103,149 @@ def controlled_keywords_check(val_function, value):
     if (isinstance(value[0],str)):
         return val_function(value[0])
 
+def UrlValidator_Url_check(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0],str)):
+                return val_function(value[0])
+    except:
+        return 'error'
+def UrlValidator_Doi_validity_check(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0]),str):
+                return val_function(value[0])
+    except:
+            return 'error'
+def UrlValidator_get_data_url_check(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0],str)):
+                return val_function(value[0])
+    except:
+        return 'error'
+def CustomValidator_shortname_uniqueness(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0], str)):
+                return val_function(value[0])
+    except:
+        return 'error'
+def CustomValidator_Characteristic_name_uniqueness_check(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0], str)):
+                return val_function(value[0])
+    except:
+        return 'error'
+def CustomValidator_url_description_uniqueness_check(val_function, value):
+    try:
+        if(isinstance(value[0]),list):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0], str)):
+                return val_function(value[0])
+    except:
+        return 'error'
+def StringValidator_abstract_length_check(val_function, value):
+    try:
+        if(isinstance(value[0]),list):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0], str)):
+                return val_function(value[0])
+    except:
+        return 'warning'
+def StringValidator_characteristic_name_length_check(val_function, value):
+    try:
+        if(isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0], str)):
+                return val_function(value[0])
+    except:
+        return 'error'
+def StringValidator_characteristic_desc_length_check(val_function, value):
+    try:
+        if(isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0], value[i][1], value[i][2]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0],str)):
+                return val_function(value[0], value[1], value[2])
+    except:
+        return 'error'
+def StringValidator_characteristic_unit_length_check(val_function, value):
+    try:
+        if(isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0], value[i][1], value[i][2]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0], str)):
+                return val_function(value[0], value[1], value[2])
+    except:
+        return 'error'
+def StringValidator_characteristic_value_length_check(val_function, value):
+    try:
+        if(isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i +1
+                return return_list
+            if (isinstance(value[0], str)):
+                return val_function(value[0])
+    except:
+        return 'error'    
 # def StringValidator_compare_test(val_function, value): and so on... for validator functions --> could move these functions to another file
 # input format
 while format_in not in format_dict.keys():
