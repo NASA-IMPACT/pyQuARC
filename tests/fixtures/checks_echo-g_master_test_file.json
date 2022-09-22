@@ -98,8 +98,24 @@
         "invalid": ["-180", "30", "180", "35"]
     },
     "vertical_spatial_domain_type_check_granule": {
-        "valid": ["Depth"],
-        "invalid": ["Deep"]
+        "valid": [
+            "Depth",
+        [
+            "Atmosphere Layer",
+            "Pressure",
+            "Altitude",
+            "Depth"
+        ]
+    ],
+        "invalid": [
+            "Deep",
+        [
+            "Atmosphere Layer",
+            "Pressure",
+            "Altitude",
+            "Depth"
+        ]
+    ]
     },
     "campaign_name_presence_check": {
         "valid": ["AAOE"],
@@ -122,8 +138,8 @@
         "invalid": [""]
     },
     "opendap_url_location_check": {
-        "valid": ["https://asdc.larc.nasa.gov/data/CALIPSO/LID_L3_Cloud_Occurrence-Standard-V1-00/"],
-        "invalid": ["https://opendap.larc.nasa.gov/opendap/CALIPSO/LID_L3_Cloud_Occurrence-Standard-V1-00/2006/CAL_LID_L3_Cloud_Occurrence-Standard-V1-00.2006-06A.hdf.html"]
+        "valid": ["https://asdc.larc.nasa.gov/data/CALIPSO/LID_L3_Cloud_Occurrence-Standard-V1-00/", "opendap", "not_contains"],
+        "invalid": ["https://opendap.larc.nasa.gov/opendap/CALIPSO/LID_L3_Cloud_Occurrence-Standard-V1-00/2006/CAL_LID_L3_Cloud_Occurrence-Standard-V1-00.2006-06A.hdf.html", "opendap", "not_contains"]
     },
     "spatial_extent_requirement_fulfillment_check": {
         "valid": ["13.149, -59.625", "", "", ""],
@@ -146,8 +162,8 @@
         "invalid": ["", "", ""]
     },
     "default_date_check": {
-        "valid": ["2007-07-04T00:00:00Z","2007-07-04T00:00:00Z","2007-07-04T00:00:00Z","2007-07-04T00:00:00Z","2007-07-04T00:00:00Z","2007-07-04T00:00:00Z"],
-        "invalid": ["0704T00:00:00.000Z","0704T00:00:00.000Z","0704T00:00:00.000Z","0704T00:00:00.000Z","0704T00:00:00.000Z","0704T00:00:00.000Z"]
+        "valid": ["2007-07-04T00:00:00Z", "1970-01-01T00:00:00Z", "neq"],
+        "invalid": ["0704T00:00:00.000Z", "1970-01-01T00:00:00Z", "neq"]
     },
     "url_desc_presence_check": {
         "valid": [["the google search engine", "www.google.com"], ["doi home page", "https//doi.org"]],
@@ -166,12 +182,12 @@
         "invalid": ["NASA DC-8", "gpmcplolyx", "1", "GPM Ground Validation Cloud Physics LiDAR (CPL) OLYMPEX V1"]
     },
     "online_resource_description_uniqueness_check": {
-        "valid": ["this is a description", "this is another description"],
-        "invalid": ["this is a description", "this is a description"]
+        "valid": [["this is a description", "this is another description"], "Description"],
+        "invalid": [["this is a description", "this is a description"], "Description"]
     },
     "online_access_description_uniqueness_check": {
-        "valid": ["description 1", "description 2"],
-        "invalid": ["description 1", "description 1"]
+        "valid": [["description 1", "description 2"], "URLDescription"],
+        "invalid": [["description 1", "description 1"], "URLDescription"]
     },
     "granule_single_date_time_check": {
         "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],

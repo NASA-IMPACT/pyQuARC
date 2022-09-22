@@ -292,20 +292,92 @@
         "invalid": ["-180", "30", "180", "35"]
     },
     "vertical_spatial_domain_type_check": {
-        "valid": ["Atmosphere Layer"],
-        "invalid": ["Stratosphere"]
+        "valid": [
+            "Atmosphere Layer",
+        [
+            "Atmosphere Layer",
+            "Maximum Altitude",
+            "Maximum Depth",
+            "Minimum Altitude",
+            "Minimum Depth"
+        ]
+    ],
+        "invalid": [
+            "Stratosphere",
+        [
+            "Atmosphere Layer",
+            "Maximum Altitude",
+            "Maximum Depth",
+            "Minimum Altitude",
+            "Minimum Depth"
+        ]
+    ]
     },
     "spatial_coverage_type_check": {
-        "valid": ["VERTICAL"],
-        "invalid": ["diagonal"]
+        "valid": [
+            "VERTICAL",
+        [
+            "HORIZONTAL",
+            "VERTICAL",
+            "ORBITAL",
+            "HORIZONTAL_VERTICAL",
+            "ORBITAL_VERTICAL",
+            "HORIZONTAL_ORBITAL",
+            "HORIZONTAL_VERTICAL_ORBITAL"
+        ]
+    ],
+        "invalid": [
+            "diagonal",
+        [
+            "HORIZONTAL",
+            "VERTICAL",
+            "ORBITAL",
+            "HORIZONTAL_VERTICAL",
+            "ORBITAL_VERTICAL",
+            "HORIZONTAL_ORBITAL",
+            "HORIZONTAL_VERTICAL_ORBITAL"
+        ]
+    ]
     },
     "depth_unit_check": {
-        "valid": ["diagonal"],
-        "invalid": ["ft"]
+        "valid": [
+            "Feet",
+        [
+            "Fathoms",
+            "Feet",
+            "HectoPascals",
+            "Meters",
+            "Millibars"
+        ]
+    ],
+        "invalid": [
+            "ft",
+        [
+            "Fathoms",
+            "Feet",
+            "HectoPascals",
+            "Meters",
+            "Millibars"
+        ]
+    ]
     },
     "altitude_unit_check": {
-        "valid": ["Kilometers"],
-        "invalid": ["km"]
+        "valid": [
+            "Kilometers",
+        [
+            "HectoPascals",
+            "Kilometers",
+            "Millibars"
+        ]
+    ],
+        "invalid": [
+            "km",
+        [
+            "HectoPascals",
+            "Kilometers",
+            "Millibars"
+        ]
+    ]
     },
     "campaign_name_presence_check": {
         "valid": ["AAOE"],
@@ -336,8 +408,8 @@
         "invalid": [""]
     },
     "opendap_url_location_check": {
-        "valid": ["https://asdc.larc.nasa.gov/data/CALIPSO/LID_L3_Cloud_Occurrence-Standard-V1-00/"],
-        "invalid": ["https://opendap.larc.nasa.gov/opendap/CALIPSO/LID_L3_Cloud_Occurrence-Standard-V1-00/2006/CAL_LID_L3_Cloud_Occurrence-Standard-V1-00.2006-06A.hdf.html"]
+        "valid": ["https://asdc.larc.nasa.gov/data/CALIPSO/LID_L3_Cloud_Occurrence-Standard-V1-00/", "opendap", "not_contains"],
+        "invalid": ["https://opendap.larc.nasa.gov/opendap/CALIPSO/LID_L3_Cloud_Occurrence-Standard-V1-00/2006/CAL_LID_L3_Cloud_Occurrence-Standard-V1-00.2006-06A.hdf.html", "opendap", "not_contains"]
     },
     "location_keyword_presence_check": {
         "valid": ["UNITED STATES OF AMERICA"],
@@ -380,8 +452,8 @@
         "invalid": ["", "https://opendap.larc.nasa.gov/opendap/hyrax/ACEPOL/AircraftRemoteSensing_AirHARP_Data_1/ACEPOL-AIRHARP-L1B_ER2_20171023180751_R2.h5"]
     },
     "characteristic_name_uniqueness_check": {
-        "valid": ["NASA DC-8", "NASA ER-2"],
-        "invalid": ["NASA DC-8", "NASA DC-8"]
+        "valid": [["NASA DC-8", "NASA ER-2"], "Name"],
+        "invalid": [["NASA DC-8", "NASA DC-8"], "Name"]
     },
     "validate_ending_datetime_against_granules": {
         "valid": ["2017-07-17T20:41:47.000Z","ABOLVIS1A","1"],
