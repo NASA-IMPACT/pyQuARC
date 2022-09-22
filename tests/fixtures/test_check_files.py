@@ -245,7 +245,8 @@ def StringValidator_characteristic_value_length_check(val_function, value):
             if (isinstance(value[0], str)):
                 return val_function(value[0])
     except:
-        return 'error'    
+        return 'error'
+def 
 # def StringValidator_compare_test(val_function, value): and so on... for validator functions --> could move these functions to another file
 # input format
 while format_in not in format_dict.keys():
