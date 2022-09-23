@@ -125,7 +125,7 @@ def UrlValidator_Doi_validity_check(val_function, value):
                 return_list.append(val_function(value[i][0]))
                 i = i +1
                 return return_list
-            if (isinstance(value[0]),str):
+            if (isinstance(value[0],str)):
                 return val_function(value[0])
     except:
             return 'error'
@@ -170,7 +170,7 @@ def CustomValidator_Characteristic_name_uniqueness_check(val_function, value):
         return 'error'
 def CustomValidator_url_description_uniqueness_check(val_function, value):
     try:
-        if(isinstance(value[0]),list):
+        if(isinstance(value[0],list)):
             i = 0
             return_list = []
             for x in value:
@@ -183,7 +183,7 @@ def CustomValidator_url_description_uniqueness_check(val_function, value):
         return 'error'
 def StringValidator_abstract_length_check(val_function, value):
     try:
-        if(isinstance(value[0]),list):
+        if(isinstance(value[0],list)):
             i = 0
             return_list = []
             for x in value:
