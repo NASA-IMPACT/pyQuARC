@@ -16,8 +16,8 @@
         "invalid": ["http://www.fakefakestillfaketotallyfake.com/"]
     },
     "delete_time_check": {
-        "valid": ["2049-01-01T00:00:00Z"],
-        "invalid": ["2000-01-01T00:00:00Z"]
+        "valid": ["2049-01-01T00:00:00Z", "now", "gte"],
+        "invalid": ["2000-01-01T00:00:00Z", "now", "gte"]
     },
     "characteristic_name_check": {
         "valid": [
@@ -62,8 +62,60 @@
         ]
     },
     "mime_type_check": {
-        "valid": ["text/xml", "USE SERVICE API"],
-        "invalid": ["", "USE SERVICE API"]
+        "valid": [
+            "text/xml",
+            "USE SERVICE API",
+            [
+                "application/json",
+                "application/xml",
+                "application/x-netcdf",
+                "application/gml+xml",
+                "application/vnd.google-earth.kml+xml",
+                "image/gif",
+                "image/tiff",
+                "image/bmp",
+                "text/csv",
+                "text/xml",
+                "application/pdf",
+                "application/x-hdf",
+                "application/xhdf5",
+                "application/octet-stream",
+                "application/vnd.google-earth.kmz",
+                "image/jpeg",
+                "image/png",
+                "image/vnd.collada+xml",
+                "text/html",
+                "text/plain",
+                "Not provided"
+            ]
+        ],
+        "invalid": [
+            "",
+            "USE SERVICE API",
+            [
+                "application/json",
+                "application/xml",
+                "application/x-netcdf",
+                "application/gml+xml",
+                "application/vnd.google-earth.kml+xml",
+                "image/gif",
+                "image/tiff",
+                "image/bmp",
+                "text/csv",
+                "text/xml",
+                "application/pdf",
+                "application/x-hdf",
+                "application/xhdf5",
+                "application/octet-stream",
+                "application/vnd.google-earth.kmz",
+                "image/jpeg",
+                "image/png",
+                "image/vnd.collada+xml",
+                "text/html",
+                "text/plain",
+                "Not provided"
+            ]
+        ]
     },
     "instrument_short_name_gcmd_check": {
         "valid": [["RADAR ECHO SOUNDERS"],["TSI-3563 Neph"]],
