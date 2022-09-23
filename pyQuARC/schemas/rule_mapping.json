@@ -3942,8 +3942,8 @@
             "umm-c": [
                 {
                     "fields": [
-                        "RelatedUrl/Type",
-                        "RelatedUrl"
+                        "RelatedUrls/Type",
+                        "RelatedUrls"
                     ]
                 }
             ],
