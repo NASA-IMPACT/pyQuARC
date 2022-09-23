@@ -33,7 +33,7 @@
     },
     "url_check": {
         "valid": ["https://www.udemy.com/topic/real-estate-investing/free/"],
-        "invalid": [["http://www.fakefakestillfaketotallyfake.com/"],["http://blahblahblahblahhh.org/"]]
+        "invalid": [["http://www.fakefakestillfaketotallyfake.com/"], ["http://blahblahblahblahhh.org/"]]
     },
     "shortname_uniqueness": {
         "valid": ["Aquarius Official Release Level 3 Ancillary Reynolds Sea Surface Temperature Standard Mapped Image 7-Day Data V5.0","AQUARIUS_L3_ANCILLARY_SST_SMI_7DAY_V5", "neq"],
