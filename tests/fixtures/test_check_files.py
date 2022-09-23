@@ -11,7 +11,6 @@ import json
 import sys
 import os
 sys.path.append(os.getcwd())
-from pyQuARC.code.constants import SCHEMAS
 from pyQuARC.code.checker import Checker
 # Opening JSON files
 f = open('tests/fixtures/checks_dif10_master_test_file.json')
@@ -29,7 +28,7 @@ umm_c_checks = json.load(f4)
 umm_g_checks = json.load(f5)
 rule_mapping = json.load(f6)
 checks = json.load(f7)
-# note: relation / data values should currently be added to test files in valid / invalid lists
+# note: field / relation / data values should be added to test files in valid / invalid lists
 code_checker = Checker()
 format_dict = {'dif10': dif10_checks, 'echo-c': echo_c_checks, 'echo-g': echo_g_checks, 'umm-c': umm_c_checks, 'umm-g': umm_g_checks}
 format_in = ''
@@ -51,7 +50,6 @@ def DatetimeValidator_iso_format_check_test(val_function, value):
             return val_function(value[0])
     except:
         return 'error (within DatetimeValidator_iso_format_check_test function)'
-
 def DatetimeValidator_compare_test(val_function, value):
     dependency = code_checker.map_to_function("datetime", "iso_format_check")
     dependency_bool = True
@@ -113,11 +111,11 @@ def CustomValidator_one_item_presence_check_test(val_function, value):
             i = 0
             return_list = []
             for x in value:
-                return_list.append(val_function(value[i][0]))
+                return_list.append(val_function(*value[i]))
                 i = i + 1
             return return_list
         if (isinstance(value[0],str)):
-            return val_function(value[0])
+            return val_function(*value)
     except:
         return 'error'
 def StringValidator_compare_test(val_function, value):
@@ -326,7 +324,293 @@ def CustomValidator_collection_progress_consistency_check_test(val_function, val
             return val_function(value[0], value[1], value[2])
     except:
         return 'error'
-# working on function to assert valid / invalid inputs
+def StringValidator_organization_short_name_gcmd_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
+    except:
+        return 'error'
+def StringValidator_organization_long_name_gcmd_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
+    except:
+        return 'error'
+def StringValidator_instrument_short_name_gcmd_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
+    except:
+        return 'error'    
+def StringValidator_instrument_long_name_gcmd_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
+    except:
+        return 'error'    
+def StringValidator_platform_short_name_gcmd_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
+    except:
+        return 'error'
+def StringValidator_data_format_gcmd_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
+    except:
+        return 'error'
+def StringValidator_platform_long_name_gcmd_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
+    except:
+        return 'error'
+def StringValidator_spatial_keyword_gcmd_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
+    except:
+        return 'error'
+def StringValidator_platform_type_gcmd_check_test(valfunction, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
+    except:
+        return 'error'
+def StringValidator_campaign_short_name_gcmd_check_test(valfunction, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
+    except:
+        return 'error'
+def StringValidator_Campaign_long_name_gcmd_check_test(valfunction, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
+    except:
+        return 'error'
+def StringValidator_horizontal_range_res_gcmd_check_test(valfunction, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
+    except:
+        return 'error'
+def StringValidator_vertical_range_res_gcmd_check_test(valfunction, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
+    except:
+        return 'error'
+def StringValidator_temporal_range_res_gcmd_check_test(valfunction, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
+    except:
+        return 'error'
+def StringValidator_mime_type_gcmd_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
+    except:
+        return 'error'
+def StringValidator_idnnode_shortname_gcmd_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
+    except:
+        return 'error'
+def StringValidator_chrono_gcmd_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(*value[i]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(*value)
+    except:
+        return 'error'
+def StringValidator_length_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0], value[i][1], value[i][2]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0], value[1], value[2])
+    except:
+        return 'error'
+def StringValidator_validate_granule_instrument_against_collection_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0], value[i][1], value[i][2], value[i][3]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0], value[1], value[2], value[3])
+    except:
+        return 'error'
+def CustomValidator_boolean_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
+    except:
+        return 'error'
+def StringValidator_online_resource_type_gcmd_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
+    except:
+        return 'error'
+def CustomValidator_uniqueness_check_test(val_function, value):
+    try:
+        if (isinstance(value[0][0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0], value[i][1]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0][0],dict)):
+            return val_function(value[0], value[1])
+    except:
+        return 'error'
+# incomplete function to assert valid / invalid inputs
 def assert_func(val_function, val_function_test, valid, invalid):
     test_valid = val_function_test(val_function, valid)
     test_invalid = val_function_test(val_function, invalid)
@@ -344,11 +628,9 @@ def assert_func(val_function, val_function_test, valid, invalid):
     except:
         pass
 # input format
-"""
+
 while format_in not in format_dict.keys():
     format_in = input("Enter the metadata format. Choices are: echo-c (echo10 collection), echo-g (echo10 granule), dif10 (dif10 collection), umm-c (umm-json collection), umm-g (umm-json granules)\n")
-"""
-format_in = "dif10"
 format_choice = format_dict[format_in]
 # iterating through the json
 for i in format_choice:
@@ -447,7 +729,76 @@ for i in format_choice:
             if val_function_name == 'CustomValidator.collection_progress_consistency_check':
                 print(f"with valid test input: {CustomValidator_collection_progress_consistency_check_test(val_function, valid)}")
                 print(f"with invalid test input: {CustomValidator_collection_progress_consistency_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.organization_short_name_gcmd_check':
+                print(f"with valid test input: {StringValidator_organization_short_name_gcmd_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_organization_short_name_gcmd_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.organization_long_name_gcmd_check':
+                print(f"with valid test input: {StringValidator_organization_long_name_gcmd_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_organization_long_name_gcmd_check_test(val_function, invalid)}")
                 # assert_func(val_function, CustomValidator_collection_progress_consistency_check_test, valid, invalid)
+            if val_function_name == 'StringValidator.instrument_short_name_gcmd_check':
+                print(f"with valid test input: {StringValidator_instrument_short_name_gcmd_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_instrument_short_name_gcmd_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.instrument_long_name_gcmd_check':
+                print(f"with valid test input: {StringValidator_instrument_long_name_gcmd_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_instrument_long_name_gcmd_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.platform_short_name_gcmd_check':
+                print(f"with valid test input: {StringValidator_platform_short_name_gcmd_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_platform_short_name_gcmd_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.data_format_gcmd_check':
+                print(f"with valid test input: {StringValidator_data_format_gcmd_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_data_format_gcmd_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.platform_long_name_gcmd_check':
+                print(f"with valid test input: {StringValidator_platform_long_name_gcmd_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_platform_long_name_gcmd_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.spatial_keyword_gcmd_check':
+                print(f"with valid test input: {StringValidator_spatial_keyword_gcmd_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_spatial_keyword_gcmd_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.platform_type_gcmd_check':
+                print(f"with valid test input: {StringValidator_platform_type_gcmd_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_platform_type_gcmd_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.campaign_short_name_gcmd_check':
+                print(f"with valid test input: {StringValidator_campaign_short_name_gcmd_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_campaign_short_name_gcmd_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.campaign_long_name_gcmd_check':
+                print(f"with valid test input: {StringValidator_Campaign_long_name_gcmd_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_Campaign_long_name_gcmd_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.horizontal_range_res_gcmd_check':
+                print(f"with valid test input: {StringValidator_horizontal_range_res_gcmd_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_horizontal_range_res_gcmd_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.vertical_range_res_gcmd_check':
+                print(f"with valid test input: {StringValidator_vertical_range_res_gcmd_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_vertical_range_res_gcmd_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.temporal_range_res_gcmd_check':
+                print(f"with valid test input: {StringValidator_temporal_range_res_gcmd_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_temporal_range_res_gcmd_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.mime_type_gcmd_check':
+                print(f"with valid test input: {StringValidator_mime_type_gcmd_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_mime_type_gcmd_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.idnnode_shortname_gcmd_check':
+                print(f"with valid test input: {StringValidator_idnnode_shortname_gcmd_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_idnnode_shortname_gcmd_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.chrono_gcmd_check':
+                print(f"with valid test input: {StringValidator_chrono_gcmd_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_chrono_gcmd_check_test(val_function, invalid)}")
+            if val_function_name == 'DatetimeValidator.iso_format_check':
+                print(f"with valid test input: {DatetimeValidator_iso_format_check_test(val_function, valid)}")
+                print(f"with invalid test input: {DatetimeValidator_iso_format_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.length_check':
+                print(f"with valid test input: {StringValidator_length_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_length_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.validate_granule_instrument_against_collection':
+                print(f"with valid test input: {StringValidator_validate_granule_instrument_against_collection_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_validate_granule_instrument_against_collection_test(val_function, invalid)}")
+            if val_function_name == 'CustomValidator.boolean_check':
+                print(f"with valid test input: {CustomValidator_boolean_check_test(val_function, valid)}")
+                print(f"with invalid test input: {CustomValidator_boolean_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.online_resource_type_gcmd_check':
+                print(f"with valid test input: {CustomValidator_boolean_check_test(val_function, valid)}")
+                print(f"with invalid test input: {CustomValidator_boolean_check_test(val_function, invalid)}")
+            if val_function_name == 'CustomValidator.uniqueness_check':
+                print(f"with valid test input: {CustomValidator_uniqueness_check_test(val_function, valid)}")
+                print(f"with invalid test input: {CustomValidator_uniqueness_check_test(val_function, invalid)}")
             # possibly: - create a list of validator check test functions
             # - see if modified val_function_name in function list (ex: f"{data_type.title()}Validator_{check_function}_test)
             # - call this func with valid and invalid values
