@@ -1532,20 +1532,20 @@
             "umm-c": [
                 {
                     "fields": [
-                        "Platform/Characteristics/Name",
-                        "Platform/Characteristics"
+                        "Platforms/Characteristics/Name",
+                        "Platforms/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/Characteristics/Name",
-                        "Platform/Instrument/Characteristics"
+                        "Platforms/Instruments/Characteristics/Name",
+                        "Platforms/Instruments/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/Characteristics/Name",
-                        "Platform/Instrument/ComposedOf/Characteristics"
+                        "Platforms/Instrument/ComposedOf/Characteristics/Name",
+                        "Platforms/Instrument/ComposedOf/Characteristics"
                     ]
                 }
             ],
@@ -1627,20 +1627,20 @@
             "umm-c": [
                 {
                     "fields": [
-                        "Platform/Characteristics/Description",
-                        "Platform/Characteristics"
+                        "Platforms/Characteristics/Description",
+                        "Platforms/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/Characteristics/Description",
-                        "Platform/Instrument/Characteristics"
+                        "Platforms/Instrument/Characteristics/Description",
+                        "Platforms/Instrument/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/Characteristics/Description",
-                        "Platform/Instrument/ComposedOf/Characteristics"
+                        "Platforms/Instrument/ComposedOf/Characteristics/Description",
+                        "Platforms/Instrument/ComposedOf/Characteristics"
                     ]
                 }
             ]
@@ -1694,20 +1694,20 @@
             "umm-c": [
                 {
                     "fields": [
-                        "Platform/Characteristics/Unit",
-                        "Platform/Characteristics"
+                        "Platforms/Characteristics/Unit",
+                        "Platforms/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/Characteristics/Unit",
-                        "Platform/Instrument/Characteristics"
+                        "Platforms/Instrument/Characteristics/Unit",
+                        "Platforms/Instrument/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/Characteristics/Unit",
-                        "Platform/Instrument/ComposedOf/Characteristics"
+                        "Platforms/Instrument/ComposedOf/Characteristics/Unit",
+                        "Platforms/Instrument/ComposedOf/Characteristics"
                     ]
                 }
             ]
@@ -1761,20 +1761,20 @@
             "umm-c": [
                 {
                     "fields": [
-                        "Platform/Characteristics/Value",
-                        "Platform/Characteristics"
+                        "Platforms/Characteristics/Value",
+                        "Platforms/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/Characteristics/Value",
-                        "Platform/Instrument/Characteristics"
+                        "Platforms/Instrument/Characteristics/Value",
+                        "Platforms/Instrument/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/Characteristics/Value",
-                        "Platform/Instrument/ComposedOf/Characteristics"
+                        "Platforms/Instrument/ComposedOf/Characteristics/Value",
+                        "Platforms/Instrument/ComposedOf/Characteristics"
                     ]
                 }
             ],
@@ -1850,17 +1850,17 @@
             "umm-c": [
                 {
                     "fields": [
-                        "Platform/Characteristics/Name"
+                        "Platforms/Characteristics/Name"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/Characteristics/Name"
+                        "Platforms/Instrument/Characteristics/Name"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/Characteristics/Name"
+                        "Platforms/Instrument/ComposedOf/Characteristics/Name"
                     ]
                 }
             ]
@@ -1974,17 +1974,17 @@
             "umm-c": [
                 {
                     "fields": [
-                        "Platform/Characteristics/Unit"
+                        "Platforms/Characteristics/Unit"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/Characteristics/Unit"
+                        "Platforms/Instrument/Characteristics/Unit"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/Characteristics/Unit"
+                        "Platforms/Instrument/ComposedOf/Characteristics/Unit"
                     ]
                 }
             ]
@@ -2026,17 +2026,17 @@
             "umm-c": [
                 {
                     "fields": [
-                        "Platform/Characteristics/Value"
+                        "Platforms/Characteristics/Value"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/Characteristics/Value"
+                        "Platforms/Instrument/Characteristics/Value"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/Characteristics/Value"
+                        "Platforms/Instrument/ComposedOf/Characteristics/Value"
                     ]
                 }
             ]
@@ -3292,13 +3292,6 @@
     "depth_unit_check": {
         "rule_name": "Depth Unit Controlled Vocabulary Check",
         "fields_to_apply": {
-            "echo-c": [
-                {
-                    "fields": [
-                        "Collection/SpatialInfo/VerticalCoordinateSystem/DepthSystemDefinition/DistanceUnits"
-                    ]
-                }
-            ],
             "dif10": [
                 {
                     "fields": [
@@ -3329,13 +3322,6 @@
     "altitude_unit_check": {
         "rule_name": "Altitude Unit Controlled Vocabulary Check",
         "fields_to_apply": {
-            "echo-c": [
-                {
-                    "fields": [
-                        "Collection/SpatialInfo/VerticalCoordinateSystem/AltitudeSystemDefinition/DistanceUnits"
-                    ]
-                }
-            ],
             "umm-c": [
                 {
                     "fields": [
@@ -3687,7 +3673,8 @@
             "echo-c": [
                 {
                     "fields": [
-                        "Collection/UseConstraints"
+                        "Collection/UseConstraints/LicenseURL/URL",
+                        "Collection/UseConstraints/LicenseURL/Description"
                     ]
                 }
             ],
@@ -4895,20 +4882,20 @@
             "umm-c": [
                 {
                     "fields": [
-                        "Platform/Characteristics/DataType",
-                        "Platform/Characteristics"
+                        "Platforms/Characteristics/DataType",
+                        "Platforms/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/Characteristics/DataType",
-                        "Platform/Instrument/Characteristics"
+                        "Platforms/Instrument/Characteristics/DataType",
+                        "Platforms/Instrument/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/Characteristics/DataType",
-                        "Platform/Instrument/ComposedOf/Characteristics"
+                        "Platforms/Instrument/ComposedOf/Characteristics/DataType",
+                        "Platforms/Instrument/ComposedOf/Characteristics"
                     ]
                 }
             ]

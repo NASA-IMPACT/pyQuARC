@@ -1,4 +1,4 @@
-"Keyword Version: 14.2","Revision: 2022-08-22 13:01:48","Timestamp: 2022-08-31 13:00:41","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=xml","Case native"
+"Keyword Version: 14.3","Revision: 2022-08-26 10:36:22","Timestamp: 2022-09-15 15:21:34","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=xml","Case native"
 Category,Topic,Term,Variable_Level_1,Variable_Level_2,Variable_Level_3,Detailed_Variable,UUID
 "EARTH SCIENCE SERVICES","DATA ANALYSIS AND VISUALIZATION","CALIBRATION/VALIDATION","CALIBRATION","","","","ecf29317-bd5e-447b-b911-f8bfb153c83b"
 "EARTH SCIENCE SERVICES","DATA ANALYSIS AND VISUALIZATION","CALIBRATION/VALIDATION","VALIDATION","","","","b283a59c-0e9a-469c-baf4-591b64cd4671"

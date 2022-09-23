@@ -1,8 +1,8 @@
+import sys
+import os
+sys.path.append(os.getcwd())
 from pyQuARC.code.datetime_validator import DatetimeValidator
-
-from .fixtures.validator import INPUT_OUTPUT
-
-
+from tests.fixtures.validator import INPUT_OUTPUT
 class TestValidator:
     """
         Test cases for the validator script in validator.py

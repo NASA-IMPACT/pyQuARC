@@ -1,4 +1,4 @@
-"Keyword Version: 14.2","Revision: 2022-08-22 12:23:43","Timestamp: 2022-08-31 12:11:54","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/projects/?format=xml","Case native"
+"Keyword Version: 14.3","Revision: 2022-09-02 11:57:23","Timestamp: 2022-09-15 13:09:48","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/projects/?format=xml","Case native"
 Bucket,Short_Name,Long_Name,UUID
 "A - C","25090-E/ANT","","07a12d76-3794-4d1f-8db3-96a4c9814d54"
 "A - C","AAE","Australasian Antarctic Expedition of 1911-14","cda4025c-b996-442d-90f9-1b75af7ff6e6"
@@ -444,6 +444,7 @@ Bucket,Short_Name,Long_Name,UUID
 "A - C","COUNTRY FOOD SAFETY","Engaging communities in the monitoring of zoonoses, country food safety and wildlife health.","061abbeb-2278-4274-a632-664a82cf7a0d"
 "A - C","COWVR-TEMPEST/STP-H8","COWVR and TEMPEST on Space Test Program-Houston 8 (STP-H8)","f24f2773-0252-4bab-a796-e41ab82206e3"
 "A - C","CPEX-AW","Convective Processes Experiment - Aerosols & Winds","6aa2a5ed-41e0-4eaa-ac23-6dd05a22c147"
+"A - C","CPEX-CV","Convective Processes Experiment - Cabo Verde","df7cc2b7-8b91-4b2d-8fd7-14414d89eb25"
 "A - C","CPEX","Convective Processes Experiment","861ffbe4-50be-4e26-bfb3-8f7e9bd3c215"
 "A - C","CRAC-ICE","Collaborative Research into Antarctic Calving and ICeberg Evolution","69966e64-9135-4d58-a1f5-85db86edb20b"
 "A - C","CREDDP","Columbia River Estuary Data Development Program","1761ff72-1908-48a1-ae6e-ac53daaf04e4"
@@ -1831,6 +1832,7 @@ Bucket,Short_Name,Long_Name,UUID
 "V - Z","WAMEX","West African Monsoon Experiment","d96c23c2-63ab-4884-8ebc-54015cea9952"
 "V - Z","WARMPAST","ARCTIC OCEAN WARMING IN THE PAST","c24f313a-3683-4b61-9d27-37eb5caa42e5"
 "V - Z","WARS","Geodynamics of the West Antarctic Rift System","2bee0fb6-7c3f-4d34-90d4-32673b046d6b"
+"V - Z","WATER","Water Resources Data Collection","4c4878cb-18f5-464c-b4bb-858273a48d6a"
 "V - Z","WATOX","Western Atlantic Ocean Experiment","624647f8-a355-4acd-b4a6-389655609cb4"
 "V - Z","WAVEMOD","","98ff2ee3-a7fa-4b78-a281-b828547005d3"
 "V - Z","WCMC","World Conservation Monitoring Centre's Marine and Coastal Programme","221b134a-044a-4352-8a3d-c82db6b48088"
