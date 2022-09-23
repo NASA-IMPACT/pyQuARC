@@ -121,7 +121,7 @@
     },
     "characteristic_name_check": {
         "valid": ["AircraftID", {"Name": "AircraftID", "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft", "DataType": "STRING", "Unit": "Not Applicable", "Value": "N529NA"}],
-        "invalid": ["",{"Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft", "DataType": "STRING", "Unit": "Not Applicable", "Value": "N529NA"}]
+        "invalid": ["", {"Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft", "DataType": "STRING", "Unit": "Not Applicable", "Value": "N529NA"}]
     },
     "characteristic_desc_check": {
         "valid": [
