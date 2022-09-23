@@ -628,9 +628,11 @@ def assert_func(val_function, val_function_test, valid, invalid):
     except:
         pass
 # input format
-
+"""
 while format_in not in format_dict.keys():
     format_in = input("Enter the metadata format. Choices are: echo-c (echo10 collection), echo-g (echo10 granule), dif10 (dif10 collection), umm-c (umm-json collection), umm-g (umm-json granules)\n")
+"""
+format_in = "dif10"
 format_choice = format_dict[format_in]
 # iterating through the json
 for i in format_choice:
