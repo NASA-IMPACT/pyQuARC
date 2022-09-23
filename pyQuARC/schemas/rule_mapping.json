@@ -2406,7 +2406,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "instrument_short_long_name_consistency_check"
     },
     "instrument_short_name_gcmd_check": {
         "rule_name": "Instrument Shortname GCMD Check",
