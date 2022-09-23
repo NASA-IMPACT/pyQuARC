@@ -379,7 +379,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "datetime_compare"
     },
     "date_or_datetime_format_check": {
         "rule_name": "Date or Datetime ISO Format Check",
@@ -2681,7 +2682,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "platform_short_long_name_consistency_check"
     },
     "data_format_gcmd_check": {
         "rule_name": "Data Format GCMD Check",
@@ -3179,7 +3181,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "bounding_coordinate_logic_check"
     },
     "vertical_spatial_domain_type_check": {
         "rule_name": "Vertical Spatial Domain Type Check",
