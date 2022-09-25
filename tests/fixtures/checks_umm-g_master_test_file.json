@@ -146,12 +146,56 @@
         "invalid": ["-180", "30", "180", "35"]
     },
     "vertical_spatial_domain_type_check_granule": {
-        "valid": ["Depth"],
-        "invalid": ["Deep"]
+        "valid": [
+            "Depth",
+        [
+            "Atmosphere Layer",
+            "Pressure",
+            "Altitude",
+            "Depth"
+        ]
+    ],
+        "invalid": [
+            "Deep",
+        [
+            "Atmosphere Layer",
+            "Pressure",
+            "Altitude",
+            "Depth"
+        ]
+    ]
     },
     "vertical_spatial_domain_unit_check_ummg": {
-        "valid": ["Kilometers"],
-        "invalid": ["km"]
+        "valid": [
+            "Kilometers",
+        [
+            "Fathoms",
+            "Feet",
+            "HectoPascals",
+            "Kilometers",
+            "Meters",
+            "Millibars",
+            "PoundsPerSquareInch",
+            "Atmosphere",
+            "InchesOfMercury",
+            "InchesOfWater"
+        ]
+    ],
+        "invalid": [
+            "km",
+        [
+            "Fathoms",
+            "Feet",
+            "HectoPascals",
+            "Kilometers",
+            "Meters",
+            "Millibars",
+            "PoundsPerSquareInch",
+            "Atmosphere",
+            "InchesOfMercury",
+            "InchesOfWater"
+        ]
+    ]
     },
     "campaign_name_presence_check": {
         "valid": ["ACTIVATE"],
@@ -174,20 +218,20 @@
         "invalid": ["google dot com"]
     },
     "characteristic_name_uniqueness_check": {
-        "valid": ["NASA DC-8", "NASA ER-2"],
-        "invalid": ["NASA DC-8", "NASA DC-8"]
+        "valid": [["NASA DC-8", "NASA ER-2"], "Name"],
+        "invalid": [["NASA DC-8", "NASA DC-8"], "Name"]
     },
     "temporal_extent_requirement_check": {
         "valid": ["2020-01-01T00:00:00Z", "", ""],
         "invalid": ["", "", ""]
     },
     "default_date_check": {
-        "valid": ["2007-07-04T00:00:00Z","2007-07-04T00:00:00Z","2007-07-04T00:00:00Z","2007-07-04T00:00:00Z","2007-07-04T00:00:00Z","2007-07-04T00:00:00Z"],
-        "invalid": ["0704T00:00:00.000Z","0704T00:00:00.000Z","0704T00:00:00.000Z","0704T00:00:00.000Z","0704T00:00:00.000Z","0704T00:00:00.000Z"]
+        "valid": ["2007-07-04T00:00:00Z", "1970-01-01T00:00:00Z", "neq"],
+        "invalid": ["1970-01-01T00:00:00Z", "1970-01-01T00:00:00Z", "neq"]
     },
     "get_data_url_check": {
-        "valid": ["https://daac.ornl.gov/cgi-bin/download.pl?ds_id=465&source=dsviewer&_ga=2.140140659.1165149285.1658168134-969487745.1655392216"],
-        "invalid": ["https://daac.ornl.gov/cgi-bin/download.FAKE"]
+        "valid": ["https://daac.ornl.gov/cgi-bin/download.pl?ds_id=465&source=dsviewer&_ga=2.140140659.1165149285.1658168134-969487745.1655392216", "Type"],
+        "invalid": ["https://daac.ornl.gov/cgi-bin/download.FAKE", "Type"]
     },
     "granule_platform_presence_check": {
         "valid": ["G-III"],
@@ -198,8 +242,8 @@
         "invalid": ["GOES-16", "MACPEX_TraceGas_AircraftInSitu_WB57_Data", "1", ""]
     },
     "url_description_uniqueness_check": {
-        "valid": ["The guide document contains detailed information about the dataset."],
-        "invalid": [""]
+        "valid": [["The guide document contains detailed information about the dataset."], "Description"],
+        "invalid": [[""], "Description"]
     },
     "granule_project_short_name_check": {
         "valid": ["MACPEX", "", "MACPEX_TraceGas_AircraftInSitu_WB57_Data", "1"],

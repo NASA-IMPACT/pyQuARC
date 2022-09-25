@@ -484,20 +484,92 @@
         "invalid": ["-180", "30", "180", "35"]
     },
     "vertical_spatial_domain_type_check": {
-        "valid": ["Atmosphere Layer"],
-        "invalid": ["Stratosphere"]
+        "valid": [
+            "Atmosphere Layer",
+        [
+            "Atmosphere Layer",
+            "Maximum Altitude",
+            "Maximum Depth",
+            "Minimum Altitude",
+            "Minimum Depth"
+        ]
+    ],
+        "invalid": [
+            "Stratosphere",
+        [
+            "Atmosphere Layer",
+            "Maximum Altitude",
+            "Maximum Depth",
+            "Minimum Altitude",
+            "Minimum Depth"
+        ]
+    ]
     },
     "spatial_coverage_type_check": {
-        "valid": ["VERTICAL"],
-        "invalid": ["diagonal"]
+        "valid": [
+            "VERTICAL",
+        [
+            "HORIZONTAL",
+            "VERTICAL",
+            "ORBITAL",
+            "HORIZONTAL_VERTICAL",
+            "ORBITAL_VERTICAL",
+            "HORIZONTAL_ORBITAL",
+            "HORIZONTAL_VERTICAL_ORBITAL"
+        ]
+    ],
+        "invalid": [
+            "diagonal",
+        [
+            "HORIZONTAL",
+            "VERTICAL",
+            "ORBITAL",
+            "HORIZONTAL_VERTICAL",
+            "ORBITAL_VERTICAL",
+            "HORIZONTAL_ORBITAL",
+            "HORIZONTAL_VERTICAL_ORBITAL"
+        ]
+    ]
     },
     "depth_unit_check": {
-        "valid": ["diagonal"],
-        "invalid": ["ft"]
+        "valid": [
+            "Feet",
+        [
+            "Fathoms",
+            "Feet",
+            "HectoPascals",
+            "Meters",
+            "Millibars"
+        ]
+    ],
+        "invalid": [
+            "ft",
+        [
+            "Fathoms",
+            "Feet",
+            "HectoPascals",
+            "Meters",
+            "Millibars"
+        ]
+    ]
     },
     "altitude_unit_check": {
-        "valid": ["Kilometers"],
-        "invalid": ["km"]
+        "valid": [
+            "Kilometers",
+        [
+            "HectoPascals",
+            "Kilometers",
+            "Millibars"
+        ]
+    ],
+        "invalid": [
+            "km",
+        [
+            "HectoPascals",
+            "Kilometers",
+            "Millibars"
+        ]
+    ]
     },
     "campaign_name_presence_check": {
         "valid": ["AAOE"],
@@ -548,8 +620,8 @@
         "invalid": ["fml fml fml", ""]
     },
     "characteristic_name_uniqueness_check": {
-        "valid": ["NASA DC-8", "NASA ER-2"],
-        "invalid": ["NASA DC-8", "NASA DC-8"]
+        "valid": [["NASA DC-8", "NASA ER-2"], "Name"],
+        "invalid": [["NASA DC-8", "NASA DC-8"], "Name"]
     },
     "validate_ending_datetime_against_granules": {
         "valid": ["2017-07-17T20:41:47.000Z","ABOLVIS1A","1"],
@@ -560,36 +632,86 @@
         "invalid": ["2016-06-29T00:00:00.000Z","ABOLVIS1A","1"]
     },
     "future_date_check": {
-        "valid": ["REVIEW", "REVIEW"],
-        "invalid": ["idk", "idk"]
+        "valid": ["2050-01-01T00:00:00Z", "now", "gte"],
+        "invalid": ["2020-01-01T00:00:00Z", "now", "gte"]
     },
     "iso_topic_category_check": {
-        "valid": ["DISASTER"],
-        "invalid": ["idk"]
+        "valid": [
+            "DISASTER",
+        [
+            "BIOTA",
+            "BOUNDARIES",
+            "CLIMATOLOGY/METEOROLOGY/ATMOSPHERE",
+            "DISASTER",
+            "ECONOMY",
+            "ELEVATION",
+            "ENVIRONMENT",
+            "EXTRA TERRESTRIAL",
+            "FARMING",
+            "GEOSCIENTIFIC INFORMATION",
+            "HEALTH",
+            "IMAGERY/BASE MAPS/EARTH COVER",
+            "INLAND WATERS",
+            "INTELLIGENCE/MILITARY",
+            "LOCATION",
+            "OCEANS",
+            "PLANNING CADASTRE",
+            "SOCIETY",
+            "STRUCTURE",
+            "TRANSPORTATION",
+            "UTILITIES/COMMUNICATIONS"
+        ]
+    ],
+        "invalid": [
+            "idk",
+        [
+            "BIOTA",
+            "BOUNDARIES",
+            "CLIMATOLOGY/METEOROLOGY/ATMOSPHERE",
+            "DISASTER",
+            "ECONOMY",
+            "ELEVATION",
+            "ENVIRONMENT",
+            "EXTRA TERRESTRIAL",
+            "FARMING",
+            "GEOSCIENTIFIC INFORMATION",
+            "HEALTH",
+            "IMAGERY/BASE MAPS/EARTH COVER",
+            "INLAND WATERS",
+            "INTELLIGENCE/MILITARY",
+            "LOCATION",
+            "OCEANS",
+            "PLANNING CADASTRE",
+            "SOCIETY",
+            "STRUCTURE",
+            "TRANSPORTATION",
+            "UTILITIES/COMMUNICATIONS"
+        ]
+    ]
     },
     "temporal_extent_requirement_check": {
         "valid": ["2020-01-01T00:00:00Z", "", ""],
         "invalid": ["", "", ""]
     },
     "ftp_protocol_check": {
-        "valid": ["https://asdc.larc.nasa.gov/data/ARESE/ER2_MAS/"],
-        "invalid": ["ftp://heasarc.gsfc.nasa.gov/rosat/data"]
+        "valid": ["https://asdc.larc.nasa.gov/data/ARESE/ER2_MAS/", "FTP", "neq"],
+        "invalid": ["ftp://heasarc.gsfc.nasa.gov/rosat/data", "FTP", "neq"]
     },
     "citation_version_check": {
         "valid": ["2.0", "1"],
         "invalid": ["", ""]
     },
     "default_date_check": {
-        "valid": ["2021-11-05T13:15:30Z", "2021-11-05T13:15:30Z"],
-        "invalid": ["202111-05T13:15:30Z", "202111-05T13:15:30Z"]
+        "valid": ["2021-11-05T13:15:30Z", "1970-01-01T00:00:00Z", "neq"],
+        "invalid": ["1970-01-01T00:00:00Z", "1970-01-01T00:00:00Z", "neq"]
     },
     "url_desc_presence_check": {
         "valid": [["the google search engine", "www.google.com"], ["https//doi.org", "doi home page"]],
         "invalid": [["https://github.com", ""], ["https://duckduckgo.com", ""]]
     },
     "get_data_url_check": {
-        "valid": ["https://daac.ornl.gov/cgi-bin/download.pl?ds_id=465&source=dsviewer&_ga=2.140140659.1165149285.1658168134-969487745.1655392216"],
-        "invalid": ["https://daac.ornl.gov/cgi-bin/download.FAKE"]
+        "valid": ["https://daac.ornl.gov/cgi-bin/download.pl?ds_id=465&source=dsviewer&_ga=2.140140659.1165149285.1658168134-969487745.1655392216", "Type"],
+        "invalid": ["https://daac.ornl.gov/cgi-bin/download.FAKE", "Type"]
     },
     "horizontal_resolution_range_check": {
         "valid": ["1 meter - < 30 meters"],
@@ -608,8 +730,24 @@
         "invalid": ["", "", "", "", ""]
     },
     "sensor_number_check": {
-        "valid": ["2", "GLAS"],
-        "invalid": ["GLAS", "..."]
+        "valid": [
+            "1",
+            {
+                "Short_Name": "MODIS",
+                "Long_Name": "Moderate-Resolution Imaging Spectroradiometer",
+                "Technique": "Imaging Spectroradiometry",
+                "Sensor": "Example"
+            },
+            "Sensor"],
+        "invalid": [
+            "2",
+            {
+                "Short_Name": "MODIS",
+                "Long_Name": "Moderate-Resolution Imaging Spectroradiometer",
+                "Technique": "Imaging Spectroradiometry",
+                "Sensor": "Example"
+            },
+            "Sensor"]
     },
     "data_center_short_name_gcmd_check": {
         "valid": ["NASA/MSFC/GHRC"],
@@ -624,16 +762,50 @@
         "invalid": [""]
     },
     "horizontal_data_resolution_unit_check": {
-        "valid": [["Decimal Degrees"], ["Kilometers"], ["Meters"], ["Statute Miles"], ["Nautical Miles"], ["Not provided"]],
-        "invalid": [["Degrees"], ["Miles"], ["Feet"], ["Arabic Mile"], ["Pyramid inch"], ["Provided"]]
+        "valid": [
+            "Decimal Degrees",
+        [
+            "Decimal Degrees",
+            "Kilometers",
+            "Meters",
+            "Statute Miles",
+            "Nautical Miles",
+            "Not provided"
+        ]
+    ],
+        "invalid": [
+            "Degrees",
+        [
+            "Decimal Degrees",
+            "Kilometers",
+            "Meters",
+            "Statute Miles",
+            "Nautical Miles",
+            "Not provided"
+        ]
+    ]
     },
     "periodic_duration_unit_check": {
-        "valid": [["DAY"],["MONTH"],["YEAR"]],
-        "invalid": [["LUNAR DAY"],["LUNAR MONTH"],["LUNAR NEW YEAR"]]
+        "valid": [
+            "DAY",
+        [
+            "DAY",
+            "MONTH",
+            "YEAR"
+        ]
+    ],
+        "invalid": [
+            "LUNAR DAY",
+        [
+            "DAY",
+            "MONTH",
+            "YEAR"
+        ]
+    ]
     },
     "url_description_uniqueness_check": {
-        "valid": ["The guide document contains detailed information about the dataset."],
-        "invalid": [""]
+        "valid": [["The guide document contains detailed information about the dataset."], "Description"],
+        "invalid": [[""], "Description"]
     },
     "metadata_update_time_logic_check": {
         "valid": ["UPDATE", "CREATE"],
