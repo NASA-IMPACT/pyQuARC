@@ -163,7 +163,7 @@
     },
     "default_date_check": {
         "valid": ["2007-07-04T00:00:00Z", "1970-01-01T00:00:00Z", "neq"],
-        "invalid": ["0704T00:00:00.000Z", "1970-01-01T00:00:00Z", "neq"]
+        "invalid": ["1970-01-01T00:00:00Z", "1970-01-01T00:00:00Z", "neq"]
     },
     "url_desc_presence_check": {
         "valid": [["the google search engine", "www.google.com"], ["doi home page", "https//doi.org"]],
@@ -182,12 +182,108 @@
         "invalid": ["NASA DC-8", "gpmcplolyx", "1", "GPM Ground Validation Cloud Physics LiDAR (CPL) OLYMPEX V1"]
     },
     "online_resource_description_uniqueness_check": {
-        "valid": [["this is a description", "this is another description"], "Description"],
-        "invalid": [["this is a description", "this is a description"], "Description"]
+        "valid": [
+            [
+                [
+                    {
+                        "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                        "Description": "Example description",
+                        "Type": "USER SUPPORT",
+                        "MimeType": "text/xml"
+                    },
+                    {
+                        "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                        "Description": "Example description 2",
+                        "Type": "USER SUPPORT",
+                        "MimeType": "text/xml"
+                    }
+                ],
+                "Description"
+            ],
+            [
+                [
+                    {
+                        "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                        "Description": "Test description",
+                        "Type": "USER SUPPORT",
+                        "MimeType": "text/xml"
+                    },
+                    {
+                        "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                        "Description": "Test description 2",
+                        "Type": "USER SUPPORT",
+                        "MimeType": "text/xml"
+                    }
+                ],
+                "Description"
+            ]
+        ],
+        "invalid": [
+            [
+                {
+                    "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                    "Description": "Example description",
+                    "Type": "USER SUPPORT",
+                    "MimeType": "text/xml"
+                },
+                {
+                    "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                    "Description": "Example description",
+                    "Type": "USER SUPPORT",
+                    "MimeType": "text/xml"
+                }
+            ],
+            "Description"
+        ]
     },
     "online_access_description_uniqueness_check": {
-        "valid": [["description 1", "description 2"], "URLDescription"],
-        "invalid": [["description 1", "description 1"], "URLDescription"]
+        "valid": [
+            [
+                [
+                    {
+                        "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                        "URLDescription": "Example description",
+                        "MimeType": "text/xml"
+                    },
+                    {
+                        "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                        "URLDescription": "Example description 2",
+                        "MimeType": "text/xml"
+                    }
+                ],
+                "URLDescription"
+            ],
+            [
+                [
+                    {
+                        "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                        "URLDescription": "Test description",
+                        "MimeType": "text/xml"
+                    },
+                    {
+                        "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                        "URLDescription": "Test description 2",
+                        "MimeType": "text/xml"
+                    }
+                ],
+                "URLDescription"
+            ]
+        ],
+        "invalid": [
+            [
+                {
+                    "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                    "URLDescription": "Example description",
+                    "MimeType": "text/xml"
+                },
+                {
+                    "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                    "URLDescription": "Example description",
+                    "MimeType": "text/xml"
+                }
+            ],
+            "URLDescription"
+        ]
     },
     "granule_single_date_time_check": {
         "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
