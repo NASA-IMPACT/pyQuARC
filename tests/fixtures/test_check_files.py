@@ -92,16 +92,19 @@ def DOI_update_check(val_function, value):
     except:
         return 'error'
 
-def controlled_keywords_check(val_function, value):
-    if(isinstance(value[0],list)):
-        i = 0
-        return_list = []
-        for x in value:
-            return_list.append(val_function(value[i]))
-            i = i + 1
-        return return_list
-    if (isinstance(value[0],str)):
-        return val_function(value[0])
+def StringValidator_controlled_keywords_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0], value[i][1]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0], value[1])
+    except:
+        return 'error'
 
 def UrlValidator_Url_check(val_function, value):
     try:
@@ -289,8 +292,8 @@ for i in format_choice:
                 print(f"with valid test input: {DOI_update_check(val_function, valid)}")
                 print(f"with invalid test input: {DOI_update_check(val_function, invalid)}")
             if val_function_name == 'StringValidator.controlled_keywords_check':
-                print(f"with valid test input: {controlled_keywords_check(val_function, valid)}")
-                print(f"with invalid test input: {controlled_keywords_check(val_function, invalid)}")
+                print(f"with valid test input: {StringValidator_controlled_keywords_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_controlled_keywords_check_test(val_function, invalid)}")
             # if val_function_name == 'StringValidator.compare':
                 # print()  and so on ... for validator functions
             #
