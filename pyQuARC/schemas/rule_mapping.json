@@ -379,7 +379,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "datetime_format_check"
     },
     "date_or_datetime_format_check": {
         "rule_name": "Date or Datetime ISO Format Check",
@@ -3178,7 +3179,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "bounding_coordinate_logic_check"
     },
     "vertical_spatial_domain_type_check": {
         "rule_name": "Vertical Spatial Domain Type Check",
@@ -3925,7 +3927,7 @@
                 {
                     "fields": [
                         "Collection/OnlineResources/OnlineResource/Type",
-                        "Collection/OnlineResources/OnlineResource/URL"
+                        "Collection/OnlineResources/OnlineResource"
                     ]
                 }
             ],
@@ -3933,15 +3935,15 @@
                 {
                     "fields": [
                         "Granule/OnlineResources/OnlineResource/Type",
-                        "Granule/OnlineResources/OnlineResource/URL"
+                        "Granule/OnlineResources/OnlineResource"
                     ]
                 }
             ],
             "umm-c": [
                 {
                     "fields": [
-                        "RelatedUrl/Type",
-                        "RelatedUrl/Url"
+                        "RelatedUrls/Type",
+                        "RelatedUrls"
                     ]
                 }
             ],
@@ -3949,7 +3951,7 @@
                 {
                     "fields": [
                         "RelatedUrls/Type",
-                        "RelatedUrls/URL"
+                        "RelatedUrls"
                     ]
                 }
             ]
@@ -4942,7 +4944,7 @@
         "check_id": "one_item_presence_check"
     },
     "granule_platform_presence_check": {
-        "rule name": "Granule Platform Presence Check",
+        "rule_name": "Granule Platform Presence Check",
         "fields_to_apply": {
             "echo-g": [
                 {
