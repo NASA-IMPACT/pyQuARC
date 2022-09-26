@@ -811,6 +811,32 @@ def StringValidator_organization_short_long_name_consistency_check_test(val_func
             return val_function(*value)
     except:
         return 'error'
+def StringValidator_instrument_short_long_name_consistency_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(*value[i]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(*value)
+    except:
+        return 'error'
+def StringValidator_platform_short_long_name_consistency_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(*value[i]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(*value)
+    except:
+        return 'error'
 def assert_func(val_function, val_function_test, valid, invalid):
     test_valid = val_function_test(val_function, valid)
     test_invalid = val_function_test(val_function, invalid)
@@ -827,7 +853,6 @@ def assert_func(val_function, val_function_test, valid, invalid):
             assert test_invalid['valid'] == False
     except:
         pass
-
 # input format
 while format_in not in format_dict.keys():
     format_in = input("Enter the metadata format. Choices are: echo-c (echo10 collection), echo-g (echo10 granule), dif10 (dif10 collection), umm-c (umm-json collection), umm-g (umm-json granules)\n")
@@ -1018,6 +1043,12 @@ for i in format_choice:
             if val_function_name == 'StringValidator.organization_short_long_name_consistency_check':
                 print(f"with valid test input: {StringValidator_organization_short_long_name_consistency_check_test(val_function, valid)}")
                 print(f"with invalid test input: {StringValidator_organization_short_long_name_consistency_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.instrument_short_long_name_consistency_check':
+                print(f"with valid test input: {StringValidator_instrument_short_long_name_consistency_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_instrument_short_long_name_consistency_check_test(val_function, invalid)}")
+            if val_function_name == 'StringValidator.platform_short_long_name_consistency_check':
+                print(f"with valid test input: {StringValidator_platform_short_long_name_consistency_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_platform_short_long_name_consistency_check_test(val_function, invalid)}")
             # possibly: - create a list of validator check test functions
             # - see if modified val_function_name in function list (ex: f"{data_type.title()}Validator_{check_function}_test)
             # - call this func with valid and invalid values
