@@ -178,11 +178,11 @@ def StringValidator_location_gcmd_check_test(val_function, value):
             i = 0
             return_list = []
             for x in value:
-                return_list.append(val_function(value[i][0], value[i][1], value[i][2], value[i][3], value[i][4]))
+                return_list.append(val_function(*value[i]))
                 i = i + 1
             return return_list
         if (isinstance(value[0],str)):
-            return val_function(value[0], value[1], value[2], value[3], value[4])
+            return val_function(*value)
     except:
         return 'error'
 def CustomValidator_ends_at_present_flag_logic_check_test(val_function, value):

@@ -430,7 +430,7 @@
         "invalid": ["huntsville"]
     },
     "location_gcmd_check": {
-        "valid": ["CONTINENT", "NORTH AMERICA", "UNITED STATES", "ALABAMA", "THE UNIVERSITY OF ALABAMA IN HUNTSVILLE"],
+        "valid": ["CONTINENT", "NORTH AMERICA", "UNITED STATES OF AMERICA", "ALABAMA"],
         "invalid": ["AFRICA", "OCEAN", "ARCTIC", "SOUTHERN OCEAN", "SAHEL"]
     },
     "platform_type_gcmd_check": {
