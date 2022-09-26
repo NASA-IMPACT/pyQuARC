@@ -849,23 +849,9 @@ for i in format_choice:
             if val_function_name == 'DatetimeValidator.compare':
                 print(f"with valid test input: {DatetimeValidator_compare_test(val_function, valid)}")
                 print(f"with invalid test input: {DatetimeValidator_compare_test(val_function, invalid)}")
-
-            if val_function_name == 'DatetimeValidator.date_or_datetime_format_check':
-                print(f"with valid test input: {DatetimeValidator_date_or_datetime_format_check_test(val_function, valid)}")
-                print(f"with invalid test input: {DatetimeValidator_date_or_datetime_format_check_test(val_function, invalid)}")
-            if val_function_name == 'UrlValidator.health_and_status_check':
-                print(f"with valid test input: {UrlValidator_health_and_status_check_test(val_function, valid)}")
-                print(f"with invalid test input: {UrlValidator_health_and_status_check_test(val_function, invalid)}")
             if val_function_name == 'UrlValidator.doi_link_update':
                 print(f"with valid test input: {DOI_update_check(val_function, valid)}")
                 print(f"with invalid test input: {DOI_update_check(val_function, invalid)}")
-            if val_function_name == 'StringValidator.controlled_keywords_check':
-                print(f"with valid test input: {StringValidator_controlled_keywords_check_test(val_function, valid)}")
-                print(f"with invalid test input: {StringValidator_controlled_keywords_check_test(val_function, invalid)}")
-            # if val_function_name == 'StringValidator.compare':
-                # print()  and so on ... for validator functions
-            #
-                # assert_func(val_function, DatetimeValidator_compare_test, valid, invalid)
             if val_function_name == 'DatetimeValidator.date_or_datetime_format_check':
                 print(f"with valid test input: {DatetimeValidator_date_or_datetime_format_check_test(val_function, valid)}")
                 print(f"with invalid test input: {DatetimeValidator_date_or_datetime_format_check_test(val_function, invalid)}")
