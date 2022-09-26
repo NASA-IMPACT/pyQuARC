@@ -367,9 +367,7 @@ def StringValidator_organization_short_name_gcmd_check_test(val_function, value)
             return val_function(value[0])
     except:
         return 'error'
-
-
-def UrlValidator_Doi_validity_check(val_function, value):
+def UrlValidator_doi_check_test(val_function, value):
     try:
         if (isinstance(value[0],list)):
             i = 0
@@ -377,9 +375,9 @@ def UrlValidator_Doi_validity_check(val_function, value):
             for x in value:
                 return_list.append(val_function(value[i][0]))
                 i = i +1
-                return return_list
-            if (isinstance(value[0],str)):
-                return val_function(value[0])
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
     except:
             return 'error'
 def StringValidator_organization_long_name_gcmd_check_test(val_function, value):
@@ -853,6 +851,10 @@ for i in format_choice:
             if val_function_name == 'DatetimeValidator.date_or_datetime_format_check':
                 print(f"with valid test input: {DatetimeValidator_date_or_datetime_format_check_test(val_function, valid)}")
                 print(f"with invalid test input: {DatetimeValidator_date_or_datetime_format_check_test(val_function, invalid)}")
+                # assert_func(val_function, DatetimeValidator_date_or_datetime_format_check_test, valid, invalid)
+            if val_function_name == 'UrlValidator.doi_check':
+                print(f"with valid test input: {UrlValidator_doi_check_test(val_function, valid)}")
+                print(f"with invalid test input: {UrlValidator_doi_check_test(val_function, invalid)}")
                 # assert_func(val_function, DatetimeValidator_date_or_datetime_format_check_test, valid, invalid)
             if val_function_name == 'UrlValidator.health_and_status_check':
                 print(f"with valid test input: {UrlValidator_health_and_status_check_test(val_function, valid)}")
