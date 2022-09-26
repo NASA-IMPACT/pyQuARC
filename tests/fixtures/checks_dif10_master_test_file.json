@@ -594,8 +594,44 @@
         "invalid": ["IN PROGRESS", "", "2015-02-09T:00:00:00Z"]
     },
     "characteristic_name_uniqueness_check": {
-        "valid": [["NASA DC-8", "NASA ER-2"], "Name"],
-        "invalid": [["NASA DC-8", "NASA DC-8"], "Name"]
+        "valid": [
+            [
+                {
+                  "Name": "EquatorCrossingTimeAscending",
+                  "Description": "Local time of the equator crossing and direction (ascending or descending)",
+                  "DataType": "Time/direction (ascending)",
+                  "Unit": "Local Mean Time",
+                  "Value": "3:30, ascending"
+                },
+                {
+                  "Name": "EquatorCrossingTimeDescending",
+                  "Description": "Local time of the equator crossing and direction (ascending or descending)",
+                  "DataType": "Time/direction (descending)",
+                  "Unit": "Local Mean Time",
+                  "Value": "3:30, descending"
+                }
+            ],
+            "Name"
+        ],
+        "invalid": [
+            [
+                {
+                  "Name": "EquatorCrossingTime",
+                  "Description": "Local time of the equator crossing and direction (ascending or descending)",
+                  "DataType": "Time/direction (ascending)",
+                  "Unit": "Local Mean Time",
+                  "Value": "3:30, ascending"
+                },
+                {
+                  "Name": "EquatorCrossingTime",
+                  "Description": "Local time of the equator crossing and direction (ascending or descending)",
+                  "DataType": "Time/direction (ascending)",
+                  "Unit": "Local Mean Time",
+                  "Value": "3:30, ascending"
+                }
+            ],
+            "Name"
+        ]
     },
     "validate_ending_datetime_against_granules": {
         "valid": ["2017-07-17T20:41:47.000Z","ABOLVIS1A","1"],
@@ -676,8 +712,8 @@
         "invalid": ["ftp://heasarc.gsfc.nasa.gov/rosat/data", "FTP", "neq"]
     },
     "citation_version_check": {
-        "valid": ["2.0", "1"],
-        "invalid": ["", ""]
+        "valid": ["1", "1", "eq"],
+        "invalid": ["1", "2", "eq"]
     },
     "default_date_check": {
         "valid": ["2021-11-05T13:15:30Z", "1970-01-01T00:00:00Z", "neq"],
