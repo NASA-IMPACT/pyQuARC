@@ -381,6 +381,7 @@
         },
         "severity": "error",
         "check_id": "datetime_format_check"
+
     },
     "date_or_datetime_format_check": {
         "rule_name": "Date or Datetime ISO Format Check",
@@ -2407,7 +2408,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "instrument_short_long_name_consistency_check"
     },
     "instrument_short_name_gcmd_check": {
         "rule_name": "Instrument Shortname GCMD Check",
@@ -2681,7 +2683,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "platform_short_long_name_consistency_check"
     },
     "data_format_gcmd_check": {
         "rule_name": "Data Format GCMD Check",
