@@ -394,7 +394,7 @@ def StringValidator_organization_long_name_gcmd_check_test(val_function, value):
         if (isinstance(value[0],str)):
             return val_function(value[0])
     except:
-        return 'error'>>>>>>> regression-testing
+        return 'error'
 
 
 def UrlValidator_get_data_url_check(val_function, value):
@@ -495,6 +495,10 @@ def StringValidator_platform_long_name_gcmd_check_test(val_function, value):
 def StringValidator_spatial_keyword_gcmd_check_test(val_function, value):
     try:
         if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
                 i = i + 1
             return return_list
         if (isinstance(value[0],str)):
