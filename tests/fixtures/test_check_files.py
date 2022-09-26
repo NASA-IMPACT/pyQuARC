@@ -796,8 +796,21 @@ def StringValidator_validate_granule_data_format_against_collection_test(val_fun
         if (isinstance(value[0],str)):
             return val_function(value[0], value[1], value[2], value[3])
     except:
+
         return 'error'
-# incomplete function to assert valid / invalid inputs
+def StringValidator_organization_short_long_name_consistency_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(*value[i]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(*value)
+    except:
+        return 'error'
 def assert_func(val_function, val_function_test, valid, invalid):
     test_valid = val_function_test(val_function, valid)
     test_invalid = val_function_test(val_function, invalid)
@@ -923,13 +936,13 @@ for i in format_choice:
             if val_function_name == 'CustomValidator.collection_progress_consistency_check':
                 print(f"with valid test input: {CustomValidator_collection_progress_consistency_check_test(val_function, valid)}")
                 print(f"with invalid test input: {CustomValidator_collection_progress_consistency_check_test(val_function, invalid)}")
+                # assert_func(val_function, CustomValidator_collection_progress_consistency_check_test, valid, invalid)
             if val_function_name == 'StringValidator.organization_short_name_gcmd_check':
                 print(f"with valid test input: {StringValidator_organization_short_name_gcmd_check_test(val_function, valid)}")
                 print(f"with invalid test input: {StringValidator_organization_short_name_gcmd_check_test(val_function, invalid)}")
             if val_function_name == 'StringValidator.organization_long_name_gcmd_check':
                 print(f"with valid test input: {StringValidator_organization_long_name_gcmd_check_test(val_function, valid)}")
                 print(f"with invalid test input: {StringValidator_organization_long_name_gcmd_check_test(val_function, invalid)}")
-                # assert_func(val_function, CustomValidator_collection_progress_consistency_check_test, valid, invalid)
             if val_function_name == 'StringValidator.instrument_short_name_gcmd_check':
                 print(f"with valid test input: {StringValidator_instrument_short_name_gcmd_check_test(val_function, valid)}")
                 print(f"with invalid test input: {StringValidator_instrument_short_name_gcmd_check_test(val_function, invalid)}")
@@ -1002,7 +1015,9 @@ for i in format_choice:
             if val_function_name == 'StringValidator.validate_granule_data_format_against_collection':
                 print(f"with valid test input: {StringValidator_validate_granule_data_format_against_collection_test(val_function, valid)}")
                 print(f"with invalid test input: {StringValidator_validate_granule_data_format_against_collection_test(val_function, invalid)}")
-
+            if val_function_name == 'StringValidator.organization_short_long_name_consistency_check':
+                print(f"with valid test input: {StringValidator_organization_short_long_name_consistency_check_test(val_function, valid)}")
+                print(f"with invalid test input: {StringValidator_organization_short_long_name_consistency_check_test(val_function, invalid)}")
             # possibly: - create a list of validator check test functions
             # - see if modified val_function_name in function list (ex: f"{data_type.title()}Validator_{check_function}_test)
             # - call this func with valid and invalid values

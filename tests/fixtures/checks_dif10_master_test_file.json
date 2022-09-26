@@ -390,7 +390,7 @@
         "invalid": ["NASA/MSFC/GHRC"]
     },
     "organization_short_long_name_consistency_check": {
-        "valid": ["NASA/MSFC/GHRC", "Global Hydrology Resource Center, Marshall Space Flight Center, NASA"],
+        "valid": ["NASA/MSFC/GHRC", "Global Hydrometeorology Resource Center, Marshall Space Flight Center, NASA"],
         "invalid": ["NASA/LARC/SD/ASDC", "Global Hydrology Resource Center, Marshall Space Flight Center, NASA"]
     },
     "instrument_short_long_name_consistency_check": {
