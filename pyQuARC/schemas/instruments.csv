@@ -1,4 +1,5 @@
 "Keyword Version: 14.3","Revision: 2022-09-02 12:55:40","Timestamp: 2022-09-15 16:48:50","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/instruments/?format=xml","Case native"
+
 Category,Class,Type,Subtype,Short_Name,Long_Name,UUID
 "Earth Remote Sensing Instruments","Active Remote Sensing","Altimeters","Lidar/Laser Altimeters","AIRBORNE LASER SCANNER","AIRBORNE LASER SCANNER","ff309a1a-606d-456b-82b6-5b3c182f66ff"
 "Earth Remote Sensing Instruments","Active Remote Sensing","Altimeters","Lidar/Laser Altimeters","ATLAS","Advanced Topographic Laser Altimeter System","b3684b4b-4f0b-48aa-8997-e3758fd04155"

@@ -20,8 +20,8 @@
         "invalid": ["http://www.fakefakestillfaketotallyfake.com/"]
     },
     "delete_time_check": {
-        "valid": ["2049-01-01T00:00:00Z"],
-        "invalid": ["2000-01-01T00:00:00Z"]
+        "valid": ["2049-01-01T00:00:00Z", "now", "gte"],
+        "invalid": ["2000-01-01T00:00:00Z", "now", "gte"]
     },
     "characteristic_name_check": {
         "valid": [
@@ -66,8 +66,60 @@
         ]
     },
     "mime_type_check": {
-        "valid": ["text/xml", "USE SERVICE API"],
-        "invalid": ["", "USE SERVICE API"]
+        "valid": [
+            "text/xml",
+            "USE SERVICE API",
+            [
+                "application/json",
+                "application/xml",
+                "application/x-netcdf",
+                "application/gml+xml",
+                "application/vnd.google-earth.kml+xml",
+                "image/gif",
+                "image/tiff",
+                "image/bmp",
+                "text/csv",
+                "text/xml",
+                "application/pdf",
+                "application/x-hdf",
+                "application/xhdf5",
+                "application/octet-stream",
+                "application/vnd.google-earth.kmz",
+                "image/jpeg",
+                "image/png",
+                "image/vnd.collada+xml",
+                "text/html",
+                "text/plain",
+                "Not provided"
+            ]
+        ],
+        "invalid": [
+            "",
+            "USE SERVICE API",
+            [
+                "application/json",
+                "application/xml",
+                "application/x-netcdf",
+                "application/gml+xml",
+                "application/vnd.google-earth.kml+xml",
+                "image/gif",
+                "image/tiff",
+                "image/bmp",
+                "text/csv",
+                "text/xml",
+                "application/pdf",
+                "application/x-hdf",
+                "application/xhdf5",
+                "application/octet-stream",
+                "application/vnd.google-earth.kmz",
+                "image/jpeg",
+                "image/png",
+                "image/vnd.collada+xml",
+                "text/html",
+                "text/plain",
+                "Not provided"
+            ]
+        ]
     },
     "instrument_short_name_gcmd_check": {
         "valid": [["RADAR ECHO SOUNDERS"],["TSI-3563 Neph"]],
@@ -98,8 +150,24 @@
         "invalid": ["-180", "30", "180", "35"]
     },
     "vertical_spatial_domain_type_check_granule": {
-        "valid": ["Depth"],
-        "invalid": ["Deep"]
+        "valid": [
+            "Depth",
+        [
+            "Atmosphere Layer",
+            "Pressure",
+            "Altitude",
+            "Depth"
+        ]
+    ],
+        "invalid": [
+            "Deep",
+        [
+            "Atmosphere Layer",
+            "Pressure",
+            "Altitude",
+            "Depth"
+        ]
+    ]
     },
     "campaign_name_presence_check": {
         "valid": ["AAOE"],
@@ -122,8 +190,8 @@
         "invalid": [""]
     },
     "opendap_url_location_check": {
-        "valid": ["https://asdc.larc.nasa.gov/data/CALIPSO/LID_L3_Cloud_Occurrence-Standard-V1-00/"],
-        "invalid": ["https://opendap.larc.nasa.gov/opendap/CALIPSO/LID_L3_Cloud_Occurrence-Standard-V1-00/2006/CAL_LID_L3_Cloud_Occurrence-Standard-V1-00.2006-06A.hdf.html"]
+        "valid": ["https://asdc.larc.nasa.gov/data/CALIPSO/LID_L3_Cloud_Occurrence-Standard-V1-00/", "opendap", "not_contains"],
+        "invalid": ["https://opendap.larc.nasa.gov/opendap/CALIPSO/LID_L3_Cloud_Occurrence-Standard-V1-00/2006/CAL_LID_L3_Cloud_Occurrence-Standard-V1-00.2006-06A.hdf.html", "opendap", "not_contains"]
     },
     "spatial_extent_requirement_fulfillment_check": {
         "valid": ["13.149, -59.625", "", "", ""],
@@ -146,8 +214,8 @@
         "invalid": ["", "", ""]
     },
     "default_date_check": {
-        "valid": ["2007-07-04T00:00:00Z","2007-07-04T00:00:00Z","2007-07-04T00:00:00Z","2007-07-04T00:00:00Z","2007-07-04T00:00:00Z","2007-07-04T00:00:00Z"],
-        "invalid": ["0704T00:00:00.000Z","0704T00:00:00.000Z","0704T00:00:00.000Z","0704T00:00:00.000Z","0704T00:00:00.000Z","0704T00:00:00.000Z"]
+        "valid": ["2007-07-04T00:00:00Z", "1970-01-01T00:00:00Z", "neq"],
+        "invalid": ["1970-01-01T00:00:00Z", "1970-01-01T00:00:00Z", "neq"]
     },
     "url_desc_presence_check": {
         "valid": [["the google search engine", "www.google.com"], ["doi home page", "https//doi.org"]],
@@ -166,12 +234,108 @@
         "invalid": ["NASA DC-8", "gpmcplolyx", "1", "GPM Ground Validation Cloud Physics LiDAR (CPL) OLYMPEX V1"]
     },
     "online_resource_description_uniqueness_check": {
-        "valid": ["this is a description", "this is another description"],
-        "invalid": ["this is a description", "this is a description"]
+        "valid": [
+            [
+                [
+                    {
+                        "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                        "Description": "Example description",
+                        "Type": "USER SUPPORT",
+                        "MimeType": "text/xml"
+                    },
+                    {
+                        "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                        "Description": "Example description 2",
+                        "Type": "USER SUPPORT",
+                        "MimeType": "text/xml"
+                    }
+                ],
+                "Description"
+            ],
+            [
+                [
+                    {
+                        "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                        "Description": "Test description",
+                        "Type": "USER SUPPORT",
+                        "MimeType": "text/xml"
+                    },
+                    {
+                        "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                        "Description": "Test description 2",
+                        "Type": "USER SUPPORT",
+                        "MimeType": "text/xml"
+                    }
+                ],
+                "Description"
+            ]
+        ],
+        "invalid": [
+            [
+                {
+                    "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                    "Description": "Example description",
+                    "Type": "USER SUPPORT",
+                    "MimeType": "text/xml"
+                },
+                {
+                    "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                    "Description": "Example description",
+                    "Type": "USER SUPPORT",
+                    "MimeType": "text/xml"
+                }
+            ],
+            "Description"
+        ]
     },
     "online_access_description_uniqueness_check": {
-        "valid": ["description 1", "description 2"],
-        "invalid": ["description 1", "description 1"]
+        "valid": [
+            [
+                [
+                    {
+                        "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                        "URLDescription": "Example description",
+                        "MimeType": "text/xml"
+                    },
+                    {
+                        "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                        "URLDescription": "Example description 2",
+                        "MimeType": "text/xml"
+                    }
+                ],
+                "URLDescription"
+            ],
+            [
+                [
+                    {
+                        "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                        "URLDescription": "Test description",
+                        "MimeType": "text/xml"
+                    },
+                    {
+                        "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                        "URLDescription": "Test description 2",
+                        "MimeType": "text/xml"
+                    }
+                ],
+                "URLDescription"
+            ]
+        ],
+        "invalid": [
+            [
+                {
+                    "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                    "URLDescription": "Example description",
+                    "MimeType": "text/xml"
+                },
+                {
+                    "URL": "https://n5eil01u.ecs.nsidc.org/DP7/ATLAS/ATL08.005/2022.02.10/ATL08_20220210222256_07731412_005_01.iso.xml",
+                    "URLDescription": "Example description",
+                    "MimeType": "text/xml"
+                }
+            ],
+            "URLDescription"
+        ]
     },
     "granule_single_date_time_check": {
         "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],

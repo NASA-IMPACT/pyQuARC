@@ -32,20 +32,62 @@
         "invalid": ["Aquarius Official Release Level 3 Ancillary Reynolds Sea Surface Temperature Standard Mapped Image 7-Day Data V5.0","Aquarius Official Release Level 3 Ancillary Reynolds Sea Surface Temperature Standard Mapped Image 7-Day Data V5.0"]
     },
     "abstract_length_check": {
-        "valid": ["The Harmonized Landsat Sentinel-2 (HLS) project provides consistent surface reflectance (SR) and top of atmosphere (TOA) brightness data from a virtual constellation of satellite sensors. The Operational Land Imager (OLI) is housed aboard the joint NASA/USGS Landsat 8 and Landsat 9 satellites, while the Multi-Spectral Instrument (MSI) is mounted aboard Europe's Copernicus Sentinel-2A and Sentinel-2B satellites. The combined measurement enables global observations of the land every 2-3 days at 30-meter (m) spatial resolution. The HLS project uses a set of algorithms to obtain seamless products from OLI and MSI that include atmospheric correction, cloud and cloud-shadow masking, spatial co-registration and common gridding, illumination and view angle normalization, and spectral bandpass adjustment. The HLSL30 product provides 30-m Nadir Bidirectional Reflectance Distribution Function (BRDF)-Adjusted Reflectance (NBAR) and is derived from Landsat 8/9 OLI data products. The HLSS30 and HLSL30 products are gridded to the same resolution and Military Grid Reference System (MGRS)(https://hls.gsfc.nasa.gov/products-description/tiling-system/) tiling system, and thus are 'stackable' for time series analysis. The HLSL30 product is provided in Cloud Optimized GeoTIFF (COG) format, and each band is distributed as a separate file. There are 11 bands included in the HLSL30 product along with one quality assessment (QA) band and four angle bands. See the User Guide for a more detailed description of the individual bands provided in the HLSL30 product."],
-        "invalid": ["Yes."]
+        "valid": ["The Harmonized Landsat Sentinel-2 (HLS) project provides consistent surface reflectance (SR) and top of atmosphere (TOA) brightness data from a virtual constellation of satellite sensors. The Operational Land Imager (OLI) is housed aboard the joint NASA/USGS Landsat 8 and Landsat 9 satellites, while the Multi-Spectral Instrument (MSI) is mounted aboard Europe's Copernicus Sentinel-2A and Sentinel-2B satellites. The combined measurement enables global observations of the land every 2-3 days at 30-meter (m) spatial resolution. The HLS project uses a set of algorithms to obtain seamless products from OLI and MSI that include atmospheric correction, cloud and cloud-shadow masking, spatial co-registration and common gridding, illumination and view angle normalization, and spectral bandpass adjustment. The HLSL30 product provides 30-m Nadir Bidirectional Reflectance Distribution Function (BRDF)-Adjusted Reflectance (NBAR) and is derived from Landsat 8/9 OLI data products. The HLSS30 and HLSL30 products are gridded to the same resolution and Military Grid Reference System (MGRS)(https://hls.gsfc.nasa.gov/products-description/tiling-system/) tiling system, and thus are 'stackable' for time series analysis. The HLSL30 product is provided in Cloud Optimized GeoTIFF (COG) format, and each band is distributed as a separate file. There are 11 bands included in the HLSL30 product along with one quality assessment (QA) band and four angle bands. See the User Guide for a more detailed description of the individual bands provided in the HLSL30 product.", 100, "gte"],
+        "invalid": ["Yes.", 100, "gte"]
     },
     "doi_validity_check": {
         "valid": ["10.5067/AQR50-3R7CS"],
         "invalid": ["https://www.doi.org/10.5067/FAKE/FAKE_L2.061"]
     },
     "doi_link_update": {
-        "valid": ["https://doi.org/10.5067/AQR50-3R7CS"],
-        "invalid": ["http://dx.doi.org/10.5067/AQR50-3R7CS"]
+        "valid": [
+            "https://doi.org/10.5067/AQR50-3R7CS", 
+            [
+                "dx.doi.org",
+                "http://dx.doi.org",
+                "https://dx.doi.org"
+            ]
+        ],
+        "invalid": [
+            "http://dx.doi.org/10.5067/AQR50-3R7CS",
+            [
+                "dx.doi.org",
+                "http://dx.doi.org",
+                "https://dx.doi.org"
+            ]
+        ]
     },
     "processing_level_id_check": {
-        "valid": [["0"], ["1A"], ["1B"], ["2"], ["3"], ["4"]],
-        "invalid": [["-1"], ["one"], ["1H"], ["5"], ["5G"], ["undefined"]]
+        "valid": [
+            "1A",
+            [
+                "0",
+                "1A",
+                "1B",
+                "1C",
+                "2",
+                "2A",
+                "2B",
+                "3",
+                "3A",
+                "4"
+            ]
+        ],
+        "invalid": [
+            "5G",
+            [
+                "0",
+                "1A",
+                "1B",
+                "1C",
+                "2",
+                "2A",
+                "2B",
+                "3",
+                "3A",
+                "4"
+            ]
+        ]
     },
     "science_keywords_gcmd_check": {
         "valid": [["EARTH SCIENCE","ATMOSPHERE","PRECIPITATION","HYDROMETEORS","",""], 
@@ -56,24 +98,68 @@
             ["EARTH SCIENCE","AGRICULTURE","FOREST SCIENCE","FOREST FIRE SCIENCE","COASTAL","KELP FOREST"]]
     },
     "eosdis_doi_authority_check": {
-        "valid": [["https://doi.org/"], ["https://doi.org"]],
-        "invalid": [["https://www.doi.gov"], ["http://www.ronniejamesdio.com/"]]
+        "valid": [
+            "https://doi.org/",
+            [
+                "https://doi.org",
+                "https://doi.org/"
+            ]
+        ],
+        "invalid": [
+            "https://www.doi.gov",
+            [
+                "https://doi.org",
+                "https://doi.org/"
+            ]
+        ]
     },
     "delete_time_check": {
-        "valid": ["2049-01-01T00:00:00Z"],
-        "invalid": ["2000-01-01T00:00:00Z"]
+        "valid": ["2049-01-01T00:00:00Z", "now", "gte"],
+        "invalid": ["2000-01-01T00:00:00Z", "now", "gte"]
     },
     "doi_missing_reason_enumeration_check": {
-        "valid": [["Not Applicable"], ["Unknown"]],
-        "invalid": [[""], ["Because I say so."]]
+        "valid": [
+            "Not Applicable",
+            [
+                "Not Applicable",
+                "Unknown"
+            ]
+        ],
+        "invalid": [
+            "",
+            [
+                "Not Applicable",
+                "Unknown"
+            ]
+        ]
     },
     "processing_level_description_length_check": {
-        "valid": ["Derived geophysical variables at the same resolution and location as Level 1 source data."],
-        "invalid": ["You get my drift."]
+        "valid": ["Derived geophysical variables at the same resolution and location as Level 1 source data.", 50, "gte"],
+        "invalid": ["You get my drift.", 50, "gte"]
     },
     "umm_controlled_collection_state_list_check": {
-        "valid": [["ACTIVE"], ["PLANNED"], ["COMPLETE"], ["NOT APPLICABLE"], ["NOT PROVIDED"]],
-        "invalid": [["INACTIVE"], ["NOT PLANNED"], ["INCOMPLETE"], ["APPLICABLE"], ["PROVIDED"]]
+        "valid": [
+            "ACTIVE",
+            [
+                "ACTIVE",
+                "PLANNED",
+                "COMPLETE",
+                "DEPRECATED",
+                "NOT APPLICABLE",
+                "NOT PROVIDED"
+            ]
+        ],
+        "invalid": [
+            "INACTIVE",
+            [
+                "ACTIVE",
+                "PLANNED",
+                "COMPLETE",
+                "DEPRECATED",
+                "NOT APPLICABLE",
+                "NOT PROVIDED"
+            ]
+        ]
     },
     "ends_at_present_flag_logic_check": {
         "valid": [["true","","ACTIVE"],["false","2007-07-04T00:00:00Z","COMPLETE"]],
@@ -84,20 +170,118 @@
         "invalid": ["", "", "ACTIVE"]
     },
     "contact_mechanism_enum_check": {
-        "valid": [["Direct Line"], ["Email"], ["Facebook"], ["Fax"], ["Mobile"], ["Modem"], ["Primary"], ["TDD/TTY Phone"], ["Telephone"], ["Twitter"], ["U.S. toll free"], ["Other"]],
-        "invalid": [["Indirect Line"], ["Mail"], ["Facespace"], ["Facts"], ["Mobile AL"], ["Router"], ["Secondary"], ["Phone"], ["Smart Phone"], ["Carrier Pigeon"], ["U.S. toll"], ["Extra"]]
+        "valid": [
+            "Direct Line",
+            [
+                "Direct Line",
+                "Email",
+                "Facebook",
+                "Fax",
+                "Mobile",
+                "Modem",
+                "Primary",
+                "TDD/TTY Phone",
+                "Telephone",
+                "Twitter",
+                "U.S. toll free",
+                "Other"
+            ]
+        ],
+        "invalid": [
+            "Indirect Line",
+            [
+                "Direct Line",
+                "Email",
+                "Facebook",
+                "Fax",
+                "Mobile",
+                "Modem",
+                "Primary",
+                "TDD/TTY Phone",
+                "Telephone",
+                "Twitter",
+                "U.S. toll free",
+                "Other"
+            ]
+        ]
     },
     "data_contact_role_enum_check": {
-        "valid": [["Data Center Contact"], ["Technical Contact"], ["Science Contact"], ["Investigator"], ["Metadata Author"], ["User Services"], ["Science Software Development"]],
-        "invalid": [["Data Center Noncontact"], ["Non-technical Contact"], ["Non-scientific Contact"], ["Uninvestigated"], ["Meta Data Author"], ["User Disservice"], ["Hardware Department"]]
+        "valid": [
+            "Data Center Contact",
+            [
+                "Data Center Contact",
+                "Technical Contact",
+                "Science Contact",
+                "Investigator",
+                "Metadata Author",
+                "User Services",
+                "Science Software Development"
+            ]
+        ],
+        "invalid": [
+            "Data Center Noncontact",
+            [
+                "Data Center Contact",
+                "Technical Contact",
+                "Science Contact",
+                "Investigator",
+                "Metadata Author",
+                "User Services",
+                "Science Software Development"
+            ]
+        ]
     },
     "controlled_contact_role_check": {
-        "valid": [["ARCHIVER"], ["DISTRIBUTOR"], ["PROCESSOR"], ["ORIGINATOR"]],
-        "invalid": [["DISPOSER"], ["HOLDER"], ["UNPROCESSABLE ENTITY"], ["END USER"]]
+        "valid": [
+            "ARCHIVER",
+            [
+                "ARCHIVER",
+                "DISTRIBUTOR",
+                "PROCESSOR",
+                "ORIGINATOR"
+            ]
+        ],
+        "invalid": [
+            "DISPOSER",
+            [
+                "ARCHIVER",
+                "DISTRIBUTOR",
+                "PROCESSOR",
+                "ORIGINATOR"
+            ]
+        ]
     },
     "data_type_control_check": {
-        "valid": [["STRING"], ["FLOAT"], ["INT"], ["BOOLEAN"], ["DATE"], ["TIME"], ["DATETIME"], ["DATE_STRING"], ["TIME_STRING"], ["DATETIME_STRING"]],
-        "invalid": [["THREAD"], ["SINK"], ["ESF"], ["LOGIC"], ["3D"], ["SPACE"], ["3DSPACE"], ["3D_THREAD"], ["SPACE_THREAD"], ["3DSPACE_THREAD"]]
+        "valid": [
+            "STRING",
+            [
+                "STRING",
+                "FLOAT",
+                "INT",
+                "BOOLEAN",
+                "DATE",
+                "TIME",
+                "DATETIME",
+                "DATE_STRING",
+                "TIME_STRING",
+                "DATETIME_STRING"
+            ]
+        ],
+        "invalid": [
+            "THREAD",
+            [
+                "STRING",
+                "FLOAT",
+                "INT",
+                "BOOLEAN",
+                "DATE",
+                "TIME",
+                "DATETIME",
+                "DATE_STRING",
+                "TIME_STRING",
+                "DATETIME_STRING"
+            ]
+        ]
     },
     "characteristic_name_check": {
         "valid": [
@@ -150,28 +334,56 @@
         "invalid": [["idk", "..."], ["idk", "..."],["idk","..."]]
     },
     "characteristic_name_length_check": {
-        "valid": [["this must be a string only 80 characters long"], ["this must be a string only 80 characters long"], ["this must be a string only 80 characters long"]],
-        "invalid": [["This string of text is too long. All metadata entering the CMR goes through the below process to ensure metadata quality requirements are met. All records undergo CMR validation before entering the system. The process of QA/QC is slightly different for NASA and non-NASA data providers. Non-NASA providers include interagency and international data providers and are referred to as the International Directory Network (IDN)."], ["This string of text is too long. All metadata entering the CMR goes through the below process to ensure metadata quality requirements are met. All records undergo CMR validation before entering the system. The process of QA/QC is slightly different for NASA and non-NASA data providers. Non-NASA providers include interagency and international data providers and are referred to as the International Directory Network (IDN)."], ["This string of text is too long. All metadata entering the CMR goes through the below process to ensure metadata quality requirements are met. All records undergo CMR validation before entering the system. The process of QA/QC is slightly different for NASA and non-NASA data providers. Non-NASA providers include interagency and international data providers and are referred to as the International Directory Network (IDN)."],["This string of text is too long. All metadata entering the CMR goes through the below process to ensure metadata quality requirements are met. All records undergo CMR validation before entering the system. The process of QA/QC is slightly different for NASA and non-NASA data providers. Non-NASA providers include interagency and international data providers and are referred to as the International Directory Network (IDN)."], ["This string of text is too long. All metadata entering the CMR goes through the below process to ensure metadata quality requirements are met. All records undergo CMR validation before entering the system. The process of QA/QC is slightly different for NASA and non-NASA data providers. Non-NASA providers include interagency and international data providers and are referred to as the International Directory Network (IDN)."], ["This string of text is too long. All metadata entering the CMR goes through the below process to ensure metadata quality requirements are met. All records undergo CMR validation before entering the system. The process of QA/QC is slightly different for NASA and non-NASA data providers. Non-NASA providers include interagency and international data providers and are referred to as the International Directory Network (IDN)."], ["This string of text is too long. All metadata entering the CMR goes through the below process to ensure metadata quality requirements are met. All records undergo CMR validation before entering the system. The process of QA/QC is slightly different for NASA and non-NASA data providers. Non-NASA providers include interagency and international data providers and are referred to as the International Directory Network (IDN)."], ["This string of text is too long. All metadata entering the CMR goes through the below process to ensure metadata quality requirements are met. All records undergo CMR validation before entering the system. The process of QA/QC is slightly different for NASA and non-NASA data providers. Non-NASA providers include interagency and international data providers and are referred to as the International Directory Network (IDN)."], ["This string of text is too long. All metadata entering the CMR goes through the below process to ensure metadata quality requirements are met. All records undergo CMR validation before entering the system. The process of QA/QC is slightly different for NASA and non-NASA data providers. Non-NASA providers include interagency and international data providers and are referred to as the International Directory Network (IDN)."]  ]
+        "valid": ["this must be a string only 80 characters long", 80, "lte"],
+        "invalid": ["This string of text is too long. All metadata entering the CMR goes through the below process to ensure metadata quality requirements are met. All records undergo CMR validation before entering the system. The process of QA/QC is slightly different for NASA and non-NASA data providers. Non-NASA providers include interagency and international data providers and are referred to as the International Directory Network (IDN).", 80, "lte"]
     },
     "characteristic_desc_length_check": {
-        "valid": ["this must be a string only 2048 characters long"],
-        "invalid": [""]
+        "valid": ["this must be a string only 2048 characters long", 2048, "lte"],
+        "invalid": ["123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789", 2048, "lte"]
     },
     "characteristic_unit_length_check": {
-        "valid": [["38"], ["1,000,000"], ["0"]],
-        "invalid": [["98"], ["10000000000000000000000"], ["1234567891011121314151617181920"]]
+        "valid": [["38", 20, "lte"], ["1,000,000", 20, "lte"], ["0", 20, "lte"]],
+        "invalid": [["989898989898989898989898", 20, "lte"], ["10000000000000000000000", 20, "lte"], ["1234567891011121314151617181920", 20, "lte"]]
     },
     "characteristic_value_length_check": {
-        "valid": ["this must be a string only 80 characters long"],
-        "invalid": ["This string of text is too long. All metadata entering the CMR goes through the below process to ensure metadata quality requirements are met. All records undergo CMR validation before entering the system. The process of QA/QC is slightly different for NASA and non-NASA data providers. Non-NASA providers include interagency and international data providers and are referred to as the International Directory Network (IDN)."]
+        "valid": ["this must be a string only 80 characters long", 80, "lte"],
+        "invalid": ["This string of text is too long. All metadata entering the CMR goes through the below process to ensure metadata quality requirements are met. All records undergo CMR validation before entering the system. The process of QA/QC is slightly different for NASA and non-NASA data providers. Non-NASA providers include interagency and international data providers and are referred to as the International Directory Network (IDN).", 80, "lte"]
     },
     "coordinate_system_check": {
-        "valid": ["GEODETIC"],
-        "invalid": ["sphere"]
+        "valid": [
+            "GEODETIC",
+            [
+                "CARTESIAN",
+                "GEODETIC"
+            ]
+        ],
+        "invalid": [
+            "sphere",
+            [
+                "CARTESIAN",
+                "GEODETIC"
+            ]
+        ]
     },
     "granule_spatial_representation_check": {
-        "valid": ["ORBIT"],
-        "invalid": ["Not Applicable"]
+        "valid": [
+            "ORBIT",
+            [
+                "CARTESIAN",
+                "GEODETIC",
+                "ORBIT",
+                "NO_SPATIAL"
+            ]
+        ],
+        "invalid": [
+            "Not Applicable",
+            [
+                "CARTESIAN",
+                "GEODETIC",
+                "ORBIT",
+                "NO_SPATIAL"
+            ]
+        ]
     },
     "organization_short_name_gcmd_check": {
         "valid": [["NASA/LARC/SD/ASDC"], ["NASA/MSFC/GHRC"]],
@@ -238,12 +450,30 @@
         "invalid": ["SubMesoscale Ocean Dynamics Experiment"]
     },
     "version_description_not_provided": {
-        "valid": ["Version 8"],
-        "invalid": ["Not provided"]
+        "valid": ["Version 8", "NOT PROVIDED", "neq"],
+        "invalid": ["Not provided", "NOT PROVIDED", "neq"]
     },
     "collection_data_type_enumeration_check": {
-        "valid": ["OTHER"],
-        "invalid": ["real time data"]
+        "valid": [
+            "OTHER",
+            [
+                "LOW_LATENCY",
+                "EXPEDITED",
+                "SCIENCE_QUALITY",
+                "NEAR_REAL_TIME",
+                "OTHER"
+            ]
+        ],
+        "invalid": [
+            "real time data",
+            [
+                "LOW_LATENCY",
+                "EXPEDITED",
+                "SCIENCE_QUALITY",
+                "NEAR_REAL_TIME",
+                "OTHER"
+            ]
+        ]
     },
     "data_center_name_presence_check": {
         "valid": ["", "NASA/MSFC/GHRC", ""],
@@ -254,20 +484,92 @@
         "invalid": ["-180", "30", "180", "35"]
     },
     "vertical_spatial_domain_type_check": {
-        "valid": ["Atmosphere Layer"],
-        "invalid": ["Stratosphere"]
+        "valid": [
+            "Atmosphere Layer",
+        [
+            "Atmosphere Layer",
+            "Maximum Altitude",
+            "Maximum Depth",
+            "Minimum Altitude",
+            "Minimum Depth"
+        ]
+    ],
+        "invalid": [
+            "Stratosphere",
+        [
+            "Atmosphere Layer",
+            "Maximum Altitude",
+            "Maximum Depth",
+            "Minimum Altitude",
+            "Minimum Depth"
+        ]
+    ]
     },
     "spatial_coverage_type_check": {
-        "valid": ["VERTICAL"],
-        "invalid": ["diagonal"]
+        "valid": [
+            "VERTICAL",
+        [
+            "HORIZONTAL",
+            "VERTICAL",
+            "ORBITAL",
+            "HORIZONTAL_VERTICAL",
+            "ORBITAL_VERTICAL",
+            "HORIZONTAL_ORBITAL",
+            "HORIZONTAL_VERTICAL_ORBITAL"
+        ]
+    ],
+        "invalid": [
+            "diagonal",
+        [
+            "HORIZONTAL",
+            "VERTICAL",
+            "ORBITAL",
+            "HORIZONTAL_VERTICAL",
+            "ORBITAL_VERTICAL",
+            "HORIZONTAL_ORBITAL",
+            "HORIZONTAL_VERTICAL_ORBITAL"
+        ]
+    ]
     },
     "depth_unit_check": {
-        "valid": ["diagonal"],
-        "invalid": ["ft"]
+        "valid": [
+            "Feet",
+        [
+            "Fathoms",
+            "Feet",
+            "HectoPascals",
+            "Meters",
+            "Millibars"
+        ]
+    ],
+        "invalid": [
+            "ft",
+        [
+            "Fathoms",
+            "Feet",
+            "HectoPascals",
+            "Meters",
+            "Millibars"
+        ]
+    ]
     },
     "altitude_unit_check": {
-        "valid": ["Kilometers"],
-        "invalid": ["km"]
+        "valid": [
+            "Kilometers",
+        [
+            "HectoPascals",
+            "Kilometers",
+            "Millibars"
+        ]
+    ],
+        "invalid": [
+            "km",
+        [
+            "HectoPascals",
+            "Kilometers",
+            "Millibars"
+        ]
+    ]
     },
     "campaign_name_presence_check": {
         "valid": ["AAOE"],
@@ -318,8 +620,8 @@
         "invalid": ["fml fml fml", ""]
     },
     "characteristic_name_uniqueness_check": {
-        "valid": ["NASA DC-8", "NASA ER-2"],
-        "invalid": ["NASA DC-8", "NASA DC-8"]
+        "valid": [["NASA DC-8", "NASA ER-2"], "Name"],
+        "invalid": [["NASA DC-8", "NASA DC-8"], "Name"]
     },
     "validate_ending_datetime_against_granules": {
         "valid": ["2017-07-17T20:41:47.000Z","ABOLVIS1A","1"],
@@ -330,36 +632,86 @@
         "invalid": ["2016-06-29T00:00:00.000Z","ABOLVIS1A","1"]
     },
     "future_date_check": {
-        "valid": ["REVIEW", "REVIEW"],
-        "invalid": ["idk", "idk"]
+        "valid": ["2050-01-01T00:00:00Z", "now", "gte"],
+        "invalid": ["2020-01-01T00:00:00Z", "now", "gte"]
     },
     "iso_topic_category_check": {
-        "valid": ["DISASTER"],
-        "invalid": ["idk"]
+        "valid": [
+            "DISASTER",
+        [
+            "BIOTA",
+            "BOUNDARIES",
+            "CLIMATOLOGY/METEOROLOGY/ATMOSPHERE",
+            "DISASTER",
+            "ECONOMY",
+            "ELEVATION",
+            "ENVIRONMENT",
+            "EXTRA TERRESTRIAL",
+            "FARMING",
+            "GEOSCIENTIFIC INFORMATION",
+            "HEALTH",
+            "IMAGERY/BASE MAPS/EARTH COVER",
+            "INLAND WATERS",
+            "INTELLIGENCE/MILITARY",
+            "LOCATION",
+            "OCEANS",
+            "PLANNING CADASTRE",
+            "SOCIETY",
+            "STRUCTURE",
+            "TRANSPORTATION",
+            "UTILITIES/COMMUNICATIONS"
+        ]
+    ],
+        "invalid": [
+            "idk",
+        [
+            "BIOTA",
+            "BOUNDARIES",
+            "CLIMATOLOGY/METEOROLOGY/ATMOSPHERE",
+            "DISASTER",
+            "ECONOMY",
+            "ELEVATION",
+            "ENVIRONMENT",
+            "EXTRA TERRESTRIAL",
+            "FARMING",
+            "GEOSCIENTIFIC INFORMATION",
+            "HEALTH",
+            "IMAGERY/BASE MAPS/EARTH COVER",
+            "INLAND WATERS",
+            "INTELLIGENCE/MILITARY",
+            "LOCATION",
+            "OCEANS",
+            "PLANNING CADASTRE",
+            "SOCIETY",
+            "STRUCTURE",
+            "TRANSPORTATION",
+            "UTILITIES/COMMUNICATIONS"
+        ]
+    ]
     },
     "temporal_extent_requirement_check": {
         "valid": ["2020-01-01T00:00:00Z", "", ""],
         "invalid": ["", "", ""]
     },
     "ftp_protocol_check": {
-        "valid": ["https://asdc.larc.nasa.gov/data/ARESE/ER2_MAS/"],
-        "invalid": ["ftp://heasarc.gsfc.nasa.gov/rosat/data"]
+        "valid": ["https://asdc.larc.nasa.gov/data/ARESE/ER2_MAS/", "FTP", "neq"],
+        "invalid": ["ftp://heasarc.gsfc.nasa.gov/rosat/data", "FTP", "neq"]
     },
     "citation_version_check": {
         "valid": ["2.0", "1"],
         "invalid": ["", ""]
     },
     "default_date_check": {
-        "valid": ["2021-11-05T13:15:30Z", "2021-11-05T13:15:30Z"],
-        "invalid": ["202111-05T13:15:30Z", "202111-05T13:15:30Z"]
+        "valid": ["2021-11-05T13:15:30Z", "1970-01-01T00:00:00Z", "neq"],
+        "invalid": ["1970-01-01T00:00:00Z", "1970-01-01T00:00:00Z", "neq"]
     },
     "url_desc_presence_check": {
         "valid": [["the google search engine", "www.google.com"], ["https//doi.org", "doi home page"]],
         "invalid": [["https://github.com", ""], ["https://duckduckgo.com", ""]]
     },
     "get_data_url_check": {
-        "valid": ["https://daac.ornl.gov/cgi-bin/download.pl?ds_id=465&source=dsviewer&_ga=2.140140659.1165149285.1658168134-969487745.1655392216"],
-        "invalid": ["https://daac.ornl.gov/cgi-bin/download.FAKE"]
+        "valid": ["https://daac.ornl.gov/cgi-bin/download.pl?ds_id=465&source=dsviewer&_ga=2.140140659.1165149285.1658168134-969487745.1655392216", "Type"],
+        "invalid": ["https://daac.ornl.gov/cgi-bin/download.FAKE", "Type"]
     },
     "horizontal_resolution_range_check": {
         "valid": ["1 meter - < 30 meters"],
@@ -378,8 +730,24 @@
         "invalid": ["", "", "", "", ""]
     },
     "sensor_number_check": {
-        "valid": ["2", "GLAS"],
-        "invalid": ["GLAS", "..."]
+        "valid": [
+            "1",
+            {
+                "Short_Name": "MODIS",
+                "Long_Name": "Moderate-Resolution Imaging Spectroradiometer",
+                "Technique": "Imaging Spectroradiometry",
+                "Sensor": "Example"
+            },
+            "Sensor"],
+        "invalid": [
+            "2",
+            {
+                "Short_Name": "MODIS",
+                "Long_Name": "Moderate-Resolution Imaging Spectroradiometer",
+                "Technique": "Imaging Spectroradiometry",
+                "Sensor": "Example"
+            },
+            "Sensor"]
     },
     "data_center_short_name_gcmd_check": {
         "valid": ["NASA/MSFC/GHRC"],
@@ -394,16 +762,50 @@
         "invalid": [""]
     },
     "horizontal_data_resolution_unit_check": {
-        "valid": [["Decimal Degrees"], ["Kilometers"], ["Meters"], ["Statute Miles"], ["Nautical Miles"], ["Not provided"]],
-        "invalid": [["Degrees"], ["Miles"], ["Feet"], ["Arabic Mile"], ["Pyramid inch"], ["Provided"]]
+        "valid": [
+            "Decimal Degrees",
+        [
+            "Decimal Degrees",
+            "Kilometers",
+            "Meters",
+            "Statute Miles",
+            "Nautical Miles",
+            "Not provided"
+        ]
+    ],
+        "invalid": [
+            "Degrees",
+        [
+            "Decimal Degrees",
+            "Kilometers",
+            "Meters",
+            "Statute Miles",
+            "Nautical Miles",
+            "Not provided"
+        ]
+    ]
     },
     "periodic_duration_unit_check": {
-        "valid": [["DAY"],["MONTH"],["YEAR"]],
-        "invalid": [["LUNAR DAY"],["LUNAR MONTH"],["LUNAR NEW YEAR"]]
+        "valid": [
+            "DAY",
+        [
+            "DAY",
+            "MONTH",
+            "YEAR"
+        ]
+    ],
+        "invalid": [
+            "LUNAR DAY",
+        [
+            "DAY",
+            "MONTH",
+            "YEAR"
+        ]
+    ]
     },
     "url_description_uniqueness_check": {
-        "valid": ["The guide document contains detailed information about the dataset."],
-        "invalid": [""]
+        "valid": [["The guide document contains detailed information about the dataset."], "Description"],
+        "invalid": [[""], "Description"]
     },
     "metadata_update_time_logic_check": {
         "valid": ["UPDATE", "CREATE"],

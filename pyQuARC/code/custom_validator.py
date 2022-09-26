@@ -10,7 +10,6 @@ class CustomValidator(BaseValidator):
         super().__init__()
 
     @staticmethod
-    @if_arg
     def ends_at_present_flag_logic_check(
         ends_at_present_flag, ending_date_time, collection_state
     ):
@@ -62,7 +61,7 @@ class CustomValidator(BaseValidator):
     @if_arg
     def bounding_coordinate_logic_check(west, north, east, south):
         # Checks if the logic for coordinate values make sense
-        result = {"valid": False, "value": ""}
+        result = {"valid": False, "value": [west, north, east, south]}
         west = float(west)
         east = float(east)
         south = float(south)
@@ -138,8 +137,9 @@ class CustomValidator(BaseValidator):
 
     @staticmethod
     def doi_missing_reason_explanation(explanation, missing_reason, doi):
+        validity = bool(doi or ((not doi) and missing_reason and explanation))
         return {
-            "valid": doi or not missing_reason or explanation,
+            "valid": validity,
             "value": explanation
         }
 
@@ -179,11 +179,11 @@ class CustomValidator(BaseValidator):
         seen, duplicates = set(), set()
         if isinstance(list_of_objects, list):
             for url_obj in list_of_objects:
-                if description := url_obj.get(key) in seen:
+                description = url_obj.get(key)
+                if description in seen:
                     duplicates.add(description)
                 else:
                     seen.add(description)
-
         return {
             "valid": not bool(duplicates),
             "value": ', '.join(duplicates)
