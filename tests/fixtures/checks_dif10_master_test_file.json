@@ -785,7 +785,7 @@
     },
     "platform_long_name_presence_check": {
         "valid": ["Gulfstream III"],
-        "invalid": ["gulfstream 3"]
+        "invalid": [""]
     },
     "horizontal_data_resolution_unit_check": {
         "valid": [
