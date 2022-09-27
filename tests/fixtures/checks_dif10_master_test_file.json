@@ -748,8 +748,8 @@
         "invalid": ["idk"]
     },
     "chrono_unit_gcmd_check": {
-        "valid": ["ARCHAEAN", "EOARCHEAN", "NEOGENE", "MIOCENE", "AQUITANIAN"],
-        "invalid": ["", "", "", "", ""]
+        "valid": ["PHANEROZOIC","CENOZOIC","QUATERNARY","PLEISTOCENE","CALABRIAN"],
+        "invalid": ["PHANEROZOIC","CENOZOIC","QUATERNARY","PLEISTOCENE", "QUATERNARY"]
     },
     "sensor_number_check": {
         "valid": [
