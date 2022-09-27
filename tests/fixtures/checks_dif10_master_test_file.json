@@ -812,7 +812,85 @@
     ]
     },
     "url_description_uniqueness_check": {
-        "valid": [["The guide document contains detailed information about the dataset."], "Description"],
-        "invalid": [[""], "Description"]
+        "valid": [
+            [
+                {
+                  "URL_Content_Type": {
+                    "Type": "VIEW RELATED INFORMATION",
+                    "Subtype": "GENERAL DOCUMENTATION"
+                  },
+                  "URL": "https://modis-atmos.gsfc.nasa.gov/products/water-vapor",
+                  "Description": "Overview of MODIS Water Vapor products.",
+                  "Mime_Type": "text/html"
+                },
+                {
+                  "URL_Content_Type": {
+                    "Type": "DATA SET LANDING PAGE"
+                  },
+                  "URL": "https://doi.org/10.5067/MODIS/MYD05_L2.061",
+                  "Description": "The product landing page",
+                  "Mime_Type": "text/xml"
+                },
+                {
+                  "URL_Content_Type": {
+                    "Type": "VIEW RELATED INFORMATION",
+                    "Subtype": "ALGORITHM THEORETICAL BASIS DOCUMENT (ATBD)"
+                  },
+                  "URL": "https://modis-atmos.gsfc.nasa.gov/sites/default/files/ModAtmo/atbd_mod03_0.pdf",
+                  "Description": "Water Vapor product ATBD",
+                  "Mime_Type": "application/pdf"
+                },
+                {
+                  "URL_Content_Type": {
+                    "Type": "GET DATA",
+                    "Subtype": "LAADS"
+                  },
+                  "URL": "https://ladsweb.modaps.eosdis.nasa.gov/search/order/2/MYD05_L2--61",
+                  "Description": "Search and order products from LAADS website.",
+                  "Mime_Type": "text/html"
+                },
+                {
+                  "URL_Content_Type": {
+                    "Type": "GET DATA",
+                    "Subtype": "DIRECT DOWNLOAD"
+                  },
+                  "URL": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MYD05_L2/",
+                  "Description": "Direct access to MYD05_L2 C6.1 data set.",
+                  "Mime_Type": "text/html"
+                },
+                {
+                  "URL_Content_Type": {
+                    "Type": "USE SERVICE API",
+                    "Subtype": "OPENDAP DATA"
+                  },
+                  "URL": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/allData/61/MYD05_L2/contents.html",
+                  "Description": "Direct access to product's OPeNDAP directory",
+                  "Mime_Type": "text/html"
+                }
+              ],            
+            "Description"
+        ],
+        "invalid": [
+            [
+                {
+                  "URL_Content_Type": {
+                    "Type": "VIEW RELATED INFORMATION",
+                    "Subtype": "GENERAL DOCUMENTATION"
+                  },
+                  "URL": "https://modis-atmos.gsfc.nasa.gov/products/water-vapor",
+                  "Description": "Overview of MODIS Water Vapor products.",
+                  "Mime_Type": "text/html"
+                },
+                {
+                  "URL_Content_Type": {
+                    "Type": "DATA SET LANDING PAGE"
+                  },
+                  "URL": "https://doi.org/10.5067/MODIS/MYD05_L2.061",
+                  "Description": "Overview of MODIS Water Vapor products.",
+                  "Mime_Type": "text/xml"
+                }
+              ],
+            "Description"
+        ]
     }
 }
