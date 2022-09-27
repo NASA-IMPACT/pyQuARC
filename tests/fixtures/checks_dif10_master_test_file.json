@@ -724,8 +724,39 @@
         "invalid": [["https://github.com", ""], ["https://duckduckgo.com", ""]]
     },
     "get_data_url_check": {
-        "valid": ["https://daac.ornl.gov/cgi-bin/download.pl?ds_id=465&source=dsviewer&_ga=2.140140659.1165149285.1658168134-969487745.1655392216", "Type"],
-        "invalid": ["https://daac.ornl.gov/cgi-bin/download.FAKE", "Type"]
+        "valid": [
+            [
+                {
+                  "URL_Content_Type": {
+                    "Type": "GET DATA",
+                    "Subtype": "GENERAL DOCUMENTATION"
+                  },
+                  "URL": "https://modis-atmos.gsfc.nasa.gov/products/water-vapor",
+                  "Description": "Overview of MODIS Water Vapor products.",
+                  "Mime_Type": "text/html"
+                }
+            ],
+            [
+                "URL_Content_Type",
+                "Type"
+            ]
+        ],
+        "invalid": [
+            [
+                {
+                  "URL_Content_Type": {
+                    "Subtype": "GENERAL DOCUMENTATION"
+                  },
+                  "URL": "https://modis-atmos.gsfc.nasa.gov/products/water-vapor",
+                  "Description": "Overview of MODIS Water Vapor products.",
+                  "Mime_Type": "text/html"
+                }
+            ],            
+            [
+                "URL_Content_Type",
+                "Type"
+            ]
+        ]
     },
     "horizontal_resolution_range_check": {
         "valid": ["1 meter - < 30 meters"],
