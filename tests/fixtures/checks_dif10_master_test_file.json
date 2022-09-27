@@ -721,7 +721,7 @@
     },
     "url_desc_presence_check": {
         "valid": [["the google search engine", "www.google.com"], ["https//doi.org", "doi home page"]],
-        "invalid": [["https://github.com", ""], ["https://duckduckgo.com", ""]]
+        "invalid": [["", "https://github.com"], ["", "https://duckduckgo.com"]]
     },
     "get_data_url_check": {
         "valid": [
