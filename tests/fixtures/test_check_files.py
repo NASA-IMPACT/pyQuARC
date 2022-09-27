@@ -116,7 +116,7 @@ def DOI_update_check(val_function, value):
                     i = i +1
                 return return_list
         elif (isinstance(value[0],str)):
-                return val_function(value[0])
+                return val_function(value[0], value[1])
     except:
         return 'error'
 
