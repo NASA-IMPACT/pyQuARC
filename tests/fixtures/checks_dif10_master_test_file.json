@@ -590,8 +590,8 @@
         "invalid": ["", "", ""]
     },
     "collection_progress_consistency_check": {
-        "valid": ["IN PROGRESS", "true", ""],
-        "invalid": ["IN PROGRESS", "", "2015-02-09T:00:00:00Z"]
+        "valid": ["IN WORK", "True", ""],
+        "invalid": ["IN WORK", "", "2015-02-09T:00:00:00Z"]
     },
     "characteristic_name_uniqueness_check": {
         "valid": [
