@@ -708,8 +708,8 @@
         "invalid": ["", "", ""]
     },
     "ftp_protocol_check": {
-        "valid": ["https://asdc.larc.nasa.gov/data/ARESE/ER2_MAS/", "FTP", "neq"],
-        "invalid": ["ftp://heasarc.gsfc.nasa.gov/rosat/data", "FTP", "neq"]
+        "valid": ["HTTPS", "FTP", "neq"],
+        "invalid": ["FTP", "FTP", "neq"]
     },
     "citation_version_check": {
         "valid": ["1", "1", "eq"],
