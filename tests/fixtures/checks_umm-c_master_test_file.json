@@ -126,7 +126,7 @@
             ]
         ],
         "invalid": [
-            "",
+            " ",
             [
                 "Not Applicable",
                 "Unknown"
@@ -326,12 +326,46 @@
         ]
     },
     "characteristic_unit_check": {
-        "valid": [["Degrees", "..."], ["Kilometers", "..."],["Nanometers","..."]],
-        "invalid": [["idk", "..."], ["idk", "..."], ["idk", "..."]]
+        "valid": [
+            "Not Applicable",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ],
+        "invalid": [
+            "",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Value": "N529NA"
+            }            
+        ]
     },
     "characteristic_value_check": {
-        "valid": [["94.0", "..."], ["2", "..."], ["532", "..."]],
-        "invalid": [["idk", "..."], ["idk", "..."],["idk","..."]]
+        "valid": [
+            "N529NA",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ],
+        "invalid": [
+            "",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable"
+            }            
+        ]
     },
     "characteristic_name_length_check": {
         "valid": ["this must be a string only 80 characters long", 80, "lte"],
@@ -742,8 +776,8 @@
         "invalid": ["1970-01-01T00:00:00Z", "1970-01-01T00:00:00Z", "neq"]
     },
     "url_desc_presence_check": {
-        "valid": [["the google search engine", "www.google.com"], ["https//doi.org", "doi home page"]],
-        "invalid": [["https://github.com", ""], ["https://duckduckgo.com", ""]]
+        "valid": [["the google search engine", "www.google.com"], ["doi home page", "https//doi.org"]],
+        "invalid": [["", "www.google.com"], ["", "https//doi.org"]]
     },
     "get_data_url_check": {
         "valid": [
@@ -817,8 +851,8 @@
             "Sensor"]
     },
     "data_center_short_name_gcmd_check": {
-        "valid": ["NASA/MSFC/GHRC"],
-        "invalid": ["MSFC"]
+        "valid": [["NSIDC"], ["NASA/GSFC/SED/ESD/GCDC/OB.DAAC"]],
+        "invalid": [["facebook"], ["ASDC"]]
     },
     "characteristic_data_type": {
         "valid": ["INT", "True"],
