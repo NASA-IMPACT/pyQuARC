@@ -750,8 +750,28 @@
         "invalid": ["", "https://opendap.larc.nasa.gov/opendap/hyrax/ACEPOL/AircraftRemoteSensing_AirHARP_Data_1/ACEPOL-AIRHARP-L1B_ER2_20171023180751_R2.h5"]
     },
     "characteristic_name_uniqueness_check": {
-        "valid": [["NASA DC-8", "NASA ER-2"], "Name"],
-        "invalid": [["NASA DC-8", "NASA DC-8"], "Name"]
+        "valid": [
+            [
+                {
+                  "Name": "NASA ER-2"
+                },
+                {
+                  "Name": "NASA DC-8"
+                }
+            ],
+            "Name"
+        ],
+        "invalid": [
+            [
+                {
+                  "Name": "NASA DC-8"
+                },
+                {
+                  "Name": "NASA DC-8"
+                }
+            ],
+            "Name"
+        ]
     },
     "validate_ending_datetime_against_granules": {
         "valid": ["2017-07-17T20:41:47.000Z","ABOLVIS1A","1"],
