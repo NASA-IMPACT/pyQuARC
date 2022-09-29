@@ -1,23 +1,23 @@
 {
     "range_date_time_logic_check_1": {
-        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
-        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"]
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "lte"],
+        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z", "lte"]
     },
     "range_date_time_logic_check_2": {
-        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
-        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"]
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"],
+        "invalid": ["2020-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"]
     },
     "project_date_time_logic_check_1": {
-        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
-        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"]
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "lte"],
+        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z", "lte"]
     },
     "project_date_time_logic_check_2": {
-        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T12:00:00Z"],
-        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"]
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T12:00:00Z", "neq"],
+        "invalid": ["2020-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"]
     },
     "periodic_date_time_logic_check": {
-        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
-        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"]
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "lt"],
+        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z", "lt"]
     },
     "date_or_datetime_format_check": {
         "valid": ["2007-07-04T00:00:00Z"],
@@ -643,15 +643,15 @@
     },
     "collection_progress_consistency_check": {
         "valid": ["ACTIVE", "true", ""],
-        "invalid": ["COMPLETE", "true", ""]
+        "invalid": ["ACTIVE", "true", "2015-02-09T:00:00:00Z"]
     },
     "online_resource_type_gcmd_check": {
         "valid": ["GET DATA"],
         "invalid": ["fml fml fml"]
     },
     "online_resource_type_presence_check": {
-        "valid": ["GET DATA", " https://asdc.larc.nasa.gov/data/ACTIVATE/Cloud_AircraftInSitu_Falcon_Data_1/ACTIVATE-2DS-H-ARM_HU25_20200214_R0.ict"],
-        "invalid": ["fml fml fml", ""]
+        "valid": ["USE SERVICE API", "https://opendap.larc.nasa.gov/opendap/hyrax/ACEPOL/AircraftRemoteSensing_AirHARP_Data_1/ACEPOL-AIRHARP-L1B_ER2_20171023180751_R2.h5"],
+        "invalid": ["", "https://opendap.larc.nasa.gov/opendap/hyrax/ACEPOL/AircraftRemoteSensing_AirHARP_Data_1/ACEPOL-AIRHARP-L1B_ER2_20171023180751_R2.h5"]
     },
     "characteristic_name_uniqueness_check": {
         "valid": [
@@ -987,7 +987,7 @@
         ]
     },
     "metadata_update_time_logic_check": {
-        "valid": ["UPDATE", "CREATE"],
-        "invalid": ["", ""]
+        "valid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z", "gte"],
+        "invalid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "gte"]
     }
 }
