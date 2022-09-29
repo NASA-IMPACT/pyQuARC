@@ -218,8 +218,42 @@
         "invalid": ["google dot com"]
     },
     "characteristic_name_uniqueness_check": {
-        "valid": [["NASA DC-8", "NASA ER-2"], "Name"],
-        "invalid": [["NASA DC-8", "NASA DC-8"], "Name"]
+        "valid": [
+            [
+                {
+                    "Name": "OrbitInclination",
+                    "Description": "The angle between the orbit plane and the Earth's equatorial plane.",
+                    "DataType": "FLOAT",
+                    "Unit": "Degrees",
+                    "Value": "94.0"
+                },
+                {
+                    "Name": "SwathWidth",
+                    "Description": "The width of the sensor scan as the satellite moves along the ground track.",
+                    "DataType": "INT",
+                    "Unit": "Kilometers",
+                    "Value": "2"
+                }
+            ],
+            "Name"],
+        "invalid": [
+            [
+                {
+                    "Name": "OrbitInclination",
+                    "Description": "The angle between the orbit plane and the Earth's equatorial plane.",
+                    "DataType": "FLOAT",
+                    "Unit": "Degrees",
+                    "Value": "94.0"
+                },
+                {
+                    "Name": "OrbitInclination",
+                    "Description": "The angle between the orbit plane and the Earth's equatorial plane.",
+                    "DataType": "FLOAT",
+                    "Unit": "Degrees",
+                    "Value": "94.0"
+                }
+            ],
+            "Name"]
     },
     "temporal_extent_requirement_check": {
         "valid": ["2020-01-01T00:00:00Z", "", ""],
@@ -242,8 +276,42 @@
         "invalid": ["GOES-16", "MACPEX_TraceGas_AircraftInSitu_WB57_Data", "1", ""]
     },
     "url_description_uniqueness_check": {
-        "valid": [["The guide document contains detailed information about the dataset."], "Description"],
-        "invalid": [[""], "Description"]
+        "valid": [
+            [
+                {
+                    "Description": "Example description 1",
+                    "Subtype": "GENERAL DOCUMENTATION",
+                    "Type": "VIEW RELATED INFORMATION",
+                    "URL": "https://www.nasa.gov/",
+                    "URLContentType": "PublicationURL"
+                },
+                {
+                    "Description": "Example description 2",
+                    "Subtype": "PUBLICATIONS",
+                    "Type": "VIEW RELATED INFORMATION",
+                    "URL": "https://www.nasa.gov/",
+                    "URLContentType": "PublicationURL"
+                }
+            ],
+            "Description"],
+        "invalid": [
+            [
+                {
+                    "Description": "Example description 1",
+                    "Subtype": "GENERAL DOCUMENTATION",
+                    "Type": "VIEW RELATED INFORMATION",
+                    "URL": "https://www.nasa.gov/",
+                    "URLContentType": "PublicationURL"
+                },
+                {
+                    "Description": "Example description 1",
+                    "Subtype": "PUBLICATIONS",
+                    "Type": "VIEW RELATED INFORMATION",
+                    "URL": "https://www.nasa.gov/",
+                    "URLContentType": "PublicationURL"
+                }
+            ],
+            "Description"]
     },
     "granule_project_short_name_check": {
         "valid": ["MACPEX", "", "MACPEX_TraceGas_AircraftInSitu_WB57_Data", "1"],
