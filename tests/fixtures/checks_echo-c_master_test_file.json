@@ -138,7 +138,7 @@
             ]
         ],
         "invalid": [
-            "",
+            " ",
             [
                 "Not Applicable",
                 "Unknown"
