@@ -875,7 +875,7 @@ def CustomValidator_get_data_url_check_test(val_function, value):
         if (isinstance(value[0][0],dict)):
             return val_function(value[0], value[1])
     except:
-        return 'error
+        return 'error'
 # iterate through metadata formats
 for k in format_dict.keys():
     format_in = k
