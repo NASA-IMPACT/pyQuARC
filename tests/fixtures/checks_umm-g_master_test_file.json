@@ -1,11 +1,11 @@
 {
     "range_date_time_logic_check_1": {
-        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
-        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"]
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "lte"],
+        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z", "lte"]
     },
     "range_date_time_logic_check_2": {
-        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
-        "invalid": ["2020-01-01T00:00:00Z", "2020-01-01T00:00:00Z"]
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"],
+        "invalid": ["2020-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"]
     },
     "date_or_datetime_format_check": {
         "valid": ["2007-07-04T00:00:00Z"],
@@ -214,12 +214,63 @@
         "invalid": ["url data access please"]
     },
     "online_resource_type_presence_check": {
-        "valid": ["USE SERVICE API"],
-        "invalid": ["google dot com"]
+        "valid": [
+            "GET DATA",
+            
+            {
+                "Description": "This file may be downloaded directly from ASDC.",
+                "Subtype": "DIRECT DOWNLOAD",
+                "Type": "GET DATA",
+                "URL": "https://asdc.larc.nasa.gov/data/ISCOVER-AQ/Colorado_Ozonesondes_Data_1/DISCOVERAQ-OZONESONDES_SONDES_20140810_R2_L2.ict"
+            }
+        ],
+        "invalid": [
+            "",
+            
+            {
+                "Description": "This file may be downloaded directly from ASDC.",
+                "Subtype": "DIRECT DOWNLOAD",
+                "URL": "https://asdc.larc.nasa.gov/data/ISCOVER-AQ/Colorado_Ozonesondes_Data_1/DISCOVERAQ-OZONESONDES_SONDES_20140810_R2_L2.ict"
+            }
+        ]
     },
     "characteristic_name_uniqueness_check": {
-        "valid": [["NASA DC-8", "NASA ER-2"], "Name"],
-        "invalid": [["NASA DC-8", "NASA DC-8"], "Name"]
+        "valid": [
+            [
+                {
+                    "Name": "OrbitInclination",
+                    "Description": "The angle between the orbit plane and the Earth's equatorial plane.",
+                    "DataType": "FLOAT",
+                    "Unit": "Degrees",
+                    "Value": "94.0"
+                },
+                {
+                    "Name": "SwathWidth",
+                    "Description": "The width of the sensor scan as the satellite moves along the ground track.",
+                    "DataType": "INT",
+                    "Unit": "Kilometers",
+                    "Value": "2"
+                }
+            ],
+            "Name"],
+        "invalid": [
+            [
+                {
+                    "Name": "OrbitInclination",
+                    "Description": "The angle between the orbit plane and the Earth's equatorial plane.",
+                    "DataType": "FLOAT",
+                    "Unit": "Degrees",
+                    "Value": "94.0"
+                },
+                {
+                    "Name": "OrbitInclination",
+                    "Description": "The angle between the orbit plane and the Earth's equatorial plane.",
+                    "DataType": "FLOAT",
+                    "Unit": "Degrees",
+                    "Value": "94.0"
+                }
+            ],
+            "Name"]
     },
     "temporal_extent_requirement_check": {
         "valid": ["2020-01-01T00:00:00Z", "", ""],
@@ -230,8 +281,38 @@
         "invalid": ["1970-01-01T00:00:00Z", "1970-01-01T00:00:00Z", "neq"]
     },
     "get_data_url_check": {
-        "valid": ["https://daac.ornl.gov/cgi-bin/download.pl?ds_id=465&source=dsviewer&_ga=2.140140659.1165149285.1658168134-969487745.1655392216", "Type"],
-        "invalid": ["https://daac.ornl.gov/cgi-bin/download.FAKE", "Type"]
+        "valid": [
+            [
+                {
+                    "Description": "URL 1 description",
+                    "URLContentType": "CollectionURL",
+                    "Type": "DATA SET LANDING PAGE",
+                    "URL": "https://doi.org/10.5067/MODIS/MOD13Q1.061"
+                }, 
+                {
+                    "Description": "URL 2 description",
+                    "URLContentType": "DistributionURL",
+                    "Type": "GET DATA",
+                    "URL": "https://search.earthdata.nasa.gov/search/granules?p=C2417019975-LARC_ASDC"
+                }
+            ], 
+            ["Type"]],
+        "invalid": [
+            [
+                {
+                    "Description": "URL 1 description",
+                    "URLContentType": "CollectionURL",
+                    "Type": "DATA SET LANDING PAGE",
+                    "URL": "https://doi.org/10.5067/MODIS/MOD13Q1.061"
+                }, 
+                {
+                    "Description": "URL 2 description",
+                    "URLContentType": "CollectionURL",
+                    "Type": "DATA SET LANDING PAGE",
+                    "URL": "https://doi.org/10.5067/MODIS/MOD13Q1.061"
+                }
+            ], 
+            ["Type"]]
     },
     "granule_platform_presence_check": {
         "valid": ["G-III"],
@@ -242,8 +323,42 @@
         "invalid": ["GOES-16", "MACPEX_TraceGas_AircraftInSitu_WB57_Data", "1", ""]
     },
     "url_description_uniqueness_check": {
-        "valid": [["The guide document contains detailed information about the dataset."], "Description"],
-        "invalid": [[""], "Description"]
+        "valid": [
+            [
+                {
+                    "Description": "Example description 1",
+                    "Subtype": "GENERAL DOCUMENTATION",
+                    "Type": "VIEW RELATED INFORMATION",
+                    "URL": "https://www.nasa.gov/",
+                    "URLContentType": "PublicationURL"
+                },
+                {
+                    "Description": "Example description 2",
+                    "Subtype": "PUBLICATIONS",
+                    "Type": "VIEW RELATED INFORMATION",
+                    "URL": "https://www.nasa.gov/",
+                    "URLContentType": "PublicationURL"
+                }
+            ],
+            "Description"],
+        "invalid": [
+            [
+                {
+                    "Description": "Example description 1",
+                    "Subtype": "GENERAL DOCUMENTATION",
+                    "Type": "VIEW RELATED INFORMATION",
+                    "URL": "https://www.nasa.gov/",
+                    "URLContentType": "PublicationURL"
+                },
+                {
+                    "Description": "Example description 1",
+                    "Subtype": "PUBLICATIONS",
+                    "Type": "VIEW RELATED INFORMATION",
+                    "URL": "https://www.nasa.gov/",
+                    "URLContentType": "PublicationURL"
+                }
+            ],
+            "Description"]
     },
     "granule_project_short_name_check": {
         "valid": ["MACPEX", "", "MACPEX_TraceGas_AircraftInSitu_WB57_Data", "1"],

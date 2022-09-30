@@ -1,23 +1,23 @@
 {
     "range_date_time_logic_check_1": {
-        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
-        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"]
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "lte"],
+        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z", "lte"]
     },
     "range_date_time_logic_check_2": {
-        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
-        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"]
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"],
+        "invalid": ["2020-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"]
     },
     "project_date_time_logic_check_1": {
-        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
-        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"]
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "lte"],
+        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z", "lte"]
     },
     "project_date_time_logic_check_2": {
-        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T12:00:00Z"],
-        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"]
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T12:00:00Z", "neq"],
+        "invalid": ["2020-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"]
     },
     "periodic_date_time_logic_check": {
-        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
-        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"]
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "lt"],
+        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z", "lt"]
     },
     "date_or_datetime_format_check": {
         "valid": ["2007-07-04T00:00:00Z"],
@@ -28,8 +28,8 @@
         "invalid": ["http://www.fakefakestillfaketotallyfake.com/"]
     },
     "shortname_uniqueness": {
-        "valid": ["Aquarius Official Release Level 3 Ancillary Reynolds Sea Surface Temperature Standard Mapped Image 7-Day Data V5.0","AQUARIUS_L3_ANCILLARY_SST_SMI_7DAY_V5"],
-        "invalid": ["Aquarius Official Release Level 3 Ancillary Reynolds Sea Surface Temperature Standard Mapped Image 7-Day Data V5.0","Aquarius Official Release Level 3 Ancillary Reynolds Sea Surface Temperature Standard Mapped Image 7-Day Data V5.0"]
+        "valid": ["Aquarius Official Release Level 3 Ancillary Reynolds Sea Surface Temperature Standard Mapped Image 7-Day Data V5.0","AQUARIUS_L3_ANCILLARY_SST_SMI_7DAY_V5", "neq"],
+        "invalid": ["Aquarius Official Release Level 3 Ancillary Reynolds Sea Surface Temperature Standard Mapped Image 7-Day Data V5.0","Aquarius Official Release Level 3 Ancillary Reynolds Sea Surface Temperature Standard Mapped Image 7-Day Data V5.0", "neq"]
     },
     "abstract_length_check": {
         "valid": ["The Harmonized Landsat Sentinel-2 (HLS) project provides consistent surface reflectance (SR) and top of atmosphere (TOA) brightness data from a virtual constellation of satellite sensors. The Operational Land Imager (OLI) is housed aboard the joint NASA/USGS Landsat 8 and Landsat 9 satellites, while the Multi-Spectral Instrument (MSI) is mounted aboard Europe's Copernicus Sentinel-2A and Sentinel-2B satellites. The combined measurement enables global observations of the land every 2-3 days at 30-meter (m) spatial resolution. The HLS project uses a set of algorithms to obtain seamless products from OLI and MSI that include atmospheric correction, cloud and cloud-shadow masking, spatial co-registration and common gridding, illumination and view angle normalization, and spectral bandpass adjustment. The HLSL30 product provides 30-m Nadir Bidirectional Reflectance Distribution Function (BRDF)-Adjusted Reflectance (NBAR) and is derived from Landsat 8/9 OLI data products. The HLSS30 and HLSL30 products are gridded to the same resolution and Military Grid Reference System (MGRS)(https://hls.gsfc.nasa.gov/products-description/tiling-system/) tiling system, and thus are 'stackable' for time series analysis. The HLSL30 product is provided in Cloud Optimized GeoTIFF (COG) format, and each band is distributed as a separate file. There are 11 bands included in the HLSL30 product along with one quality assessment (QA) band and four angle bands. See the User Guide for a more detailed description of the individual bands provided in the HLSL30 product.", 100, "gte"],
@@ -49,7 +49,7 @@
             ]
         ],
         "invalid": [
-            "http://dx.doi.org/10.5067/AQR50-3R7CS",
+            "http://dx.doi.org",
             [
                 "dx.doi.org",
                 "http://dx.doi.org",
@@ -126,7 +126,7 @@
             ]
         ],
         "invalid": [
-            "",
+            " ",
             [
                 "Not Applicable",
                 "Unknown"
@@ -326,12 +326,46 @@
         ]
     },
     "characteristic_unit_check": {
-        "valid": [["Degrees", "..."], ["Kilometers", "..."],["Nanometers","..."]],
-        "invalid": [["idk", "..."], ["idk", "..."], ["idk", "..."]]
+        "valid": [
+            "Not Applicable",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ],
+        "invalid": [
+            "",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Value": "N529NA"
+            }            
+        ]
     },
     "characteristic_value_check": {
-        "valid": [["94.0", "..."], ["2", "..."], ["532", "..."]],
-        "invalid": [["idk", "..."], ["idk", "..."],["idk","..."]]
+        "valid": [
+            "N529NA",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ],
+        "invalid": [
+            "",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable"
+            }            
+        ]
     },
     "characteristic_name_length_check": {
         "valid": ["this must be a string only 80 characters long", 80, "lte"],
@@ -390,11 +424,11 @@
         "invalid": [["ASDC"], ["GHRC"]]
     },
     "organization_long_name_gcmd_check": {
-        "valid": ["Global Hydrology Resource Center, Marshall Space Flight Center, NASA"],
+        "valid": ["Global Hydrometeorology Resource Center, Marshall Space Flight Center, NASA"],
         "invalid": ["NASA/MSFC/GHRC"]
     },
     "organization_short_long_name_consistency_check": {
-        "valid": ["NASA/MSFC/GHRC", "Global Hydrology Resource Center, Marshall Space Flight Center, NASA"],
+        "valid": ["NASA/MSFC/GHRC", "Global Hydrometeorology Resource Center, Marshall Space Flight Center, NASA"],
         "invalid": ["NASA/LARC/SD/ASDC", "Global Hydrology Resource Center, Marshall Space Flight Center, NASA"]
     },
     "instrument_short_long_name_consistency_check": {
@@ -430,7 +464,7 @@
         "invalid": ["huntsville"]
     },
     "location_gcmd_check": {
-        "valid": ["CONTINENT", "NORTH AMERICA", "UNITED STATES", "ALABAMA", "THE UNIVERSITY OF ALABAMA IN HUNTSVILLE"],
+        "valid": ["CONTINENT", "NORTH AMERICA", "UNITED STATES OF AMERICA", "ALABAMA"],
         "invalid": ["AFRICA", "OCEAN", "ARCTIC", "SOUTHERN OCEAN", "SAHEL"]
     },
     "platform_type_gcmd_check": {
@@ -609,19 +643,55 @@
     },
     "collection_progress_consistency_check": {
         "valid": ["ACTIVE", "true", ""],
-        "invalid": ["COMPLETE", "true", ""]
+        "invalid": ["ACTIVE", "true", "2015-02-09T:00:00:00Z"]
     },
     "online_resource_type_gcmd_check": {
         "valid": ["GET DATA"],
         "invalid": ["fml fml fml"]
     },
     "online_resource_type_presence_check": {
-        "valid": ["GET DATA", " https://asdc.larc.nasa.gov/data/ACTIVATE/Cloud_AircraftInSitu_Falcon_Data_1/ACTIVATE-2DS-H-ARM_HU25_20200214_R0.ict"],
-        "invalid": ["fml fml fml", ""]
+        "valid": ["USE SERVICE API", "https://opendap.larc.nasa.gov/opendap/hyrax/ACEPOL/AircraftRemoteSensing_AirHARP_Data_1/ACEPOL-AIRHARP-L1B_ER2_20171023180751_R2.h5"],
+        "invalid": ["", "https://opendap.larc.nasa.gov/opendap/hyrax/ACEPOL/AircraftRemoteSensing_AirHARP_Data_1/ACEPOL-AIRHARP-L1B_ER2_20171023180751_R2.h5"]
     },
     "characteristic_name_uniqueness_check": {
-        "valid": [["NASA DC-8", "NASA ER-2"], "Name"],
-        "invalid": [["NASA DC-8", "NASA DC-8"], "Name"]
+        "valid": [
+            [
+                {
+                  "Name": "EquatorCrossingTimeAscending",
+                  "Description": "Local time of the equator crossing and direction (ascending or descending)",
+                  "DataType": "Time/direction (ascending)",
+                  "Unit": "Local Mean Time",
+                  "Value": "3:30, ascending"
+                },
+                {
+                  "Name": "EquatorCrossingTimeDescending",
+                  "Description": "Local time of the equator crossing and direction (ascending or descending)",
+                  "DataType": "Time/direction (descending)",
+                  "Unit": "Local Mean Time",
+                  "Value": "3:30, descending"
+                }
+            ],
+            "Name"
+        ],
+        "invalid": [
+            [
+                {
+                  "Name": "EquatorCrossingTime",
+                  "Description": "Local time of the equator crossing and direction (ascending or descending)",
+                  "DataType": "Time/direction (ascending)",
+                  "Unit": "Local Mean Time",
+                  "Value": "3:30, ascending"
+                },
+                {
+                  "Name": "EquatorCrossingTime",
+                  "Description": "Local time of the equator crossing and direction (ascending or descending)",
+                  "DataType": "Time/direction (ascending)",
+                  "Unit": "Local Mean Time",
+                  "Value": "3:30, ascending"
+                }
+            ],
+            "Name"
+        ]
     },
     "validate_ending_datetime_against_granules": {
         "valid": ["2017-07-17T20:41:47.000Z","ABOLVIS1A","1"],
@@ -694,24 +764,55 @@
         "invalid": ["", "", ""]
     },
     "ftp_protocol_check": {
-        "valid": ["https://asdc.larc.nasa.gov/data/ARESE/ER2_MAS/", "FTP", "neq"],
-        "invalid": ["ftp://heasarc.gsfc.nasa.gov/rosat/data", "FTP", "neq"]
+        "valid": ["HTTPS", "FTP", "neq"],
+        "invalid": ["FTP", "FTP", "neq"]
     },
     "citation_version_check": {
-        "valid": ["2.0", "1"],
-        "invalid": ["", ""]
+        "valid": ["1", "1", "eq"],
+        "invalid": ["1", "2", "eq"]
     },
     "default_date_check": {
         "valid": ["2021-11-05T13:15:30Z", "1970-01-01T00:00:00Z", "neq"],
         "invalid": ["1970-01-01T00:00:00Z", "1970-01-01T00:00:00Z", "neq"]
     },
     "url_desc_presence_check": {
-        "valid": [["the google search engine", "www.google.com"], ["https//doi.org", "doi home page"]],
-        "invalid": [["https://github.com", ""], ["https://duckduckgo.com", ""]]
+        "valid": [["the google search engine", "www.google.com"], ["doi home page", "https//doi.org"]],
+        "invalid": [["", "www.google.com"], ["", "https//doi.org"]]
     },
     "get_data_url_check": {
-        "valid": ["https://daac.ornl.gov/cgi-bin/download.pl?ds_id=465&source=dsviewer&_ga=2.140140659.1165149285.1658168134-969487745.1655392216", "Type"],
-        "invalid": ["https://daac.ornl.gov/cgi-bin/download.FAKE", "Type"]
+        "valid": [
+            [
+                {
+                  "URL_Content_Type": {
+                    "Type": "GET DATA",
+                    "Subtype": "GENERAL DOCUMENTATION"
+                  },
+                  "URL": "https://modis-atmos.gsfc.nasa.gov/products/water-vapor",
+                  "Description": "Overview of MODIS Water Vapor products.",
+                  "Mime_Type": "text/html"
+                }
+            ],
+            [
+                "URL_Content_Type",
+                "Type"
+            ]
+        ],
+        "invalid": [
+            [
+                {
+                  "URL_Content_Type": {
+                    "Subtype": "GENERAL DOCUMENTATION"
+                  },
+                  "URL": "https://modis-atmos.gsfc.nasa.gov/products/water-vapor",
+                  "Description": "Overview of MODIS Water Vapor products.",
+                  "Mime_Type": "text/html"
+                }
+            ],            
+            [
+                "URL_Content_Type",
+                "Type"
+            ]
+        ]
     },
     "horizontal_resolution_range_check": {
         "valid": ["1 meter - < 30 meters"],
@@ -726,8 +827,8 @@
         "invalid": ["idk"]
     },
     "chrono_unit_gcmd_check": {
-        "valid": ["ARCHAEAN", "EOARCHEAN", "NEOGENE", "MIOCENE", "AQUITANIAN"],
-        "invalid": ["", "", "", "", ""]
+        "valid": ["PHANEROZOIC","CENOZOIC","QUATERNARY","PLEISTOCENE","CALABRIAN"],
+        "invalid": ["PHANEROZOIC","CENOZOIC","QUATERNARY","PLEISTOCENE", "QUATERNARY"]
     },
     "sensor_number_check": {
         "valid": [
@@ -750,8 +851,8 @@
             "Sensor"]
     },
     "data_center_short_name_gcmd_check": {
-        "valid": ["NASA/MSFC/GHRC"],
-        "invalid": ["MSFC"]
+        "valid": [["NSIDC"], ["NASA/GSFC/SED/ESD/GCDC/OB.DAAC"]],
+        "invalid": [["facebook"], ["ASDC"]]
     },
     "characteristic_data_type": {
         "valid": ["INT", "True"],
@@ -804,11 +905,89 @@
     ]
     },
     "url_description_uniqueness_check": {
-        "valid": [["The guide document contains detailed information about the dataset."], "Description"],
-        "invalid": [[""], "Description"]
+        "valid": [
+            [
+                {
+                  "URL_Content_Type": {
+                    "Type": "VIEW RELATED INFORMATION",
+                    "Subtype": "GENERAL DOCUMENTATION"
+                  },
+                  "URL": "https://modis-atmos.gsfc.nasa.gov/products/water-vapor",
+                  "Description": "Overview of MODIS Water Vapor products.",
+                  "Mime_Type": "text/html"
+                },
+                {
+                  "URL_Content_Type": {
+                    "Type": "DATA SET LANDING PAGE"
+                  },
+                  "URL": "https://doi.org/10.5067/MODIS/MYD05_L2.061",
+                  "Description": "The product landing page",
+                  "Mime_Type": "text/xml"
+                },
+                {
+                  "URL_Content_Type": {
+                    "Type": "VIEW RELATED INFORMATION",
+                    "Subtype": "ALGORITHM THEORETICAL BASIS DOCUMENT (ATBD)"
+                  },
+                  "URL": "https://modis-atmos.gsfc.nasa.gov/sites/default/files/ModAtmo/atbd_mod03_0.pdf",
+                  "Description": "Water Vapor product ATBD",
+                  "Mime_Type": "application/pdf"
+                },
+                {
+                  "URL_Content_Type": {
+                    "Type": "GET DATA",
+                    "Subtype": "LAADS"
+                  },
+                  "URL": "https://ladsweb.modaps.eosdis.nasa.gov/search/order/2/MYD05_L2--61",
+                  "Description": "Search and order products from LAADS website.",
+                  "Mime_Type": "text/html"
+                },
+                {
+                  "URL_Content_Type": {
+                    "Type": "GET DATA",
+                    "Subtype": "DIRECT DOWNLOAD"
+                  },
+                  "URL": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MYD05_L2/",
+                  "Description": "Direct access to MYD05_L2 C6.1 data set.",
+                  "Mime_Type": "text/html"
+                },
+                {
+                  "URL_Content_Type": {
+                    "Type": "USE SERVICE API",
+                    "Subtype": "OPENDAP DATA"
+                  },
+                  "URL": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/allData/61/MYD05_L2/contents.html",
+                  "Description": "Direct access to product's OPeNDAP directory",
+                  "Mime_Type": "text/html"
+                }
+              ],            
+            "Description"
+        ],
+        "invalid": [
+            [
+                {
+                  "URL_Content_Type": {
+                    "Type": "VIEW RELATED INFORMATION",
+                    "Subtype": "GENERAL DOCUMENTATION"
+                  },
+                  "URL": "https://modis-atmos.gsfc.nasa.gov/products/water-vapor",
+                  "Description": "Overview of MODIS Water Vapor products.",
+                  "Mime_Type": "text/html"
+                },
+                {
+                  "URL_Content_Type": {
+                    "Type": "DATA SET LANDING PAGE"
+                  },
+                  "URL": "https://doi.org/10.5067/MODIS/MYD05_L2.061",
+                  "Description": "Overview of MODIS Water Vapor products.",
+                  "Mime_Type": "text/xml"
+                }
+              ],
+            "Description"
+        ]
     },
     "metadata_update_time_logic_check": {
-        "valid": ["UPDATE", "CREATE"],
-        "invalid": ["", ""]
+        "valid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z", "gte"],
+        "invalid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "gte"]
     }
 }
