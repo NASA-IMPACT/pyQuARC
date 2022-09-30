@@ -973,7 +973,6 @@ for k in format_dict.keys():
                 if val_function_name == 'CustomValidator.collection_progress_consistency_check':
                     print(f"with valid test input: {CustomValidator_collection_progress_consistency_check_test(val_function, valid)}")
                     print(f"with invalid test input: {CustomValidator_collection_progress_consistency_check_test(val_function, invalid)}")
-                    # assert_func(val_function, CustomValidator_collection_progress_consistency_check_test, valid, invalid)
                 if val_function_name == 'StringValidator.organization_short_name_gcmd_check':
                     print(f"with valid test input: {StringValidator_organization_short_name_gcmd_check_test(val_function, valid)}")
                     print(f"with invalid test input: {StringValidator_organization_short_name_gcmd_check_test(val_function, invalid)}")
@@ -1066,8 +1065,7 @@ for k in format_dict.keys():
                     print(f"with invalid test input: {StringValidator_campaign_short_long_name_consistency_check_test(val_function, invalid)}")
                 if val_function_name == 'CustomValidator.get_data_url_check':
                     print(f"with valid test input: {CustomValidator_get_data_url_check_test(val_function, valid)}")
-                    print(f"with invalid test input: {CustomValidator_get_data_url_check_test(val_function, invalid)}")
-                # possibly: - create a list of validator check test functions
+                    print(f"with invalid test input: {CustomValidator_get_data_url_check_test(val_function, invalid)}")                # possibly: - create a list of validator check test functions
                 # - see if modified val_function_name in function list (ex: f"{data_type.title()}Validator_{check_function}_test)
                 # - call this func with valid and invalid values
         print('----------------------------------------------')
