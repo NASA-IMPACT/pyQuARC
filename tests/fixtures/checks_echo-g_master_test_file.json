@@ -1,15 +1,15 @@
 {
     "data_update_time_logic_check": {
-        "valid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"],
-        "invalid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"]
+        "valid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z", "gte"],
+        "invalid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "gte"]
     },
     "range_date_time_logic_check_1": {
-        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
-        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z"]
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "lte"],
+        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z", "lte"]
     },
     "range_date_time_logic_check_2": {
-        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
-        "invalid": ["2020-01-01T00:00:00Z", "2020-01-01T00:00:00Z"]
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"],
+        "invalid": ["2020-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"]
     },
     "date_or_datetime_format_check": {
         "valid": ["2007-07-04T00:00:00Z"],
@@ -206,8 +206,8 @@
         "invalid": ["url data access please"]
     },
     "online_resource_type_presence_check": {
-        "valid": ["USE SERVICE API"],
-        "invalid": ["google dot com"]
+        "valid": ["USE SERVICE API", "https://search.earthdata.nasa.gov/search"],
+        "invalid": [" ", "https://www.google.com/"]
     },
     "temporal_extent_requirement_check": {
         "valid": ["2020-01-01T00:00:00Z", "", ""],
@@ -338,8 +338,8 @@
         ]
     },
     "granule_single_date_time_check": {
-        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z"],
-        "invalid": ["2020-01-01T00:00:00Z", "2020-01-01T00:00:00Z"]
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"],
+        "invalid": ["2020-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"]
     },
     "granule_project_short_name_check": {
         "valid": ["OLYMPEX", "gpmcplolyx", "1", "GPM Ground Validation Cloud Physics LiDAR (CPL) OLYMPEX V1"],
