@@ -116,7 +116,7 @@ def DOI_update_check(val_function, value):
                     i = i +1
                 return return_list
         elif (isinstance(value[0],str)):
-                return val_function(value[0])
+                return val_function(value[0], value[1])
     except:
         return 'error'
 
@@ -178,11 +178,11 @@ def StringValidator_location_gcmd_check_test(val_function, value):
             i = 0
             return_list = []
             for x in value:
-                return_list.append(val_function(value[i][0], value[i][1], value[i][2], value[i][3], value[i][4]))
+                return_list.append(val_function(*value[i]))
                 i = i + 1
             return return_list
         if (isinstance(value[0],str)):
-            return val_function(value[0], value[1], value[2], value[3], value[4])
+            return val_function(*value)
     except:
         return 'error'
 def CustomValidator_ends_at_present_flag_logic_check_test(val_function, value):
@@ -367,9 +367,7 @@ def StringValidator_organization_short_name_gcmd_check_test(val_function, value)
             return val_function(value[0])
     except:
         return 'error'
-
-
-def UrlValidator_Doi_validity_check(val_function, value):
+def UrlValidator_doi_check_test(val_function, value):
     try:
         if (isinstance(value[0],list)):
             i = 0
@@ -377,9 +375,9 @@ def UrlValidator_Doi_validity_check(val_function, value):
             for x in value:
                 return_list.append(val_function(value[i][0]))
                 i = i +1
-                return return_list
-            if (isinstance(value[0],str)):
-                return val_function(value[0])
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0])
     except:
             return 'error'
 def StringValidator_organization_long_name_gcmd_check_test(val_function, value):
@@ -798,6 +796,7 @@ def StringValidator_granule_sensor_short_name_check_test(val_function, value):
         if (isinstance(value[0],str)):
             return val_function(value[0], value[1], value[2], value[3])
     except:
+
         return 'error'
 def StringValidator_validate_granule_data_format_against_collection_test(val_function, value):
     try:
@@ -810,6 +809,71 @@ def StringValidator_validate_granule_data_format_against_collection_test(val_fun
             return return_list
         if (isinstance(value[0],str)):
             return val_function(value[0], value[1], value[2], value[3])
+    except:
+        return 'error'
+def StringValidator_organization_short_long_name_consistency_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(*value[i]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(*value)
+    except:
+        return 'error'
+def StringValidator_instrument_short_long_name_consistency_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(*value[i]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(*value)
+    except:
+        return 'error'
+def StringValidator_platform_short_long_name_consistency_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(*value[i]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(*value)
+    except:
+        return 'error'
+def StringValidator_campaign_short_long_name_consistency_check_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(*value[i]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(*value)
+    except:
+        return 'error'
+def CustomValidator_get_data_url_check_test(val_function, value):
+    try:
+        if (isinstance(value[0][0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0], value[i][1]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0][0],dict)):
+            return val_function(value[0], value[1])
     except:
         return 'error'
 # iterate through metadata formats
@@ -850,6 +914,10 @@ for k in format_dict.keys():
                 if val_function_name == 'DatetimeValidator.date_or_datetime_format_check':
                     print(f"with valid test input: {DatetimeValidator_date_or_datetime_format_check_test(val_function, valid)}")
                     print(f"with invalid test input: {DatetimeValidator_date_or_datetime_format_check_test(val_function, invalid)}")
+                    # assert_func(val_function, DatetimeValidator_date_or_datetime_format_check_test, valid, invalid)
+                if val_function_name == 'UrlValidator.doi_check':
+                    print(f"with valid test input: {UrlValidator_doi_check_test(val_function, valid)}")
+                    print(f"with invalid test input: {UrlValidator_doi_check_test(val_function, invalid)}")
                     # assert_func(val_function, DatetimeValidator_date_or_datetime_format_check_test, valid, invalid)
                 if val_function_name == 'UrlValidator.health_and_status_check':
                     print(f"with valid test input: {UrlValidator_health_and_status_check_test(val_function, valid)}")
@@ -924,7 +992,6 @@ for k in format_dict.keys():
                 if val_function_name == 'StringValidator.organization_long_name_gcmd_check':
                     print(f"with valid test input: {StringValidator_organization_long_name_gcmd_check_test(val_function, valid)}")
                     print(f"with invalid test input: {StringValidator_organization_long_name_gcmd_check_test(val_function, invalid)}")
-                    # assert_func(val_function, CustomValidator_collection_progress_consistency_check_test, valid, invalid)
                 if val_function_name == 'StringValidator.instrument_short_name_gcmd_check':
                     print(f"with valid test input: {StringValidator_instrument_short_name_gcmd_check_test(val_function, valid)}")
                     print(f"with invalid test input: {StringValidator_instrument_short_name_gcmd_check_test(val_function, invalid)}")
@@ -1000,8 +1067,21 @@ for k in format_dict.keys():
                 if val_function_name == 'StringValidator.validate_granule_data_format_against_collection':
                     print(f"with valid test input: {StringValidator_validate_granule_data_format_against_collection_test(val_function, valid)}")
                     print(f"with invalid test input: {StringValidator_validate_granule_data_format_against_collection_test(val_function, invalid)}")
-
-                # possibly: - create a list of validator check test functions
+                if val_function_name == 'StringValidator.organization_short_long_name_consistency_check':
+                    print(f"with valid test input: {StringValidator_organization_short_long_name_consistency_check_test(val_function, valid)}")
+                    print(f"with invalid test input: {StringValidator_organization_short_long_name_consistency_check_test(val_function, invalid)}")
+                if val_function_name == 'StringValidator.instrument_short_long_name_consistency_check':
+                    print(f"with valid test input: {StringValidator_instrument_short_long_name_consistency_check_test(val_function, valid)}")
+                    print(f"with invalid test input: {StringValidator_instrument_short_long_name_consistency_check_test(val_function, invalid)}")
+                if val_function_name == 'StringValidator.platform_short_long_name_consistency_check':
+                    print(f"with valid test input: {StringValidator_platform_short_long_name_consistency_check_test(val_function, valid)}")
+                    print(f"with invalid test input: {StringValidator_platform_short_long_name_consistency_check_test(val_function, invalid)}")
+                if val_function_name == 'StringValidator.campaign_short_long_name_consistency_check':
+                    print(f"with valid test input: {StringValidator_campaign_short_long_name_consistency_check_test(val_function, valid)}")
+                    print(f"with invalid test input: {StringValidator_campaign_short_long_name_consistency_check_test(val_function, invalid)}")
+                if val_function_name == 'CustomValidator.get_data_url_check':
+                    print(f"with valid test input: {CustomValidator_get_data_url_check_test(val_function, valid)}")
+                    print(f"with invalid test input: {CustomValidator_get_data_url_check_test(val_function, invalid)}")                # possibly: - create a list of validator check test functions
                 # - see if modified val_function_name in function list (ex: f"{data_type.title()}Validator_{check_function}_test)
                 # - call this func with valid and invalid values
         print('----------------------------------------------')
