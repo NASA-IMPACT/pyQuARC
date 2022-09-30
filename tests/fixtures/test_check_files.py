@@ -784,7 +784,7 @@ def StringValidator_granule_project_short_name_check_test(val_function, value):
             return val_function(value[0], value[1], value[2], value[3])
     except:
         return 'error'
-def StringValidator_validate_granule_data_format_against_collection_test(val_function, value):
+def StringValidator_granule_sensor_short_name_check_test(val_function, value):
     try:
         if (isinstance(value[0],list)):
             i = 0
@@ -797,6 +797,19 @@ def StringValidator_validate_granule_data_format_against_collection_test(val_fun
             return val_function(value[0], value[1], value[2], value[3])
     except:
 
+        return 'error'
+def StringValidator_validate_granule_data_format_against_collection_test(val_function, value):
+    try:
+        if (isinstance(value[0],list)):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0], value[i][1], value[i][2], value[i][3]))
+                i = i + 1
+            return return_list
+        if (isinstance(value[0],str)):
+            return val_function(value[0], value[1], value[2], value[3])
+    except:
         return 'error'
 def StringValidator_organization_short_long_name_consistency_check_test(val_function, value):
     try:
@@ -1048,6 +1061,9 @@ for k in format_dict.keys():
                 if val_function_name == 'StringValidator.granule_project_short_name_check':
                     print(f"with valid test input: {StringValidator_granule_project_short_name_check_test(val_function, valid)}")
                     print(f"with invalid test input: {StringValidator_granule_project_short_name_check_test(val_function, invalid)}")
+                if val_function_name == 'StringValidator.granule_sensor_short_name_check':
+                    print(f"with valid test input: {StringValidator_granule_sensor_short_name_check_test(val_function, valid)}")
+                    print(f"with invalid test input: {StringValidator_granule_sensor_short_name_check_test(val_function, invalid)}")
                 if val_function_name == 'StringValidator.validate_granule_data_format_against_collection':
                     print(f"with valid test input: {StringValidator_validate_granule_data_format_against_collection_test(val_function, valid)}")
                     print(f"with invalid test input: {StringValidator_validate_granule_data_format_against_collection_test(val_function, invalid)}")
