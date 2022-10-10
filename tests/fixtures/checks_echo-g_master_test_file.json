@@ -342,8 +342,8 @@
         "invalid": ["2020-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"]
     },
     "granule_project_short_name_check": {
-        "valid": ["OLYMPEX", "gpmcplolyx", "1", "GPM Ground Validation Cloud Physics LiDAR (CPL) OLYMPEX V1"],
-        "invalid": ["GOES-R PLT", "gpmcplolyx", "1", "GPM Ground Validation Cloud Physics LiDAR (CPL) OLYMPEX V1"]
+        "valid": ["OLYMPEX", "GPM Ground Validation Cloud Physics LiDAR (CPL) OLYMPEX V1", "gpmcplolyx", "1"],
+        "invalid": ["GOES-R PLT", "GPM Ground Validation Cloud Physics LiDAR (CPL) OLYMPEX V1", "gpmcplolyx", "1"]
     },
     "granule_sensor_short_name_check": {
         "valid": ["ATLAS", "ATLAS/ICESat-2 L3A Land Ice Height V005", "ATL06", "005"],
