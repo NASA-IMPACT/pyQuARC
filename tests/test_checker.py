@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 sys.path.append(os.getcwd())
 from tests.fixtures.checker import FUNCTION_MAPPING
 from pyQuARC.code.checker import Checker
