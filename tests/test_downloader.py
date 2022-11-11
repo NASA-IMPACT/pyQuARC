@@ -1,6 +1,3 @@
-import sys
-import os
-sys.path.append(os.getcwd())
 from pyQuARC.code.downloader import Downloader
 class TestDownloader:
     """
