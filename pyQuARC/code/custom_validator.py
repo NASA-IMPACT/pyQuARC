@@ -179,8 +179,7 @@ class CustomValidator(BaseValidator):
         seen, duplicates = set(), set()
         if isinstance(list_of_objects, list):
             for url_obj in list_of_objects:
-                description = url_obj.get(key)
-                if description in seen:
+                if (description := url_obj.get(key)) in seen:
                     duplicates.add(description)
                 else:
                     seen.add(description)
