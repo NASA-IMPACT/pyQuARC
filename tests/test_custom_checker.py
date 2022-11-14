@@ -3,6 +3,7 @@ from pyQuARC.code.custom_checker import CustomChecker
 from tests.fixtures.custom_checker import INPUT_OUTPUT
 from tests.common import read_test_metadata
 
+
 class TestCustomChecker:
     """
     Test cases for the CustomChecker script in custom_checker.py
