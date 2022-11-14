@@ -1,6 +1,8 @@
 from tests.fixtures.checker import FUNCTION_MAPPING
 from pyQuARC.code.checker import Checker
 from tests.common import read_test_metadata
+
+
 class TestChecker:
     """
     Test cases for the Checker script in checker.py
