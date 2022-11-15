@@ -379,7 +379,9 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "datetime_format_check"
+
     },
     "date_or_datetime_format_check": {
         "rule_name": "Date or Datetime ISO Format Check",
@@ -1531,20 +1533,20 @@
             "umm-c": [
                 {
                     "fields": [
-                        "Platform/Characteristics/Name",
-                        "Platform/Characteristics"
+                        "Platforms/Characteristics/Name",
+                        "Platforms/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/Characteristics/Name",
-                        "Platform/Instrument/Characteristics"
+                        "Platforms/Instruments/Characteristics/Name",
+                        "Platforms/Instruments/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/Characteristics/Name",
-                        "Platform/Instrument/ComposedOf/Characteristics"
+                        "Platforms/Instrument/ComposedOf/Characteristics/Name",
+                        "Platforms/Instrument/ComposedOf/Characteristics"
                     ]
                 }
             ],
@@ -1626,20 +1628,20 @@
             "umm-c": [
                 {
                     "fields": [
-                        "Platform/Characteristics/Description",
-                        "Platform/Characteristics"
+                        "Platforms/Characteristics/Description",
+                        "Platforms/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/Characteristics/Description",
-                        "Platform/Instrument/Characteristics"
+                        "Platforms/Instrument/Characteristics/Description",
+                        "Platforms/Instrument/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/Characteristics/Description",
-                        "Platform/Instrument/ComposedOf/Characteristics"
+                        "Platforms/Instrument/ComposedOf/Characteristics/Description",
+                        "Platforms/Instrument/ComposedOf/Characteristics"
                     ]
                 }
             ]
@@ -1693,20 +1695,20 @@
             "umm-c": [
                 {
                     "fields": [
-                        "Platform/Characteristics/Unit",
-                        "Platform/Characteristics"
+                        "Platforms/Characteristics/Unit",
+                        "Platforms/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/Characteristics/Unit",
-                        "Platform/Instrument/Characteristics"
+                        "Platforms/Instrument/Characteristics/Unit",
+                        "Platforms/Instrument/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/Characteristics/Unit",
-                        "Platform/Instrument/ComposedOf/Characteristics"
+                        "Platforms/Instrument/ComposedOf/Characteristics/Unit",
+                        "Platforms/Instrument/ComposedOf/Characteristics"
                     ]
                 }
             ]
@@ -1760,20 +1762,20 @@
             "umm-c": [
                 {
                     "fields": [
-                        "Platform/Characteristics/Value",
-                        "Platform/Characteristics"
+                        "Platforms/Characteristics/Value",
+                        "Platforms/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/Characteristics/Value",
-                        "Platform/Instrument/Characteristics"
+                        "Platforms/Instrument/Characteristics/Value",
+                        "Platforms/Instrument/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/Characteristics/Value",
-                        "Platform/Instrument/ComposedOf/Characteristics"
+                        "Platforms/Instrument/ComposedOf/Characteristics/Value",
+                        "Platforms/Instrument/ComposedOf/Characteristics"
                     ]
                 }
             ],
@@ -1849,17 +1851,17 @@
             "umm-c": [
                 {
                     "fields": [
-                        "Platform/Characteristics/Name"
+                        "Platforms/Characteristics/Name"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/Characteristics/Name"
+                        "Platforms/Instrument/Characteristics/Name"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/Characteristics/Name"
+                        "Platforms/Instrument/ComposedOf/Characteristics/Name"
                     ]
                 }
             ]
@@ -1973,17 +1975,17 @@
             "umm-c": [
                 {
                     "fields": [
-                        "Platform/Characteristics/Unit"
+                        "Platforms/Characteristics/Unit"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/Characteristics/Unit"
+                        "Platforms/Instrument/Characteristics/Unit"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/Characteristics/Unit"
+                        "Platforms/Instrument/ComposedOf/Characteristics/Unit"
                     ]
                 }
             ]
@@ -2025,17 +2027,17 @@
             "umm-c": [
                 {
                     "fields": [
-                        "Platform/Characteristics/Value"
+                        "Platforms/Characteristics/Value"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/Characteristics/Value"
+                        "Platforms/Instrument/Characteristics/Value"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/Characteristics/Value"
+                        "Platforms/Instrument/ComposedOf/Characteristics/Value"
                     ]
                 }
             ]
@@ -2406,7 +2408,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "instrument_short_long_name_consistency_check"
     },
     "instrument_short_name_gcmd_check": {
         "rule_name": "Instrument Shortname GCMD Check",
@@ -2583,7 +2586,7 @@
     "platform_short_name_gcmd_check": {
         "rule_name": "Platform Shortname GCMD Check",
         "fields_to_apply": {
-            "echo10": [
+            "echo-c": [
                 {
                     "fields": [
                         "Collection/Platforms/Platform/ShortName"
@@ -2680,7 +2683,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "platform_short_long_name_consistency_check"
     },
     "data_format_gcmd_check": {
         "rule_name": "Data Format GCMD Check",
@@ -3178,7 +3182,8 @@
                 }
             ]
         },
-        "severity": "error"
+        "severity": "error",
+        "check_id": "bounding_coordinate_logic_check"
     },
     "vertical_spatial_domain_type_check": {
         "rule_name": "Vertical Spatial Domain Type Check",
@@ -3288,13 +3293,6 @@
     "depth_unit_check": {
         "rule_name": "Depth Unit Controlled Vocabulary Check",
         "fields_to_apply": {
-            "echo-c": [
-                {
-                    "fields": [
-                        "Collection/SpatialInfo/VerticalCoordinateSystem/DepthSystemDefinition/DistanceUnits"
-                    ]
-                }
-            ],
             "dif10": [
                 {
                     "fields": [
@@ -3325,13 +3323,6 @@
     "altitude_unit_check": {
         "rule_name": "Altitude Unit Controlled Vocabulary Check",
         "fields_to_apply": {
-            "echo-c": [
-                {
-                    "fields": [
-                        "Collection/SpatialInfo/VerticalCoordinateSystem/AltitudeSystemDefinition/DistanceUnits"
-                    ]
-                }
-            ],
             "umm-c": [
                 {
                     "fields": [
@@ -3683,7 +3674,8 @@
             "echo-c": [
                 {
                     "fields": [
-                        "Collection/UseConstraints"
+                        "Collection/UseConstraints/LicenseURL/URL",
+                        "Collection/UseConstraints/LicenseURL/Description"
                     ]
                 }
             ],
@@ -3938,7 +3930,7 @@
                 {
                     "fields": [
                         "Collection/OnlineResources/OnlineResource/Type",
-                        "Collection/OnlineResources/OnlineResource/URL"
+                        "Collection/OnlineResources/OnlineResource"
                     ]
                 }
             ],
@@ -3946,15 +3938,15 @@
                 {
                     "fields": [
                         "Granule/OnlineResources/OnlineResource/Type",
-                        "Granule/OnlineResources/OnlineResource/URL"
+                        "Granule/OnlineResources/OnlineResource"
                     ]
                 }
             ],
             "umm-c": [
                 {
                     "fields": [
-                        "RelatedUrl/Type",
-                        "RelatedUrl/Url"
+                        "RelatedUrls/Type",
+                        "RelatedUrls"
                     ]
                 }
             ],
@@ -3962,7 +3954,7 @@
                 {
                     "fields": [
                         "RelatedUrls/Type",
-                        "RelatedUrls/URL"
+                        "RelatedUrls"
                     ]
                 }
             ]
@@ -4891,20 +4883,20 @@
             "umm-c": [
                 {
                     "fields": [
-                        "Platform/Characteristics/DataType",
-                        "Platform/Characteristics"
+                        "Platforms/Characteristics/DataType",
+                        "Platforms/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/Characteristics/DataType",
-                        "Platform/Instrument/Characteristics"
+                        "Platforms/Instrument/Characteristics/DataType",
+                        "Platforms/Instrument/Characteristics"
                     ]
                 },
                 {
                     "fields": [
-                        "Platform/Instrument/ComposedOf/Characteristics/DataType",
-                        "Platform/Instrument/ComposedOf/Characteristics"
+                        "Platforms/Instrument/ComposedOf/Characteristics/DataType",
+                        "Platforms/Instrument/ComposedOf/Characteristics"
                     ]
                 }
             ]
@@ -4955,7 +4947,7 @@
         "check_id": "one_item_presence_check"
     },
     "granule_platform_presence_check": {
-        "rule name": "Granule Platform Presence Check",
+        "rule_name": "Granule Platform Presence Check",
         "fields_to_apply": {
             "echo-g": [
                 {
@@ -5151,8 +5143,8 @@
             "umm-c": [
                 {
                     "fields": [
-                        "MetadataDates/Date?Type=UPDATE",
-                        "MetadataDates/Date?Type=CREATE"
+                        "MetadataDate/Date?Type=UPDATE",
+                        "MetadataDate/Date?Type=CREATE"
                     ],
                     "relation": "gte"
                 }

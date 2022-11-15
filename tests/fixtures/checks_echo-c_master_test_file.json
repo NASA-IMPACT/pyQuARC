@@ -1,0 +1,804 @@
+{
+    "data_update_time_logic_check": {
+        "valid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z", "gte"],
+        "invalid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "gte"]
+    },
+    "data_revision_date_logic_check": {
+        "valid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z", "gte"],
+        "invalid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "gte"]
+    },
+    "range_date_time_logic_check_1": {
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "lte"],
+        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z", "lte"]
+    },
+    "range_date_time_logic_check_2": {
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"],
+        "invalid": ["2020-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"]
+    },
+    "project_date_time_logic_check_1": {
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "lte"],
+        "invalid": ["2020-01-01T00:00:00Z", "2015-01-01T00:00:00Z", "lte"]
+    },
+    "project_date_time_logic_check_2": {
+        "valid": ["2020-01-01T00:00:00Z", "2020-01-01T12:00:00Z", "neq"],
+        "invalid": ["2020-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"]
+    },
+    "periodic_date_time_logic_check": {
+        "valid": ["1990-01-31T00:00:00Z", "1999-12-31T23:23:59Z", "lt"],
+        "invalid": ["1990-01-31T00:00:00Z", "1990-01-01T00:00:00Z", "lt"]
+    },
+    "datetime_format_check": {
+        "valid": ["2007-07-04T00:00:00Z"],
+        "invalid": ["0704T00:00:00.000Z"]
+    },
+    "url_check": {
+        "valid": ["https://www.udemy.com/topic/real-estate-investing/free/"],
+        "invalid": ["http://www.fakefakestillfaketotallyfake.com/"]
+    },
+    "shortname_uniqueness": {
+        "valid": ["Aquarius Official Release Level 3 Ancillary Reynolds Sea Surface Temperature Standard Mapped Image 7-Day Data V5.0", "AQUARIUS_L3_ANCILLARY_SST_SMI_7DAY_V5", "neq"],
+        "invalid": ["AQUARIUS_L3_ANCILLARY_SST_SMI_7DAY_V5", "AQUARIUS_L3_ANCILLARY_SST_SMI_7DAY_V5", "neq"]
+    },
+    "abstract_length_check": {
+        "valid": ["The Harmonized Landsat Sentinel-2 (HLS) project provides consistent surface reflectance (SR) and top of atmosphere (TOA) brightness data from a virtual constellation of satellite sensors. The Operational Land Imager (OLI) is housed aboard the joint NASA/USGS Landsat 8 and Landsat 9 satellites, while the Multi-Spectral Instrument (MSI) is mounted aboard Europe's Copernicus Sentinel-2A and Sentinel-2B satellites. The combined measurement enables global observations of the land every 2-3 days at 30-meter (m) spatial resolution. The HLS project uses a set of algorithms to obtain seamless products from OLI and MSI that include atmospheric correction, cloud and cloud-shadow masking, spatial co-registration and common gridding, illumination and view angle normalization, and spectral bandpass adjustment. The HLSL30 product provides 30-m Nadir Bidirectional Reflectance Distribution Function (BRDF)-Adjusted Reflectance (NBAR) and is derived from Landsat 8/9 OLI data products. The HLSS30 and HLSL30 products are gridded to the same resolution and Military Grid Reference System (MGRS)(https://hls.gsfc.nasa.gov/products-description/tiling-system/) tiling system, and thus are 'stackable' for time series analysis. The HLSL30 product is provided in Cloud Optimized GeoTIFF (COG) format, and each band is distributed as a separate file. There are 11 bands included in the HLSL30 product along with one quality assessment (QA) band and four angle bands. See the User Guide for a more detailed description of the individual bands provided in the HLSL30 product.", 100, "gte"],
+        "invalid": ["Yes.", 100, "gte"]
+    },
+    "doi_validity_check": {
+        "valid": ["10.5067/AQR50-3R7CS"],
+        "invalid": ["https://www.doi.org/10.5067/FAKE/FAKE_L2.061"]
+    },
+    "doi_link_update": {
+        "valid": [
+            "https://doi.org/10.5067/AQR50-3R7CS",
+            [
+                "dx.doi.org",
+                "http://dx.doi.org",
+                "https://dx.doi.org"
+            ]
+        ],
+        "invalid": [
+            "http://dx.doi.org",
+            [
+                "dx.doi.org",
+                "http://dx.doi.org",
+                "https://dx.doi.org"
+            ]
+        ]
+    },
+    "processing_level_id_check": {
+        "valid": [
+            "1A",
+            [
+                "0",
+                "1A",
+                "1B",
+                "1C",
+                "2",
+                "2A",
+                "2B",
+                "3",
+                "3A",
+                "4"
+            ]
+        ],
+        "invalid": [
+            "5G",
+            [
+                "0",
+                "1A",
+                "1B",
+                "1C",
+                "2",
+                "2A",
+                "2B",
+                "3",
+                "3A",
+                "4"
+            ]
+        ]
+    },
+    "science_keywords_gcmd_check": {
+        "valid": [
+            ["EARTH SCIENCE","ATMOSPHERE","PRECIPITATION","HYDROMETEORS","",""], 
+            ["EARTH SCIENCE","BIOLOGICAL CLASSIFICATION","ANIMALS/VERTEBRATES","BIRDS","DUCKS/GEESE/SWANS",""],
+            ["EARTH SCIENCE","BIOSPHERE","ECOSYSTEMS","MARINE ECOSYSTEMS","COASTAL","KELP FOREST"]
+        ],
+        "invalid": [
+            ["EARTH SCIENCE","SOLID EARTH","ROCKS/MINERALS/CRYSTALS","HYDROMETEORS","",""],
+            ["EARTH SCIENCE","BIOLOGICAL CLASSIFICATION","ANIMALS/VERTEBRATES","BIRDS","DUCKS/GEESE/SWANS","pyQuAC"],
+            ["EARTH SCIENCE","AGRICULTURE","FOREST SCIENCE","FOREST FIRE SCIENCE","COASTAL","KELP FOREST"]
+        ]
+    },
+    "eosdis_doi_authority_check": {
+        "valid": [
+            "https://doi.org/",
+            [
+                "https://doi.org",
+                "https://doi.org/"
+            ]
+        ],
+        "invalid": [
+            "https://www.doi.gov",
+            [
+                "https://doi.org",
+                "https://doi.org/"
+            ]
+        ]
+    },
+    "delete_time_check": {
+        "valid": ["2049-01-01T00:00:00Z", "now", "gte"],
+        "invalid": ["2000-01-01T00:00:00Z", "now", "gte"]
+    },
+    "doi_missing_reason_enumeration_check": {
+        "valid": [
+            "Not Applicable",
+            [
+                "Not Applicable",
+                "Unknown"
+            ]
+        ],
+        "invalid": [
+            " ",
+            [
+                "Not Applicable",
+                "Unknown"
+            ]
+        ]
+    },
+    "processing_level_description_length_check": {
+        "valid": ["Derived geophysical variables at the same resolution and location as Level 1 source data.", 50, "gte"],
+        "invalid": ["You get my drift.", 50, "gte"]
+    },
+    "umm_controlled_collection_state_list_check": {
+        "valid": [
+            "ACTIVE",
+            [
+                "ACTIVE",
+                "PLANNED",
+                "COMPLETE",
+                "DEPRECATED",
+                "NOT APPLICABLE",
+                "NOT PROVIDED"
+            ]
+        ],
+        "invalid": [
+            "INACTIVE",
+            [
+                "ACTIVE",
+                "PLANNED",
+                "COMPLETE",
+                "DEPRECATED",
+                "NOT APPLICABLE",
+                "NOT PROVIDED"
+            ]
+        ]
+    },
+    "ends_at_present_flag_logic_check": {
+        "valid": [["true","","ACTIVE"],["false","2007-07-04T00:00:00Z","COMPLETE"]],
+        "invalid": [["true","2007-07-04T00:00:00Z","COMPLETE"],["false","","ACTIVE"]]
+    },
+    "ends_at_present_flag_presence_check": {
+        "valid": ["", "2007-07-04T00:00:00Z", "COMPLETE"],
+        "invalid": ["", "", "ACTIVE"]
+    },
+    "contact_mechanism_enum_check": {
+        "valid": [
+            "Direct Line",
+            [
+                "Direct Line",
+                "Email",
+                "Facebook",
+                "Fax",
+                "Mobile",
+                "Modem",
+                "Primary",
+                "TDD/TTY Phone",
+                "Telephone",
+                "Twitter",
+                "U.S. toll free",
+                "Other"
+            ]
+        ],
+        "invalid": [
+            "Indirect Line",
+            [
+                "Direct Line",
+                "Email",
+                "Facebook",
+                "Fax",
+                "Mobile",
+                "Modem",
+                "Primary",
+                "TDD/TTY Phone",
+                "Telephone",
+                "Twitter",
+                "U.S. toll free",
+                "Other"
+            ]
+        ] 
+    },
+    "data_contact_role_enum_check": {
+        "valid": [
+            "Data Center Contact",
+            [
+                "Data Center Contact",
+                "Technical Contact",
+                "Science Contact",
+                "Investigator",
+                "Metadata Author",
+                "User Services",
+                "Science Software Development"
+            ]
+        ],
+        "invalid": [
+            "Data Center Noncontact",
+            [
+                "Data Center Contact",
+                "Technical Contact",
+                "Science Contact",
+                "Investigator",
+                "Metadata Author",
+                "User Services",
+                "Science Software Development"
+            ]
+        ]
+    },
+    "controlled_contact_role_check": {
+        "valid": [
+            "ARCHIVER",
+            [
+                "ARCHIVER",
+                "DISTRIBUTOR",
+                "PROCESSOR",
+                "ORIGINATOR"
+            ]
+        ],
+        "invalid": [
+            "DISPOSER",
+            [
+                "ARCHIVER",
+                "DISTRIBUTOR",
+                "PROCESSOR",
+                "ORIGINATOR"
+            ]
+        ]
+    },
+    "data_type_control_check": {
+        "valid": [
+            "STRING",
+            [
+                "STRING",
+                "FLOAT",
+                "INT",
+                "BOOLEAN",
+                "DATE",
+                "TIME",
+                "DATETIME",
+                "DATE_STRING",
+                "TIME_STRING",
+                "DATETIME_STRING"
+            ]
+        ],
+        "invalid": [
+            "THREAD",
+            [
+                "STRING",
+                "FLOAT",
+                "INT",
+                "BOOLEAN",
+                "DATE",
+                "TIME",
+                "DATETIME",
+                "DATE_STRING",
+                "TIME_STRING",
+                "DATETIME_STRING"
+            ]
+        ]
+    },
+    "characteristic_name_check": {
+        "valid": [
+            "AircraftID",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ],
+        "invalid": [
+            "",
+            {
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ]
+    },
+    "characteristic_desc_check": {
+        "valid": [
+            "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ],
+        "invalid": [
+            "",
+            {
+                "Name": "AircraftID",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }            
+        ]
+    },
+    "characteristic_unit_check": {
+        "valid": [
+            "Not Applicable",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ],
+        "invalid": [
+            "",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Value": "N529NA"
+            }            
+        ]
+    },
+    "characteristic_value_check": {
+        "valid": [
+            "N529NA",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ],
+        "invalid": [
+            "",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable"
+            }            
+        ]
+    },
+    "characteristic_name_length_check": {
+        "valid": ["AircraftID", 80, "lte"],
+        "invalid": ["Adolph Blaine Charles David Earl Frederick Gerald Hubert Irvin John Kenneth Lloyd Martin Nero Oliver Paul Quincy Randolph Sherman Thomas Uncas Victor William Xerxes Yancy Zeus Wolfeschlegelsteinhausenbergerdorffwelchevoralternwarengewissenhaftschaferswessenschafewarenwohlgepflegeundsorgfaltigkeitbeschutzenvonangreifendurchihrraubgierigfeindewelchevoralternzwolftausendjahresvorandieerscheinenvanderersteerdemenschderraumschiffgebrauchlichtalsseinursprungvonkraftgestartseinlangefahrthinzwischensternartigraumaufdersuchenachdiesternwelchegehabtbewohnbarplanetenkreisedrehensichundwohinderneurassevonverstandigmenschlichkeitkonntefortpflanzenundsicherfreuenanlebenslanglichfreudeundruhemitnichteinfurchtvorangreifenvonandererintelligentgeschopfsvonhinzwischensternartigraum", 80, "lte"]
+    },
+    "characteristic_desc_length_check": {
+        "valid": ["test description", 2048, "lte"],
+        "invalid": ["123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789123456789", 2048, "lte"]
+    },
+    "characteristic_unit_length_check": {
+        "valid": [["38", 20, "lte"], ["1,000,000", 20, "lte"], ["0", 20, "lte"]],
+        "invalid": [["989898989898989898989898", 20, "lte"], ["10000000000000000000000", 20, "lte"], ["1234567891011121314151617181920", 20, "lte"]]
+    },
+    "characteristic_value_length_check": {
+        "valid": ["this is a value", 80, "lte"],
+        "invalid": ["Did you ever hear the tragedy of Darth Plagueis The Wise? I thought not. It's not a story the Jedi would tell you. It's a Sith legend. Darth Plagueis was a Dark Lord of the Sith, so powerful and so wise he could use the Force to influence the midichlorians to create life... He had such a knowledge of the dark side that he could even keep the ones he cared about from dying. The dark side of the Force is a pathway to many abilities some consider to be unnatural. He became so powerful... the only thing he was afraid of was losing his power, which eventually, of course, he did. Unfortunately, he taught his apprentice everything he knew, then his apprentice killed him in his sleep. Ironic. He could save others from death, but not himself.", 80, "lte"]
+    },
+    "mime_type_check": {
+        "valid": [
+            "text/xml",
+            "USE SERVICE API",
+            [
+                "application/json",
+                "application/xml",
+                "application/x-netcdf",
+                "application/gml+xml",
+                "application/vnd.google-earth.kml+xml",
+                "image/gif",
+                "image/tiff",
+                "image/bmp",
+                "text/csv",
+                "text/xml",
+                "application/pdf",
+                "application/x-hdf",
+                "application/xhdf5",
+                "application/octet-stream",
+                "application/vnd.google-earth.kmz",
+                "image/jpeg",
+                "image/png",
+                "image/vnd.collada+xml",
+                "text/html",
+                "text/plain",
+                "Not provided"
+            ]
+        ],
+        "invalid": [
+            "",
+            "USE SERVICE API",
+            [
+                "application/json",
+                "application/xml",
+                "application/x-netcdf",
+                "application/gml+xml",
+                "application/vnd.google-earth.kml+xml",
+                "image/gif",
+                "image/tiff",
+                "image/bmp",
+                "text/csv",
+                "text/xml",
+                "application/pdf",
+                "application/x-hdf",
+                "application/xhdf5",
+                "application/octet-stream",
+                "application/vnd.google-earth.kmz",
+                "image/jpeg",
+                "image/png",
+                "image/vnd.collada+xml",
+                "text/html",
+                "text/plain",
+                "Not provided"
+            ]
+        ]
+    },
+    "coordinate_system_check": {
+        "valid": [
+            "GEODETIC",
+            [
+                "CARTESIAN",
+                "GEODETIC"
+            ]
+        ],
+        "invalid": [
+            "sphere",
+            [
+                "CARTESIAN",
+                "GEODETIC"
+            ]
+        ]
+    },
+    "product_flag_check": {
+        "valid": [
+            "DATA_PRODUCT_FILE",
+            [
+                "DATA_PRODUCT_FILE",
+                "INSTRUMENT_ANCILLARY_FILE",
+                "SYSTEM/SPACECRAFT_FILE",
+                "EXTERNAL_DATA"
+            ]
+        ],
+        "invalid": [
+            "hgighfivb",
+            [
+                "DATA_PRODUCT_FILE",
+                "INSTRUMENT_ANCILLARY_FILE",
+                "SYSTEM/SPACECRAFT_FILE",
+                "EXTERNAL_DATA"
+            ]
+        ]
+    },
+    "granule_spatial_representation_check": {
+        "valid": [
+            "ORBIT",
+            [
+                "CARTESIAN",
+                "GEODETIC",
+                "ORBIT",
+                "NO_SPATIAL"
+            ]
+        ],
+        "invalid": [
+            "Not Applicable",
+            [
+                "CARTESIAN",
+                "GEODETIC",
+                "ORBIT",
+                "NO_SPATIAL"
+            ]
+        ]
+    },
+    "organization_short_name_gcmd_check": {
+        "valid": [["NASA/LARC/SD/ASDC"], ["NASA/MSFC/GHRC"]],
+        "invalid": [["ASDC"], ["GHRC"]]
+    },
+    "instrument_short_long_name_consistency_check": {
+        "valid": ["EXRAD", "ER-2 Doppler Radar"],
+        "invalid": ["SNOW RADAR", "ER-2 Doppler Radar"]
+    },
+    "instrument_short_name_gcmd_check": {
+        "valid": [["RADAR ECHO SOUNDERS"],["TSI-3563 Neph"]],
+        "invalid": [["Nephelometers"],["sensors"]]
+    },
+    "instrument_long_name_gcmd_check": {
+        "valid": [["Multi-Angle Absorption Photometer"],["Whole-Sky Imager"]],
+        "invalid": [["radar"],["gfihgifbnvbn"]]
+    },
+    "platform_short_long_name_consistency_check": {
+        "valid": ["NASA DC-8", "NASA Douglas DC-8"],
+        "invalid": ["NASA DC-8", "Lockheed P-3A Orion"]
+    },
+    "data_format_gcmd_check": {
+        "valid": ["Binary"],
+        "invalid": ["Native"]
+    },
+    "platform_long_name_gcmd_check": {
+        "valid": ["Lockheed P-3A Orion"],
+        "invalid": ["ER-2"]
+    },
+    "spatial_keyword_gcmd_check": {
+        "valid": ["ALABAMA"],
+        "invalid": ["huntsville"]
+    },
+    "platform_type_gcmd_check": {
+        "valid": ["Propeller"],
+        "invalid": ["the plane"]
+    },
+    "campaign_short_long_name_consistency_check": {
+        "valid": ["OLYMPEX", "Olympic Mountain Experiment"],
+        "invalid": ["OLYMPEX", "Oceans Melting Greenland"]
+    },
+    "campaign_short_name_gcmd_check": {
+        "valid": ["OTTER"],
+        "invalid": ["JASON"]
+    },
+    "campaign_long_name_gcmd_check": {
+        "valid": ["Sub-Mesoscale Ocean Dynamics Experiment"],
+        "invalid": ["SubMesoscale Ocean Dynamics Experiment"]
+    },
+    "version_description_not_provided": {
+        "valid": ["Version 8", "NOT PROVIDED", "neq"],
+        "invalid": ["Not provided", "NOT PROVIDED", "neq"]
+    },
+    "collection_data_type_enumeration_check": {
+        "valid": [
+            "OTHER",
+            [
+                "LOW_LATENCY",
+                "EXPEDITED",
+                "SCIENCE_QUALITY",
+                "NEAR_REAL_TIME",
+                "OTHER"
+            ]
+        ],
+        "invalid": [
+            "real time data",
+            [
+                "LOW_LATENCY",
+                "EXPEDITED",
+                "SCIENCE_QUALITY",
+                "NEAR_REAL_TIME",
+                "OTHER"
+            ]
+        ]
+    },
+    "data_center_name_presence_check": {
+        "valid": ["", "NASA/MSFC/GHRC", ""],
+        "invalid": ["", "", ""]
+    },
+    "bounding_coordinate_logic_check": {
+        "valid": ["-180", "90", "180", "-90"],
+        "invalid": ["-180", "30", "180", "35"]
+    },
+    "vertical_spatial_domain_type_check": {
+        "valid": [
+            "Atmosphere Layer",
+        [
+            "Atmosphere Layer",
+            "Maximum Altitude",
+            "Maximum Depth",
+            "Minimum Altitude",
+            "Minimum Depth"
+        ]
+    ],
+        "invalid": [
+            "Stratosphere",
+        [
+            "Atmosphere Layer",
+            "Maximum Altitude",
+            "Maximum Depth",
+            "Minimum Altitude",
+            "Minimum Depth"
+        ]
+    ]
+    },
+    "spatial_coverage_type_check": {
+        "valid": [
+            "VERTICAL",
+        [
+            "HORIZONTAL",
+            "VERTICAL",
+            "ORBITAL",
+            "HORIZONTAL_VERTICAL",
+            "ORBITAL_VERTICAL",
+            "HORIZONTAL_ORBITAL",
+            "HORIZONTAL_VERTICAL_ORBITAL"
+        ]
+    ],
+        "invalid": [
+            "diagonal",
+        [
+            "HORIZONTAL",
+            "VERTICAL",
+            "ORBITAL",
+            "HORIZONTAL_VERTICAL",
+            "ORBITAL_VERTICAL",
+            "HORIZONTAL_ORBITAL",
+            "HORIZONTAL_VERTICAL_ORBITAL"
+        ]
+    ]
+    },
+    "depth_unit_check": {
+        "valid": [
+            "Feet",
+        [
+            "Fathoms",
+            "Feet",
+            "HectoPascals",
+            "Meters",
+            "Millibars"
+        ]
+    ],
+        "invalid": [
+            "ft",
+        [
+            "Fathoms",
+            "Feet",
+            "HectoPascals",
+            "Meters",
+            "Millibars"
+        ]
+    ]
+    },
+    "altitude_unit_check": {
+        "valid": [
+            "Kilometers",
+        [
+            "HectoPascals",
+            "Kilometers",
+            "Millibars"
+        ]
+    ],
+        "invalid": [
+            "km",
+        [
+            "HectoPascals",
+            "Kilometers",
+            "Millibars"
+        ]
+    ]
+    },
+    "campaign_name_presence_check": {
+        "valid": ["AAOE"],
+        "invalid": [""]
+    },
+    "spatial_coverage_type_presence_check": {
+        "valid": ["VERTICAL"],
+        "invalid": [""]
+    },
+    "horizontal_datum_name_check": {
+        "valid": ["datum name"],
+        "invalid": [""]
+    },
+    "online_access_url_presence_check": {
+        "valid": ["https://www.google.com/"],
+        "invalid": [""]
+    },
+    "online_resource_url_presence_check": {
+        "valid": ["https://wiki.earthdata.nasa.gov/display/CMR/UMM-C+Schema+Representation"],
+        "invalid": [""]
+    },
+    "online_access_url_description_check": {
+        "valid": ["online access url description"],
+        "invalid": [""]
+    },
+    "online_resource_url_description_check": {
+        "valid": ["online resource url description check"],
+        "invalid": [""]
+    },
+    "opendap_url_location_check": {
+        "valid": ["https://asdc.larc.nasa.gov/data/CALIPSO/LID_L3_Cloud_Occurrence-Standard-V1-00/", "opendap", "not_contains"],
+        "invalid": ["https://opendap.larc.nasa.gov/opendap/CALIPSO/LID_L3_Cloud_Occurrence-Standard-V1-00/2006/CAL_LID_L3_Cloud_Occurrence-Standard-V1-00.2006-06A.hdf.html", "opendap", "not_contains"]
+    },
+    "location_keyword_presence_check": {
+        "valid": ["UNITED STATES OF AMERICA"],
+        "invalid": [""]
+    },
+    "spatial_extent_requirement_fulfillment_check": {
+        "valid": ["13.149, -59.625", "", "", ""],
+        "invalid": ["", "", "", ""]
+    },
+    "license_information_check": {
+        "valid": ["https://www.earthdata.nasa.gov/learn/use-data/data-use-policy"],
+        "invalid": [""]
+    },
+    "collection_citation_presence_check": {
+        "valid": ["2018-09-26T00:00:00.000Z"],
+        "invalid": [""]
+    },
+    "user_services_check": {
+        "valid": ["John", "Felix Anthony", "Cena"],
+        "invalid": ["User", "null", "Services"]
+    },
+    "doi_missing_reason_explanation": {
+        "valid": ["DOI missing reason", "Not Applicable", ""],
+        "invalid": ["", "", ""]
+    },
+    "boolean_check": {
+        "valid": [["true"], ["false"]],
+        "invalid": [["not a boolean"], ["this will fail"]]
+    },
+    "collection_progress_consistency_check": {
+        "valid": ["IN WORK", "true", ""],
+        "invalid": ["IN WORK", "", "2015-02-09T:00:00:00Z"]
+    },
+    "online_resource_type_gcmd_check": {
+        "valid": ["GET DATA"],
+        "invalid": ["url data access please"]
+    },
+    "online_resource_type_presence_check": {
+        "valid": ["USE SERVICE API", "https://opendap.larc.nasa.gov/opendap/hyrax/ACEPOL/AircraftRemoteSensing_AirHARP_Data_1/ACEPOL-AIRHARP-L1B_ER2_20171023180751_R2.h5"],
+        "invalid": ["", "https://opendap.larc.nasa.gov/opendap/hyrax/ACEPOL/AircraftRemoteSensing_AirHARP_Data_1/ACEPOL-AIRHARP-L1B_ER2_20171023180751_R2.h5"]
+    },
+    "characteristic_name_uniqueness_check": {
+        "valid": [
+            [
+                {
+                  "Name": "NASA ER-2"
+                },
+                {
+                  "Name": "NASA DC-8"
+                }
+            ],
+            "Name"
+        ],
+        "invalid": [
+            [
+                {
+                  "Name": "NASA DC-8"
+                },
+                {
+                  "Name": "NASA DC-8"
+                }
+            ],
+            "Name"
+        ]
+    },
+    "validate_ending_datetime_against_granules": {
+        "valid": ["2017-07-17T20:41:47.000Z","ABOLVIS1A","1"],
+        "invalid": ["2016-07-17T20:41:47.000Z","ABOLVIS1A","1"]
+    },
+    "validate_beginning_datetime_against_granules": {
+        "valid": ["2017-06-29T14:39:12.000Z","ABOLVIS1A","1"],
+        "invalid": ["2016-06-29T00:00:00.000Z","ABOLVIS1A","1"]
+    },
+    "temporal_extent_requirement_check": {
+        "valid": ["2020-01-01T00:00:00Z", "", ""],
+        "invalid": ["", "", ""]
+    },
+    "url_desc_presence_check": {
+        "valid": [["the google search engine", "www.google.com"], ["doi home page", "https//doi.org"]],
+        "invalid": [["", "www.google.com"], ["", "https://doi.org"]]
+    },
+    "data_center_short_name_gcmd_check": {
+        "valid": [["NSIDC"], ["NASA/GSFC/SED/ESD/GCDC/OB.DAAC"]],
+        "invalid": [["facebook"], ["ASDC"]]
+    },
+    "characteristic_data_type": {
+        "valid": [["INT", {"Name": "...", "Description": "...", "DataType": "...", "Unit": "...", "Value": "..."}], ["FLOAT", {"Name": "...", "Description": "...", "DataType": "...", "Unit": "...", "Value": "..."}], ["STRING", {"Name": "...", "Description": "...", "DataType": "...", "Unit": "...", "Value": "..."}]],
+        "invalid": [["", {"Name": "...", "Description": "...", "Unit": "...", "Value": "..."}], ["", {"Name": "...", "Description": "...", "Unit": "...", "Value": "..."}], ["", {"Name": "...", "Description": "...", "Unit": "...", "Value": "..."}]]
+    },
+    "platform_type_presence_check": {
+        "valid": ["Propeller"],
+        "invalid": [""]
+    }
+}

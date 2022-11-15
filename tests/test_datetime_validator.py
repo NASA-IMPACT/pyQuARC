@@ -1,6 +1,5 @@
 from pyQuARC.code.datetime_validator import DatetimeValidator
-
-from .fixtures.validator import INPUT_OUTPUT
+from tests.fixtures.validator import INPUT_OUTPUT
 
 
 class TestValidator:

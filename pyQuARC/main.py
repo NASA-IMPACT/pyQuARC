@@ -6,19 +6,18 @@ import xmltodict
 
 from tqdm import tqdm
 
-from pyQuARC.code.utils import get_headers
-
 if __name__ == '__main__':
     from code.checker import Checker
     from code.constants import COLOR, ECHO10_C, SUPPORTED_FORMATS
     from code.downloader import Downloader
     from code.utils import get_cmr_url, is_valid_cmr_url
+    from code.utils import get_headers
 else:
     from .code.checker import Checker
     from .code.constants import COLOR, ECHO10_C, SUPPORTED_FORMATS
     from .code.downloader import Downloader
     from .code.utils import get_cmr_url, is_valid_cmr_url
-
+    from .code.utils import get_headers
 
 ABS_PATH = os.path.abspath(os.path.dirname(__file__))
 END = COLOR["reset"]
