@@ -296,12 +296,12 @@
         "remediation": "Select a valid long name, or submit a request to support@earthdata.nasa.gov to have this instrument added to the GCMD Instruments keyword list."
     },
     "instrument_long_name_presence_check": {
-        "failure": "The instrument long name is missing.",
+        "failure": "The instrument/sensor long name is missing.",
         "help": {
             "message": "",
             "url": "https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/instruments/?format=csv&page_num=1&page_size=2000"
         },
-        "remediation": "Please add the associated instrument long name."
+        "remediation": "Please add the associated instrument/sensor long name."
     },
     "granule_instrument_presence_check": {
         "failure": "The instrument short name is missing.",
@@ -853,7 +853,7 @@
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
         },
-        "remediation": "Recommend providing a Temporal Resolution Range from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/MimeType?format=csv."
+        "remediation": "Recommend providing a mime type from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/MimeType?format=csv."
     },
     "chrono_unit_gcmd_check": {
         "failure": "The provided Chronostratigraphic Unit `{}` does not comply with GCMD.",
@@ -981,7 +981,7 @@
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Temporal+Extent"
         },
-        "remediation": "Recommend providing a Single Date Time instead of a Range Date Time."        
+        "remediation": "Recommend providing a Single Date Time instead of a Range Date Time."
     },
     "granule_project_short_name_check": {
         "failure": "The campaign/project short name `{}` listed in the granule metadata does not match the campaign/project short name listed in the collection metadata.",
@@ -1000,12 +1000,12 @@
         "remediation": "Recommend providing the same sensor short name in the collection and granule metadata."
     },
     "validate_granule_data_format_against_collection_check": {
-    "failure": "The data format listed in the granule metadata does not match the data format listed in the collection metadata",
-    "help": {
-        "message": "",
-        "url": ""
-    },
-    "remediation": "Recommend providing the same data format in the collection and granule metadata, if appropriate."
+        "failure": "The data format listed in the granule metadata does not match the data format listed in the collection metadata",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "Recommend providing the same data format in the collection and granule metadata, if appropriate."
     },
     "granule_data_format_presence_check": {
         "failure": "The granule data format is missing.",

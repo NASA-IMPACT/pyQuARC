@@ -381,7 +381,6 @@
         },
         "severity": "error",
         "check_id": "datetime_format_check"
-
     },
     "date_or_datetime_format_check": {
         "rule_name": "Date or Datetime ISO Format Check",
@@ -881,11 +880,6 @@
                     "fields": [
                         "DIF/Associated_DOIs/DOI"
                     ]
-                },
-                {
-                    "fields": [
-                        "DIF/Extended_Metadata/Metadata/Value"
-                    ]
                 }
             ],
             "umm-c": [
@@ -1107,7 +1101,7 @@
                     "fields": [
                         "ProviderDates/Date?Type=Delete"
                     ]
-                }   
+                }
             ],
             "echo-g": [
                 {
@@ -1347,6 +1341,11 @@
                     "fields": [
                         "ContactPersons/Roles"
                     ]
+                },
+                {
+                    "fields": [
+                        "DataCenters/ContactGroups/Roles"
+                    ]
                 }
             ]
         },
@@ -1384,7 +1383,7 @@
             "umm-c": [
                 {
                     "fields": [
-                        "DataCenters/ContactGroups/Roles"
+                        "DataCenters/Roles"
                     ]
                 }
             ]
@@ -1422,23 +1421,6 @@
                 {
                     "fields": [
                         "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/Characteristics/Characteristic/DataType"
-                    ]
-                }
-            ],
-            "dif10": [
-                {
-                    "fields": [
-                        "DIF/Platform/Instrument/Characteristics/DataType"
-                    ]
-                },
-                {
-                    "fields": [
-                        "DIF/Platform/Instrument/Sensor/Characteristics/DataType"
-                    ]
-                },
-                {
-                    "fields": [
-                        "DIF/Platform/Characteristics/DataType"
                     ]
                 }
             ],
@@ -2081,7 +2063,7 @@
                     "fields": [
                         "Granule/OnlineResources/OnlineResource/MimeType",
                         "Granule/OnlineResources/OnlineResource/Type"
-                    ] 
+                    ]
                 }
             ]
         },
@@ -2524,10 +2506,39 @@
     "instrument_long_name_presence_check": {
         "rule_name": "Instrument Longname Presence Check",
         "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/LongName"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/LongName"
+                    ]
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
                         "DIF/Platform/Instrument/Long_Name"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Platform/Instrument/Sensor/Long_Name"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "Platforms/Instruments/LongName"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Platforms/Instruments/ComposedOf/LongName"
                     ]
                 }
             ]
@@ -3284,7 +3295,12 @@
                 "HORIZONTAL_VERTICAL",
                 "ORBITAL_VERTICAL",
                 "HORIZONTAL_ORBITAL",
-                "HORIZONTAL_VERTICAL_ORBITAL"
+                "HORIZONTAL_VERTICAL_ORBITAL",
+                "Horizontal",
+                "HorizontalVertical",
+                "Orbit",
+                "Vertical",
+                "Horizon&amp;Vert"
             ]
         ],
         "severity": "error",
@@ -3626,7 +3642,7 @@
             ],
             "echo-g": [
                 {
-                "fields": [
+                    "fields": [
                         "Granule/Spatial/HorizontalSpatialDomain/Geometry/Point",
                         "Granule/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle",
                         "Granule/Spatial/HorizontalSpatialDomain/Geometry/GPolygon",
@@ -3719,7 +3735,7 @@
             "umm-c": [
                 {
                     "fields": [
-                        "CollectionCitation/Title"
+                        "CollectionCitations/Title"
                     ]
                 }
             ]
@@ -4267,7 +4283,8 @@
                 {
                     "fields": [
                         "Granule/Temporal/SingleDateTime",
-                        "Granule/Temporal/RangeDateTime"                    ]
+                        "Granule/Temporal/RangeDateTime"
+                    ]
                 }
             ],
             "dif10": [
@@ -4715,11 +4732,6 @@
             "dif10": [
                 {
                     "fields": [
-                        "DIF/Use_Constraints/License_URL/Mime_Type"
-                    ]
-                },
-                {
-                    "fields": [
                         "DIF/Related_URL/Mime_Type"
                     ]
                 }
@@ -4935,10 +4947,24 @@
     "platform_long_name_presence_check": {
         "rule_name": "Platform Longname Presence Check",
         "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/Platforms/Platforms/LongName"
+                    ]
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
                         "DIF/Platform/Long_Name"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "Platforms/LongName"
                     ]
                 }
             ]
@@ -5118,7 +5144,9 @@
                 }
             ]
         },
-        "data": ["Description"],
+        "data": [
+            "Description"
+        ],
         "severity": "info",
         "check_id": "uniqueness_check"
     },
@@ -5133,11 +5161,13 @@
                 }
             ]
         },
-        "data": ["URLDescription"],
+        "data": [
+            "URLDescription"
+        ],
         "severity": "info",
         "check_id": "uniqueness_check"
     },
-        "metadata_update_time_logic_check": {
+    "metadata_update_time_logic_check": {
         "rule_name": "Metadata Update Time Logic Check",
         "fields_to_apply": {
             "umm-c": [
@@ -5162,7 +5192,7 @@
                         "Granule/Temporal/RangeDateTime/BeginningDateTime",
                         "Granule/Temporal/RangeDateTime/EndingDateTime"
                     ],
-                    "relation":"neq"
+                    "relation": "neq"
                 }
             ]
         },
@@ -5194,7 +5224,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "granule_project_short_name_check"    
+        "check_id": "granule_project_short_name_check"
     },
     "granule_sensor_short_name_check": {
         "rule_name": "Granule Sensor Short Name Check",
@@ -5221,9 +5251,9 @@
             ]
         },
         "severity": "info",
-        "check_id": "granule_sensor_short_name_check"    
+        "check_id": "granule_sensor_short_name_check"
     },
-        "validate_granule_data_format_against_collection_check": {
+    "validate_granule_data_format_against_collection_check": {
         "rule_name": "Validate Granule Data Format Against Collection Check",
         "fields_to_apply": {
             "umm-g": [
