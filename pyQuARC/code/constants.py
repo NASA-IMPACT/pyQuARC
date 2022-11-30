@@ -1,5 +1,5 @@
+import os
 from colorama import Fore, Style
-from pathlib import Path
 
 DIF = "dif10"
 ECHO10_C = "echo-c"
@@ -9,9 +9,12 @@ ECHO10_G = "echo-g"
 
 SUPPORTED_FORMATS = [DIF, ECHO10_C, UMM_C, UMM_G, ECHO10_G]
 
+# Changed to os instead of pathlib
+# https://github.com/aio-libs/aiohttp/issues/3977
+
 ROOT_DIR = (
     # go up one directory
-    Path(__file__).resolve().parents[1]
+    os.path.abspath(os.path.join(__file__, '../..'))
 )
 
 SCHEMAS_BASE_PATH = f"{ROOT_DIR}/schemas"
