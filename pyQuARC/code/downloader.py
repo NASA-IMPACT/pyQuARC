@@ -1,9 +1,10 @@
+import os
 import re
-import requests
-
 from urllib.parse import urlparse
 
-from .utils import get_cmr_url
+import requests
+
+from .utils import get_cmr_url, get_headers
 
 
 class Downloader:
@@ -98,7 +99,8 @@ class Downloader:
 
         # constructs url based on concept id
         url = self._construct_url()
-        response = requests.get(url)
+        headers = get_headers()
+        response = requests.get(url, headers=headers)
         # gets the response, makes sure it's 200, puts it in an object variable
         if response.status_code != 200:
             self.log_error(

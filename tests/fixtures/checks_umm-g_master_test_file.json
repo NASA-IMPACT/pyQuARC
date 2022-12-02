@@ -1,0 +1,379 @@
+{
+    "range_date_time_logic_check_1": {
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "lte"],
+        "invalid": ["2020-01-01T00:00:00Z", "2010-01-01T00:00:00Z", "lte"]
+    },
+    "range_date_time_logic_check_2": {
+        "valid": ["2010-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"],
+        "invalid": ["2020-01-01T00:00:00Z", "2020-01-01T00:00:00Z", "neq"]
+    },
+    "date_or_datetime_format_check": {
+        "valid": ["2007-07-04T00:00:00Z"],
+        "invalid": ["0704T00:00:00.000Z"]
+    },
+    "url_check": {
+        "valid": ["https://www.udemy.com/topic/real-estate-investing/free/"],
+        "invalid": ["http://www.fakefakestillfaketotallyfake.com/"]
+    },
+    "delete_time_check": {
+        "valid": ["2049-01-01T00:00:00Z", "now", "gte"],
+        "invalid": ["2000-01-01T00:00:00Z", "now", "gte"]
+    },
+    "characteristic_name_check": {
+        "valid": [
+            "AircraftID",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ],
+        "invalid": [
+            "",
+            {
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ]
+    },
+    "characteristic_value_check": {
+        "valid": [
+            "N529NA",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable",
+                "Value": "N529NA"
+            }
+        ],
+        "invalid": [
+            "",
+            {
+                "Name": "AircraftID",
+                "Description": "The identifier of the airplane used by the FAA to uniquely identify each aircraft",
+                "DataType": "STRING",
+                "Unit": "Not Applicable"
+            }
+        ]
+    },
+    "mime_type_check": {
+        "valid": [
+            "text/xml",
+            "USE SERVICE API",
+            [
+                "application/json",
+                "application/xml",
+                "application/x-netcdf",
+                "application/gml+xml",
+                "application/vnd.google-earth.kml+xml",
+                "image/gif",
+                "image/tiff",
+                "image/bmp",
+                "text/csv",
+                "text/xml",
+                "application/pdf",
+                "application/x-hdf",
+                "application/xhdf5",
+                "application/octet-stream",
+                "application/vnd.google-earth.kmz",
+                "image/jpeg",
+                "image/png",
+                "image/vnd.collada+xml",
+                "text/html",
+                "text/plain",
+                "Not provided"
+            ]
+        ],
+        "invalid": [
+            "",
+            "USE SERVICE API",
+            [
+                "application/json",
+                "application/xml",
+                "application/x-netcdf",
+                "application/gml+xml",
+                "application/vnd.google-earth.kml+xml",
+                "image/gif",
+                "image/tiff",
+                "image/bmp",
+                "text/csv",
+                "text/xml",
+                "application/pdf",
+                "application/x-hdf",
+                "application/xhdf5",
+                "application/octet-stream",
+                "application/vnd.google-earth.kmz",
+                "image/jpeg",
+                "image/png",
+                "image/vnd.collada+xml",
+                "text/html",
+                "text/plain",
+                "Not provided"
+            ]
+        ]
+    },
+    "instrument_short_name_gcmd_check": {
+        "valid": [["RADAR ECHO SOUNDERS"],["TSI-3563 Neph"]],
+        "invalid": [["Nephelometers"],["sensors"]]
+    },
+    "granule_instrument_presence_check": {
+        "valid": ["EXRAD"],
+        "invalid": [""]
+    },
+    "validate_granule_instrument_against_collection": {
+        "valid": ["ERBE WFOV Nonscanner", "ERBE_S10N_WFOV_SF_ERBS_Regional", "Edition4", "Earth Radiation Budget through Earth Radiation Budget Satellite Wide-field-of-view Nonscanner Observations Edition"],
+        "invalid": ["ERBE", "ERBE_S10N_WFOV_SF_ERBS_Regional", "Edition4", "Earth Radiation Budget through Earth Radiation Budget Satellite Wide-field-of-view Nonscanner Observations Edition"]
+    },
+    "platform_short_name_gcmd_check": {
+        "valid": ["G-III"],
+        "invalid": ["gulfstream"]
+    },
+    "data_format_gcmd_check": {
+        "valid": ["Binary"],
+        "invalid": ["Native"]
+    },
+    "campaign_short_name_gcmd_check": {
+        "valid": ["OTTER"],
+        "invalid": ["JASON"]
+    },
+    "bounding_coordinate_logic_check": {
+        "valid": ["-180", "90", "180", "-90"],
+        "invalid": ["-180", "30", "180", "35"]
+    },
+    "vertical_spatial_domain_type_check_granule": {
+        "valid": [
+            "Depth",
+        [
+            "Atmosphere Layer",
+            "Pressure",
+            "Altitude",
+            "Depth"
+        ]
+    ],
+        "invalid": [
+            "Deep",
+        [
+            "Atmosphere Layer",
+            "Pressure",
+            "Altitude",
+            "Depth"
+        ]
+    ]
+    },
+    "vertical_spatial_domain_unit_check_ummg": {
+        "valid": [
+            "Kilometers",
+        [
+            "Fathoms",
+            "Feet",
+            "HectoPascals",
+            "Kilometers",
+            "Meters",
+            "Millibars",
+            "PoundsPerSquareInch",
+            "Atmosphere",
+            "InchesOfMercury",
+            "InchesOfWater"
+        ]
+    ],
+        "invalid": [
+            "km",
+        [
+            "Fathoms",
+            "Feet",
+            "HectoPascals",
+            "Kilometers",
+            "Meters",
+            "Millibars",
+            "PoundsPerSquareInch",
+            "Atmosphere",
+            "InchesOfMercury",
+            "InchesOfWater"
+        ]
+    ]
+    },
+    "campaign_name_presence_check": {
+        "valid": ["ACTIVATE"],
+        "invalid": [""]
+    },
+    "online_resource_url_description_check": {
+        "valid": ["This should be a description of the URL."],
+        "invalid": [""]
+    },
+    "spatial_extent_requirement_fulfillment_check": {
+        "valid": ["13.149, -59.625", "", "", ""],
+        "invalid": ["", "", "", ""]
+    },
+    "online_resource_type_gcmd_check": {
+        "valid": ["GET DATA"],
+        "invalid": ["url data access please"]
+    },
+    "online_resource_type_presence_check": {
+        "valid": [
+            "GET DATA",
+            
+            {
+                "Description": "This file may be downloaded directly from ASDC.",
+                "Subtype": "DIRECT DOWNLOAD",
+                "Type": "GET DATA",
+                "URL": "https://asdc.larc.nasa.gov/data/ISCOVER-AQ/Colorado_Ozonesondes_Data_1/DISCOVERAQ-OZONESONDES_SONDES_20140810_R2_L2.ict"
+            }
+        ],
+        "invalid": [
+            "",
+            
+            {
+                "Description": "This file may be downloaded directly from ASDC.",
+                "Subtype": "DIRECT DOWNLOAD",
+                "URL": "https://asdc.larc.nasa.gov/data/ISCOVER-AQ/Colorado_Ozonesondes_Data_1/DISCOVERAQ-OZONESONDES_SONDES_20140810_R2_L2.ict"
+            }
+        ]
+    },
+    "characteristic_name_uniqueness_check": {
+        "valid": [
+            [
+                {
+                    "Name": "OrbitInclination",
+                    "Description": "The angle between the orbit plane and the Earth's equatorial plane.",
+                    "DataType": "FLOAT",
+                    "Unit": "Degrees",
+                    "Value": "94.0"
+                },
+                {
+                    "Name": "SwathWidth",
+                    "Description": "The width of the sensor scan as the satellite moves along the ground track.",
+                    "DataType": "INT",
+                    "Unit": "Kilometers",
+                    "Value": "2"
+                }
+            ],
+            "Name"],
+        "invalid": [
+            [
+                {
+                    "Name": "OrbitInclination",
+                    "Description": "The angle between the orbit plane and the Earth's equatorial plane.",
+                    "DataType": "FLOAT",
+                    "Unit": "Degrees",
+                    "Value": "94.0"
+                },
+                {
+                    "Name": "OrbitInclination",
+                    "Description": "The angle between the orbit plane and the Earth's equatorial plane.",
+                    "DataType": "FLOAT",
+                    "Unit": "Degrees",
+                    "Value": "94.0"
+                }
+            ],
+            "Name"]
+    },
+    "temporal_extent_requirement_check": {
+        "valid": ["2020-01-01T00:00:00Z", "", ""],
+        "invalid": ["", "", ""]
+    },
+    "default_date_check": {
+        "valid": ["2007-07-04T00:00:00Z", "1970-01-01T00:00:00Z", "neq"],
+        "invalid": ["1970-01-01T00:00:00Z", "1970-01-01T00:00:00Z", "neq"]
+    },
+    "get_data_url_check": {
+        "valid": [
+            [
+                {
+                    "Description": "URL 1 description",
+                    "URLContentType": "CollectionURL",
+                    "Type": "DATA SET LANDING PAGE",
+                    "URL": "https://doi.org/10.5067/MODIS/MOD13Q1.061"
+                }, 
+                {
+                    "Description": "URL 2 description",
+                    "URLContentType": "DistributionURL",
+                    "Type": "GET DATA",
+                    "URL": "https://search.earthdata.nasa.gov/search/granules?p=C2417019975-LARC_ASDC"
+                }
+            ], 
+            ["Type"]],
+        "invalid": [
+            [
+                {
+                    "Description": "URL 1 description",
+                    "URLContentType": "CollectionURL",
+                    "Type": "DATA SET LANDING PAGE",
+                    "URL": "https://doi.org/10.5067/MODIS/MOD13Q1.061"
+                }, 
+                {
+                    "Description": "URL 2 description",
+                    "URLContentType": "CollectionURL",
+                    "Type": "DATA SET LANDING PAGE",
+                    "URL": "https://doi.org/10.5067/MODIS/MOD13Q1.061"
+                }
+            ], 
+            ["Type"]]
+    },
+    "granule_platform_presence_check": {
+        "valid": ["G-III"],
+        "invalid": [""]
+    },
+    "validate_granule_platform_against_collection": {
+        "valid": ["NASA WB-57F", "MACPEX_TraceGas_AircraftInSitu_WB57_Data", "1", ""],
+        "invalid": ["GOES-16", "MACPEX_TraceGas_AircraftInSitu_WB57_Data", "1", ""]
+    },
+    "url_description_uniqueness_check": {
+        "valid": [
+            [
+                {
+                    "Description": "Example description 1",
+                    "Subtype": "GENERAL DOCUMENTATION",
+                    "Type": "VIEW RELATED INFORMATION",
+                    "URL": "https://www.nasa.gov/",
+                    "URLContentType": "PublicationURL"
+                },
+                {
+                    "Description": "Example description 2",
+                    "Subtype": "PUBLICATIONS",
+                    "Type": "VIEW RELATED INFORMATION",
+                    "URL": "https://www.nasa.gov/",
+                    "URLContentType": "PublicationURL"
+                }
+            ],
+            "Description"],
+        "invalid": [
+            [
+                {
+                    "Description": "Example description 1",
+                    "Subtype": "GENERAL DOCUMENTATION",
+                    "Type": "VIEW RELATED INFORMATION",
+                    "URL": "https://www.nasa.gov/",
+                    "URLContentType": "PublicationURL"
+                },
+                {
+                    "Description": "Example description 1",
+                    "Subtype": "PUBLICATIONS",
+                    "Type": "VIEW RELATED INFORMATION",
+                    "URL": "https://www.nasa.gov/",
+                    "URLContentType": "PublicationURL"
+                }
+            ],
+            "Description"]
+    },
+    "granule_project_short_name_check": {
+        "valid": ["MACPEX", "", "MACPEX_TraceGas_AircraftInSitu_WB57_Data", "1"],
+        "invalid": ["GOES", "", "MACPEX_TraceGas_AircraftInSitu_WB57_Data", "1"]
+    },
+    "granule_sensor_short_name_check": {
+        "valid": ["ATLAS", "ATLAS/ICESat-2 L3A Land Ice Height V005", "ATL06", "005"],
+        "invalid": ["EXRAD", "ATLAS/ICESat-2 L3A Land Ice Height V005", "ATL06", "005"]
+    },
+    "validate_granule_data_format_against_collection_check": {
+        "valid": ["ICARTT", "MACPEX_TraceGas_AircraftInSitu_WB57_Data", "1", ""],
+        "invalid": ["ASCII", "MACPEX_TraceGas_AircraftInSitu_WB57_Data", "1", ""]
+    },
+    "granule_data_format_presence_check": {
+        "valid": ["Binary"],
+        "invalid": [""]
+    }
+}

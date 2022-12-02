@@ -11,12 +11,13 @@ if __name__ == '__main__':
     from code.constants import COLOR, ECHO10_C, SUPPORTED_FORMATS
     from code.downloader import Downloader
     from code.utils import get_cmr_url, is_valid_cmr_url
+    from code.utils import get_headers
 else:
     from .code.checker import Checker
     from .code.constants import COLOR, ECHO10_C, SUPPORTED_FORMATS
     from .code.downloader import Downloader
     from .code.utils import get_cmr_url, is_valid_cmr_url
-
+    from .code.utils import get_headers
 
 ABS_PATH = os.path.abspath(os.path.dirname(__file__))
 END = COLOR["reset"]
@@ -104,9 +105,10 @@ class ARC:
 
         orig_query = f"{self.query}&page_size={page_size}" if not already_selected else self.query
         query = orig_query
-
+        headers = get_headers()
+        
         while True:
-            response = requests.get(query)
+            response = requests.get(query, headers=headers)
 
             if response.status_code != 200:
                 return {"error": "CMR Query failed"}

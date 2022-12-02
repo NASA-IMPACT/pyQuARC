@@ -2,6 +2,8 @@ import csv
 import os
 import requests
 
+from .utils import get_headers
+
 from .constants import SCHEMA_PATHS, GCMD_LINKS, VERSION_FILE
 from datetime import datetime
 
@@ -123,6 +125,7 @@ class GcmdValidator:
         Downloads and maintains a copy of the csv files from the gcmd server once a day
         """
         current_datetime = datetime.now()
+        headers = get_headers()
         date_str = current_datetime.strftime(DATE_FORMAT)
         if os.path.exists(VERSION_FILE):
             with open(VERSION_FILE) as file:
@@ -132,9 +135,9 @@ class GcmdValidator:
             try:
                 for keyword, link in GCMD_LINKS.items():
                     # Downloading updated gcmd keyword files
-                    response = requests.get(link)
+                    response = requests.get(link, headers=headers)
                     data = response.text
-                    with open(SCHEMA_PATHS[keyword], "w") as download_file:
+                    with open(SCHEMA_PATHS[keyword], "w", encoding="utf-8") as download_file:
                         download_file.write(data)
                 with open(VERSION_FILE, "w") as version_file:
                     version_file.write(current_datetime.strftime(DATE_FORMAT))

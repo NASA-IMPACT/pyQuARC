@@ -1,7 +1,5 @@
 import os
-
 from xmltodict import parse
-
 from pyQuARC.code.schema_validator import SchemaValidator
 
 KEYS = [

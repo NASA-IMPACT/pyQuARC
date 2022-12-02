@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v1.2.1
+
+- Added support for automated regression testing
+- Revised output messages
+
 ## v1.2.0
 
 - Added support for ECHO10 Granule, UMM-G (UMM-JSON Granule) and UMM-C (UMM-JSON Collection) metadata
