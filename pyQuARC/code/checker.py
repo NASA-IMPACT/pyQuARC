@@ -233,10 +233,32 @@ class Checker:
         Returns:
             (dict): The results of the jsonschema check and all custom checks
         """
-        parser = parse
-        if self.metadata_format.startswith("umm-"):
-            parser = json.loads
-        json_metadata = parser(metadata_content)
+        def _xml_postprocessor(_, key, value):
+            """
+            Sometimes the XML values contain attributes.
+            In such a case, the returned value for a field looks something like:
+
+            >> doc["DIF"]["ISO_Topic_Category"]
+                OrderedDict([('@uuid', '26ebb539-cae2-4961-9252-7f367642fa57'), ('#text', 'IMAGERY/BASE MAPS/EARTH COVER')]) #noqa
+
+            instead of the regular:
+            >> doc["DIF"]["ISO_Topic_Category"]
+                IMAGERY/BASE MAPS/EARTH COVER
+
+            this postprocessor is used to get the regular value even in cases
+            where attrs are present
+            """
+            try:
+                return key, value["#text"]
+            except (KeyError, TypeError):
+                return key, value
+
+        kwargs = {}
+        parser = json.loads
+        if not self.metadata_format.startswith("umm-"):
+            parser = parse
+            kwargs = {"postprocessor": _xml_postprocessor}
+        json_metadata = parser(metadata_content, **kwargs)
         result_schema = self.perform_schema_check(
             metadata_content
         )
