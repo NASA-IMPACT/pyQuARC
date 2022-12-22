@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v1.2..3
+- Added protection against blank line before header in GCMD keywords
+
 ## v1.2.2
 
 - Bugfixes:

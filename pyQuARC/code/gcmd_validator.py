@@ -173,6 +173,8 @@ class GcmdValidator:
             reader = csv.reader(csvfile)
             next(reader) # Remove the metadata (1st column)
             headers = next(reader) # Get the headers (2nd column)
+            if not headers:
+                headers = next(reader)
             list_of_rows = list(reader)
             csvfile.close()
             content[key] = headers, list_of_rows
