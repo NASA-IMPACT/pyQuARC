@@ -4058,7 +4058,8 @@
                 {
                     "fields": [
                         "TemporalExtents/RangeDateTimes/EndingDateTime",
-                        "ShortName"
+                        "ShortName",
+                        "Version"
                     ],
                     "dependencies": [
                         [

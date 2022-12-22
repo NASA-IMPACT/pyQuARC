@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v1.2.2
+
+- Bugfixes:
+  - Stray newlines in GCMD keywords
+  - Reading xml metadata for fields with attributes didn't get expected output
+  - Missing field in rule_mapping
+   
+
 ## v1.2.1
 
 - Added support for automated regression testing
