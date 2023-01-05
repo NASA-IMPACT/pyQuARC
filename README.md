@@ -317,7 +317,7 @@ Then, if the check function receives input `value1=0` and `value2=1`, the output
 The values 0 and 1 do not amount to a true value
 ```
 
-### Use as a package
+### Using as a package
 *Note:* This program requires `Python 3.8` installed in your system.
 
 **Clone the repo:** [https://github.com/NASA-IMPACT/pyQuARC/](https://github.com/NASA-IMPACT/pyQuARC/)
