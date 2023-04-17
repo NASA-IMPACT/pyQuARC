@@ -3715,6 +3715,34 @@
         "severity": "error",
         "check_id": "one_item_presence_check"
     },
+    "license_url_description_check": {
+        "rule_name": "License URL Description Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/UseConstraints/LicenseURL/Description"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Use_Constraints/License_Text"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "UseConstraints/LicenseURL/Description"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "one_item_presence_check"
+    },
     "collection_citation_presence_check": {
         "rule_name": "Collection Citation Presence Check",
         "fields_to_apply": {
