@@ -1022,5 +1022,13 @@
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Instrument"
         },
         "remediation": "Recommend updating the Number Of Instruments/Sensors value to match the numerical amount of instruments/sensors provided."
+    },
+    "horizontal_resolution_presence_check": {
+        "failure": "No horizontal resolution information is provided.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Extent"
+        },
+        "remediation": "Recommend providing the horizontal pixel resolution, if applicable. If provided, this information will be indexed in the EDSC 'Horizontal Data Resolution' search facet which allows users to search by spatial resolution."
     }
 }
