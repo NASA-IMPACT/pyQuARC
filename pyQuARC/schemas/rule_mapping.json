@@ -3699,7 +3699,7 @@
                 {
                     "fields": [
                         "DIF/Use_Constraints/License_URL/URL",
-                        "DIF/Use_Constraints/License_Text"
+                        "DIF/Use_Constraints/License_URL/Description"
                     ]
                 }
             ],
@@ -3728,7 +3728,7 @@
             "dif10": [
                 {
                     "fields": [
-                        "DIF/Use_Constraints/License_Text"
+                        "DIF/Use_Constraints/License_URL/Description"
                     ]
                 }
             ],
@@ -4617,12 +4617,6 @@
                     "fields": [
                         "DIF/Multimedia_Sample/Description",
                         "DIF/Multimedia_Sample/URL"
-                    ]
-                },
-                {
-                    "fields": [
-                        "DIF/Use_Constraints/License_URL/Description",
-                        "DIF/Use_Constraints/License_URL/URL"
                     ]
                 }
             ],
