@@ -17,8 +17,13 @@ class CustomValidator(BaseValidator):
         valid = (
             ends_at_present_flag == True
             and not (ending_date_time) and collection_state == "ACTIVE"
+            or collection_state == "IN WORK"
         ) or (
-            ends_at_present_flag == False
+            ends_at_present_flag == False or ends_at_present_flag == "false" 
+            or ends_at_present_flag == "False"
+            and bool(ending_date_time) and collection_state == "COMPLETE"
+        ) or (
+            ends_at_present_flag == None
             and bool(ending_date_time) and collection_state == "COMPLETE"
         )
 
