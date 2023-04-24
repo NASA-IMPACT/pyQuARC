@@ -124,6 +124,7 @@ class TestDownloader:
                     "url": f"https://cmr.earthdata.nasa.gov/search/concepts/{dummy_collection}.echo10",
                     "status_code": 404,
                     "message": "Something went wrong while downloading the requested metadata. Make sure all the inputs are correct.",
+                    "details": "N/A",
                 },
             }
         ]
@@ -152,6 +153,7 @@ class TestDownloader:
                     "url": f"https://cmr.earthdata.nasa.gov/search/concepts/{dummy_granule}.echo10",
                     "status_code": 404,
                     "message": "Something went wrong while downloading the requested metadata. Make sure all the inputs are correct.",
+                    "details": "N/A",
                 },
             }
         ]
