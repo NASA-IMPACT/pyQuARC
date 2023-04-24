@@ -107,10 +107,11 @@ class Downloader:
 
         # gets the response, makes sure it's 200, puts it in an object variable
         if response.status_code != 200:
+            message = "Something went wrong while downloading the requested metadata. Make sure all the inputs are correct."
             try:
-                message = json.loads(response.text).get("errors")
+                details = json.loads(response.text).get("errors")
             except (json.decoder.JSONDecodeError, KeyError):
-                message = "Something went wrong while downloading the requested metadata. Make sure all the inputs are correct."
+                details = "N/A"
             self.log_error(
                 "request_failed",
                 {
@@ -118,6 +119,7 @@ class Downloader:
                     "url": url,
                     "status_code": response.status_code,
                     "message": message,
+                    "details": details,
                 },
             )
             return
