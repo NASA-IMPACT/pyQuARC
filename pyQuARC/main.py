@@ -6,7 +6,7 @@ import xmltodict
 
 from tqdm import tqdm
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from code.checker import Checker
     from code.constants import COLOR, ECHO10_C, SUPPORTED_FORMATS
     from code.downloader import Downloader
@@ -64,10 +64,11 @@ class ARC:
         self.errors = []
 
         self.file_path = (
-            file_path if file_path else os.path.join(
-                    ABS_PATH,
-                    f"../tests/fixtures/test_cmr_metadata.{metadata_format}"
-                )
+            file_path
+            if file_path
+            else os.path.join(
+                ABS_PATH, f"../tests/fixtures/test_cmr_metadata.{metadata_format}"
+            )
         )
         self.metadata_format = metadata_format
         self.checks_override = checks_override
@@ -93,7 +94,7 @@ class ARC:
         # page_num query param
 
         already_selected = False
-        page_qparams = ['page_size', 'page_num', 'offset']
+        page_qparams = ["page_size", "page_num", "offset"]
         for qparam in page_qparams:
             if qparam in self.query:
                 already_selected = True
@@ -103,10 +104,14 @@ class ARC:
         collected = 0
         page_num = 1
 
-        orig_query = f"{self.query}&page_size={page_size}" if not already_selected else self.query
+        orig_query = (
+            f"{self.query}&page_size={page_size}"
+            if not already_selected
+            else self.query
+        )
         query = orig_query
         headers = get_headers()
-        
+
         while True:
             response = requests.get(query, headers=headers)
 
@@ -119,10 +124,7 @@ class ARC:
 
             collected += len(collections)
 
-            concept_ids.extend([
-                collection["id"]
-                for collection in collections
-            ])
+            concept_ids.extend([collection["id"] for collection in collections])
 
             if collected >= hits or already_selected:
                 break
@@ -143,34 +145,30 @@ class ARC:
             metadata_format=self.metadata_format,
             checks_override=self.checks_override,
             rules_override=self.rules_override,
-            messages_override=self.messages_override
+            messages_override=self.messages_override,
         )
 
         if self.concept_ids:
             for concept_id in tqdm(self.concept_ids):
-                downloader = Downloader(concept_id, self.metadata_format, self.version, self.cmr_host)
+                downloader = Downloader(
+                    concept_id, self.metadata_format, self.version, self.cmr_host
+                )
                 if not (content := downloader.download()):
                     self.errors.append(
                         {
                             "concept_id": concept_id,
-                            "errors": [],
-                            "pyquarc_errors": [
-                                {
-                                    "message": "No metadata content found. Please make sure the concept id is correct.",
-                                    "details": f"The request to CMR {self.cmr_host} failed for concept id {concept_id}",
-                                }
-                            ]
+                            "errors": {},
+                            "pyquarc_errors": downloader.errors,
                         }
                     )
                     continue
                 content = content.encode()
-
                 validation_errors, pyquarc_errors = checker.run(content)
                 self.errors.append(
                     {
                         "concept_id": concept_id,
                         "errors": validation_errors,
-                        "pyquarc_errors": pyquarc_errors
+                        "pyquarc_errors": pyquarc_errors,
                     }
                 )
 
@@ -183,7 +181,7 @@ class ARC:
                     {
                         "file": self.file_path,
                         "errors": validation_errors,
-                        "pyquarc_errors": pyquarc_errors
+                        "pyquarc_errors": pyquarc_errors,
                     }
                 )
         return self.errors
@@ -194,41 +192,46 @@ class ARC:
         result_string = ""
         for message in messages:
             colored_message = [
-                message.replace(
-                    text,
-                    f"{COLOR[severity]}{text}{END}"
-                )
+                message.replace(text, f"{COLOR[severity]}{text}{END}")
                 for severity in severities
                 if (text := severity.title()) and message.startswith(text)
             ][0]
-            result_string += (f"\t\t{colored_message}{END}\n")
+            result_string += f"\t\t{colored_message}{END}\n"
         return result_string
 
     def display_results(self):
-        result_string = '''
+        result_string = """
         ********************************
         ** Metadata Validation Errors **
-        ********************************\n'''
+        ********************************\n"""
         error_prompt = ""
         for error in self.errors:
             title = error.get("concept_id") or error.get("file")
-            error_prompt += (f"\n\t{COLOR['title']}{COLOR['bright']}METADATA: {title}{END}\n")
+            error_prompt += (
+                f"\n\t{COLOR['title']}{COLOR['bright']}METADATA: {title}{END}\n"
+            )
             validity = True
             for field, result in error["errors"].items():
                 for rule_type, value in result.items():
                     if not value.get("valid"):
                         messages = value.get("message")
-                        error_prompt += (f"\n\t>> {field}: {END}\n")
+                        error_prompt += f"\n\t>> {field}: {END}\n"
                         error_prompt += self._error_message(messages)
-                        error_prompt += (f"\t\t{remedy}\n") if (remedy := value.get('remediation')) else ""
+                        error_prompt += (
+                            (f"\t\t{remedy}\n")
+                            if (remedy := value.get("remediation"))
+                            else ""
+                        )
                         validity = False
             if validity:
                 error_prompt += "\n\tNo validation errors\n"
 
-            if (pyquarc_errors := error["pyquarc_errors"]):
-                error_prompt += (f"\n\t {COLOR['title']}{COLOR['bright']} pyQuARC ERRORS: {END}\n")
+            if pyquarc_errors := error["pyquarc_errors"]:
+                error_prompt += (
+                    f"\n\t {COLOR['title']}{COLOR['bright']} pyQuARC ERRORS: {END}\n"
+                )
                 for error in pyquarc_errors:
-                    error_prompt += (f"\t\t  ERROR: {error['message']}. Details: {error['details']} \n")
+                    error_prompt += f"\t\t  ERROR: {error['message']}. Details: {error['details']} \n"
 
         result_string += error_prompt
         print(result_string)
@@ -236,14 +239,14 @@ class ARC:
 
 if __name__ == "__main__":
     """
-        parse command line arguments (argparse)
-        --query
-        --concept_ids
-        --file
-        --fake
-        --format
-        --cmr_host
-        --version
+    parse command line arguments (argparse)
+    --query
+    --concept_ids
+    --file
+    --fake
+    --format
+    --cmr_host
+    --version
     """
     parser = argparse.ArgumentParser()
     download_group = parser.add_mutually_exclusive_group()
@@ -300,7 +303,7 @@ if __name__ == "__main__":
             "No metadata given, add --query or --concept_ids or --file or --fake"
         )
     format = args.format or ECHO10_C
-    if (format not in SUPPORTED_FORMATS):
+    if format not in SUPPORTED_FORMATS:
         parser.error(
             f"The given format is not supported. Only {', '.join(SUPPORTED_FORMATS)} are supported."
         )
@@ -309,7 +312,7 @@ if __name__ == "__main__":
         if not is_valid_cmr_url(cmr_host):
             raise Exception(f"The given CMR host is not valid: {cmr_host}")
         os.environ["CMR_URL"] = cmr_host
-    
+
     arc = ARC(
         query=args.query,
         input_concept_ids=args.concept_ids or [],

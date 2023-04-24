@@ -8,9 +8,9 @@ DUMMY_METADATA_CONTENT = {
                     "ContactPerson": {
                         "FirstName": "SLESA",
                         "LastName": "OSTRENGA",
-                        "JobPosition": "METADATA AUTHOR"
+                        "JobPosition": "METADATA AUTHOR",
                     }
-                }
+                },
             },
             {
                 "Role": "TECHNICAL CONTACT",
@@ -19,19 +19,19 @@ DUMMY_METADATA_CONTENT = {
                         {
                             "FirstName": "DANA",
                             "LastName": "OSTRENGA",
-                            "JobPosition": "METADATA AUTHOR"
+                            "JobPosition": "METADATA AUTHOR",
                         },
                         {
                             "FirstName": "MICHAEL",
                             "LastName": "BOSILOVICH",
-                            "JobPosition": "INVESTIGATOR"
+                            "JobPosition": "INVESTIGATOR",
                         },
                         {
                             "blabla": "BOSILOVICH",
-                        }
+                        },
                     ]
-                }
-            }
+                },
+            },
         ]
     },
 }
@@ -39,17 +39,8 @@ DUMMY_METADATA_CONTENT = {
 
 FUNCTION_MAPPING = {
     "input": [
-        {
-            "datatype": "datetime",
-            "function": "iso_format_check"
-        },
-        {
-            "datatype": "datetime",
-            "function": "format_check"
-        }
+        {"datatype": "datetime", "function": "iso_format_check"},
+        {"datatype": "datetime", "function": "format_check"},
     ],
-    "output": [
-        True,
-        False
-    ]
+    "output": [True, False],
 }
