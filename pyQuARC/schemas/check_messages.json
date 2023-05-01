@@ -1,4 +1,13 @@
 {
+    "free_and_open_data_presence_check":{
+        "failure": "No FreeAndOpenData value was given.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Use+Constraints"
+        },
+        "remediation": "Recommend providing a FreeAndOpenData value of 'true'."
+    },
+
     "datetime_format_check": {
         "failure": "`{}` does not adhere to the ISO 1601 standard.",
         "help": {

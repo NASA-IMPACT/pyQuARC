@@ -1,4 +1,36 @@
 {
+    
+    "free_and_open_data_presence_check": {
+        "rule_name": "Free and Open Data Presence Check",
+        "fields_to_apply": {
+
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/UseConstraints/FreeAndOpenData"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Use_Constraints/Free_And_Open_Data"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "UseConstraints/FreeAndOpenData"
+                    ]
+                }
+            ]
+
+        },
+        "severity": "warning",
+        "check_id": "one_item_presence_check"
+    },
+
     "data_update_time_logic_check": {
         "rule_name": "Data Update Time Logic Check",
         "fields_to_apply": {
