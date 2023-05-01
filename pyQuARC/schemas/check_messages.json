@@ -311,6 +311,22 @@
         },
         "remediation": "Recommend providing the instrument short name."
     },
+    "standard_product_check": {
+        "failure": "The Standard Product flag is missing.",
+        "help": {
+            "message": "For information please see:",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/StandardProduct"
+        },
+        "remediation": "Recommend indicating whether this is a StandardProduct."
+    },
+    "dif_standard_product_check": {
+        "failure": "The Standard Product flag is missing.",
+        "help": {
+            "message": "For information please see:",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/StandardProduct"
+        },
+        "remediation": "Recommend indicating whether this is a StandardProduct."
+    },
     "validate_granule_instrument_against_collection": {
         "failure": "The instrument short name listed in the granule metadata does not match the instrument short name listed in the collection metadata.",
         "help": {
