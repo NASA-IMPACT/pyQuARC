@@ -2577,14 +2577,6 @@
                     ]
                 }
              ],
-            "dif10": [    
-                {
-                    "fields": [
-                        "DIF/Metadata/Value",
-                        "DIF/Extended_Metadata/Metadata/Value"
-                    ]
-                } 
-            ],
             "umm-c": [
                 {
                     "fields": [
@@ -2595,6 +2587,20 @@
         },
         "severity": "warning",
         "check_id": "one_item_presence_check"
+    },
+    "dif_standard_product_check": {
+        "rule_name": "Standard Product Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Extended_Metadata/Metadata/Name"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "dif_standard_product_check"
     },
     "validate_granule_instrument_against_collection": {
         "rule_name": "Granule Instrument Short Name Check",
