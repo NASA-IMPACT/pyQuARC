@@ -229,6 +229,11 @@
         "check_function": "online_resource_type_gcmd_check",
         "available": true
     },
+    "license_url_description_check": {
+        "data_type": "custom",
+        "check_function": "license_url_description_check",
+        "available": true
+    },
     "uniqueness_check": {
         "data_type": "custom",
         "check_function": "uniqueness_check",
