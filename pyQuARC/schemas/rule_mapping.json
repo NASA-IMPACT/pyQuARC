@@ -3721,6 +3721,7 @@
             "echo-c": [
                 {
                     "fields": [
+                        "Collection/UseConstraints/LicenseURL/URL",
                         "Collection/UseConstraints/LicenseURL/Description"
                     ]
                 }
@@ -3728,6 +3729,7 @@
             "dif10": [
                 {
                     "fields": [
+                        "DIF/Use_Constraints/License_URL/URL",
                         "DIF/Use_Constraints/License_URL/Description"
                     ]
                 }
@@ -3735,6 +3737,7 @@
             "umm-c": [
                 {
                     "fields": [
+                        "UseConstraints/LicenseURL/Linkage",
                         "UseConstraints/LicenseURL/Description"
                     ]
                 }
