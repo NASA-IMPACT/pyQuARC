@@ -3691,7 +3691,7 @@
                 {
                     "fields": [
                         "Collection/UseConstraints/LicenseURL/URL",
-                        "Collection/UseConstraints/LicenseURL/Description"
+                        "Collection/UseConstraints/LicenseText"
                     ]
                 }
             ],
@@ -3699,7 +3699,7 @@
                 {
                     "fields": [
                         "DIF/Use_Constraints/License_URL/URL",
-                        "DIF/Use_Constraints/License_URL/Description"
+                        "DIF/Use_Constraints/License_URL/License_Text"
                     ]
                 }
             ],
@@ -3707,7 +3707,7 @@
                 {
                     "fields": [
                         "UseConstraints/LicenseURL/Linkage",
-                        "UseConstraints/LicenseURL/Description"
+                        "UseConstraints/LicenseText"
                     ]
                 }
             ]
