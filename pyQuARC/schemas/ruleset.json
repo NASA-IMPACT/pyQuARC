@@ -149,7 +149,7 @@
         "message-fail": "Error: {DOI/MissingReason} is not a valid value.",
         "remediation": "The Missing Reason should read \"Not Applicable\"",
         "help_url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI",
-        "specification": "ECHO10:\nhttps://git.earthdata.nasa.gov/projects/EMFD/repos/echo-schemas/browse/schemas/10.0/MetadataCommon.xsd#680\n\n\nDIF10.3 (this enumeration is not in 10.2):\nhttps://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/browse/10.x/UmmCommon_1.3.xsd#600\n\n\nUMM-C/Common:\nhttps://git.earthdata.nasa.gov/projects/EMFD/repos/unified-metadata-model/browse/collection/v1.15/umm-cmn-json-schema.json#532",
+        "specification": "ECHO10:\nhttps://git.earthdata.nasa.gov/projects/EMFD/repos/echo-schemas/browse/schemas/10.0/MetadataCommon.xsd#680\n\n\nDIF10.3 (this enumeration is not in 10.2):\nhttps://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/browse/10.x/UmmCommon_1.2.xsd#600\n\n\nUMM-C/Common:\nhttps://git.earthdata.nasa.gov/projects/EMFD/repos/unified-metadata-model/browse/collection/v1.15/umm-cmn-json-schema.json#532",
         "spec_version": null,
         "id": "doi_missing_reason_enumeration_check"
     },
@@ -163,7 +163,7 @@
         "message-fail": "Error: {CollectionDataType} is not a valid value.",
         "remediation": "ECHO10:\nRecommend the Collection Data Type match one of the following values: [SCIENCE_QUALITY, NEAR_REAL_TIME, OTHER]\n\n\nDIF10.2 & DIF10.3:\nRecommend the Collection Data Type match one of the following values: [SCIENCE_QUALITY, NEAR_REAL_TIME, ON_DEMAND, OTHER]\n\n\n\nUMM-C/Common:",
         "help_url": null,
-        "specification": "ECHO10:\nhttps://git.earthdata.nasa.gov/projects/EMFD/repos/echo-schemas/browse/schemas/10.0/Collection.xsd#240\n\n\nDIF10.2:\nhttps://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/browse/10.x/UmmCommon_1.2.xsd#211\n\nDIF10.3:\nhttps://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/browse/10.x/UmmCommon_1.3.xsd#251\n\n\nUMM-C/Common:",
+        "specification": "ECHO10:\nhttps://git.earthdata.nasa.gov/projects/EMFD/repos/echo-schemas/browse/schemas/10.0/Collection.xsd#240\n\n\nDIF10.2:\nhttps://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/browse/10.x/UmmCommon_1.2.xsd#211\n\nDIF10.3:\nhttps://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/browse/10.x/UmmCommon_1.2.xsd#251\n\n\nUMM-C/Common:",
         "spec_version": null,
         "id": "collectiondatatype_enumeration_check"
     },
