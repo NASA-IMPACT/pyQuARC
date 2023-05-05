@@ -3721,24 +3721,27 @@
             "echo-c": [
                 {
                     "fields": [
+                        "Collection/UseConstraints/LicenseURL/Description",
                         "Collection/UseConstraints/LicenseURL/URL",
-                        "Collection/UseConstraints/LicenseURL/Description"
+                        "Collection/UseConstraints/LicenseText"
                     ]
                 }
             ],
             "dif10": [
                 {
                     "fields": [
+                        "DIF/Use_Constraints/License_URL/Description",
                         "DIF/Use_Constraints/License_URL/URL",
-                        "DIF/Use_Constraints/License_URL/Description"
+                        "DIF/Use_Constraints/License_URL/License_Text"
                     ]
                 }
             ],
             "umm-c": [
                 {
                     "fields": [
+                        "UseConstraints/LicenseURL/Description",
                         "UseConstraints/LicenseURL/Linkage",
-                        "UseConstraints/LicenseURL/Description"
+                        "UseConstraints/LicenseText"
                     ]
                 }
             ]
