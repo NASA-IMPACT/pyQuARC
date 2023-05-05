@@ -96,7 +96,7 @@ class CustomValidator(BaseValidator):
         return {"valid": validity, "value": value}
     
     @staticmethod
-    def license_url_description_check(url_field, description_field):
+    def license_url_description_check(description_field, url_field, license_text):
         """
         Determines if a description has been provided for the License URL if a
         License URL has been provided in the metadata.
@@ -108,7 +108,10 @@ class CustomValidator(BaseValidator):
         validity = True
         value  = description_field
 
-        if not url_field:
+        if not license_text and not url_field:
+            validity = False
+            return {"valid": validity, "value": value}
+        elif license_text and not url_field:
             return {"valid": validity, "value": value}
         else:
             if not description_field:
