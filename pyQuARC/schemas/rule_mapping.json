@@ -3732,7 +3732,7 @@
                     "fields": [
                         "DIF/Use_Constraints/License_URL/Description",
                         "DIF/Use_Constraints/License_URL/URL",
-                        "DIF/Use_Constraints/License_URL/License_Text"
+                        "DIF/Use_Constraints/License_Text"
                     ]
                 }
             ],
