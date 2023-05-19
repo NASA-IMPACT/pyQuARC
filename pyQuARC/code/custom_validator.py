@@ -94,7 +94,7 @@ class CustomValidator(BaseValidator):
                 break
 
         return {"valid": validity, "value": value}
-    
+        
     @staticmethod
     def dif_standard_product_check(*field_values):
         """
@@ -116,6 +116,29 @@ class CustomValidator(BaseValidator):
         else:
             pass
         return {"valid": validity, "value": value}
+
+    @staticmethod
+    def license_url_description_check(description_field, url_field, license_text):
+        """
+        Determines if a description has been provided for the License URL if a
+        License URL has been provided in the metadata.
+
+        Args:
+            url_field (string): license URL string
+            description_field (string): string describing the URL
+        """
+        validity = True
+        value  = description_field
+
+        if not license_text and not url_field:
+            validity = False
+            return {"valid": validity, "value": value}
+        elif license_text and not url_field:
+            return {"valid": validity, "value": value}
+        else:
+            if not description_field:
+                validity = False
+            return {"valid": validity, "value": value}
 
     @staticmethod
     def granule_sensor_presence_check(sensor_values, collection_shortname=None, version=None, dataset_id=None):

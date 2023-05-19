@@ -688,6 +688,14 @@
         },
         "remediation": "Recommend providing information about the license applicable to the dataset, preferably as a URL. For EOSDIS records, recommend providing the following link (unless under different usage terms): https://earthdata.nasa.gov/earth-observation-data/data-use-policy"
     },
+    "license_url_description_check": {
+        "failure": "Recommend providing a license URL description. For example: \n",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "'The Earth Observing System Data and Information System (EOSDIS) data use policy for NASA data.'"
+    },
     "collection_citation_presence_check": {
         "failure": "No citation information is provided.",
         "help": {
