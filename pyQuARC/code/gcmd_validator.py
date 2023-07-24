@@ -288,6 +288,13 @@ class GcmdValidator:
         Validates GCMD instrument long name
         """
         return input_keyword in self.keywords["instrument_long_name"]
+    
+    def validate_instrument_long_name_presence(self, input_keyword):
+        """
+        Validates whether a given instrument short name has a corresponding long name
+        """
+        long_name_field = self.keywords["instrument"].get(input_keyword)
+        return "N/A" in long_name_field
 
     def validate_platform_short_name(self, input_keyword):
         """

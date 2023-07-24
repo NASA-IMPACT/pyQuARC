@@ -99,6 +99,11 @@
         "check_function": "instrument_long_name_gcmd_check",
         "available": true
     },
+    "instrument_long_name_presence_check": {
+        "data_type": "string",
+        "check_function": "instrument_long_name_presence_check",
+        "available": true
+    },
     "validate_granule_instrument_against_collection": {
         "data_type": "string",
         "check_function": "validate_granule_instrument_against_collection",

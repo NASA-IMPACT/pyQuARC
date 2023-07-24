@@ -305,7 +305,7 @@
         "remediation": "Select a valid long name, or submit a request to support@earthdata.nasa.gov to have this instrument added to the GCMD Instruments keyword list."
     },
     "instrument_long_name_presence_check": {
-        "failure": "The instrument/sensor long name is missing.",
+        "failure": "The provided instrument/sensor short name `{}` is missing the corresponding instrument/sensor long name.",
         "help": {
             "message": "",
             "url": "https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/instruments/?format=csv&page_num=1&page_size=2000"

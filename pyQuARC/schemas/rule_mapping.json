@@ -2536,47 +2536,89 @@
         "check_id": "instrument_long_name_gcmd_check"
     },
     "instrument_long_name_presence_check": {
-        "rule_name": "Instrument Longname Presence Check",
+        "rule_name": "Instrument Longname Requirement Check",
         "fields_to_apply": {
             "echo-c": [
                 {
                     "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/ShortName",
                         "Collection/Platforms/Platform/Instruments/Instrument/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "instrument_short_name_gcmd_check",
+                            "Collection/Platforms/Platform/Instruments/Instrument/ShortName"
+                        ]
                     ]
                 },
                 {
                     "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/ShortName",
                         "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "instrument_short_name_gcmd_check",
+                            "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/ShortName"
+                        ]
                     ]
                 }
             ],
             "dif10": [
                 {
                     "fields": [
+                        "DIF/Platform/Instrument/Short_Name",
                         "DIF/Platform/Instrument/Long_Name"
+                    ],
+                    "dependencies": [
+                        [
+                            "instrument_short_name_gcmd_check",
+                            "DIF/Platform/Instrument/Short_Name"
+                        ]
                     ]
                 },
                 {
                     "fields": [
+                        "DIF/Platform/Instrument/Sensor/Short_Name",
                         "DIF/Platform/Instrument/Sensor/Long_Name"
+                    ],
+                    "dependencies": [
+                        [
+                            "instrument_short_name_gcmd_check",
+                            "DIF/Platform/Instrument/Sensor/Short_Name"
+                        ]
                     ]
                 }
             ],
             "umm-c": [
                 {
                     "fields": [
+                        "Platforms/Instruments/ShortName",
                         "Platforms/Instruments/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "instrument_short_name_gcmd_check",
+                            "Platforms/Instruments/ShortName"
+                        ]
                     ]
                 },
                 {
                     "fields": [
+                        "Platforms/Instruments/ComposedOf/ShortName",
                         "Platforms/Instruments/ComposedOf/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "instrument_short_name_gcmd_check",
+                            "Platforms/Instruments/ComposedOf/ShortName"
+                        ]
                     ]
                 }
             ]
         },
         "severity": "warning",
-        "check_id": "one_item_presence_check"
+        "check_id": "instrument_long_name_presence_check"
     },
     "granule_instrument_presence_check": {
         "rule_name": "Granule Instrument Presence Check",
