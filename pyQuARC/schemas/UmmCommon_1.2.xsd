@@ -61,45 +61,6 @@
         </xs:restriction>
     </xs:simpleType>
 
-
-    <!-- *********************************************************** -->
-    <!-- #mark AverageGranuleSizeUnitType Enum -->
-    
-    <xs:simpleType name="DistributionSizeUnitTypeEnum">
-        <xs:annotation>
-            <xs:documentation>
-                Example Usage:
-                * /DIF/Distribution/Average_Granule_Size_Unit
-            </xs:documentation>
-        </xs:annotation>
-        
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="KB"/>
-            <xs:enumeration value="MB"/>
-            <xs:enumeration value="GB"/>
-            <xs:enumeration value="TB"/>
-            <xs:enumeration value="PB"/>
-        </xs:restriction>
-    </xs:simpleType>
-    
-    <!-- *********************************************************** -->
-    <!-- #mark DistributionFormatType Enum -->
-    
-    <xs:simpleType name="DistributionFormatTypeEnum">
-        <xs:annotation>
-            <xs:documentation>
-                Example Usage:
-                * /DIF/Distribution/Distribution_Format_Type
-            </xs:documentation>
-        </xs:annotation>
-        
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="Native"/>
-            <xs:enumeration value="Supported"/>
-        </xs:restriction>
-    </xs:simpleType>
-    
-    
     <!-- *********************************************************** -->
     <!-- #mark Organization Type Enum -->
 
@@ -118,7 +79,6 @@
             <xs:enumeration value="PROCESSOR"/>
         </xs:restriction>
     </xs:simpleType>
-
 
 
 <!--
@@ -195,6 +155,7 @@ technical contact
             <xs:enumeration value="Navigation Platforms"/>
             <xs:enumeration value="Solar/Space Observation Satellites"/>
             <xs:enumeration value="Space Stations/Manned Spacecraft"/>
+            <xs:enumeration value="Space Stations/Crewed Spacecraft"/>
         </xs:restriction>
     </xs:simpleType>
     
@@ -256,10 +217,12 @@ technical contact
         </xs:annotation>
 
         <xs:restriction base="xs:string">
-            <xs:enumeration value="SCIENCE_QUALITY"/>
             <xs:enumeration value="NEAR_REAL_TIME"/>
-            <xs:enumeration value="ON_DEMAND"/>
+            <xs:enumeration value="LOW_LATENCY"/>
+            <xs:enumeration value="EXPEDITED"/>
+            <xs:enumeration value="SCIENCE_QUALITY"/>
             <xs:enumeration value="OTHER"/>
+            <xs:enumeration value="ON_DEMAND"/>
         </xs:restriction>
     </xs:simpleType>
     
@@ -484,8 +447,6 @@ technical contact
             <xs:enumeration value="PLANNED"/>
             <xs:enumeration value="IN WORK"/>
             <xs:enumeration value="COMPLETE"/>
-            <xs:enumeration value="NOT APPLICABLE"/>
-            <xs:enumeration value="NOT PROVIDED"/>
         </xs:restriction>
     </xs:simpleType>
 
@@ -529,7 +490,7 @@ technical contact
 
     <!-- *********************************************************** -->
     <!-- #mark Persistent Identifier Type and Enum -->
-    
+
     <xs:complexType name="PersistentIdentifierType">
         <xs:annotation>
             <xs:appinfo><details></details></xs:appinfo>
@@ -540,46 +501,12 @@ technical contact
                 Much feedback was given on the wisdom of this syntax, based on that feedback the DOI fields in DIF have been changed to
                 support a type allowing for any value.
             </xs:documentation>
-            <xs:appinfo><action>changed</action>
-                <src>CMRSCI-2704,ECSE-226</src>
-                <since>10.3</since>
-                <note>Added support for Not Applicable and Missing Reason the Persistent Identifier</note>
-                <xs:documentation>
-                    * = New DIF Field 
-                    x = DIF field renamed
-                    
-                    | DIF 10.2                             | DIF-10.3                                      | UMM                     | Notes       |
-                    | -------------------------------------| ----------------------------------------------|---------------------------------------| 
-                    | Persistent_Identifier (0..1)         | Persistent_Identifier (0..1)                  | DOI (1)                 |             |
-                    | Persistent_Identifier/Type (0..1)    | Persistent_Identifier/Type (1)                | N/A                     |             |
-                    | Persistent_Identifier/Identifier (1) | Persistent_Identifier/Identifier (1)          | DOI/Identifier (1)      |             |
-                    | N/A                                  | * Persistent_Identifier/Authority (0..1)      | DOI/Authority (0..1)    |             |          
-                    |                                      |              OR                               |                         |             |
-                    | N/A                                  | * Persistent_Identifier/Missing_Reason (1)    |DOI/MissingReason (1)    |             |
-                    | N/A                                  | * Persistent_Identifier/Explanation (0..1)    |DOI/MissingReason (0..1) |             |
-                </xs:documentation>
-            </xs:appinfo>   
         </xs:annotation>
-        <xs:choice>
-            <xs:sequence>
-                <xs:element name="Type" type="PersistentIdentifierEnum"/>
-                <xs:element name="Identifier" type="xs:string"/>
-                <xs:element name="Authority" minOccurs="0">
-                    <xs:annotation>
-                    </xs:annotation>
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:maxLength value="80" />
-                            <xs:minLength value="1"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-            </xs:sequence>
-            <xs:sequence>
-                <xs:element name="MissingReason" type="MissingReasonEnum"/>
-                <xs:element name="Explanation"   type="xs:string" minOccurs="0"/>
-            </xs:sequence>
-        </xs:choice>
+        
+        <xs:sequence>
+            <xs:element name="Type" type="PersistentIdentifierEnum"/>
+            <xs:element name="Identifier" type="xs:string"/>
+        </xs:sequence>
     </xs:complexType>
     
     <xs:simpleType name="PersistentIdentifierEnum">
@@ -595,23 +522,7 @@ technical contact
     </xs:simpleType>
 
     <!-- *********************************************************** -->
-    <!-- #mark Missing Reason Enum -->
-    
-    <xs:simpleType name="MissingReasonEnum">
-        <xs:annotation>
-            <xs:documentation>
-               Usr to denote that a DOI is not applicable to this collection.
-            </xs:documentation>
-        </xs:annotation>
-        <xs:restriction base="xs:string">
-            <xs:enumeration value="Not applicable"/>
-        </xs:restriction>
-    </xs:simpleType>
-    
-
-    <!-- *********************************************************** -->
     <!-- #mark Date, Time, or Enum -->
-    
 
     <xs:simpleType name="DateOrEnumType">
         <xs:annotation>
