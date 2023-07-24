@@ -1,4 +1,13 @@
 {
+    "free_and_open_data_presence_check":{
+        "failure": "No FreeAndOpenData value was given.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Use+Constraints"
+        },
+        "remediation": "Recommend providing a FreeAndOpenData value of 'true'."
+    },
+
     "datetime_format_check": {
         "failure": "`{}` does not adhere to the ISO 1601 standard.",
         "help": {
@@ -310,6 +319,22 @@
             "url": ""
         },
         "remediation": "Recommend providing the instrument short name."
+    },
+    "standard_product_check": {
+        "failure": "The Standard Product flag is missing.",
+        "help": {
+            "message": "For information please see:",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/StandardProduct"
+        },
+        "remediation": "Recommend indicating whether this is a StandardProduct."
+    },
+    "dif_standard_product_check": {
+        "failure": "The Standard Product flag is missing.",
+        "help": {
+            "message": "For information please see:",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/StandardProduct"
+        },
+        "remediation": "Recommend indicating whether this is a StandardProduct."
     },
     "validate_granule_instrument_against_collection": {
         "failure": "The instrument short name listed in the granule metadata does not match the instrument short name listed in the collection metadata.",
@@ -662,6 +687,14 @@
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Use+Constraints"
         },
         "remediation": "Recommend providing information about the license applicable to the dataset, preferably as a URL. For EOSDIS records, recommend providing the following link (unless under different usage terms): https://earthdata.nasa.gov/earth-observation-data/data-use-policy"
+    },
+    "license_url_description_check": {
+        "failure": "Recommend providing a license URL description. For example: \n",
+        "help": {
+            "message": "",
+            "url": ""
+        },
+        "remediation": "'The Earth Observing System Data and Information System (EOSDIS) data use policy for NASA data.'"
     },
     "collection_citation_presence_check": {
         "failure": "No citation information is provided.",
@@ -1022,5 +1055,13 @@
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Instrument"
         },
         "remediation": "Recommend updating the Number Of Instruments/Sensors value to match the numerical amount of instruments/sensors provided."
+    },
+    "horizontal_resolution_presence_check": {
+        "failure": "No horizontal resolution information is provided.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Extent"
+        },
+        "remediation": "Recommend providing the horizontal pixel resolution, if applicable. If provided, this information will be indexed in the EDSC 'Horizontal Data Resolution' search facet which allows users to search by spatial resolution."
     }
 }

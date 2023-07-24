@@ -1,4 +1,36 @@
 {
+    
+    "free_and_open_data_presence_check": {
+        "rule_name": "Free and Open Data Presence Check",
+        "fields_to_apply": {
+
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/UseConstraints/FreeAndOpenData"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Use_Constraints/Free_And_Open_Data"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "UseConstraints/FreeAndOpenData"
+                    ]
+                }
+            ]
+
+        },
+        "severity": "warning",
+        "check_id": "one_item_presence_check"
+    },
+
     "data_update_time_logic_check": {
         "rule_name": "Data Update Time Logic Check",
         "fields_to_apply": {
@@ -2565,7 +2597,42 @@
             ]
         },
         "severity": "info",
+        "check_id": "one_item_presence_check"    
+    },
+    "standard_product_check": {
+        "rule_name": "Standard Product Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/StandardProduct"
+                    ]
+                }
+             ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "StandardProduct"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
         "check_id": "one_item_presence_check"
+    },
+    "dif_standard_product_check": {
+        "rule_name": "Standard Product Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Extended_Metadata/Metadata/Name"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "dif_standard_product_check"
     },
     "validate_granule_instrument_against_collection": {
         "rule_name": "Granule Instrument Short Name Check",
@@ -3691,7 +3758,7 @@
                 {
                     "fields": [
                         "Collection/UseConstraints/LicenseURL/URL",
-                        "Collection/UseConstraints/LicenseURL/Description"
+                        "Collection/UseConstraints/LicenseText"
                     ]
                 }
             ],
@@ -3707,13 +3774,47 @@
                 {
                     "fields": [
                         "UseConstraints/LicenseURL/Linkage",
-                        "UseConstraints/LicenseURL/Description"
+                        "UseConstraints/LicenseText"
                     ]
                 }
             ]
         },
         "severity": "error",
         "check_id": "one_item_presence_check"
+    },
+    "license_url_description_check": {
+        "rule_name": "License URL Description Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/UseConstraints/LicenseURL/Description",
+                        "Collection/UseConstraints/LicenseURL/URL",
+                        "Collection/UseConstraints/LicenseText"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Use_Constraints/License_URL/Description",
+                        "DIF/Use_Constraints/License_URL/URL",
+                        "DIF/Use_Constraints/License_Text"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "UseConstraints/LicenseURL/Description",
+                        "UseConstraints/LicenseURL/Linkage",
+                        "UseConstraints/LicenseText"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "license_url_description_check"
     },
     "collection_citation_presence_check": {
         "rule_name": "Collection Citation Presence Check",
@@ -4590,12 +4691,6 @@
                         "DIF/Multimedia_Sample/Description",
                         "DIF/Multimedia_Sample/URL"
                     ]
-                },
-                {
-                    "fields": [
-                        "DIF/Use_Constraints/License_URL/Description",
-                        "DIF/Use_Constraints/License_URL/URL"
-                    ]
                 }
             ],
             "umm-c": [
@@ -5301,5 +5396,59 @@
         },
         "severity": "warning",
         "check_id": "granule_data_format_presence_check"
+    },
+    "horizontal_resolution_presence_check": {
+        "rule_name": "Horizontal Resolution Presence Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/SpatialInfo/HorizontalCoordinateSystem/GeographicCoordinateSystem/LongitudeResolution",
+                        "Collection/SpatialInfo/HorizontalCoordinateSystem/GeographicCoordinateSystem/LatitudeResolution",
+                        "Collection/SpatialInfo/HorizontalCoordinateSystem/GeographicCoordinateSystem/GeographicCoordinateUnits"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Data_Resolution/Longitude_Resolution",
+                        "DIF/Data_Resolution/Latitude_Resolution",
+                        "DIF/Spatial_Coverage/Spatial_Info/Horizontal_Coordinate_System/Geographic_Coordinate_System/LongitudeResolution",
+                        "DIF/Spatial_Coverage/Spatial_Info/Horizontal_Coordinate_System/Geographic_Coordinate_System/LatitudeResolution",
+                        "DIF/Spatial_Coverage/Spatial_Info/Horizontal_Coordinate_System/Geographic_Coordinate_System/GeographicCoordinateUnits"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/VariesResolution",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/PointResolution",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedResolutions/XDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedResolutions/YDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedResolutions/Unit",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GenericResolutions/XDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GenericResolutions/YDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GenericResolutions/Unit",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedResolutions/XDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedResolutions/YDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedResolutions/Unit",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedRangeResolutions/MinimumXDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedRangeResolutions/MaximumXDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedRangeResolutions/MinimumYDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedRangeResolutions/MaximumYDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedRangeResolutions/Unit",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedRangeResolutions/MinimumXDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedRangeResolutions/MaximumXDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedRangeResolutions/MinimumYDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedRangeResolutions/MaximumYDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedRangeResolutions/Unit"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "one_item_presence_check"
     }
 }
