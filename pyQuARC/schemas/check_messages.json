@@ -425,7 +425,7 @@
         "remediation": "Select a valid long name, or submit a request to support@earthdata.nasa.gov to have this project/campaign name added to the GCMD Projects keyword list."
     },
     "campaign_long_name_presence_check": {
-        "failure": "The project/campaign long name is missing.",
+        "failure": "The provided project/campaign short name `{}` is missing the corresponding project/campaign long name.",
         "help": {
             "message": "",
             "url": ""

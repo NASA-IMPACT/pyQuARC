@@ -3143,18 +3143,53 @@
         "check_id": "campaign_long_name_gcmd_check"
     },
     "campaign_long_name_presence_check": {
-        "rule_name": "Campaign Long Name Presence Check",
+        "rule_name": "Campaign Longname Requirement Check",
         "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/Campaigns/Campaign/ShortName",
+                        "Collection/Campaigns/Campaign/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "campaign_short_name_gcmd_check",
+                            "Collection/Campaigns/Campaign/ShortName"
+                        ]
+                    ]
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
+                        "DIF/Project/Short_Name",
                         "DIF/Project/Long_Name"
+                    ],
+                    "dependencies": [
+                        [
+                            "campaign_short_name_gcmd_check",
+                            "DIF/Project/Short_Name"
+                        ]
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "Projects/ShortName",
+                        "Projects/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "campaign_short_name_gcmd_check",
+                            "Projects/ShortName"
+                        ]
                     ]
                 }
             ]
         },
         "severity": "warning",
-        "check_id": "one_item_presence_check"
+        "check_id": "campaign_long_name_presence_check"
     },
     "version_description_not_provided": {
         "rule_name": "Version Description Not Provided",

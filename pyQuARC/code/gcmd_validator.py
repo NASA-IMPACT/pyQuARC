@@ -383,6 +383,13 @@ class GcmdValidator:
         """
         return input_keyword in self.keywords["campaign_long_name"]
 
+    def validate_campaign_long_name_presence(self, input_keyword):
+        """
+        Validates whether a given campaign short name has a corresponding long name
+        """
+        long_name_field = self.keywords["campaign"].get(input_keyword)
+        return "N/A" in long_name_field
+
     def validate_data_format(self, input_keyword):
         """
         Validates GCMD Granule Data Format
