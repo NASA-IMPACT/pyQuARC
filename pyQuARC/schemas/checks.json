@@ -99,6 +99,11 @@
         "check_function": "instrument_long_name_gcmd_check",
         "available": true
     },
+    "instrument_long_name_presence_check": {
+        "data_type": "string",
+        "check_function": "instrument_long_name_presence_check",
+        "available": true
+    },
     "validate_granule_instrument_against_collection": {
         "data_type": "string",
         "check_function": "validate_granule_instrument_against_collection",
@@ -117,6 +122,11 @@
     "platform_type_gcmd_check": {
         "data_type": "string",
         "check_function": "platform_type_gcmd_check",
+        "available": true
+    },
+    "platform_long_name_presence_check": {
+        "data_type": "string",
+        "check_function": "platform_long_name_presence_check",
         "available": true
     },
     "platform_short_long_name_consistency_check": {
@@ -152,6 +162,11 @@
     "campaign_long_name_gcmd_check": {
         "data_type": "string",
         "check_function": "campaign_long_name_gcmd_check",
+        "available": true
+    },
+    "campaign_long_name_presence_check": {
+        "data_type": "string",
+        "check_function": "campaign_long_name_presence_check",
         "available": true
     },
     "data_format_gcmd_check": {
