@@ -124,6 +124,11 @@
         "check_function": "platform_type_gcmd_check",
         "available": true
     },
+    "platform_long_name_presence_check": {
+        "data_type": "string",
+        "check_function": "platform_long_name_presence_check",
+        "available": true
+    },
     "platform_short_long_name_consistency_check": {
         "data_type": "string",
         "check_function": "platform_short_long_name_consistency_check",

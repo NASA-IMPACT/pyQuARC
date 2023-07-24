@@ -207,6 +207,22 @@ class StringValidator(BaseValidator):
 
     @staticmethod
     @if_arg
+    def platform_long_name_presence_check(*args):
+        if not args[1]:
+            return {
+                "valid": StringValidator.gcmdValidator.validate_platform_long_name_presence(
+                    args[0].upper()
+                ),
+                "value": args[0],
+            }
+        else:
+            return {
+                "valid": True,
+                "value": args[0],
+            }
+
+    @staticmethod
+    @if_arg
     def platform_short_long_name_consistency_check(*args):
         received_keyword = [arg.upper().strip() for arg in args if arg]
         return {

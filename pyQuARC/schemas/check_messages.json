@@ -929,7 +929,7 @@
         "remediation": "Recommend adding a platform type for the corresponding platform."
     },
     "platform_long_name_presence_check": {
-        "failure": "A platform long name is not provided.",
+        "failure": "The provided platform short name `{}` is missing the corresponding platform long name.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Platform"

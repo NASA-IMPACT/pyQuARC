@@ -314,6 +314,13 @@ class GcmdValidator:
         """
         return input_keyword in self.keywords["platform_type"]
 
+    def validate_platform_long_name_presence(self, input_keyword):
+        """
+        Validates whether a given platform short name has a corresponding long name
+        """
+        long_name_field = self.keywords["platform"].get(input_keyword)
+        return "N/A" in long_name_field
+
     def validate_platform_short_long_name_consistency(self, input_keyword):
         """
         Validates GCMD platform short name and long name consistency

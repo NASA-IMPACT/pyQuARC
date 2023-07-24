@@ -5083,32 +5083,53 @@
         "check_id": "one_item_presence_check"
     },
     "platform_long_name_presence_check": {
-        "rule_name": "Platform Longname Presence Check",
+        "rule_name": "Platform Longname Requirement Check",
         "fields_to_apply": {
             "echo-c": [
                 {
                     "fields": [
-                        "Collection/Platforms/Platforms/LongName"
+                        "Collection/Platforms/Platform/ShortName",
+                        "Collection/Platforms/Platform/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "platform_short_name_gcmd_check",
+                            "Collection/Platforms/Platform/ShortName"
+                        ]
                     ]
                 }
             ],
             "dif10": [
                 {
                     "fields": [
+                        "DIF/Platform/Short_Name",
                         "DIF/Platform/Long_Name"
+                    ],
+                    "dependencies": [
+                        [
+                            "platform_short_name_gcmd_check",
+                            "DIF/Platform/Short_Name"
+                        ]
                     ]
                 }
             ],
             "umm-c": [
                 {
                     "fields": [
+                        "Platforms/ShortName",
                         "Platforms/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "platform_short_name_gcmd_check",
+                            "Platforms/ShortName"
+                        ]
                     ]
                 }
             ]
         },
         "severity": "warning",
-        "check_id": "one_item_presence_check"
+        "check_id": "platform_long_name_presence_check"
     },
     "granule_platform_presence_check": {
         "rule_name": "Granule Platform Presence Check",
