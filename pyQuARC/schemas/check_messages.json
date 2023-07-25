@@ -1,5 +1,5 @@
 {
-    "free_and_open_data_presence_check":{
+    "free_and_open_data_presence_check": {
         "failure": "No FreeAndOpenData value was given.",
         "help": {
             "message": "",
@@ -7,7 +7,6 @@
         },
         "remediation": "Recommend providing a FreeAndOpenData value of 'true'."
     },
-
     "datetime_format_check": {
         "failure": "`{}` does not adhere to the ISO 1601 standard.",
         "help": {
@@ -601,6 +600,14 @@
         "remediation": "Please provide a unit from the following list: ['Fathoms', 'Feet', 'HectoPascals', 'Kilometers', 'Meters', 'Millibars','PoundsPerSquareInch', 'Atmosphere', 'InchesOfMercury', 'InchesOfWater']"
     },
     "campaign_name_presence_check": {
+        "failure": "The campaign/project name is missing.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Project"
+        },
+        "remediation": "Please add a GCMD compliant campaign/project name if applicable to the dataset."
+    },
+    "granule_campaign_name_presence_check": {
         "failure": "The campaign/project name is missing.",
         "help": {
             "message": "",

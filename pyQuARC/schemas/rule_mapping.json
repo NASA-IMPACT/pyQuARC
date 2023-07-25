@@ -1,9 +1,7 @@
 {
-    
     "free_and_open_data_presence_check": {
         "rule_name": "Free and Open Data Presence Check",
         "fields_to_apply": {
-
             "echo-c": [
                 {
                     "fields": [
@@ -25,12 +23,10 @@
                     ]
                 }
             ]
-
         },
         "severity": "warning",
         "check_id": "one_item_presence_check"
     },
-
     "data_update_time_logic_check": {
         "rule_name": "Data Update Time Logic Check",
         "fields_to_apply": {
@@ -2639,7 +2635,7 @@
             ]
         },
         "severity": "info",
-        "check_id": "one_item_presence_check"    
+        "check_id": "one_item_presence_check"
     },
     "standard_product_check": {
         "rule_name": "Standard Product Check",
@@ -2650,7 +2646,7 @@
                         "Collection/StandardProduct"
                     ]
                 }
-             ],
+            ],
             "umm-c": [
                 {
                     "fields": [
@@ -3539,13 +3535,6 @@
                     ]
                 }
             ],
-            "echo-g": [
-                {
-                    "fields": [
-                        "Granule/Campaigns/Campaign/ShortName"
-                    ]
-                }
-            ],
             "dif10": [
                 {
                     "fields": [
@@ -3559,6 +3548,20 @@
                         "Projects/ShortName"
                     ]
                 }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "one_item_presence_check"
+    },
+    "granule_campaign_name_presence_check": {
+        "rule_name": "Campaign Name Presence Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Campaigns/Campaign/ShortName"
+                    ]
+                }
             ],
             "umm-g": [
                 {
@@ -3568,7 +3571,7 @@
                 }
             ]
         },
-        "severity": "warning",
+        "severity": "info",
         "check_id": "one_item_presence_check"
     },
     "spatial_coverage_type_presence_check": {
