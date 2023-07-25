@@ -3672,34 +3672,6 @@
         "severity": "error",
         "check_id": "one_item_presence_check"
     },
-    "online_resource_url_description_check": {
-        "rule_name": "Online Resource URL Description Check",
-        "fields_to_apply": {
-            "echo-c": [
-                {
-                    "fields": [
-                        "Collection/OnlineResources/OnlineResource/Description"
-                    ]
-                }
-            ],
-            "echo-g": [
-                {
-                    "fields": [
-                        "Granule/OnlineResources/OnlineResource/Description"
-                    ]
-                }
-            ],
-            "umm-g": [
-                {
-                    "fields": [
-                        "RelatedUrls/Description"
-                    ]
-                }
-            ]
-        },
-        "severity": "warning",
-        "check_id": "one_item_presence_check"
-    },
     "opendap_url_location_check": {
         "rule_name": "ECHO10 OPeNDAP URL Location Check",
         "fields_to_apply": {
@@ -4753,6 +4725,14 @@
                 }
             ],
             "umm-c": [
+                {
+                    "fields": [
+                        "RelatedUrls/Description",
+                        "RelatedUrls/URL"
+                    ]
+                }
+            ],
+            "umm-g": [
                 {
                     "fields": [
                         "RelatedUrls/Description",
