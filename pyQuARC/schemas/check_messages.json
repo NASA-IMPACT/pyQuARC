@@ -136,12 +136,12 @@
         "remediation": "Consider updating the delete date to a future date or remove it from the metadata if it is no longer valid."
     },
     "organization_short_name_gcmd_check": {
-        "failure": "The provided data center short name `{}` does not comply with GCMD. ",
+        "failure": "The provided short name `{}` does not comply with GCMD. ",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Center"
         },
-        "remediation": "Provide a valid short name name from the GCMD Providers keyword list or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+        "remediation": "Provide a valid short name from the GCMD Providers keyword list or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
     },
     "organization_long_name_gcmd_check": {
         "failure": "The provided data center long name `{}` does not comply with the GCMD. ",
@@ -894,14 +894,6 @@
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Directory+Name"
         },
         "remediation": "Recommend providing a Directory Name/IDN Node from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/idnnode?format=csv."
-    },
-    "data_center_short_name_gcmd_check": {
-        "failure": "The provided short name `{}` does not comply with GCMD. ",
-        "help": {
-            "message": "",
-            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Center"
-        },
-        "remediation": "Recommend providing a short name from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers?format=csv."
     },
     "characteristic_data_type": {
         "failure": "The provided characteristic is missing a data type. ",
