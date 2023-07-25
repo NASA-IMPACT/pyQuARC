@@ -4951,39 +4951,6 @@
         "severity": "error",
         "check_id": "count_check"
     },
-    "data_center_short_name_gcmd_check": {
-        "rule_name": "Data Center Shortname GCMD Check",
-        "fields_to_apply": {
-            "echo-c": [
-                {
-                    "fields": [
-                        "Collection/ProcessingCenter"
-                    ]
-                },
-                {
-                    "fields": [
-                        "Collection/ArchiveCenter"
-                    ]
-                }
-            ],
-            "dif10": [
-                {
-                    "fields": [
-                        "DIF/Organization/Organization_Name/Short_Name"
-                    ]
-                }
-            ],
-            "umm-c": [
-                {
-                    "fields": [
-                        "DataCenters/ShortName"
-                    ]
-                }
-            ]
-        },
-        "severity": "error",
-        "check_id": "organization_short_name_gcmd_check"
-    },
     "characteristic_data_type": {
         "rule_name": "Characteristics Data Type Presence Check",
         "fields_to_apply": {
