@@ -1,5 +1,5 @@
 {
-    "free_and_open_data_presence_check":{
+    "free_and_open_data_presence_check": {
         "failure": "No FreeAndOpenData value was given.",
         "help": {
             "message": "",
@@ -7,7 +7,6 @@
         },
         "remediation": "Recommend providing a FreeAndOpenData value of 'true'."
     },
-
     "datetime_format_check": {
         "failure": "`{}` does not adhere to the ISO 1601 standard.",
         "help": {
@@ -608,6 +607,14 @@
         },
         "remediation": "Please add a GCMD compliant campaign/project name if applicable to the dataset."
     },
+    "granule_campaign_name_presence_check": {
+        "failure": "The campaign/project name is missing.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Project"
+        },
+        "remediation": "Please add a GCMD compliant campaign/project name if applicable to the dataset."
+    },
     "spatial_coverage_type_presence_check": {
         "failure": "The Spatial Coverage Type is missing.",
         "help": {
@@ -639,22 +646,6 @@
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
         },
         "remediation": "Recommend providing at least one Online Resource URL."
-    },
-    "online_access_url_description_check": {
-        "failure": "There does not appear to be a description for the Online Access URL(s).",
-        "help": {
-            "message": "",
-            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
-        },
-        "remediation": "Recommend providing a description for each URL that is provided."
-    },
-    "online_resource_url_description_check": {
-        "failure": "There does not appear to be a description for the Online Resource URL(s).",
-        "help": {
-            "message": "",
-            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
-        },
-        "remediation": "Recommend providing a description for each URL that is provided."
     },
     "opendap_url_location_check": {
         "failure": "The provided Online Access URL `{}` is an OPeNDAP URL.",
