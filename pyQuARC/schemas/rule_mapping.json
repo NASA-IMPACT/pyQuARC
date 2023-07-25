@@ -4232,7 +4232,8 @@
                     ],
                     "dependencies": [
                         [
-                            "date_or_datetime_format_check"
+                            "date_or_datetime_format_check",
+                            "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time"
                         ]
                     ]
                 }
@@ -4246,7 +4247,7 @@
                     ],
                     "dependencies": [
                         [
-                            "datetime_format_check",
+                            "date_or_datetime_format_check",
                             "TemporalExtents/RangeDateTimes/BeginningDateTime"
                         ]
                     ]
