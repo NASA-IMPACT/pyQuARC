@@ -647,14 +647,6 @@
         },
         "remediation": "Recommend providing at least one Online Resource URL."
     },
-    "online_access_url_description_check": {
-        "failure": "There does not appear to be a description for the Online Access URL(s).",
-        "help": {
-            "message": "",
-            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
-        },
-        "remediation": "Recommend providing a description for each URL that is provided."
-    },
     "online_resource_url_description_check": {
         "failure": "There does not appear to be a description for the Online Resource URL(s).",
         "help": {

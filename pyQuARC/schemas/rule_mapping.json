@@ -3672,27 +3672,6 @@
         "severity": "error",
         "check_id": "one_item_presence_check"
     },
-    "online_access_url_description_check": {
-        "rule_name": "Online Access URL Description Check",
-        "fields_to_apply": {
-            "echo-c": [
-                {
-                    "fields": [
-                        "Collection/OnlineAccessURLs/OnlineAccessURL/URLDescription"
-                    ]
-                }
-            ],
-            "echo-g": [
-                {
-                    "fields": [
-                        "Granule/OnlineAccessURLs/OnlineAccessURL/URLDescription"
-                    ]
-                }
-            ]
-        },
-        "severity": "warning",
-        "check_id": "one_item_presence_check"
-    },
     "online_resource_url_description_check": {
         "rule_name": "Online Resource URL Description Check",
         "fields_to_apply": {
