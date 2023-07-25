@@ -3853,7 +3853,7 @@
             "echo-c": [
                 {
                     "fields": [
-                        "Collection/CitationforExternalPublication"
+                        "Collection/CitationForExternalPublication"
                     ]
                 }
             ],
