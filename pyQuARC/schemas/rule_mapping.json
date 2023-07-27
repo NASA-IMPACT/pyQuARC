@@ -5425,6 +5425,34 @@
         "severity": "warning",
         "check_id": "granule_data_format_presence_check"
     },
+    "data_format_presence_check": {
+        "rule_name": "Data Format Presence Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/DataFormat"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Distribution/Distribution_Format"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "ArchiveAndDistributionInformation/FileDistributionInformation/Format"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "one_item_presence_check"
+    },
     "horizontal_resolution_presence_check": {
         "rule_name": "Horizontal Resolution Presence Check",
         "fields_to_apply": {
