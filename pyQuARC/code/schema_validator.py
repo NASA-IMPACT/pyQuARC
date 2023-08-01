@@ -18,7 +18,9 @@ class SchemaValidator:
     PATH_SEPARATOR = "/"
 
     def __init__(
-        self, check_messages, metadata_format=ECHO10_C,
+        self,
+        check_messages,
+        metadata_format=ECHO10_C,
     ):
         """
         Args:
@@ -45,7 +47,9 @@ class SchemaValidator:
         # Path to catalog must be a url
         catalog_path = f"file:{pathname2url(str(SCHEMA_PATHS['catalog']))}"
         # Temporarily set the environment variable
-        os.environ['XML_CATALOG_FILES'] = os.environ.get('XML_CATALOG_FILES', catalog_path)
+        os.environ["XML_CATALOG_FILES"] = os.environ.get(
+            "XML_CATALOG_FILES", catalog_path
+        )
 
         with open(SCHEMA_PATHS[f"{self.metadata_format}_schema"]) as schema_file:
             file_content = schema_file.read().encode()
@@ -78,8 +82,8 @@ class SchemaValidator:
 
             # workaround to read local referenced schema file (only supports uri)
             schema_store = {
-                schema_base.get('$id','/umm-cmn-json-schema.json') : schema_base,
-                schema_base.get('$id','umm-cmn-json-schema.json') : schema_base,
+                schema_base.get("$id", "/umm-cmn-json-schema.json"): schema_base,
+                schema_base.get("$id", "umm-cmn-json-schema.json"): schema_base,
             }
 
         errors = {}
@@ -90,18 +94,26 @@ class SchemaValidator:
             schema, format_checker=draft7_format_checker, resolver=resolver
         )
 
-        for error in sorted(validator.iter_errors(json.loads(content_to_validate)), key=str):
-            field = SchemaValidator.PATH_SEPARATOR.join([str(x) for x in list(error.path)])
+        for error in sorted(
+            validator.iter_errors(json.loads(content_to_validate)), key=str
+        ):
+            field = SchemaValidator.PATH_SEPARATOR.join(
+                [str(x) for x in list(error.path)]
+            )
             message = error.message
             remediation = None
-            if error.validator == "oneOf" and (check_message := self.check_messages.get(error.validator)):
-                fields = [f'{field}/{obj["required"][0]}' for obj in error.validator_value]
+            if error.validator == "oneOf" and (
+                check_message := self.check_messages.get(error.validator)
+            ):
+                fields = [
+                    f'{field}/{obj["required"][0]}' for obj in error.validator_value
+                ]
                 message = check_message["failure"].format(fields)
                 remediation = check_message["remediation"]
             errors.setdefault(field, {})["schema"] = {
                 "message": [f"Error: {message}"],
                 "remediation": remediation,
-                "valid": False
+                "valid": False,
             }
         return errors
 
@@ -126,16 +138,14 @@ class SchemaValidator:
             # the following 3 lines of code removes the namespace
             namespaces = re.findall("(\{http[^}]*\})", line)
             for namespace in namespaces:
-                line = line.replace(namespace, '')
-            field_name = re.search("Element\s\'(.*)\':", line)[1]
-            field_paths = [
-                abs_path for abs_path in paths if field_name in abs_path
-            ]
+                line = line.replace(namespace, "")
+            field_name = re.search("Element\s'(.*)':", line)[1]
+            field_paths = [abs_path for abs_path in paths if field_name in abs_path]
             field_name = field_paths[0] if len(field_paths) == 1 else field_name
-            message = re.search("Element\s\'.+\':\s(\[.*\])?(.*)", line)[2].strip()
+            message = re.search("Element\s'.+':\s(\[.*\])?(.*)", line)[2].strip()
             errors.setdefault(field_name, {})["schema"] = {
                 "message": [f"Error: {message}"],
-                "valid": False
+                "valid": False,
             }
         return errors
 
@@ -159,7 +169,7 @@ class SchemaValidator:
         # The validator only gives the field name, not full path
         # Getting this to map it to the full path later
         paths = []
-        for node in doc.xpath('//*'):
+        for node in doc.xpath("//*"):
             if not node.getchildren() and node.text:
                 paths.append(doc.getpath(node)[1:])
 

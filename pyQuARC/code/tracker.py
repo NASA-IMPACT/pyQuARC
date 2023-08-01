@@ -11,9 +11,7 @@ class Tracker:
             metadata_format (str): The format of the metadata file (eg. echo10, dif10)
         """
         self.data = Tracker.create_initial_track(
-            rule_mapping,
-            rules_override,
-            metadata_format
+            rule_mapping, rules_override, metadata_format
         )
 
     @staticmethod
@@ -49,11 +47,7 @@ class Tracker:
             rule = rules_override.get(rule_id) or rule_mapping.get(rule_id)
             for field in rule["fields_to_apply"].get(metadata_format, {}):
                 data[rule_id].append(
-                    {
-                        "field": field["fields"][0],
-                        "applied": False,
-                        "valid": None
-                    }
+                    {"field": field["fields"][0], "applied": False, "valid": None}
                 )
         return data
 

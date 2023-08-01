@@ -3,7 +3,9 @@ class Scheduler:
     Schedules the rules based on the applicable ordering
     """
 
-    def __init__(self, rule_mapping, rules_override, checks, checks_override, metadata_format):
+    def __init__(
+        self, rule_mapping, rules_override, checks, checks_override, metadata_format
+    ):
         self.check_list = {**checks, **checks_override}
         self.rule_mapping = {**rule_mapping, **rules_override}
         self.metadata_format = metadata_format
@@ -50,11 +52,9 @@ class Scheduler:
         for dependency in dependencies:
             dependency_check = self.check_list.get(dependency[0])
             if dependency_check.get("dependencies"):
-                self.dependencies_ordering(
-                    dependency_check.get("dependencies"), list
-                )
+                self.dependencies_ordering(dependency_check.get("dependencies"), list)
             Scheduler.append_if_not_exist(dependency[0], list)
-            
+
     def _find_rule_ids_based_on_check_id(self, check_id):
         """
         Returns all the rule_ids that are based on a check_id
@@ -66,7 +66,9 @@ class Scheduler:
             list: list of all the rule_ids that are based on the check_id
         """
         return [
-            rule_id for rule_id, rule in self.rule_mapping.items() if (rule.get("check_id") == check_id) or (rule_id == check_id)
+            rule_id
+            for rule_id, rule in self.rule_mapping.items()
+            if (rule.get("check_id") == check_id) or (rule_id == check_id)
         ]
 
     def order_rules(self):
@@ -91,8 +93,6 @@ class Scheduler:
                 print(f"Missing entry for {check_id} in `checks.json`")
 
         for dependency in ordered_check_list:
-            ordered_rules.extend(
-                self._find_rule_ids_based_on_check_id(dependency)
-            )
+            ordered_rules.extend(self._find_rule_ids_based_on_check_id(dependency))
 
         return ordered_rules

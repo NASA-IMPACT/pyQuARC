@@ -34,8 +34,7 @@ class TestDownloader:
 
     def test_concept_id_type_collection(self):
         assert (
-            Downloader._concept_id_type(
-                self.concept_ids["collection"]["dummy"])
+            Downloader._concept_id_type(self.concept_ids["collection"]["dummy"])
             == Downloader.COLLECTION
         )
 
@@ -73,8 +72,7 @@ class TestDownloader:
         dummy_granule = self.concept_ids["granule"]["dummy"]
         downloader = Downloader(dummy_granule, "echo-g")
 
-        downloader.log_error("invalid_concept_id", {
-                             "concept_id": dummy_granule})
+        downloader.log_error("invalid_concept_id", {"concept_id": dummy_granule})
 
         downloader.log_error(
             "request_failed",
@@ -125,6 +123,8 @@ class TestDownloader:
                     "concept_id": dummy_collection,
                     "url": f"https://cmr.earthdata.nasa.gov/search/concepts/{dummy_collection}.echo10",
                     "status_code": 404,
+                    "message": "Something went wrong while downloading the requested metadata. Make sure all the inputs are correct.",
+                    "details": "N/A",
                 },
             }
         ]
@@ -152,6 +152,8 @@ class TestDownloader:
                     "concept_id": dummy_granule,
                     "url": f"https://cmr.earthdata.nasa.gov/search/concepts/{dummy_granule}.echo10",
                     "status_code": 404,
+                    "message": "Something went wrong while downloading the requested metadata. Make sure all the inputs are correct.",
+                    "details": "N/A",
                 },
             }
         ]

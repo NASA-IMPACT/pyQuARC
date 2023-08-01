@@ -17,7 +17,7 @@ ABS_PATH = os.path.abspath(os.path.dirname(__file__))
 with open(f"{ABS_PATH}/version.txt") as version_file:
     __version__ = version_file.read().strip()
 
+
 def version():
-    """Returns the current version of pyQuARC.
-    """
+    """Returns the current version of pyQuARC."""
     return __version__

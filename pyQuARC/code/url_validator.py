@@ -17,7 +17,7 @@ class UrlValidator(StringValidator):
     @staticmethod
     def _extract_http_texts(text_with_urls):
         """
-        Extracts anything that starts with 'http' from `text_with_urls`. 
+        Extracts anything that starts with 'http' from `text_with_urls`.
         This is required for catching "wrong" urls that aren't extracted by `URLExtract.find_urls()` because they are not urls at all
         An example: https://randomurl
         Args:
@@ -26,10 +26,10 @@ class UrlValidator(StringValidator):
         Returns:
             (list) List of texts that start with 'http' from `text_with_urls`
         """
-        texts = text_with_urls.split(' ')
+        texts = text_with_urls.split(" ")
         starts_with_http = set()
         for text in texts:
-            if text.startswith('http'):
+            if text.startswith("http"):
                 starts_with_http.add(text)
         return starts_with_http
 
@@ -47,8 +47,8 @@ class UrlValidator(StringValidator):
         def status_code_from_request(url):
             headers = get_headers()
             # timeout = 10 seconds, to allow for slow but not invalid connections
-            return requests.get(url, headers = headers, timeout=10).status_code
-        
+            return requests.get(url, headers=headers, timeout=10).status_code
+
         results = []
 
         validity = True
@@ -56,9 +56,7 @@ class UrlValidator(StringValidator):
         # extract URLs from text
         extractor = URLExtract()
         urls = extractor.find_urls(text_with_urls)
-        urls.extend(
-            UrlValidator._extract_http_texts(text_with_urls)
-        )
+        urls.extend(UrlValidator._extract_http_texts(text_with_urls))
 
         # remove dots at the end (The URLExtract library catches URLs, but sometimes appends a '.' at the end)
         # remove duplicated urls
@@ -75,11 +73,14 @@ class UrlValidator(StringValidator):
                     if url.startswith("http://"):
                         secure_url = url.replace("http://", "https://")
                         if status_code_from_request(secure_url) == 200:
-                            result = {"url": url, "error": "The URL is secure. Please use 'https' instead of 'http'."}
+                            result = {
+                                "url": url,
+                                "error": "The URL is secure. Please use 'https' instead of 'http'.",
+                            }
                     else:
                         continue
                 else:
-                    result = {"url": url, "error": f'Status code {response_code}'}
+                    result = {"url": url, "error": f"Status code {response_code}"}
             except requests.ConnectionError:
                 result = {"url": url, "error": "The URL does not exist on Internet."}
             except:
@@ -102,21 +103,16 @@ class UrlValidator(StringValidator):
             (dict) An object with the validity of the check and the instance/results
         """
         valid = False
-        if doi.strip().startswith("10."): # doi always starts with "10."
+        if doi.strip().startswith("10."):  # doi always starts with "10."
             url = f"https://www.doi.org/{doi}"
-            valid =  UrlValidator.health_and_status_check(url).get("valid")
+            valid = UrlValidator.health_and_status_check(url).get("valid")
         return {"valid": valid, "value": doi}
 
     @staticmethod
     @if_arg
-    def doi_link_update(
-        value, bad_urls
-    ):
+    def doi_link_update(value, bad_urls):
         validity = True
         if value in bad_urls:
             validity = False
 
-        return {
-            "valid": validity,
-            "Value": value
-        }
+        return {"valid": validity, "Value": value}

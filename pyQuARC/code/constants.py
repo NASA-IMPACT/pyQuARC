@@ -14,7 +14,7 @@ SUPPORTED_FORMATS = [DIF, ECHO10_C, UMM_C, UMM_G, ECHO10_G]
 
 ROOT_DIR = (
     # go up one directory
-    os.path.abspath(os.path.join(__file__, '../..'))
+    os.path.abspath(os.path.join(__file__, "../.."))
 )
 
 SCHEMAS_BASE_PATH = f"{ROOT_DIR}/schemas"
@@ -46,17 +46,17 @@ SCHEMAS = {
         "rules_override",
         f"{UMM_C}-json-schema",
         "umm-cmn-json-schema",
-        f"{UMM_G}-json-schema"
+        f"{UMM_G}-json-schema",
     ],
     "csv": GCMD_KEYWORDS,
-    "xsd": [ f"{DIF}_schema", f"{ECHO10_C}_schema", f"{ECHO10_G}_schema" ],
-    "xml": [ "catalog" ]
+    "xsd": [f"{DIF}_schema", f"{ECHO10_C}_schema", f"{ECHO10_G}_schema"],
+    "xml": ["catalog"],
 }
 
 SCHEMA_PATHS = {
-    schema:  f"{SCHEMAS_BASE_PATH}/{schema}.{filetype}"
-        for filetype, schemas in SCHEMAS.items()
-            for schema in schemas
+    schema: f"{SCHEMAS_BASE_PATH}/{schema}.{filetype}"
+    for filetype, schemas in SCHEMAS.items()
+    for schema in schemas
 }
 
 VERSION_FILE = f"{SCHEMAS_BASE_PATH}/version.txt"
@@ -67,7 +67,7 @@ COLOR = {
     "error": Fore.RED,
     "warning": Fore.YELLOW,
     "reset": Style.RESET_ALL,
-    "bright": Style.BRIGHT
+    "bright": Style.BRIGHT,
 }
 
 GCMD_BASIC_URL = "https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/"

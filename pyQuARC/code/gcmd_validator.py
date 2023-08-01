@@ -40,9 +40,7 @@ class GcmdValidator:
             ),
             "provider": GcmdValidator._create_hierarchy_dict(
                 self._read_from_csv(
-                    "providers",
-                    columns=["Short_Name", "Long_Name"],
-                    hierarchy=True
+                    "providers", columns=["Short_Name", "Long_Name"], hierarchy=True
                 )
             ),
             "provider_short_name": self._read_from_csv(
@@ -53,9 +51,7 @@ class GcmdValidator:
             ),
             "instrument": GcmdValidator._create_hierarchy_dict(
                 self._read_from_csv(
-                    "instruments",
-                    columns=["Short_Name", "Long_Name"],
-                    hierarchy=True
+                    "instruments", columns=["Short_Name", "Long_Name"], hierarchy=True
                 )
             ),
             "instrument_short_name": self._read_from_csv(
@@ -66,9 +62,7 @@ class GcmdValidator:
             ),
             "campaign": GcmdValidator._create_hierarchy_dict(
                 self._read_from_csv(
-                    "projects",
-                    columns=["Short_Name", "Long_Name"],
-                    hierarchy=True
+                    "projects", columns=["Short_Name", "Long_Name"], hierarchy=True
                 )
             ),
             "campaign_short_name": self._read_from_csv(
@@ -82,9 +76,7 @@ class GcmdValidator:
             ),
             "platform": GcmdValidator._create_hierarchy_dict(
                 self._read_from_csv(
-                    "platforms",
-                    columns=["Short_Name", "Long_Name"],
-                    hierarchy=True
+                    "platforms", columns=["Short_Name", "Long_Name"], hierarchy=True
                 )
             ),
             "platform_short_name": self._read_from_csv(
@@ -93,9 +85,7 @@ class GcmdValidator:
             "platform_long_name": self._read_from_csv(
                 "platforms", columns=["Long_Name"]
             ),
-            "platform_type": self._read_from_csv(
-                "platforms", columns=["Category"]
-            ),
+            "platform_type": self._read_from_csv("platforms", columns=["Category"]),
             "rucontenttype": self._read_from_csv(
                 "rucontenttype", columns=["Type", "Subtype"]
             ),
@@ -111,12 +101,8 @@ class GcmdValidator:
             "temporalresolutionrange": self._read_from_csv(
                 "temporalresolutionrange", columns=["Temporal_Resolution_Range"]
             ),
-            "mimetype": self._read_from_csv(
-                "MimeType", columns=["MimeType"]
-            ),
-            "idnnode_shortname": self._read_from_csv(
-                "idnnode", columns=["Short_Name"]
-            )
+            "mimetype": self._read_from_csv("MimeType", columns=["MimeType"]),
+            "idnnode_shortname": self._read_from_csv("idnnode", columns=["Short_Name"]),
         }
 
     @staticmethod
@@ -137,7 +123,9 @@ class GcmdValidator:
                     # Downloading updated gcmd keyword files
                     response = requests.get(link, headers=headers)
                     data = response.text
-                    with open(SCHEMA_PATHS[keyword], "w", encoding="utf-8") as download_file:
+                    with open(
+                        SCHEMA_PATHS[keyword], "w", encoding="utf-8"
+                    ) as download_file:
                         download_file.write(data)
                 with open(VERSION_FILE, "w") as version_file:
                     version_file.write(current_datetime.strftime(DATE_FORMAT))
@@ -157,7 +145,9 @@ class GcmdValidator:
             (dict): The lookup dictionary for GCMD hierarchy
         """
         all_keywords = [
-            [keyword.upper() for keyword in row if keyword.strip()] for row in rows if row
+            [keyword.upper() for keyword in row if keyword.strip()]
+            for row in rows
+            if row
         ]
         hierarchy_dict = {}
         for row in all_keywords:
@@ -171,8 +161,8 @@ class GcmdValidator:
         for key, _ in GCMD_LINKS.items():
             csvfile = open(SCHEMA_PATHS[key])
             reader = csv.reader(csvfile)
-            next(reader) # Remove the metadata (1st column)
-            headers = next(reader) # Get the headers (2nd column)
+            next(reader)  # Remove the metadata (1st column)
+            headers = next(reader)  # Get the headers (2nd column)
             list_of_rows = list(reader)
             csvfile.close()
             content[key] = headers, list_of_rows
@@ -207,10 +197,16 @@ class GcmdValidator:
             end = (headers.index(columns[-1]) + 1) if columns else None
             # handling cases when there are multiple entries for same shortname but the first entry has missing long name
             return_value = [
-                [clean_keyword for keyword in useful_data if (clean_keyword := keyword.strip() or 'N/A')]
+                [
+                    clean_keyword
+                    for keyword in useful_data
+                    if (clean_keyword := keyword.strip() or "N/A")
+                ]
                 for row in list_of_rows
                 if (
-                    useful_data := row[start : end if end else (len(row) - 1)] # remove UUID (last column)
+                    useful_data := row[
+                        start : end if end else (len(row) - 1)
+                    ]  # remove UUID (last column)
                 )
             ]
         return return_value
@@ -235,7 +231,7 @@ class GcmdValidator:
             return parent, child
         else:
             for key in child:
-                if (parent.get(key) and not(parent.get(key) == LEAF)):
+                if parent.get(key) and not (parent.get(key) == LEAF):
                     parent[key], _ = GcmdValidator.merge_dicts(parent[key], child[key])
                 else:
                     parent[key] = child[key]
@@ -413,13 +409,13 @@ class GcmdValidator:
         Validates the Horizontal Resolution Range against GCMD 'horizontalresolutionrange' list
         """
         return input_keyword in self.keywords["horizontalresolutionrange"]
-    
+
     def validate_vertical_resolution_range(self, input_keyword):
         """
         Validates the vertical Resolution Range against GCMD 'verticalresolutionrange' list
         """
         return input_keyword in self.keywords["verticalresolutionrange"]
-    
+
     def validate_temporal_resolution_range(self, input_keyword):
         """
         Validates the temporal Resolution Range against GCMD 'temporalresolutionrange' list
