@@ -14,13 +14,13 @@ class CustomValidator(BaseValidator):
     ):
         collection_state = collection_state.upper()
         valid = (
-            ends_at_present_flag == True
-            and not (ending_date_time)
-            and collection_state == "ACTIVE"
+            (bool(ends_at_present_flag) 
+             and ends_at_present_flag not in ("False", "false"))
+            and not (ending_date_time) and collection_state in ("ACTIVE", "IN WORK")
         ) or (
-            ends_at_present_flag == False
-            and bool(ending_date_time)
-            and collection_state == "COMPLETE"
+            (bool(ends_at_present_flag) == False
+            or ends_at_present_flag in ("False", "false"))
+            and bool(ending_date_time) and collection_state == "COMPLETE"
         )
 
         return {"valid": valid, "value": ends_at_present_flag}
@@ -98,6 +98,51 @@ class CustomValidator(BaseValidator):
                 break
 
         return {"valid": validity, "value": value}
+        
+    @staticmethod
+    def dif_standard_product_check(*field_values):
+        """
+        Checks if the Extended_Metadata field in the DIF schema is being 
+        utilized to specify whether or not the collection is a Standard Product.
+        This check is needed because DIF schema does not have a dedicated field
+        for Standard Product, and the Extended_Metadata field is also utilized
+        for other things.
+        """
+        validity = False
+        value = None
+
+        for field_value in field_values:
+             if field_value:
+                if 'StandardProduct' in field_value:
+                    value = field_value
+                    validity = True
+                    break
+        else:
+            pass
+        return {"valid": validity, "value": value}
+
+    @staticmethod
+    def license_url_description_check(description_field, url_field, license_text):
+        """
+        Determines if a description has been provided for the License URL if a
+        License URL has been provided in the metadata.
+
+        Args:
+            url_field (string): license URL string
+            description_field (string): string describing the URL
+        """
+        validity = True
+        value  = description_field
+
+        if not license_text and not url_field:
+            validity = False
+            return {"valid": validity, "value": value}
+        elif license_text and not url_field:
+            return {"valid": validity, "value": value}
+        else:
+            if not description_field:
+                validity = False
+            return {"valid": validity, "value": value}
 
     @staticmethod
     def granule_sensor_presence_check(

@@ -228,37 +228,48 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
           <xs:documentation>This element stores the DOI (Digital Object Identifier) that identifies the collection.  Note: The values should start with the directory indicator which in ESDIS' case is 10.  If the DOI was registered through ESDIS, the beginning of the string should be 10.5067. The DOI URL is not stored here; it should be stored as an OnlineResource. The DOI organization that is responsible for creating the DOI is described in the Authority element. For ESDIS records the value of https://doi.org/ should be used. While this element is not required, NASA metadata providers are strongly encouraged to include DOI and DOI Authority for their collections. For those that want to specify that a DOI is not applicable for their record use the second option.</xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element name="AssociatedDOIs" type="ListOfAssociatedDOIs" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>This element stores DOIs that are associated with the collection
+				    such as from campaigns and other related sources. Note: The values
+				    should start with the directory indicator which in ESDIS' case is 10.
+				    If the DOI was registered through ESDIS, the beginning of the string
+				    should be 10.5067. The DOI URL is not stored here; it should be
+				    stored as a RelatedURL. The DOI organization that is responsible
+				    for creating the DOI is described in the Authority element. For
+				    ESDIS records the value of https://doi.org/ should be used.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element minOccurs="0" name="CollectionDataType">
         <xs:annotation>
-          <xs:documentation> An element to identify
-          non-science-quality products such as NRT data. If a
-          collection does not contain this field, it will be
-          assumed to be of science-quality.</xs:documentation>
+          <xs:documentation>This element is used to identify the collections ready for end user consumption latency from when the data was acquired by an instrument. NEAR_REAL_TIME is defined to be ready for end user consumption 1 to 3 hours after data acquisition. LOW_LATENCY is defined to be ready for consumption 3 to 24 hours after data acquisition. EXPEDITED is defined to be 1 to 4 days after data acquisition. SCIENCE_QUALITY is defined to mean that a collection has been fully and completely processed which usually takes between 2 to 3 weeks after data acquisition. OTHER is defined for collection where the latency is between EXPEDITED and SCIENCE_QUALITY.</xs:documentation>
         </xs:annotation>
         <xs:simpleType>
           <xs:restriction base="xs:string">
             <xs:enumeration value="SCIENCE_QUALITY">
               <xs:annotation>
-                <xs:documentation>All EOS and non-EOS data and
-                data products that are archived
-                by EOSDIS.</xs:documentation>
+                <xs:documentation>All data products that have been fully and completely processed which usually takes between 2 to 3 weeks after data acquisition.</xs:documentation>
               </xs:annotation>
             </xs:enumeration>
             <xs:enumeration value="NEAR_REAL_TIME">
               <xs:annotation>
-                <xs:documentation> Data from the source that are
-                available for use within a time that is short in
-                comparison to important time scales in the phenomena
-                being studied. This data is not science quality and
-                is not retained by EOSDIS once the SCIENCE_QUALITY
-                product is archived </xs:documentation>
+                <xs:documentation>The data is ready for end user consumption 1 to 3 hours after data acquisition. This data is not fully processed and is not retained by EOSDIS once the SCIENCE_QUALITY product is archived.</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="LOW_LATENCY">
+              <xs:annotation>
+                <xs:documentation>The data is ready for end user consumption 3 to 24 hours after data acquisition. This data is not fully processed and is not retained by EOSDIS once the SCIENCE_QUALITY product is archived.</xs:documentation>
+              </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="EXPEDITED">
+              <xs:annotation>
+                <xs:documentation>The data is ready for end user consumption 1 to 4 days after data acquisition. This data is not fully processed and is not retained by EOSDIS once the SCIENCE_QUALITY product is archived.</xs:documentation>
               </xs:annotation>
             </xs:enumeration>
             <xs:enumeration value="OTHER">
               <xs:annotation>
-                <xs:documentation> Any EOS and non-EOS data and data
-                products, that are not SCIENCE_QUALITY and do not
-                fall under NEAR_REAL_TIME holdings.</xs:documentation>
+                <xs:documentation>The data is ready for end user consumption between the EXPEDITED and SCIENCE_QUALITY acquisition timeframes. This data is not fully processed and is not retained by EOSDIS once the SCIENCE_QUALITY product is archived.</xs:documentation>
               </xs:annotation>
             </xs:enumeration>
           </xs:restriction>
@@ -544,6 +555,66 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
           </xs:annotation>
         </xs:element>
       </xs:choice>
+      <xs:element minOccurs="0" name="DirectDistributionInformation"
+                  type="DirectDistributionInformationType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DirectDistributionInformationType">
+    <xs:sequence>
+      <xs:element name="Region">
+        <xs:simpleType>
+          <xs:annotation>
+            <xs:documentation>Defines the possible values for the Amazon Web Service US Regions
+                              where the data product resides.</xs:documentation>
+          </xs:annotation>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="us-east-1"></xs:enumeration>
+            <xs:enumeration value="us-east-2"></xs:enumeration>
+            <xs:enumeration value="us-west-1"></xs:enumeration>
+            <xs:enumeration value="us-west-2"></xs:enumeration>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="S3BucketAndObjectPrefixName" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Defines the possible values for the Amazon Web Service US S3 bucket
+                            and/or object prefix names.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="1024" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="S3CredentialsAPIEndpoint">
+        <xs:annotation>
+          <xs:documentation>Defines the URL where the credentials are stored.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:anyURI">
+            <xs:minLength value="1" />
+            <xs:maxLength value="1024" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="S3CredentialsAPIDocumentationURL">
+        <xs:annotation>
+          <xs:documentation>Defines the URL where the credential documentation are stored.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:anyURI">
+            <xs:minLength value="1" />
+            <xs:maxLength value="1024" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ListOfAssociatedDOIs">
+    <xs:sequence>
+      <xs:element name="AssociatedDOI" type="AssociatedDoiType" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="UseConstraintsType">
@@ -559,8 +630,13 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
           </xs:restriction>
         </xs:simpleType>
       </xs:element>
+      <xs:element name="FreeAndOpenData" minOccurs="0" type="xs:boolean">
+        <xs:annotation>
+          <xs:documentation>This sub-element if true, describes to end users and machines that this collection's data is free of charge and open for any use the user sees fit.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:choice minOccurs="0">
-        <xs:element name="LicenseUrl" type="OnlineResource"/>
+        <xs:element name="LicenseURL" type="OnlineResource"/>
         <xs:element name="LicenseText">
           <xs:annotation>
             <xs:documentation>This element holds the actual license text. If this element is used the LicenseUrl element cannot be used.</xs:documentation>
@@ -2188,7 +2264,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema">
       data etc.</xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="SpatialCoverageType">
+      <xs:element name="SpatialCoverageType" minOccurs="0">
         <xs:annotation>
           <xs:documentation>This attribute denotes whether the
           locality/coverage requires horizontal, vertical, or both

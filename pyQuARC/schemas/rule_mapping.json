@@ -1,4 +1,32 @@
 {
+    "free_and_open_data_presence_check": {
+        "rule_name": "Free and Open Data Presence Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/UseConstraints/FreeAndOpenData"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Use_Constraints/Free_And_Open_Data"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "UseConstraints/FreeAndOpenData"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "one_item_presence_check"
+    },
     "data_update_time_logic_check": {
         "rule_name": "Data Update Time Logic Check",
         "fields_to_apply": {
@@ -2504,47 +2532,89 @@
         "check_id": "instrument_long_name_gcmd_check"
     },
     "instrument_long_name_presence_check": {
-        "rule_name": "Instrument Longname Presence Check",
+        "rule_name": "Instrument Longname Requirement Check",
         "fields_to_apply": {
             "echo-c": [
                 {
                     "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/ShortName",
                         "Collection/Platforms/Platform/Instruments/Instrument/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "instrument_short_name_gcmd_check",
+                            "Collection/Platforms/Platform/Instruments/Instrument/ShortName"
+                        ]
                     ]
                 },
                 {
                     "fields": [
+                        "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/ShortName",
                         "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "instrument_short_name_gcmd_check",
+                            "Collection/Platforms/Platform/Instruments/Instrument/Sensors/Sensor/ShortName"
+                        ]
                     ]
                 }
             ],
             "dif10": [
                 {
                     "fields": [
+                        "DIF/Platform/Instrument/Short_Name",
                         "DIF/Platform/Instrument/Long_Name"
+                    ],
+                    "dependencies": [
+                        [
+                            "instrument_short_name_gcmd_check",
+                            "DIF/Platform/Instrument/Short_Name"
+                        ]
                     ]
                 },
                 {
                     "fields": [
+                        "DIF/Platform/Instrument/Sensor/Short_Name",
                         "DIF/Platform/Instrument/Sensor/Long_Name"
+                    ],
+                    "dependencies": [
+                        [
+                            "instrument_short_name_gcmd_check",
+                            "DIF/Platform/Instrument/Sensor/Short_Name"
+                        ]
                     ]
                 }
             ],
             "umm-c": [
                 {
                     "fields": [
+                        "Platforms/Instruments/ShortName",
                         "Platforms/Instruments/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "instrument_short_name_gcmd_check",
+                            "Platforms/Instruments/ShortName"
+                        ]
                     ]
                 },
                 {
                     "fields": [
+                        "Platforms/Instruments/ComposedOf/ShortName",
                         "Platforms/Instruments/ComposedOf/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "instrument_short_name_gcmd_check",
+                            "Platforms/Instruments/ComposedOf/ShortName"
+                        ]
                     ]
                 }
             ]
         },
         "severity": "warning",
-        "check_id": "one_item_presence_check"
+        "check_id": "instrument_long_name_presence_check"
     },
     "granule_instrument_presence_check": {
         "rule_name": "Granule Instrument Presence Check",
@@ -2566,6 +2636,41 @@
         },
         "severity": "info",
         "check_id": "one_item_presence_check"
+    },
+    "standard_product_check": {
+        "rule_name": "Standard Product Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/StandardProduct"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "StandardProduct"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "one_item_presence_check"
+    },
+    "dif_standard_product_check": {
+        "rule_name": "Standard Product Check",
+        "fields_to_apply": {
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Extended_Metadata/Metadata/Name"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "dif_standard_product_check"
     },
     "validate_granule_instrument_against_collection": {
         "rule_name": "Granule Instrument Short Name Check",
@@ -3034,18 +3139,53 @@
         "check_id": "campaign_long_name_gcmd_check"
     },
     "campaign_long_name_presence_check": {
-        "rule_name": "Campaign Long Name Presence Check",
+        "rule_name": "Campaign Longname Requirement Check",
         "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/Campaigns/Campaign/ShortName",
+                        "Collection/Campaigns/Campaign/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "campaign_short_name_gcmd_check",
+                            "Collection/Campaigns/Campaign/ShortName"
+                        ]
+                    ]
+                }
+            ],
             "dif10": [
                 {
                     "fields": [
+                        "DIF/Project/Short_Name",
                         "DIF/Project/Long_Name"
+                    ],
+                    "dependencies": [
+                        [
+                            "campaign_short_name_gcmd_check",
+                            "DIF/Project/Short_Name"
+                        ]
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "Projects/ShortName",
+                        "Projects/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "campaign_short_name_gcmd_check",
+                            "Projects/ShortName"
+                        ]
                     ]
                 }
             ]
         },
         "severity": "warning",
-        "check_id": "one_item_presence_check"
+        "check_id": "campaign_long_name_presence_check"
     },
     "version_description_not_provided": {
         "rule_name": "Version Description Not Provided",
@@ -3395,13 +3535,6 @@
                     ]
                 }
             ],
-            "echo-g": [
-                {
-                    "fields": [
-                        "Granule/Campaigns/Campaign/ShortName"
-                    ]
-                }
-            ],
             "dif10": [
                 {
                     "fields": [
@@ -3415,6 +3548,20 @@
                         "Projects/ShortName"
                     ]
                 }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "one_item_presence_check"
+    },
+    "granule_campaign_name_presence_check": {
+        "rule_name": "Campaign Name Presence Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Campaigns/Campaign/ShortName"
+                    ]
+                }
             ],
             "umm-g": [
                 {
@@ -3424,7 +3571,7 @@
                 }
             ]
         },
-        "severity": "warning",
+        "severity": "info",
         "check_id": "one_item_presence_check"
     },
     "spatial_coverage_type_presence_check": {
@@ -3513,65 +3660,9 @@
                         "Collection/OnlineResources/OnlineResource/URL"
                     ]
                 }
-            ],
-            "echo-g": [
-                {
-                    "fields": [
-                        "Granule/OnlineResources/OnlineResource/URL"
-                    ]
-                }
             ]
         },
         "severity": "error",
-        "check_id": "one_item_presence_check"
-    },
-    "online_access_url_description_check": {
-        "rule_name": "Online Access URL Description Check",
-        "fields_to_apply": {
-            "echo-c": [
-                {
-                    "fields": [
-                        "Collection/OnlineAccessURLs/OnlineAccessURL/URLDescription"
-                    ]
-                }
-            ],
-            "echo-g": [
-                {
-                    "fields": [
-                        "Granule/OnlineAccessURLs/OnlineAccessURL/URLDescription"
-                    ]
-                }
-            ]
-        },
-        "severity": "warning",
-        "check_id": "one_item_presence_check"
-    },
-    "online_resource_url_description_check": {
-        "rule_name": "Online Resource URL Description Check",
-        "fields_to_apply": {
-            "echo-c": [
-                {
-                    "fields": [
-                        "Collection/OnlineResources/OnlineResource/Description"
-                    ]
-                }
-            ],
-            "echo-g": [
-                {
-                    "fields": [
-                        "Granule/OnlineResources/OnlineResource/Description"
-                    ]
-                }
-            ],
-            "umm-g": [
-                {
-                    "fields": [
-                        "RelatedUrls/Description"
-                    ]
-                }
-            ]
-        },
-        "severity": "warning",
         "check_id": "one_item_presence_check"
     },
     "opendap_url_location_check": {
@@ -3691,7 +3782,7 @@
                 {
                     "fields": [
                         "Collection/UseConstraints/LicenseURL/URL",
-                        "Collection/UseConstraints/LicenseURL/Description"
+                        "Collection/UseConstraints/LicenseText"
                     ]
                 }
             ],
@@ -3707,7 +3798,7 @@
                 {
                     "fields": [
                         "UseConstraints/LicenseURL/Linkage",
-                        "UseConstraints/LicenseURL/Description"
+                        "UseConstraints/LicenseText"
                     ]
                 }
             ]
@@ -3715,13 +3806,47 @@
         "severity": "error",
         "check_id": "one_item_presence_check"
     },
+    "license_url_description_check": {
+        "rule_name": "License URL Description Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/UseConstraints/LicenseURL/Description",
+                        "Collection/UseConstraints/LicenseURL/URL",
+                        "Collection/UseConstraints/LicenseText"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Use_Constraints/License_URL/Description",
+                        "DIF/Use_Constraints/License_URL/URL",
+                        "DIF/Use_Constraints/License_Text"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "UseConstraints/LicenseURL/Description",
+                        "UseConstraints/LicenseURL/Linkage",
+                        "UseConstraints/LicenseText"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "license_url_description_check"
+    },
     "collection_citation_presence_check": {
         "rule_name": "Collection Citation Presence Check",
         "fields_to_apply": {
             "echo-c": [
                 {
                     "fields": [
-                        "Collection/CitationforExternalPublication"
+                        "Collection/CitationForExternalPublication"
                     ]
                 }
             ],
@@ -4100,7 +4225,8 @@
                     ],
                     "dependencies": [
                         [
-                            "date_or_datetime_format_check"
+                            "date_or_datetime_format_check",
+                            "DIF/Temporal_Coverage/Range_DateTime/Beginning_Date_Time"
                         ]
                     ]
                 }
@@ -4114,7 +4240,7 @@
                     ],
                     "dependencies": [
                         [
-                            "datetime_format_check",
+                            "date_or_datetime_format_check",
                             "TemporalExtents/RangeDateTimes/BeginningDateTime"
                         ]
                     ]
@@ -4590,15 +4716,17 @@
                         "DIF/Multimedia_Sample/Description",
                         "DIF/Multimedia_Sample/URL"
                     ]
-                },
-                {
-                    "fields": [
-                        "DIF/Use_Constraints/License_URL/Description",
-                        "DIF/Use_Constraints/License_URL/URL"
-                    ]
                 }
             ],
             "umm-c": [
+                {
+                    "fields": [
+                        "RelatedUrls/Description",
+                        "RelatedUrls/URL"
+                    ]
+                }
+            ],
+            "umm-g": [
                 {
                     "fields": [
                         "RelatedUrls/Description",
@@ -4817,39 +4945,6 @@
         "severity": "error",
         "check_id": "count_check"
     },
-    "data_center_short_name_gcmd_check": {
-        "rule_name": "Data Center Shortname GCMD Check",
-        "fields_to_apply": {
-            "echo-c": [
-                {
-                    "fields": [
-                        "Collection/ProcessingCenter"
-                    ]
-                },
-                {
-                    "fields": [
-                        "Collection/ArchiveCenter"
-                    ]
-                }
-            ],
-            "dif10": [
-                {
-                    "fields": [
-                        "DIF/Organization/Organization_Name/Short_Name"
-                    ]
-                }
-            ],
-            "umm-c": [
-                {
-                    "fields": [
-                        "DataCenters/ShortName"
-                    ]
-                }
-            ]
-        },
-        "severity": "error",
-        "check_id": "organization_short_name_gcmd_check"
-    },
     "characteristic_data_type": {
         "rule_name": "Characteristics Data Type Presence Check",
         "fields_to_apply": {
@@ -4946,32 +5041,53 @@
         "check_id": "one_item_presence_check"
     },
     "platform_long_name_presence_check": {
-        "rule_name": "Platform Longname Presence Check",
+        "rule_name": "Platform Longname Requirement Check",
         "fields_to_apply": {
             "echo-c": [
                 {
                     "fields": [
-                        "Collection/Platforms/Platforms/LongName"
+                        "Collection/Platforms/Platform/ShortName",
+                        "Collection/Platforms/Platform/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "platform_short_name_gcmd_check",
+                            "Collection/Platforms/Platform/ShortName"
+                        ]
                     ]
                 }
             ],
             "dif10": [
                 {
                     "fields": [
+                        "DIF/Platform/Short_Name",
                         "DIF/Platform/Long_Name"
+                    ],
+                    "dependencies": [
+                        [
+                            "platform_short_name_gcmd_check",
+                            "DIF/Platform/Short_Name"
+                        ]
                     ]
                 }
             ],
             "umm-c": [
                 {
                     "fields": [
+                        "Platforms/ShortName",
                         "Platforms/LongName"
+                    ],
+                    "dependencies": [
+                        [
+                            "platform_short_name_gcmd_check",
+                            "Platforms/ShortName"
+                        ]
                     ]
                 }
             ]
         },
         "severity": "warning",
-        "check_id": "one_item_presence_check"
+        "check_id": "platform_long_name_presence_check"
     },
     "granule_platform_presence_check": {
         "rule_name": "Granule Platform Presence Check",
@@ -5301,5 +5417,87 @@
         },
         "severity": "warning",
         "check_id": "granule_data_format_presence_check"
+    },
+    "data_format_presence_check": {
+        "rule_name": "Data Format Presence Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/DataFormat"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Distribution/Distribution_Format"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "ArchiveAndDistributionInformation/FileDistributionInformation/Format"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "one_item_presence_check"
+    },
+    "horizontal_resolution_presence_check": {
+        "rule_name": "Horizontal Resolution Presence Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/SpatialInfo/HorizontalCoordinateSystem/GeographicCoordinateSystem/LongitudeResolution",
+                        "Collection/SpatialInfo/HorizontalCoordinateSystem/GeographicCoordinateSystem/LatitudeResolution",
+                        "Collection/SpatialInfo/HorizontalCoordinateSystem/GeographicCoordinateSystem/GeographicCoordinateUnits"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Data_Resolution/Longitude_Resolution",
+                        "DIF/Data_Resolution/Latitude_Resolution",
+                        "DIF/Spatial_Coverage/Spatial_Info/Horizontal_Coordinate_System/Geographic_Coordinate_System/LongitudeResolution",
+                        "DIF/Spatial_Coverage/Spatial_Info/Horizontal_Coordinate_System/Geographic_Coordinate_System/LatitudeResolution",
+                        "DIF/Spatial_Coverage/Spatial_Info/Horizontal_Coordinate_System/Geographic_Coordinate_System/GeographicCoordinateUnits"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/VariesResolution",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/PointResolution",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedResolutions/XDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedResolutions/YDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedResolutions/Unit",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GenericResolutions/XDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GenericResolutions/YDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GenericResolutions/Unit",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedResolutions/XDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedResolutions/YDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedResolutions/Unit",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedRangeResolutions/MinimumXDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedRangeResolutions/MaximumXDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedRangeResolutions/MinimumYDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedRangeResolutions/MaximumYDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/NonGriddedRangeResolutions/Unit",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedRangeResolutions/MinimumXDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedRangeResolutions/MaximumXDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedRangeResolutions/MinimumYDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedRangeResolutions/MaximumYDimension",
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/GriddedRangeResolutions/Unit"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "one_item_presence_check"
     }
 }
