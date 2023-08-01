@@ -1039,6 +1039,14 @@
         },
         "remediation": "Recommend updating the Number Of Instruments/Sensors value to match the numerical amount of instruments/sensors provided."
     },
+    "data_format_presence_check": {
+        "failure": "The data format is missing.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Direct+Distribution+Information"
+        },
+        "remediation": "Recommend providing a valid data format from the Granule Data Format GCMD keyword list."
+    },
     "horizontal_resolution_presence_check": {
         "failure": "No horizontal resolution information is provided.",
         "help": {
