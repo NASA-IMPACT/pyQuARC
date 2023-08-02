@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## v1.2.3
+- Updated schema files
+- Added Free And Open Data check
+- Added Horizontal Resolution Presence check
+- Added Data Format Presence check
+- Added Standard Product check
+- Added License URL Description check
+- Added Granule Campaign Name Presence check
+- Revised GCMD long name presence checks
+- Revised validate_beginning_datetime_against_granules check
+- Removed redundant checks
+  
 ## v1.2.2
 
 - Bugfixes:
