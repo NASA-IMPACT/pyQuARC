@@ -117,8 +117,6 @@ class CustomValidator(BaseValidator):
                     value = field_value
                     validity = True
                     break
-        else:
-            pass
         return {"valid": validity, "value": value}
 
     @staticmethod
