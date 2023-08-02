@@ -99,6 +99,11 @@
         "check_function": "instrument_long_name_gcmd_check",
         "available": true
     },
+    "instrument_long_name_presence_check": {
+        "data_type": "string",
+        "check_function": "instrument_long_name_presence_check",
+        "available": true
+    },
     "validate_granule_instrument_against_collection": {
         "data_type": "string",
         "check_function": "validate_granule_instrument_against_collection",
@@ -117,6 +122,11 @@
     "platform_type_gcmd_check": {
         "data_type": "string",
         "check_function": "platform_type_gcmd_check",
+        "available": true
+    },
+    "platform_long_name_presence_check": {
+        "data_type": "string",
+        "check_function": "platform_long_name_presence_check",
         "available": true
     },
     "platform_short_long_name_consistency_check": {
@@ -152,6 +162,11 @@
     "campaign_long_name_gcmd_check": {
         "data_type": "string",
         "check_function": "campaign_long_name_gcmd_check",
+        "available": true
+    },
+    "campaign_long_name_presence_check": {
+        "data_type": "string",
+        "check_function": "campaign_long_name_presence_check",
         "available": true
     },
     "data_format_gcmd_check": {
@@ -194,6 +209,11 @@
         "check_function": "one_item_presence_check",
         "available": true
     },
+    "dif_standard_product_check": {
+        "data_type": "custom",
+        "check_function": "dif_standard_product_check",
+        "available": true
+    },
     "doi_link_update": {
         "data_type": "url",
         "check_function": "doi_link_update",
@@ -227,6 +247,11 @@
     "online_resource_type_gcmd_check": {
         "data_type": "string",
         "check_function": "online_resource_type_gcmd_check",
+        "available": true
+    },
+    "license_url_description_check": {
+        "data_type": "custom",
+        "check_function": "license_url_description_check",
         "available": true
     },
     "uniqueness_check": {

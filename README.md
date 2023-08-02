@@ -30,7 +30,7 @@ The CMR is designed around its own metadata standard called the [Unified Metadat
 
 pyQuARC supports DIF10 (collection only), ECHO10 (collection and granule), UMM-C, and UMM-G standards. At this time, there are no plans to add ISO 19115 or UMM-S/T specific checks. **Additionally, the output messages pyQuARC currently displays should be taken with a grain of salt. There is still testing and clean-up work to be done.**
 
-**For inquiries, please email: jeanne.leroux@nsstc.uah.edu**
+**For inquiries, please email: jenny.wood@uah.edu**
 
 ## pyQuARC as a Service (QuARC)
 
@@ -53,7 +53,7 @@ The `checks.json` file includes a comprehensive list of rules. Each rule is spec
 
 The `rule_mapping.json` file specifies which metadata element(s) each rule applies to. The `rule_mapping.json` also references the `messages.json` file which includes messages that can be displayed when a check passes or fails.
 
-Furthermore, the `rule_mapping.json` file specifies the level of severity associated with a failure. If a check fails, it will be assigned a severity category of “<span style="color:red">error</span>,” “<span style="color:orange">warning</span>,” or <span style="color:blue">info</span>.” These categories correspond to priority categorizations in [ARC’s priority matrix](https://wiki.earthdata.nasa.gov/display/CMR/ARC+Priority+Matrix) and communicate the importance of the failed check, with “error” being the most critical category, “warning” indicating a failure of medium priority, and “info” indicating a minor issue or inconsistency. Default severity values are assigned based on ARC’s metadata quality assessment framework, but can be customized to meet individual needs.
+Furthermore, the `rule_mapping.json` file specifies the level of severity associated with a failure. If a check fails, it will be assigned a severity category of “<span style="color:red">error</span>”, “<span style="color:orange">warning</span>”, or "<span style="color:blue">info</span>.” These categories correspond to priority categorizations in [ARC’s priority matrix](https://wiki.earthdata.nasa.gov/display/CMR/ARC+Priority+Matrix) and communicate the importance of the failed check, with “error” being the most critical category, “warning” indicating a failure of medium priority, and “info” indicating a minor issue or inconsistency. Default severity values are assigned based on ARC’s metadata quality assessment framework, but can be customized to meet individual needs.
 
 ## Customization
 pyQuARC is designed to be customizable. Output messages can be modified using the `messages_override.json` file - any messages added to `messages_override.json` will display over the default messages in the `message.json` file. Similarly, there is a `rule_mapping_override.json` file which can be used to override the default settings for which rules/checks are applied to which metadata elements.  
@@ -317,7 +317,7 @@ Then, if the check function receives input `value1=0` and `value2=1`, the output
 The values 0 and 1 do not amount to a true value
 ```
 
-### Use as a package
+### Using as a package
 *Note:* This program requires `Python 3.8` installed in your system.
 
 **Clone the repo:** [https://github.com/NASA-IMPACT/pyQuARC/](https://github.com/NASA-IMPACT/pyQuARC/)

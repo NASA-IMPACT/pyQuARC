@@ -1,15 +1,15 @@
-import os
+import json
 import re
-from urllib.parse import urlparse
-
 import requests
+
+from urllib.parse import urlparse
 
 from .utils import get_cmr_url, get_headers
 
 
 class Downloader:
     """
-        Downloads data given a concept ID
+    Downloads data given a concept ID
     """
 
     BASE_URL = "{cmr_host}/search/concepts/"
@@ -26,7 +26,9 @@ class Downloader:
         "dif10": "dif10",
     }
 
-    def __init__(self, concept_id, metadata_format, version=None, cmr_host=get_cmr_url()):
+    def __init__(
+        self, concept_id, metadata_format, version=None, cmr_host=get_cmr_url()
+    ):
         """
         Args:
             concept_id (str): The concept id of the metadata to download
@@ -42,7 +44,7 @@ class Downloader:
         self.downloaded_content = None
 
         parsed_url = urlparse(cmr_host)
-        self.cmr_host = f'{parsed_url.scheme}://{parsed_url.netloc}'
+        self.cmr_host = f"{parsed_url.scheme}://{parsed_url.netloc}"
 
     def _valid_concept_id(self):
         """
@@ -64,9 +66,8 @@ class Downloader:
         """
         extension = Downloader.FORMAT_MAP.get(self.metadata_format, "echo10")
 
-        concept_id_type = Downloader._concept_id_type(self.concept_id)
         base_url = Downloader.BASE_URL.format(cmr_host=self.cmr_host)
-        version = f'/{self.version}' if self.version else ''
+        version = f"/{self.version}" if self.version else ""
         constructed_url = f"{base_url}{self.concept_id}{version}.{extension}"
         return constructed_url
 
@@ -91,24 +92,34 @@ class Downloader:
 
         # is the concept id valid? if not, log error
         if not self._valid_concept_id():
-            self.log_error(
-                "invalid_concept_id",
-                {"concept_id": self.concept_id}
-            )
+            self.log_error("invalid_concept_id", {"concept_id": self.concept_id})
             return
 
         # constructs url based on concept id
         url = self._construct_url()
         headers = get_headers()
         response = requests.get(url, headers=headers)
+
+        # if the authorization token is invalid, even public metadata that doesn't require the token is inaccessible
+        # this works around that
+        if response.status_code == 401:  # if token invalid, try without token
+            response = requests.get(url)
+
         # gets the response, makes sure it's 200, puts it in an object variable
         if response.status_code != 200:
+            message = "Something went wrong while downloading the requested metadata. Make sure all the inputs are correct."
+            try:
+                details = json.loads(response.text).get("errors")
+            except (json.decoder.JSONDecodeError, KeyError):
+                details = "N/A"
             self.log_error(
                 "request_failed",
                 {
                     "concept_id": self.concept_id,
                     "url": url,
                     "status_code": response.status_code,
+                    "message": message,
+                    "details": details,
                 },
             )
             return

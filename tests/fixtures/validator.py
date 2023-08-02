@@ -12,20 +12,20 @@ INPUT_OUTPUT = {
         {
             "input": "2016-06-1400:00:00.000",
             "output": False,
-        }
+        },
     ],
     "get_path_value": [
         {
             "input": "Contacts/Contact/ContactPersons/ContactPerson/glabb",
-            "output": set()
+            "output": set(),
         },
         {
             "input": "Contacts/Contact/ContactPersons/ContactPerson/blabla",
-            "output": {"BOSILOVICH"}
+            "output": {"BOSILOVICH"},
         },
         {
             "input": "Contacts/Contact/ContactPersons/ContactPerson/FirstName",
-            "output": {"DANA", "SLESA", "MICHAEL"}
-        }
-    ]
+            "output": {"DANA", "SLESA", "MICHAEL"},
+        },
+    ],
 }

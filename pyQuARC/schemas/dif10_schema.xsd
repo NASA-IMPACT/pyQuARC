@@ -27,7 +27,7 @@ History:
     2015-10-26 : 10.2 - Milestone.
     2015-01-08 : 10.2 a - Patch, fix /DIF/Additional_Attributes/ParameterRangeBegin
     2016-01-27 : 10.2 b - patch, changed date time types on three fields
-    2018-03-30 : 10.3 - Update, multiple changes/additions for UMM-C Compliance. See CMRSCI-2627
+
 -->
 
 <xs:schema  xmlns:xs="http://www.w3.org/2001/XMLSchema"
@@ -35,7 +35,7 @@ History:
             xmlns="http://gcmd.gsfc.nasa.gov/Aboutus/xml/dif/"
             elementFormDefault="qualified">
     
-    <xs:include schemaLocation="UmmCommon_1.3.xsd"/>
+    <xs:include schemaLocation="UmmCommon_1.2.xsd"/>
 
     <!-- *********************************************************** -->
     <!-- #mark DIF -->
@@ -60,6 +60,7 @@ History:
                 <xs:element name="Version_Description"          type="VersionDescriptionType"       minOccurs="0"/>                         <!-- Added from UMM (ECHO) -->
                 <xs:element name="Entry_Title"                  type="EntryTitleType"/>                                                     <!-- None -->
                 <xs:element name="Dataset_Citation"             type="DatasetCitationType"          minOccurs="0"   maxOccurs="unbounded"/> <!-- Renamed -->
+                <xs:element name="Associated_DOIs"              type="AssociatedDOIsType"           minOccurs="0"   maxOccurs="unbounded"/>
                 <xs:element name="Personnel"                    type="PersonnelType"                minOccurs="0"   maxOccurs="unbounded"/> <!-- None -->
                                                                                                                                             <!-- Removed Discipline, is in dif_v9.8.3.xsd -->
                 <xs:element name="Science_Keywords"             type="ScienceKeywordsType"                          maxOccurs="unbounded"/> <!-- Renamed from Keyword in dif_v9.8.3.xsd -->
@@ -69,11 +70,11 @@ History:
                                                                                                                                             <!-- Renamed Source_Name to Platform -->
                 <xs:element name="Platform"                     type="PlatformType"                                 maxOccurs="unbounded"/> <!-- Required in dif_v9.8.3.xsd  -->
                 <xs:element name="Temporal_Coverage"            type="TemporalCoverageType"                         maxOccurs="unbounded"/> <!-- Required now, not required in dif_v9.8.3.xsd -->
-                <xs:element name="Dataset_Progress"             type="DatasetProgressType"/>                                                <!-- Renamed,  Updated to be required for 10.3-->
+                <xs:element name="Dataset_Progress"             type="DatasetProgressType"          minOccurs="0"/>                         <!-- Renamed -->
                 <xs:element name="Spatial_Coverage"             type="SpatialCoverageType"/>                                                <!-- Required now, not required in dif_v9.8.3.xsd ; see CMRQ-618 -->
                 <xs:element name="Location"                     type="LocationType"                 minOccurs="0"   maxOccurs="unbounded"/> <!-- None-->
                 <xs:element name="Data_Resolution"              type="DataResolutionType"           minOccurs="0"   maxOccurs="unbounded"/> <!-- None-->
-                <xs:element name="Project"                      type="ProjectType"                  minOccurs="0"   maxOccurs="unbounded"/> <!-- 10.3 change. Not required UMM-Common 1.10 -->
+                <xs:element name="Project"                      type="ProjectType"                                  maxOccurs="unbounded"/> <!-- Required now, not required in dif_v9.8.3.xsd -->
                 <xs:element name="Quality"                      type="QualityType"                  minOccurs="0"/>                         <!-- None-->
                 <xs:element name="Access_Constraints"           type="AccessConstraintsType"        minOccurs="0"/>                         <!-- None-->
                 <xs:element name="Use_Constraints"              type="UseConstraintsType"           minOccurs="0"/>                         <!-- None-->
@@ -81,10 +82,11 @@ History:
                 <xs:element name="Originating_Center"           type="OriginatingCenterType"        minOccurs="0"/>                         <!-- None-->
                 <xs:element name="Organization"                 type="OrganizationType"                             maxOccurs="unbounded"/> <!-- Renamed from Data_Center in dif_v9.8.3.xsd -->
                 <xs:element name="Distribution"                 type="DistributionType"             minOccurs="0"   maxOccurs="unbounded"/> <!-- None-->
+                <xs:element name="DirectDistributionInformation" type="DirectDistributionInformationType" minOccurs="0" />                  <!-- None-->
                 <xs:element name="Multimedia_Sample"            type="MultimediaSampleType"         minOccurs="0"   maxOccurs="unbounded"/> <!-- None-->
                 <xs:element name="Reference"                    type="ReferenceType"                minOccurs="0"   maxOccurs="unbounded"/> <!-- None-->
                 <xs:element name="Summary"                      type="SummaryType"/>                                                        <!-- None-->
-                <xs:element name="Related_URL"                  type="RelatedURLType"               minOccurs="0"   maxOccurs="unbounded"/> <!-- 10.3 change: Not required UMM-Common 1.4  -->
+                <xs:element name="Related_URL"                  type="RelatedURLType"                               maxOccurs="unbounded"/> <!-- Required now, not required in dif_v9.8.3.xsd -->
                                                                                                                                             <!-- Removed Parent_Metadata , see Metadata_Association -->
                 <xs:element name="Metadata_Association"         type="MetadataAssociationType"      minOccurs="0"   maxOccurs="unbounded"/> <!-- Added from UMM (ECHO) -->
                 <xs:element name="IDN_Node"                     type="IDNNodeType"                  minOccurs="0"   maxOccurs="unbounded"/> <!-- None-->
@@ -99,9 +101,9 @@ History:
                 <xs:element name="Private"                      type="PrivateType"                  minOccurs="0"/>                         <!-- None-->
                 <xs:element name="Additional_Attributes"        type="AdditionalAttributesType"     minOccurs="0"   maxOccurs="unbounded"/> <!-- Added from UMM (ECHO), renamed in C -->
                                                                                                                                             <!-- Moved Data_Provider_Timestamps to Metadata_Dates -->
-                <xs:element name="Product_Level_Id"             type="ProcessingLevelIdType"/>                                              <!-- Added from UMM (ECHO). Updated to be required for 10.3. Consider changing to Processing_Level_ID in a future release. -->
+                <xs:element name="Product_Level_Id"             type="ProcessingLevelIdType"        minOccurs="0"/>                         <!-- Added from UMM (ECHO) to be renamed Processing_Level_Id in 10.3 -->
                 <xs:element name="Collection_Data_Type"         type="CollectionDataTypeEnum"       minOccurs="0"   maxOccurs="unbounded"/> <!-- Added from UMM (ECHO) -->
-                <xs:element name="Product_Flag"                 type="ProductFlagEnum"              minOccurs="0"/>                         <!-- Added from UMM (EMS), made not required in 10.2, to be removed in in 10.3. Used extensively by LARC_ASDC and LARC Providers. Will not remove in DIF-10.3 -->
+                <xs:element name="Product_Flag"                 type="ProductFlagEnum"              minOccurs="0"/>                         <!-- Added from UMM (EMS), made not required in 10.2, to be removed in in 10.3 -->
                 <xs:element name="Extended_Metadata"            type="ExtendedMetadataType"         minOccurs="0"   maxOccurs="unbounded"/> <!-- None-->
             </xs:sequence>
         </xs:complexType>
@@ -253,6 +255,81 @@ History:
         </xs:sequence>
     </xs:complexType>
     
+    <!-- *********************************************************** -->
+    <!-- #mark Associated DOIs -->
+
+    <xs:complexType name="AssociatedDOIsType">
+        <xs:annotation>
+            <xs:appinfo><details><path>/DIF/Associated_DOIs</path></details></xs:appinfo>
+            <xs:appinfo><action>changed</action><src>UMM</src><since>16.1</since></xs:appinfo>
+            <xs:appinfo><action>added</action><src>UMM</src><since>1.16.1</since>
+                        <note>added Associated DOIs</note></xs:appinfo>
+            <xs:documentation>
+                This element stores DOIs that are associated with the collection
+                such as from campaigns and other related sources. Note: The values
+                should start with the directory indicator which in ESDIS' case is 10.
+                If the DOI was registered through ESDIS, the beginning of the string
+                should be 10.5067. The DOI URL is not stored here; it should be
+                stored as a RelatedURL. The DOI organization that is responsible
+                for creating the DOI is described in the Authority element. For
+                ESDIS records the value of https://doi.org/ should be used.
+
+                | ECHO 10        |UMM                 | DIF 10           |
+                | -------------- | ------------------ | ---------------- |
+                | AssociatedDOIs | DOI/AssociatedDOIs | Associated_DOIs  |
+                |        -       |            -       |         -        |
+
+            </xs:documentation>
+          </xs:annotation>
+        <xs:sequence>
+          <xs:element name="DOI">
+            <xs:annotation>
+              <xs:documentation>This element stores the DOI (Digital Object Identifier) that
+                identifies an associated collection. Note: The values should
+    		start with the directory indicator which in ESDIS' case is 10.
+    		If the DOI was registered through ESDIS, the beginning of the
+    		string should be 10.5067. The DOI URL is not stored here; it
+    		should be stored as an OnlineResource.
+    	      </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="1024"/>
+                <xs:minLength value="1"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element name="Title" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>The title of the DOI landing page. The title describes the
+                DOI object to a user, so they don't have to look it up themselves to
+                understand the association.
+              </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="1030"/>
+                <xs:minLength value="1"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element name="Authority" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>The DOI organization that is responsible for creating the
+                associated DOI is described in the Authority element.
+                For ESDIS records the value of https://doi.org/ should be used.
+              </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="80" />
+                <xs:minLength value="1"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
     <!-- *********************************************************** -->
     <!-- #mark Personnel -->
     <xs:complexType name="PersonnelType">
@@ -842,11 +919,7 @@ History:
             <xs:appinfo>
                 <action>renamed</action>
                 <src>GCMD (DIF)</src>
-            </xs:appinfo>
-            <xs:appinfo>
-                <action>Made required</action>
-                <src>CMRSCI-2698</src>
-                <note>Dataset_Progress made required in 10.3</note>
+                
             </xs:appinfo>
             <xs:documentation>
                 Describes the production status of the data set regarding its completeness.
@@ -1385,16 +1458,8 @@ History:
                 <src>UMM (ECHO)</src>
                 <note>
                     Campaign was incorrectly made required in version 10.0.0a.
-                </note>   
+                </note>
             </xs:appinfo>
-            
-            <xs:appinfo>
-                <action>changed</action>
-                <src>ECSE-264,CMRSCI-2699</src>
-                <since>10.3</since>
-                <note>Change cardinality of DIF 10 project/campaign from 0..1 to 0..*</note>
-            </xs:appinfo>
-            
             <xs:documentation>
                 This entity contains attributes describing the scientific
                 endeavor(s) to which the collection is associated. Scientific
@@ -1430,7 +1495,7 @@ History:
         </xs:annotation>
         <xs:sequence>
             <xs:element name="Short_Name"   type="xs:string"/>
-            <xs:element name="Campaign"     type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="Campaign"     type="xs:string"    minOccurs="0"/>
             <xs:element name="Long_Name"    type="xs:string"    minOccurs="0"/>
             <xs:element name="Start_Date"   type="xs:date"      minOccurs="0"/><!-- todo: convert to date-time-enum -->
             <xs:element name="End_Date"     type="xs:date"      minOccurs="0"/><!-- todo: convert to date-time-enum -->
@@ -1465,7 +1530,7 @@ History:
     <!-- *********************************************************** -->
     <!-- #mark Access_Constraints -->
         
-    <xs:complexType name="AccessConstraintsType">
+    <xs:simpleType name="AccessConstraintsType">
         <xs:annotation>
             <xs:appinfo><details></details></xs:appinfo>
             <xs:appinfo><action>none</action></xs:appinfo>            
@@ -1476,85 +1541,38 @@ History:
             | Access_Constraints  |    -    | AccessConstraints | Access_Constraints | No change      |
             
             </xs:documentation>
-            <xs:appinfo><action>changed</action>
-                <src>CMRSCI-2700</src>
-                <since>10.3</since>
-                <note>Added fields to Support Access Control</note>
-                <xs:documentation>
-                    * = New DIF Field 
-                    x = DIF field renamed
-                    
-                    | DIF 10.2                      | DIF-10.3                                               | UMM                                | Notes       |
-                    | ----------------------------- | -------------------------------------------------------|--------------------------------------------------| 
-                    | Access_Constraints (0..1)     | Access_Constraints (0..1)                              | AccessConstraints (0..1)           |             |
-                    | Access_Constraints/Text Block | * Access_Constraints/Description (1)                   | AccessConstraints/Description (1)  |             |
-                    | N/A                           | * Access_Constraints/Access_Control (0..1)             | AccessConstraints/Value (0..1)     |             |          
-                    | N/A                           | * Access_Constraints/Access_Control_Description (0..1) | N/A                                |             |
-                </xs:documentation>
-            </xs:appinfo>
         </xs:annotation>
-        <xs:sequence>
-        <xs:choice>
-            <xs:element name="Description" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>This sub-element is a free-text description that details access constraints of this collection.</xs:documentation>
-                </xs:annotation>
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:minLength value="1" />
-                        <xs:maxLength value="4000" />
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-            <xs:element name="Access_Control" minOccurs="0">
-                <xs:simpleType> 
-                    <xs:restriction base="xs:integer"> 
-                        <xs:minInclusive value="0"/> 
-                        <xs:maxInclusive value="255"/> 
-                    </xs:restriction> 
-                </xs:simpleType>
-            </xs:element>    
-        </xs:choice>
-        <xs:element name="Access_Control_Description" minOccurs="0">
-            <xs:annotation>
-                   <xs:documentation>This sub-element is a free-text description that details the Access Control.</xs:documentation>
-               </xs:annotation>
-               <xs:simpleType>
-                   <xs:restriction base="xs:string">
-                         <xs:minLength value="1" />
-                         <xs:maxLength value="4000" />
-                   </xs:restriction>
-               </xs:simpleType>
-           </xs:element>
-          </xs:sequence>
-    </xs:complexType>
+        
+         <xs:restriction base="xs:string"/>
+    </xs:simpleType>
 
     <!-- *********************************************************** -->
     <!-- #mark Use_Constraints -->
         
-    <xs:complexType name="UseConstraintsType">
+    <xs:complexType name="UseConstraintsType" mixed="true">
         <xs:annotation>
             <xs:appinfo><details></details></xs:appinfo>
             <xs:appinfo><action>changed</action><src>UMM (DIF)</src></xs:appinfo>
             <xs:documentation>
-                
+
                 | ECHO 10 | UMM               | DIF 10             | Notes          |
                 | ------- | ------------------| ------------------ | -------------  |
                 |    -    | UseConstraints    | Use_Constraints    | No change      |
-                
+
             </xs:documentation>
             <xs:appinfo><action>changed</action>
-                <src>CMRSCI-2700, ECSE-171</src>
-                <since>10.3</since>
+                <src>ECSE-942</src>
+                <since>10.2 updated</since>
                 <note>Added fields to Support licensing elements in UMM Models</note>
                 <xs:documentation>
-                    * = New DIF Field 
+                    * = New DIF Field
                     x = DIF field renamed
-                    
-                    | DIF 10.2                   | DIF-10.3                                               | UMM                                                  | Notes       |
+
+                    | DIF 10.2                   | DIF-10.2 updated                                       | UMM                                                  | Notes       |
                     | ---------------------------| -------------------------------------------------------|------------------------------------------------------| ------------|
                     | Use_Constraints (0..1)     | Use_Constraints (0..1)                                 | UseConstraints (0..1)                                |             |
                     | Use_Constraints/Text Block | * Use_Constraints/Description (0..1)                   | UseConstraints/Description (0..1)                    |             |
+                    | N/A                        | * Use_Constraints/Free_And_Open_Data (0..1)            | UseConstraints/FreeAndOpenData (0..1)                |             |
                     | N/A                        | * Use_Constraints/License_Text (0..1)                  | UseConstraints/LicenseText (0..1)                    |             |
                     | N/A                        | * Use_Constraints/License_URL (0..1)                   | UseConstraints/LicenseURL (0..1)                     |             |
                     | N/A                        | * Use_Constraints/License_URL/URL (1..*)               | UseConstraints/LicenseURL/Linkage (1)                |             |
@@ -1578,6 +1596,11 @@ History:
                         <xs:maxLength value="4000" />
                     </xs:restriction>
                 </xs:simpleType>
+            </xs:element>
+            <xs:element name="Free_And_Open_Data" minOccurs="0" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>This sub-element if true, describes to end users and machines that this collection's data is free of charge and open for any use the user sees fit.</xs:documentation>
+                </xs:annotation>
             </xs:element>
             <xs:choice>
                 <xs:element name="License_URL" type="RelatedURLType"/>
@@ -1714,40 +1737,82 @@ History:
               | Fees             | Price             |        -       | Fees         | Not in UMM |
                 
             </xs:documentation>
-            <xs:appinfo><action>changed</action>
-                <src>ECSE-333, CMRSCI-2702, ARC-CMR All Day Meeting 2017-10-26</src>
-               <since>10.3</since>
-                <note>Added fields to Support Average_Granule_Size, Average_Granule_Size_Unit, Total_Collection_Size, Total_Collection_Size_Unit</note>
-               <xs:documentation>
-                   * = New DIF Field 
-                   x = DIF field renamed
-                   
-                    | DIF 10.2                      | DIF-10.3                                   | UMM                                                            | Notes    |
-                    | ----------------------------- | -------------------------------------------|----------------------------------------------------------------|----------|
-                    | Distribution (0..1)           | Distribution (0..1)                        | FileDistributionInformation (0..1)                             |          |
-                    | Distribution_Media (0..1)     | Distribution_Media (0..1)                  | FileDistributionInformation/Media (0..1)                       |          |
-                    | X Distribution_Size (0..1)    | * Average_Granule_Size (0..1)              | FileDistributionInformation/AverageFileSize (0..1)             |          |          
-                    | X Distribution_Size (0..1)    | * Average_Granule_Size_Unit (0..1)         | FileDistributionInformation/AverageFileSizeUnit (0..1)         |          |
-                    | X Distribution_Size (0..1)    | * Total_Collection_Size (0..1)             | FileDistributionInformation/TotalCollectionFileSize (0..1)     |          |                    
-                    | N/A                           | * Distribution_Collection_Size_Unit (0..1) | FileDistributionInformation/TotalCollectionFileSizeUnit (0..1) |          |
-                    | Distribution_Format (0..1)    | Distribution_Format (0..1)                 | FileDistributionInformation/Format (1)                         |          |
-                    | N/A                           | * Distribution_Format_Type (0..1)          | FileDistributionInformation/FormatType (0..1)                  |          |
-                    | Distribution/Fees (0..1)      | Distribution/Fees (0..1)                   | FileDistributionInformation/Fees (0..1)                        |          |
-               </xs:documentation>
-            </xs:appinfo>    
         </xs:annotation>
-        
         <xs:sequence>
             <xs:element name="Distribution_Media"   type="xs:string" minOccurs="0"/>
-      <!--  <xs:element name="Distribution_Size"    type="xs:string" minOccurs="0"/>Deprecated in DIF10.3. Replaced by new Distribution fields. UMM-C Version 1.11 -->
-            <xs:element name="Average_Granule_Size"  type="xs:string" minOccurs="0"/>
-            <xs:element name="Average_Granule_Size_Unit"  type="DistributionSizeUnitTypeEnum" minOccurs="0"/>
-            <xs:element name="Total_Collection_Size"  type="xs:string" minOccurs="0"/>
-            <xs:element name="Total_Collection_Size_Unit"  type="DistributionSizeUnitTypeEnum" minOccurs="0"/>
+            <xs:element name="Distribution_Size"    type="xs:string" minOccurs="0"/>
             <xs:element name="Distribution_Format"  type="xs:string" minOccurs="0"/>
-            <xs:element name="Distribution_Format_Type"  type="DistributionFormatTypeEnum" minOccurs="0"/>
             <xs:element name="Fees"                 type="xs:string" minOccurs="0"/>
         </xs:sequence>
+    </xs:complexType>
+
+    <!-- *********************************************************** -->
+    <!-- #mark DirectDistributionInformation -->
+
+    <xs:complexType name="DirectDistributionInformationType">
+      <xs:annotation>
+          <xs:appinfo><details></details></xs:appinfo>
+          <xs:appinfo><action>none</action></xs:appinfo>
+          <xs:documentation>
+              Field describes region S3 bucket or object prefix, S3 Credential API Endpoint,
+              S3 Credential API Documentation URL involved in distributing the data set through S3.
+
+            | ECHO 10                      | UMM                          | DIF 10                       | Notes      |
+            | ---------------------------- | ---------------------------- | ---------------------------- | ---------- |
+            | DirectDistributionInformation| DirectDistributionInformation| DirectDistributionInformation|            |
+          </xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element name="Region">
+          <xs:simpleType>
+            <xs:annotation>
+              <xs:documentation>Defines the possible values for the Amazon Web Service US Regions
+                                where the data product resides.</xs:documentation>
+            </xs:annotation>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="us-east-1"></xs:enumeration>
+              <xs:enumeration value="us-east-2"></xs:enumeration>
+              <xs:enumeration value="us-west-1"></xs:enumeration>
+              <xs:enumeration value="us-west-2"></xs:enumeration>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="S3BucketAndObjectPrefixName" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>Defines the possible values for the Amazon Web Service US S3 bucket
+                              and/or object prefix names.</xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:minLength value="1" />
+              <xs:maxLength value="1024" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="S3CredentialsAPIEndpoint">
+          <xs:annotation>
+            <xs:documentation>Defines the URL where the credentials are stored.</xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:anyURI">
+              <xs:minLength value="1" />
+              <xs:maxLength value="1024" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element name="S3CredentialsAPIDocumentationURL">
+          <xs:annotation>
+            <xs:documentation>Defines the URL where the credential documentation are stored.
+            </xs:documentation>
+          </xs:annotation>
+          <xs:simpleType>
+            <xs:restriction base="xs:anyURI">
+              <xs:minLength value="1" />
+              <xs:maxLength value="1024" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+      </xs:sequence>
     </xs:complexType>
 
     <!-- *********************************************************** -->
@@ -1865,7 +1930,6 @@ History:
             <xs:appinfo><action>changed</action><src>UMM (ECHO)</src><since>b</since></xs:appinfo>
             <xs:appinfo><action>rename</action><src>UMM (DIF)</src><since>c</since><note>local consistence</note></xs:appinfo>
             <xs:appinfo><action>changed</action><src>DIF (CMRSCI-432)</src><since>10.1</since></xs:appinfo>
-            <xs:appinfo><action>changed</action><src>UMM Version 1.4</src><since>10.3</since><note>changed to optional from required</note></xs:appinfo>
 
             <xs:documentation>
                 * Require at least one, the datacenter (organization) url should be used if no other url can be found
@@ -1880,31 +1944,14 @@ History:
                 | Description      | OnlineAccessURL/URLDescription, OnlineResource/Description | Description    | Description      |     ?    | Can now be formatted            |
                 |         -        | OnlineResource/MimeType, OnlineAccessURL/Mimetype          | MimeType       | Mime_Type        |     ?    | No change                       |
             </xs:documentation>
-            
-            <xs:appinfo><action>changed</action>
-              <src>UMM</src>
-              <since>10.3</since>
-              <note>Added fields for UMM Compliance</note>   
-              <xs:documentation>
-                * = New DIF Field 
-                x = DIF field renamed
-                
-                | DIF 9            | DIF 10                       |UMM                                                  | Notes     |
-                | ---------------- | ---------------------------- |-----------------------------------------------------|-----------| 
-                | N/A              | * Application_Profile (0..1) | UseConstraints/LicenseURL/ApplicationProfile (0..1) |           |          
-                | N/A              | * Function (0..1)            | UseConstraints/Function (0..1)                      |           |            
-              </xs:documentation>
-           </xs:appinfo>    
         </xs:annotation>
-       
+
         <xs:sequence>
             <xs:element name="URL_Content_Type" type="URLContentType"       minOccurs="0"/>
-            <xs:element name="Protocol"         type="xs:string"            minOccurs="0"/> 
-            <xs:element name="Application_Profile" type="xs:string"         minOccurs="0"/><!-- Added new field in 10.3 -->
-            <xs:element name="URL"              type="xs:anyURI"            maxOccurs="unbounded"/><!-- changed from xs:string -->
+            <xs:element name="Protocol"         type="xs:string"            minOccurs="0"/><!-- depreciate from 10.3-->
+            <xs:element name="URL"              type="xs:anyURI"                            maxOccurs="unbounded"/><!-- changed from xs:string -->
             <xs:element name="Title"            type="xs:string"            minOccurs="0"/>
             <xs:element name="Description"      type="DisplayableTextType"  minOccurs="0"/>
-            <xs:element name="Function"         type="xs:string"            minOccurs="0"/><!-- Added new field in 10.3 -->
             <xs:element name="Mime_Type"        type="xs:string"            minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
@@ -2058,7 +2105,6 @@ History:
             <xs:appinfo><action>added</action><src>UMM</src></xs:appinfo>
             <xs:appinfo><action>changed</action><src>UMM</src><since>10.1</since></xs:appinfo>
             <xs:appinfo><action>changed</action><src>CMR</src><since>10.2</since><details>changed to ProcessingLevelIdType</details></xs:appinfo>
-            <xs:appinfo><action>changed</action><src>CMRSCI-2698</src><since>10.3</since><details>changed to required from optional</details></xs:appinfo>
             <xs:documentation>
                 
                 Field renamed after a conversation on:
@@ -2171,7 +2217,6 @@ History:
             <xs:appinfo><action>renamed</action><src>UMM (DIF)</src><since>c</since><note>renamed LastUpdate to Last_Revision_Time</note></xs:appinfo>
             <xs:appinfo><action>added</action><src>UMM (ECHO)</src><since>c</since><note>added Future_Review_Time</note></xs:appinfo>
             <xs:appinfo><action>renamed</action><src>UMM (ECHO)</src><since>c</since><note>renamed DeleteTime to Delete_Time</note></xs:appinfo>
-            <xs:appinfo><action>optional</action><src>CMRSCI-2701</src><since>10.3</since><note>Data Dates - changed from required to optional</note></xs:appinfo>
             <xs:documentation>
             
                 A union of the DIF Metadata event date fields with the three ECHO event time fields.
@@ -2198,8 +2243,8 @@ History:
             <xs:element name="Metadata_Future_Review"   type="DateOrTimeOrEnumType"  minOccurs="0" />
             <xs:element name="Metadata_Delete"          type="DateOrTimeOrEnumType"  minOccurs="0" />
 
-            <xs:element name="Data_Creation"            type="DateOrTimeOrEnumType"  minOccurs="0"/> <!-- Changed to optional in DIF-10.3 -->
-            <xs:element name="Data_Last_Revision"       type="DateOrTimeOrEnumType"  minOccurs="0"/> <!-- Changed to optional in DIF-10.3 -->
+            <xs:element name="Data_Creation"            type="DateOrTimeOrEnumType" />
+            <xs:element name="Data_Last_Revision"       type="DateOrTimeOrEnumType" />
             <xs:element name="Data_Future_Review"       type="DateOrTimeOrEnumType"  minOccurs="0" />
             <xs:element name="Data_Delete"              type="DateOrTimeOrEnumType"  minOccurs="0" />
         </xs:sequence>
