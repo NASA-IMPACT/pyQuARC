@@ -11,6 +11,7 @@
 - Revised GCMD long name presence checks
 - Revised validate_beginning_datetime_against_granules check
 - Removed redundant checks
+- Fix auth issue when downloading metadata files
   
 ## v1.2.2
 
