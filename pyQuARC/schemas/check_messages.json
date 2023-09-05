@@ -107,9 +107,17 @@
         "failure": "`{}` is not a valid GCMD science keyword.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Science+Keywords"
         },
         "remediation": "Provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+    },
+    "science_keywords_presence_check": {
+        "failure": "Science keywords are required.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Science+Keywords"
+        },
+        "remediation": "Recommend providing relevant science keywords from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords?format=csv."
     },
     "location_gcmd_check": {
         "failure": "`{}` is not a valid GCMD location keyword.",

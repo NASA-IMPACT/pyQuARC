@@ -1051,6 +1051,40 @@
         "severity": "error",
         "check_id": "science_keywords_gcmd_check"
     },
+    "science_keywords_presence_check": {
+        "rule_name": "Science keywords presence check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/ScienceKeywords/ScienceKeyword/CategoryKeyword",
+                        "Collection/ScienceKeywords/ScienceKeyword/TopicKeyword",
+                        "Collection/ScienceKeywords/ScienceKeyword/TermKeyword"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Science_Keywords/Category",
+                        "DIF/Science_Keywords/Topic",
+                        "DIF/Science_Keywords/Term"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "ScienceKeywords/Category",
+                        "ScienceKeywords/Topic",
+                        "ScienceKeywords/Term"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "one_item_presence_check"
+    },
     "eosdis_doi_authority_check": {
         "rule_name": "EOSDIS DOI Authority Check",
         "fields_to_apply": {
