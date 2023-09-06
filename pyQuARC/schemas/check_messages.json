@@ -135,6 +135,14 @@
         },
         "remediation": "The DOI Authority should be \"https://doi.org\" for all NASA collections."
     },
+    "doi_authority_presence_check": {
+        "failure": "No DOI authority is provided.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI"
+        },
+        "remediation": "Recommend providing \"https://doi.org\" as the DOI authority."
+    },
     "delete_time_check": {
         "failure": "The delete date `{}` is in the past.",
         "help": {

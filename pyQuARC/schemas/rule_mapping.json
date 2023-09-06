@@ -1124,6 +1124,27 @@
         "severity": "info",
         "check_id": "controlled_keywords_check"
     },
+    "doi_authority_presence_check": {
+        "rule_name": "DOI Authority Presence Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/DOI/Authority"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "DOI/Authority"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "one_item_presence_check"
+    },
     "delete_time_check": {
         "rule_name": "Delete Time Check",
         "fields_to_apply": {
