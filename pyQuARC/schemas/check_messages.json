@@ -40,12 +40,12 @@
         "remediation": "Recommend updating the Revision date so that it comes chronologically after the Insert/Creation time."
     },
     "url_check": {
-        "failure": "Invalid URL/s: `{}`.",
+        "failure": "A URL with a status code other than 200 has been identified: `{}`.",
         "help": {
             "message": "",
             "url": "https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
         },
-        "remediation": "Please provide valid URL/s."
+        "remediation": "This often indicates a broken link. If the URL is broken, recommend revising."
     },
     "shortname_uniqueness": {
         "failure": "The EntryTitle/DataSetId `{}` is identical to the ShortName `{}`.",
