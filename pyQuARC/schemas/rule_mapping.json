@@ -3782,7 +3782,8 @@
                         "Collection/Spatial/HorizontalSpatialDomain/Geometry/Point",
                         "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle",
                         "Collection/Spatial/HorizontalSpatialDomain/Geometry/GPolygon",
-                        "Collection/Spatial/HorizontalSpatialDomain/Geometry/Line"
+                        "Collection/Spatial/HorizontalSpatialDomain/Geometry/Line",
+                        "Collection/Spatial/OrbitParameters"
                     ]
                 }
             ],
@@ -3792,7 +3793,8 @@
                         "Granule/Spatial/HorizontalSpatialDomain/Geometry/Point",
                         "Granule/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle",
                         "Granule/Spatial/HorizontalSpatialDomain/Geometry/GPolygon",
-                        "Granule/Spatial/HorizontalSpatialDomain/Geometry/Line"
+                        "Granule/Spatial/HorizontalSpatialDomain/Geometry/Line",
+                        "Granule/Spatial/HorizontalSpatialDomain/Orbit"
                     ]
                 }
             ],
@@ -3802,7 +3804,8 @@
                         "DIF/Spatial_Coverage/Geometry/Bounding_Rectangle",
                         "DIF/Spatial_Coverage/Geometry/Point",
                         "DIF/Spatial_Coverage/Geometry/GPolygon",
-                        "DIF/Spatial_Coverage/Geometry/Line"
+                        "DIF/Spatial_Coverage/Geometry/Line",
+                        "DIF/Spatial_Coverage/Orbit_Parameters"
                     ]
                 }
             ],
@@ -3812,7 +3815,8 @@
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Point",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Lines",
-                        "SpatialExtent/HorizontalSpatialDomain/Geometry/GPolygons"
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/GPolygons",
+                        "SpatialExtent/OrbitParameters"
                     ]
                 }
             ],
@@ -3822,7 +3826,8 @@
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Points",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Lines",
-                        "SpatialExtent/HorizontalSpatialDomain/Geometry/GPolygons"
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/GPolygons",
+                        "SpatialExtent/HorizontalSpatialDomain/Orbit"
                     ]
                 }
             ]
