@@ -8,20 +8,20 @@
         "remediation": "Recommend providing a FreeAndOpenData value of 'true'."
     },
     "datetime_format_check": {
-        "failure": "`{}` does not adhere to the ISO 1601 standard.",
+        "failure": "`{}` does not adhere to the ISO 8601 standard.",
         "help": {
             "message": "",
             "url": "https://www.w3.org/TR/NOTE-datetime"
         },
-        "remediation": "Ensure that the datetime complies with the ISO 1601 standard."
+        "remediation": "Ensure that the datetime complies with the ISO 8601 standard."
     },
     "date_or_datetime_format_check": {
-        "failure": "`{}` does not adhere to the ISO 1601 standard for date or datetime.",
+        "failure": "`{}` does not adhere to the ISO 8601 standard for date or datetime.",
         "help": {
             "message": "",
             "url": "https://www.w3.org/TR/NOTE-datetime"
         },
-        "remediation": "Ensure that the date or datetime complies with the ISO 1601 standard."
+        "remediation": "Ensure that the date or datetime complies with the ISO 8601 standard."
     },
     "data_update_time_logic_check": {
         "failure": "The Update/Revision date `{}` comes before the provided Insert/Creation time `{}`.",
