@@ -8,20 +8,20 @@
         "remediation": "Recommend providing a FreeAndOpenData value of 'true'."
     },
     "datetime_format_check": {
-        "failure": "`{}` does not adhere to the ISO 1601 standard.",
+        "failure": "`{}` does not adhere to the ISO 8601 standard.",
         "help": {
             "message": "",
             "url": "https://www.w3.org/TR/NOTE-datetime"
         },
-        "remediation": "Ensure that the datetime complies with the ISO 1601 standard."
+        "remediation": "Ensure that the datetime complies with the ISO 8601 standard."
     },
     "date_or_datetime_format_check": {
-        "failure": "`{}` does not adhere to the ISO 1601 standard for date or datetime.",
+        "failure": "`{}` does not adhere to the ISO 8601 standard for date or datetime.",
         "help": {
             "message": "",
             "url": "https://www.w3.org/TR/NOTE-datetime"
         },
-        "remediation": "Ensure that the date or datetime complies with the ISO 1601 standard."
+        "remediation": "Ensure that the date or datetime complies with the ISO 8601 standard."
     },
     "data_update_time_logic_check": {
         "failure": "The Update/Revision date `{}` comes before the provided Insert/Creation time `{}`.",
@@ -40,12 +40,12 @@
         "remediation": "Recommend updating the Revision date so that it comes chronologically after the Insert/Creation time."
     },
     "url_check": {
-        "failure": "Invalid URL/s: `{}`.",
+        "failure": "A URL with a status code other than 200 has been identified: `{}`.",
         "help": {
             "message": "",
             "url": "https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
         },
-        "remediation": "Please provide valid URL/s."
+        "remediation": "This often indicates a broken link. If the URL is broken, recommend revising."
     },
     "shortname_uniqueness": {
         "failure": "The EntryTitle/DataSetId `{}` is identical to the ShortName `{}`.",
@@ -107,9 +107,17 @@
         "failure": "`{}` is not a valid GCMD science keyword.",
         "help": {
             "message": "",
-            "url": ""
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Science+Keywords"
         },
         "remediation": "Provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS."
+    },
+    "science_keywords_presence_check": {
+        "failure": "Science keywords are required.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Science+Keywords"
+        },
+        "remediation": "Recommend providing relevant science keywords from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords?format=csv."
     },
     "location_gcmd_check": {
         "failure": "`{}` is not a valid GCMD location keyword.",
@@ -126,6 +134,14 @@
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI"
         },
         "remediation": "The DOI Authority should be \"https://doi.org\" for all NASA collections."
+    },
+    "doi_authority_presence_check": {
+        "failure": "No DOI authority is provided.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/DOI"
+        },
+        "remediation": "Recommend providing \"https://doi.org\" as the DOI authority."
     },
     "delete_time_check": {
         "failure": "The delete date `{}` is in the past.",

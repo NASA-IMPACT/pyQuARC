@@ -1051,6 +1051,40 @@
         "severity": "error",
         "check_id": "science_keywords_gcmd_check"
     },
+    "science_keywords_presence_check": {
+        "rule_name": "Science keywords presence check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/ScienceKeywords/ScienceKeyword/CategoryKeyword",
+                        "Collection/ScienceKeywords/ScienceKeyword/TopicKeyword",
+                        "Collection/ScienceKeywords/ScienceKeyword/TermKeyword"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Science_Keywords/Category",
+                        "DIF/Science_Keywords/Topic",
+                        "DIF/Science_Keywords/Term"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "ScienceKeywords/Category",
+                        "ScienceKeywords/Topic",
+                        "ScienceKeywords/Term"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "one_item_presence_check"
+    },
     "eosdis_doi_authority_check": {
         "rule_name": "EOSDIS DOI Authority Check",
         "fields_to_apply": {
@@ -1089,6 +1123,27 @@
         ],
         "severity": "info",
         "check_id": "controlled_keywords_check"
+    },
+    "doi_authority_presence_check": {
+        "rule_name": "DOI Authority Presence Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/DOI/Authority"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "DOI/Authority"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "one_item_presence_check"
     },
     "delete_time_check": {
         "rule_name": "Delete Time Check",
@@ -3727,7 +3782,8 @@
                         "Collection/Spatial/HorizontalSpatialDomain/Geometry/Point",
                         "Collection/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle",
                         "Collection/Spatial/HorizontalSpatialDomain/Geometry/GPolygon",
-                        "Collection/Spatial/HorizontalSpatialDomain/Geometry/Line"
+                        "Collection/Spatial/HorizontalSpatialDomain/Geometry/Line",
+                        "Collection/Spatial/OrbitParameters"
                     ]
                 }
             ],
@@ -3737,7 +3793,8 @@
                         "Granule/Spatial/HorizontalSpatialDomain/Geometry/Point",
                         "Granule/Spatial/HorizontalSpatialDomain/Geometry/BoundingRectangle",
                         "Granule/Spatial/HorizontalSpatialDomain/Geometry/GPolygon",
-                        "Granule/Spatial/HorizontalSpatialDomain/Geometry/Line"
+                        "Granule/Spatial/HorizontalSpatialDomain/Geometry/Line",
+                        "Granule/Spatial/HorizontalSpatialDomain/Orbit"
                     ]
                 }
             ],
@@ -3747,7 +3804,8 @@
                         "DIF/Spatial_Coverage/Geometry/Bounding_Rectangle",
                         "DIF/Spatial_Coverage/Geometry/Point",
                         "DIF/Spatial_Coverage/Geometry/GPolygon",
-                        "DIF/Spatial_Coverage/Geometry/Line"
+                        "DIF/Spatial_Coverage/Geometry/Line",
+                        "DIF/Spatial_Coverage/Orbit_Parameters"
                     ]
                 }
             ],
@@ -3757,7 +3815,8 @@
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Point",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Lines",
-                        "SpatialExtent/HorizontalSpatialDomain/Geometry/GPolygons"
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/GPolygons",
+                        "SpatialExtent/OrbitParameters"
                     ]
                 }
             ],
@@ -3767,7 +3826,8 @@
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Points",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/BoundingRectangles",
                         "SpatialExtent/HorizontalSpatialDomain/Geometry/Lines",
-                        "SpatialExtent/HorizontalSpatialDomain/Geometry/GPolygons"
+                        "SpatialExtent/HorizontalSpatialDomain/Geometry/GPolygons",
+                        "SpatialExtent/HorizontalSpatialDomain/Orbit"
                     ]
                 }
             ]
