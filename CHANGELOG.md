@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v1.2.4
+- Updated UMM-C schema file
+- Added science_keywords_presence_check
+- Added DOI authority presence check for echo-c and umm-c
+- Adjusted output message for url_check
+- Added orbit fields to rule_mapping for spatial_extent_fulfillment_check
+- Resolved ISO standard typo in check_messages
+
 ## v1.2.3
 - Updated schema files
 - Added Free And Open Data check
