@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v1.2.5
+- Updated README
+- Updated umm-g schema file
+  
 ## v1.2.4
 - Updated UMM-C schema file
 - Added science_keywords_presence_check
