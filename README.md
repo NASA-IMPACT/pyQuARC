@@ -1,6 +1,8 @@
-# pyQuARC
+# pyQuARC 
 
 ### Open Source Library for Earth Observation Metadata Quality Assessment
+
+[![DOI](https://zenodo.org/badge/153786129.svg)](https://zenodo.org/doi/10.5281/zenodo.10724716)
 
 ## Introduction
 
