@@ -1,9 +1,12 @@
 # CHANGELOG
 
+## v1.2.6
+- Created citation file
+- Updated README
+
 ## v1.2.5
 - Updated README
 - Updated umm-g schema file
-- Created citation file
   
 ## v1.2.4
 - Updated UMM-C schema file
