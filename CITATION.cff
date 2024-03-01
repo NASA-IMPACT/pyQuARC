@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+title: "pyQuARC: Open Source Library for Earth Observation Metadata Quality Assessment"
+message: "If you use this software, please cite it as below"
+type: software
+authors:
+  - given-names: Slesa
+    family-names: Adhikari
+    email: slesa.adhikari@uah.edu
+  - given-names: Iksha
+    family-names: Gurung
+    email: iksha.gurung@uah.edu
+  - given-names: Jenny
+    family-names: Wood
+    email: jenny.wood@uah.edu
+  - given-names: Jeanné
+    family-names: le Roux
+    email: jeanne.leroux@uah.edu
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.10724717
+repository-code: 'https://github.com/NASA-IMPACT/pyQuARC/tree/v1.2.5'
+abstract: >-
+  pyQuARC is designed to read and evaluate Earth observation metadata records hosted within the Common Metadata Repository (CMR), which is a centralized metadata repository for all of NASA's Earth observation data products. The CMR serves as the backend for NASA's Earthdata Search meaning that high-quality metadata helps connect users to the existing data in Earthdata Search. pyQuARC implements the Analysis and Review of CMR (ARC) team's metadata quality assessment framework to provide prioritized recommendations for metadata improvement and optimized search results. pyQuARC makes basic validation checks, pinpoints inconsistencies between dataset-level (i.e. collection) and file-level (i.e. granule) metadata, and identifies opportunities for more descriptive and robust information. It currently supports DIF10 (collection), ECHO10 (collection and granule), UMM-C, and UMM-G metadata standards. As open source software, pyQuARC can be adapted to add customized checks, implement future metadata standards, or support other metadata types.
+keywords:
+  - Metadata
+  - Python
+  - Data Curation
+  - Earth Observation
+  - DAAC
+  - Collection
+  - Granule
+  - GCMD
+  - Quality Assessment
+  - DIF10
+  - ECHO10
+  - UMM-C
+license: Apache-2.0
+version: 1.2.5
+date-released: '2021-08-19'
