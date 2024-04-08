@@ -117,13 +117,13 @@ class DatetimeValidator(BaseValidator):
 
     @staticmethod
     def validate_datetime_against_granules(
-        datetime, collection_shortname, version, sort_key, time_key
+        datetime_string, collection_shortname, version, sort_key, time_key
     ):
         """
         Validates the collection datetime against the datetime of the last granule in the collection
 
         Args:
-            datetime (str): datetime string
+            datetime_string (str): datetime string
             collection_shortname (str): ShortName of the parent collection
             sort_key (str): choice of start_date and end_date
             time_key (str): choice of time_end and time_start
@@ -143,13 +143,39 @@ class DatetimeValidator(BaseValidator):
 
         validity = True
         last_granule_datetime = None
+        date_time = None
 
+        # Define the formats in decreasing order of precision
+        formats = [
+            "%Y-%m-%dT%H:%M:%S.%f",  # Year to microsecond
+            "%Y-%m-%dT%H:%M:%S",  # Year to second
+            "%Y-%m-%dT%H:%M",  # Year to minute
+            "%Y-%m-%dT%H",  # Year to hour
+            "%Y-%m-%d",  # Year to day
+            "%Y-%m",  # Year to month
+            "%Y",  # Year
+        ]
+
+        # Function to determine the precision of a datetime string
+        def get_precision(dt_str):
+            for fmt in formats:
+                try:
+                    date_time = datetime.strptime(dt_str, fmt)
+                    return date_time, fmt
+                except ValueError:
+                    continue
+            return None, False
+
+        # Compare the precision of the two datetime strings
+        # return get_precision(datetime_str1) == get_precision(datetime_str2)
         if len(granules["feed"]["entry"]) > 0:
             last_granule = granules["feed"]["entry"][0]
             last_granule_datetime = last_granule.get(time_key)
-            validity = datetime == last_granule_datetime
+            date_time, date_time_format = get_precision(datetime_string)
+            last_granule_datetime, lgd_format = get_precision(last_granule_datetime)
+            validity = date_time == last_granule_datetime
 
-        return {"valid": validity, "value": (datetime, last_granule_datetime)}
+        return {"valid": validity, "value": (date_time, last_granule_datetime)}
 
     @staticmethod
     @if_arg
