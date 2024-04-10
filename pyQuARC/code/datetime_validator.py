@@ -28,9 +28,6 @@ class DatetimeValidator(BaseValidator):
         """
         REGEX = r"^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?(Z|[+-](?:2[0-3]|[01][0-9]):[0-5][0-9])?$"
         match_iso8601 = re.compile(REGEX).match
-        parts = datetime_string.split('.')
-        if len(parts) == 2:
-            datetime_string = parts[0] + '.' + parts[1][:3] + parts[1][len(parts[1]) - 1]
         try:
             if match_iso8601(datetime_string):
                 if datetime_string.endswith("Z"):
