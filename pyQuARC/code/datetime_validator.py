@@ -28,6 +28,9 @@ class DatetimeValidator(BaseValidator):
         """
         REGEX = r"^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\.[0-9]+)?(Z|[+-](?:2[0-3]|[01][0-9]):[0-5][0-9])?$"
         match_iso8601 = re.compile(REGEX).match
+        parts = datetime_string.split('.')
+        if len(parts) == 2:
+            datetime_string = parts[0] + '.' + parts[1][:3] + parts[1][len(parts[1]) - 1]
         try:
             if match_iso8601(datetime_string):
                 if datetime_string.endswith("Z"):
@@ -161,7 +164,7 @@ class DatetimeValidator(BaseValidator):
             for fmt in formats:
                 try:
                     date_time = datetime.strptime(dt_str, fmt)
-                    return date_time, fmt
+                    return date_time
                 except ValueError:
                     continue
             return None, False
@@ -171,7 +174,7 @@ class DatetimeValidator(BaseValidator):
         if len(granules["feed"]["entry"]) > 0:
             last_granule = granules["feed"]["entry"][0]
             last_granule_datetime = last_granule.get(time_key)
-            date_time, date_time_format = get_precision(datetime_string)
+            date_time = get_precision(datetime_string)
             last_granule_datetime, lgd_format = get_precision(last_granule_datetime)
             validity = date_time == last_granule_datetime
 
