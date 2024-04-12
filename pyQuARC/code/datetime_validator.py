@@ -157,22 +157,21 @@ class DatetimeValidator(BaseValidator):
         ]
 
         # Function to determine the precision of a datetime string
-        def get_precision(dt_str):
+        def get_date_time(dt_str):
             for fmt in formats:
                 try:
                     date_time = datetime.strptime(dt_str, fmt)
                     return date_time
                 except ValueError:
                     continue
-            return None, False
+            return None
 
         # Compare the precision of the two datetime strings
-        # return get_precision(datetime_str1) == get_precision(datetime_str2)
         if len(granules["feed"]["entry"]) > 0:
             last_granule = granules["feed"]["entry"][0]
             last_granule_datetime = last_granule.get(time_key)
-            date_time = get_precision(datetime_string)
-            last_granule_datetime = get_precision(last_granule_datetime)
+            date_time = get_date_time(datetime_string)
+            last_granule_datetime = get_date_time(last_granule_datetime)
             validity = date_time == last_granule_datetime
 
         return {"valid": validity, "value": (date_time, last_granule_datetime)}
