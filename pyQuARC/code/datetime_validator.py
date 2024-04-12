@@ -172,7 +172,7 @@ class DatetimeValidator(BaseValidator):
             last_granule = granules["feed"]["entry"][0]
             last_granule_datetime = last_granule.get(time_key)
             date_time = get_precision(datetime_string)
-            last_granule_datetime, lgd_format = get_precision(last_granule_datetime)
+            last_granule_datetime = get_precision(last_granule_datetime)
             validity = date_time == last_granule_datetime
 
         return {"valid": validity, "value": (date_time, last_granule_datetime)}
