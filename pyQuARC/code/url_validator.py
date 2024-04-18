@@ -1,5 +1,6 @@
 import requests
-import re
+
+from urlextract import URLExtract
 
 from .string_validator import StringValidator
 from .utils import get_headers, if_arg
@@ -14,20 +15,23 @@ class UrlValidator(StringValidator):
         super().__init__()
 
     @staticmethod
-    def _extract_urls_from_texts(text_with_urls):
+    def _extract_http_texts(text_with_urls):
         """
-        Extracts anything that matches web URLs -- http, https, and naked domains like "example.com". Reference: https://gist.github.com/gruber/8891611
+        Extracts anything that starts with 'http' from `text_with_urls`.
+        This is required for catching "wrong" urls that aren't extracted by `URLExtract.find_urls()` because they are not urls at all
+        An example: https://randomurl
         Args:
-            text_with_urls (str, required): The text that contains the URLs
+            text_with_urls (str, required): The text that contains the URLs where the check needs to be performed
+
         Returns:
-            (set) Set of unique urls from `text_with_urls`
-        Examples:
-            >>> text = "Check out this website: https://example.com"
-            >>> _extract_urls_from_texts(text)
-            ['https://example.com']
+            (list) List of texts that start with 'http' from `text_with_urls`
         """
-        regex_pattern = r"""(?i)\b((?:https?:(?:/{1,3}|[a-z0-9%])|[a-z0-9.\-]+[.](?:com|net|org|edu|gov|mil|aero|asia|biz|cat|coop|info|int|jobs|mobi|museum|name|post|pro|tel|travel|xxx|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cs|cu|cv|cx|cy|cz|dd|de|dj|dk|dm|do|dz|ec|ee|eg|eh|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|Ja|sk|sl|sm|sn|so|sr|ss|st|su|sv|sx|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw)/)(?:[^\s()<>{}\[\]]+|\([^\s()]*?\([^\s()]+\)[^\s()]*?\)|\([^\s]+?\))+(?:\([^\s()]*?\([^\s()]+\)[^\s()]*?\)|\([^\s]+?\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’])|(?:(?<!@)[a-z0-9]+(?:[.\-][a-z0-9]+)*[.](?:com|net|org|edu|gov|mil|aero|asia|biz|cat|coop|info|int|jobs|mobi|museum|name|post|pro|tel|travel|xxx|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cs|cu|cv|cx|cy|cz|dd|de|dj|dk|dm|do|dz|ec|ee|eg|eh|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|Ja|sk|sl|sm|sn|so|sr|ss|st|su|sv|sx|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw)\b/?(?!@)))"""
-        return set(re.findall(regex_pattern, text_with_urls))
+        texts = text_with_urls.split(" ")
+        starts_with_http = set()
+        for text in texts:
+            if text.startswith("http"):
+                starts_with_http.add(text)
+        return starts_with_http
 
     @staticmethod
     @if_arg
@@ -49,8 +53,14 @@ class UrlValidator(StringValidator):
 
         validity = True
 
-        urls = UrlValidator._extract_urls_from_texts(text_with_urls)
+        # extract URLs from text
+        extractor = URLExtract(cache_dir="/tmp")
+        urls = extractor.find_urls(text_with_urls)
+        urls.extend(UrlValidator._extract_http_texts(text_with_urls))
 
+        # remove dots at the end (The URLExtract library catches URLs, but sometimes appends a '.' at the end)
+        # remove duplicated urls
+        urls = set(url[:-1] if url.endswith(".") else url for url in urls)
         value = ", ".join(urls)
 
         # check that URL returns a valid response
