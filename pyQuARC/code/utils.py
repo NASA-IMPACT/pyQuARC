@@ -68,6 +68,13 @@ def collection_in_cmr(cmr_prms):
 
 
 def get_date_time(dt_str):
+    """
+    Convert a date and time string to a datetime object using predefined formats.
+    This function attempts to parse a date and time string (`dt_str`) into a `datetime` object.
+    It iterates over a list of possible date and time formats (`DATE_FORMATS`). The first successful
+    parse using one of these formats will result in returning the corresponding `datetime` object.
+    If none of the formats match, the function returns `None`.
+    """
     for fmt in DATE_FORMATS:
         try:
             date_time = datetime.strptime(dt_str, fmt)
