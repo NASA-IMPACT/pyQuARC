@@ -154,6 +154,48 @@ class Checker:
                 return False
         return True
 
+    def _process_field(
+        self,
+        func,
+        check,
+        rule_id,
+        metadata_content,
+        field_dict,
+        result_dict,
+        rule_mapping,
+    ):
+        """
+        Process a single field according to the given rule and update result_dict
+        """
+        external_data = rule_mapping.get("data", [])
+        relation = rule_mapping.get("relation")
+        dependencies = self.scheduler.get_all_dependencies(
+            rule_mapping, check, field_dict
+        )
+        main_field = field_dict["fields"][0]
+        external_data = field_dict.get("data", external_data)
+        result_dict.setdefault(main_field, {})
+
+        if not self._check_dependencies_validity(dependencies, field_dict):
+            return
+
+        result = self.custom_checker.run(
+            func, metadata_content, field_dict, external_data, relation
+        )
+
+        self.tracker.update_data(rule_id, main_field, result["valid"])
+
+        # Avoid adding null valid results for rules that are not applied
+        if result["valid"] is None:
+            return
+
+        result_dict[main_field][rule_id] = result
+
+        message = self.build_message(result, rule_id)
+        if message:
+            result["message"] = message
+            result["remediation"] = self.message(rule_id, "remediation")
+
     def _run_func(self, func, check, rule_id, metadata_content, result_dict):
         """
         Run the check function for `rule_id` and update `result_dict`
@@ -161,36 +203,19 @@ class Checker:
         rule_mapping = self.rules_override.get(rule_id) or self.rule_mapping.get(
             rule_id
         )
-        external_data = rule_mapping.get("data", [])
-        relation = rule_mapping.get("relation")
         list_of_fields_to_apply = rule_mapping.get("fields_to_apply").get(
             self.metadata_format, {}
         )
-
         for field_dict in list_of_fields_to_apply:
-            dependencies = self.scheduler.get_all_dependencies(
-                rule_mapping, check, field_dict
+            self._process_field(
+                func,
+                check,
+                rule_id,
+                metadata_content,
+                field_dict,
+                result_dict,
+                rule_mapping,
             )
-            main_field = field_dict["fields"][0]
-            external_data = field_dict.get("data", external_data)
-            result_dict.setdefault(main_field, {})
-            if not self._check_dependencies_validity(dependencies, field_dict):
-                continue
-            result = self.custom_checker.run(
-                func, metadata_content, field_dict, external_data, relation
-            )
-
-            self.tracker.update_data(rule_id, main_field, result["valid"])
-
-            # this is to avoid "valid" = null in the result, for rules that are not applied
-            if result["valid"] is None:
-                continue
-            result_dict[main_field][rule_id] = result
-
-            message = self.build_message(result, rule_id)
-            if message:
-                result["message"] = message
-                result["remediation"] = self.message(rule_id, "remediation")
 
     def perform_custom_checks(self, metadata_content):
         """
