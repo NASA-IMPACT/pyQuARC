@@ -1,10 +1,11 @@
 import os
 import requests
 import urllib
+from datetime import datetime
 
 from functools import wraps
 
-from .constants import CMR_URL
+from .constants import CMR_URL, DATE_FORMATS
 
 
 def if_arg(func):
@@ -64,3 +65,13 @@ def cmr_request(cmr_prms):
 
 def collection_in_cmr(cmr_prms):
     return cmr_request(cmr_prms).get("hits", 0) > 0
+
+
+def get_date_time(dt_str):
+    for fmt in DATE_FORMATS:
+        try:
+            date_time = datetime.strptime(dt_str, fmt)
+            return date_time
+        except ValueError:
+            continue
+    return None

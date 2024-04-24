@@ -4,7 +4,7 @@ import re
 from datetime import datetime
 
 from .base_validator import BaseValidator
-from .utils import cmr_request, if_arg, set_cmr_prms
+from .utils import cmr_request, if_arg, set_cmr_prms, get_date_time
 
 
 class DatetimeValidator(BaseValidator):
@@ -144,27 +144,6 @@ class DatetimeValidator(BaseValidator):
         validity = True
         last_granule_datetime = None
         date_time = None
-
-        # Define the formats in decreasing order of precision
-        formats = [
-            "%Y-%m-%dT%H:%M:%S.%f",  # Year to microsecond
-            "%Y-%m-%dT%H:%M:%S",  # Year to second
-            "%Y-%m-%dT%H:%M",  # Year to minute
-            "%Y-%m-%dT%H",  # Year to hour
-            "%Y-%m-%d",  # Year to day
-            "%Y-%m",  # Year to month
-            "%Y",  # Year
-        ]
-
-        # Function to determine the precision of a datetime string
-        def get_date_time(dt_str):
-            for fmt in formats:
-                try:
-                    date_time = datetime.strptime(dt_str, fmt)
-                    return date_time
-                except ValueError:
-                    continue
-            return None
 
         # Compare the precision of the two datetime strings
         if len(granules["feed"]["entry"]) > 0:
