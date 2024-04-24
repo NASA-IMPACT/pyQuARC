@@ -1,6 +1,7 @@
 import json
 
 from xmltodict import parse
+from concurrent.futures import ThreadPoolExecutor
 
 from .custom_checker import CustomChecker
 from .schema_validator import SchemaValidator
@@ -206,16 +207,18 @@ class Checker:
         list_of_fields_to_apply = rule_mapping.get("fields_to_apply").get(
             self.metadata_format, {}
         )
-        for field_dict in list_of_fields_to_apply:
-            self._process_field(
-                func,
-                check,
-                rule_id,
-                metadata_content,
-                field_dict,
-                result_dict,
-                rule_mapping,
-            )
+        with ThreadPoolExecutor() as executor:
+            for field_dict in list_of_fields_to_apply:
+                executor.submit(
+                    self._process_field,
+                    func,
+                    check,
+                    rule_id,
+                    metadata_content,
+                    field_dict,
+                    result_dict,
+                    rule_mapping,
+                )
 
     def perform_custom_checks(self, metadata_content):
         """
