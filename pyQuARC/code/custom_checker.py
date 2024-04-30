@@ -1,5 +1,5 @@
 from urllib.parse import urlparse
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
 class CustomChecker:
@@ -181,16 +181,19 @@ class CustomChecker:
                 future_results.append(future)
 
             # Retrieve results from futures
-            for future in future_results:
-                func_return = future.result()
-                valid = func_return["valid"]  # can be True, False or None
-                if valid is not None:
-                    if valid:
-                        validity = validity or (validity is None)
-                    else:
-                        if "value" in func_return:
-                            invalid_values.append(func_return["value"])
-                        validity = False
+            for future in as_completed(future_results):
+                try:
+                    func_return = future.result()
+                    valid = func_return["valid"]  # can be True, False or None
+                    if valid is not None:
+                        if valid:
+                            validity = validity or (validity is None)
+                        else:
+                            if "value" in func_return:
+                                invalid_values.append(func_return["value"])
+                            validity = False
+                except Exception as e:
+                    raise e
         result["valid"] = validity
         result["value"] = invalid_values
         return result
