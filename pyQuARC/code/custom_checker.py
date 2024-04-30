@@ -105,9 +105,7 @@ class CustomChecker:
         return container
 
     @staticmethod
-    def _process_argument(
-        arg, func, relation, external_data, external_relation, invalid_values, validity
-    ):
+    def _process_argument(arg, func, relation, external_data, external_relation):
         """
         Process the argument by calling the provided function with the given arguments.
 
@@ -117,11 +115,9 @@ class CustomChecker:
             relation: The relation argument.
             external_data: The external data argument.
             external_relation: The external relation argument.
-            invalid_values: A list to store invalid values.
-            validity: The validity flag.
 
         Returns:
-            A tuple containing the updated invalid_values list and the updated validity flag.
+            A dict containing the updated invalid_values list and the updated validity flag.
         """
 
         function_args = [*arg]
@@ -133,15 +129,7 @@ class CustomChecker:
             ]
         )
         func_return = func(*function_args)
-        valid = func_return["valid"]  # can be True, False or None
-        if valid is not None:
-            if valid:
-                validity = validity or (validity is None)
-            else:
-                if "value" in func_return:
-                    invalid_values.append(func_return["value"])
-                validity = False
-        return invalid_values, validity
+        return func_return
 
     def run(
         self, func, content_to_validate, field_dict, external_data, external_relation
@@ -189,15 +177,20 @@ class CustomChecker:
                     relation,
                     external_data,
                     external_relation,
-                    invalid_values,
-                    validity,
                 )
                 future_results.append(future)
 
             # Retrieve results from futures
             for future in future_results:
-                invalid_values, validity = future.result()
-
+                func_return = future.result()
+                valid = func_return["valid"]  # can be True, False or None
+                if valid is not None:
+                    if valid:
+                        validity = validity or (validity is None)
+                    else:
+                        if "value" in func_return:
+                            invalid_values.append(func_return["value"])
+                        validity = False
         result["valid"] = validity
         result["value"] = invalid_values
         return result
