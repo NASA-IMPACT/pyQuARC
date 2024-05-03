@@ -207,7 +207,7 @@ class Checker:
         list_of_fields_to_apply = rule_mapping.get("fields_to_apply").get(
             self.metadata_format, {}
         )
-        with ThreadPoolExecutor() as executor:
+        with ThreadPoolExecutor(max_workers=5) as executor:
             futures = []
             for field_dict in list_of_fields_to_apply:
                 future = executor.submit(
