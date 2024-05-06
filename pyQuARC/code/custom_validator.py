@@ -122,21 +122,17 @@ class CustomValidator(BaseValidator):
     @staticmethod
     def standard_product_check(*field_values):
         """
-        Check if any of the provided field values contains the 'StandardProduct' substring.
-
-        This function iterates over a tuple of field values. It checks each field value to determine if it contains
-        the substring 'StandardProduct'. The check stops at the first occurrence of such a substring, returning
-        a dictionary indicating the validity of the check and the value where 'StandardProduct' was found.
+        This function iterates over a tuple of field values. It checks each field value to determine
+        if it contains the field_value True or False.
         """
         validity = False
         value = None
 
         for field_value in field_values:
-            if field_value:
-                if 'StandardProduct' in field_value:
-                    value = field_value
-                    validity = True
-                    break
+            if field_value in [True, False]:
+                value = field_value
+                validity = True
+                break
         return {"valid": validity, "value": value}
 
     @staticmethod
