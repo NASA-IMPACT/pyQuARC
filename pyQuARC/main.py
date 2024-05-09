@@ -188,8 +188,6 @@ class ARC:
 
     @staticmethod
     def _error_message(messages):
-        if messages is None:
-            return ""
         severities = ["error", "warning", "info"]
         result_string = ""
         for message in messages:
