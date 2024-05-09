@@ -214,11 +214,6 @@
         "check_function": "dif_standard_product_check",
         "available": true
     },
-    "standard_product_check": {
-        "data_type": "custom",
-        "check_function": "standard_product_check",
-        "available": true
-    },
     "doi_link_update": {
         "data_type": "url",
         "check_function": "doi_link_update",

@@ -2711,7 +2711,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "standard_product_check"
+        "check_id": "one_item_presence_check"
     },
     "dif_standard_product_check": {
         "rule_name": "Standard Product Check",
