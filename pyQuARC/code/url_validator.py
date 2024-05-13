@@ -115,4 +115,4 @@ class UrlValidator(StringValidator):
         if value in bad_urls:
             validity = False
 
-        return {"valid": validity, "Value": value}
+        return {"valid": validity, "value": value}
