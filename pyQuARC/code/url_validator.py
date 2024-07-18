@@ -1,3 +1,4 @@
+import os
 import requests
 
 from urlextract import URLExtract
@@ -54,7 +55,7 @@ class UrlValidator(StringValidator):
         validity = True
 
         # extract URLs from text
-        extractor = URLExtract()
+        extractor = URLExtract(cache_dir=os.environ.get("CACHE_DIR"))
         urls = extractor.find_urls(text_with_urls)
         urls.extend(UrlValidator._extract_http_texts(text_with_urls))
 
@@ -115,4 +116,4 @@ class UrlValidator(StringValidator):
         if value in bad_urls:
             validity = False
 
-        return {"valid": validity, "Value": value}
+        return {"valid": validity, "value": value}

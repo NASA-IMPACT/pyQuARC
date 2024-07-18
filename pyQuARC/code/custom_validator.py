@@ -92,13 +92,13 @@ class CustomValidator(BaseValidator):
         value = None
 
         for field_value in field_values:
-            if field_value:
+            if field_value is not None:
                 value = field_value
                 validity = True
                 break
 
         return {"valid": validity, "value": value}
-        
+
     @staticmethod
     def dif_standard_product_check(*field_values):
         """
@@ -130,7 +130,7 @@ class CustomValidator(BaseValidator):
             description_field (string): string describing the URL
         """
         validity = True
-        value  = description_field
+        value = description_field
 
         if not license_text and not url_field:
             validity = False
