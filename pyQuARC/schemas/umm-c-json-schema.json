@@ -1069,7 +1069,7 @@
       "description": "This class defines the horizontal spatial extents coordinate system and the data product's horizontal data resolution. The horizontal data resolution is defined as the smallest horizontal distance between successive elements of data in a dataset. This is synonymous with terms such as ground sample distance, sample spacing and pixel size. It is to be noted that the horizontal data resolution could be different in the two horizontal dimensions. Also, it is different from the spatial resolution of an instrument, which is the minimum distance between points that an instrument can see as distinct.",
       "oneOf": [{
         "type": "object",
-        "title": "Description of the Resolution",
+        "title": "Geodetic Model",
         "additionalProperties": false,
         "properties": {
           "Description": {
@@ -1084,7 +1084,7 @@
         "required": ["GeodeticModel"]
       }, {
         "type": "object",
-        "title": "Horizontal Data Resolution Information",
+        "title": "Horizontal Data Resolution",
         "additionalProperties": false,
         "properties": {
           "Description": {
@@ -1103,7 +1103,7 @@
         "required": ["HorizontalDataResolution"]
       }, {
         "type": "object",
-        "title": "Local Coordinate System Information",
+        "title": "Local Coordinate System",
         "additionalProperties": false,
         "properties": {
           "Description": {
@@ -1496,7 +1496,8 @@
           },
           "AverageFileSize": {
             "description": "An approximate average size of the archivable item. This gives an end user an idea of the magnitude for each archivable file if more than 1 exists.",
-            "type": "number"
+            "type": "number",
+            "minimum": 0
           },
           "AverageFileSizeUnit": {
             "description": "Unit of measure for the average file size.",
@@ -1504,7 +1505,8 @@
           },
           "TotalCollectionFileSize": {
             "description": "An approximate total size of all of the archivable items within a collection. This gives an end user an idea of the magnitude for all of archivable files combined.",
-            "type": "number"
+            "type": "number",
+            "minimum": 0
           },
           "TotalCollectionFileSizeUnit": {
             "description": "Unit of measure for the total collection file size.",
@@ -1543,7 +1545,8 @@
           },
           "AverageFileSize": {
             "description": "An approximate average size of the archivable item. This gives an end user an idea of the magnitude for each archivable file if more than 1 exists.",
-            "type": "number"
+            "type": "number",
+            "minimum": 0
           },
           "AverageFileSizeUnit": {
             "description": "Unit of measure for the average file size.",
@@ -1599,7 +1602,8 @@
           },
           "AverageFileSize": {
             "description": "An approximate average size of the distributable item. This gives an end user an idea of the magnitude for each distributable file if more than 1 exists.",
-            "type": "number"
+            "type": "number",
+            "minimum": 0
           },
           "AverageFileSizeUnit": {
             "description": "Unit of measure for the average file size.",
@@ -1607,7 +1611,8 @@
           },
           "TotalCollectionFileSize": {
             "description": "An approximate total size of all of the distributable items within a collection. This gives an end user an idea of the magnitude for all of distributable files combined.",
-            "type": "number"
+            "type": "number",
+            "minimum": 0
           },
           "TotalCollectionFileSizeUnit": {
             "description": "Unit of measure for the total collection file size.",
@@ -1660,7 +1665,8 @@
           },
           "AverageFileSize": {
             "description": "An approximate average size of the distributable item. This gives an end user an idea of the magnitude for each distributable file if more than 1 exists.",
-            "type": "number"
+            "type": "number",
+            "minimum": 0
           },
           "AverageFileSizeUnit": {
             "description": "Unit of measure for the average file size.",
@@ -1899,7 +1905,7 @@
         "URL": {
           "description": "This element represents the URL where the schema lives. The schema can be downloaded.",
           "type": "string",
-          "enum": ["https://cdn.earthdata.nasa.gov/umm/collection/v1.18.0"]
+          "enum": ["https://cdn.earthdata.nasa.gov/umm/collection/v1.18.1"]
         },
         "Name": {
           "description": "This element represents the name of the schema.",
@@ -1909,7 +1915,7 @@
         "Version": {
           "description": "This element represents the version of the schema.",
           "type": "string",
-          "enum": ["1.18.0"]
+          "enum": ["1.18.1"]
         }
       },
       "required": ["URL", "Name", "Version"]
