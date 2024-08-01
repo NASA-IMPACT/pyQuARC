@@ -45,7 +45,11 @@ class CustomChecker:
             or isinstance(root_content, int)
             or isinstance(root_content, float)
         ):
-            container.append(root_content)
+            # if there is at least one element in new_path, the value can not be found
+            if new_path:
+                container.append(None)
+            else:
+                container.append(root_content)
             return
         elif isinstance(root_content, list):
             if not new_path:
