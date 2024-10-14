@@ -4161,7 +4161,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "availability_check"
+        "check_id": "one_item_presence_check"
     },
     "characteristic_name_uniqueness_check": {
         "rule_name": "Characteristic Name Uniqueness Check",
@@ -4796,7 +4796,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "availability_check"
+        "check_id": "one_item_presence_check"
     },
     "get_data_url_check": {
         "rule_name": "GET DATA URL check",
