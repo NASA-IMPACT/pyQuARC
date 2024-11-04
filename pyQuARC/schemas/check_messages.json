@@ -1070,5 +1070,13 @@
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Extent"
         },
         "remediation": "Recommend providing the horizontal pixel resolution, if applicable. If provided, this information will be indexed in the EDSC 'Horizontal Data Resolution' search facet which allows users to search by spatial resolution."
+    },
+    "opendap_link_check": {
+    "failure": "No OPeNDAP URL is provided in the granule fields. An OPeNDAP link is recommended for data access.",
+    "help": {
+        "message": "OPeNDAP links allow for direct data access through the OPeNDAP protocol.",
+        "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
+    },
+    "remediation": "Recommend providing an OPeNDAP in the granule's Online Resources or Related URLs fields for enhanced data accessibility."
     }
 }

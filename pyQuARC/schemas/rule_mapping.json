@@ -3745,6 +3745,34 @@
         "severity": "error",
         "check_id": "string_compare"
     },
+    "opendap_link_check": {
+        "rule_name": "OPeNDAP Link Presence Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/URL"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "RelatedURLs/URL"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            {
+                "type": "OPENDAP DATA",
+                "url_keyword": "opendap"
+            }
+        ],
+        "relation": "contains",
+        "check_id": "opendap_link_check",
+        "severity": "warning"
+    },
     "location_keyword_presence_check": {
         "rule_name": "Location Keyword Presence Check",
         "fields_to_apply": {
