@@ -281,7 +281,7 @@ class CustomValidator(BaseValidator):
     @staticmethod
     def opendap_link_check(related_urls, key, extra=None):
         """
-        Checks if the related_urls contains an OPeNDAP link with the type "OPENDAP DATA" or URL containing "opendap".
+        Checks if the related_urls contains an OPeNDAP link by looking for "opendap" in the URL or matching Type/Subtype fields.
 
         Args:
             related_urls (list): The related_urls field of the object, expected to be a list of URL objects.
@@ -296,9 +296,9 @@ class CustomValidator(BaseValidator):
         if not related_urls:
             related_urls = []
 
-        # If related_urls is not a list, assume it's a single URL string and wrap it in a list of one dictionary
+        # If related_urls is a string, wrap it in a list as a single URL dictionary without setting Type
         elif isinstance(related_urls, str):
-            related_urls = [{"URL": related_urls, "Type": key.get("type", "OPENDAP DATA")}]
+            related_urls = [{"URL": related_urls}]
 
         # Default return object if no valid OPeNDAP link is found
         return_obj = {
@@ -306,9 +306,9 @@ class CustomValidator(BaseValidator):
             "value": "None"
         }
 
-        # Extract type and keyword from key for clearer conditions
-        type_to_check = key.get("type", "OPENDAP DATA").upper()
+        # Extract URL keyword and type to check from key
         url_keyword = key.get("url_keyword", "opendap").lower()
+        type_to_check = key.get("type", "OPENDAP DATA").upper()
 
         # Process each URL object in the list
         for url_obj in related_urls:
@@ -316,12 +316,13 @@ class CustomValidator(BaseValidator):
             if not isinstance(url_obj, dict):
                 continue
 
-            # Check for "opendap" in the URL
+            # Retrieve URL, Type, and Subtype fields from each URL object
             url_value = url_obj.get("URL", "").lower()
             type_field = url_obj.get("Type", "").upper()
+            subtype_field = url_obj.get("Subtype", "").upper()
 
-            # Check if the URL contains "opendap" or if the Type matches "OPENDAP DATA"
-            if url_keyword in url_value or type_field == type_to_check:
+            # Check if any of the conditions is met: URL contains "opendap", Type is "OPENDAP DATA", or Subtype contains "OPENDAP DATA"
+            if url_keyword in url_value or type_to_check == type_field or type_to_check in subtype_field:
                 return_obj["valid"] = True
                 return_obj["value"] = url_obj.get("URL", "None")
                 break

@@ -3751,14 +3751,14 @@
             "echo-g": [
                 {
                     "fields": [
-                        "Granule/OnlineResources/OnlineResource/URL"
+                        "Granule/OnlineResources/OnlineResource"
                     ]
                 }
             ],
             "umm-g": [
                 {
                     "fields": [
-                        "RelatedURLs/URL"
+                        "RelatedUrls"
                     ]
                 }
             ]
