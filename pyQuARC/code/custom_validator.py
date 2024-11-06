@@ -2,6 +2,7 @@ from .base_validator import BaseValidator
 from .string_validator import StringValidator
 
 from .utils import cmr_request, if_arg, set_cmr_prms
+from collections.abc import Mapping
 
 
 class CustomValidator(BaseValidator):
@@ -281,10 +282,13 @@ class CustomValidator(BaseValidator):
     @staticmethod
     def opendap_link_check(related_urls, key, extra=None):
         """
-        Checks if the related_urls contains an OPeNDAP link by looking for "opendap" in the URL or matching Type/Subtype fields.
+        Checks if the related_urls contains an OPeNDAP link by looking for "opendap" in the URL
+        or matching Type/Subtype fields. This function works with both OrderedDict and regular dict,
+        as well as a list of dictionaries.
 
         Args:
-            related_urls (list): The related_urls field of the object, expected to be a list of URL objects.
+            related_urls (list or Mapping): The related_urls field of the object, expected to be a list of URL objects
+                                            or a single OrderedDict.
             key (dict): A dictionary with "type" and "url_keyword" keys for the checks.
             extra (optional): An additional argument to match the expected function call signature. This argument is ignored.
 
@@ -296,15 +300,12 @@ class CustomValidator(BaseValidator):
         if not related_urls:
             related_urls = []
 
-        # If related_urls is a string, wrap it in a list as a single URL dictionary without setting Type
-        elif isinstance(related_urls, str):
-            related_urls = [{"URL": related_urls}]
+        # If related_urls is a single Mapping (like OrderedDict), wrap it in a list
+        elif isinstance(related_urls, Mapping):
+            related_urls = [related_urls]
 
         # Default return object if no valid OPeNDAP link is found
-        return_obj = {
-            "valid": False,
-            "value": "None"
-        }
+        return_obj = {"valid": False, "value": "None"}
 
         # Extract URL keyword and type to check from key
         url_keyword = key.get("url_keyword", "opendap").lower()
@@ -312,19 +313,28 @@ class CustomValidator(BaseValidator):
 
         # Process each URL object in the list
         for url_obj in related_urls:
-            # Ensure that url_obj is a dictionary before accessing its fields
-            if not isinstance(url_obj, dict):
+            # Ensure that url_obj is a dictionary-like object before processing
+            if not isinstance(url_obj, Mapping):
                 continue
 
-            # Retrieve URL, Type, and Subtype fields from each URL object
+            # Retrieve the URL field
             url_value = url_obj.get("URL", "").lower()
+
+            # Check if the URL contains "opendap"
+            if "opendap" in url_value:
+                return_obj["valid"] = True
+                return_obj["value"] = url_value
+                break
+
+            # Retrieve and normalize Type and Subtype fields
             type_field = url_obj.get("Type", "").upper()
             subtype_field = url_obj.get("Subtype", "").upper()
 
-            # Check if any of the conditions is met: URL contains "opendap", Type is "OPENDAP DATA", or Subtype contains "OPENDAP DATA"
-            if url_keyword in url_value or type_to_check == type_field or type_to_check in subtype_field:
+            # Check if the Type or Subtype contains "OPENDAP DATA"
+            if type_to_check in type_field or type_to_check in subtype_field:
                 return_obj["valid"] = True
-                return_obj["value"] = url_obj.get("URL", "None")
+                return_obj["value"] = url_value if url_value else "None"
                 break
 
         return return_obj
+
