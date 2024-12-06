@@ -87,3 +87,9 @@ DATE_FORMATS = [
     "%Y-%m",  # Year to month
     "%Y",  # Year
 ]
+
+MAPPING_CMR = {
+    "umm-c": "vnd.nasa.cmr.umm+json",
+    "echo-c": "echo10+xml",
+    "dif10": "dif10+xml"
+}

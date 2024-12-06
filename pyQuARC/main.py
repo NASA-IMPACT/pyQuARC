@@ -8,7 +8,7 @@ from tqdm import tqdm
 
 if __name__ == "__main__":
     from code.checker import Checker
-    from code.constants import COLOR, ECHO10_C, SUPPORTED_FORMATS
+    from code.constants import COLOR, ECHO10_C, SUPPORTED_FORMATS, MAPPING_CMR
     from code.downloader import Downloader
     from code.utils import get_cmr_url, is_valid_cmr_url
     from code.utils import get_headers
@@ -134,6 +134,38 @@ class ARC:
 
         return concept_ids
 
+    def _validate_with_cmr(self, metadata_content):
+        """
+        Validates metadata using the CMR API.
+
+        Args:
+            metadata_content (str): The metadata content to validate.
+
+        Returns:
+            dict: Results of the CMR API validation.
+        """
+        provider_id = self.concept_ids[0].split("-")[1]
+        cmr_url = f"{self.cmr_host}/ingest/providers/{provider_id}/validate/collection/<native-id>"
+        headers = {
+            "Content-Type": f"application/{MAPPING_CMR[self.metadata_format]}",
+            "Accept": "application/json",
+        }
+        response = requests.post(cmr_url, data=metadata_content, headers=headers)
+        return response
+
+    def add_cmr_response(self, response):
+        # as it returns status code 200 with a list of any warnings on successful validation
+        # refer here for details: https://github.com/NASA-IMPACT/pyQuARC/issues/269
+        if response.status_code == 200:
+            cmr_warnings = response.json()['warnings']
+            self.errors[-1]["cmr_warnings"] = cmr_warnings
+
+        # in the issue, 400 status code was mentioned but i think 422 refers to invalid data
+        # refer here for details: https://github.com/NASA-IMPACT/pyQuARC/issues/269
+        if response.status_code == 422:
+            cmr_errors = response.json()['errors']
+            self.errors[-1]["cmr_errors"] = cmr_errors
+
     def validate(self):
         """
         Validates the metadata contents of all the `concept_ids` and returns the errors
@@ -163,6 +195,7 @@ class ARC:
                     )
                     continue
                 content = content.encode()
+                response = self._validate_with_cmr(content)
                 validation_errors, pyquarc_errors = checker.run(content)
                 self.errors.append(
                     {
@@ -171,11 +204,12 @@ class ARC:
                         "pyquarc_errors": pyquarc_errors,
                     }
                 )
+                self.add_cmr_response(response)
 
         elif self.file_path:
             with open(os.path.abspath(self.file_path), "r") as myfile:
                 content = myfile.read().encode()
-
+                response = self._validate_with_cmr(content)
                 validation_errors, pyquarc_errors = checker.run(content)
                 self.errors.append(
                     {
@@ -184,6 +218,7 @@ class ARC:
                         "pyquarc_errors": pyquarc_errors,
                     }
                 )
+                self.add_cmr_response(response)
         return self.errors
 
     @staticmethod
