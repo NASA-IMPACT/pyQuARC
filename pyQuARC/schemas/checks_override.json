@@ -1,1 +1,302 @@
-{}
+{
+    "datetime_compare": {
+        "data_type": "datetime",
+        "check_function": "compare",
+        "dependencies": [
+            [
+                "datetime_format_check"
+            ]
+        ],
+        "available": true
+    },
+    "datetime_format_check": {
+        "data_type": "datetime",
+        "check_function": "iso_format_check",
+        "available": true
+    },
+    "date_or_datetime_format_check": {
+        "data_type": "datetime",
+        "check_function": "date_or_datetime_format_check",
+        "available": true
+    },
+    "url_check": {
+        "data_type": "url",
+        "check_function": "health_and_status_check",
+        "available": true
+    },
+    "string_compare": {
+        "data_type": "string",
+        "check_function": "compare",
+        "available": true
+    },
+    "length_check": {
+        "data_type": "string",
+        "check_function": "length_check",
+        "available": true
+    },
+    "doi_validity_check": {
+        "data_type": "url",
+        "check_function": "doi_check",
+        "available": true
+    },
+    "controlled_keywords_check": {
+        "data_type": "string",
+        "check_function": "controlled_keywords_check",
+        "available": true
+    },
+    "science_keywords_gcmd_check": {
+        "data_type": "string",
+        "check_function": "science_keywords_gcmd_check",
+        "available": true
+    },
+    "ends_at_present_flag_logic_check": {
+        "data_type": "custom",
+        "check_function": "ends_at_present_flag_logic_check",
+        "available": true
+    },
+    "ends_at_present_flag_presence_check": {
+        "data_type": "custom",
+        "check_function": "ends_at_present_flag_presence_check",
+        "available": true
+    },
+    "availability_check": {
+        "data_type": "custom",
+        "check_function": "availability_check",
+        "available": true
+    },
+    "mime_type_check": {
+        "data_type": "custom",
+        "check_function": "mime_type_check",
+        "available": true
+    },
+    "organization_short_name_gcmd_check": {
+        "data_type": "string",
+        "check_function": "organization_short_name_gcmd_check",
+        "available": true
+    },
+    "organization_long_name_gcmd_check": {
+        "data_type": "string",
+        "check_function": "organization_long_name_gcmd_check",
+        "available": true
+    },
+    "organization_short_long_name_consistency_check": {
+        "data_type": "string",
+        "check_function": "organization_short_long_name_consistency_check",
+        "available": true
+    },
+    "instrument_short_long_name_consistency_check": {
+        "data_type": "string",
+        "check_function": "instrument_short_long_name_consistency_check",
+        "available": true
+    },
+    "instrument_short_name_gcmd_check": {
+        "data_type": "string",
+        "check_function": "instrument_short_name_gcmd_check",
+        "available": true
+    },
+    "instrument_long_name_gcmd_check": {
+        "data_type": "string",
+        "check_function": "instrument_long_name_gcmd_check",
+        "available": true
+    },
+    "instrument_long_name_presence_check": {
+        "data_type": "string",
+        "check_function": "instrument_long_name_presence_check",
+        "available": true
+    },
+    "validate_granule_instrument_against_collection": {
+        "data_type": "string",
+        "check_function": "validate_granule_instrument_against_collection",
+        "available": true
+    },
+    "platform_short_name_gcmd_check": {
+        "data_type": "string",
+        "check_function": "platform_short_name_gcmd_check",
+        "available": true
+    },
+    "platform_long_name_gcmd_check": {
+        "data_type": "string",
+        "check_function": "platform_long_name_gcmd_check",
+        "available": true
+    },
+    "platform_type_gcmd_check": {
+        "data_type": "string",
+        "check_function": "platform_type_gcmd_check",
+        "available": true
+    },
+    "platform_long_name_presence_check": {
+        "data_type": "string",
+        "check_function": "platform_long_name_presence_check",
+        "available": true
+    },
+    "platform_short_long_name_consistency_check": {
+        "data_type": "string",
+        "check_function": "platform_short_long_name_consistency_check",
+        "available": true
+    },
+    "validate_granule_platform_against_collection": {
+        "data_type": "string",
+        "check_function": "validate_granule_platform_against_collection",
+        "available": true
+    },
+    "spatial_keyword_gcmd_check": {
+        "data_type": "string",
+        "check_function": "spatial_keyword_gcmd_check",
+        "available": true
+    },
+    "location_gcmd_check": {
+        "data_type": "string",
+        "check_function": "location_gcmd_check",
+        "available": true
+    },
+    "campaign_short_long_name_consistency_check": {
+        "data_type": "string",
+        "check_function": "campaign_short_long_name_consistency_check",
+        "available": true
+    },
+    "campaign_short_name_gcmd_check": {
+        "data_type": "string",
+        "check_function": "campaign_short_name_gcmd_check",
+        "available": true
+    },
+    "campaign_long_name_gcmd_check": {
+        "data_type": "string",
+        "check_function": "campaign_long_name_gcmd_check",
+        "available": true
+    },
+    "campaign_long_name_presence_check": {
+        "data_type": "string",
+        "check_function": "campaign_long_name_presence_check",
+        "available": true
+    },
+    "data_format_gcmd_check": {
+        "data_type": "string",
+        "check_function": "data_format_gcmd_check",
+        "available": true
+    },
+    "mime_type_gcmd_check": {
+        "data_type": "string",
+        "check_function": "mime_type_gcmd_check",
+        "available": true
+    },
+    "idnnode_shortname_gcmd_check": {
+        "data_type": "string",
+        "check_function": "idnnode_shortname_gcmd_check",
+        "available": true
+    },
+    "temporal_range_res_gcmd_check": {
+        "data_type": "string",
+        "check_function": "temporal_range_res_gcmd_check",
+        "available": true
+    },
+    "vertical_range_res_gcmd_check": {
+        "data_type": "string",
+        "check_function": "vertical_range_res_gcmd_check",
+        "available": true
+    },
+    "horizontal_range_res_gcmd_check": {
+        "data_type": "string",
+        "check_function": "horizontal_range_res_gcmd_check",
+        "available": true
+    },
+    "chrono_unit_gcmd_check": {
+        "data_type": "string",
+        "check_function": "chrono_gcmd_check",
+        "available": true
+    },
+    "one_item_presence_check": {
+        "data_type": "custom",
+        "check_function": "one_item_presence_check",
+        "available": true
+    },
+    "dif_standard_product_check": {
+        "data_type": "custom",
+        "check_function": "dif_standard_product_check",
+        "available": true
+    },
+    "doi_link_update": {
+        "data_type": "url",
+        "check_function": "doi_link_update",
+        "available": true
+    },
+    "bounding_coordinate_logic_check": {
+        "data_type": "custom",
+        "check_function": "bounding_coordinate_logic_check",
+        "available": true
+    },
+    "user_services_check": {
+        "data_type": "custom",
+        "check_function": "user_services_check",
+        "available": true
+    },
+    "doi_missing_reason_explanation": {
+        "data_type": "custom",
+        "check_function": "doi_missing_reason_explanation",
+        "available": true
+    },
+    "boolean_check": {
+        "data_type": "custom",
+        "check_function": "boolean_check",
+        "available": true
+    },
+    "collection_progress_consistency_check": {
+        "data_type": "custom",
+        "check_function": "collection_progress_consistency_check",
+        "available": true
+    },
+    "online_resource_type_gcmd_check": {
+        "data_type": "string",
+        "check_function": "online_resource_type_gcmd_check",
+        "available": true
+    },
+    "license_url_description_check": {
+        "data_type": "custom",
+        "check_function": "license_url_description_check",
+        "available": true
+    },
+    "uniqueness_check": {
+        "data_type": "custom",
+        "check_function": "uniqueness_check",
+        "available": true
+    },
+    "validate_ending_datetime_against_granules": {
+        "data_type": "datetime",
+        "check_function": "validate_ending_datetime_against_granules",
+        "available": true
+    },
+    "validate_beginning_datetime_against_granules": {
+        "data_type": "datetime",
+        "check_function": "validate_beginning_datetime_against_granules",
+        "available": true
+    },
+    "validate_granule_data_format_against_collection_check": {
+        "data_type": "string",
+        "check_function": "validate_granule_data_format_against_collection",
+        "available": true
+    },
+    "get_data_url_check": {
+        "data_type": "custom",
+        "check_function": "get_data_url_check",
+        "available": true
+    },
+    "granule_project_short_name_check": {
+        "data_type": "string",
+        "check_function": "granule_project_short_name_check",
+        "available": true
+    },
+    "granule_sensor_short_name_check": {
+        "data_type": "string",
+        "check_function": "granule_sensor_short_name_check",
+        "available": true
+    },
+    "granule_data_format_presence_check": {
+        "data_type": "custom",
+        "check_function": "one_item_presence_check",
+        "available": true
+    },
+    "count_check": {
+        "data_type": "custom",
+        "check_function": "count_check",
+        "available": true
+    }
+}
