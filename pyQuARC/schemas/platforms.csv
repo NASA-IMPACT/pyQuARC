@@ -1,4 +1,4 @@
-"Keyword Version: 20.3","Revision: 2024-12-27 11:57:25","Timestamp: 2025-01-16 09:56:04","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms/?format=xml","Case native"
+"Keyword Version: 20.5","Revision: 2025-01-22 18:21:14","Timestamp: 2025-02-07 12:10:46","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms/?format=xml","Case native"
 Basis,Category,Sub_Category,Short_Name,Long_Name,UUID
 "Air-based Platforms","Jet","","A340-600","Airbus A340-600","bab77f95-aa34-42aa-9a12-922d1c9fae63"
 "Air-based Platforms","Propeller","","AC-500S","Rockwell Aero Commander AC-500S","20d7a6a7-1c69-469b-ac53-92078dcb2a67"
@@ -540,6 +540,7 @@ Basis,Category,Sub_Category,Short_Name,Long_Name,UUID
 "Space-based Platforms","Earth Observation Satellites","HJ1","","","1bf53ccb-74d1-46ad-a024-b16d3ff01442"
 "Space-based Platforms","Earth Observation Satellites","HJ1","HJ1A","","d65fc363-e9b4-410a-b5e3-8dbd87b510b4"
 "Space-based Platforms","Earth Observation Satellites","HJ1","HJ1B","","3edef6e1-db0b-4806-b586-8869a7c986ba"
+"Space-based Platforms","Earth Observation Satellites","","HotSat-1","HotSat-1","c5011ce7-f1a0-4a6c-924d-ca1c51d0c393"
 "Space-based Platforms","Solar/Space Observation Satellites","","HST","Hubble Space Telescope","253d5637-2f35-464d-bc79-db0f843604fe"
 "Air-based Platforms","Jet","","HU-25A","Dassault HU-25A Guardian","d77685bd-aa94-4717-bd97-632699d999b5"
 "Air-based Platforms","Jet","","HU-25C","Dassault HU-25C Guardian","47b6caf1-e14c-458c-84a1-ec64cf29b534"

@@ -1,4 +1,4 @@
-"Keyword Version: 20.3","Revision: 2024-12-27 11:58:05","Timestamp: 2025-01-16 09:50:09","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/instruments/?format=xml","Case native"
+"Keyword Version: 20.5","Revision: 2025-01-22 18:16:45","Timestamp: 2025-02-07 12:02:46","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/instruments/?format=xml","Case native"
 Category,Class,Type,Subtype,Short_Name,Long_Name,UUID
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Photon/Optical Detectors","","11.5um Radiometer","Nimbus 4 Temperature-Humidity Infrared Radiometer - 11.5 um","7bf9f69e-3bc7-45ad-9224-969676d36d78"
 "In Situ/Laboratory Instruments","Probes","","","1DP","1D Particles Probe","50e18063-c74f-4525-8b4e-b21f5c28e669"
@@ -1140,6 +1140,7 @@ Category,Class,Type,Subtype,Short_Name,Long_Name,UUID
 "In Situ/Laboratory Instruments","Conductivity Sensors","","","MWA","Multiple Water Analyzer","df019c4a-6031-498c-ab35-4cac0575accc"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Profilers/Sounders","","MWHS","MicroWave Humidity Sounder","ca27055f-12d7-4445-a3b8-bbd2925af14d"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Profilers/Sounders","","MWHS-2","MicroWave Humidity Sounder - 2","7a5db0f9-054b-41c8-a49e-75b704d28669"
+"Earth Remote Sensing Instruments","Passive Remote Sensing","Spectrometers/Radiometers","Imaging Spectrometers/Radiometers","MWIR","Mid Wave InfraRed Imaging Sensor","8b23a6ab-24bf-40af-a46b-1a77234af4c6"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Spectrometers/Radiometers","Radiometers","MWR","Microwave Water Radiometer","24536b41-a968-4626-9516-7cf4c158334c"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Spectrometers/Radiometers","Imaging Spectrometers/Radiometers","MWRI","MicroWave Radiation Imager","1b0cf705-a6e1-4a96-aac1-5c8d505be6a7"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Profilers/Sounders","","MWTS","MicroWave Temperature Sounder","89cc57b0-0963-4266-a549-bf5a9e17446e"

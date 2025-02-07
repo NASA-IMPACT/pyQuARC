@@ -322,7 +322,8 @@
             },
             "Size": {
                 "description": "The size of the data.",
-                "type": "number"
+                "type": "number",
+                "minimum": 0
             },
             "Unit": {
                 "description": "Unit of information, together with Size determines total size in bytes of the data.",
@@ -518,6 +519,7 @@
     "DoiType": {
       "oneOf": [{
         "type": "object",
+        "title": "DOI is available",
         "additionalProperties": false,
         "description": "This element stores the DOI (Digital Object Identifier) that identifies the collection. Note: The values should start with the directory indicator which in ESDIS' case is 10.  If the DOI was registered through ESDIS, the beginning of the string should be 10.5067. The DOI URL is not stored here; it should be stored as a RelatedURL. The DOI organization that is responsible for creating the DOI is described in the Authority element. For ESDIS records the value of https://doi.org/ should be used. For those that want to specify that a DOI is not applicable or unknown for their record, use the second option.",
         "properties": {
@@ -530,11 +532,15 @@
           "Authority": {
             "description": "The DOI organization that is responsible for creating the DOI is described in the Authority element. For ESDIS records the value of https://doi.org/ should be used.",
             "$ref": "#/definitions/AuthorityType"
+          },
+          "PreviousVersion": {
+            "$ref": "#/definitions/PreviousVersionType"
           }
         },
         "required": ["DOI"]
       }, {
         "type": "object",
+        "title": "DOI is not available or applicable",
         "additionalProperties": false,
         "description": "This element stores the fact that the DOI (Digital Object Identifier) is not applicable or is unknown.",
         "properties": {
@@ -552,6 +558,33 @@
         },
         "required": ["MissingReason"]
       }]
+    },
+    "PreviousVersionType": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Provides a DOI of the previous version of this collection. This allows users to find historical data for this collection. Note: The values should start with the directory indicator which in ESDIS' case is 10.  If the DOI was registered through ESDIS, the beginning of the string should be 10.5067. The DOI URL is not stored here; it should be stored as a RelatedURL. The DOI organization that is responsible for creating the DOI is described in the Authority element. For ESDIS records the value of https://doi.org/ should be used. For those that want to specify that a DOI is not applicable or unknown for their record, use the second option.",
+      "properties": {
+        "Version": {
+          "description": "This element stores the DOI (Digital Object Identifier) that identifies the prevoius version of this collection.  Note: The values should start with the directory indicator which in ESDIS' case is 10.  If the DOI was registered through ESDIS, the beginning of the string should be 10.5067. The DOI URL is not stored here; it should be stored as a RelatedURL.",
+          "$ref": "#/definitions/VersionType"
+        },
+        "Description": {
+          "description": "Short description of the previous version.",
+          "$ref": "#/definitions/VersionDescriptionType"
+        },
+        "DOI": {
+          "description": "This element stores the DOI (Digital Object Identifier) that identifies the collection.  Note: The values should start with the directory indicator which in ESDIS' case is 10.  If the DOI was registered through ESDIS, the beginning of the string should be 10.5067. The DOI URL is not stored here; it should be stored as a RelatedURL.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1024
+        },
+        "Published": {
+          "description": "Describes the pubished date for the previous version.",
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": ["DOI"]
     },
     "DoiDoiType": {
       "type": "object",
@@ -705,7 +738,7 @@
         }
       }
     },
-   "ScienceKeywordType": {
+    "ScienceKeywordType": {
       "type": "object",
       "additionalProperties": false,
       "description": "Enables specification of Earth science keywords related to the collection.  The controlled vocabulary for Science Keywords is maintained in the Keyword Management System (KMS).",
@@ -1035,6 +1068,9 @@
             "$ref": "#/definitions/PeriodicDateTimeType"
           },
           "minItems": 1
+        },
+        "TemporalResolution": {
+          "$ref": "#/definitions/TemporalResolutionType"
         }
       },
       "oneOf": [{
@@ -1043,6 +1079,39 @@
         "required": ["SingleDateTimes"]
       }, {
         "required": ["PeriodicDateTimes"]
+      }]
+    },
+    "TemporalResolutionType": {
+      "oneOf": [{
+        "type": "object",
+        "title": "Contant or Varies Resolution",
+        "additionalProperties": false,
+        "description": "Describes the amount of time between measurements.",
+        "properties": {
+          "Unit": {
+            "description": "Describes a constant or varies temporal resolution.",
+            "type": "string",
+            "enum": ["Constant", "Varies"]
+          }
+        },
+        "required": ["Unit"]
+      }, {
+        "type": "object",
+        "title": "Numerical Resolution",
+        "additionalProperties": false,
+        "description": "Describes the amount of time between measurements.",
+        "properties": {
+          "Value": {
+            "description": "The temporal resolution value.",
+            "type": "number"
+          },
+          "Unit": {
+            "description": "Describes a constant or varies temporal resolution.",
+            "type": "string",
+            "enum": ["Second", "Minute", "Hour", "Day", "Week", "Month", "Year", "Diurnal"]
+          }
+        },
+        "required": ["Value", "Unit"]
       }]
     },
     "RangeDateTimeType": {

@@ -1415,9 +1415,9 @@
       "enum": ["NEAR_REAL_TIME", "LOW_LATENCY", "EXPEDITED", "SCIENCE_QUALITY", "OTHER"]
     },
     "CollectionProgressEnum": {
-      "description": "This element describes the production status of the data set. There are five choices for Data Providers: PLANNED refers to data sets to be collected in the future and are thus unavailable at the present time. For Example: The Hydro spacecraft has not been launched, but information on planned data sets may be available. ACTIVE refers to data sets currently in production or data that is continuously being collected or updated. For Example: data from the AIRS instrument on Aqua is being collected continuously. COMPLETE refers to data sets in which no updates or further data collection will be made. For Example: Nimbus-7 SMMR data collection has been completed. DEPRECATED refers to data sets that have been retired, but still can be retrieved. Usually newer products exist that replace the retired data set. NOT APPLICABLE refers to data sets in which a collection progress is not applicable such as a calibration collection. There is a sixth value of NOT PROVIDED that should not be used by a data provider. It is currently being used as a value when a correct translation cannot be done with the current valid values, or when the value is not provided by the data provider.",
+      "description": "This element describes the production status of the data set. There are multiple choices for Data Providers: PLANNED refers to data sets to be collected in the future and are thus unavailable at the present time. For Example: The Hydro spacecraft has not been launched, but information on planned data sets may be available. ACTIVE refers to data sets currently in production or data that is continuously being collected or updated. For Example: data from the AIRS instrument on Aqua is being collected continuously. COMPLETE refers to data sets in which no updates or further data collection will be made. For Example: Nimbus-7 SMMR data collection has been completed. DEPRECATED refers to data sets that have been retired, but still can be retrieved. Usually newer products exist that replace the retired data set. NOT PROVIDED should not be used by a data provider. It is currently being used as a value when a correct translation cannot be done with the current valid values, or when the value is not provided by the data provider. PREPRINT: Refers to datasets which are made available prior to completion of validation and review processes to support manuscript publication processes and open science.\nPreprint datasets are provisional and should not be used for production applications. INREVIEW: Refers to datasets which are made available to support science team final review. In Review datasets are provisional and should not be used for production applications. Note that if restricted access is needed, an INREVIEW dataset may also have an Access Control List applied. SUPERSEDED: Refers to datasets which remain publicly available, but for which a newer version is available.",
       "type": "string",
-      "enum": ["ACTIVE", "PLANNED", "COMPLETE", "DEPRECATED", "NOT APPLICABLE", "NOT PROVIDED"]
+      "enum": ["ACTIVE", "PLANNED", "COMPLETE", "DEPRECATED", "NOT PROVIDED", "PREPRINT", "INREVIEW", "SUPERSEDED"]
     },
     "LocationKeywordType": {
       "description": "This element defines a hierarchical location list. It replaces SpatialKeywords. The controlled vocabulary for location keywords is maintained in the Keyword Management System (KMS). Each tier must have data in the tier above it.",
@@ -1811,7 +1811,7 @@
           "Type": {
             "description": "This element describes to what DOI is associated.",
             "type": "string",
-            "enum": ["Child Dataset", "Collaborative/Other Agency", "Field Campaign", "Parent Dataset", "Related Dataset"]
+            "enum": ["Child Dataset", "Collaborative/Other Agency", "Field Campaign", "Parent Dataset", "Related Dataset", "IsPreviousVersionOf", "IsNewVersionOf"]
           }
         },
         "required": ["DOI"]
@@ -1905,7 +1905,7 @@
         "URL": {
           "description": "This element represents the URL where the schema lives. The schema can be downloaded.",
           "type": "string",
-          "enum": ["https://cdn.earthdata.nasa.gov/umm/collection/v1.18.1"]
+          "enum": ["https://cdn.earthdata.nasa.gov/umm/collection/v1.18.2"]
         },
         "Name": {
           "description": "This element represents the name of the schema.",
@@ -1915,7 +1915,7 @@
         "Version": {
           "description": "This element represents the version of the schema.",
           "type": "string",
-          "enum": ["1.18.1"]
+          "enum": ["1.18.2"]
         }
       },
       "required": ["URL", "Name", "Version"]
