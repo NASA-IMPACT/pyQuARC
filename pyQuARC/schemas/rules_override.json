@@ -33,7 +33,7 @@
             "dif10": [
                 {
                     "fields": [
-                        "Use_Constraints/Free_And_Open_Data"
+                        "DIF/Use_Constraints/Free_And_Open_Data"
                     ]
                 }
             ],
@@ -47,5 +47,46 @@
         },
         "severity": "warning",
         "check_id": "one_item_presence_check"
+    },
+    "url_description_uniqueness_check": {
+        "rule_name": "URL Description Uniqueness Check",
+        "fields_to_apply": {
+            "umm-c": [
+                {
+                    "fields": [
+                        "RelatedUrls/Description"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataCenters/ContactInformation/RelatedUrls"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Multimedia_Sample"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Related_URL"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "RelatedUrls"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            "Description"
+        ],
+        "severity": "info",
+        "check_id": "uniqueness_check"
     }
 }
