@@ -1,4 +1,4 @@
-"Keyword Version: 20.5","Revision: 2025-01-22 18:21:14","Timestamp: 2025-02-07 12:10:46","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms/?format=xml","Case native"
+"Keyword Version: 20.5","Revision: 2025-01-22 18:21:14","Timestamp: 2025-02-11 10:55:36","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms/?format=xml","Case native"
 Basis,Category,Sub_Category,Short_Name,Long_Name,UUID
 "Air-based Platforms","Jet","","A340-600","Airbus A340-600","bab77f95-aa34-42aa-9a12-922d1c9fae63"
 "Air-based Platforms","Propeller","","AC-500S","Rockwell Aero Commander AC-500S","20d7a6a7-1c69-469b-ac53-92078dcb2a67"

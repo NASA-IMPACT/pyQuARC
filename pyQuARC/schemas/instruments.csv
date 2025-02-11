@@ -1,4 +1,4 @@
-"Keyword Version: 20.5","Revision: 2025-01-22 18:16:45","Timestamp: 2025-02-07 12:02:46","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/instruments/?format=xml","Case native"
+"Keyword Version: 20.5","Revision: 2025-01-22 18:16:45","Timestamp: 2025-02-11 09:12:32","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/instruments/?format=xml","Case native"
 Category,Class,Type,Subtype,Short_Name,Long_Name,UUID
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Photon/Optical Detectors","","11.5um Radiometer","Nimbus 4 Temperature-Humidity Infrared Radiometer - 11.5 um","7bf9f69e-3bc7-45ad-9224-969676d36d78"
 "In Situ/Laboratory Instruments","Probes","","","1DP","1D Particles Probe","50e18063-c74f-4525-8b4e-b21f5c28e669"

@@ -17,7 +17,7 @@
                 }
             ]
         },
-        "severity": "warning",
+        "severity": "info",
         "check_id": "one_item_presence_check"
     }
 }

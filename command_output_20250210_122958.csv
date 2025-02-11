@@ -1,0 +1,46 @@
+Timestamp,Message Type,Message
+2025-02-10 12:30:08,Info,********************************
+2025-02-10 12:30:08,Error,** Metadata Validation Errors **
+2025-02-10 12:30:08,Info,********************************
+2025-02-10 12:30:08,Info,[32m[1mMETADATA: C1000000010-CDDIS[0m
+2025-02-10 12:30:08,Info,>> UseConstraints/FreeAndOpenData: [0m
+2025-02-10 12:30:08,Warning,[33mWarning[0m: No FreeAndOpenData value was given.[0m
+2025-02-10 12:30:08,Info,Recommend providing a FreeAndOpenData value of 'true'.
+2025-02-10 12:30:08,Info,>> ScienceKeywords/Category: [0m
+2025-02-10 12:30:08,Error,[31mError[0m: `'NOT PROVIDED' in the hierarchy 'EARTH SCIENCE/NOT PROVIDED/NOT PROVIDED'` is not a valid GCMD science keyword.[0m
+2025-02-10 12:30:08,Info,Provide a valid GCMD keyword or submit a request to support@earthdata.nasa.gov to have this keyword added to the GCMD KMS.
+2025-02-10 12:30:08,Info,>> DOI/Authority: [0m
+2025-02-10 12:30:08,Info,[34mInfo[0m: No DOI authority is provided.[0m
+2025-02-10 12:30:08,Info,"Recommend providing ""https://doi.org"" as the DOI authority."
+2025-02-10 12:30:08,Info,>> StandardProduct: [0m
+2025-02-10 12:30:08,Warning,[33mWarning[0m: The Standard Product flag is missing.[0m
+2025-02-10 12:30:08,Info,Recommend indicating whether this is a StandardProduct.
+2025-02-10 12:30:08,Info,>> SpatialExtent/SpatialCoverageType: [0m
+2025-02-10 12:30:08,Info,[34mInfo[0m: The Spatial Coverage Type is missing.[0m
+2025-02-10 12:30:08,Info,"Please provide a spatial coverage type from the following list: ['HORIZONTAL', 'VERTICAL', 'ORBITAL', 'HORIZONTAL_VERTICAL', 'ORBITAL_VERTICAL', 'HORIZONTAL_ORBITAL', 'HORIZONTAL_VERTICAL_ORBITAL']"
+2025-02-10 12:30:08,Info,>> SpatialRepresentationInfo/HorizontalCoordinateSystem/GeodeticModel/HorizontalDatumName: [0m
+2025-02-10 12:30:08,Info,[34mInfo[0m: The Horizontal Datum Name is missing.[0m
+2025-02-10 12:30:08,Info,"If appropriate for the dataset, recommend providing information about the horizontal datum."
+2025-02-10 12:30:08,Info,>> LocationKeywords/Category: [0m
+2025-02-10 12:30:08,Info,[34mInfo[0m: No location keyword is provided.[0m
+2025-02-10 12:30:08,Info,Recommend adding a location keyword from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/locations?format=csv.
+2025-02-10 12:30:08,Info,>> CollectionCitations/Title: [0m
+2025-02-10 12:30:08,Warning,[33mWarning[0m: No citation information is provided.[0m
+2025-02-10 12:30:08,Info,Recommend providing a citation for the data product in this field.
+2025-02-10 12:30:08,Info,>> Platforms/Type: [0m
+2025-02-10 12:30:08,Warning,[33mWarning[0m: A platform type is not provided.[0m
+2025-02-10 12:30:08,Warning,[33mWarning[0m: A platform type is not provided.[0m
+2025-02-10 12:30:08,Warning,[33mWarning[0m: A platform type is not provided.[0m
+2025-02-10 12:30:08,Info,Recommend adding a platform type for the corresponding platform.
+2025-02-10 12:30:08,Info,>> ArchiveAndDistributionInformation/FileDistributionInformation/Format: [0m
+2025-02-10 12:30:08,Error,[31mError[0m: The data format is missing.[0m
+2025-02-10 12:30:08,Info,Recommend providing a valid data format from the Granule Data Format GCMD keyword list.
+2025-02-10 12:30:08,Info,>> SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/HorizontalDataResolution/VariesResolution: [0m
+2025-02-10 12:30:08,Warning,[33mWarning[0m: No horizontal resolution information is provided.[0m
+2025-02-10 12:30:08,Info,"Recommend providing the horizontal pixel resolution, if applicable. If provided, this information will be indexed in the EDSC 'Horizontal Data Resolution' search facet which allows users to search by spatial resolution."
+2025-02-10 12:30:08,Info,>> ProcessingLevel/ProcessingLevelDescription: [0m
+2025-02-10 12:30:08,Warning,[33mWarning[0m: No Processing Level Description is provided[0m
+2025-02-10 12:30:08,Info,Recommend providing a detailed processing level description as per EOSDIS data standards.
+2025-02-10 12:30:08,Info,>> RelatedUrls/Description: [0m
+2025-02-10 12:30:08,Warning,[33mWarning[0m: A URL Description appears to be missing for the following URL: `https://cddis.nasa.gov/archive/gps/products/`.[0m
+2025-02-10 12:30:08,Info,Recommend providing a description for each URL that is provided.

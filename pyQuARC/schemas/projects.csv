@@ -1,4 +1,4 @@
-"Keyword Version: 20.5","Revision: 2025-01-22 17:34:17","Timestamp: 2025-02-07 12:12:01","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/projects/?format=xml","Case native"
+"Keyword Version: 20.5","Revision: 2025-01-22 17:34:17","Timestamp: 2025-02-11 10:54:33","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/projects/?format=xml","Case native"
 Bucket,Short_Name,Long_Name,UUID
 "A - C","25090-E/ANT","","07a12d76-3794-4d1f-8db3-96a4c9814d54"
 "V - Z","6CI","The Sixth Continent Initiative","33cd602e-d5f0-470b-8a04-5862421a1e1f"
