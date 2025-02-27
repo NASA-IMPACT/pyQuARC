@@ -1,4 +1,4 @@
-"Keyword Version: 20.5","Revision: 2025-01-31 07:41:36","Timestamp: 2025-02-11 07:52:53","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=xml","Case native"
+"Keyword Version: 20.6","Revision: 2025-01-31 11:26:23","Timestamp: 2025-02-27 04:00:15","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=xml","Case native"
 Category,Topic,Term,Variable_Level_1,Variable_Level_2,Variable_Level_3,Detailed_Variable,UUID
 "EARTH SCIENCE","ATMOSPHERE","PRECIPITATION","PRECIPITATION AMOUNT","12 HOUR PRECIPITATION AMOUNT","","","feef8827-92a6-4d1d-b6a5-ecda38a32656"
 "EARTH SCIENCE","ATMOSPHERE","ATMOSPHERIC TEMPERATURE","SURFACE TEMPERATURE","MAXIMUM/MINIMUM TEMPERATURE","24 HOUR MAXIMUM TEMPERATURE","","ce6a6b3a-df4f-4bd7-a931-7ee874ee9efe"

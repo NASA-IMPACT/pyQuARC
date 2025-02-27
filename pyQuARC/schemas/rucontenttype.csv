@@ -1,4 +1,4 @@
-"Hits: 107","page_num: 1","page_size: 2000","Keyword Version: 20.5","Revision: 2025-01-22 17:35:34","Timestamp: 2025-02-11 08:36:39","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/rucontenttype/?format=xml","Case native"
+"Hits: 107","page_num: 1","page_size: 2000","Keyword Version: 20.6","Revision: 2025-02-12 11:28:40","Timestamp: 2025-02-27 10:04:51","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/rucontenttype/?format=xml","Case native"
 URLContentType,Type,Subtype,UUID
 "PublicationURL","VIEW RELATED INFORMATION","ALGORITHM DOCUMENTATION","fcc9411c-a1c9-415d-a16c-75c42f2cec45"
 "PublicationURL","VIEW RELATED INFORMATION","ALGORITHM THEORETICAL BASIS DOCUMENT (ATBD)","fd01f7ec-fdf6-4440-b974-75f12fb4ec5f"
@@ -9,7 +9,7 @@ URLContentType,Type,Subtype,UUID
 "DistributionURL","GET DATA","CERES Ordering Tool","93bc7186-2634-49ae-a8da-312d893ef15e"
 "CollectionURL","","","c7bbd6c7-8b0a-46ed-a428-a2f0453ed69e"
 "VisualizationURL","Color Map","","58848eb9-9c2c-491e-847e-5a4f3d9f6889"
-"PublicationURL","VIEW RELATED INFORMATION","DATA CITATION POLICY","40cf5001-15ec-4d9a-913c-bb323f2974fc"
+"PublicationURL","VIEW RELATED INFORMATION","DATA CITATION GUIDELINES","40cf5001-15ec-4d9a-913c-bb323f2974fc"
 "DistributionURL","GET DATA","DATA COLLECTION BUNDLE","444f03b4-e588-42da-aee6-73028f3c45be"
 "PublicationURL","VIEW RELATED INFORMATION","DATA PRODUCT SPECIFICATION","415cfe86-4d71-4100-8f35-6404caec1c91"
 "PublicationURL","VIEW RELATED INFORMATION","DATA QUALITY","0eba3253-8eb7-4e43-9627-9cff48775e27"

@@ -1,4 +1,4 @@
-"Keyword Version: 20.5","Revision: 2025-01-22 17:32:08","Timestamp: 2025-02-11 07:52:53","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/locations/?format=xml","Case native"
+"Keyword Version: 20.6","Revision: 2025-01-31 11:22:20","Timestamp: 2025-02-27 09:04:49","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/locations/?format=xml","Case native"
 Location_Category,Location_Type,Location_Subregion1,Location_Subregion2,Location_Subregion3,Location_Subregion4,UUID
 "OCEAN","ATLANTIC OCEAN","NORTH ATLANTIC OCEAN","MEDITERRANEAN SEA","ADRIATIC SEA","","5c439818-3a80-4c6d-9d2c-74ea1f1a294a"
 "CONTINENT","ASIA","SOUTHCENTRAL ASIA","AFGHANISTAN","","","fa3c995d-58d6-4f06-9fb0-ec04e0456d7b"

@@ -1,4 +1,4 @@
-"Keyword Version: 20.5","Revision: 2025-01-22 18:21:14","Timestamp: 2025-02-11 10:55:36","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms/?format=xml","Case native"
+"Keyword Version: 20.6","Revision: 2025-02-06 07:50:28","Timestamp: 2025-02-27 05:57:47","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/platforms/?format=xml","Case native"
 Basis,Category,Sub_Category,Short_Name,Long_Name,UUID
 "Air-based Platforms","Jet","","A340-600","Airbus A340-600","bab77f95-aa34-42aa-9a12-922d1c9fae63"
 "Air-based Platforms","Propeller","","AC-500S","Rockwell Aero Commander AC-500S","20d7a6a7-1c69-469b-ac53-92078dcb2a67"
@@ -1035,6 +1035,7 @@ Basis,Category,Sub_Category,Short_Name,Long_Name,UUID
 "Space-based Platforms","Earth Observation Satellites","Sentinel-1","","","007c3084-89db-458e-8387-14e192b6cb8e"
 "Space-based Platforms","Earth Observation Satellites","Sentinel-1","Sentinel-1A","Sentinel-1A","c7279e54-f7c1-4ee7-a957-719d6021a3f6"
 "Space-based Platforms","Earth Observation Satellites","Sentinel-1","Sentinel-1B","Sentinel-1B","9940dbad-1a9a-4858-a0e8-af35b21277e2"
+"Space-based Platforms","Earth Observation Satellites","Sentinel-1","Sentinel-1C","Sentinel-1C","2f6c9a22-7c68-45a4-be75-d6cf8319a9d3"
 "Space-based Platforms","Earth Observation Satellites","Sentinel-2","","","2ce20983-98b2-40b9-bb0e-a08074fb93b3"
 "Space-based Platforms","Earth Observation Satellites","Sentinel-2","Sentinel-2A","Sentinel-2A","6f1c359b-b1a6-47c1-979e-0689e637fbdc"
 "Space-based Platforms","Earth Observation Satellites","Sentinel-2","Sentinel-2B","Sentinel-2B","f2445400-1981-4ef3-bf7c-f4aa35923ae9"

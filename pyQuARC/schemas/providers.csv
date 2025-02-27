@@ -1,4 +1,4 @@
-"Keyword Version: 20.5","Revision: 2025-01-22 17:32:14","Timestamp: 2025-02-11 07:52:53","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers/?format=xml","Case native"
+"Keyword Version: 20.6","Revision: 2025-01-31 11:22:32","Timestamp: 2025-02-27 05:58:10","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers/?format=xml","Case native"
 Bucket_Level0,Bucket_Level1,Bucket_Level2,Bucket_Level3,Short_Name,Long_Name,Data_Center_URL,UUID
 "NON-GOVERNMENT/NON-PROFIT ORGANIZATIONS","","","","52N","52 North","http://52north.org","8b662612-89ff-4504-806e-195e6bf48d92"
 "CONSORTIA/INSTITUTIONS","","","","973 DATA CENTER","Data Archive, Sharing Network for Resource and Environment Project of 973 Program","http://www.973geodata.cn","cc924b13-041b-4966-a08b-c45bd5a86473"
