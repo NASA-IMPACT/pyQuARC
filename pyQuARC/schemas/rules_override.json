@@ -260,5 +260,33 @@
         },
         "severity": "info",
         "check_id": "url_update_email_check"
-}
+},
+"horizontal_datum_name_check": {
+        "rule_name": "Horizontal Datum Name Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/SpatialInfo/HorizontalCoordinateSystem/GeodeticModel/HorizontalDatumName"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Spatial_Coverage/Spatial_Info/Horizontal_Coordinate_System/Geodetic_Model/Horizontal_DatumName"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/GeodeticModel/HorizontalDatumName"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "one_item_presence_check"
+    }
 }
