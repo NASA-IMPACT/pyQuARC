@@ -78,7 +78,7 @@
             "umm-g": [
                 {
                     "fields": [
-                        "RelatedUrls"
+                        "RelatedUrls/URL"
                     ]
                 }
             ]
