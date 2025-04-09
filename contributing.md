@@ -47,7 +47,7 @@ We will start realativly simple, and progress to the more difficult ways to cont
    * Press **Enter** and your local clone of pyQuARC will be created! You can now explore all of the files on your local computer and make changes as you wish. 
 
 ## Thank you for your interest in pyQuARC!
-We appriciate your interest in our metadata review project! In the spirit of Open Science, everyone is encouraged to help to improve pyQuARC, and we welcome your comments, suggestiong, and new ideas!
+We appriciate your interest in our metadata review project! In the spirit of Open Science, everyone is encouraged to help to improve pyQuARC, and we welcome your comments, suggestions, and new ideas!
 
 
 
