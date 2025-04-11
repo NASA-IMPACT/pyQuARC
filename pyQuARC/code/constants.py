@@ -79,10 +79,10 @@ GCMD_LINKS = {
 CMR_URL = "https://cmr.earthdata.nasa.gov"
 
 DATE_FORMATS = [
-    "%Y-%m-%dT%H:%M:%S.%f",  # Year to microsecond
-    "%Y-%m-%dT%H:%M:%S",  # Year to second
-    "%Y-%m-%dT%H:%M",  # Year to minute
-    "%Y-%m-%dT%H",  # Year to hour
+    "%Y-%m-%dT%H:%M:%S.%fZ",  # Year to microsecond
+    "%Y-%m-%dT%H:%M:%SZ",  # Year to second
+    "%Y-%m-%dT%H:%MZ",  # Year to minute
+    "%Y-%m-%dT%HZ",  # Year to hour
     "%Y-%m-%d",  # Year to day
     "%Y-%m",  # Year to month
     "%Y",  # Year
