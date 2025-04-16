@@ -1,4 +1,4 @@
-"Keyword Version: 20.5","Revision: 2025-01-22 17:32:08","Timestamp: 2025-02-11 07:52:53","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/locations/?format=xml","Case native"
+"Keyword Version: 21.0","Revision: 2025-03-14 10:18:15","Timestamp: 2025-04-16 10:29:57","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/locations/?format=xml","Case native"
 Location_Category,Location_Type,Location_Subregion1,Location_Subregion2,Location_Subregion3,Location_Subregion4,UUID
 "OCEAN","ATLANTIC OCEAN","NORTH ATLANTIC OCEAN","MEDITERRANEAN SEA","ADRIATIC SEA","","5c439818-3a80-4c6d-9d2c-74ea1f1a294a"
 "CONTINENT","ASIA","SOUTHCENTRAL ASIA","AFGHANISTAN","","","fa3c995d-58d6-4f06-9fb0-ec04e0456d7b"
@@ -199,8 +199,8 @@ Location_Category,Location_Type,Location_Subregion1,Location_Subregion2,Location
 "CONTINENT","AFRICA","WESTERN AFRICA","GUINEA","","","4334c04a-1ab1-475d-9aab-bc30476a8b25"
 "CONTINENT","AFRICA","WESTERN AFRICA","GUINEA-BISSAU","","","b0d902f8-d1b3-4cc8-aa2c-58fd4fead65e"
 "OCEAN","PACIFIC OCEAN","NORTH PACIFIC OCEAN","GULF OF ALASKA","","","9972bea3-3817-44e8-9c14-bcda7750d820"
+"OCEAN","ATLANTIC OCEAN","NORTH ATLANTIC OCEAN","GULF OF AMERICA","","","75fab119-51a6-4b59-9711-f6c3cd3139db"
 "OCEAN","ATLANTIC OCEAN","NORTH ATLANTIC OCEAN","GULF OF MAINE","","","9c31f745-a3d1-4007-99ae-fceca2019fab"
-"OCEAN","ATLANTIC OCEAN","NORTH ATLANTIC OCEAN","GULF OF MEXICO","","","75fab119-51a6-4b59-9711-f6c3cd3139db"
 "OCEAN","ATLANTIC OCEAN","NORTH ATLANTIC OCEAN","GULF OF ST LAWRENCE","","","70c4057c-7ecc-4ff5-a6e6-5d5b0bb2af3b"
 "OCEAN","ATLANTIC OCEAN","NORTH ATLANTIC OCEAN","MEDITERRANEAN SEA","ADRIATIC SEA","GULF OF TRIESTE","7b93c892-2fc4-417b-a4da-5c8a2fca361b"
 "CONTINENT","SOUTH AMERICA","GUYANA","","","","f58ab39c-6c61-47cf-9117-50aa4e8aa93a"
