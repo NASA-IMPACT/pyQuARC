@@ -13,6 +13,14 @@
             "message": "Recommend providing the updated contact information as per the data product.",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Data+Center"
         },
-        "remediation": "Recommend changing the contact information as per the data product."
+        "remediation": "Recommend changing the contact information to 'support-cddis@nasa.gov'. "
+    },
+    "shortname_uniqueness": {
+        "failure": "The EntryTitle/DataSetId `{}` is identical to the ShortName `{}`.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Entry+Title"
+        },
+        "remediation": "Recommend providing a more descriptive title for the collection."
     }
 }
