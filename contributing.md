@@ -27,7 +27,7 @@ This page is meant to help you learn how you can contribute to pyQuARC! We are p
 
 3. **Directly Contribute to PyQuARC Content:** for when you want to directly edit the code to add checks or new features.
    * Fork the respository
-      * To edit the code you will need to first create your own 'fork' of the repository. A fork is a new repository that shares code and visibilty settings with the original repository, and allows you to create your own edits. Read more about Forks [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
+      * To edit the code you will need to first create your own 'fork' of the repository. A fork is a new repository that shares code and visibilty settings with the original repository, and allows you to create your own edits. Read more about Forks [here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo).
       * To create your own fork of pyQuARC, return to the [**Code**](https://github.com/NASA-IMPACT/pyQuARC) tab of the pyQuARC GitHub.
         * On the top right of the page select the **Fork** tab. 
         * Under the "Owner" dropdown menu select yourself as the owner of the new forked repository.
@@ -39,7 +39,7 @@ This page is meant to help you learn how you can contribute to pyQuARC! We are p
    * Clone your fork locally 
       * Now we will store the files locally on your computer so you will be able to edit the code. Click the green dropdown button labeled **<> Code**. 
       * Under the **HTTPS** tab, copy the link to the repository. 
-      * Open a python terminal in your preferred coding location.
+      * Open a Python terminal in your preferred coding location.
       * Change your working directory to wherever you want your cloned pyQuARC repository to be stored.
       * Type '__git clone__' and then paste the URL you copied a few steps above. 
       * Press **Enter** and your local clone of pyQuARC will be created! You can now explore all of the files on your local computer.
