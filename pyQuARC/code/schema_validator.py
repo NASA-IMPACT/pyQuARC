@@ -6,7 +6,7 @@ from io import BytesIO
 from jsonschema import Draft7Validator, draft7_format_checker, RefResolver
 from lxml import etree
 from urllib.request import pathname2url
-
+from code.utils import read_json_schema_from_url
 from .constants import ECHO10_C, SCHEMA_PATHS, UMM_C
 
 
@@ -56,14 +56,19 @@ class SchemaValidator:
         xmlschema_doc = etree.parse(BytesIO(file_content))
         schema = etree.XMLSchema(xmlschema_doc)
         return schema
-
+    
     def read_json_schema(self):
         """
-        Reads the json schema file
+        Reads the JSON schema file
         """
+        if self.metadata_format == UMM_C:
+            schema_url = "https://cdn.earthdata.nasa.gov/umm/collection/v1.18.3/umm-c-json-schema.json"
+            return read_json_schema_from_url(schema_url)
+
         with open(SCHEMA_PATHS[f"{self.metadata_format}-json-schema"]) as schema_file:
-            schema = json.load(schema_file)
-        return schema
+            return json.load(schema_file)
+
+
 
     def run_json_validator(self, content_to_validate):
         """

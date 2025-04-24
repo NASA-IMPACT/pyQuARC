@@ -8,6 +8,14 @@ from functools import wraps
 from .constants import CMR_URL, DATE_FORMATS
 
 
+def read_json_schema_from_url(url):
+    """
+    Downloads and returns a JSON schema from a given URL.
+    """
+    response = requests.get(url)
+    response.raise_for_status()
+    return response.json()
+
 def if_arg(func):
     @wraps(func)
     def run_function_only_if_arg(*args):
