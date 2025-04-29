@@ -243,10 +243,12 @@ class ARC:
         error_msg = ""
         if errors := cmr_validation.get("errors"):
             for error in errors:
-                print(error)
-                if error["path"][0] not in error_msg_dict:
-                    error_msg_dict[error["path"][0]] = []
-                error_msg_dict[error["path"][0]].append(error['errors'])
+                if type(error) is dict and error.get("path"):
+                    if error["path"][0] not in error_msg_dict:
+                        error_msg_dict[error["path"][0]] = []
+                    error_msg_dict[error["path"][0]].append(error['errors'])
+                else:
+                    error_msg_dict["Misc"] = [error]
         for path, errors in error_msg_dict.items():
             error_msg += f"\n\t>> {path}: {END}\n"
             for error in errors:
@@ -285,7 +287,7 @@ class ARC:
                     f"\n\t {COLOR['title']}{COLOR['bright']} pyQuARC ERRORS: {END}\n"
                 )
                 for error in pyquarc_errors:
-                    error_prompt += f"\t\t  ERROR: {error['message']}. Details: {error['details']} \n"
+                    error_prompt += f"\t\t  ERROR: {error['type']}. Details: {error['details']} \n"
 
             if cmr_validation := error.get("cmr_validation"):
                 cmr_error_msg = self._format_cmr_error(cmr_validation)
