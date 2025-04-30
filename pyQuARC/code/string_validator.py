@@ -1,7 +1,7 @@
 from .base_validator import BaseValidator
 from .gcmd_validator import GcmdValidator
 from .utils import cmr_request, collection_in_cmr, if_arg, set_cmr_prms
-
+import re
 
 class StringValidator(BaseValidator):
     """
@@ -37,13 +37,18 @@ class StringValidator(BaseValidator):
     @if_arg
     def compare(first, second, relation):
         """
-        Compares two strings based on the relationship
+        Compares two strings based on the relationship, ignoring case and special characters.
 
         Returns:
             (dict) An object with the validity of the check and the instance
         """
+        # Remove special characters and convert to uppercase for case-insensitive comparison
+        first_clean = re.sub(r'[^a-zA-Z0-9]', '', first).upper()
+        second_clean = re.sub(r'[^a-zA-Z0-9]', '', second).upper()
+    
+        # Perform the comparison
         return {
-            "valid": BaseValidator.compare(first.upper(), second.upper(), relation),
+            "valid": BaseValidator.compare(first_clean, second_clean, relation),
             "value": (first, second),
         }
 

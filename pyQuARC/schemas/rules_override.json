@@ -1,1 +1,340 @@
-{}
+{
+    "free_and_open_data_presence_check": {
+        "rule_name": "Free and Open Data Presence Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/UseConstraints/FreeAndOpenData"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Use_Constraints/Free_And_Open_Data"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "UseConstraints/FreeAndOpenData"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "one_item_presence_check"
+    },
+    "url_description_uniqueness_check": {
+        "rule_name": "URL Description Uniqueness Check",
+        "fields_to_apply": {
+            "umm-c": [
+                {
+                    "fields": [
+                        "RelatedUrls/Description"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataCenters/ContactInformation/RelatedUrls"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Multimedia_Sample"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Related_URL"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "RelatedUrls/URL"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            "Description"
+        ],
+        "severity": "info",
+        "check_id": "uniqueness_check"
+    },
+    "url_desc_presence_check": {
+        "rule_name": "Online Description Presence Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/OnlineAccessURLs/OnlineAccessURL/URLDescription",
+                        "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/OnlineResources/OnlineResource/Description",
+                        "Collection/OnlineResources/OnlineResource/URL"
+                    ]
+                }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URLDescription",
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/Description",
+                        "Granule/OnlineResources/OnlineResource/URL"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Related_URL/Description",
+                        "DIF/Related_URL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Multimedia_Sample/Description",
+                        "DIF/Multimedia_Sample/URL"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "RelatedUrls/Description",
+                        "RelatedUrls/URL"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields":[
+                        "OnlineAccessURLs/OnlineAccessURL/URLDescription"
+                    ]
+                },
+                {
+                    "fields":[
+                        "OnlineResources/OnlineResource/Description"
+                    ]
+                }
+            ]
+        },
+        "severity": "warning",
+        "check_id": "availability_check"
+    },
+    "url_check": {
+        "rule_name": "URL Health and Status Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/Description"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/SuggestedUsage"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/CitationforExternalPublication"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/OnlineResources/OnlineResource/URL"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Extended_Metadata/Metadata/Value"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Dataset_Citation/Online_Resource"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Summary/Abstract"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Organization/Organization_URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Related_URL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Extended_Metadata/Metadata/Value"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "DataCenters/ContactInformation/RelatedUrls/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataCenters/ContactPersons/ContactInformation/RelatedUrls/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataCenters/ContactGroups/ContactInformation/RelatedUrls/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "ContactPersons/ContactInformation/RelatedUrls/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "ContactGroups/ContactInformation/RelatedUrls/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "RelatedUrls/URL"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "MetadataSpecification/URL"
+                    ]
+                }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/AssociatedBrowseImageUrls/ProviderBrowseUrl/URL"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "url_check"
+    },
+    "online_resource_type_gcmd_check": {
+        "rule_name": "Online Resource Type GCMD Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/OnlineResources/OnlineResource/Type"
+                    ]
+                }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/Type"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "RelatedUrls/Type"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "RelatedUrls/Type"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "one_item_presence_check"
+    }, 
+    "url_update_email_check": {
+        "rule_name": "URL Email address check",
+        "fields_to_apply": {
+            "umm-c": [
+                {
+                    "fields": [
+                        "DataCenters/ContactGroups/ContactInformation/ContactMechanisms/Value",
+                        "DataCenters/ContactGroups/ContactInformation/ContactInstruction"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "url_update_email_check"
+},
+"horizontal_datum_name_check": {
+        "rule_name": "Horizontal Datum Name Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/SpatialInfo/HorizontalCoordinateSystem/GeodeticModel/HorizontalDatumName"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Spatial_Coverage/Spatial_Info/Horizontal_Coordinate_System/Geodetic_Model/Horizontal_DatumName"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/GeodeticModel/HorizontalDatumName"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "one_item_presence_check"
+    }
+}
