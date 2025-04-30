@@ -1,12 +1,4 @@
 {
-    "processing_level_description_presence_check": {
-        "failure": "No Processing Level Description is provided",
-        "help": {
-            "message": "Use the EOSDIS Data Processing Level descriptions as guidance.",
-            "url": "https://www.earthdata.nasa.gov/learn/earth-observation-data-basics/data-processing-levels"
-        },
-        "remediation": "Recommend providing a detailed processing level description as per EOSDIS data standards."
-    }, 
     "url_update_email_check": {
         "failure": "The following email address has to be updated as: `{}`.",
         "help": {

@@ -1,25 +1,4 @@
 {
-    "processing_level_description_presence_check": {
-        "rule_name": "Processing Level Description Presence Check",
-        "fields_to_apply": {
-            "echo-c": [
-                {
-                    "fields": [
-                        "Collection/ProcessingLevelDescription"
-                    ]
-                }
-            ],
-            "umm-c": [
-                {
-                    "fields": [
-                        "ProcessingLevel/ProcessingLevelDescription"
-                    ]
-                }
-            ]
-        },
-        "severity": "info",
-        "check_id": "one_item_presence_check"
-    },
     "free_and_open_data_presence_check": {
         "rule_name": "Free and Open Data Presence Check",
         "fields_to_apply": {
@@ -89,51 +68,6 @@
         "severity": "info",
         "check_id": "uniqueness_check"
     },
-    "online_resource_type_presence_check": {
-        "rule_name": "Online Resource Type Presence Check",
-        "fields_to_apply": {
-            "echo-c": [
-                {
-                    "fields": [
-                        "RelatedUrls/Type",
-                        "RelatedUrls"
-                    ]
-                }
-            ],
-            "echo-g": [
-                {
-                    "fields": [
-                        "Granule/OnlineResources/OnlineResource/Type",
-                        "Granule/OnlineResources/OnlineResource"
-                    ]
-                }
-            ],
-            "umm-c": [
-                {
-                    "fields": [
-                        "RelatedUrls/Type",
-                        "RelatedUrls"
-                    ]
-                }, 
-                {
-                    "fields": [
-                        "Collection/OnlineResources/OnlineResource/Type",
-                        "Collection/OnlineResources/OnlineResource"
-                    ]
-                }
-            ],
-            "umm-g": [
-                {
-                    "fields": [
-                        "RelatedUrls/Type",
-                        "RelatedUrls"
-                    ]
-                }
-            ]
-        },
-        "severity": "warning",
-        "check_id": "one_item_presence_check"
-    },
     "url_desc_presence_check": {
         "rule_name": "Online Description Presence Check",
         "fields_to_apply": {
@@ -201,8 +135,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": 
-            "one_item_presence_check"
+        "check_id": "availability_check"
     },
     "url_check": {
         "rule_name": "URL Health and Status Check",
