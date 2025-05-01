@@ -9,6 +9,12 @@ from urllib.request import pathname2url
 from code.utils import read_json_schema_from_url
 from .constants import ECHO10_C, SCHEMA_PATHS, UMM_C
 
+UMM_C = "umm-c"
+UMM_G = "umm-g"
+
+SCHEMA_CDN_BASE = "https://cdn.earthdata.nasa.gov/umm"
+UMM_C_VERSION   = "v1.18.3"      # or the version you need
+UMM_G_VERSION   = "v1.6.6"
 
 class SchemaValidator:
     """
@@ -62,7 +68,11 @@ class SchemaValidator:
         Reads the JSON schema file
         """
         if self.metadata_format == UMM_C:
-            schema_url = "https://cdn.earthdata.nasa.gov/umm/collection/v1.18.3/umm-c-json-schema.json"
+            schema_url = (f"{SCHEMA_CDN_BASE}/collection/{UMM_C_VERSION}/umm-c-json-schema.json")
+            return read_json_schema_from_url(schema_url)
+        
+        if self.metadata_format == UMM_G:
+            schema_url = (f"{SCHEMA_CDN_BASE}/granule/{UMM_G_VERSION}/umm-g-json-schema.json")
             return read_json_schema_from_url(schema_url)
 
         with open(SCHEMA_PATHS[f"{self.metadata_format}-json-schema"]) as schema_file:
