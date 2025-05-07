@@ -32,7 +32,7 @@ class DatetimeValidator(BaseValidator):
             if match_iso8601(datetime_string):
                 if datetime_string.endswith("Z"):
                     datetime_string = datetime_string.replace("Z", "+00:00")
-                value = datetime.fromisoformat(datetime_string)
+                value = datetime.fromisoformat(datetime_string) 
                 return value
         except:
             pass
@@ -153,7 +153,10 @@ class DatetimeValidator(BaseValidator):
             last_granule_datetime = get_date_time(last_granule_datetime)
             validity = date_time == last_granule_datetime
 
-        return {"valid": validity, "value": (date_time, last_granule_datetime)}
+        formatted_date_time = date_time.strftime('%Y-%m-%dT%H:%M:%S.') + '000Z'
+        formatted_last_granule_datetime = last_granule_datetime.strftime('%Y-%m-%dT%H:%M:%S.') + '000Z'
+
+        return {"valid": validity, "value": (formatted_date_time, formatted_last_granule_datetime)}
 
     @staticmethod
     @if_arg
@@ -173,6 +176,7 @@ class DatetimeValidator(BaseValidator):
         return DatetimeValidator.validate_datetime_against_granules(
             ending_datetime, collection_shortname, version, "-end_date", "time_end"
         )
+
 
     @staticmethod
     @if_arg
