@@ -77,8 +77,11 @@ def get_date_time(dt_str):
     """
     for fmt in DATE_FORMATS:
         try:
+            #print(f"Trying format: {fmt}")
             date_time = datetime.strptime(dt_str, fmt)
-            return date_time
+            #return date_time
+            return date_time.strftime("%Y-%m-%dT%H:%M:%SZ")
         except ValueError:
             continue
-    return None
+    return False, None
+    #return None

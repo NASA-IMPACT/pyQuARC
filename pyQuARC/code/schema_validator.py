@@ -4,6 +4,8 @@ import re
 
 from io import BytesIO
 from jsonschema import Draft7Validator, draft7_format_checker, RefResolver
+#from jsonschema import Draft7Validator, FormatChecker, RefResolver
+format_checker = Draft7Validator.FORMAT_CHECKER
 from lxml import etree
 from urllib.request import pathname2url
 

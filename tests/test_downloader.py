@@ -1,4 +1,8 @@
 from pyQuARC.code.downloader import Downloader
+#import warnings # new 
+#import pytest   # new 
+#warnings.filterwarnings("ignore", category=DeprecationWarning) #new
+
 
 
 class TestDownloader:
@@ -9,11 +13,11 @@ class TestDownloader:
     def setup_method(self):
         self.concept_ids = {
             "collection": {
-                "real": "C1339230297-GES_DISC",
+                "real": "C1620496172-CDDIS",
                 "dummy": "C123456-LPDAAC_ECS",
             },
             "granule": {
-                "real": "G1370895082-GES_DISC",
+                "real": "G2128996127-CDDIS",
                 "dummy": "G1000000002-CMR_PROV",
             },
             "invalid": "asdfasdf",
@@ -134,7 +138,7 @@ class TestDownloader:
         downloader = Downloader(real_collection, "echo-c")
 
         downloader.download()
-
+        print(downloader)
         # is the concept id valid and is the request going through?
         assert downloader.errors == []
 
