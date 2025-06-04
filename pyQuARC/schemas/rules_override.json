@@ -1,1 +1,17 @@
-{}
+{
+    "url_update_email_check": {
+        "rule_name": "URL Email address check",
+        "fields_to_apply": {
+            "umm-c": [
+                {
+                    "fields": [
+                        "DataCenters/ContactGroups/ContactInformation/ContactMechanisms/Value",
+                        "DataCenters/ContactGroups/ContactInformation/ContactInstruction"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "url_update_email_check"
+}
+}
