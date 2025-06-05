@@ -3,11 +3,22 @@ import os
 import re
 
 from io import BytesIO
-from jsonschema import Draft7Validator, draft7_format_checker, RefResolver
+from jsonschema import Draft7Validator, RefResolver
 from lxml import etree
 from urllib.request import pathname2url
+from .utils import read_json_schema_from_url
+from .constants import ECHO10_C, SCHEMA_PATHS, UMM_C, UMM_G
 
-from .constants import ECHO10_C, SCHEMA_PATHS, UMM_C
+
+SUPPORTED_UMM_C_VERSIONS = ["v1.18.4", "v1.18.3", "v1.18.2"]
+DEFAULT_UMM_C_VERSION = "v1.18.4" # Or any other version you prefer as default
+
+# Define UMM-G versions if you want to make it flexible as well
+SUPPORTED_UMM_G_VERSIONS = ["v1.6.6"]
+DEFAULT_UMM_G_VERSION = "v1.6.6"
+
+SCHEMA_CDN_BASE = "https://cdn.earthdata.nasa.gov/umm"
+
 
 
 class SchemaValidator:
@@ -21,6 +32,10 @@ class SchemaValidator:
         self,
         check_messages,
         metadata_format=ECHO10_C,
+           # Add a new parameter for UMM-C version
+        umm_c_version=DEFAULT_UMM_C_VERSION,
+        # Add a new parameter for UMM-G version (if you want to make it flexible too)
+        umm_g_version=DEFAULT_UMM_G_VERSION
     ):
         """
         Args:
@@ -29,8 +44,27 @@ class SchemaValidator:
             validation_paths (list of str): The path of the fields in the
                 metadata that need to be validated. In the form
                 ['Collection/StartDate', ...].
+            umm_c_version (str): The specific UMM-C version to use for validation (e.g., "v1.18.4").
+            umm_g_version (str): The specific UMM-G version to use for validation (e.g., "v1.6.6").
+            check_messages (dict): A dictionary of check messages for errors.
         """
         self.metadata_format = metadata_format
+        # Validate and store the UMM-C version
+        if umm_c_version not in SUPPORTED_UMM_C_VERSIONS:
+            raise ValueError(
+                f"Unsupported UMM-C version: {umm_c_version}. "
+                f"Supported versions are: {', '.join(SUPPORTED_UMM_C_VERSIONS)}"
+            )
+        self.umm_c_version = umm_c_version
+
+        # Validate and store the UMM-G version
+        if umm_g_version not in SUPPORTED_UMM_G_VERSIONS:
+            raise ValueError(
+                f"Unsupported UMM-G version: {umm_g_version}. "
+                f"Supported versions are: {', '.join(SUPPORTED_UMM_G_VERSIONS)}"
+            )
+        self.umm_g_version = umm_g_version
+
         if metadata_format.startswith("umm-"):
             self.validator_func = self.run_json_validator
         else:
@@ -61,9 +95,16 @@ class SchemaValidator:
         """
         Reads the json schema file
         """
+        if self.metadata_format == UMM_C:
+            schema_url = (f"{SCHEMA_CDN_BASE}/collection/{self.umm_c_version}/umm-c-json-schema.json")
+            return read_json_schema_from_url(schema_url)
+
+        if self.metadata_format == UMM_G:
+            schema_url = (f"{SCHEMA_CDN_BASE}/granule/{self.umm_g_version}/umm-g-json-schema.json")
+            return read_json_schema_from_url(schema_url)
+        
         with open(SCHEMA_PATHS[f"{self.metadata_format}-json-schema"]) as schema_file:
-            schema = json.load(schema_file)
-        return schema
+            return json.load(schema_file)
 
     def run_json_validator(self, content_to_validate):
         """
@@ -77,21 +118,30 @@ class SchemaValidator:
         schema_store = {}
 
         if self.metadata_format == UMM_C:
-            with open(SCHEMA_PATHS["umm-cmn-json-schema"]) as schema_file:
-                schema_base = json.load(schema_file)
 
-            # workaround to read local referenced schema file (only supports uri)
-            schema_store = {
-                schema_base.get("$id", "/umm-cmn-json-schema.json"): schema_base,
-                schema_base.get("$id", "umm-cmn-json-schema.json"): schema_base,
-            }
+
+            #umm_cmn_schema_url = f"{SCHEMA_CDN_BASE}/collection/{self.umm_c_version}/umm-c-json-schema.json"
+            # If it's *not* versioned and always the latest or a specific fixed version, adjust this URL
+            # e.g., f"{SCHEMA_CDN_BASE}/common/umm-cmn-json-schema.json" or from SCHEMA_PATHS
+
+            try:
+                with open(SCHEMA_PATHS["umm-cmn-json-schema"]) as common_schema_file:
+                    schema_base = json.load(common_schema_file)
+                 # 1. Add the schema using its $id (most common canonical reference)
+                if "$id" in schema_base:
+                    schema_store[schema_base["$id"]] = schema_base
+                
+                # 2. Add the schema using the full URL you fetched it from (if different from $id or for robustness)
+                schema_store["/umm-cmn-json-schema.json"] = schema_base
+                schema_store["umm-cmn-json-schema.json"] = schema_base
+            except Exception as e:
+                print(f"Error loading UMM Common schema from {SCHEMA_PATHS['umm-cmn-json-schema']}: {e}")
+                print("Schema validation for UMM-C might proceed without common schema, leading to incomplete validation.")
 
         errors = {}
-
         resolver = RefResolver.from_schema(schema, store=schema_store)
-
         validator = Draft7Validator(
-            schema, format_checker=draft7_format_checker, resolver=resolver
+            schema, format_checker=Draft7Validator.FORMAT_CHECKER, resolver=resolver
         )
 
         for error in sorted(
@@ -136,13 +186,14 @@ class SchemaValidator:
             # For DIF, because the namespace is specified in the metadata file, lxml library
             # provides field name concatenated with the namespace,
             # the following 3 lines of code removes the namespace
-            namespaces = re.findall("(\{http[^}]*\})", line)
+            namespaces = re.findall(r"(\{http[^}]*\})", line)
             for namespace in namespaces:
                 line = line.replace(namespace, "")
-            field_name = re.search("Element\s'(.*)':", line)[1]
+            field_name = re.search(r"Element\s'(.*)':", line)[1]  
             field_paths = [abs_path for abs_path in paths if field_name in abs_path]
             field_name = field_paths[0] if len(field_paths) == 1 else field_name
-            message = re.search("Element\s'.+':\s(\[.*\])?(.*)", line)[2].strip()
+            
+            message = re.search(r"Element\s'.+':\s(\[.*\])?(.*)", line)[2].strip()
             errors.setdefault(field_name, {})["schema"] = {
                 "message": [f"Error: {message}"],
                 "valid": False,
