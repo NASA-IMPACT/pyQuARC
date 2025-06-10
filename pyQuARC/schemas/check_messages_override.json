@@ -1,18 +1,10 @@
 {
-    "processing_level_description_presence_check": {
-       "failure": "The Processing Level Description is missing.",
-       "help": {
-           "message": "Recommend providing a processing level description, using the EOSDIS processing level descriptions as guidance",
-           "url": "https://www.earthdata.nasa.gov/learn/earth-observation-data-basics/data-processing-levels"
-       },
-       "remediation": "Recommend providing a processing level description, using the EOSDIS processing level descriptions as guidance:\nhttps://www.earthdata.nasa.gov/engage/open-data-services-and-software/data-information-policy/data-levels"
-    },
-    "processing_level_description_length_check": {
-        "failure": "The provided description is less than 50 characters and therefore may be lacking in contextual information.",
+    "horizontal_datum_name_check": {
+        "failure": "The Horizontal Datum Name is missing.",
         "help": {
-            "message": "Use the EOSDIS Data Processing level description as guidance.",
-            "url": "https://www.earthdata.nasa.gov/engage/open-data-services-and-software/data-information-policy/data-levels"
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Extent"
         },
-        "remediation": "Recommend providing a more detailed processing level description, using the EOSDIS processing level descriptions as guidance:\nhttps://www.earthdata.nasa.gov/engage/open-data-services-and-software/data-information-policy/data-levels"
+        "remediation": "Information about the datum should be provided in the metadata if possible."
     }
 }
