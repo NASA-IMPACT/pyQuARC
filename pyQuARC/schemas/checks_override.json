@@ -1,1 +1,10 @@
-{}
+{
+    "horizontal_datum_name_check": {
+        "failure": "The Horizontal Datum Name is missing.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Extent"
+        },
+        "remediation": "Information about the datum should be provided in the metadata if possible."
+    }
+}
