@@ -40,12 +40,12 @@
         "remediation": "Recommend updating the Revision date so that it comes chronologically after the Insert/Creation time."
     },
     "url_check": {
-        "failure": "A URL with a status code other than 200 has been identified: `{}`.",
+        "failure": "`{}`.",
         "help": {
             "message": "",
             "url": "https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
         },
-        "remediation": "This often indicates a broken link. If the URL is broken, recommend revising."
+        "remediation": "Recommend removing FTP links and updating broken HTTP/HTTPS links."
     },
     "shortname_uniqueness": {
         "failure": "The EntryTitle/DataSetId `{}` is identical to the ShortName `{}`.",
@@ -821,7 +821,7 @@
             "message": "",
             "url": ""
         },
-        "remediation": "Recommend updating to 'HTTPS'."
+        "remediation": "Recommend removing the ftp access link: ftp://gdc.cddis.eosdis.nasa.gov/....."
     },
     "citation_version_check": {
         "failure": "The version listed in the citation `{}` does not match the version of the collection `{}`.",
@@ -845,7 +845,7 @@
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
         },
-        "remediation": "Recommend providing a description for each URL that is provided."
+        "remediation": "Recommend providing a description for the Online Access URL."
     },
     "get_data_url_check": {
         "failure": "No 'GET DATA' link is provided.",

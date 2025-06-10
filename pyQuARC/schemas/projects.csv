@@ -1,4 +1,4 @@
-"Keyword Version: 21.1","Revision: 2025-04-08 09:52:31","Timestamp: 2025-05-07 11:48:18","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/projects/?format=xml","Case native"
+"Keyword Version: 21.3","Revision: 2025-05-12 09:37:32","Timestamp: 2025-06-06 08:03:36","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/projects/?format=xml","Case native"
 Bucket,Short_Name,Long_Name,UUID
 "A - C","25090-E/ANT","","07a12d76-3794-4d1f-8db3-96a4c9814d54"
 "V - Z","6CI","The Sixth Continent Initiative","33cd602e-d5f0-470b-8a04-5862421a1e1f"
@@ -240,6 +240,7 @@ Bucket,Short_Name,Long_Name,UUID
 "A - C","AVHRR PATHFINDER","AVHRR Land Dataset Program","9d15fd57-884c-4f9d-a909-7dfa46453ad2"
 "A - C","AVIRIS","Airborne Visible InfraRed Imaging Spectrometer","d6b1012f-7e03-44cc-96f7-1f580c5eaad1"
 "A - C","AVISO","Archiving, Validation and Interpretation of Satellite Oceanographic Data","702ab0e0-3f0e-4782-890a-026c15486526"
+"A - C","AVUELO","Airborne Validation Unified Experiment Land to Ocean","7da39c91-23d5-41ec-b49c-9b22d09dfaf4"
 "A - C","AWDN","Automated Weather Data Network","3d1b5e61-b6fd-42e4-8d99-c0901e9b32b0"
 "A - C","B-CILCAS","Biodiversity and Climate Induced Lifecycle Changes of Arctic Spiders","0d816d98-ad26-4e2c-abee-77161da7d02d"
 "A - C","BACPAC","Bromine Air-Sea Cruise Pacific","30030c75-9638-4fef-9f5a-570a0e2b28ef"
@@ -1570,6 +1571,7 @@ Bucket,Short_Name,Long_Name,UUID
 "S - U","SBC","Special Bureau for the Core, GGFC, IERS","7945db91-b81c-48a8-a91b-dd3482dba851"
 "S - U","SBC/SMB","Santa Barbara Channel/Santa Marine Basin Study","f4359274-ce67-45e8-8d05-0f084c7591a8"
 "S - U","SBCS","Santa Barbara Channel Study","39e03d88-518d-43e9-9e2e-38f4180f31bd"
+"S - U","SBG","Surface Biology and Geology","59a1345e-c0b6-435d-9e0a-510a70fb0436"
 "S - U","SBI","Western Arctic Shelf Basin Interactions","7cc85d6a-1cce-48e3-9c83-9f3b70a7c00b"
 "S - U","SBPPR","Study of Biology and Predator-Prey Relationships. IAA Project No. 29 2002-2004","c716dc8f-a3e2-45db-a3b5-4b61cdf903c0"
 "S - U","SCAMP","Southern California Areal Mapping Project","20789c39-f6fa-472f-9b7c-35b6f2a2e404"

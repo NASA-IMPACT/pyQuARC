@@ -65,34 +65,47 @@ class UrlValidator(StringValidator):
         value = ", ".join(urls)
 
         # check that URL returns a valid response
+        print(f"Printed urls:{urls}")
         for url in urls:
-            if not url.startswith("http"):
-                url = f"http://{url}"
-            try:
-                response_code = status_code_from_request(url)
-                if response_code == 200:
-                    if url.startswith("http://"):
-                        secure_url = url.replace("http://", "https://")
-                        if status_code_from_request(secure_url) == 200:
-                            result = {
-                                "url": url,
-                                "error": "The URL is secure. Please use 'https' instead of 'http'.",
-                            }
-                    else:
-                        continue
-                else:
-                    result = {"url": url, "error": f"Status code {response_code}"}
-            except requests.ConnectionError:
-                result = {"url": url, "error": "The URL does not exist on Internet."}
-            except:
-                result = {"url": url, "error": "Some unknown error occurred."}
-            results.append(result)
-
+            print(f"running url:{url}")
+            if url.startswith("ftp://"):
+                results.append({
+                "url": url, 
+                
+                "error": f"The URL {url} exists"
+                })
+            else:
+                if url.startswith("http"):
+                    # url = f"http://{url}"
+                    # result = None
+                    try:
+                        response_code = status_code_from_request(url)  
+                        print(f"url inside try:{url}")
+                        print(f"response code{response_code}")
+                        if response_code == 200:
+                            if url.startswith("http://"):
+                                secure_url = url.replace("http://", "https://")
+                                if status_code_from_request(secure_url) == 200:
+                                    result = {
+                                        "url": url,
+                                        "error": f"The {url} is secure. Please use 'https' instead of 'http'.",
+                                    }     
+                            else:
+                                continue
+                        else:
+                            result = {"url": url, "error": f"Status code {response_code}"}
+                    except requests.ConnectionError:
+                        result = {"url": url, "error": f"The URL {url} does not exist on Internet."}
+                    except:
+                        result = {"url": url, "error": "Some unknown error occurred."}
+                    
+                results.append(result)
+        print(f"Results{results}")
         if results:
             validity = False
             value = results
-
-        return {"valid": validity, "value": value}
+        
+        return {"valid": validity, "value":  [r["error"] for r in results]}
 
     @staticmethod
     @if_arg

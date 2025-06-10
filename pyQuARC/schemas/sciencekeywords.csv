@@ -1,4 +1,4 @@
-"Keyword Version: 21.1","Revision: 2025-03-28 11:03:17","Timestamp: 2025-05-07 05:27:13","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=xml","Case native"
+"Keyword Version: 21.4","Revision: 2025-05-23 09:30:13","Timestamp: 2025-06-06 13:20:08","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=xml","Case native"
 Category,Topic,Term,Variable_Level_1,Variable_Level_2,Variable_Level_3,Detailed_Variable,UUID
 "EARTH SCIENCE","ATMOSPHERE","PRECIPITATION","PRECIPITATION AMOUNT","12 HOUR PRECIPITATION AMOUNT","","","feef8827-92a6-4d1d-b6a5-ecda38a32656"
 "EARTH SCIENCE","ATMOSPHERE","ATMOSPHERIC TEMPERATURE","SURFACE TEMPERATURE","MAXIMUM/MINIMUM TEMPERATURE","24 HOUR MAXIMUM TEMPERATURE","","ce6a6b3a-df4f-4bd7-a931-7ee874ee9efe"
@@ -1028,6 +1028,7 @@ Category,Topic,Term,Variable_Level_1,Variable_Level_2,Variable_Level_3,Detailed_
 "EARTH SCIENCE","AGRICULTURE","AGRICULTURAL CHEMICALS","FERTILIZERS","","","","18a8197e-3a3f-408c-9c51-e9fe89dd6b45"
 "EARTH SCIENCE","AGRICULTURE","PLANT COMMODITIES","FIELD CROP PRODUCTS","","","","63317fb1-01d9-4658-93e8-9800c5359454"
 "EARTH SCIENCE","CLIMATE INDICATORS","ENVIRONMENTAL VULNERABILITY INDEX (EVI)","FIJI INDEX","","","","47200796-7541-4659-acf4-32b5303bcc1f"
+"EARTH SCIENCE","OCEANS","OCEAN CIRCULATION","Finite Time Lyapunov Exponent","","","","34033240-5675-4760-9fad-0c0d9b67b7ce"
 "EARTH SCIENCE SERVICES","ENVIRONMENTAL ADVISORIES","FIRE ADVISORIES","","","","","7f71a0a0-3da7-42b9-b134-c0a824dff971"
 "EARTH SCIENCE","BIOSPHERE","ECOLOGICAL DYNAMICS","FIRE ECOLOGY","FIRE DISTURBANCE","","","a45abde1-4717-44d8-8c31-4db5b03d0758"
 "EARTH SCIENCE","BIOSPHERE","ECOLOGICAL DYNAMICS","FIRE ECOLOGY","FIRE DYNAMICS","","","2a0a6319-80c4-49fd-8a40-553175aa8637"
@@ -1653,6 +1654,7 @@ Category,Topic,Term,Variable_Level_1,Variable_Level_2,Variable_Level_3,Detailed_
 "EARTH SCIENCE","OCEANS","COASTAL PROCESSES","LAGOONS","","","","c733c179-c12a-47e9-8e9a-817a5212446f"
 "EARTH SCIENCE","SOLID EARTH","GEOMORPHIC LANDFORMS/PROCESSES","COASTAL LANDFORMS","LAGOONS","","","081d131a-6bef-47dc-adb3-f96da9123f93"
 "EARTH SCIENCE","LAND SURFACE","GEOMORPHIC LANDFORMS/PROCESSES","COASTAL LANDFORMS","LAGOONS","","","d9483208-ff59-4293-9867-3f4895e58c9f"
+"EARTH SCIENCE","OCEANS","OCEAN CIRCULATION","Lagrangian feature","","","","a110c0bd-0d41-4ac3-8463-16f97c57b266"
 "EARTH SCIENCE","ATMOSPHERE","WEATHER EVENTS","SNOW STORMS","LAKE EFFECT SNOW","","","12b7f57f-c295-4adf-97f5-43356f1270bf"
 "EARTH SCIENCE","TERRESTRIAL HYDROSPHERE","SNOW/ICE","LAKE ICE","","","","a99c2917-8f91-4ec8-ad4f-7ee6200ab35d"
 "EARTH SCIENCE","CRYOSPHERE","SNOW/ICE","LAKE ICE","","","","8cb47594-3af6-4f4f-8ba1-4299a6d6887e"
