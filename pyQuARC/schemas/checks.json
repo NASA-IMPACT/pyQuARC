@@ -64,6 +64,11 @@
         "check_function": "availability_check",
         "available": true
     },
+    "url_description_presence_check": {
+    "data_type": "custom",
+    "check_function": "url_description_presence_check",
+    "available": true
+    },
     "mime_type_check": {
         "data_type": "custom",
         "check_function": "mime_type_check",

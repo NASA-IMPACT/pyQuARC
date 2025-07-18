@@ -4736,67 +4736,21 @@
     "url_desc_presence_check": {
         "rule_name": "Online Description Presence Check",
         "fields_to_apply": {
-            "echo-c": [
-                {
-                    "fields": [
-                        "Collection/OnlineAccessURLs/OnlineAccessURL/URLDescription",
-                        "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
-                    ]
-                },
-                {
-                    "fields": [
-                        "Collection/OnlineResources/OnlineResource/Description",
-                        "Collection/OnlineResources/OnlineResource/URL"
-                    ]
-                }
-            ],
-            "echo-g": [
-                {
-                    "fields": [
-                        "Granule/OnlineAccessURLs/OnlineAccessURL/URLDescription",
-                        "Granule/OnlineAccessURLs/OnlineAccessURL/URL"
-                    ]
-                },
-                {
-                    "fields": [
-                        "Granule/OnlineResources/OnlineResource/Description",
-                        "Granule/OnlineResources/OnlineResource/URL"
-                    ]
-                }
-            ],
-            "dif10": [
-                {
-                    "fields": [
-                        "DIF/Related_URL/Description",
-                        "DIF/Related_URL/URL"
-                    ]
-                },
-                {
-                    "fields": [
-                        "DIF/Multimedia_Sample/Description",
-                        "DIF/Multimedia_Sample/URL"
-                    ]
-                }
-            ],
             "umm-c": [
-                {
+                 {
                     "fields": [
-                        "RelatedUrls/Description",
-                        "RelatedUrls/URL"
+                        "RelatedUrls"
                     ]
-                }
-            ],
-            "umm-g": [
+                },
                 {
                     "fields": [
-                        "RelatedUrls/Description",
-                        "RelatedUrls/URL"
+                        "DataCenters/ContactInformation/RelatedUrls"
                     ]
                 }
             ]
         },
         "severity": "warning",
-        "check_id": "availability_check"
+        "check_id": "url_description_presence_check"
     },
     "get_data_url_check": {
         "rule_name": "GET DATA URL check",

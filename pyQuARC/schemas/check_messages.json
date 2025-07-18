@@ -973,8 +973,18 @@
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
         },
-        "remediation": "Descriptions should be unique to each URL. At least one of the descriptions are repeated in this record. Recommend changing the descriptions to more accurately and uniquely describe each link."
+        "remediation": "Descriptions should be unique to each URL. Several of the descriptions are repeated in this record. Recommend changing the descriptions to more accurately and uniquely describe each link"
     },
+
+    "url_description_presence_check": {
+        "failure": "A URL description is missing.",
+        "help": {
+            "message": "",
+            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
+        },
+        "remediation": "Recommend providing a description for each URL"
+    },
+
     "online_resource_description_uniqueness_check": {
         "failure": "A URL description is duplicated: `{}`.",
         "help": {

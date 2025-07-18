@@ -62,14 +62,14 @@
             "URL": "https://doi.org/10.5067/MODIS/MOD13Q1.061"
         },
         {
-            "Description": "LP DAAC Data Pool provides direct access to available products via HTTPS.",
+            "Description": "",
             "URLContentType": "DistributionURL",
             "Type": "GET DATA",
             "Subtype": "DATA TREE",
             "URL": "https://e4ftl01.cr.usgs.gov/MOLT/MOD13Q1.061/"
         },
         {
-            "Description": "The LP DAAC website provides detailed information on discovery, distribution, access, and support of land data products.",
+            "Description": "Earthdata Search allows users to search, discover, visualize, refine, and access NASA Earth Observation data.",
             "URLContentType": "CollectionURL",
             "Type": "PROJECT HOME PAGE",
             "URL": "https://lpdaac.usgs.gov/"

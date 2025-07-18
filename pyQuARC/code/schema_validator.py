@@ -75,25 +75,19 @@ class SchemaValidator:
         """
         schema = self.read_json_schema()
         schema_store = {}
-
         if self.metadata_format == UMM_C:
             with open(SCHEMA_PATHS["umm-cmn-json-schema"]) as schema_file:
                 schema_base = json.load(schema_file)
-
             # workaround to read local referenced schema file (only supports uri)
             schema_store = {
                 schema_base.get("$id", "/umm-cmn-json-schema.json"): schema_base,
                 schema_base.get("$id", "umm-cmn-json-schema.json"): schema_base,
             }
-
         errors = {}
-
         resolver = RefResolver.from_schema(schema, store=schema_store)
-
         validator = Draft7Validator(
             schema, format_checker=draft7_format_checker, resolver=resolver
         )
-
         for error in sorted(
             validator.iter_errors(json.loads(content_to_validate)), key=str
         ):

@@ -61,6 +61,25 @@ class CustomValidator(BaseValidator):
             "value": parent_value,
         }
 
+    # @staticmethod
+    # def url_description_presence_check(field_value, parent_value):
+    #     """
+    #     Ensures that URL descriptions are present and not empty if a URL is provided.
+    #     """
+    #     if parent_value:  # if URL is present
+    #         if not field_value or not str(field_value).strip():
+    #             return {
+    #                 "valid": False,
+    #                 "value": field_value,
+    #                 "message": "URL description is missing.",
+    #                 "remediation": "Provide a brief description to explain the purpose of this URL.",
+    #                 "level": "WARNING"
+    #             }
+    #     return {
+    #         "valid": True,
+    #         "value": field_value
+    #     }
+
     @staticmethod
     @if_arg
     def bounding_coordinate_logic_check(west, north, east, south):
