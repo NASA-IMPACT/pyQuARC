@@ -45,7 +45,7 @@
             "message": "",
             "url": "https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
         },
-        "remediation": "Recommend removing FTP links and updating broken HTTP/HTTPS links."
+        "remediation": "Recommend updating broken HTTP/HTTPS links."
     },
     "protocol_check": {
         "failure": "`{}`.",
@@ -54,6 +54,14 @@
             "url": "https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
         },
         "remediation": "Recommend removing FTP links."
+    },
+    "secure_url_check": {
+        "failure": "`{}`.",
+        "help": {
+            "message": "",
+            "url": "https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
+        },
+        "remediation": "Recommend updating the following link(s) from 'http' to 'https':"
     },
     "shortname_uniqueness": {
         "failure": "The EntryTitle/DataSetId `{}` is identical to the ShortName `{}`.",

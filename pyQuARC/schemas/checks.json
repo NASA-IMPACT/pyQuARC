@@ -29,6 +29,11 @@
         "check_function": "protocol_checks",
         "available": true
     },
+    "secure_url_check": {
+        "data_type": "url",
+        "check_function": "secure_url_checks",
+        "available": true
+    },
     "string_compare": {
         "data_type": "string",
         "check_function": "compare",
