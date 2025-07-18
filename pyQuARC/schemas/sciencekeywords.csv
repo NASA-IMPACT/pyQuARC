@@ -1,4 +1,4 @@
-"Keyword Version: 21.4","Revision: 2025-05-23 09:30:13","Timestamp: 2025-06-06 13:20:08","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=xml","Case native"
+"Keyword Version: 21.6","Revision: 2025-06-20 10:10:10","Timestamp: 2025-07-15 08:34:53","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/sciencekeywords/?format=xml","Case native"
 Category,Topic,Term,Variable_Level_1,Variable_Level_2,Variable_Level_3,Detailed_Variable,UUID
 "EARTH SCIENCE","ATMOSPHERE","PRECIPITATION","PRECIPITATION AMOUNT","12 HOUR PRECIPITATION AMOUNT","","","feef8827-92a6-4d1d-b6a5-ecda38a32656"
 "EARTH SCIENCE","ATMOSPHERE","ATMOSPHERIC TEMPERATURE","SURFACE TEMPERATURE","MAXIMUM/MINIMUM TEMPERATURE","24 HOUR MAXIMUM TEMPERATURE","","ce6a6b3a-df4f-4bd7-a931-7ee874ee9efe"
@@ -1380,7 +1380,7 @@ Category,Topic,Term,Variable_Level_1,Variable_Level_2,Variable_Level_3,Detailed_
 "EARTH SCIENCE","BIOSPHERE","OMICS","OMICS METHODOLOGY","HIGH THROUGHPUT SEQUENCING","","","5804d1a5-c96d-4863-881d-6f763ecee262"
 "EARTH SCIENCE","TERRESTRIAL HYDROSPHERE","SURFACE WATER","SURFACE WATER PROCESSES/MEASUREMENTS","HIGH WATER MARK","","","fa963ea3-d500-41c6-8128-69add1795d43"
 "EARTH SCIENCE","CLIMATE INDICATORS","ATMOSPHERIC/OCEAN INDICATORS","TEMPERATURE INDICATORS","HIGHER MAXIMUM DAYTIME TEMPERATURES","","","3d997f01-8987-4fb1-a32e-d88d51f0a2c4"
-"EARTH SCIENCE","CLIMATE INDICATORS","ATMOSPHERIC/OCEAN INDICATORS","TEMPERATURE INDICATORS","HIGHER MINIMUM NIGHTIME TEMPERATURES","","","93741006-ff2a-4ec2-bbd4-ff55301fabe0"
+"EARTH SCIENCE","CLIMATE INDICATORS","ATMOSPHERIC/OCEAN INDICATORS","TEMPERATURE INDICATORS","HIGHER MINIMUM NIGHTTIME TEMPERATURES","","","93741006-ff2a-4ec2-bbd4-ff55301fabe0"
 "EARTH SCIENCE","BIOLOGICAL CLASSIFICATION","ANIMALS/VERTEBRATES","MAMMALS","EVEN-TOED UNGULATES","HOGS/PIGS","","108ece15-4588-4564-b803-dc1c17cf193e"
 "EARTH SCIENCE","BIOSPHERE","OMICS","MICROBIOME","HOLOBIONT","","","f8845bec-c628-4185-aac1-4af22481c024"
 "EARTH SCIENCE","OCEANS","OCEAN CIRCULATION","OCEAN CURRENTS","HORIZONTAL CURRENT SHEAR","","","39dfbc45-f1bc-496b-bb97-849aacf2feb7"

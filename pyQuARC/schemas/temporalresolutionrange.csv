@@ -1,4 +1,4 @@
-"Hits: 22","page_num: 1","page_size: 2000","Keyword Version: 21.4","Revision: 2025-05-23 09:29:14","Timestamp: 2025-06-06 11:53:50","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/temporalresolutionrange/?format=xml","Case native"
+"Hits: 22","page_num: 1","page_size: 2000","Keyword Version: 21.6","Revision: 2025-06-20 10:09:09","Timestamp: 2025-07-15 10:29:21","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/temporalresolutionrange/?format=xml","Case native"
 Temporal_Resolution_Range,UUID
 "1 minute - < 1 hour","bca20202-2b06-4657-a425-5b0e416bce0c"
 "1 second - < 1 minute","48ff676f-836c-4cff-bc88-4c4cc06b2e1b"

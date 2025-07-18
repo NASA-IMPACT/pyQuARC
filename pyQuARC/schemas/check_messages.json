@@ -47,6 +47,14 @@
         },
         "remediation": "Recommend removing FTP links and updating broken HTTP/HTTPS links."
     },
+    "protocol_check": {
+        "failure": "`{}`.",
+        "help": {
+            "message": "",
+            "url": "https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
+        },
+        "remediation": "Recommend removing FTP links."
+    },
     "shortname_uniqueness": {
         "failure": "The EntryTitle/DataSetId `{}` is identical to the ShortName `{}`.",
         "help": {

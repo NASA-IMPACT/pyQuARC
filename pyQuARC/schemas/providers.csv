@@ -1,4 +1,4 @@
-"Keyword Version: 21.3","Revision: 2025-05-09 09:15:49","Timestamp: 2025-06-06 08:05:16","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers/?format=xml","Case native"
+"Keyword Version: 21.6","Revision: 2025-06-25 13:11:58","Timestamp: 2025-07-15 10:35:48","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/providers/?format=xml","Case native"
 Bucket_Level0,Bucket_Level1,Bucket_Level2,Bucket_Level3,Short_Name,Long_Name,Data_Center_URL,UUID
 "NON-GOVERNMENT/NON-PROFIT ORGANIZATIONS","","","","52N","52 North","http://52north.org","8b662612-89ff-4504-806e-195e6bf48d92"
 "CONSORTIA/INSTITUTIONS","","","","973 DATA CENTER","Data Archive, Sharing Network for Resource and Environment Project of 973 Program","http://www.973geodata.cn","cc924b13-041b-4966-a08b-c45bd5a86473"
@@ -1827,7 +1827,7 @@ Bucket_Level0,Bucket_Level1,Bucket_Level2,Bucket_Level3,Short_Name,Long_Name,Dat
 "ACADEMIC","","","","LOBP","Centre d'Océanologie de Marseille","http://www.bariteco.com","7f43b4a7-db3c-4177-9186-5f00412215fd"
 "NON-GOVERNMENT/NON-PROFIT ORGANIZATIONS","","","","LOF","Living Oceans Foundation","http://www.livingoceansfoundation.org","9abb2faf-9cd8-4720-bd71-df0e261ca7fd"
 "U.S. STATE/REGIONAL/LOCAL AGENCIES","LOUISIANA","","","","","","c2f7ebdb-b5b7-4c86-9286-c655037b1ed4"
-"GOVERNMENT AGENCIES-U.S. FEDERAL AGENCIES","NASA","","","LP DAAC","Land Processes Distributed Active Archive Center","https://lpdaac.usgs.gov/","5612b95e-cc41-4286-9946-e78506f70f59"
+"GOVERNMENT AGENCIES-U.S. FEDERAL AGENCIES","NASA","","","LP DAAC","Land Processes Distributed Active Archive Center","https://www.earthdata.nasa.gov/centers/lp-daac","5612b95e-cc41-4286-9946-e78506f70f59"
 "ACADEMIC","","","","LRMG/DBB/UERJ","Laboratório de Radioecologia e Mudanças Globais, Departamento de Biofísica e Biometria, Universidade do Estado do Rio de Janeir","http://www.biologia.uerj.br/dbb/paginas/labramg.htm","f52f60de-c96f-4735-859d-32d19e143e5c"
 "ACADEMIC","","","","LSSU/GEOL","Department of Geology & Physics, Lake Superior State University","https://www.lssu.edu/geology/","8958457f-772e-44fb-a06c-aade243e6985"
 "ACADEMIC","","","","LSU/AG-C","Agricultural Center, Louisiana State University","http://www.lsuagcenter.com/","0d03b47f-1d77-4690-9a55-dc43085f7b61"
@@ -2288,7 +2288,7 @@ Bucket_Level0,Bucket_Level1,Bucket_Level2,Bucket_Level3,Short_Name,Long_Name,Dat
 "CONSORTIA/INSTITUTIONS","","","","OECD","Organization for Economic Co-Operation and Development","http://www.oecd.org/","63dffc44-2557-41a5-80c0-9594fcd19dfc"
 "CONSORTIA/INSTITUTIONS","","","","OG","OneGeology","http://www.onegeology.org/","88002ac9-935b-4bcf-a021-97d278adcb17"
 "CONSORTIA/INSTITUTIONS","","","","OGC","Open Geospatial Consortium","http://www.opengeospatial.org/","a7137177-9bee-4053-8a11-7f5bdd4548b6"
-"ACADEMIC","","","","OH-STATE/BPRC","Byrd Polar Research Center, The Ohio State University","http://bprc.osu.edu/","232b5eca-e461-413e-a3ab-05bbb62857f4"
+"ACADEMIC","","","","OH-STATE/BPRC","Byrd Polar Research Center, The Ohio State University","https://byrd.osu.edu/","232b5eca-e461-413e-a3ab-05bbb62857f4"
 "ACADEMIC","","","","OH-STATE/BPRC/AGD","Antarctic Geologic Database, Byrd Polar Research Center, The Ohio State University","http://www.geology.ohio-state.edu/agg-group/databases.html","bf09dd12-f6f6-4562-824a-ed443f776e56"
 "ACADEMIC","","","","OH-STATE/BPRC/RR","United States Polar Rock Repository, Byrd Polar Research Center, The Ohio State University","http://bprc.osu.edu/emuwebusprr/pages/usprr/Query.php","a64a24f6-c67d-4364-a3b9-bbdb4d09da35"
 "ACADEMIC","","","","OH-STATE/FABE","Food, Agriculture and Biological Engineering, The Ohio State University","http://www.oardc.ohio-state.edu/fabe/","c8f9ef07-84da-49f3-99a1-d712aae5b03c"

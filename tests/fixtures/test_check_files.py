@@ -122,6 +122,20 @@ def UrlValidator_health_and_status_check_test(val_function, value):
     except:
         return "error"
 
+def UrlValidator_protocol_check(val_function, value):
+    try:
+        if isinstance(value[0], list):
+            i = 0
+            return_list = []
+            for x in value:
+                return_list.append(val_function(value[i][0]))
+                i = i + 1
+            return return_list
+        if isinstance(value[0], str):
+            return val_function(value[0])
+    except:
+        return "error"
+
 
 def DOI_update_check(val_function, value):
     try:

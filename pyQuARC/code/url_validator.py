@@ -65,47 +65,74 @@ class UrlValidator(StringValidator):
         value = ", ".join(urls)
 
         # check that URL returns a valid response
-        print(f"Printed urls:{urls}")
         for url in urls:
-            print(f"running url:{url}")
-            if url.startswith("ftp://"):
-                results.append({
-                "url": url, 
-                
-                "error": f"The URL {url} exists"
-                })
-            else:
-                if url.startswith("http"):
-                    # url = f"http://{url}"
-                    # result = None
-                    try:
-                        response_code = status_code_from_request(url)  
-                        print(f"url inside try:{url}")
-                        print(f"response code{response_code}")
-                        if response_code == 200:
-                            if url.startswith("http://"):
-                                secure_url = url.replace("http://", "https://")
-                                if status_code_from_request(secure_url) == 200:
-                                    result = {
-                                        "url": url,
-                                        "error": f"The {url} is secure. Please use 'https' instead of 'http'.",
-                                    }     
-                            else:
-                                continue
+            if url.startswith("http"):
+                try:
+                    response_code = 404
+                    # status_code_from_request(url)  
+                    if response_code == 200:
+                        if url.startswith("http://"):
+                            secure_url = url.replace("http://", "https://")
+                            if status_code_from_request(secure_url) == 200:
+                                result = {
+                                    "url": url,
+                                    "error": f"The {url} is secure. Please use 'https' instead of 'http'.",
+                                }     
                         else:
-                            result = {"url": url, "error": f"Status code {response_code}"}
-                    except requests.ConnectionError:
-                        result = {"url": url, "error": f"The URL {url} does not exist on Internet."}
-                    except:
-                        result = {"url": url, "error": "Some unknown error occurred."}
-                    
+                            continue
+                    else:
+                        result = {"url": url, "error": f"Status code {response_code}"}
+                except requests.ConnectionError:
+                    result = {"url": url, "error": f"The URL {url} does not exist on Internet."}
+                except:
+                    result = {"url": url, "error": "Some unknown error occurred."}
                 results.append(result)
-        print(f"Results{results}")
+            
         if results:
             validity = False
             value = results
         
-        return {"valid": validity, "value":  [r["error"] for r in results]}
+        return {"valid": validity, "value":  value}
+
+    @staticmethod
+    @if_arg
+    def protocol_checks(text_with_urls):
+        print(">>> Running protocol_check")
+        """
+        Checks the ftp included in `text_with_urls`
+        Args:
+           text_with_urls (str, required): The text that contains ftp
+        Returns:
+            (dict) An object with the validity of the check and the instance/results
+        """
+
+        results = []
+
+        validity = True
+
+        # extract URLs from text
+        extractor = URLExtract(cache_dir=os.environ.get("CACHE_DIR"))
+        urls = extractor.find_urls(text_with_urls)
+        urls.extend(UrlValidator._extract_http_texts(text_with_urls))
+
+        # remove dots at the end (The URLExtract library catches URLs, but sometimes appends a '.' at the end)
+        # remove duplicated urls
+        urls = set(url[:-1] if url.endswith(".") else url for url in urls)
+        value = ", ".join(urls)
+
+        # check that URL is ftp or http
+        for url in urls:
+            if url.startswith("ftp://"):
+                results.append({
+                "url": url, 
+                "error": f"The URL {url} exists"
+                })
+           
+        if results:
+            validity = False
+            value = results
+        
+        return {"valid": validity, "value":  value}
 
     @staticmethod
     @if_arg

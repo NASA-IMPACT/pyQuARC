@@ -1,4 +1,4 @@
-"Keyword Version: 21.4","Revision: 2025-06-05 16:22:46","Timestamp: 2025-06-06 13:31:07","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/instruments/?format=xml","Case native"
+"Keyword Version: 21.6","Revision: 2025-06-20 10:07:35","Timestamp: 2025-07-15 11:33:00","Terms Of Use: https://cdn.earthdata.nasa.gov/conduit/upload/5182/KeywordsCommunityGuide_Baseline_v1_SIGNED_FINAL.pdf","The most up to date XML representations can be found here: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/instruments/?format=xml","Case native"
 Category,Class,Type,Subtype,Short_Name,Long_Name,UUID
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Photon/Optical Detectors","","11.5um Radiometer","Nimbus 4 Temperature-Humidity Infrared Radiometer - 11.5 um","7bf9f69e-3bc7-45ad-9224-969676d36d78"
 "In Situ/Laboratory Instruments","Probes","","","1DP","1D Particles Probe","50e18063-c74f-4525-8b4e-b21f5c28e669"
@@ -297,6 +297,8 @@ Category,Class,Type,Subtype,Short_Name,Long_Name,UUID
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Photon/Optical Detectors","Cameras","CCD (CBERS 2B)","CCD (CBERS 2B)","a6a2f2fb-2ce2-4478-afb0-855bd6c7b8f6"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Photon/Optical Detectors","Cameras","CCD IMAGER","CCD IMAGER","38266f66-47af-4e1c-870e-8b9c20a4c9e9"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Photon/Optical Detectors","Cameras","CCD LINEAR ARRAY","CCD LINEAR ARRAY","bb5470c8-8dc4-49de-9024-722a13f9885a"
+"Earth Remote Sensing Instruments","Passive Remote Sensing","Photon/Optical Detectors","Cameras","CCD Ultra Violet","CCD_UV_bandwidth","d12f63fe-3e1f-46de-8f68-b6864117d95b"
+"Earth Remote Sensing Instruments","Passive Remote Sensing","Photon/Optical Detectors","Cameras","CCD Visible","CCD_VIS_bandwidth","3883bf84-9dec-4b8e-a0ff-45604697d320"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Photon/Optical Detectors","Cameras","CCD1 (HuanJing 1A)","","5f23cc05-b83e-4f1b-8ebc-b76903947f5e"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Photon/Optical Detectors","Cameras","CCD1 (HuanJing 1B)","","bde63ed6-0984-4705-801c-45c82546da6f"
 "Earth Remote Sensing Instruments","Passive Remote Sensing","Photon/Optical Detectors","Cameras","CCD2 (HuanJing 1A)","","3a52de1f-9020-4008-be76-566b0c3a9ef5"
