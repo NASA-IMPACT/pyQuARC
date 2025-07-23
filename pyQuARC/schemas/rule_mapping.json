@@ -4733,8 +4733,8 @@
         "severity": "info",
         "check_id": "datetime_compare"
     },
-    "url_desc_presence_check": {
-        "rule_name": "Online Description Presence Check",
+    "url_description_presence_check": {
+        "rule_name": "url description presence check",
         "fields_to_apply": {
             "umm-c": [
                  {
