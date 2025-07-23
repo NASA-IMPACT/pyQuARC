@@ -62,7 +62,7 @@
             "URL": "https://doi.org/10.5067/MODIS/MOD13Q1.061"
         },
         {
-            "Description": "",
+            "Description": "The LP DAAC product page provides information on Science Data Set layers and links for user guides, ATBDs, data access, tools, customer support, etc.",
             "URLContentType": "DistributionURL",
             "Type": "GET DATA",
             "Subtype": "DATA TREE",
