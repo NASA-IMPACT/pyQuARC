@@ -1,23 +1,49 @@
 {
-    "processing_level_description_presence_check": {
-       "rule_name": "Processing Level Description Presence Check",
-       "fields_to_apply": {
-           "echo-c": [
-               {
-                   "fields": [
-                       "Collection/ProcessingLevelDescription"
-                   ]
-               }
-           ],
-           "umm-c": [
-               {
-                   "fields": [
-                       "ProcessingLevel/ProcessingLevelDescription"
-                   ]
-               }
-           ]
-       },
-       "severity": "info",
-       "check_id": "one_item_presence_check"
-   }
+"processing_level_id_check": {
+        "rule_name": "EOSDIS Standard Processing Level ID Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/ProcessingLevelId"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/ProductLevelId"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "ProcessingLevel/Id"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            [
+                "0",
+                "1",
+                "1A",
+                "1B",
+                "1C",
+                "2",
+                "2A",
+                "2B",
+                "2G",
+                "2P",
+                "3",
+                "3A",
+                "4", 
+                "NA",
+                "Not provided"
+            ]
+        ],
+        "severity": "warning",
+        "check_id": "controlled_keywords_check"
+    }
 }
