@@ -1,1 +1,23 @@
-{}
+{
+    "granule_campaign_name_presence_check": {
+        "rule_name": "Campaign Name Presence Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/Campaigns/Campaign/ShortName"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "Campaign/ShortName"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "one_item_presence_check"
+    }
+}
