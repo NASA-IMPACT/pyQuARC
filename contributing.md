@@ -53,6 +53,7 @@ This page is meant to help you learn how you can contribute to pyQuARC! We are p
 
 ## Thank you for your interest in pyQuARC!
 We appreciate your interest in pyQuARC! Everyone is encouraged to help to improve pyQuARC, and we welcome your comments, suggestions, and new ideas!
+Please contact earthdata-support@nasa.gov with any questions.
 
 
 
