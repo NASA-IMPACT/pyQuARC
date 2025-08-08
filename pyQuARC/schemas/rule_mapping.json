@@ -1253,6 +1253,27 @@
         "severity": "info",
         "check_id": "length_check"
     },
+    "processing_level_description_presence_check": {
+        "rule_name": "Processing Level Description Presence Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/ProcessingLevelDescription"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "ProcessingLevel/ProcessingLevelDescription"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "one_item_presence_check"
+    },
     "umm_controlled_collection_state_list_check": {
         "rule_name": "UMM Controlled Collection State List",
         "fields_to_apply": {
