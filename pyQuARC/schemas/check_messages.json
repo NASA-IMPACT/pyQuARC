@@ -768,7 +768,7 @@
         "remediation": "Recommend providing a unique name for each characteristic."
     },
     "validate_beginning_datetime_against_granules": {
-        "failure": "The collection beginning date time `{}` is not consistent with the first granule's beginning date time `{}`.",
+        "failure": "The collection beginning date time `{}` is not consistent with the beginning date time in the metadata for the first granule `{}`.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Temporal+Extent"
@@ -776,7 +776,7 @@
         "remediation": "Recommend updating the beginning date time to match the granule extent."
     },
     "validate_ending_datetime_against_granules": {
-        "failure": "The collection ending date time `{}` is not consistent with the last granule's ending date time `{}`.",
+        "failure": "The collection ending date time `{}` is not consistent with the ending date time in the metadata for the last granule `{}`.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Temporal+Extent"
