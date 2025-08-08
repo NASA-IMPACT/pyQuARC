@@ -1,7 +1,1 @@
-{
-    "url_update_email_check": {
-        "data_type": "url",
-        "check_function": "url_update_email_check",
-        "available": true
-    }
-}
+{}
