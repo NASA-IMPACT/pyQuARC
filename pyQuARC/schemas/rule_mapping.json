@@ -3677,7 +3677,7 @@
             "umm-c": [
                 {
                     "fields": [
-                        "SpatialRepresentationInfo/HorizontalCoordinateSystem/GeodeticModel/HorizontalDatumName"
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/GeodeticModel/HorizontalDatumName"
                     ]
                 }
             ]

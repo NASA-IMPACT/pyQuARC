@@ -645,7 +645,7 @@
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Spatial+Extent"
         },
-        "remediation": "If appropriate for the dataset, recommend providing information about the horizontal datum."
+        "remediation": "Information about the datum should be provided in the metadata if possible."
     },
     "online_access_url_presence_check": {
         "failure": "No Online Access URL is provided. A link to access the data is required.",
