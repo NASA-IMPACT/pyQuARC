@@ -3,7 +3,7 @@ import os
 import re
 
 from io import BytesIO
-from jsonschema import Draft7Validator, draft7_format_checker, RefResolver
+from jsonschema import Draft7Validator, RefResolver
 from lxml import etree
 from urllib.request import pathname2url
 
@@ -91,7 +91,7 @@ class SchemaValidator:
         resolver = RefResolver.from_schema(schema, store=schema_store)
 
         validator = Draft7Validator(
-            schema, format_checker=draft7_format_checker, resolver=resolver
+            schema, format_checker=Draft7Validator.FORMAT_CHECKER, resolver=resolver
         )
 
         for error in sorted(
