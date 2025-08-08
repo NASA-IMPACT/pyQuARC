@@ -93,7 +93,7 @@
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Processing+Level, https://www.earthdata.nasa.gov/engage/open-data-services-and-software/data-information-policy/data-levels"
         },
-        "remediation": "Recommend changing the Id to match one of the EOSDIS Data Processing Levels, if applicable: [0, 1A, 1B, 1C, 2, 2A, 2B, 3, 3A, 4]"
+        "remediation": "Recommend changing the Id to match one of the EOSDIS Data Processing Levels, if applicable: [Not Provided, 0, 1, 1A, 1B, 1C, 1T, 2, 2A, 2B, 2G, 2P, 3, 3A 4, NA]"
     },
     "processing_level_description_length_check": {
         "failure": "The provided description is less than 50 characters and therefore may be lacking in contextual information.",

@@ -1,10 +1,2 @@
 {
-    "processing_level_id_check": {
-        "failure": "`{}` is not an EOSDIS recognized Processing Level Id.",
-        "help": {
-            "message": "",
-            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Processing+Level, https://www.earthdata.nasa.gov/engage/open-data-services-and-software/data-information-policy/data-levels"
-        },
-        "remediation": "Recommend changing the Id to match one of the EOSDIS Data Processing Levels, if applicable: [Not Provided, 0, 1, 1A, 1B, 1C, 1T, 2, 2A, 2B, 2G, 2P, 3, 3A 4, NA]"
-    }
 }
