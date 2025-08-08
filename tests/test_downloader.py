@@ -9,11 +9,11 @@ class TestDownloader:
     def setup_method(self):
         self.concept_ids = {
             "collection": {
-                "real": "C2515837343-GES_DISC",
+                "real": "C1000000010-CDDIS", #C1339230297-GES_DISC
                 "dummy": "C123456-LPDAAC_ECS",
             },
             "granule": {
-                "real": "G2519682101-GES_DISC",
+                "real": "G1001434969-CDDIS",  #G1370895082-GES_DISC
                 "dummy": "G1000000002-CMR_PROV",
             },
             "invalid": "asdfasdf",
