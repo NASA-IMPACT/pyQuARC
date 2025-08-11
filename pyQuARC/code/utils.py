@@ -82,3 +82,11 @@ def get_date_time(dt_str):
         except ValueError:
             continue
     return None
+
+
+def get_concept_type(concept_id):
+    """
+    Extract the concept type from a given concept ID.
+    This is useful for determining the type of concept (e.g., 'collection', 'granule') from its ID.
+    """
+    return concept_id.startswith("C") and "collection" or "granule"
