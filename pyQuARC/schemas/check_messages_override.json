@@ -1,10 +1,1 @@
-{
-    "granule_campaign_name_presence_check": {
-        "failure": "The campaign/project short name is missing.",
-        "help": {
-            "message": "",
-            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Project"
-        },
-        "remediation": "Recommend providing a campaign short name from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/projects/?format=csv"
-    }
-}
+{}

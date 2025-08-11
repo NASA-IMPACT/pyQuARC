@@ -629,7 +629,7 @@
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Project"
         },
-        "remediation": "Please add a GCMD compliant campaign/project name if applicable to the dataset."
+        "remediation": "Recommend providing a campaign short name from the following list: https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/projects/?format=csv"
     },
     "spatial_coverage_type_presence_check": {
         "failure": "The Spatial Coverage Type is missing.",
