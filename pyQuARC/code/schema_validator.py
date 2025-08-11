@@ -136,7 +136,6 @@ class SchemaValidator:
             # For DIF, because the namespace is specified in the metadata file, lxml library
             # provides field name concatenated with the namespace,
             # the following 3 lines of code removes the namespace
-            
             namespaces = re.findall(r"(\{http[^}]*\})", line)
             for namespace in namespaces:
                 line = line.replace(namespace, "")
