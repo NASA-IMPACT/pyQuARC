@@ -3626,7 +3626,7 @@
             "umm-g": [
                 {
                     "fields": [
-                        "Projects/ShortName"
+                        "Campaign/ShortName"
                     ]
                 }
             ]
