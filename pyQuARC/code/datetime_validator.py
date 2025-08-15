@@ -140,7 +140,6 @@ class DatetimeValidator(BaseValidator):
             "granules",
         )
         granules = cmr_request(cmr_prms)
-
         validity = True
         last_granule_datetime = None
         date_time = None
@@ -152,8 +151,22 @@ class DatetimeValidator(BaseValidator):
             date_time = get_date_time(datetime_string)
             last_granule_datetime = get_date_time(last_granule_datetime)
             validity = date_time == last_granule_datetime
+        else:
+            validity = False
 
-        return {"valid": validity, "value": (date_time, last_granule_datetime)}
+        return_value = {}
+        if (
+            (not date_time)
+            or not last_granule_datetime
+            or ((abs(date_time - last_granule_datetime).total_seconds() / 3600) > 24)
+        ):
+            return_value["severity"] = "error"
+
+        return {
+            **return_value,
+            "valid": validity,
+            "value": (date_time, last_granule_datetime),
+        }
 
     @staticmethod
     @if_arg
