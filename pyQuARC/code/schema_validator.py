@@ -3,7 +3,7 @@ import os
 import re
 
 from io import BytesIO
-from jsonschema import Draft7Validator, draft7_format_checker, RefResolver
+from jsonschema import Draft7Validator, RefResolver
 from lxml import etree
 from urllib.request import pathname2url
 
@@ -75,25 +75,19 @@ class SchemaValidator:
         """
         schema = self.read_json_schema()
         schema_store = {}
-
         if self.metadata_format == UMM_C:
             with open(SCHEMA_PATHS["umm-cmn-json-schema"]) as schema_file:
                 schema_base = json.load(schema_file)
-
             # workaround to read local referenced schema file (only supports uri)
             schema_store = {
                 schema_base.get("$id", "/umm-cmn-json-schema.json"): schema_base,
                 schema_base.get("$id", "umm-cmn-json-schema.json"): schema_base,
             }
-
         errors = {}
-
         resolver = RefResolver.from_schema(schema, store=schema_store)
-
         validator = Draft7Validator(
-            schema, format_checker=draft7_format_checker, resolver=resolver
+            schema, format_checker=Draft7Validator.FORMAT_CHECKER, resolver=resolver
         )
-
         for error in sorted(
             validator.iter_errors(json.loads(content_to_validate)), key=str
         ):
@@ -136,13 +130,13 @@ class SchemaValidator:
             # For DIF, because the namespace is specified in the metadata file, lxml library
             # provides field name concatenated with the namespace,
             # the following 3 lines of code removes the namespace
-            namespaces = re.findall("(\{http[^}]*\})", line)
+            namespaces = re.findall(r"(\{http[^}]*\})", line)
             for namespace in namespaces:
                 line = line.replace(namespace, "")
-            field_name = re.search("Element\s'(.*)':", line)[1]
+            field_name = re.search(r"Element\s'(.*)':", line)[1] 
             field_paths = [abs_path for abs_path in paths if field_name in abs_path]
             field_name = field_paths[0] if len(field_paths) == 1 else field_name
-            message = re.search("Element\s'.+':\s(\[.*\])?(.*)", line)[2].strip()
+            message = re.search(r"Element\s'.+':\s(\[.*\])?(.*)", line)[2].strip()
             errors.setdefault(field_name, {})["schema"] = {
                 "message": [f"Error: {message}"],
                 "valid": False,

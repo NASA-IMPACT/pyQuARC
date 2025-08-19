@@ -56,10 +56,42 @@ class CustomValidator(BaseValidator):
     @staticmethod
     def availability_check(field_value, parent_value):
         # If the parent is available, the child should be available too, else it is invalid
+        
         return {
             "valid": bool(field_value) if parent_value else True,
             "value": parent_value,
         }
+
+    @staticmethod
+    def url_description_presence_check(field_value):
+        """
+        Ensures that URL descriptions are present and not empty if a URL is provided.
+        """
+        if isinstance(field_value, list):
+            # List of dictionaries (URL objects)
+            errors = []
+            for url_obj in field_value:
+                description = url_obj.get("Description", "")
+                if not description or not str(description).strip():
+                    errors.append({
+                        "valid": False,
+                        "value": url_obj,
+                    })
+           
+            if errors:
+                return errors[0]  
+            else:
+                return {"valid": True, "value": field_value}
+
+        
+        if not field_value or not str(field_value).strip():
+            return {
+                "valid": False,
+                "value": field_value,
+            }
+
+        return {"valid": True, "value": field_value}
+
 
     @staticmethod
     @if_arg
