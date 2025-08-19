@@ -209,3 +209,14 @@ class UrlValidator(StringValidator):
             validity = False
 
         return {"valid": validity, "value": value}
+    
+    @staticmethod
+    @if_arg
+    def url_update_email_check(url, bad_urls):
+        validity = True
+        # Check if the URL matches 'support-cddis@earthdata.nasa.gov'
+        if url in bad_urls or url == "support-cddis@earthdata.nasa.gov":
+            # Update the URL
+            url = "support-cddis@nasa.gov"
+            validity = False  # Mark as invalid if the URL was updated
+        return {"valid": validity, "value": url}

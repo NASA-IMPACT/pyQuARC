@@ -3,7 +3,7 @@ import os
 import re
 
 from io import BytesIO
-from jsonschema import Draft7Validator, RefResolver 
+from jsonschema import Draft7Validator, RefResolver
 from lxml import etree
 from urllib.request import pathname2url
 
@@ -90,7 +90,9 @@ class SchemaValidator:
 
         resolver = RefResolver.from_schema(schema, store=schema_store)
 
+     echo-g_onlineaccessURL-BK
         validator = Draft7Validator(schema, format_checker=Draft7Validator.FORMAT_CHECKER)
+
 
         for error in sorted(
             validator.iter_errors(json.loads(content_to_validate)), key=str
