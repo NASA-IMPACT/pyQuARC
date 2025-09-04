@@ -1315,7 +1315,7 @@
                 }
             ]
         },
-        "severity": "warning",
+        "severity": "error",
         "check_id": "ends_at_present_flag_logic_check"
     },
     "ends_at_present_flag_presence_check": {
