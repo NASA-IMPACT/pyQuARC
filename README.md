@@ -103,11 +103,11 @@ To test a local file, use the `--file` argument. Give it either an absolute file
 
 Example:
 ```
-▶ python pyQuARC/main.py --file "tests/fixtures/test_cmr_metadata.echo10"
+▶ python pyQuARC/main.py --file "tests/fixtures/test_cmr_metadata.echo-c"
 ```
 or
 ```
-▶ python pyQuARC/main.py --file "/Users/batman/projects/pyQuARC/tests/fixtures/test_cmr_metadata.echo10"
+▶ python pyQuARC/main.py --file "/Users/batman/projects/pyQuARC/tests/fixtures/test_cmr_metadata.echo-c"
 ```
 
 ### Adding a custom rule
