@@ -1,6 +1,7 @@
 import csv
 import os
 import requests
+import re
 
 from .utils import get_headers
 
@@ -392,12 +393,6 @@ class GcmdValidator:
         """
         return input_keyword in self.keywords["granule_data_format"]
 
-    def validate_online_resource_type(self, input_keyword):
-        """
-        Validates the Online Resource Type against GCMD 'rucontent' list
-        """
-        return input_keyword in self.keywords["rucontenttype"]
-
     def validate_mime_type(self, input_keyword):
         """
         Validates the Mime Type against GCMD 'MimeType' list
@@ -435,3 +430,32 @@ class GcmdValidator:
         Validates GCMD science keywords
         """
         return input_keyword in self.keywords["idnnode_shortname"]
+
+    def validate_online_resource_type(self, input_keyword):
+        """
+        Validates the Online Resource Type against the GCMD 'rucontenttype' list.
+        Supports combinations of Content Type, Type, and Subtype separated by
+        ':', ' : ', ': ', or ' : '.
+        """
+
+        # Check if the input_keyword is in the GCMD list directly
+        if input_keyword in self.keywords["rucontenttype"]:
+            return True
+
+        # Define separators and split the input_keyword into components
+        separators = r"\s*:\s*"
+        components = re.split(separators, input_keyword)
+
+        # Case for single component: must be a valid Type or Subtype
+        if len(components) == 1:
+            return components[0] in self.keywords["rucontenttype"] or components[0] == "PUBLICATIONURL"
+
+        # Case for two components: allow for specific combinations, including PublicationURL as a first component
+        elif len(components) == 2:
+            first_component, second_component = components
+            return ((first_component in self.keywords["rucontenttype"] and second_component in self.keywords[
+                "rucontenttype"]) or
+                    (first_component == "PUBLICATIONURL" and second_component in self.keywords["rucontenttype"]))
+
+        # If the structure does not match any acceptable format, return False
+        return False
