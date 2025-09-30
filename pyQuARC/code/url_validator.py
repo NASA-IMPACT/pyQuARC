@@ -117,14 +117,11 @@ class UrlValidator(StringValidator):
         # remove duplicated urls
         urls = set(url[:-1] if url.endswith(".") else url for url in urls)
         value = ", ".join(urls)
-
+        results = []
         # check that URL is ftp or http
         for url in urls:
             if url.startswith("ftp://"):
-                results.append({
-                "url": url, 
-                "error": f"The URL {url} exists"
-                })
+                results.append(url)
            
         if results:
             validity = False

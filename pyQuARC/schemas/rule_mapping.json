@@ -5613,7 +5613,7 @@
             "echo-g": [
                 {
                     "fields": [
-                        "Granule/OnlineAccessURLs/OnlineAccessURL"
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URLDescription"
                     ]
                 }
             ]

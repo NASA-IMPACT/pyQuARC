@@ -89,8 +89,6 @@ class SchemaValidator:
         errors = {}
 
         resolver = RefResolver.from_schema(schema, store=schema_store)
-
-     echo-g_onlineaccessURL-BK
         validator = Draft7Validator(schema, format_checker=Draft7Validator.FORMAT_CHECKER)
 
 
