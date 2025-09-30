@@ -89,7 +89,11 @@ class SchemaValidator:
         errors = {}
 
         resolver = RefResolver.from_schema(schema, store=schema_store)
-        validator = Draft7Validator(schema, format_checker=Draft7Validator.FORMAT_CHECKER)
+        validator = Draft7Validator(
+                            schema,
+                            resolver=resolver,  # << attach the resolver here
+                            format_checker=Draft7Validator.FORMAT_CHECKER,
+                        )
 
 
         for error in sorted(
