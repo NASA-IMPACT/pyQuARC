@@ -138,6 +138,60 @@ class ARC:
             query = f"{orig_query}&page_num={page_num}"
 
         return concept_ids
+    
+    def _get_latest_version(self, concept_id):
+        """
+        Fetches the latest revision version for a given concept_id from CMR
+    
+        Args:
+            concept_id (str): The concept ID to query
+        
+        Returns:
+            str: The latest revision number, or None if not found
+        """
+        try:
+            # Construct the CMR metadata URL for the concept
+            url = f"{self.cmr_host}/search/concepts/{concept_id}.umm_json"
+            headers = get_headers()
+            response = requests.get(url, headers=headers)
+        
+            if response.status_code == 200:
+                # Extract revision-id from response headers
+                revision_id = response.headers.get('CMR-Revision-Id')
+                return revision_id
+            else:
+                print(f"Warning: Could not fetch latest version for {concept_id}. Using default.")
+                return None
+        except Exception as e:
+            print(f"Error fetching latest version for {concept_id}: {str(e)}")
+            return None
+
+    def _get_collection_version(self, concept_id):
+        """
+        Fetch the MetadataSpecification.Version of a collection from CMR.
+        Args:
+            concept_id (str): The concept ID to query.
+
+        Returns:
+            str: The collection's MetadataSpecification.Version, or None if not found.
+        """
+        try:
+            url = f"{self.cmr_host}/search/concepts/{concept_id}.umm_json"
+            headers = get_headers()
+            response = requests.get(url, headers=headers)
+
+            if response.status_code == 200:
+                data = response.json()
+                # UMM collections have MetadataSpecification.Version
+                version = data.get("MetadataSpecification", {}).get("Version")
+                return version
+            else:
+                print(f"Warning: Could not fetch metadata for {concept_id}.")
+                return None
+        except Exception as e:
+            print(f"Error fetching collection version for {concept_id}: {str(e)}")
+            return None
+
 
     def _validate_with_cmr(self, concept_id, metadata_content):
         """
@@ -181,8 +235,20 @@ class ARC:
 
         if self.concept_ids:
             for concept_id in tqdm(self.concept_ids):
+                # If no version specified, get the latest version
+                version_to_use = self.version
+                if not version_to_use:
+                    version_to_use = self._get_latest_version(concept_id)
+                    if version_to_use:
+                        print(f"Using latest version {version_to_use} for {concept_id}")
+
+                # Fetch schema version too
+                collection_version = self._get_collection_version(concept_id)
+                if collection_version:
+                    print(f"Collection {concept_id} schema version: {collection_version}")
+            
                 downloader = Downloader(
-                    concept_id, self.metadata_format, self.version, self.cmr_host
+                    concept_id, self.metadata_format, version_to_use, self.cmr_host
                 )
                 if not (content := downloader.download()):
                     self.errors.append(
@@ -194,17 +260,11 @@ class ARC:
                     )
                     continue
                 content = content.encode()
-                cmr_response = self._validate_with_cmr(concept_id, content)
                 validation_errors, pyquarc_errors = checker.run(content)
                 self.errors.append(
                     {
                         "concept_id": concept_id,
                         "errors": validation_errors,
-                        "cmr_validation": {
-                            "errors": cmr_response.json().get("errors", []),
-                            # TODO: show warnings
-                            "warnings": cmr_response.json().get("warnings", [])
-                        },
                         "pyquarc_errors": pyquarc_errors,
                     }
                 )
@@ -212,6 +272,7 @@ class ARC:
         elif self.file_path:
             with open(os.path.abspath(self.file_path), "r") as myfile:
                 content = myfile.read().encode()
+
                 validation_errors, pyquarc_errors = checker.run(content)
                 self.errors.append(
                     {
@@ -388,3 +449,4 @@ if __name__ == "__main__":
     )
     results = arc.validate()
     arc.display_results()
+ 
