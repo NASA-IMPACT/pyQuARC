@@ -147,9 +147,9 @@ class DatetimeValidator(BaseValidator):
         # Compare the precision of the two datetime strings
         if len(granules["feed"]["entry"]) > 0:
             last_granule = granules["feed"]["entry"][0]
-            last_granule_datetime = last_granule.get(time_key)
+            last_granule_datetime_string = last_granule.get(time_key)
             date_time = get_date_time(datetime_string)
-            last_granule_datetime = get_date_time(last_granule_datetime)
+            last_granule_datetime = get_date_time(last_granule_datetime_string)
             validity = date_time == last_granule_datetime
         else:
             validity = False
@@ -165,7 +165,7 @@ class DatetimeValidator(BaseValidator):
         return {
             **return_value,
             "valid": validity,
-            "value": (date_time, last_granule_datetime),
+            "value": (datetime_string, last_granule_datetime_string),
         }
 
     @staticmethod
