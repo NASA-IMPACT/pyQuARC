@@ -184,6 +184,7 @@ class CustomChecker:
             for future in as_completed(future_results):
                 try:
                     func_return = future.result()
+                    severity = func_return.get("severity")
                     valid = func_return["valid"]  # can be True, False or None
                     if valid is not None:
                         if valid:
@@ -196,4 +197,6 @@ class CustomChecker:
                     raise e
         result["valid"] = validity
         result["value"] = invalid_values
+        if severity:
+            result["severity"] = severity
         return result

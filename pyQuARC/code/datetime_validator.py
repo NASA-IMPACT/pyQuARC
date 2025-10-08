@@ -158,7 +158,7 @@ class DatetimeValidator(BaseValidator):
         if (
             (not date_time)
             or not last_granule_datetime
-            or ((abs(date_time - last_granule_datetime).total_seconds() / 3600) > 24)
+            or abs((date_time - last_granule_datetime).total_seconds() / 3600) > 24
         ):
             return_value["severity"] = "error"
 
