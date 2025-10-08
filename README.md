@@ -28,9 +28,6 @@ pyQuARC currently supports the following metadata standards:
 * [DIF10](https://earthdata.nasa.gov/esdis/eso/standards-and-references/directory-interchange-format-dif-standard)
 	* Collection/Data Product-level only
 
-## pyQuARC User Demo Series
-A series of user demos has been created to explain what pyQuARC does and how it can be used. These demos cover the process of installing, activating, and using the library for a specific schema. The demo files are available in the **resources** folder of the pyQuARC GitHub repository.
-
 ## Install and Clone the Repository
 The pyQuARC library requires `Python 3.10` to function properly across all operating systems.
 
