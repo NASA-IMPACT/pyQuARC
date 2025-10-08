@@ -19,7 +19,10 @@ DEFAULT_UMM_G_VERSION = "v1.6.6"
 
 SCHEMA_CDN_BASE = "https://cdn.earthdata.nasa.gov/umm"
 
-
+REMOTE_XML_SCHEMAS = {
+    "echo10_collection": "https://git.earthdata.nasa.gov/projects/EMFD/repos/echo-schemas/browse/schemas/10.0/Collection.xsd",
+    "echo10_granule": "https://git.earthdata.nasa.gov/projects/EMFD/repos/echo-schemas/browse/schemas/10.0/Granule.xsd"
+}
 
 class SchemaValidator:
     """
@@ -71,26 +74,54 @@ class SchemaValidator:
             self.validator_func = self.run_xml_validator
         self.check_messages = check_messages
 
+
+
     def read_xml_schema(self):
         """
-        Reads the xml schema file
+        Reads the XML schema file (either from a remote URL or local path).
         """
-        # The XML schema file (echo10_xml.xsd) imports another schema file (MetadataCommon.xsd)
-        # Python cannot figure out the import if they are in a different location than the calling script
-        # Thus we need to set an environment variable to let it know where the files are located
-        # Path to catalog must be a url
+        from urllib.request import urlopen
+
+        # Maintain XML catalog handling
         catalog_path = f"file:{pathname2url(str(SCHEMA_PATHS['catalog']))}"
-        # Temporarily set the environment variable
         os.environ["XML_CATALOG_FILES"] = os.environ.get(
             "XML_CATALOG_FILES", catalog_path
         )
 
-        with open(SCHEMA_PATHS[f"{self.metadata_format}_schema"]) as schema_file:
-            file_content = schema_file.read().encode()
-        xmlschema_doc = etree.parse(BytesIO(file_content))
-        schema = etree.XMLSchema(xmlschema_doc)
-        return schema
+        def get_raw_schema_url(browse_url: str) -> str:
+            """Convert /browse/ URL into /raw/ for direct XML download."""
+            if "/browse/" in browse_url:
+                return browse_url.replace("/browse/", "/raw/") + "?at=refs%2Fheads%2Fmaster"
+            return browse_url
 
+            # Select remote schema if metadata_format matches
+        schema_url = REMOTE_XML_SCHEMAS.get(self.metadata_format)
+        try:
+            if schema_url:
+                raw_url = get_raw_schema_url(schema_url)
+                print(f"Fetching schema remotely from: {raw_url}")
+                import ssl
+                ssl_context = ssl._create_unverified_context()  # Disable certificate check safely for this fetch
+                with urlopen(raw_url, context=ssl_context) as response:
+                    file_content = response.read()
+            else:
+                # Fallback to local schema file
+                with open(SCHEMA_PATHS[f"{self.metadata_format}_schema"]) as schema_file:
+                    file_content = schema_file.read().encode()
+
+            xmlschema_doc = etree.parse(BytesIO(file_content))
+            schema = etree.XMLSchema(xmlschema_doc)
+            return schema
+
+        except Exception as e:
+            print(f"⚠️ Remote fetch failed or unavailable for {self.metadata_format}: {e}")
+            print("Falling back to local schema file...")
+            with open(SCHEMA_PATHS[f"{self.metadata_format}_schema"]) as schema_file:
+                file_content = schema_file.read().encode()
+            xmlschema_doc = etree.parse(BytesIO(file_content))
+            schema = etree.XMLSchema(xmlschema_doc)
+            return schema
+    
     def read_json_schema(self):
         """
         Reads the json schema file
