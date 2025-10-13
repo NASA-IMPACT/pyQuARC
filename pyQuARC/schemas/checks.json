@@ -303,5 +303,10 @@
         "data_type": "custom",
         "check_function": "count_check",
         "available": true
+    },
+    "opendap_link_check": {
+        "data_type": "custom",
+        "check_function": "opendap_link_check",
+        "available": true
     }
 }
