@@ -139,58 +139,37 @@ class ARC:
 
         return concept_ids
     
-    def _get_latest_version(self, concept_id):
-        """
-        Fetches the latest revision version for a given concept_id from CMR
-    
-        Args:
-            concept_id (str): The concept ID to query
-        
-        Returns:
-            str: The latest revision number, or None if not found
-        """
-        try:
-            # Construct the CMR metadata URL for the concept
-            url = f"{self.cmr_host}/search/concepts/{concept_id}.umm_json"
-            headers = get_headers()
-            response = requests.get(url, headers=headers)
-        
-            if response.status_code == 200:
-                # Extract revision-id from response headers
-                revision_id = response.headers.get('CMR-Revision-Id')
-                return revision_id
-            else:
-                print(f"Warning: Could not fetch latest version for {concept_id}. Using default.")
-                return None
-        except Exception as e:
-            print(f"Error fetching latest version for {concept_id}: {str(e)}")
-            return None
 
     def _get_collection_version(self, concept_id):
         """
-        Fetch the MetadataSpecification.Version of a collection from CMR.
+        Fetches collection information from CMR for a given concept_id.
         Args:
             concept_id (str): The concept ID to query.
-
+            info_type (str): Type of information to fetch.
+                        Options: "revision" or "metadata_version".
+    
         Returns:
-            str: The collection's MetadataSpecification.Version, or None if not found.
+            str: The requested info (revision ID or MetadataSpecification.Version), or None if not found.
         """
         try:
             url = f"{self.cmr_host}/search/concepts/{concept_id}.umm_json"
             headers = get_headers()
             response = requests.get(url, headers=headers)
 
-            if response.status_code == 200:
-                data = response.json()
-                # UMM collections have MetadataSpecification.Version
-                version = data.get("MetadataSpecification", {}).get("Version")
-                return version
-            else:
-                print(f"Warning: Could not fetch metadata for {concept_id}.")
-                return None
+            if response.status_code != 200:
+                print(f"Warning: Could not fetch data for {concept_id}. Status: {response.status_code}")
+                return {"revision_id": None, "metadata_version": None}
+
+            data = response.json() if response.content else {}
+            return {
+                "revision_id": response.headers.get("CMR-Revision-Id"),
+                "metadata_version": data.get("MetadataSpecification", {}).get("Version"),
+            }
+
         except Exception as e:
-            print(f"Error fetching collection version for {concept_id}: {str(e)}")
-            return None
+            # Unified error handling — return dict even on failure
+            print(f"Error fetching collection info for {concept_id}: {str(e)}")
+            return {"revision_id": None, "metadata_version": None}
 
 
     def _validate_with_cmr(self, concept_id, metadata_content):
@@ -236,17 +215,16 @@ class ARC:
         if self.concept_ids:
             for concept_id in tqdm(self.concept_ids):
                 # If no version specified, get the latest version
-                version_to_use = self.version
-                if not version_to_use:
-                    version_to_use = self._get_latest_version(concept_id)
-                    if version_to_use:
-                        print(f"Using latest version {version_to_use} for {concept_id}")
+                # Get both revision and metadata version in one call
+                info = self._get_collection_version(concept_id)
+                version_to_use = self.version or info["revision_id"]
+                metadata_version = info["metadata_version"]
 
-                # Fetch schema version too
-                collection_version = self._get_collection_version(concept_id)
-                if collection_version:
-                    print(f"Collection {concept_id} schema version: {collection_version}")
-            
+                if version_to_use:
+                    print(f"Using latest revision {version_to_use} for {concept_id}")
+                if metadata_version:
+                    print(f"Collection {concept_id} schema version: {metadata_version}")
+
                 downloader = Downloader(
                     concept_id, self.metadata_format, version_to_use, self.cmr_host
                 )
@@ -259,6 +237,7 @@ class ARC:
                         }
                     )
                     continue
+
                 content = content.encode()
                 validation_errors, pyquarc_errors = checker.run(content)
                 self.errors.append(
@@ -272,7 +251,6 @@ class ARC:
         elif self.file_path:
             with open(os.path.abspath(self.file_path), "r") as myfile:
                 content = myfile.read().encode()
-
                 validation_errors, pyquarc_errors = checker.run(content)
                 self.errors.append(
                     {
@@ -281,7 +259,9 @@ class ARC:
                         "pyquarc_errors": pyquarc_errors,
                     }
                 )
+
         return self.errors
+
 
     @staticmethod
     def _error_message(messages):
