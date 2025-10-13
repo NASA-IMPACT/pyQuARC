@@ -142,6 +142,7 @@ class DatetimeValidator(BaseValidator):
         granules = cmr_request(cmr_prms)
         validity = True
         last_granule_datetime = None
+        last_granule_datetime_string = None
         date_time = None
 
         # Compare the precision of the two datetime strings
@@ -151,6 +152,9 @@ class DatetimeValidator(BaseValidator):
             date_time = get_date_time(datetime_string)
             last_granule_datetime = get_date_time(last_granule_datetime_string)
             validity = date_time == last_granule_datetime
+            diff_bigger_than_a_day = abs(
+                (date_time - last_granule_datetime).total_seconds() / 3600
+            ) > 24
         else:
             validity = False
 
@@ -158,7 +162,7 @@ class DatetimeValidator(BaseValidator):
         if (
             (not date_time)
             or not last_granule_datetime
-            or abs((date_time - last_granule_datetime).total_seconds() / 3600) > 24
+            or diff_bigger_than_a_day
         ):
             return_value["severity"] = "error"
 
