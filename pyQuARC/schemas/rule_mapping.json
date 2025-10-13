@@ -5301,7 +5301,7 @@
             "umm-c": [
                 {
                     "fields": [
-                        "RelatedUrls"
+                        "RelatedUrls/Description"
                     ]
                 },
                 {
