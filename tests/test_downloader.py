@@ -166,3 +166,4 @@ class TestDownloader:
 
         # is the concept id valid and is the request going through?
         assert downloader.errors == []
+        

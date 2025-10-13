@@ -185,4 +185,7 @@ class SchemaValidator:
         Returns:
             (dict): Result of the validation from xml and json schema validators
         """
+
         return self.validator_func(metadata)
+    
+    
