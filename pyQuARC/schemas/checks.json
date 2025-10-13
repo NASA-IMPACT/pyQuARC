@@ -300,8 +300,8 @@
         "available": true
     },
     "opendap_link_check": {
-    "data_type": "custom",
-    "check_function": "opendap_link_check",
-    "available": true
+        "data_type": "custom",
+        "check_function": "opendap_link_check",
+        "available": true
     }
 }
