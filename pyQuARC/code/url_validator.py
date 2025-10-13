@@ -19,8 +19,7 @@ class UrlValidator(StringValidator):
     def _extract_http_texts(text_with_urls):
         """
         Extracts anything that starts with 'http' from `text_with_urls`.
-        This is required for catching "wrong" urls that aren't extracted by `URLExtract.find_urls()` because they are not urls at all
-        An example: https://randomurl
+       
         Args:
             text_with_urls (str, required): The text that contains the URLs where the check needs to be performed
 
@@ -35,6 +34,28 @@ class UrlValidator(StringValidator):
         return starts_with_http
 
     @staticmethod
+    def _status_code_from_request(url):
+        """
+        Return HTTP status code for url, raising requests exceptions to caller.
+        """
+        headers = get_headers()
+        return requests.get(url, headers=headers, timeout=10).status_code
+
+    @staticmethod
+    def _extract_and_normalize_urls(text_with_urls):
+        """
+        Extract URLs from text, include tokens that start with 'http', strip trailing dots,
+        and return (set_of_urls, joined_value_string).
+        """
+        extractor = URLExtract(cache_dir=os.environ.get("CACHE_DIR"))
+        urls = extractor.find_urls(text_with_urls)
+        urls.extend(UrlValidator._extract_http_texts(text_with_urls))
+        # remove dots at the end and deduplicate
+        urls = set(url[:-1] if url.endswith(".") else url for url in urls)
+        value = ", ".join(urls)
+        return urls, value
+
+    @staticmethod
     @if_arg
     def health_and_status_check(text_with_urls):
         """
@@ -45,53 +66,40 @@ class UrlValidator(StringValidator):
             (dict) An object with the validity of the check and the instance/results
         """
 
-        def status_code_from_request(url):
-            headers = get_headers()
-            # timeout = 10 seconds, to allow for slow but not invalid connections
-            return requests.get(url, headers=headers, timeout=10).status_code
-
         results = []
 
         validity = True
 
-        # extract URLs from text
-        extractor = URLExtract(cache_dir=os.environ.get("CACHE_DIR"))
-        urls = extractor.find_urls(text_with_urls)
-        urls.extend(UrlValidator._extract_http_texts(text_with_urls))
+        urls, value = UrlValidator._extract_and_normalize_urls(text_with_urls)
 
-        # remove dots at the end (The URLExtract library catches URLs, but sometimes appends a '.' at the end)
-        # remove duplicated urls
-        urls = set(url[:-1] if url.endswith(".") else url for url in urls)
-        value = ", ".join(urls)
-
-        # check that URL returns a valid response
         for url in urls:
             if url.startswith("http"):
                 try:
-                    response_code = status_code_from_request(url)  
+                    response_code = UrlValidator._status_code_from_request(url)
                     if response_code == 200:
                         if url.startswith("http://"):
                             secure_url = url.replace("http://", "https://")
-                            if status_code_from_request(secure_url) == 200:
+                            if UrlValidator._status_code_from_request(secure_url) == 200:
                                 result = {
                                     "url": url,
-                                    "error": f"The {url} is secure. Please use 'https' instead of 'http'.",
-                                }     
+                                    "error": f"The url{url} is secure. Please use 'https' instead of 'http'.",
+                                }
+                                results.append(result)
+                          
                         else:
                             continue
                     else:
                         result = {"url": url, "error": f"Status code {response_code}"}
+                        results.append(result)
                 except requests.ConnectionError:
                     result = {"url": url, "error": f"The URL {url} does not exist on Internet."}
-                except:
-                    result = {"url": url, "error": "Some unknown error occurred."}
-                results.append(result)
-            
+                    results.append(result)
+                
         if results:
             validity = False
             value = results
-        
-        return {"valid": validity, "value":  value}
+
+        return {"valid": validity, "value": value}
 
     @staticmethod
     @if_arg
@@ -108,34 +116,28 @@ class UrlValidator(StringValidator):
 
         validity = True
 
-        # extract URLs from text
-        extractor = URLExtract(cache_dir=os.environ.get("CACHE_DIR"))
-        urls = extractor.find_urls(text_with_urls)
-        urls.extend(UrlValidator._extract_http_texts(text_with_urls))
+        urls, value = UrlValidator._extract_and_normalize_urls(text_with_urls)
 
-        # remove dots at the end (The URLExtract library catches URLs, but sometimes appends a '.' at the end)
-        # remove duplicated urls
-        urls = set(url[:-1] if url.endswith(".") else url for url in urls)
-        value = ", ".join(urls)
-        results = []
-        # check that URL is ftp or http
         for url in urls:
             if url.startswith("ftp://"):
-                results.append(url)
-           
+                results.append({
+                    "url": url,
+                    "error": f"The URL {url} exists"
+                })
+
         if results:
             validity = False
             value = results
-        
-        return {"valid": validity, "value":  value}
+
+        return {"valid": validity, "value": value}
 
     @staticmethod
     @if_arg
     def secure_url_checks(text_with_urls):
         """
-        Checks the ftp included in `text_with_urls`
+        Checks whether the secure link (https) is included in `text_with_urls`
         Args:
-           text_with_urls (str, required): The text that contains ftp
+           text_with_urls (str, required): The text that contains https
         Returns:
             (dict) An object with the validity of the check and the instance/results
         """
@@ -144,45 +146,21 @@ class UrlValidator(StringValidator):
 
         validity = True
 
-        # extract URLs from text
-        extractor = URLExtract(cache_dir=os.environ.get("CACHE_DIR"))
-        urls = extractor.find_urls(text_with_urls)
-        urls.extend(UrlValidator._extract_http_texts(text_with_urls))
+        urls, value = UrlValidator._extract_and_normalize_urls(text_with_urls)
 
-        # remove dots at the end (The URLExtract library catches URLs, but sometimes appends a '.' at the end)
-        # remove duplicated urls
-        urls = set(url[:-1] if url.endswith(".") else url for url in urls)
-        value = ", ".join(urls)
-
-        # check that URL is ftp or http
         for url in urls:
             if url.startswith("http://"):
                 results.append({
-                "url": url, 
-                "error": f"The URL {url} is not secure"
+                    "url": url,
+                    "error": f"The URL {url} is not secure"
                 })
-           
+
         if results:
             validity = False
             value = results
-        
-        return {"valid": validity, "value":  value}
 
-    @staticmethod
-    @if_arg
-    def doi_check(doi):
-        """
-        Checks if the doi link given in the text is a valid doi link
+        return {"valid": validity, "value": value}
 
-        Returns:
-            (dict) An object with the validity of the check and the instance/results
-        """
-        valid = False
-        if doi.strip().startswith("10."):  # doi always starts with "10."
-            url = f"https://www.doi.org/{doi}"
-            valid = UrlValidator.health_and_status_check(url).get("valid")
-        return {"valid": valid, "value": doi}
-    
     @staticmethod
     @if_arg
     def doi_check(doi):
@@ -206,14 +184,4 @@ class UrlValidator(StringValidator):
             validity = False
 
         return {"valid": validity, "value": value}
-    
-    @staticmethod
-    @if_arg
-    def url_update_email_check(url, bad_urls):
-        validity = True
-        # Check if the URL matches 'support-cddis@earthdata.nasa.gov'
-        if url in bad_urls or url == "support-cddis@earthdata.nasa.gov":
-            # Update the URL
-            url = "support-cddis@nasa.gov"
-            validity = False  # Mark as invalid if the URL was updated
-        return {"valid": validity, "value": url}
+        return {"valid": validity, "value": value}
