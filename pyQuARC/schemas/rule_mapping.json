@@ -3924,7 +3924,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "license_url_description_check"
+        "check_id": "one_item_presence_check"  
     },
     "collection_citation_presence_check": {
         "rule_name": "Collection Citation Presence Check",
