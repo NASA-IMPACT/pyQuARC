@@ -53,7 +53,7 @@
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Entry+Title"
         },
-        "remediation": "The EntryTitle/DataSetId should not be identical to the ShortName. Recommend providing a descriptive, formal title for the dataset. "
+        "remediation": "Recommend providing a more descriptive title for the dataset. "
     },
     "abstract_length_check": {
         "failure": "The abstract provided may be inadequate based on length.",

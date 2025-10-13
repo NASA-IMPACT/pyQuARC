@@ -1,11 +1,2 @@
-{
-    "shortname_uniqueness": {
-        "failure": "The EntryTitle/DataSetId `{}` is identical to the ShortName `{}`.",
-        "help": {
-            "message": "",
-            "url": "https://wiki.earthdata.nasa.gov/display/CMR/Entry+Title"
-        },
-        "remediation": "Recommend providing a more descriptive title for the dataset. "
-    }
-}
+{}
 
