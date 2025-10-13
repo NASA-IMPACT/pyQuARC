@@ -1077,6 +1077,6 @@
         "message": "OPeNDAP links allow for direct data access through the OPeNDAP protocol.",
         "url": "https://wiki.earthdata.nasa.gov/display/CMR/Related+URLs"
     },
-    "remediation": "Recommend providing an OPeNDAP in the granule's Online Resources or Related URLs fields for enhanced data accessibility."
+        "remediation": "Recommend providing an OPeNDAP in the granule's Online Resources or Related URLs fields for enhanced data accessibility."
     }
 }
