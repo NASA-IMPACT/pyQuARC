@@ -24,6 +24,11 @@
         "check_function": "health_and_status_check",
         "available": true
     },
+    "url_update_email_check": {
+        "data_type": "url",
+        "check_function": "url_update_email_check",
+        "available": true
+    },
     "string_compare": {
         "data_type": "string",
         "check_function": "compare",
@@ -297,6 +302,11 @@
     "count_check": {
         "data_type": "custom",
         "check_function": "count_check",
+        "available": true
+    },
+    "opendap_link_check": {
+        "data_type": "custom",
+        "check_function": "opendap_link_check",
         "available": true
     }
 }

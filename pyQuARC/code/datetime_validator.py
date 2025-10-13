@@ -87,9 +87,17 @@ class DatetimeValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
+        is_datetime = DatetimeValidator._iso_datetime(datetime_string)
+        is_date = DatetimeValidator._iso_date(datetime_string)
+
+        # If it's a datetime, require that it ends with 'Z'
+        if is_datetime and not datetime_string.endswith("Z"):
+            is_datetime = False
+
+        valid = is_datetime or is_date
+
         return {
-            "valid": bool(DatetimeValidator._iso_datetime(datetime_string))
-            or bool(DatetimeValidator._iso_date(datetime_string)),
+            "valid": valid,
             "value": datetime_string,
         }
 
