@@ -90,7 +90,9 @@ class SchemaValidator:
 
         resolver = RefResolver.from_schema(schema, store=schema_store)
 
-        validator = Draft7Validator(schema, format_checker=Draft7Validator.FORMAT_CHECKER)
+        validator = Draft7Validator(
+            schema, format_checker=Draft7Validator.FORMAT_CHECKER, resolver=resolver
+        )
 
         for error in sorted(
             validator.iter_errors(json.loads(content_to_validate)), key=str

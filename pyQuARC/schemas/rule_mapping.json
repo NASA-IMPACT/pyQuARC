@@ -994,15 +994,20 @@
         "data": [
             [
                 "0",
+                "1",
                 "1A",
                 "1B",
                 "1C",
                 "2",
                 "2A",
                 "2B",
+                "2G",
+                "2P",
                 "3",
                 "3A",
-                "4"
+                "4", 
+                "NA",
+                "Not provided"
             ]
         ],
         "severity": "warning",
@@ -1252,6 +1257,27 @@
         ],
         "severity": "info",
         "check_id": "length_check"
+    },
+    "processing_level_description_presence_check": {
+        "rule_name": "Processing Level Description Presence Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/ProcessingLevelDescription"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "ProcessingLevel/ProcessingLevelDescription"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "one_item_presence_check"
     },
     "umm_controlled_collection_state_list_check": {
         "rule_name": "UMM Controlled Collection State List",
@@ -3621,7 +3647,7 @@
             "umm-g": [
                 {
                     "fields": [
-                        "Projects/ShortName"
+                        "Campaign/ShortName"
                     ]
                 }
             ]
@@ -3677,7 +3703,7 @@
             "umm-c": [
                 {
                     "fields": [
-                        "SpatialRepresentationInfo/HorizontalCoordinateSystem/GeodeticModel/HorizontalDatumName"
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/GeodeticModel/HorizontalDatumName"
                     ]
                 }
             ]
@@ -3744,6 +3770,34 @@
         "relation": "not_contains",
         "severity": "error",
         "check_id": "string_compare"
+    },
+    "opendap_link_check": {
+        "rule_name": "OPeNDAP Link Presence Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "RelatedUrls"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            {
+                "type": "OPENDAP DATA",
+                "url_keyword": "opendap"
+            }
+        ],
+        "relation": "contains",
+        "check_id": "opendap_link_check",
+        "severity": "warning"
     },
     "location_keyword_presence_check": {
         "rule_name": "Location Keyword Presence Check",
@@ -5275,7 +5329,7 @@
             "umm-c": [
                 {
                     "fields": [
-                        "RelatedUrls"
+                        "RelatedUrls/Description"
                     ]
                 },
                 {
@@ -5559,5 +5613,20 @@
         },
         "severity": "warning",
         "check_id": "one_item_presence_check"
-    }
+    },
+    "url_update_email_check": {
+        "rule_name": "URL Email address check",
+        "fields_to_apply": {
+            "umm-c": [
+                {
+                    "fields": [
+                        "DataCenters/ContactGroups/ContactInformation/ContactMechanisms/Value",
+                        "DataCenters/ContactGroups/ContactInformation/ContactInstruction"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "url_update_email_check"
+}
 }

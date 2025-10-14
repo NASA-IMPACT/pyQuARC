@@ -8,16 +8,21 @@ from tqdm import tqdm
 
 if __name__ == "__main__":
     from code.checker import Checker
-    from code.constants import COLOR, ECHO10_C, SUPPORTED_FORMATS
+    from code.constants import (
+        COLOR,
+        ECHO10_C,
+        SUPPORTED_FORMATS,
+        CONTENT_TYPE_MAP,
+    )
     from code.downloader import Downloader
     from code.utils import get_cmr_url, is_valid_cmr_url
-    from code.utils import get_headers
+    from code.utils import get_concept_type, get_headers
 else:
     from .code.checker import Checker
     from .code.constants import COLOR, ECHO10_C, SUPPORTED_FORMATS
     from .code.downloader import Downloader
     from .code.utils import get_cmr_url, is_valid_cmr_url
-    from .code.utils import get_headers
+    from .code.utils import get_concept_type, get_headers
 
 ABS_PATH = os.path.abspath(os.path.dirname(__file__))
 END = COLOR["reset"]
@@ -134,6 +139,32 @@ class ARC:
 
         return concept_ids
 
+    def _validate_with_cmr(self, concept_id, metadata_content):
+        """
+        Validates metadata using the CMR API.
+
+        Args:
+            metadata_content (str): The metadata content to validate.
+
+        Returns:
+            dict: Results of the CMR API validation.
+        """
+        provider_id = concept_id.split("-")[1]
+        # native-id is only available in umm-json (sometimes not even) format and it seems like validation works without the actual native-id value, so just leaving <native-id> in the url
+        cmr_url = (
+            f"{self.cmr_host}/ingest/providers/{provider_id}/validate/"
+            f"{get_concept_type(concept_id)}/<native-id>"
+        )
+        headers = {
+            "Content-Type": (
+                f"application/{CONTENT_TYPE_MAP[self.metadata_format]}"
+            ),
+            "Accept": "application/json",
+            "Cmr-Validate-Keywords": "true",
+        }
+        response = requests.post(cmr_url, data=metadata_content, headers=headers)
+        return response
+
     def validate(self):
         """
         Validates the metadata contents of all the `concept_ids` and returns the errors
@@ -163,11 +194,17 @@ class ARC:
                     )
                     continue
                 content = content.encode()
+                cmr_response = self._validate_with_cmr(concept_id, content)
                 validation_errors, pyquarc_errors = checker.run(content)
                 self.errors.append(
                     {
                         "concept_id": concept_id,
                         "errors": validation_errors,
+                        "cmr_validation": {
+                            "errors": cmr_response.json().get("errors", []),
+                            # TODO: show warnings
+                            "warnings": cmr_response.json().get("warnings", [])
+                        },
                         "pyquarc_errors": pyquarc_errors,
                     }
                 )
@@ -175,7 +212,6 @@ class ARC:
         elif self.file_path:
             with open(os.path.abspath(self.file_path), "r") as myfile:
                 content = myfile.read().encode()
-
                 validation_errors, pyquarc_errors = checker.run(content)
                 self.errors.append(
                     {
@@ -198,6 +234,26 @@ class ARC:
             ][0]
             result_string += f"\t\t{colored_message}{END}\n"
         return result_string
+
+    @staticmethod
+    def _format_cmr_error(cmr_validation):
+        if not cmr_validation.get("errors"):
+            return None
+        error_msg_dict = {}
+        error_msg = ""
+        if errors := cmr_validation.get("errors"):
+            for error in errors:
+                if type(error) is dict and error.get("path"):
+                    if error["path"][0] not in error_msg_dict:
+                        error_msg_dict[error["path"][0]] = []
+                    error_msg_dict[error["path"][0]].append(error['errors'])
+                else:
+                    error_msg_dict["Misc"] = [error]
+        for path, errors in error_msg_dict.items():
+            error_msg += f"\n\t>> {path}: {END}\n"
+            for error in errors:
+                error_msg += f"\t\t{COLOR['error']}Error:{END} {str(error)}\n"
+        return error_msg
 
     def display_results(self):
         result_string = """
@@ -231,7 +287,17 @@ class ARC:
                     f"\n\t {COLOR['title']}{COLOR['bright']} pyQuARC ERRORS: {END}\n"
                 )
                 for error in pyquarc_errors:
-                    error_prompt += f"\t\t  ERROR: {error['message']}. Details: {error['details']} \n"
+                    error_prompt += (f"\t\t  ERROR: {error.get('message', 'No message available')} \n"
+                                    f"\t\t  DETAILS: {error.get('details', 'No details available')} \n"
+                    )
+
+            if cmr_validation := error.get("cmr_validation"):
+                cmr_error_msg = self._format_cmr_error(cmr_validation)
+                if cmr_error_msg:
+                    error_prompt += (
+                        f"\n\t {COLOR['title']}{COLOR['bright']} CMR VALIDATION ERRORS: {END}\n"
+                    )
+                    error_prompt += cmr_error_msg
 
         result_string += error_prompt
         print(result_string)
