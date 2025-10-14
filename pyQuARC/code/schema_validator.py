@@ -6,9 +6,23 @@ from io import BytesIO
 from jsonschema import Draft7Validator, RefResolver
 from lxml import etree
 from urllib.request import pathname2url
+from .utils import read_json_schema_from_url
+from .constants import ECHO10_C, SCHEMA_PATHS, UMM_C, UMM_G
 
-from .constants import ECHO10_C, SCHEMA_PATHS, UMM_C
 
+SUPPORTED_UMM_C_VERSIONS = ["v1.18.4", "v1.18.3", "v1.18.2"]
+DEFAULT_UMM_C_VERSION = "v1.18.4" # Or any other version you prefer as default
+
+# Define UMM-G versions if you want to make it flexible as well
+SUPPORTED_UMM_G_VERSIONS = ["v1.6.6"]
+DEFAULT_UMM_G_VERSION = "v1.6.6"
+
+SCHEMA_CDN_BASE = "https://cdn.earthdata.nasa.gov/umm"
+
+REMOTE_XML_SCHEMAS = {
+    "echo10_collection": "https://git.earthdata.nasa.gov/projects/EMFD/repos/echo-schemas/browse/schemas/10.0/Collection.xsd",
+    "echo10_granule": "https://git.earthdata.nasa.gov/projects/EMFD/repos/echo-schemas/browse/schemas/10.0/Granule.xsd"
+}
 
 class SchemaValidator:
     """
@@ -21,6 +35,10 @@ class SchemaValidator:
         self,
         check_messages,
         metadata_format=ECHO10_C,
+           # Add a new parameter for UMM-C version
+        umm_c_version=DEFAULT_UMM_C_VERSION,
+        # Add a new parameter for UMM-G version (if you want to make it flexible too)
+        umm_g_version=DEFAULT_UMM_G_VERSION
     ):
         """
         Args:
@@ -29,41 +47,95 @@ class SchemaValidator:
             validation_paths (list of str): The path of the fields in the
                 metadata that need to be validated. In the form
                 ['Collection/StartDate', ...].
+            umm_c_version (str): The specific UMM-C version to use for validation (e.g., "v1.18.4").
+            umm_g_version (str): The specific UMM-G version to use for validation (e.g., "v1.6.6").
+            check_messages (dict): A dictionary of check messages for errors.
         """
         self.metadata_format = metadata_format
+        # Validate and store the UMM-C version
+        if umm_c_version not in SUPPORTED_UMM_C_VERSIONS:
+            raise ValueError(
+                f"Unsupported UMM-C version: {umm_c_version}. "
+                f"Supported versions are: {', '.join(SUPPORTED_UMM_C_VERSIONS)}"
+            )
+        self.umm_c_version = umm_c_version
+
+        # Validate and store the UMM-G version
+        if umm_g_version not in SUPPORTED_UMM_G_VERSIONS:
+            raise ValueError(
+                f"Unsupported UMM-G version: {umm_g_version}. "
+                f"Supported versions are: {', '.join(SUPPORTED_UMM_G_VERSIONS)}"
+            )
+        self.umm_g_version = umm_g_version
+
         if metadata_format.startswith("umm-"):
             self.validator_func = self.run_json_validator
         else:
             self.validator_func = self.run_xml_validator
         self.check_messages = check_messages
 
+
+
     def read_xml_schema(self):
         """
-        Reads the xml schema file
+        Reads the XML schema file (either from a remote URL or local path).
         """
-        # The XML schema file (echo10_xml.xsd) imports another schema file (MetadataCommon.xsd)
-        # Python cannot figure out the import if they are in a different location than the calling script
-        # Thus we need to set an environment variable to let it know where the files are located
-        # Path to catalog must be a url
+        from urllib.request import urlopen
+
+        # Maintain XML catalog handling
         catalog_path = f"file:{pathname2url(str(SCHEMA_PATHS['catalog']))}"
-        # Temporarily set the environment variable
         os.environ["XML_CATALOG_FILES"] = os.environ.get(
             "XML_CATALOG_FILES", catalog_path
         )
 
-        with open(SCHEMA_PATHS[f"{self.metadata_format}_schema"]) as schema_file:
-            file_content = schema_file.read().encode()
-        xmlschema_doc = etree.parse(BytesIO(file_content))
-        schema = etree.XMLSchema(xmlschema_doc)
-        return schema
+        def get_raw_schema_url(browse_url: str) -> str:
+            """Convert /browse/ URL into /raw/ for direct XML download."""
+            if "/browse/" in browse_url:
+                return browse_url.replace("/browse/", "/raw/") + "?at=refs%2Fheads%2Fmaster"
+            return browse_url
 
+            # Select remote schema if metadata_format matches
+        schema_url = REMOTE_XML_SCHEMAS.get(self.metadata_format)
+        try:
+            if schema_url:
+                raw_url = get_raw_schema_url(schema_url)
+                print(f"Fetching schema remotely from: {raw_url}")
+                import ssl
+                ssl_context = ssl._create_unverified_context()  # Disable certificate check safely for this fetch
+                with urlopen(raw_url, context=ssl_context) as response:
+                    file_content = response.read()
+            else:
+                # Fallback to local schema file
+                with open(SCHEMA_PATHS[f"{self.metadata_format}_schema"]) as schema_file:
+                    file_content = schema_file.read().encode()
+
+            xmlschema_doc = etree.parse(BytesIO(file_content))
+            schema = etree.XMLSchema(xmlschema_doc)
+            return schema
+
+        except Exception as e:
+            print(f"⚠️ Remote fetch failed or unavailable for {self.metadata_format}: {e}")
+            print("Falling back to local schema file...")
+            with open(SCHEMA_PATHS[f"{self.metadata_format}_schema"]) as schema_file:
+                file_content = schema_file.read().encode()
+            xmlschema_doc = etree.parse(BytesIO(file_content))
+            schema = etree.XMLSchema(xmlschema_doc)
+            return schema
+    
     def read_json_schema(self):
         """
         Reads the json schema file
         """
+        if self.metadata_format == UMM_C:
+            schema_url = (f"{SCHEMA_CDN_BASE}/collection/{self.umm_c_version}/umm-c-json-schema.json")
+            return read_json_schema_from_url(schema_url)
+
+        if self.metadata_format == UMM_G:
+            schema_url = (f"{SCHEMA_CDN_BASE}/granule/{self.umm_g_version}/umm-g-json-schema.json")
+            return read_json_schema_from_url(schema_url)
+        
         with open(SCHEMA_PATHS[f"{self.metadata_format}-json-schema"]) as schema_file:
-            schema = json.load(schema_file)
-        return schema
+            return json.load(schema_file)
 
     def run_json_validator(self, content_to_validate):
         """
@@ -77,19 +149,28 @@ class SchemaValidator:
         schema_store = {}
 
         if self.metadata_format == UMM_C:
-            with open(SCHEMA_PATHS["umm-cmn-json-schema"]) as schema_file:
-                schema_base = json.load(schema_file)
 
-            # workaround to read local referenced schema file (only supports uri)
-            schema_store = {
-                schema_base.get("$id", "/umm-cmn-json-schema.json"): schema_base,
-                schema_base.get("$id", "umm-cmn-json-schema.json"): schema_base,
-            }
+
+            #umm_cmn_schema_url = f"{SCHEMA_CDN_BASE}/collection/{self.umm_c_version}/umm-c-json-schema.json"
+            # If it's *not* versioned and always the latest or a specific fixed version, adjust this URL
+            # e.g., f"{SCHEMA_CDN_BASE}/common/umm-cmn-json-schema.json" or from SCHEMA_PATHS
+
+            try:
+                with open(SCHEMA_PATHS["umm-cmn-json-schema"]) as common_schema_file:
+                    schema_base = json.load(common_schema_file)
+                 # 1. Add the schema using its $id (most common canonical reference)
+                if "$id" in schema_base:
+                    schema_store[schema_base["$id"]] = schema_base
+                
+                # 2. Add the schema using the full URL you fetched it from (if different from $id or for robustness)
+                schema_store["/umm-cmn-json-schema.json"] = schema_base
+                schema_store["umm-cmn-json-schema.json"] = schema_base
+            except Exception as e:
+                print(f"Error loading UMM Common schema from {SCHEMA_PATHS['umm-cmn-json-schema']}: {e}")
+                print("Schema validation for UMM-C might proceed without common schema, leading to incomplete validation.")
 
         errors = {}
-
         resolver = RefResolver.from_schema(schema, store=schema_store)
-
         validator = Draft7Validator(
             schema, format_checker=Draft7Validator.FORMAT_CHECKER, resolver=resolver
         )

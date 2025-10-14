@@ -83,6 +83,13 @@ def get_date_time(dt_str):
             continue
     return None
 
+def read_json_schema_from_url(url):
+    """
+    Downloads and returns a JSON schema from a given URL.
+    """
+    response = requests.get(url)
+    response.raise_for_status()
+    return response.json()
 
 def get_concept_type(concept_id):
     """
