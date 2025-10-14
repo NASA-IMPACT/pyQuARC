@@ -4137,6 +4137,11 @@
                     "fields": [
                         "RelatedUrls/Type"
                     ]
+                },
+                {
+                    "fields": [
+                        "Collection/OnlineResources/OnlineResource/Type"
+                    ]
                 }
             ],
             "umm-g": [
@@ -4172,6 +4177,11 @@
             "umm-c": [
                 {
                     "fields": [
+                        "Collection/OnlineResources/OnlineResource/Type"
+                    ]
+                },
+                {
+                    "fields": [
                         "RelatedUrls/Type",
                         "RelatedUrls"
                     ]
@@ -4187,7 +4197,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "availability_check"
+        "check_id": "one_item_presence_check"
     },
     "characteristic_name_uniqueness_check": {
         "rule_name": "Characteristic Name Uniqueness Check",
@@ -4818,11 +4828,23 @@
                         "RelatedUrls/Description",
                         "RelatedUrls/URL"
                     ]
+                },
+                {
+                    "fields": [
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URLDescription", 
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                }, 
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/Description", 
+                        "Granule/OnlineResources/OnlineResource/URL"
+                    ]
                 }
             ]
         },
         "severity": "warning",
-        "check_id": "availability_check"
+        "check_id": "one_item_presence_check"
     },
     "get_data_url_check": {
         "rule_name": "GET DATA URL check",
