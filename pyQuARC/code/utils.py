@@ -90,3 +90,10 @@ def read_json_schema_from_url(url):
     response = requests.get(url)
     response.raise_for_status()
     return response.json()
+
+def get_concept_type(concept_id):
+    """
+    Extract the concept type from a given concept ID.
+    This is useful for determining the type of concept (e.g., 'collection', 'granule') from its ID.
+    """
+    return concept_id.startswith("C") and "collection" or "granule"
