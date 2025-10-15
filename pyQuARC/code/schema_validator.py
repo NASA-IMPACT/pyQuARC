@@ -3,7 +3,7 @@ import os
 import re
 
 from io import BytesIO
-from jsonschema import Draft7Validator, RefResolver
+from jsonschema import Draft7Validator, RefResolver 
 from lxml import etree
 from urllib.request import pathname2url
 from .utils import read_json_schema_from_url

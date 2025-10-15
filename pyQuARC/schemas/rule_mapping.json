@@ -5362,7 +5362,7 @@
             "Description"
         ],
         "severity": "info",
-        "check_id": "uniqueness_check"
+        "check_id": "one_item_presence_check"
     },
     "online_resource_description_uniqueness_check": {
         "rule_name": "Online Resource Description Uniqueness Check",
@@ -5396,7 +5396,7 @@
             "URLDescription"
         ],
         "severity": "info",
-        "check_id": "uniqueness_check"
+        "check_id": "one_item_presence_check"
     },
     "metadata_update_time_logic_check": {
         "rule_name": "Metadata Update Time Logic Check",
