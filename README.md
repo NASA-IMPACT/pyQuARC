@@ -22,10 +22,10 @@ pyQuARC currently supports the following metadata standards:
 * [UMM-JSON](https://wiki.earthdata.nasa.gov/display/CMR/UMM+Documents) (UMM)
 	* Collection/Data Product-level metadata (UMM-C)
 	* Granule/File-level metadata (UMM-G)
-* [ECHO10](https://earthdata.nasa.gov/esdis/eso/standards-and-references/echo-metadata-standard)
+* [ECHO10](https://git.earthdata.nasa.gov/projects/EMFD/repos/echo-schemas/browse/schemas/10.0)
 	* Collection/Data Product-level metadata (ECHO-C)
 	* Granule/File-level metadata (ECHO-G)
-* [DIF10](https://earthdata.nasa.gov/esdis/eso/standards-and-references/directory-interchange-format-dif-standard)
+* [DIF10](https://git.earthdata.nasa.gov/projects/EMFD/repos/dif-schemas/browse)
 	* Collection/Data Product-level only
 
 ## Install and Clone the Repository
