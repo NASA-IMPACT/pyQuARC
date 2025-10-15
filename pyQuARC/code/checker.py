@@ -120,9 +120,9 @@ class Checker:
         rule_mapping = self.rules_override.get(rule_id) or self.rule_mapping.get(
             rule_id
         )
-        severity = rule_mapping.get("severity", "error")
         messages = []
         if not (result["valid"]) and result.get("value"):
+            severity = result.get("severity") or rule_mapping.get("severity", "error")
             for value in result["value"]:
                 formatted_message = failure_message
                 value = value if isinstance(value, tuple) else (value,)
