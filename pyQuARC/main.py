@@ -287,8 +287,9 @@ class ARC:
                     f"\n\t {COLOR['title']}{COLOR['bright']} pyQuARC ERRORS: {END}\n"
                 )
                 for error in pyquarc_errors:
-                    error_prompt += (f"\t\t  ERROR: {error.get('message', 'No message available')} \n"
-                                    f"\t\t  DETAILS: {error.get('details', 'No details available')} \n"
+                    error_prompt += (
+                        f"\t\t  ERROR: {error.get('message', 'No message available')} \n"
+                        f"\t\t  DETAILS: {error.get('details', 'No details available')} \n"
                     )
 
             if cmr_validation := error.get("cmr_validation"):
