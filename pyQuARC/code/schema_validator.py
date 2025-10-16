@@ -14,7 +14,7 @@ SUPPORTED_UMM_C_VERSIONS = ["v1.18.4", "v1.18.3", "v1.18.2"]
 DEFAULT_UMM_C_VERSION = "v1.18.4" # Or any other version you prefer as default
 
 # Define UMM-G versions if you want to make it flexible as well
-SUPPORTED_UMM_G_VERSIONS = ["v1.6.6"]
+SUPPORTED_UMM_G_VERSIONS = ["v1.6.6", "v1.6.5"]
 DEFAULT_UMM_G_VERSION = "v1.6.6"
 
 SCHEMA_CDN_BASE = "https://cdn.earthdata.nasa.gov/umm"
