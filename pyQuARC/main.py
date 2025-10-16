@@ -214,7 +214,10 @@ class ARC:
                 # Get both revision and metadata version in one call
                 info = self._get_collection_version(concept_id)
                 version_to_use = self.version or info["revision_id"]
-                # metadata_version = info["metadata_version"]
+
+                metadata_version = info["metadata_version"]
+                if metadata_version:
+                    print(f"Collection {concept_id} schema version: {metadata_version}")
 
                 downloader = Downloader(
                     concept_id, self.metadata_format, version_to_use, self.cmr_host
