@@ -4872,7 +4872,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "one_item_presence_check"
+        "check_id": "availability_check"
     },
     "get_data_url_check": {
         "rule_name": "GET DATA URL check",
@@ -5351,7 +5351,7 @@
             "umm-c": [
                 {
                     "fields": [
-                        "RelatedUrls/Description"
+                        "RelatedUrls"
                     ]
                 },
                 {
@@ -5384,7 +5384,7 @@
             "Description"
         ],
         "severity": "info",
-        "check_id": "one_item_presence_check"
+        "check_id": "uniqueness_check"
     },
     "online_resource_description_uniqueness_check": {
         "rule_name": "Online Resource Description Uniqueness Check",
