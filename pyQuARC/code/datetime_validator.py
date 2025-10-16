@@ -87,9 +87,17 @@ class DatetimeValidator(BaseValidator):
         Returns:
             (dict) An object with the validity of the check and the instance
         """
+        is_datetime = DatetimeValidator._iso_datetime(datetime_string)
+        is_date = DatetimeValidator._iso_date(datetime_string)
+
+        # If it's a datetime, require that it ends with 'Z'
+        if is_datetime and not datetime_string.endswith("Z"):
+            is_datetime = False
+
+        valid = is_datetime or is_date
+
         return {
-            "valid": bool(DatetimeValidator._iso_datetime(datetime_string))
-            or bool(DatetimeValidator._iso_date(datetime_string)),
+            "valid": valid,
             "value": datetime_string,
         }
 
@@ -140,20 +148,37 @@ class DatetimeValidator(BaseValidator):
             "granules",
         )
         granules = cmr_request(cmr_prms)
-
         validity = True
         last_granule_datetime = None
+        last_granule_datetime_string = None
         date_time = None
 
         # Compare the precision of the two datetime strings
         if len(granules["feed"]["entry"]) > 0:
             last_granule = granules["feed"]["entry"][0]
-            last_granule_datetime = last_granule.get(time_key)
+            last_granule_datetime_string = last_granule.get(time_key)
             date_time = get_date_time(datetime_string)
-            last_granule_datetime = get_date_time(last_granule_datetime)
+            last_granule_datetime = get_date_time(last_granule_datetime_string)
             validity = date_time == last_granule_datetime
+            diff_bigger_than_a_day = abs(
+                (date_time - last_granule_datetime).total_seconds() / 3600
+            ) > 24
+        else:
+            validity = False
 
-        return {"valid": validity, "value": (date_time, last_granule_datetime)}
+        return_value = {}
+        if (
+            (not date_time)
+            or not last_granule_datetime
+            or diff_bigger_than_a_day
+        ):
+            return_value["severity"] = "error"
+
+        return {
+            **return_value,
+            "valid": validity,
+            "value": (datetime_string, last_granule_datetime_string),
+        }
 
     @staticmethod
     @if_arg

@@ -3771,6 +3771,34 @@
         "severity": "error",
         "check_id": "string_compare"
     },
+    "opendap_link_check": {
+        "rule_name": "OPeNDAP Link Presence Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "RelatedUrls"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            {
+                "type": "OPENDAP DATA",
+                "url_keyword": "opendap"
+            }
+        ],
+        "relation": "contains",
+        "check_id": "opendap_link_check",
+        "severity": "warning"
+    },
     "location_keyword_presence_check": {
         "rule_name": "Location Keyword Presence Check",
         "fields_to_apply": {
@@ -3924,7 +3952,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "license_url_description_check"
+        "check_id": "one_item_presence_check"  
     },
     "collection_citation_presence_check": {
         "rule_name": "Collection Citation Presence Check",
@@ -5323,7 +5351,7 @@
             "umm-c": [
                 {
                     "fields": [
-                        "RelatedUrls"
+                        "RelatedUrls/Description"
                     ]
                 },
                 {
@@ -5356,7 +5384,7 @@
             "Description"
         ],
         "severity": "info",
-        "check_id": "uniqueness_check"
+        "check_id": "one_item_presence_check"
     },
     "online_resource_description_uniqueness_check": {
         "rule_name": "Online Resource Description Uniqueness Check",
@@ -5390,7 +5418,7 @@
             "URLDescription"
         ],
         "severity": "info",
-        "check_id": "uniqueness_check"
+        "check_id": "one_item_presence_check"
     },
     "metadata_update_time_logic_check": {
         "rule_name": "Metadata Update Time Logic Check",
