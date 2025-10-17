@@ -45,7 +45,11 @@ class CustomChecker:
             or isinstance(root_content, int)
             or isinstance(root_content, float)
         ):
-            container.append(root_content)
+            # if there is at least one element in new_path, the value can not be found
+            if new_path:
+                container.append(None)
+            else:
+                container.append(root_content)
             return
         elif isinstance(root_content, list):
             if not new_path:
@@ -184,6 +188,7 @@ class CustomChecker:
             for future in as_completed(future_results):
                 try:
                     func_return = future.result()
+                    severity = func_return.get("severity")
                     valid = func_return["valid"]  # can be True, False or None
                     if valid is not None:
                         if valid:
@@ -196,4 +201,6 @@ class CustomChecker:
                     raise e
         result["valid"] = validity
         result["value"] = invalid_values
+        if severity:
+            result["severity"] = severity
         return result

@@ -812,6 +812,262 @@
         "severity": "error",
         "check_id": "url_check"
     },
+
+     "protocol_check": {
+        "rule_name": "protocol_checks",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/Description"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/SuggestedUsage"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/CitationforExternalPublication"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/OnlineResources/OnlineResource/URL"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Extended_Metadata/Metadata/Value"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Dataset_Citation/Online_Resource"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Summary/Abstract"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Organization/Organization_URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Related_URL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Extended_Metadata/Metadata/Value"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "DataCenters/ContactInformation/RelatedUrls/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataCenters/ContactPersons/ContactInformation/RelatedUrls/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataCenters/ContactGroups/ContactInformation/RelatedUrls/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "ContactPersons/ContactInformation/RelatedUrls/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "ContactGroups/ContactInformation/RelatedUrls/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "RelatedUrls/URL"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "RelatedUrls/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "MetadataSpecification/URL"
+                    ]
+                }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/AssociatedBrowseImageUrls/ProviderBrowseUrl/URL"
+                    ]
+                }
+            ]
+        },
+        "severity": "error",
+        "check_id": "protocol_check"
+    },
+    "secure_url_check": {
+        "rule_name": "secure_url_checks",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/Description"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/SuggestedUsage"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/CitationforExternalPublication"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Collection/OnlineResources/OnlineResource/URL"
+                    ]
+                }
+            ],
+            "dif10": [
+                {
+                    "fields": [
+                        "DIF/Extended_Metadata/Metadata/Value"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Dataset_Citation/Online_Resource"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Summary/Abstract"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Organization/Organization_URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Related_URL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DIF/Extended_Metadata/Metadata/Value"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "DataCenters/ContactInformation/RelatedUrls/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataCenters/ContactPersons/ContactInformation/RelatedUrls/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "DataCenters/ContactGroups/ContactInformation/RelatedUrls/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "ContactPersons/ContactInformation/RelatedUrls/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "ContactGroups/ContactInformation/RelatedUrls/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "RelatedUrls/URL"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "RelatedUrls/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "MetadataSpecification/URL"
+                    ]
+                }
+            ],
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/URL"
+                    ]
+                },
+                {
+                    "fields": [
+                        "Granule/AssociatedBrowseImageUrls/ProviderBrowseUrl/URL"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "secure_url_check"
+    },
+    
     "shortname_uniqueness": {
         "rule_name": "Short Name uniqueness check",
         "fields_to_apply": {
@@ -994,15 +1250,20 @@
         "data": [
             [
                 "0",
+                "1",
                 "1A",
                 "1B",
                 "1C",
                 "2",
                 "2A",
                 "2B",
+                "2G",
+                "2P",
                 "3",
                 "3A",
-                "4"
+                "4", 
+                "NA",
+                "Not provided"
             ]
         ],
         "severity": "warning",
@@ -1252,6 +1513,27 @@
         ],
         "severity": "info",
         "check_id": "length_check"
+    },
+    "processing_level_description_presence_check": {
+        "rule_name": "Processing Level Description Presence Check",
+        "fields_to_apply": {
+            "echo-c": [
+                {
+                    "fields": [
+                        "Collection/ProcessingLevelDescription"
+                    ]
+                }
+            ],
+            "umm-c": [
+                {
+                    "fields": [
+                        "ProcessingLevel/ProcessingLevelDescription"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "one_item_presence_check"
     },
     "umm_controlled_collection_state_list_check": {
         "rule_name": "UMM Controlled Collection State List",
@@ -3621,7 +3903,7 @@
             "umm-g": [
                 {
                     "fields": [
-                        "Projects/ShortName"
+                        "Campaign/ShortName"
                     ]
                 }
             ]
@@ -3677,7 +3959,7 @@
             "umm-c": [
                 {
                     "fields": [
-                        "SpatialRepresentationInfo/HorizontalCoordinateSystem/GeodeticModel/HorizontalDatumName"
+                        "SpatialExtent/HorizontalSpatialDomain/ResolutionAndCoordinateSystem/GeodeticModel/HorizontalDatumName"
                     ]
                 }
             ]
@@ -3744,6 +4026,34 @@
         "relation": "not_contains",
         "severity": "error",
         "check_id": "string_compare"
+    },
+    "opendap_link_check": {
+        "rule_name": "OPeNDAP Link Presence Check",
+        "fields_to_apply": {
+            "echo-g": [
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource"
+                    ]
+                }
+            ],
+            "umm-g": [
+                {
+                    "fields": [
+                        "RelatedUrls"
+                    ]
+                }
+            ]
+        },
+        "data": [
+            {
+                "type": "OPENDAP DATA",
+                "url_keyword": "opendap"
+            }
+        ],
+        "relation": "contains",
+        "check_id": "opendap_link_check",
+        "severity": "warning"
     },
     "location_keyword_presence_check": {
         "rule_name": "Location Keyword Presence Check",
@@ -3898,7 +4208,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "license_url_description_check"
+        "check_id": "one_item_presence_check"  
     },
     "collection_citation_presence_check": {
         "rule_name": "Collection Citation Presence Check",
@@ -4111,6 +4421,11 @@
                     "fields": [
                         "RelatedUrls/Type"
                     ]
+                },
+                {
+                    "fields": [
+                        "Collection/OnlineResources/OnlineResource/Type"
+                    ]
                 }
             ],
             "umm-g": [
@@ -4146,6 +4461,11 @@
             "umm-c": [
                 {
                     "fields": [
+                        "Collection/OnlineResources/OnlineResource/Type"
+                    ]
+                },
+                {
+                    "fields": [
                         "RelatedUrls/Type",
                         "RelatedUrls"
                     ]
@@ -4161,7 +4481,7 @@
             ]
         },
         "severity": "warning",
-        "check_id": "availability_check"
+        "check_id": "one_item_presence_check"
     },
     "characteristic_name_uniqueness_check": {
         "rule_name": "Characteristic Name Uniqueness Check",
@@ -4792,6 +5112,18 @@
                         "RelatedUrls/Description",
                         "RelatedUrls/URL"
                     ]
+                },
+                {
+                    "fields": [
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URLDescription", 
+                        "Granule/OnlineAccessURLs/OnlineAccessURL/URL"
+                    ]
+                }, 
+                {
+                    "fields": [
+                        "Granule/OnlineResources/OnlineResource/Description", 
+                        "Granule/OnlineResources/OnlineResource/URL"
+                    ]
                 }
             ]
         },
@@ -5342,7 +5674,7 @@
             "URLDescription"
         ],
         "severity": "info",
-        "check_id": "uniqueness_check"
+        "check_id": "one_item_presence_check"
     },
     "metadata_update_time_logic_check": {
         "rule_name": "Metadata Update Time Logic Check",
@@ -5559,5 +5891,20 @@
         },
         "severity": "warning",
         "check_id": "one_item_presence_check"
-    }
+    },
+    "url_update_email_check": {
+        "rule_name": "URL Email address check",
+        "fields_to_apply": {
+            "umm-c": [
+                {
+                    "fields": [
+                        "DataCenters/ContactGroups/ContactInformation/ContactMechanisms/Value",
+                        "DataCenters/ContactGroups/ContactInformation/ContactInstruction"
+                    ]
+                }
+            ]
+        },
+        "severity": "info",
+        "check_id": "url_update_email_check"
+}
 }

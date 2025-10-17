@@ -35,6 +35,28 @@ class UrlValidator(StringValidator):
         return starts_with_http
 
     @staticmethod
+    def _status_code_from_request(url):
+        """
+        Return HTTP status code for url, raising requests exceptions to caller.
+        """
+        headers = get_headers()
+        return requests.get(url, headers=headers, timeout=10).status_code
+
+    @staticmethod
+    def _extract_and_normalize_urls(text_with_urls):
+        """
+        Extract URLs from text, include tokens that start with 'http', strip trailing dots,
+        and return (set_of_urls, joined_value_string).
+        """
+        extractor = URLExtract(cache_dir=os.environ.get("CACHE_DIR"))
+        urls = extractor.find_urls(text_with_urls)
+        urls.extend(UrlValidator._extract_http_texts(text_with_urls))
+        # remove dots at the end and deduplicate
+        urls = set(url[:-1] if url.endswith(".") else url for url in urls)
+        value = ", ".join(urls)
+        return urls, value
+
+    @staticmethod
     @if_arg
     def health_and_status_check(text_with_urls):
         """
@@ -45,48 +67,87 @@ class UrlValidator(StringValidator):
             (dict) An object with the validity of the check and the instance/results
         """
 
-        def status_code_from_request(url):
-            headers = get_headers()
-            # timeout = 10 seconds, to allow for slow but not invalid connections
-            return requests.get(url, headers=headers, timeout=10).status_code
+        results = []
+
+        validity = True
+
+        urls, value = UrlValidator._extract_and_normalize_urls(text_with_urls)
+
+        for url in urls:
+            if url.startswith("https"):
+                try:
+                    response_code = UrlValidator._status_code_from_request(url)
+                    if response_code != 200:
+                        result = {
+                            "url": url,
+                            "error": f"The url {url} is broken.",
+                        }
+                        results.append(result)
+                    else:
+                        continue
+                except requests.ConnectionError:
+                    result = {"url": url, "error": f"The URL {url} does not exist on Internet."}
+                    results.append(result)
+                
+        if results:
+            validity = False
+            value = results
+
+        return {"valid": validity, "value": value}
+
+    @staticmethod
+    @if_arg
+    def protocol_checks(text_with_urls):
+        """
+        Checks the ftp included in `text_with_urls`
+        Args:
+           text_with_urls (str, required): The text that contains ftp
+        Returns:
+            (dict) An object with the validity of the check and the instance/results
+        """
 
         results = []
 
         validity = True
 
-        # extract URLs from text
-        extractor = URLExtract(cache_dir=os.environ.get("CACHE_DIR"))
-        urls = extractor.find_urls(text_with_urls)
-        urls.extend(UrlValidator._extract_http_texts(text_with_urls))
+        urls, value = UrlValidator._extract_and_normalize_urls(text_with_urls)
 
-        # remove dots at the end (The URLExtract library catches URLs, but sometimes appends a '.' at the end)
-        # remove duplicated urls
-        urls = set(url[:-1] if url.endswith(".") else url for url in urls)
-        value = ", ".join(urls)
-
-        # check that URL returns a valid response
         for url in urls:
-            if not url.startswith("http"):
-                url = f"http://{url}"
-            try:
-                response_code = status_code_from_request(url)
-                if response_code == 200:
-                    if url.startswith("http://"):
-                        secure_url = url.replace("http://", "https://")
-                        if status_code_from_request(secure_url) == 200:
-                            result = {
-                                "url": url,
-                                "error": "The URL is secure. Please use 'https' instead of 'http'.",
-                            }
-                    else:
-                        continue
-                else:
-                    result = {"url": url, "error": f"Status code {response_code}"}
-            except requests.ConnectionError:
-                result = {"url": url, "error": "The URL does not exist on Internet."}
-            except:
-                result = {"url": url, "error": "Some unknown error occurred."}
-            results.append(result)
+            if url.startswith("ftp://"):
+                results.append({
+                    "url": url,
+                    "error": f"The URL {url} exists"
+                })
+
+        if results:
+            validity = False
+            value = results
+
+        return {"valid": validity, "value": value}
+
+    @staticmethod
+    @if_arg
+    def secure_url_checks(text_with_urls):
+        """
+        Checks whether the secure link (https) is included in `text_with_urls`
+        Args:
+           text_with_urls (str, required): The text that contains https
+        Returns:
+            (dict) An object with the validity of the check and the instance/results
+        """
+
+        results = []
+
+        validity = True
+
+        urls, value = UrlValidator._extract_and_normalize_urls(text_with_urls)
+
+        for url in urls:
+            if url.startswith("http://"):
+                results.append({
+                    "url": url,
+                    "error": f"The URL {url} is not secure"
+                })
 
         if results:
             validity = False
@@ -117,3 +178,25 @@ class UrlValidator(StringValidator):
             validity = False
 
         return {"valid": validity, "value": value}
+    
+    @staticmethod
+    @if_arg
+    def url_update_email_check(url, bad_urls=None):
+        if bad_urls is None:
+            bad_urls = []
+
+        if not url:
+            return {
+                "valid": False,
+                "value": url,
+                "message": "No email value provided for URL update contact.",
+                "remediation": "Provide a valid contact email address."
+            }
+         
+        validity = True
+        # Check if the URL matches 'support-cddis@earthdata.nasa.gov'
+        if url in bad_urls or url == "support-cddis@earthdata.nasa.gov":
+            # Update the URL
+            url = "support-cddis@nasa.gov"
+            validity = False  # Mark as invalid if the URL was updated
+        return {"valid": validity, "value": url}
