@@ -76,8 +76,7 @@ class UrlValidator(StringValidator):
         for url in urls:
             if url.startswith("http"):
                 try:
-                    response_code = 400
-                    # UrlValidator._status_code_from_request(url)
+                    response_code = UrlValidator._status_code_from_request(url)
                     if response_code == 200:
                         if url.startswith("http://"):
                             secure_url = url.replace("http://", "https://")
@@ -151,7 +150,6 @@ class UrlValidator(StringValidator):
         urls, value = UrlValidator._extract_and_normalize_urls(text_with_urls)
 
         for url in urls:
-            url="http://"
             if url.startswith("http://"):
                 results.append({
                     "url": url,
