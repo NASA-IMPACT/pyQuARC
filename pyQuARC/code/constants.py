@@ -73,17 +73,26 @@ COLOR = {
 GCMD_BASIC_URL = "https://gcmd.earthdata.nasa.gov/kms/concepts/concept_scheme/"
 
 GCMD_LINKS = {
-    keyword: f"{GCMD_BASIC_URL}{keyword}?format=csv" for keyword in GCMD_KEYWORDS
+    keyword: f"{GCMD_BASIC_URL}{keyword}?format=csv"
+    for keyword in GCMD_KEYWORDS
 }
 
 CMR_URL = "https://cmr.earthdata.nasa.gov"
 
 DATE_FORMATS = [
-    "%Y-%m-%dT%H:%M:%S.%f",  # Year to microsecond
-    "%Y-%m-%dT%H:%M:%S",  # Year to second
-    "%Y-%m-%dT%H:%M",  # Year to minute
-    "%Y-%m-%dT%H",  # Year to hour
+    "%Y-%m-%dT%H:%M:%S.%fZ",  # Year to microsecond
+    "%Y-%m-%dT%H:%M:%SZ",  # Year to second
+    "%Y-%m-%dT%H:%MZ",  # Year to minute
+    "%Y-%m-%dT%HZ",  # Year to hour
     "%Y-%m-%d",  # Year to day
     "%Y-%m",  # Year to month
     "%Y",  # Year
 ]
+
+CONTENT_TYPE_MAP = {
+    UMM_C: "vnd.nasa.cmr.umm+json",
+    UMM_G: "vnd.nasa.cmr.umm+json",
+    ECHO10_C: "echo10+xml",
+    ECHO10_G: "echo10+xml",
+    DIF: "dif10+xml"
+}

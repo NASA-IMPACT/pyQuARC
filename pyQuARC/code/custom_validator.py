@@ -2,6 +2,7 @@ from .base_validator import BaseValidator
 from .string_validator import StringValidator
 
 from .utils import cmr_request, if_arg, set_cmr_prms
+from collections.abc import Mapping
 
 
 class CustomValidator(BaseValidator):
@@ -277,3 +278,63 @@ class CustomValidator(BaseValidator):
             items = [items]
         num_items = len(items)
         return {"valid": int(count) == num_items, "value": (count, num_items)}
+
+    @staticmethod
+    def opendap_link_check(related_urls, key, extra=None):
+        """
+        Checks if the related_urls contains an OPeNDAP link by looking for "opendap" in the URL
+        or matching Type/Subtype fields. This function works with both OrderedDict and regular dict,
+        as well as a list of dictionaries.
+
+        Args:
+            related_urls (list or Mapping): The related_urls field of the object, expected to be a list of URL objects
+                                            or a single OrderedDict.
+            key (dict): A dictionary with "type" and "url_keyword" keys for the checks.
+            extra (optional): An additional argument to match the expected function call signature. This argument is ignored.
+
+        Returns:
+            dict: A validation result indicating whether a valid OPeNDAP link is present and the link itself if found.
+        """
+
+        # If related_urls is None or not provided, initialize it as an empty list
+        if not related_urls:
+            related_urls = []
+
+        # If related_urls is a single Mapping (like OrderedDict), wrap it in a list
+        elif isinstance(related_urls, Mapping):
+            related_urls = [related_urls]
+
+        # Default return object if no valid OPeNDAP link is found
+        return_obj = {"valid": False, "value": "None"}
+
+        # Extract URL keyword and type to check from key
+        url_keyword = key.get("url_keyword", "opendap").lower()
+        type_to_check = key.get("type", "OPENDAP DATA").upper()
+
+        # Process each URL object in the list
+        for url_obj in related_urls:
+            # Ensure that url_obj is a dictionary-like object before processing
+            if not isinstance(url_obj, Mapping):
+                continue
+
+            # Retrieve the URL field
+            url_value = url_obj.get("URL", "").lower()
+
+            # Check if the URL contains "opendap"
+            if "opendap" in url_value:
+                return_obj["valid"] = True
+                return_obj["value"] = url_value
+                break
+
+            # Retrieve and normalize Type and Subtype fields
+            type_field = url_obj.get("Type", "").upper()
+            subtype_field = url_obj.get("Subtype", "").upper()
+
+            # Check if the Type or Subtype contains "OPENDAP DATA"
+            if type_to_check in type_field or type_to_check in subtype_field:
+                return_obj["valid"] = True
+                return_obj["value"] = url_value if url_value else "None"
+                break
+
+        return return_obj
+

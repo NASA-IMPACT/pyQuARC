@@ -185,3 +185,25 @@ class UrlValidator(StringValidator):
             validity = False
 
         return {"valid": validity, "value": value}
+    
+    @staticmethod
+    @if_arg
+    def url_update_email_check(url, bad_urls=None):
+        if bad_urls is None:
+            bad_urls = []
+
+        if not url:
+            return {
+                "valid": False,
+                "value": url,
+                "message": "No email value provided for URL update contact.",
+                "remediation": "Provide a valid contact email address."
+            }
+         
+        validity = True
+        # Check if the URL matches 'support-cddis@earthdata.nasa.gov'
+        if url in bad_urls or url == "support-cddis@earthdata.nasa.gov":
+            # Update the URL
+            url = "support-cddis@nasa.gov"
+            validity = False  # Mark as invalid if the URL was updated
+        return {"valid": validity, "value": url}
