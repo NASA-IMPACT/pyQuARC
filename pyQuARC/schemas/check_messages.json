@@ -40,12 +40,28 @@
         "remediation": "Recommend updating the Revision date so that it comes chronologically after the Insert/Creation time."
     },
     "url_check": {
-        "failure": "A URL with a status code other than 200 has been identified: `{}`.",
+        "failure": "`{}`.",
         "help": {
             "message": "",
             "url": "https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
         },
-        "remediation": "This often indicates a broken link. If the URL is broken, recommend revising."
+        "remediation": "The following link is broken. Recommend replacing the OnlineAccessURL with a link to directly access the granule via https."
+    },
+    "protocol_check": {
+        "failure": "The following URL `{}` does not exist.",
+        "help": {
+            "message": "",
+            "url": "https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
+        },
+        "remediation": "Recommend removing the ftp access link."
+    },
+    "secure_url_check": {
+        "failure": "`{}`.",
+        "help": {
+            "message": "",
+            "url": "https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
+        },
+        "remediation": "Recommend updating the following link(s) from 'http' to 'https':"
     },
     "shortname_uniqueness": {
         "failure": "The EntryTitle/DataSetId `{}` is identical to the ShortName `{}`.",
