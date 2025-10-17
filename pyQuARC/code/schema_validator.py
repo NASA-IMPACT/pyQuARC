@@ -10,7 +10,7 @@ from .utils import read_json_schema_from_url
 from .constants import ECHO10_C, SCHEMA_PATHS, UMM_C, UMM_G
 
 
-SUPPORTED_UMM_C_VERSIONS = ["v1.18.4", "v1.18.3", "v1.18.2"]
+SUPPORTED_UMM_C_VERSIONS = ["v1.18.4"]
 DEFAULT_UMM_C_VERSION = "v1.18.4" # Or any other version you prefer as default
 
 # Define UMM-G versions if you want to make it flexible as well
