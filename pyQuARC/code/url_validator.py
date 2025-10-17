@@ -74,24 +74,17 @@ class UrlValidator(StringValidator):
         urls, value = UrlValidator._extract_and_normalize_urls(text_with_urls)
 
         for url in urls:
-            if url.startswith("http"):
+            if url.startswith("https"):
                 try:
                     response_code = UrlValidator._status_code_from_request(url)
-                    if response_code == 200:
-                        if url.startswith("http://"):
-                            secure_url = url.replace("http://", "https://")
-                            if UrlValidator._status_code_from_request(secure_url) == 200:
-                                result = {
-                                    "url": url,
-                                    "error": f"The url{url} is secure. Please use 'https' instead of 'http'.",
-                                }
-                                results.append(result)
-                          
-                        else:
-                            continue
-                    else:
-                        result = {"url": url, "error": f"Status code {response_code}"}
+                    if response_code != 200:
+                        result = {
+                            "url": url,
+                            "error": f"The url {url} is broken.",
+                        }
                         results.append(result)
+                    else:
+                        continue
                 except requests.ConnectionError:
                     result = {"url": url, "error": f"The URL {url} does not exist on Internet."}
                     results.append(result)
