@@ -24,6 +24,16 @@
         "check_function": "health_and_status_check",
         "available": true
     },
+     "protocol_check": {
+        "data_type": "url",
+        "check_function": "protocol_checks",
+        "available": true
+    },
+    "secure_url_check": {
+        "data_type": "url",
+        "check_function": "secure_url_checks",
+        "available": true
+    }, 
     "url_update_email_check": {
         "data_type": "url",
         "check_function": "url_update_email_check",

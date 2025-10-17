@@ -40,12 +40,28 @@
         "remediation": "Recommend updating the Revision date so that it comes chronologically after the Insert/Creation time."
     },
     "url_check": {
-        "failure": "A URL with a status code other than 200 has been identified: `{}`.",
+        "failure": "`{}`.",
         "help": {
             "message": "",
             "url": "https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
         },
-        "remediation": "This often indicates a broken link. If the URL is broken, recommend revising."
+        "remediation": "The following link is broken. Recommend replacing the OnlineAccessURL with a link to directly access the granule via https."
+    },
+    "protocol_check": {
+        "failure": "The following URL `{}` does not exist.",
+        "help": {
+            "message": "",
+            "url": "https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
+        },
+        "remediation": "Recommend removing the ftp access link."
+    },
+    "secure_url_check": {
+        "failure": "`{}`.",
+        "help": {
+            "message": "",
+            "url": "https://en.wikipedia.org/wiki/List_of_HTTP_status_codes"
+        },
+        "remediation": "Recommend updating the following link(s) from 'http' to 'https':"
     },
     "url_update_email_check": {
         "failure": "The listed email contact information must be updated.",
@@ -221,7 +237,7 @@
             "message": "",
             "url": ""
         },
-        "remediation": "If data collection is ongoing, provide an EndsAtPresentFlag of \"true\""
+        "remediation": "Since data collection is no longer ongoing, recommend updating the EndsAtPresentFlag to 'false'."
     },
     "ends_at_present_flag_presence_check": {
         "failure": "Potential issue with:\n - No EndingDateTime provided; no EndsAtPresentFlag provided for a potentially active collection. \n - CollectionState is not \"COMPLETE\"; no EndsAtPresentFlag provided for a potentially active collection.",
@@ -752,12 +768,12 @@
         "remediation": "Recommend providing an entry of 'true' or 'false'."
     },
     "collection_progress_consistency_check": {
-        "failure": "The Collection State/Progress `{}` is not consistent with the Ending Date Time and/or the Ends At Present Flag.",
+        "failure": "The Collection Progress `{}` is not consistent with the Ending Date Time and/or the Ends At Present Flag.",
         "help": {
             "message": "",
             "url": "https://wiki.earthdata.nasa.gov/display/CMR/Collection+Progress"
         },
-        "remediation": "Recommend updating the Collection State/Progress based on the Ending Date Time and Ends At Present Flag values."
+        "remediation": "Recommend updating the Collection Progress based on the Ending Date Time and Ends At Present Flag values."
     },
     "online_resource_type_gcmd_check": {
         "failure": "The provided Online Resource/Related URLs Type `{}` is not consistent with GCMD.",
