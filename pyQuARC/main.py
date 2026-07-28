@@ -19,7 +19,7 @@ if __name__ == "__main__":
     from code.utils import get_concept_type, get_headers
 else:
     from .code.checker import Checker
-    from .code.constants import COLOR, ECHO10_C, SUPPORTED_FORMATS
+    from .code.constants import COLOR, ECHO10_C, SUPPORTED_FORMATS, CONTENT_TYPE_MAP
     from .code.downloader import Downloader
     from .code.utils import get_cmr_url, is_valid_cmr_url
     from .code.utils import get_concept_type, get_headers
@@ -234,15 +234,20 @@ class ARC:
 
                 content = content.encode()
                 cmr_response = self._validate_with_cmr(concept_id, content)
+                try:
+                    cmr_validation = cmr_response.json()
+                except ValueError:
+                    # CMR returns an empty body when validation succeeds
+                    cmr_validation = {}
                 validation_errors, pyquarc_errors = checker.run(content)
                 self.errors.append(
                     {
                         "concept_id": concept_id,
                         "errors": validation_errors,
                         "cmr_validation": {
-                            "errors": cmr_response.json().get("errors", []),
+                            "errors": cmr_validation.get("errors", []),
                             # TODO: show warnings
-                            "warnings": cmr_response.json().get("warnings", [])
+                            "warnings": cmr_validation.get("warnings", [])
                         },
                         "pyquarc_errors": pyquarc_errors,
                     }
